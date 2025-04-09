@@ -1,7 +1,19 @@
-import { Download, Pen, ArrowRight } from "lucide-react";
+import { Download, Pen, ArrowRight, ArrowLeft, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { 
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useState } from "react";
+import { Link } from "wouter";
 
 // Mock feedback data
 interface FeedbackData {
@@ -35,6 +47,8 @@ export function FeedbackInterface({
   onTryAgain,
   onNextPractice,
 }: FeedbackInterfaceProps) {
+  const [showExitDialog, setShowExitDialog] = useState(false);
+  
   // This would normally come from an API based on essay analysis
   // Using mock data for frontend-only implementation
   const feedbackData: FeedbackData = {
@@ -67,17 +81,75 @@ export function FeedbackInterface({
     },
   };
 
+  // Helper function to highlight parts of essay
+  const highlightEssay = (text: string) => {
+    // In a real implementation, this would use API response data to highlight
+    // For demo, we'll use simple patterns
+    const paragraphs = text.split('\n').filter(p => p.trim().length > 0);
+    
+    return paragraphs.map((paragraph, index) => {
+      // Highlight first paragraph green (good)
+      if (index === 0) {
+        return <p key={index} className="mb-2 p-2 bg-green-50 border-l-4 border-green-500">{paragraph}</p>;
+      }
+      
+      // Add some yellow highlights for grammar issues (random words for demo)
+      if (index === 1) {
+        const words = paragraph.split(' ');
+        return (
+          <p key={index} className="mb-2">
+            {words.map((word, i) => {
+              // Randomly highlight some words as grammar issues for demo
+              if (i === 3 || i === 10) {
+                return <span key={i} className="bg-yellow-100 border-b border-yellow-400">{word} </span>;
+              }
+              return <span key={i}>{word} </span>;
+            })}
+          </p>
+        );
+      }
+      
+      // Add some red highlights for vocabulary issues (random words for demo)
+      if (index === 2) {
+        const words = paragraph.split(' ');
+        return (
+          <p key={index} className="mb-2">
+            {words.map((word, i) => {
+              // Randomly highlight some words as vocabulary issues for demo
+              if (i === 5 || i === 8) {
+                return <span key={i} className="bg-red-100 border-b border-red-400">{word} </span>;
+              }
+              return <span key={i}>{word} </span>;
+            })}
+          </p>
+        );
+      }
+      
+      return <p key={index} className="mb-2">{paragraph}</p>;
+    });
+  };
+
   const getScorePercentage = (score: number) => {
     return (score / 9) * 100;
   };
 
   return (
     <div className="p-6">
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Writing Assessment</h2>
-        <p className="text-gray-600">
-          Your essay has been evaluated based on the IELTS Task 2 criteria.
-        </p>
+      <div className="flex items-center mb-6">
+        <Button 
+          variant="outline" 
+          size="sm"
+          onClick={() => setShowExitDialog(true)}
+          className="mr-2"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" /> Back
+        </Button>
+        <div>
+          <h2 className="text-2xl font-semibold mb-2">Writing Assessment</h2>
+          <p className="text-gray-600">
+            Your essay has been evaluated based on the IELTS Task 2 criteria.
+          </p>
+        </div>
       </div>
       
       <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -94,7 +166,7 @@ export function FeedbackInterface({
                     {feedbackData.scores.taskAchievement.toFixed(1)}
                   </span>
                 </div>
-                <Progress value={getScorePercentage(feedbackData.scores.taskAchievement)} />
+                <Progress value={getScorePercentage(feedbackData.scores.taskAchievement)} className="bg-gray-200" />
               </div>
               
               <div>
@@ -104,7 +176,7 @@ export function FeedbackInterface({
                     {feedbackData.scores.coherenceCohesion.toFixed(1)}
                   </span>
                 </div>
-                <Progress value={getScorePercentage(feedbackData.scores.coherenceCohesion)} />
+                <Progress value={getScorePercentage(feedbackData.scores.coherenceCohesion)} className="bg-gray-200" />
               </div>
               
               <div>
@@ -114,7 +186,7 @@ export function FeedbackInterface({
                     {feedbackData.scores.lexicalResource.toFixed(1)}
                   </span>
                 </div>
-                <Progress value={getScorePercentage(feedbackData.scores.lexicalResource)} />
+                <Progress value={getScorePercentage(feedbackData.scores.lexicalResource)} className="bg-gray-200" />
               </div>
               
               <div>
@@ -124,7 +196,7 @@ export function FeedbackInterface({
                     {feedbackData.scores.grammar.toFixed(1)}
                   </span>
                 </div>
-                <Progress value={getScorePercentage(feedbackData.scores.grammar)} />
+                <Progress value={getScorePercentage(feedbackData.scores.grammar)} className="bg-gray-200" />
               </div>
               
               <div className="pt-2 border-t border-gray-200">
@@ -169,14 +241,18 @@ export function FeedbackInterface({
         </Card>
       </div>
       
+      {/* Two-column detailed feedback */}
       <Card className="mb-6">
         <CardHeader className="pb-2">
           <h3 className="font-medium text-lg">Detailed Feedback</h3>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-medium text-gray-800">Strengths</h4>
+              <div className="flex items-center mb-2">
+                <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
+                <h4 className="font-medium text-gray-800">Strengths</h4>
+              </div>
               <ul className="mt-2 space-y-1 text-gray-600 pl-5 list-disc">
                 {feedbackData.feedback.strengths.map((strength, index) => (
                   <li key={index}>{strength}</li>
@@ -185,7 +261,10 @@ export function FeedbackInterface({
             </div>
             
             <div>
-              <h4 className="font-medium text-gray-800">Areas for Improvement</h4>
+              <div className="flex items-center mb-2">
+                <AlertTriangle className="h-5 w-5 text-amber-500 mr-2" />
+                <h4 className="font-medium text-gray-800">Areas for Improvement</h4>
+              </div>
               <ul className="mt-2 space-y-1 text-gray-600 pl-5 list-disc">
                 {feedbackData.feedback.improvements.map((improvement, index) => (
                   <li key={index}>{improvement}</li>
@@ -195,27 +274,78 @@ export function FeedbackInterface({
           </div>
         </CardContent>
       </Card>
+
+      {/* Essay with highlights */}
+      <Card className="mb-6">
+        <CardHeader className="pb-2">
+          <h3 className="font-medium text-lg">Your Essay with Annotations</h3>
+          <div className="flex flex-wrap gap-3 mt-2 text-sm">
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-green-100 border border-green-500 mr-1"></div>
+              <span>Excellent sections</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-yellow-100 border border-yellow-400 mr-1"></div>
+              <span>Grammar issues</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-red-100 border border-red-400 mr-1"></div>
+              <span>Vocabulary issues</span>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="border border-gray-200 rounded-md p-4 bg-white">
+            {essayContent.length > 0 
+              ? highlightEssay(essayContent)
+              : highlightEssay("Technology has revolutionized the way we live and work in the modern world. \n\nWhile it has brought many benefits to society, some people argue that it has made our lives more complicated and stressful. This essay will discuss both viewpoints and provide my own opinion on the matter. \n\nOn the one hand, technology has greatly improved the human condition in numerous ways. Medical advances have extended our lifespans and improved the quality of life for many people suffering from illnesses. Communication technology allows us to connect with people around the world instantly, strengthening relationships and fostering global understanding.")}
+          </div>
+        </CardContent>
+      </Card>
       
-      <div className="flex space-x-4">
-        <Button variant="outline">
+      <div className="flex flex-wrap gap-4">
+        <Button 
+          variant="outline" 
+          className="flex items-center"
+        >
           <Download className="mr-2 h-4 w-4" /> Download Feedback
         </Button>
         
         <Button 
           variant="secondary"
-          className="bg-indigo-600 hover:bg-indigo-700 text-white"
+          className="bg-primary hover:opacity-90 text-white"
           onClick={onTryAgain}
         >
           <Pen className="mr-2 h-4 w-4" /> Try Again
         </Button>
         
         <Button 
-          className="bg-blue-600 hover:bg-blue-700"
+          className="bg-primary hover:opacity-90 text-white"
           onClick={onNextPractice}
         >
           <ArrowRight className="mr-2 h-4 w-4" /> Next Practice
         </Button>
       </div>
+
+      {/* Exit Confirmation Dialog */}
+      <AlertDialog open={showExitDialog} onOpenChange={setShowExitDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Thoát khỏi phần đánh giá?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Bạn có chắc chắn muốn thoát khỏi phần đánh giá bài viết và quay lại trang thiết lập bài tập không?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Tiếp tục xem đánh giá</AlertDialogCancel>
+            <Link href="/writing-practice">
+              <AlertDialogAction>
+                Thoát
+              </AlertDialogAction>
+            </Link>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

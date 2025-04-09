@@ -23,7 +23,7 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
   const phrases = getPhrases(testType);
   
   return (
-    <div className="lg:w-1/3 mt-6 lg:mt-0">
+    <div className="mt-8">
       {/* Outline Suggestions */}
       <Card className="mb-4">
         <CardHeader className="flex flex-row items-center justify-between py-3 px-4 bg-gray-50">

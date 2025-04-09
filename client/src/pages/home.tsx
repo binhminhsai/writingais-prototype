@@ -20,7 +20,7 @@ export default function Home() {
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <FileEdit className="h-5 w-5 text-blue-600" /> Writing Practice
+              <FileEdit className="h-5 w-5 text-primary" /> Writing Practice
             </CardTitle>
             <CardDescription>
               Practice writing for different tests and scenarios
@@ -86,7 +86,7 @@ export default function Home() {
         </Card>
       </div>
 
-      <div className="bg-blue-50 rounded-lg p-8 text-center">
+      <div className="bg-teal-50 rounded-lg p-8 text-center">
         <div className="flex items-center justify-center mb-4">
           <Medal className="h-8 w-8 text-yellow-500 mr-2" />
           <h2 className="text-2xl font-bold text-gray-900">Premium Writing Assistant</h2>
@@ -95,7 +95,7 @@ export default function Home() {
           Get advanced features with our premium plan: detailed essay analysis,
           personalized improvement suggestions, and professional evaluation.
         </p>
-        <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700" disabled>
+        <Button className="bg-gradient-to-r from-teal-500 to-primary hover:opacity-90" disabled>
           Upgrade to Premium
         </Button>
       </div>

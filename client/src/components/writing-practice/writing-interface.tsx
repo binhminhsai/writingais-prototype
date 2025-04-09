@@ -14,9 +14,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Save, Layers } from "lucide-react";
+import { Save, Layers, ArrowLeft } from "lucide-react";
 import { SupportingResources } from "./supporting-resources";
 import { WritingTestType, DifficultyLevel } from "./test-setup";
+import { Link } from "wouter";
 
 interface WritingInterfaceProps {
   testType: WritingTestType;
@@ -79,13 +80,25 @@ export function WritingInterface({
     alert('Draft saved successfully');
   };
 
+  const [showExitDialog, setShowExitDialog] = useState(false);
+  
   return (
     <div className="p-6">
       <div className="flex flex-col lg:flex-row lg:space-x-6">
         <div className="lg:w-2/3">
-          <div className="bg-gray-50 rounded-md p-4 mb-4 border border-gray-200">
-            <h3 className="font-medium text-gray-800 mb-2">Topic:</h3>
-            <p className="text-gray-700">{topic}</p>
+          <div className="flex items-center mb-4">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setShowExitDialog(true)}
+              className="mr-2"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" /> Back
+            </Button>
+            <div className="bg-gray-50 rounded-md p-4 flex-grow border border-gray-200">
+              <h3 className="font-medium text-gray-800 mb-2">Topic:</h3>
+              <p className="text-gray-700">{topic}</p>
+            </div>
           </div>
           
           <div className="flex items-center justify-between mb-3">
@@ -117,18 +130,38 @@ export function WritingInterface({
             
             <Button
               onClick={handleSubmit}
-              className="bg-emerald-600 hover:bg-emerald-700"
+              className="bg-primary hover:opacity-90"
             >
               Submit Essay <Layers className="ml-2 h-4 w-4" />
             </Button>
           </div>
+
+          <SupportingResources 
+            testType={testType} 
+            topic={topic}
+          />
         </div>
-        
-        <SupportingResources 
-          testType={testType} 
-          topic={topic}
-        />
       </div>
+      
+      {/* Exit Confirmation Dialog */}
+      <AlertDialog open={showExitDialog} onOpenChange={setShowExitDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Thoát khỏi bài tập?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Bạn có chắc chắn muốn thoát khỏi quá trình làm bài? Tiến trình làm bài của bạn sẽ không được lưu lại.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Tiếp tục làm bài</AlertDialogCancel>
+            <Link href="/writing-practice">
+              <AlertDialogAction>
+                Thoát
+              </AlertDialogAction>
+            </Link>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       {/* Time's Up Dialog */}
       <AlertDialog open={showTimeUpDialog} onOpenChange={setShowTimeUpDialog}>
