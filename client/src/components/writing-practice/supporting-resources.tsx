@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronUp } from "lucide-react";
+import { ChevronUp, Smile, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

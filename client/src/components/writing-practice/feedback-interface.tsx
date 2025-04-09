@@ -199,10 +199,10 @@ export function FeedbackInterface({
                 <Progress value={getScorePercentage(feedbackData.scores.grammar)} className="bg-gray-200" />
               </div>
               
-              <div className="pt-2 border-t border-gray-200">
-                <div className="flex justify-between mb-1">
-                  <span className="font-medium">Overall Band Score</span>
-                  <span className="font-medium">
+              <div className="pt-3 mt-2 border-t border-gray-200">
+                <div className="flex justify-between items-center">
+                  <span className="font-semibold text-lg">Overall Band Score</span>
+                  <span className="font-bold text-xl text-primary">
                     {feedbackData.scores.overall.toFixed(1)}
                   </span>
                 </div>

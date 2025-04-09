@@ -149,7 +149,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
         <Button 
           size="lg" 
           onClick={handleStartWriting}
-          className="bg-blue-600 hover:bg-blue-700"
+          className="bg-primary hover:opacity-90 text-white"
         >
           Start Writing
         </Button>
