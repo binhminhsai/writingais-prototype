@@ -24,114 +24,121 @@ import { getPhrases } from "@/data/phrases";
 import { WritingTestType, DifficultyLevel } from "./test-setup";
 import { Link } from "wouter";
 
-// New component for Outline with toggle visibility
-function OutlineToggleSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
+// Outline component with toggle visibility
+function OutlineSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
   const [showOutline, setShowOutline] = useState(true);
-  const [activeTab, setActiveTab] = useState("vocabulary");
-  
   const outline = getOutline(testType, topic);
+
+  return (
+    <Card className="h-full">
+      <CardHeader className="flex flex-row items-center justify-between py-3 px-4 bg-gray-50">
+        <h3 className="font-medium">Suggested Outline</h3>
+        <div className="flex space-x-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 w-8 p-0"
+            title={showOutline ? "Hide Outline" : "Show Outline"}
+            onClick={() => setShowOutline(!showOutline)}
+          >
+            {showOutline ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          </Button>
+        </div>
+      </CardHeader>
+      <CardContent className="py-4">
+        {showOutline ? (
+          <ul className="space-y-2 text-sm">
+            {outline.map((section, index) => (
+              <li key={index}>
+                <span className="font-medium">{section.title}:</span>
+                <ul className="pl-4 mt-1 space-y-1 list-disc">
+                  {section.points.map((point, pointIndex) => (
+                    <li key={pointIndex}>{point}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="text-center">
+            <Smile className="w-8 h-8 mx-auto text-primary mb-2" />
+            <p className="text-gray-600">Hãy cố gắng hết mình nhé! Good things take time.</p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+// Vocabulary and Phrases component
+function ResourcesSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
+  const [activeTab, setActiveTab] = useState("vocabulary");
   const vocabulary = getVocabulary(testType, topic);
   const phrases = getPhrases(testType);
 
   return (
-    <>
-      {/* Outline Suggestions */}
-      <Card className="mb-4">
-        <CardHeader className="flex flex-row items-center justify-between py-3 px-4 bg-gray-50">
-          <h3 className="font-medium">Suggested Outline</h3>
-          <div className="flex space-x-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 w-8 p-0"
-              title={showOutline ? "Hide Outline" : "Show Outline"}
-              onClick={() => setShowOutline(!showOutline)}
-            >
-              {showOutline ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </Button>
+    <Card className="mt-8">
+      <Tabs 
+        defaultValue="vocabulary" 
+        value={activeTab}
+        onValueChange={setActiveTab}
+      >
+        <TabsList className="w-full grid grid-cols-2">
+          <TabsTrigger value="vocabulary">Vocabulary</TabsTrigger>
+          <TabsTrigger value="phrases">Useful Phrases</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="vocabulary" className="p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {vocabulary.map((category, index) => (
+              <div key={index}>
+                <h4 className="font-medium text-gray-800">{category.name}</h4>
+                <div className="mt-1 flex flex-wrap gap-2">
+                  {category.words.map((word, wordIndex) => (
+                    <Badge 
+                      key={wordIndex} 
+                      variant="secondary" 
+                      className={
+                        category.type === "positive" 
+                          ? "bg-green-100 text-green-800 hover:bg-green-200" 
+                          : category.type === "negative" 
+                            ? "bg-red-100 text-red-800 hover:bg-red-200"
+                            : category.type === "academic"
+                              ? "bg-purple-100 text-purple-800 hover:bg-purple-200"
+                              : "bg-blue-100 text-blue-800 hover:bg-blue-200"
+                      }
+                    >
+                      {word}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-        </CardHeader>
-        {showOutline ? (
-          <CardContent className="py-4">
-            <ul className="space-y-2 text-sm">
-              {outline.map((section, index) => (
-                <li key={index}>
-                  <span className="font-medium">{section.title}:</span>
-                  <ul className="pl-4 mt-1 space-y-1 list-disc">
-                    {section.points.map((point, pointIndex) => (
-                      <li key={pointIndex}>{point}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        ) : (
-          <CardContent className="py-4 text-center">
-            <Smile className="w-8 h-8 mx-auto text-primary mb-2" />
-            <p className="text-gray-600">Hãy cố gắng hết mình nhé! Good things take time.</p>
-          </CardContent>
-        )}
-      </Card>
-      
-      {/* Vocabulary and Phrases Tabs */}
-      <Card>
-        <Tabs 
-          defaultValue="vocabulary" 
-          value={activeTab}
-          onValueChange={setActiveTab}
-        >
-          <TabsList className="w-full grid grid-cols-2">
-            <TabsTrigger value="vocabulary">Vocabulary</TabsTrigger>
-            <TabsTrigger value="phrases">Useful Phrases</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="vocabulary" className="p-4">
-            <div className="space-y-3 text-sm">
-              {vocabulary.map((category, index) => (
-                <div key={index}>
-                  <h4 className="font-medium text-gray-800">{category.name}</h4>
-                  <div className="mt-1 flex flex-wrap gap-2">
-                    {category.words.map((word, wordIndex) => (
-                      <Badge 
-                        key={wordIndex} 
-                        variant="secondary" 
-                        className={
-                          category.type === "positive" 
-                            ? "bg-green-100 text-green-800 hover:bg-green-200" 
-                            : category.type === "negative" 
-                              ? "bg-red-100 text-red-800 hover:bg-red-200"
-                              : category.type === "academic"
-                                ? "bg-purple-100 text-purple-800 hover:bg-purple-200"
-                                : "bg-blue-100 text-blue-800 hover:bg-blue-200"
-                        }
-                      >
-                        {word}
-                      </Badge>
-                    ))}
-                  </div>
+        </TabsContent>
+        
+        <TabsContent value="phrases" className="p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {phrases.map((category, index) => (
+              <div key={index} className="mb-2">
+                <h4 className="font-medium text-gray-800">{category.name}</h4>
+                <div className="mt-1 flex flex-wrap gap-1">
+                  {category.phrases.map((phrase, phraseIndex) => (
+                    <Badge 
+                      key={phraseIndex} 
+                      variant="outline"
+                      className="bg-gray-50 whitespace-normal text-wrap my-1"
+                    >
+                      {phrase}
+                    </Badge>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="phrases" className="p-4">
-            <div className="space-y-4 text-sm">
-              {phrases.map((category, index) => (
-                <div key={index}>
-                  <h4 className="font-medium text-gray-800">{category.name}</h4>
-                  <ul className="mt-1 space-y-1 text-gray-600 pl-4">
-                    {category.phrases.map((phrase, phraseIndex) => (
-                      <li key={phraseIndex}>{phrase}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
-      </Card>
-    </>
+              </div>
+            ))}
+          </div>
+        </TabsContent>
+      </Tabs>
+    </Card>
   );
 }
 
@@ -254,7 +261,7 @@ export function WritingInterface({
         </div>
         
         <div className="hidden lg:block lg:w-2/5 lg:pl-4">
-          <OutlineToggleSection 
+          <OutlineSection 
             testType={testType} 
             topic={topic} 
           />
@@ -262,11 +269,17 @@ export function WritingInterface({
       </div>
       
       <div className="mt-8 lg:hidden">
-        <OutlineToggleSection 
+        <OutlineSection 
           testType={testType} 
           topic={topic} 
         />
       </div>
+      
+      {/* Resources Section Below */}
+      <ResourcesSection 
+        testType={testType} 
+        topic={topic} 
+      />
       
       {/* Exit Confirmation Dialog */}
       <AlertDialog open={showExitDialog} onOpenChange={setShowExitDialog}>
