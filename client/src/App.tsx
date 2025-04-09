@@ -11,11 +11,13 @@ function Router() {
   return (
     <>
       <Header />
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/writing-practice" component={WritingPractice} />
-        <Route component={NotFound} />
-      </Switch>
+      <div className="pt-16">
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/writing-practice" component={WritingPractice} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     </>
   );
 }

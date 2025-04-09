@@ -61,14 +61,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
           </ul>
         ) : (
           <div className="flex flex-col justify-center items-center min-h-[200px]">
-            <div className="flex items-center justify-center mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                <path d="M15 9h.01" />
-              </svg>
-            </div>
-            <p className="text-gray-700 font-medium text-xl mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
+            <p className="text-gray-700 font-medium text-2xl mb-3 text-center">Hãy cố gắng hết mình nhé!</p>
             <p className="text-primary font-medium text-xl text-center">Good things take time. 😉</p>
           </div>
         )}
