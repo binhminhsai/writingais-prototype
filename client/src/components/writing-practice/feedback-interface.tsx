@@ -135,21 +135,21 @@ export function FeedbackInterface({
 
   return (
     <div className="p-6">
-      <div className="flex items-center mb-6">
+      <div className="flex mb-3">
         <Button 
           variant="outline" 
           size="sm"
           onClick={() => setShowExitDialog(true)}
-          className="mr-2"
         >
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
         </Button>
-        <div>
-          <h2 className="text-2xl font-semibold mb-2">Writing Assessment</h2>
-          <p className="text-gray-600">
-            Your essay has been evaluated based on the IELTS Task 2 criteria.
-          </p>
-        </div>
+      </div>
+
+      <div className="mb-6">
+        <h2 className="text-2xl font-semibold mb-2">Writing Assessment</h2>
+        <p className="text-gray-600">
+          Your essay has been evaluated based on the IELTS Task 2 criteria.
+        </p>
       </div>
       
       <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -313,14 +313,14 @@ export function FeedbackInterface({
         
         <Button 
           variant="secondary"
-          className="bg-primary hover:opacity-90 text-white"
+          className="bg-primary hover:bg-primary/90 text-white"
           onClick={onTryAgain}
         >
           <Pen className="mr-2 h-4 w-4" /> Try Again
         </Button>
         
         <Button 
-          className="bg-primary hover:opacity-90 text-white"
+          className="bg-primary hover:bg-primary/90 text-white"
           onClick={onNextPractice}
         >
           <ArrowRight className="mr-2 h-4 w-4" /> Next Practice

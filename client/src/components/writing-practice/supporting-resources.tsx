@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronUp, Smile, Eye, EyeOff } from "lucide-react";
+import { ChevronUp, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -37,7 +37,7 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
             <ChevronUp className={`h-4 w-4 ${!showOutline ? "rotate-180" : ""}`} />
           </Button>
         </CardHeader>
-        {showOutline && (
+        {showOutline ? (
           <CardContent className="py-4">
             <ul className="space-y-2 text-sm">
               {outline.map((section, index) => (
@@ -51,6 +51,13 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
                 </li>
               ))}
             </ul>
+          </CardContent>
+        ) : (
+          <CardContent className="flex justify-center items-center py-16">
+            <div className="text-center text-gray-600">
+              <p className="mb-1 font-medium">Hãy cố gắng hết mình nhé!</p>
+              <p className="text-primary">Good things take time.</p>
+            </div>
           </CardContent>
         )}
       </Card>
