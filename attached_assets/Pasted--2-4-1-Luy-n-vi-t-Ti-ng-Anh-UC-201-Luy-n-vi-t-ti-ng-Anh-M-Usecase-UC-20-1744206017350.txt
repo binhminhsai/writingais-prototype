@@ -1,0 +1,112 @@
+# 2.4.1. Luyện viết Tiếng Anh
+
+### UC-201: Luyện viết tiếng Anh
+
+---
+
+| **Mã Usecase** | UC-201 |
+| --- | --- |
+| **Tên Usecase** | Luyện viết Tiếng Anh |
+| **Mô tả** | Hệ thống cho phép người dùng thực hành luyện viết Tiếng Anh. Người dùng có thể lựa chọn độ khó, tạo chủ đề ngẫu nhiên bằng AI, và luyện tập viết theo thời gian. Hệ thống sẽ cung cấp từ vựng liên quan và mẫu câu thường dùng để hỗ trợ người dùng trong quá trình viết. |
+| **Tiền điều kiện** | Người dùng đã truy cập được vào EvP Website. |
+| **Sự kiện ích hoạt** | Người dùng truy cập vào trang “Luyện viết Tiếng Anh” trên EvP Website. |
+
+---
+
+**Luồng sự kiện chính**
+
+| STT | Tác nhân |                                      Mô tả sự tương tác |
+| --- | --- | --- |
+| 1 | Người dùng | Chọn dạng bài viết từ danh sách các bài kiểm tra mà hệ thống hỗ trợ. (Ví dụ: IELTS Writing Task 2) |
+| 2 | Người dùng  | Chọn độ khó của bài kiểm tra. (Ví dụ: Trung bình) |
+| 3 | Người dùng | Nhập chủ đề muốn luyện viết. |
+| 4 | Người dùng | Nhấn nút “Bắt đầu làm bài”. |
+| 5 | Hệ thống | Hiện thị thông báo gợi ý về việc đặt giới hạn thời gian cho bài viết. |
+| 6 | Người dùng | Chọn giới hạn thời gian cho bài viết. |
+| 7 | Hệ thống | Tạo ra gợi ý dàn bài, từ vựng liên quan và mẫu câu thường dùng dựa trên dạng bài viết, độ khó và chủ đề mà người dùng đã chọn. |
+| 8  | Hệ thống | Bắt đầu tính giờ cho bài kiểm tra. |
+| 9 | Người dùng | Bắt đầu thực hiện bài kiểm tra viết. |
+| 10 | Người dùng | Nhấn nút “Nộp bài”. |
+| 11 | Hệ thống | Chấm điểm, gợi ý sửa lỗi cho bài viết của người dùng dựa trên các tiêu chí chấm điểm của dạng bài viết mà người dùng đã chọn. |
+| 12 | Hệ thống | Hiển thị bài viết đã được chấm điểm và sửa lỗi. |
+
+---
+
+**Luồng sự kiện thay thế (a)**
+
+| STT | Tác nhân |                                  Mô tả sự tương tác |
+| --- | --- | --- |
+| 3a. | Người dùng |  Nhấn nút “Tạo đề ngẫu nhiên” để tạo chủ đề cho bài kiểm tra |
+| 4a. | Hệ thống | Tạo ra một chủ đề ngẫu nhiên dựa trên dạng bài viếtviết và độ khó mà người dùng đã chọn. ***(Sau đó tiếp tục với bước 5 ở luồng sự kiện chính)*** |
+
+---
+
+**Luồng sự kiện thay thế (b)**
+
+| STT | Tác nhân |                                  Mô tả sự tương tác |
+| --- | --- | --- |
+| 11b.  | Hệ thống | Đạt giới hạn thời gian và hiển thị thông báo hỏi rằng liệu người dùng có muốn nộp bài không hay tiếp tục làm bài? |
+| 12b1. | Người dùng | Chọn “Tiếp tục”. ***(Sau đó tiếp tục với bước 11 tại luồng sự kiện chính)*** |
+| 12b2. | Người dùng | Chọn “Nộp bài”. ***(Sau đó tiếp tục với bước 12 tại luồng sự kiện chính)*** |
+
+---
+
+**Luồng sự kiện thay thế (c)**
+
+| STT | Tác nhân |                                  Mô tả sự tương tác |
+| --- | --- | --- |
+| 6c. | Người dùng |  Chọn **không** đặt giới hạn thời gian cho bài viết. |
+| 7c. | Hệ thống | Tạo ra gợi ý dàn bài, từ vựng liên quan và mẫu câu thường dùng dựa trên dạng bài viết, độ khó và chủ đề mà người dùng đã chọn. |
+| 8c. | Người dùng | Bắt đầu thực hiện bài kiểm tra viết. |
+| 9c. | Người dùng | Nhấn nút “Nộp bài”. |
+| 10c. | Hệ thống | Chấm điểm, gợi ý sửa lỗi cho bài viết của người dùng dựa trên các tiêu chí chấm điểm của dạng bài viết mà người dùng đã chọn. |
+| 11c. | Hệ thống | Hiển thị bài viết đã được chấm điểm và sửa lỗi. |
+
+---
+
+**Luồng sự kiện ngoại lệ (e)**
+
+| STT | Tác nhân |                                  Mô tả |
+| --- | --- | --- |
+| 10e. | Người dùng | Người dùng nhập số lượng từ vi phạm giới hạn từ cho phép *(Tham khảo **AC17**)* |
+| 11e. | người dùng | Nhấn nút “Nộp bài”. |
+| 12e.  | Hệ thống | Hiển thị một thông báo lỗi: "Giới hạn độ dài bài viết tối thiểu là 50 từ và tối đa là 500 từ." |
+
+---
+
+**Hậu điều kiện**
+
+Hệ thống hiển thị thành công bài viết đã được chấm điểm và sửa lỗi
+
+---
+
+**Gợi ý màn hình** 
+
+![Hình _: Màn hình trang luyện viết tiếng Anh](attachment:14281aba-a9f0-41fa-9f44-55a28b662e7e:1._Writing_test_1_SD.png)
+
+Hình _: Màn hình trang luyện viết tiếng Anh
+
+**Mô tả màn hình** 
+
+| ID | Tên trường |        Loại | Bắt buộc |  Mặc định |                                   Mô tả |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Chọn dạng bài viết  | Dropdown | Có | IELTS Writing Task 2 | Người dùng chọn bài kiểm tra (Ví dụ: IELTS Writing Task 2) từ danh sách các bài kiểm tra có sẵn. |
+| 2 | Độ khó | Dropdown | Có | Trung bình | Người dùng chọn độ khó của bài viết. |
+| 3 | Tạo đề ngẫu nhiên | Button | Không | N/A | Người dùng nhấn để tạo chủ đề ngẫu nhiên từ AI. |
+| 4 | Chủ đề | Text Input | Không | N/A | - Cho phép người dùng nhập đề bài hoặc hiển thị đề bài được tạo tự động từ nút "Tạo đề ngẫu nhiên".
+- Placeholder: “Nhập chủ đề hoặc tạo một chủ đề ngẫu nhiên từ AI.” |
+| 5 | Bắt đầu làm bài | Button | Có | N/A | Khi nhấn vào, hệ thống sẽ bắt đầu đếm giờ và cho phép nhập bài viết. |
+| 6 | Đồng hồ đếm thời gian | Label/button | Có | 00:00:00 | - Hiển thị thời gian làm bài, bắt đầu từ khi người dùng nhấn nút "Bắt đầu làm bài".
+- Cho phép người dùng nhấn vào để thiết lập thời gian làm bài trước khi bắt đầu.
+- Kế cả có giới hạn thời gian hay không, đồng hồ vẫn chạy đến khi nộp bài. |
+| 7 | Thanh công cụ định dạng văn bản | Toolbar (button set) | N/A | N/A | Cho phép người dùng định dạng văn bản như in đậm, in nghiêng, gạch chân, căn lề và phông chữ. |
+| 8 | Khung nhập bài viết | Textarea | Có | N/A | Nơi người dùng nhập nội dung bài viết. |
+| 9 | Gợi ý dàn bài | Label | Không | N/A | - Cung cấp gợi ý về cấu trúc dàn bài giúp người dùng dễ dàng viết bài hơn.
+- Có thêm nút ẩn cho người dùng không muốn xem khi làm bài |
+| 10 | Tab “Từ vựng liên quan” và “Mẫu câu thường dùng” | Tabs bar | Không | Tab “Từ vựng liên quan” | - Cho phép hiển thị từ vựng liên quan hoặc mẫu câu thông dụng nhằm hỗ trợ cho việc viết bài.
+- Người dùng có thể chuyển qua lại giữa hai tab để xem nội dung các tab.
+- Có thêm nút ẩn cho người dùng không muốn xem khi làm bài. |
+
+---
+
+**Tiêu chí cấp nhận**
