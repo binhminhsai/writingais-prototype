@@ -89,7 +89,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </TabsList>
         
         <TabsContent value="vocabulary" className="p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {vocabulary.map((category, index) => (
               <div key={index}>
                 <h4 className="font-medium text-gray-800">{category.name}</h4>
@@ -118,7 +118,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </TabsContent>
         
         <TabsContent value="phrases" className="p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {phrases.map((category, index) => (
               <div key={index} className="mb-2">
                 <h4 className="font-medium text-gray-800">{category.name}</h4>
