@@ -60,26 +60,9 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             ))}
           </ul>
         ) : (
-          <div className="text-center py-6">
-            <div className="flex justify-center space-x-4 mb-4">
-              <Smile className="w-12 h-12 text-primary animate-pulse" />
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                <path d="M9 9h.01" />
-                <path d="M15 9h.01" />
-                <animateTransform
-                  attributeName="transform"
-                  attributeType="XML"
-                  type="scale"
-                  values="1;1.1;1"
-                  dur="1s"
-                  repeatCount="indefinite"
-                />
-              </svg>
-            </div>
-            <p className="text-gray-700 font-medium text-lg">Hãy cố gắng hết mình nhé!</p>
-            <p className="text-primary font-medium text-lg">Good things take time. 😉</p>
+          <div className="text-center py-10">
+            <p className="text-gray-700 font-medium text-xl mb-2">Hãy cố gắng hết mình nhé!</p>
+            <p className="text-primary font-medium text-xl">Good things take time. 😉</p>
           </div>
         )}
       </CardContent>
