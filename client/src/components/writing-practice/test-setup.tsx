@@ -118,14 +118,16 @@ export function TestSetup({ onStart }: TestSetupProps) {
         <div className="flex gap-2">
           <Button 
             variant="secondary" 
-            className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white"
+            size="sm"
+            className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white w-[180px]"
             onClick={handleGenerateTopic}
           >
             <Sparkles className="mr-2 h-4 w-4" /> Generate Random Topic
           </Button>
           <Button 
-            variant="secondary" 
-            className="mt-2"
+            variant="outline"
+            size="sm" 
+            className="mt-2 w-[180px] border-indigo-200 hover:bg-indigo-50"
             onClick={() => setTopic("")}
           >
             Using my question
