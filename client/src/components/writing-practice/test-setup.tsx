@@ -115,13 +115,22 @@ export function TestSetup({ onStart }: TestSetupProps) {
           placeholder="Enter a topic or generate a random one using AI"
           className="h-24"
         />
-        <Button 
-          variant="secondary" 
-          className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white"
-          onClick={handleGenerateTopic}
-        >
-          <Sparkles className="mr-2 h-4 w-4" /> Generate Random Topic
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            variant="secondary" 
+            className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white"
+            onClick={handleGenerateTopic}
+          >
+            <Sparkles className="mr-2 h-4 w-4" /> Generate Random Topic
+          </Button>
+          <Button 
+            variant="secondary" 
+            className="mt-2"
+            onClick={() => setTopic("")}
+          >
+            Using my question
+          </Button>
+        </div>
       </div>
       
       <div className="mt-6 flex items-center justify-between">
