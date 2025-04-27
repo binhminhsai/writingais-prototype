@@ -111,7 +111,10 @@ export function TestSetup({ onStart }: TestSetupProps) {
         <Textarea
           id="topic"
           value={topic}
-          onChange={(e) => setTopic(e.target.value)}
+          onChange={(e) => {
+            setTopic("");
+            e.target.value = "";
+          }}
           placeholder="Enter a topic or generate a random one using AI"
           className="h-24"
         />
@@ -129,7 +132,12 @@ export function TestSetup({ onStart }: TestSetupProps) {
             variant="secondary"
             size="sm" 
             className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-2"
-            onClick={() => setTopic("")}
+            onClick={() => {
+              const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
+              if (textareaValue.trim()) {
+                setTopic(textareaValue);
+              }
+            }}
           >
             <span className="text-sm">Using my question</span>
           </Button>
