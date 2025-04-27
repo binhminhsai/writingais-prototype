@@ -109,7 +109,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
       
       <div className="mt-6">
         <Label htmlFor="topic" className="mb-1">
-          Topic
+          Topic/Question
         </Label>
         <Textarea
           id="topic"
