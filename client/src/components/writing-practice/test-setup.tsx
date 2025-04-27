@@ -40,8 +40,11 @@ export function TestSetup({ onStart }: TestSetupProps) {
   const [timeLimit, setTimeLimit] = useState(30);
 
   const handleGenerateTopic = () => {
-    const randomTopic = generateRandomTopic(testType, difficulty);
-    setTopic(randomTopic);
+    const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
+    if (textareaValue.trim()) {
+      const randomTopic = generateRandomTopic(testType, difficulty);
+      setTopic(randomTopic);
+    }
   };
 
   const handleStartWriting = () => {
@@ -110,12 +113,8 @@ export function TestSetup({ onStart }: TestSetupProps) {
         </Label>
         <Textarea
           id="topic"
-          value={topic}
-          onChange={(e) => {
-            setTopic("");
-            e.target.value = "";
-          }}
-          placeholder="Enter a topic or generate a random one using AI"
+          onChange={(e) => e.target.value = e.target.value}
+          placeholder="Enter a topic keyword (e.g. Cultural Differences) then click Generate Random Topic"
           className="h-24"
         />
         <div className="flex gap-2">
