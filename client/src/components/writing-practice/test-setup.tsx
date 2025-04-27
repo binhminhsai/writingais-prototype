@@ -114,7 +114,8 @@ export function TestSetup({ onStart }: TestSetupProps) {
         <Textarea
           id="topic"
           onChange={(e) => e.target.value = e.target.value}
-          placeholder="Enter a topic keyword (e.g. Cultural Differences) then click Generate Random Topic"
+          placeholder="- Enter a topic keyword (e.g. Cultural differences) then click Generate random question.
+- Enter your question for writing practice then click Use my question"
           className="h-24"
         />
         <div className="flex gap-2">
