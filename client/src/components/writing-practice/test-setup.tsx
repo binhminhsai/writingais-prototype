@@ -143,7 +143,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
         </div>
         {topic && (
           <div className="mt-4 p-3 bg-gray-50 rounded-md border border-gray-200">
-            <Label>Generated Topic:</Label>
+            <Label>Question:</Label>
             <p className="mt-1 text-sm text-gray-700">{topic}</p>
           </div>
         )}
