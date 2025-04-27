@@ -126,9 +126,9 @@ export function TestSetup({ onStart }: TestSetupProps) {
             <span className="text-sm">Generate Random Topic</span>
           </Button>
           <Button 
-            variant="outline"
+            variant="secondary"
             size="sm" 
-            className="mt-2 w-[180px] h-9 border-indigo-200 hover:bg-indigo-50 flex items-center justify-center px-2"
+            className="mt-2 w-[180px] h-9 bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center px-2"
             onClick={() => setTopic("")}
           >
             <span className="text-sm">Using my question</span>
