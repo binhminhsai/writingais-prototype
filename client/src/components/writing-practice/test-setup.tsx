@@ -128,7 +128,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
           <Button 
             variant="secondary"
             size="sm" 
-            className="mt-2 w-[180px] h-9 bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center px-2"
+            className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-2"
             onClick={() => setTopic("")}
           >
             <span className="text-sm">Using my question</span>
