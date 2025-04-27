@@ -41,7 +41,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
 
   const handleGenerateTopic = () => {
     const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
-    if (textareaValue.trim()) {
+    if (!textareaValue.trim()) {
       const randomTopic = generateRandomTopic(testType, difficulty);
       setTopic(randomTopic);
     }
