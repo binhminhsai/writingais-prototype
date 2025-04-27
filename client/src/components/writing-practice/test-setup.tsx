@@ -119,18 +119,19 @@ export function TestSetup({ onStart }: TestSetupProps) {
           <Button 
             variant="secondary" 
             size="sm"
-            className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white w-[180px]"
+            className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white w-[180px] h-9 flex items-center justify-center"
             onClick={handleGenerateTopic}
           >
-            <Sparkles className="mr-2 h-4 w-4" /> Generate Random Topic
+            <Sparkles className="mr-1.5 h-4 w-4" />
+            <span>Generate Random Topic</span>
           </Button>
           <Button 
             variant="outline"
             size="sm" 
-            className="mt-2 w-[180px] border-indigo-200 hover:bg-indigo-50"
+            className="mt-2 w-[180px] h-9 border-indigo-200 hover:bg-indigo-50 flex items-center justify-center"
             onClick={() => setTopic("")}
           >
-            Using my question
+            <span>Using my question</span>
           </Button>
         </div>
       </div>
