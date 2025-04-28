@@ -58,10 +58,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <button className="font-medium text-teal-700 bg-white p-1.5 px-3 rounded-md hover:bg-teal-50 hover:shadow-md transition-all duration-200 shadow-sm flex items-center gap-1.5 text-sm whitespace-nowrap">
             <User size={14} className="text-teal-600" />
-            <span className="hidden md:inline">Sign In</span>
-          </button>
-          <button className="hidden md:flex font-medium text-white bg-gradient-to-r from-teal-500 to-teal-600 p-1.5 px-3 rounded-md hover:shadow-md hover:from-teal-600 hover:to-teal-700 transition-all duration-200 shadow-sm items-center gap-1.5 text-sm whitespace-nowrap">
-            Sign Up
+            <span className="hidden md:inline">Login</span>
           </button>
           
           {/* Mobile Menu Toggle - Shows only on small screens */}
@@ -115,7 +112,7 @@ export default function Header() {
             </Link>
             <Link href="/progress">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/progress" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600"}`}
+                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/progress" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Progress
@@ -129,13 +126,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <User size={14} className="text-teal-600" />
-                Sign In
-              </button>
-              <button 
-                className="w-full text-left py-1.5 px-2 rounded bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium shadow-sm"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Sign Up
+                Login
               </button>
             </div>
           </nav>
