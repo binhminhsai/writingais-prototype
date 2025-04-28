@@ -15,7 +15,7 @@ export default function Header() {
           <div className="flex items-center space-x-1.5">
             <PenSquare size={20} className="text-teal-200" />
             <h1 className="text-xl font-bold cursor-pointer">
-              Writing AI-Hub<span className="text-teal-200 text-sm"> Pro</span>
+              Writing AI-Hub
             </h1>
           </div>
         </Link>
@@ -49,9 +49,9 @@ export default function Header() {
         
         {/* User Actions */}
         <div className="flex items-center space-x-3">
-          <button className="font-medium text-teal-800 bg-white px-4 py-1.5 rounded-full hover:bg-teal-50 transition duration-200 shadow-sm flex items-center gap-1.5 text-sm">
+          <button className="font-medium text-teal-800 bg-white p-2 rounded-full hover:bg-teal-50 transition duration-200 shadow-sm flex items-center md:gap-1.5 md:px-4 md:py-1.5">
             <User size={14} />
-            <span>Sign Up / Login</span>
+            <span className="hidden md:inline text-sm">Sign Up / Login</span>
           </button>
           
           {/* Mobile Menu Toggle - Shows only on small screens */}
