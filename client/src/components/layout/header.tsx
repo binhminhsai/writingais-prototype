@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useState } from "react";
-import { PenSquare, LogIn, User } from "lucide-react";
+import { PenSquare, User } from "lucide-react";
 
 export default function Header() {
   // Add this to make header accessible from all pages
@@ -55,10 +55,13 @@ export default function Header() {
         </nav>
         
         {/* User Actions */}
-        <div className="flex items-center">
-          <button className="font-medium text-teal-700 bg-white p-1.5 rounded hover:bg-teal-50 transition-all duration-200 shadow-sm flex items-center gap-1.5 text-sm whitespace-nowrap">
+        <div className="flex items-center gap-2">
+          <button className="font-medium text-teal-700 bg-white p-1.5 px-3 rounded-md hover:bg-teal-50 hover:shadow-md transition-all duration-200 shadow-sm flex items-center gap-1.5 text-sm whitespace-nowrap">
             <User size={14} className="text-teal-600" />
             <span className="hidden md:inline">Sign In</span>
+          </button>
+          <button className="hidden md:flex font-medium text-white bg-gradient-to-r from-teal-500 to-teal-600 p-1.5 px-3 rounded-md hover:shadow-md hover:from-teal-600 hover:to-teal-700 transition-all duration-200 shadow-sm items-center gap-1.5 text-sm whitespace-nowrap">
+            Sign Up
           </button>
           
           {/* Mobile Menu Toggle - Shows only on small screens */}
@@ -112,12 +115,29 @@ export default function Header() {
             </Link>
             <Link href="/progress">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/progress" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white hover:bg-teal-500"}`}
+                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/progress" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Progress
               </button>
             </Link>
+            
+            {/* Authentication options for mobile */}
+            <div className="pt-3 mt-2 border-t border-teal-600 flex flex-col space-y-2">
+              <button 
+                className="w-full text-left py-1.5 px-2 rounded bg-white text-teal-700 font-medium shadow-sm flex items-center gap-1.5"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <User size={14} className="text-teal-600" />
+                Sign In
+              </button>
+              <button 
+                className="w-full text-left py-1.5 px-2 rounded bg-gradient-to-r from-teal-500 to-teal-600 text-white font-medium shadow-sm"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Sign Up
+              </button>
+            </div>
           </nav>
         </div>
       )}
