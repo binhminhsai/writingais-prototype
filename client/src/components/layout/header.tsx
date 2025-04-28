@@ -27,27 +27,27 @@ export default function Header() {
         <nav className="hidden lg:flex items-center mr-3">
           <div className="flex items-center space-x-2 text-sm">
             <Link href="/">
-              <button className={`px-3 py-1.5 rounded hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600 transition-all duration-200 whitespace-nowrap ${location === "/" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white"}`}>
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition-all duration-200 whitespace-nowrap ${location === "/" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 Home
               </button>
             </Link>
             <Link href="/about">
-              <button className={`px-3 py-1.5 rounded hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600 transition-all duration-200 whitespace-nowrap ${location === "/about" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white"}`}>
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition-all duration-200 whitespace-nowrap ${location === "/about" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 About Us
               </button>
             </Link>
             <Link href="/writing-practice">
-              <button className={`px-3 py-1.5 rounded hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600 transition-all duration-200 whitespace-nowrap ${location === "/writing-practice" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white"}`}>
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition-all duration-200 whitespace-nowrap ${location === "/writing-practice" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 Writing Practice
               </button>
             </Link>
             <Link href="/vocabulary">
-              <button className={`px-3 py-1.5 rounded hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600 transition-all duration-200 whitespace-nowrap ${location === "/vocabulary" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white"}`}>
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition-all duration-200 whitespace-nowrap ${location === "/vocabulary" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 Vocabulary
               </button>
             </Link>
             <Link href="/progress">
-              <button className={`px-3 py-1.5 rounded hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600 transition-all duration-200 whitespace-nowrap ${location === "/progress" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white"}`}>
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition-all duration-200 whitespace-nowrap ${location === "/progress" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 Progress
               </button>
             </Link>
@@ -83,7 +83,7 @@ export default function Header() {
           <nav className="flex flex-col space-y-1">
             <Link href="/">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600"}`}
+                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
@@ -91,7 +91,7 @@ export default function Header() {
             </Link>
             <Link href="/about">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/about" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600"}`}
+                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/about" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About Us
@@ -99,7 +99,7 @@ export default function Header() {
             </Link>
             <Link href="/writing-practice">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/writing-practice" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600"}`}
+                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/writing-practice" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Writing Practice
@@ -107,7 +107,7 @@ export default function Header() {
             </Link>
             <Link href="/vocabulary">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/vocabulary" ? "bg-gradient-to-r from-teal-400 to-teal-500 text-white font-medium shadow-sm" : "text-white hover:bg-gradient-to-r hover:from-teal-500 hover:to-teal-600"}`}
+                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/vocabulary" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Vocabulary
