@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useState } from "react";
+import { PenSquare, LogIn, User } from "lucide-react";
 
 export default function Header() {
   // Add this to make header accessible from all pages
@@ -12,6 +13,7 @@ export default function Header() {
         {/* Logo/Website Name */}
         <Link href="/">
           <div className="flex items-center space-x-2">
+            <PenSquare size={24} className="text-blue-200" />
             <h1 className="text-2xl font-bold cursor-pointer">
               Writing AI-Hub<span className="text-blue-200 text-lg"> Pro</span>
             </h1>
@@ -47,8 +49,9 @@ export default function Header() {
         
         {/* User Actions */}
         <div className="flex items-center space-x-4">
-          <button className="font-medium text-blue-800 bg-white px-5 py-2 rounded-full hover:bg-blue-50 transition duration-200 shadow-sm">
-            Sign Up / Login
+          <button className="font-medium text-blue-800 bg-white px-5 py-2 rounded-full hover:bg-blue-50 transition duration-200 shadow-sm flex items-center gap-2">
+            <User size={18} />
+            <span>Sign Up / Login</span>
           </button>
           
           {/* Mobile Menu Toggle - Shows only on small screens */}
@@ -66,7 +69,7 @@ export default function Header() {
       
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-blue-700 px-6 py-3 shadow-inner animate-fadeIn">
+        <div className="md:hidden bg-blue-700 px-6 py-3 shadow-inner">
           <nav className="flex flex-col space-y-3">
             <Link href="/">
               <span 
