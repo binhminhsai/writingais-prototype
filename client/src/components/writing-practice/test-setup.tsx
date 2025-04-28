@@ -122,7 +122,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
           <Button 
             variant="secondary" 
             size="sm"
-            className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white w-[180px] h-9 flex items-center justify-center gap-2 px-4"
+            className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white w-[180px] h-9 flex items-center justify-center gap-2 px-6"
             onClick={handleGenerateTopic}
           >
             <Sparkles className="h-3.5 w-3.5" />
@@ -131,7 +131,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
           <Button 
             variant="secondary"
             size="sm" 
-            className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-4"
+            className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-6"
             onClick={() => {
               const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
               if (textareaValue.trim()) {
