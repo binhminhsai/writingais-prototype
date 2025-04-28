@@ -126,7 +126,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
             onClick={handleGenerateTopic}
           >
             <Sparkles className="h-3.5 w-3.5" />
-            <span className="text-sm">Generate Random Topic</span>
+            <span className="text-sm">Generate question</span>
           </Button>
           <Button 
             variant="secondary"
