@@ -9,55 +9,62 @@ export default function Header() {
   
   return (
     <header className="bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-md fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-4 py-2 flex flex-wrap justify-between items-center">
+      <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo/Website Name */}
         <Link href="/">
           <div className="flex items-center space-x-1.5">
             <PenSquare size={20} className="text-teal-200" />
-            <h1 className="text-xl font-bold cursor-pointer">
+            <h1 className="text-xl font-bold cursor-pointer whitespace-nowrap">
               Writing AI-Hub
             </h1>
           </div>
         </Link>
         
+        {/* Spacer to push nav to right */}
+        <div className="flex-grow"></div>
+        
         {/* Main Navigation - Desktop */}
-        <nav className="hidden md:flex flex-1 justify-center">
-          <div className="flex items-center space-x-6 px-3 text-sm">
+        <nav className="hidden lg:flex items-center mr-3">
+          <div className="flex items-center space-x-2 text-sm">
             <Link href="/">
-              <span className={`hover:text-teal-200 cursor-pointer transition duration-200 ${location === "/" ? "text-white font-semibold border-b-2 border-teal-200 pb-1" : "text-teal-50"}`}>
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition whitespace-nowrap ${location === "/" ? "bg-teal-800 text-white font-medium" : "text-white"}`}>
                 Home
-              </span>
+              </button>
             </Link>
             <Link href="/about">
-              <span className={`hover:text-teal-200 cursor-pointer transition duration-200 ${location === "/about" ? "text-white font-semibold border-b-2 border-teal-200 pb-1" : "text-teal-50"}`}>
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition whitespace-nowrap ${location === "/about" ? "bg-teal-800 text-white font-medium" : "text-white"}`}>
                 About Us
-              </span>
+              </button>
             </Link>
             <Link href="/writing-practice">
-              <span className={`hover:text-teal-200 cursor-pointer transition duration-200 ${location === "/writing-practice" ? "text-white font-semibold border-b-2 border-teal-200 pb-1" : "text-teal-50"}`}>
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition whitespace-nowrap ${location === "/writing-practice" ? "bg-teal-800 text-white font-medium" : "text-white"}`}>
                 Writing Practice
-              </span>
+              </button>
             </Link>
-            <span className="text-teal-100 cursor-default text-sm">
-              Vocabulary Builder
-            </span>
-            <span className="text-teal-100 cursor-default text-sm">
-              Progress Tracking
-            </span>
+            <Link href="/vocabulary">
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition whitespace-nowrap ${location === "/vocabulary" ? "bg-teal-800 text-white font-medium" : "text-white"}`}>
+                Vocabulary
+              </button>
+            </Link>
+            <Link href="/progress">
+              <button className={`px-3 py-1.5 rounded hover:bg-teal-500 transition whitespace-nowrap ${location === "/progress" ? "bg-teal-800 text-white font-medium" : "text-white"}`}>
+                Progress
+              </button>
+            </Link>
           </div>
         </nav>
         
         {/* User Actions */}
-        <div className="flex items-center space-x-3">
-          <button className="font-medium text-teal-800 bg-white p-2 rounded-full hover:bg-teal-50 transition duration-200 shadow-sm flex items-center md:gap-1.5 md:px-4 md:py-1.5">
+        <div className="flex items-center">
+          <button className="font-medium text-teal-800 bg-white p-1.5 rounded hover:bg-teal-50 transition shadow-sm flex items-center gap-1.5 text-sm whitespace-nowrap">
             <User size={14} />
-            <span className="hidden md:inline text-sm">Sign Up / Login</span>
+            <span className="hidden md:inline">Sign In</span>
           </button>
           
           {/* Mobile Menu Toggle - Shows only on small screens */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="md:hidden text-white hover:text-teal-200"
+            className="lg:hidden text-white hover:text-teal-200 ml-3"
             aria-label="Toggle mobile menu"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,38 +76,48 @@ export default function Header() {
       
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-teal-700 px-4 py-2 shadow-inner text-sm">
-          <nav className="flex flex-col space-y-2">
+        <div className="lg:hidden bg-teal-700 px-4 py-2 shadow-inner text-sm">
+          <nav className="flex flex-col space-y-1">
             <Link href="/">
-              <span 
-                className={`block py-1.5 px-2 rounded ${location === "/" ? "bg-teal-800 text-white font-semibold" : "text-teal-100 hover:bg-teal-800 hover:text-white"}`}
+              <button 
+                className={`w-full text-left py-1.5 px-2 rounded ${location === "/" ? "bg-teal-800 text-white font-medium" : "text-white hover:bg-teal-500"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
-              </span>
+              </button>
             </Link>
             <Link href="/about">
-              <span 
-                className={`block py-1.5 px-2 rounded ${location === "/about" ? "bg-teal-800 text-white font-semibold" : "text-teal-100 hover:bg-teal-800 hover:text-white"}`}
+              <button 
+                className={`w-full text-left py-1.5 px-2 rounded ${location === "/about" ? "bg-teal-800 text-white font-medium" : "text-white hover:bg-teal-500"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About Us
-              </span>
+              </button>
             </Link>
             <Link href="/writing-practice">
-              <span 
-                className={`block py-1.5 px-2 rounded ${location === "/writing-practice" ? "bg-teal-800 text-white font-semibold" : "text-teal-100 hover:bg-teal-800 hover:text-white"}`}
+              <button 
+                className={`w-full text-left py-1.5 px-2 rounded ${location === "/writing-practice" ? "bg-teal-800 text-white font-medium" : "text-white hover:bg-teal-500"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Writing Practice
-              </span>
+              </button>
             </Link>
-            <span className="block py-1.5 px-2 text-teal-200 border-t border-teal-600 mt-1 pt-2 text-xs">
-              Vocabulary Builder
-            </span>
-            <span className="block py-1.5 px-2 text-teal-200 text-xs">
-              Progress Tracking
-            </span>
+            <Link href="/vocabulary">
+              <button 
+                className={`w-full text-left py-1.5 px-2 rounded ${location === "/vocabulary" ? "bg-teal-800 text-white font-medium" : "text-white hover:bg-teal-500"}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Vocabulary
+              </button>
+            </Link>
+            <Link href="/progress">
+              <button 
+                className={`w-full text-left py-1.5 px-2 rounded ${location === "/progress" ? "bg-teal-800 text-white font-medium" : "text-white hover:bg-teal-500"}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Progress
+              </button>
+            </Link>
           </nav>
         </div>
       )}
