@@ -9,7 +9,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/">
           <h1 className="text-2xl font-bold text-primary cursor-pointer">
-            EvP<span className="text-gray-600 text-lg">- English Writing Practice</span>
+            Writing AI-Hub<span className="text-gray-600 text-lg"></span>
           </h1>
         </Link>
         <nav>
