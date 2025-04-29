@@ -143,9 +143,9 @@ export function TestSetup({ onStart }: TestSetupProps) {
           </Button>
         </div>
         {topic && (
-          <div className="mt-4 p-3 bg-gray-50 rounded-md border border-gray-200">
-            <Label>Question:</Label>
-            <p className="mt-1 text-sm text-gray-700">{topic}</p>
+          <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
+            <Label className="text-teal-700 font-medium">Question:</Label>
+            <p className="mt-2 text-sm text-gray-800">{topic}</p>
           </div>
         )}
       </div>
