@@ -243,14 +243,7 @@ export function WritingInterface({
             onWordCountChange={handleWordCountChange}
           />
           
-          <div className="flex justify-between mt-4">
-            <Button
-              variant="outline"
-              onClick={handleSaveDraft}
-            >
-              <Save className="mr-2 h-4 w-4" /> Save Draft
-            </Button>
-            
+          <div className="flex justify-end mt-4">
             <Button
               onClick={handleSubmit}
               className="bg-primary hover:opacity-90"
