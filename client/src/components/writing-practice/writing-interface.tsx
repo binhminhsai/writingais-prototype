@@ -260,7 +260,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <div className="flex mb-3 gap-3">
+        <TabsList className="w-full flex mb-3 gap-3 bg-transparent border-0 p-0">
           <TabsTrigger 
             value="vocabulary" 
             className="flex-1 text-sm py-2 px-4 font-medium rounded-md border border-gray-200 transition-all
@@ -275,7 +275,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           >
             Useful phrases & collocations
           </TabsTrigger>
-        </div>
+        </TabsList>
         
         <TabsContent value="vocabulary" className="p-2">
           {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
