@@ -80,7 +80,7 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
                 <div key={index}>
                   <h4 className="font-medium text-gray-800 text-xs">{category.name}</h4>
                   <div className="mt-0.5 flex flex-wrap gap-1.5">
-                    {category.words.map((word, wordIndex) => (
+                    {category.words.map((wordObject, wordIndex) => (
                       <Badge 
                         key={wordIndex} 
                         variant="secondary" 
@@ -94,7 +94,7 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
                                 : "bg-blue-100 text-blue-800 hover:bg-blue-200"
                         }`}
                       >
-                        {word}
+                        {wordObject.word}
                       </Badge>
                     ))}
                   </div>
