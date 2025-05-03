@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Editor } from "@/components/ui/editor";
 import { Timer } from "@/components/ui/timer";
@@ -108,44 +108,79 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </TabsList>
         
         <TabsContent value="vocabulary" className="p-4">
-          <div className="grid grid-cols-1 gap-6">
-            <div className="space-y-3">
-              {displayedWords.map((word, wordIndex) => (
-                <div 
-                  key={wordIndex}
-                  className="p-3 rounded-md border bg-blue-50 border-blue-200"
-                >
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="font-medium">{word.word}</span>
-                    <Badge className="text-xs">
-                      {word.partOfSpeech}
-                    </Badge>
-                    <Badge variant="outline" className="text-xs">
-                      {word.difficulty}
-                    </Badge>
-                  </div>
-                  <p className="text-sm text-gray-700 mb-1">
-                    <span className="font-medium">Meaning:</span> {word.meaning}
-                  </p>
-                  <p className="text-sm text-gray-600 italic">
-                    <span className="font-medium not-italic">Example:</span> {word.example}
-                  </p>
-                </div>
-              ))}
+          {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Group words in pairs to handle equal heights */}
+            {Array.from({ length: Math.ceil(displayedWords.length / 2) }).map((_, pairIndex) => {
+              // Get the pair of words for this row
+              const firstIndex = pairIndex * 2;
+              const secondIndex = firstIndex + 1;
+              const firstWord = displayedWords[firstIndex];
+              const secondWord = secondIndex < displayedWords.length ? displayedWords[secondIndex] : null;
               
-              {hasMoreWords && (
-                <div className="flex justify-center mt-4">
-                  <Button 
-                    variant="outline" 
-                    onClick={handleLoadMore}
-                    className="text-primary"
-                  >
-                    Load More Words
-                  </Button>
-                </div>
-              )}
-            </div>
+              return (
+                <React.Fragment key={`pair-${pairIndex}`}>
+                  {/* First word in pair */}
+                  <div className="p-3 rounded-md border bg-blue-50 border-blue-200 h-full">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className="font-medium">{firstWord.word}</span>
+                      <Badge className="text-xs">
+                        {firstWord.partOfSpeech}
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        {firstWord.difficulty}
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-gray-700 mb-1">
+                      <span className="font-medium">Meaning:</span> {firstWord.meaning}
+                    </p>
+                    <p className="text-sm text-gray-600 italic">
+                      <span className="font-medium not-italic">Example:</span> {firstWord.example}
+                    </p>
+                  </div>
+                  
+                  {/* Second word in pair if it exists */}
+                  {secondWord ? (
+                    <div className="p-3 rounded-md border bg-blue-50 border-blue-200 h-full">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <span className="font-medium">{secondWord.word}</span>
+                        <Badge className="text-xs">
+                          {secondWord.partOfSpeech}
+                        </Badge>
+                        <Badge variant="outline" className="text-xs">
+                          {secondWord.difficulty}
+                        </Badge>
+                      </div>
+                      <p className="text-sm text-gray-700 mb-1">
+                        <span className="font-medium">Meaning:</span> {secondWord.meaning}
+                      </p>
+                      <p className="text-sm text-gray-600 italic">
+                        <span className="font-medium not-italic">Example:</span> {secondWord.example}
+                      </p>
+                    </div>
+                  ) : (
+                    // If there's no second word (odd number of words), add an empty cell to maintain grid layout
+                    displayedWords.length % 2 !== 0 && pairIndex === Math.floor(displayedWords.length / 2) && (
+                      <div className="hidden md:block" />
+                    )
+                  )}
+                </React.Fragment>
+              );
+            })}
           </div>
+          
+          {/* Load more button */}
+          {hasMoreWords && (
+            <div className="flex justify-center mt-6">
+              <Button 
+                variant="outline" 
+                onClick={handleLoadMore}
+                className="text-primary"
+              >
+                Load More Words
+              </Button>
+            </div>
+          )}
         </TabsContent>
         
         <TabsContent value="phrases" className="p-4">
