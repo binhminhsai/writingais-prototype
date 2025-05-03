@@ -76,24 +76,39 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const allVocabulary = getVocabulary(testType, topic);
   const phrases = getPhrases(testType);
   
-  // Flatten all vocabulary words across categories
-  const allWords = allVocabulary.flatMap(category => 
-    category.words.map(word => ({ ...word, type: category.type }))
+  // Filter vocabulary for each tab
+  const vocabularyWords = allVocabulary.flatMap(category => 
+    category.words
+      .filter(word => ["N", "V", "Adj", "Adv"].includes(word.partOfSpeech))
+      .map(word => ({ ...word, type: category.type }))
   );
   
-  // State for displayed word count
-  const [displayCount, setDisplayCount] = useState(14);
+  const phraseWords = allVocabulary.flatMap(category => 
+    category.words
+      .filter(word => word.partOfSpeech === "Phrase")
+      .map(word => ({ ...word, type: category.type }))
+  );
+  
+  // State for displayed word counts
+  const [vocabDisplayCount, setVocabDisplayCount] = useState(14);
+  const [phraseDisplayCount, setPhraseDisplayCount] = useState(14);
   
   // Handle loading more words
-  const handleLoadMore = () => {
-    setDisplayCount(prevCount => prevCount + 10);
+  const handleLoadMoreVocab = () => {
+    setVocabDisplayCount(prevCount => prevCount + 10);
   };
   
-  // Words to display based on current count limit
-  const displayedWords = allWords.slice(0, displayCount);
+  const handleLoadMorePhrases = () => {
+    setPhraseDisplayCount(prevCount => prevCount + 10);
+  };
+  
+  // Words to display based on current count limits
+  const displayedVocabWords = vocabularyWords.slice(0, vocabDisplayCount);
+  const displayedPhraseWords = phraseWords.slice(0, phraseDisplayCount);
   
   // Check if there are more words to load
-  const hasMoreWords = displayCount < allWords.length;
+  const hasMoreVocab = vocabDisplayCount < vocabularyWords.length;
+  const hasMorePhrases = phraseDisplayCount < phraseWords.length;
 
   return (
     <Card className="mt-8">
@@ -110,9 +125,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         <TabsContent value="vocabulary" className="p-4">
           {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Group words in pairs to handle equal heights */}
-            {/* Map each word directly instead of using React.Fragment */}
-            {displayedWords.map((word, index) => (
+            {displayedVocabWords.map((word, index) => (
               <div 
                 key={`word-${index}`}
                 className="p-3 rounded-md border bg-blue-50 border-blue-200 h-full"
@@ -136,17 +149,17 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             ))}
             
             {/* Fill in empty cell if odd number of words */}
-            {displayedWords.length % 2 !== 0 && (
+            {displayedVocabWords.length % 2 !== 0 && (
               <div className="hidden md:block" />
             )}
           </div>
           
-          {/* Load more button */}
-          {hasMoreWords && (
+          {/* Load more button for vocabulary */}
+          {hasMoreVocab && (
             <div className="flex justify-center mt-6">
               <Button 
                 variant="outline" 
-                onClick={handleLoadMore}
+                onClick={handleLoadMoreVocab}
                 className="text-primary"
               >
                 Load More Words
@@ -156,21 +169,69 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </TabsContent>
         
         <TabsContent value="phrases" className="p-4">
-          <div className="grid grid-cols-1 gap-6">
-            <div className="flex flex-wrap gap-2">
-              {phrases.flatMap(category => 
-                category.phrases.map((phrase, phraseIndex) => (
-                  <Badge 
-                    key={`${category.name}-${phraseIndex}`} 
-                    variant="outline"
-                    className="bg-gray-50 whitespace-normal text-wrap my-1 p-2"
-                  >
-                    {phrase}
+          {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {displayedPhraseWords.map((phrase, index) => (
+              <div 
+                key={`phrase-${index}`}
+                className="p-3 rounded-md border bg-blue-50 border-blue-200 h-full"
+              >
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <span className="font-medium">{phrase.word}</span>
+                  <Badge className="text-xs">
+                    {phrase.partOfSpeech}
                   </Badge>
-                ))
-              )}
-            </div>
+                  <Badge variant="outline" className="text-xs">
+                    {phrase.difficulty}
+                  </Badge>
+                </div>
+                <p className="text-sm text-gray-700 mb-1">
+                  <span className="font-medium">Meaning:</span> {phrase.meaning}
+                </p>
+                <p className="text-sm text-gray-600 italic">
+                  <span className="font-medium not-italic">Example:</span> {phrase.example}
+                </p>
+              </div>
+            ))}
+            
+            {/* Fill in empty cell if odd number of phrases */}
+            {displayedPhraseWords.length % 2 !== 0 && (
+              <div className="hidden md:block" />
+            )}
           </div>
+          
+          {/* Load more button for phrases */}
+          {hasMorePhrases && (
+            <div className="flex justify-center mt-6">
+              <Button 
+                variant="outline" 
+                onClick={handleLoadMorePhrases}
+                className="text-primary"
+              >
+                Load More Phrases
+              </Button>
+            </div>
+          )}
+          
+          {/* Display additional useful phrases from phrases data */}
+          {phrases.length > 0 && (
+            <div className="mt-6 pt-4 border-t border-gray-200">
+              <h4 className="font-medium text-gray-800 mb-3">Additional Useful Expressions</h4>
+              <div className="flex flex-wrap gap-2">
+                {phrases.flatMap(category => 
+                  category.phrases.map((phrase, phraseIndex) => (
+                    <Badge 
+                      key={`${category.name}-${phraseIndex}`} 
+                      variant="outline"
+                      className="bg-gray-50 whitespace-normal text-wrap my-1 p-2"
+                    >
+                      {phrase}
+                    </Badge>
+                  ))
+                )}
+              </div>
+            </div>
+          )}
         </TabsContent>
       </Tabs>
     </Card>
