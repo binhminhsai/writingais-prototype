@@ -47,13 +47,13 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
       </CardHeader>
       <CardContent className="py-2 px-3">
         {showOutline ? (
-          <ul className="space-y-1 text-xs">
+          <ul className="space-y-3 text-xs">
             {outline.map((section, index) => (
               <li key={index}>
-                <span className="font-medium">{section.title}:</span>
-                <ul className="pl-3 mt-0.5 space-y-0.5 list-disc">
+                <span className="font-medium text-sm text-gray-700">{section.title}:</span>
+                <ul className="pl-3 mt-1.5 space-y-2 list-disc">
                   {section.points.map((point, pointIndex) => (
-                    <li key={pointIndex}>{point}</li>
+                    <li key={pointIndex} className="leading-relaxed">{point}</li>
                   ))}
                 </ul>
               </li>
@@ -260,9 +260,9 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <TabsList className="w-full grid grid-cols-2 mb-0.5 p-0.5">
-          <TabsTrigger value="vocabulary" className="text-xs py-1.5 w-full">Vocabulary</TabsTrigger>
-          <TabsTrigger value="phrases" className="text-xs py-1.5 w-full">Useful phrases & collocations</TabsTrigger>
+        <TabsList className="w-full grid grid-cols-2 mb-0.5 p-0.5 bg-gray-100">
+          <TabsTrigger value="vocabulary" className="text-sm py-2 w-full font-medium data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700">Vocabulary</TabsTrigger>
+          <TabsTrigger value="phrases" className="text-sm py-2 w-full font-medium data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700">Useful phrases & collocations</TabsTrigger>
         </TabsList>
         
         <TabsContent value="vocabulary" className="p-2">
@@ -360,15 +360,15 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           
           {/* Display additional useful phrases from phrases data */}
           {phrases.length > 0 && (
-            <div className="mt-3 pt-2 border-t border-gray-200">
-              <h4 className="font-medium text-gray-800 mb-2 text-xs">Additional Useful Expressions</h4>
-              <div className="flex flex-wrap gap-1.5">
+            <div className="mt-4 pt-3 border-t border-gray-200">
+              <h4 className="font-medium text-blue-700 mb-3 text-sm bg-blue-50 px-2 py-1.5 rounded-md inline-block">Additional Useful Expressions</h4>
+              <div className="flex flex-wrap gap-2">
                 {phrases.flatMap(category => 
                   category.phrases.map((phrase, phraseIndex) => (
                     <Badge 
                       key={`${category.name}-${phraseIndex}`} 
                       variant="outline"
-                      className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1 text-xs"
+                      className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1.5 text-xs border-blue-100"
                     >
                       {phrase}
                     </Badge>
