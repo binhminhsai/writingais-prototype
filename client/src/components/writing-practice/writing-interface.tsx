@@ -473,7 +473,7 @@ export function WritingInterface({
       
       <div className="flex flex-col lg:flex-row lg:space-x-4">
         <div className="lg:w-3/5">
-          <div className="bg-cyan-50 rounded-md p-4 mb-3 border border-cyan-100">
+          <div className="bg-cyan-50 rounded-md p-4 mb-3 border-2 border-cyan-200 shadow-sm">
             <div className="text-cyan-700 font-medium mb-1">Question:</div>
             <div className="text-gray-700 text-sm">{topic}</div>
           </div>
