@@ -18,6 +18,7 @@ import { Save, Layers, ArrowLeft, Eye, EyeOff, Smile } from "lucide-react";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
 import { getOutline } from "@/data/outlines";
 import { getVocabulary } from "@/data/vocabulary";
 import { getPhrases } from "@/data/phrases";
@@ -473,9 +474,15 @@ export function WritingInterface({
       
       <div className="flex flex-col lg:flex-row lg:space-x-4">
         <div className="lg:w-3/5">
-          <div className="bg-gray-50 rounded-md p-3 mb-3 border border-gray-200">
-            <h3 className="font-medium text-gray-800 mb-1">Question:</h3>
-            <p className="text-gray-700 text-sm">{topic}</p>
+          <div className="mb-4">
+            <div className="mb-2">
+              <Label htmlFor="topic" className="mb-2 block">
+                Topic/Question
+              </Label>
+            </div>
+            <div className="bg-indigo-50 rounded-md p-4 border border-indigo-100 shadow-sm">
+              <p className="text-gray-800 text-sm">{topic}</p>
+            </div>
           </div>
           
           <div className="flex items-center justify-between mb-2">
