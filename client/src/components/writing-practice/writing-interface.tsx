@@ -83,6 +83,77 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
       .map(word => ({ ...word, type: category.type }))
   );
   
+  // Additional vocabulary data
+  const additionalVocabulary = [
+    {
+      word: "Sustainable",
+      partOfSpeech: "Adj",
+      difficulty: "B2",
+      meaning: "Có thể duy trì được lâu dài, bền vững",
+      example: "Companies are trying to develop more sustainable business practices.",
+      type: "positive"
+    },
+    {
+      word: "Resilience",
+      partOfSpeech: "N",
+      difficulty: "C1",
+      meaning: "Khả năng phục hồi, sức bền",
+      example: "The community showed remarkable resilience in the face of economic hardship.",
+      type: "positive"
+    },
+    {
+      word: "Implement",
+      partOfSpeech: "V",
+      difficulty: "B2",
+      meaning: "Thực hiện, triển khai",
+      example: "The government plans to implement new environmental regulations next year.",
+      type: "neutral"
+    },
+    {
+      word: "Unprecedented",
+      partOfSpeech: "Adj",
+      difficulty: "C1",
+      meaning: "Chưa từng có trước đây, chưa từng thấy",
+      example: "The pandemic caused unprecedented disruption to global supply chains.",
+      type: "neutral"
+    },
+    {
+      word: "Detrimental",
+      partOfSpeech: "Adj",
+      difficulty: "C1",
+      meaning: "Có hại, gây tổn hại",
+      example: "Excessive screen time can be detrimental to children's development.",
+      type: "negative"
+    },
+    {
+      word: "Mitigate",
+      partOfSpeech: "V",
+      difficulty: "C1",
+      meaning: "Làm giảm, làm dịu bớt",
+      example: "Companies are taking steps to mitigate their environmental impact.",
+      type: "positive"
+    },
+    {
+      word: "Profound",
+      partOfSpeech: "Adj",
+      difficulty: "C1",
+      meaning: "Sâu sắc, to lớn",
+      example: "Technology has had a profound effect on how we communicate with each other.",
+      type: "neutral"
+    },
+    {
+      word: "Advocate",
+      partOfSpeech: "V",
+      difficulty: "C1",
+      meaning: "Ủng hộ, biện hộ",
+      example: "Many scientists advocate for stronger climate change policies.",
+      type: "neutral"
+    }
+  ];
+  
+  // Combine vocabulary words
+  const allVocabularyWords = [...vocabularyWords, ...additionalVocabulary];
+  
   // Get phrase words from vocabulary data
   const phraseWords = allVocabulary.flatMap(category => 
     category.words
@@ -162,7 +233,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const allPhraseWords = [...phraseWords, ...additionalCollocations];
   
   // State for displayed word counts
-  const [vocabDisplayCount, setVocabDisplayCount] = useState(14);
+  const [vocabDisplayCount, setVocabDisplayCount] = useState(10);
   const [phraseDisplayCount, setPhraseDisplayCount] = useState(8);
   
   // Handle loading more words
@@ -175,11 +246,11 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   };
   
   // Words to display based on current count limits
-  const displayedVocabWords = vocabularyWords.slice(0, vocabDisplayCount);
+  const displayedVocabWords = allVocabularyWords.slice(0, vocabDisplayCount);
   const displayedPhraseWords = allPhraseWords.slice(0, phraseDisplayCount);
   
   // Check if there are more words to load
-  const hasMoreVocab = vocabDisplayCount < vocabularyWords.length;
+  const hasMoreVocab = vocabDisplayCount < allVocabularyWords.length;
   const hasMorePhrases = phraseDisplayCount < allPhraseWords.length;
 
   return (
