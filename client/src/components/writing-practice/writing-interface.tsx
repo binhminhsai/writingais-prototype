@@ -274,18 +274,18 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 className="p-2 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
               >
                 <div className="flex flex-wrap items-center gap-1 mb-1">
-                  <span className="font-medium text-xs">{word.word}</span>
-                  <Badge className="text-[10px] font-medium px-1 py-0">
+                  <span className="font-medium text-sm">{word.word}</span>
+                  <Badge className="text-xs font-medium px-1.5 py-0.5">
                     {word.partOfSpeech}
                   </Badge>
-                  <Badge variant="outline" className="text-[10px] px-1 py-0">
+                  <Badge variant="outline" className="text-xs px-1.5 py-0.5">
                     {word.difficulty}
                   </Badge>
                 </div>
-                <p className="text-[10px] text-gray-700 mb-1">
+                <p className="text-xs text-gray-700 mb-1">
                   <span className="font-medium">Meaning:</span> {word.meaning}
                 </p>
-                <p className="text-[10px] text-gray-600 italic">
+                <p className="text-xs text-gray-600 italic">
                   <span className="font-medium not-italic">Example:</span> {word.example}
                 </p>
               </div>
@@ -303,7 +303,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
               <Button 
                 variant="outline" 
                 onClick={handleLoadMoreVocab}
-                className="text-primary text-[10px] px-2 py-1 h-auto"
+                className="text-primary text-xs px-2 py-1 h-auto"
                 size="sm"
               >
                 Load More Words
@@ -321,18 +321,18 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 className="p-2 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
               >
                 <div className="flex flex-wrap items-center gap-1 mb-1">
-                  <span className="font-medium text-xs">{phrase.word}</span>
-                  <Badge className="text-[10px] font-medium px-1 py-0">
+                  <span className="font-medium text-sm">{phrase.word}</span>
+                  <Badge className="text-xs font-medium px-1.5 py-0.5">
                     {phrase.partOfSpeech}
                   </Badge>
-                  <Badge variant="outline" className="text-[10px] px-1 py-0">
+                  <Badge variant="outline" className="text-xs px-1.5 py-0.5">
                     {phrase.difficulty}
                   </Badge>
                 </div>
-                <p className="text-[10px] text-gray-700 mb-1">
+                <p className="text-xs text-gray-700 mb-1">
                   <span className="font-medium">Meaning:</span> {phrase.meaning}
                 </p>
-                <p className="text-[10px] text-gray-600 italic">
+                <p className="text-xs text-gray-600 italic">
                   <span className="font-medium not-italic">Example:</span> {phrase.example}
                 </p>
               </div>
@@ -350,7 +350,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
               <Button 
                 variant="outline" 
                 onClick={handleLoadMorePhrases}
-                className="text-primary text-[10px] px-2 py-1 h-auto"
+                className="text-primary text-xs px-2 py-1 h-auto"
                 size="sm"
               >
                 Load More Phrases
@@ -368,7 +368,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                     <Badge 
                       key={`${category.name}-${phraseIndex}`} 
                       variant="outline"
-                      className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1 text-[10px]"
+                      className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1 text-xs"
                     >
                       {phrase}
                     </Badge>

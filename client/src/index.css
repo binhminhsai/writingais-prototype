@@ -8,7 +8,7 @@
   }
 
   html {
-    font-size: 90%;
+    font-size: 95%;
   }
 
   body {
@@ -33,33 +33,33 @@
   
   p, span, div {
     @apply text-sm;
-    font-size: 0.85rem;
+    font-size: 0.92rem;
   }
   
   .btn, button, a {
     @apply text-sm;
-    font-size: 0.85rem;
+    font-size: 0.92rem;
   }
   
   input, textarea, select, label {
     @apply text-sm;
-    font-size: 0.85rem;
+    font-size: 0.92rem;
   }
 }
 
 /* Giảm kích thước và padding cho các phần tử UI của shadcn */
 @layer components {
-  /* Giảm kích thước chung */
+  /* Điều chỉnh kích thước chung */
   .text-base {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
   }
   
   .text-sm {
-    font-size: 0.8rem !important;
+    font-size: 0.92rem !important;
   }
   
   .text-xs {
-    font-size: 0.7rem !important;
+    font-size: 0.85rem !important;
   }
   /* Thẻ Cards */
   .rounded-md {
