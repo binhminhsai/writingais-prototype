@@ -104,7 +104,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
       >
         <TabsList className="w-full grid grid-cols-2">
           <TabsTrigger value="vocabulary">Vocabulary</TabsTrigger>
-          <TabsTrigger value="phrases">Useful Phrases</TabsTrigger>
+          <TabsTrigger value="phrases">Useful phrases & collocations</TabsTrigger>
         </TabsList>
         
         <TabsContent value="vocabulary" className="p-4">
