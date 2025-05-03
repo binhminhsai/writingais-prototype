@@ -260,9 +260,21 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <TabsList className="w-full grid grid-cols-2 mb-0.5 p-0.5 bg-gray-100">
-          <TabsTrigger value="vocabulary" className="text-sm py-2 w-full font-medium data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700">Vocabulary</TabsTrigger>
-          <TabsTrigger value="phrases" className="text-sm py-2 w-full font-medium data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700">Useful phrases & collocations</TabsTrigger>
+        <TabsList className="w-full mb-2 p-1 rounded-xl bg-gray-50 border border-gray-200 flex">
+          <TabsTrigger 
+            value="vocabulary" 
+            className="text-sm py-1.5 px-4 w-full flex-1 font-medium rounded-lg transition-all
+                    data-[state=active]:bg-white data-[state=active]:text-blue-700 data-[state=active]:shadow-sm"
+          >
+            Vocabulary
+          </TabsTrigger>
+          <TabsTrigger 
+            value="phrases" 
+            className="text-sm py-1.5 px-4 w-full flex-1 font-medium rounded-lg transition-all
+                    data-[state=active]:bg-white data-[state=active]:text-blue-700 data-[state=active]:shadow-sm"
+          >
+            Useful phrases & collocations
+          </TabsTrigger>
         </TabsList>
         
         <TabsContent value="vocabulary" className="p-2">
