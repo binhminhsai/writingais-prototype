@@ -260,18 +260,18 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <TabsList className="w-full flex mb-3 gap-3 bg-transparent border-0 p-0">
+        <TabsList className="w-full flex mb-3 gap-3 bg-transparent p-2 border border-gray-200 rounded-lg">
           <TabsTrigger 
             value="vocabulary" 
             className="flex-1 text-sm py-2 px-4 font-medium rounded-md border border-gray-200 transition-all
-                    bg-gray-50 data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-600"
+                    bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
           >
             Vocabulary
           </TabsTrigger>
           <TabsTrigger 
             value="phrases" 
             className="flex-1 text-sm py-2 px-4 font-medium rounded-md border border-gray-200 transition-all
-                    bg-gray-50 data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=active]:border-blue-600"
+                    bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
           >
             Useful phrases & collocations
           </TabsTrigger>
@@ -373,7 +373,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           {/* Display additional useful phrases from phrases data */}
           {phrases.length > 0 && (
             <div className="mt-4 pt-3 border-t border-gray-200">
-              <h4 className="font-medium text-blue-700 mb-3 text-sm bg-blue-50 px-2 py-1.5 rounded-md inline-block">Additional Useful Expressions</h4>
+              <h4 className="font-semibold text-gray-800 mb-3 text-sm">Additional Useful Expressions</h4>
               <div className="flex flex-wrap gap-2">
                 {phrases.flatMap(category => 
                   category.phrases.map((phrase, phraseIndex) => (
