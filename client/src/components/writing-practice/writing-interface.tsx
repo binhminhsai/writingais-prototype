@@ -261,8 +261,8 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         onValueChange={setActiveTab}
       >
         <TabsList className="w-full grid grid-cols-2 mb-0.5 p-0.5">
-          <TabsTrigger value="vocabulary" className="text-xs py-0.5">Vocabulary</TabsTrigger>
-          <TabsTrigger value="phrases" className="text-xs py-0.5">Useful phrases & collocations</TabsTrigger>
+          <TabsTrigger value="vocabulary" className="text-xs py-1.5 w-full">Vocabulary</TabsTrigger>
+          <TabsTrigger value="phrases" className="text-xs py-1.5 w-full">Useful phrases & collocations</TabsTrigger>
         </TabsList>
         
         <TabsContent value="vocabulary" className="p-2">
