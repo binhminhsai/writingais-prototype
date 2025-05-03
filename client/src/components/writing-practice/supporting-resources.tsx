@@ -23,27 +23,27 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
   const phrases = getPhrases(testType);
   
   return (
-    <div className="mt-8">
+    <div className="mt-6">
       {/* Outline Suggestions */}
-      <Card className="mb-4">
-        <CardHeader className="flex flex-row items-center justify-between py-3 px-4 bg-gray-50">
-          <h3 className="font-medium">Suggested Outline</h3>
+      <Card className="mb-3">
+        <CardHeader className="flex flex-row items-center justify-between py-2 px-3 bg-gray-50">
+          <h3 className="font-medium text-xs">Suggested Outline</h3>
           <Button
             variant="ghost"
             size="sm"
-            className="h-8 w-8 p-0"
+            className="h-6 w-6 p-0"
             onClick={() => setShowOutline(!showOutline)}
           >
-            <ChevronUp className={`h-4 w-4 ${!showOutline ? "rotate-180" : ""}`} />
+            <ChevronUp className={`h-3 w-3 ${!showOutline ? "rotate-180" : ""}`} />
           </Button>
         </CardHeader>
         {showOutline ? (
-          <CardContent className="py-4">
-            <ul className="space-y-2 text-sm">
+          <CardContent className="py-2 px-3">
+            <ul className="space-y-1 text-xs">
               {outline.map((section, index) => (
                 <li key={index}>
                   <span className="font-medium">{section.title}:</span>
-                  <ul className="pl-4 mt-1 space-y-1 list-disc">
+                  <ul className="pl-3 mt-0.5 space-y-0.5 list-disc">
                     {section.points.map((point, pointIndex) => (
                       <li key={pointIndex}>{point}</li>
                     ))}
@@ -53,10 +53,10 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
             </ul>
           </CardContent>
         ) : (
-          <CardContent className="flex justify-center items-center py-16">
+          <CardContent className="flex justify-center items-center py-10">
             <div className="text-center text-gray-600">
-              <p className="mb-1 font-medium">Hãy cố gắng hết mình nhé!</p>
-              <p className="text-primary">Good things take time.</p>
+              <p className="mb-1 font-medium text-xs">Hãy cố gắng hết mình nhé!</p>
+              <p className="text-primary text-xs">Good things take time.</p>
             </div>
           </CardContent>
         )}
@@ -70,21 +70,21 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
           onValueChange={setActiveTab}
         >
           <TabsList className="w-full grid grid-cols-2">
-            <TabsTrigger value="vocabulary">Vocabulary</TabsTrigger>
-            <TabsTrigger value="phrases">Useful Phrases</TabsTrigger>
+            <TabsTrigger value="vocabulary" className="text-xs py-1">Vocabulary</TabsTrigger>
+            <TabsTrigger value="phrases" className="text-xs py-1">Useful Phrases</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="vocabulary" className="p-4">
-            <div className="space-y-3 text-sm">
+          <TabsContent value="vocabulary" className="p-3">
+            <div className="space-y-2 text-xs">
               {vocabulary.map((category, index) => (
                 <div key={index}>
-                  <h4 className="font-medium text-gray-800">{category.name}</h4>
-                  <div className="mt-1 flex flex-wrap gap-2">
+                  <h4 className="font-medium text-gray-800 text-xs">{category.name}</h4>
+                  <div className="mt-0.5 flex flex-wrap gap-1.5">
                     {category.words.map((word, wordIndex) => (
                       <Badge 
                         key={wordIndex} 
                         variant="secondary" 
-                        className={
+                        className={`text-xs py-0.5 px-1.5 ${
                           category.type === "positive" 
                             ? "bg-green-100 text-green-800 hover:bg-green-200" 
                             : category.type === "negative" 
@@ -92,7 +92,7 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
                               : category.type === "academic"
                                 ? "bg-purple-100 text-purple-800 hover:bg-purple-200"
                                 : "bg-blue-100 text-blue-800 hover:bg-blue-200"
-                        }
+                        }`}
                       >
                         {word}
                       </Badge>
@@ -103,12 +103,12 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
             </div>
           </TabsContent>
           
-          <TabsContent value="phrases" className="p-4">
-            <div className="space-y-4 text-sm">
+          <TabsContent value="phrases" className="p-3">
+            <div className="space-y-3 text-xs">
               {phrases.map((category, index) => (
                 <div key={index}>
-                  <h4 className="font-medium text-gray-800">{category.name}</h4>
-                  <ul className="mt-1 space-y-1 text-gray-600 pl-4">
+                  <h4 className="font-medium text-gray-800 text-xs">{category.name}</h4>
+                  <ul className="mt-0.5 space-y-0.5 text-gray-600 pl-3">
                     {category.phrases.map((phrase, phraseIndex) => (
                       <li key={phraseIndex}>{phrase}</li>
                     ))}
