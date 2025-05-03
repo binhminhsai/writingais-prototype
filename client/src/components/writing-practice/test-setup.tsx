@@ -67,7 +67,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
       
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <Label htmlFor="writing-type" className="mb-1">
+          <Label htmlFor="writing-type" className="mb-2">
             Select Writing Test Type
           </Label>
           <Select 
@@ -87,7 +87,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
         </div>
         
         <div>
-          <Label htmlFor="difficulty" className="mb-1">
+          <Label htmlFor="difficulty" className="mb-2">
             Difficulty Level
           </Label>
           <Select 
@@ -108,7 +108,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
       </div>
       
       <div className="mt-6">
-        <Label htmlFor="topic" className="mb-1">
+        <Label htmlFor="topic" className="mb-2">
           Topic/Question
         </Label>
         <Textarea
