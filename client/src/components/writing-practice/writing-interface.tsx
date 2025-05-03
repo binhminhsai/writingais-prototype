@@ -73,8 +73,27 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 // Vocabulary and Phrases component
 function ResourcesSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
   const [activeTab, setActiveTab] = useState("vocabulary");
-  const vocabulary = getVocabulary(testType, topic);
+  const allVocabulary = getVocabulary(testType, topic);
   const phrases = getPhrases(testType);
+  
+  // Flatten all vocabulary words across categories
+  const allWords = allVocabulary.flatMap(category => 
+    category.words.map(word => ({ ...word, type: category.type }))
+  );
+  
+  // State for displayed word count
+  const [displayCount, setDisplayCount] = useState(15);
+  
+  // Handle loading more words
+  const handleLoadMore = () => {
+    setDisplayCount(prevCount => prevCount + 10);
+  };
+  
+  // Words to display based on current count limit
+  const displayedWords = allWords.slice(0, displayCount);
+  
+  // Check if there are more words to load
+  const hasMoreWords = displayCount < allWords.length;
 
   return (
     <Card className="mt-8">
@@ -89,52 +108,61 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </TabsList>
         
         <TabsContent value="vocabulary" className="p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {vocabulary.map((category, index) => (
-              <div key={index}>
-                <h4 className="font-medium text-gray-800">{category.name}</h4>
-                <div className="mt-1 flex flex-wrap gap-2">
-                  {category.words.map((word, wordIndex) => (
-                    <Badge 
-                      key={wordIndex} 
-                      variant="secondary" 
-                      className={
-                        category.type === "positive" 
-                          ? "bg-green-100 text-green-800 hover:bg-green-200" 
-                          : category.type === "negative" 
-                            ? "bg-red-100 text-red-800 hover:bg-red-200"
-                            : category.type === "academic"
-                              ? "bg-purple-100 text-purple-800 hover:bg-purple-200"
-                              : "bg-blue-100 text-blue-800 hover:bg-blue-200"
-                      }
-                    >
-                      {word}
+          <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-3">
+              {displayedWords.map((word, wordIndex) => (
+                <div 
+                  key={wordIndex}
+                  className="p-3 rounded-md border bg-blue-50 border-blue-200"
+                >
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <span className="font-medium">{word.word}</span>
+                    <Badge className="text-xs">
+                      {word.partOfSpeech}
                     </Badge>
-                  ))}
+                    <Badge variant="outline" className="text-xs">
+                      {word.difficulty}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-gray-700 mb-1">
+                    <span className="font-medium">Meaning:</span> {word.meaning}
+                  </p>
+                  <p className="text-sm text-gray-600 italic">
+                    <span className="font-medium not-italic">Example:</span> {word.example}
+                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
+              
+              {hasMoreWords && (
+                <div className="flex justify-center mt-4">
+                  <Button 
+                    variant="outline" 
+                    onClick={handleLoadMore}
+                    className="text-primary"
+                  >
+                    Load More Words
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </TabsContent>
         
         <TabsContent value="phrases" className="p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {phrases.map((category, index) => (
-              <div key={index} className="mb-2">
-                <h4 className="font-medium text-gray-800">{category.name}</h4>
-                <div className="mt-1 flex flex-wrap gap-1">
-                  {category.phrases.map((phrase, phraseIndex) => (
-                    <Badge 
-                      key={phraseIndex} 
-                      variant="outline"
-                      className="bg-gray-50 whitespace-normal text-wrap my-1"
-                    >
-                      {phrase}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 gap-6">
+            <div className="flex flex-wrap gap-2">
+              {phrases.flatMap(category => 
+                category.phrases.map((phrase, phraseIndex) => (
+                  <Badge 
+                    key={`${category.name}-${phraseIndex}`} 
+                    variant="outline"
+                    className="bg-gray-50 whitespace-normal text-wrap my-1 p-2"
+                  >
+                    {phrase}
+                  </Badge>
+                ))
+              )}
+            </div>
           </div>
         </TabsContent>
       </Tabs>
