@@ -260,32 +260,32 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <TabsList className="w-full grid grid-cols-2 mb-2 p-1">
-          <TabsTrigger value="vocabulary" className="text-base py-2.5">Vocabulary</TabsTrigger>
-          <TabsTrigger value="phrases" className="text-base py-2.5">Useful phrases & collocations</TabsTrigger>
+        <TabsList className="w-full grid grid-cols-2 mb-1 p-0.5">
+          <TabsTrigger value="vocabulary" className="text-sm py-1.5">Vocabulary</TabsTrigger>
+          <TabsTrigger value="phrases" className="text-sm py-1.5">Useful phrases & collocations</TabsTrigger>
         </TabsList>
         
-        <TabsContent value="vocabulary" className="p-4">
+        <TabsContent value="vocabulary" className="p-3">
           {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {displayedVocabWords.map((word, index) => (
               <div 
                 key={`word-${index}`}
-                className="p-4 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
+                className="p-3 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
               >
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="font-medium text-base">{word.word}</span>
-                  <Badge className="text-xs font-medium">
+                <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                  <span className="font-medium">{word.word}</span>
+                  <Badge className="text-xs font-medium px-1.5 py-0.5">
                     {word.partOfSpeech}
                   </Badge>
-                  <Badge variant="outline" className="text-xs">
+                  <Badge variant="outline" className="text-xs px-1.5 py-0.5">
                     {word.difficulty}
                   </Badge>
                 </div>
-                <p className="text-sm text-gray-700 mb-2">
+                <p className="text-xs text-gray-700 mb-1.5">
                   <span className="font-medium">Meaning:</span> {word.meaning}
                 </p>
-                <p className="text-sm text-gray-600 italic">
+                <p className="text-xs text-gray-600 italic">
                   <span className="font-medium not-italic">Example:</span> {word.example}
                 </p>
               </div>
@@ -299,11 +299,12 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           
           {/* Load more button for vocabulary */}
           {hasMoreVocab && (
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center mt-4">
               <Button 
                 variant="outline" 
                 onClick={handleLoadMoreVocab}
-                className="text-primary"
+                className="text-primary text-xs px-3 py-1.5 h-auto"
+                size="sm"
               >
                 Load More Words
               </Button>
@@ -311,27 +312,27 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           )}
         </TabsContent>
         
-        <TabsContent value="phrases" className="p-4">
+        <TabsContent value="phrases" className="p-3">
           {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {displayedPhraseWords.map((phrase, index) => (
               <div 
                 key={`phrase-${index}`}
-                className="p-4 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
+                className="p-3 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
               >
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="font-medium text-base">{phrase.word}</span>
-                  <Badge className="text-xs font-medium">
+                <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                  <span className="font-medium">{phrase.word}</span>
+                  <Badge className="text-xs font-medium px-1.5 py-0.5">
                     {phrase.partOfSpeech}
                   </Badge>
-                  <Badge variant="outline" className="text-xs">
+                  <Badge variant="outline" className="text-xs px-1.5 py-0.5">
                     {phrase.difficulty}
                   </Badge>
                 </div>
-                <p className="text-sm text-gray-700 mb-2">
+                <p className="text-xs text-gray-700 mb-1.5">
                   <span className="font-medium">Meaning:</span> {phrase.meaning}
                 </p>
-                <p className="text-sm text-gray-600 italic">
+                <p className="text-xs text-gray-600 italic">
                   <span className="font-medium not-italic">Example:</span> {phrase.example}
                 </p>
               </div>
@@ -345,11 +346,12 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           
           {/* Load more button for phrases */}
           {hasMorePhrases && (
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center mt-4">
               <Button 
                 variant="outline" 
                 onClick={handleLoadMorePhrases}
-                className="text-primary"
+                className="text-primary text-xs px-3 py-1.5 h-auto"
+                size="sm"
               >
                 Load More Phrases
               </Button>
@@ -358,15 +360,15 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           
           {/* Display additional useful phrases from phrases data */}
           {phrases.length > 0 && (
-            <div className="mt-8 pt-5 border-t border-gray-200">
-              <h4 className="font-medium text-gray-800 mb-4 text-lg">Additional Useful Expressions</h4>
-              <div className="flex flex-wrap gap-3">
+            <div className="mt-6 pt-4 border-t border-gray-200">
+              <h4 className="font-medium text-gray-800 mb-3">Additional Useful Expressions</h4>
+              <div className="flex flex-wrap gap-2">
                 {phrases.flatMap(category => 
                   category.phrases.map((phrase, phraseIndex) => (
                     <Badge 
                       key={`${category.name}-${phraseIndex}`} 
                       variant="outline"
-                      className="bg-gray-50 whitespace-normal text-wrap my-1 p-2.5 text-sm font-medium"
+                      className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-2 text-xs"
                     >
                       {phrase}
                     </Badge>
