@@ -274,7 +274,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 className="p-2 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
               >
                 <div className="flex flex-wrap items-center gap-1 mb-1">
-                  <span className="font-medium text-sm">{word.word}</span>
+                  <span className="font-semibold text-base text-blue-700">{word.word}</span>
                   <Badge className="text-xs font-medium px-1.5 py-0.5">
                     {word.partOfSpeech}
                   </Badge>
@@ -321,7 +321,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 className="p-2 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
               >
                 <div className="flex flex-wrap items-center gap-1 mb-1">
-                  <span className="font-medium text-sm">{phrase.word}</span>
+                  <span className="font-semibold text-base text-blue-700">{phrase.word}</span>
                   <Badge className="text-xs font-medium px-1.5 py-0.5">
                     {phrase.partOfSpeech}
                   </Badge>

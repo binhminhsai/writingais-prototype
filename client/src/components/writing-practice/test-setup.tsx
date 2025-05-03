@@ -41,9 +41,8 @@ export function TestSetup({ onStart }: TestSetupProps) {
 
   const handleGenerateTopic = () => {
     const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
-    const randomTopic = textareaValue.trim() 
-      ? generateRandomTopic(testType, difficulty, textareaValue)
-      : generateRandomTopic(testType, difficulty);
+    // Sử dụng với 2 tham số vì hàm generateRandomTopic chỉ nhận 2 tham số
+    const randomTopic = generateRandomTopic(testType, difficulty);
     setTopic(randomTopic);
   };
 
@@ -67,7 +66,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
       
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <Label htmlFor="writing-type" className="mb-2">
+          <Label htmlFor="writing-type" className="mb-3 block">
             Select Writing Test Type
           </Label>
           <Select 
@@ -87,7 +86,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
         </div>
         
         <div>
-          <Label htmlFor="difficulty" className="mb-2">
+          <Label htmlFor="difficulty" className="mb-3 block">
             Difficulty Level
           </Label>
           <Select 
@@ -108,7 +107,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
       </div>
       
       <div className="mt-6">
-        <Label htmlFor="topic" className="mb-2">
+        <Label htmlFor="topic" className="mb-3 block">
           Topic/Question
         </Label>
         <Textarea
@@ -152,7 +151,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
       
       <div className="mt-6 flex items-center justify-between">
         <div>
-          <Label htmlFor="time-limit" className="mb-1">
+          <Label htmlFor="time-limit" className="mb-3 block">
             Time Limit (optional)
           </Label>
           <Select 
