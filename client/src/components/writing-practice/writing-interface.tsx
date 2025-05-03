@@ -260,9 +260,9 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <TabsList className="w-full grid grid-cols-2">
-          <TabsTrigger value="vocabulary">Vocabulary</TabsTrigger>
-          <TabsTrigger value="phrases">Useful phrases & collocations</TabsTrigger>
+        <TabsList className="w-full grid grid-cols-2 mb-2 p-1">
+          <TabsTrigger value="vocabulary" className="text-base py-2.5">Vocabulary</TabsTrigger>
+          <TabsTrigger value="phrases" className="text-base py-2.5">Useful phrases & collocations</TabsTrigger>
         </TabsList>
         
         <TabsContent value="vocabulary" className="p-4">
@@ -271,18 +271,18 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             {displayedVocabWords.map((word, index) => (
               <div 
                 key={`word-${index}`}
-                className="p-3 rounded-md border bg-blue-50 border-blue-200 h-full"
+                className="p-4 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
               >
-                <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <span className="font-medium">{word.word}</span>
-                  <Badge className="text-xs">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="font-medium text-base">{word.word}</span>
+                  <Badge className="text-xs font-medium">
                     {word.partOfSpeech}
                   </Badge>
                   <Badge variant="outline" className="text-xs">
                     {word.difficulty}
                   </Badge>
                 </div>
-                <p className="text-sm text-gray-700 mb-1">
+                <p className="text-sm text-gray-700 mb-2">
                   <span className="font-medium">Meaning:</span> {word.meaning}
                 </p>
                 <p className="text-sm text-gray-600 italic">
@@ -317,18 +317,18 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             {displayedPhraseWords.map((phrase, index) => (
               <div 
                 key={`phrase-${index}`}
-                className="p-3 rounded-md border bg-blue-50 border-blue-200 h-full"
+                className="p-4 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
               >
-                <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <span className="font-medium">{phrase.word}</span>
-                  <Badge className="text-xs">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="font-medium text-base">{phrase.word}</span>
+                  <Badge className="text-xs font-medium">
                     {phrase.partOfSpeech}
                   </Badge>
                   <Badge variant="outline" className="text-xs">
                     {phrase.difficulty}
                   </Badge>
                 </div>
-                <p className="text-sm text-gray-700 mb-1">
+                <p className="text-sm text-gray-700 mb-2">
                   <span className="font-medium">Meaning:</span> {phrase.meaning}
                 </p>
                 <p className="text-sm text-gray-600 italic">
@@ -358,15 +358,15 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           
           {/* Display additional useful phrases from phrases data */}
           {phrases.length > 0 && (
-            <div className="mt-6 pt-4 border-t border-gray-200">
-              <h4 className="font-medium text-gray-800 mb-3">Additional Useful Expressions</h4>
-              <div className="flex flex-wrap gap-2">
+            <div className="mt-8 pt-5 border-t border-gray-200">
+              <h4 className="font-medium text-gray-800 mb-4 text-lg">Additional Useful Expressions</h4>
+              <div className="flex flex-wrap gap-3">
                 {phrases.flatMap(category => 
                   category.phrases.map((phrase, phraseIndex) => (
                     <Badge 
                       key={`${category.name}-${phraseIndex}`} 
                       variant="outline"
-                      className="bg-gray-50 whitespace-normal text-wrap my-1 p-2"
+                      className="bg-gray-50 whitespace-normal text-wrap my-1 p-2.5 text-sm font-medium"
                     >
                       {phrase}
                     </Badge>
