@@ -83,15 +83,87 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
       .map(word => ({ ...word, type: category.type }))
   );
   
+  // Get phrase words from vocabulary data
   const phraseWords = allVocabulary.flatMap(category => 
     category.words
       .filter(word => word.partOfSpeech === "Phrase")
       .map(word => ({ ...word, type: category.type }))
   );
   
+  // Additional collocations data
+  const additionalCollocations = [
+    {
+      word: "Public health crisis",
+      partOfSpeech: "Collocations",
+      difficulty: "B2",
+      meaning: "Khủng hoảng sức khỏe cộng đồng",
+      example: "The rise in heroin use has led to a public health crisis in many regions.",
+      type: "neutral"
+    },
+    {
+      word: "Climate change impact",
+      partOfSpeech: "Collocations",
+      difficulty: "B2",
+      meaning: "Tác động của biến đổi khí hậu",
+      example: "Researchers are studying the climate change impact on coastal communities.",
+      type: "neutral"
+    },
+    {
+      word: "Sustainable development goals",
+      partOfSpeech: "Collocations",
+      difficulty: "C1",
+      meaning: "Mục tiêu phát triển bền vững",
+      example: "Many countries are working to meet the sustainable development goals set by the United Nations.",
+      type: "positive"
+    },
+    {
+      word: "Digital literacy skills",
+      partOfSpeech: "Collocations",
+      difficulty: "B2",
+      meaning: "Kỹ năng sử dụng công nghệ số",
+      example: "Schools are focusing more on teaching digital literacy skills to prepare students for modern workplaces.",
+      type: "positive"
+    },
+    {
+      word: "Economic inequality gap",
+      partOfSpeech: "Collocations",
+      difficulty: "C1",
+      meaning: "Khoảng cách bất bình đẳng kinh tế",
+      example: "The economic inequality gap has widened in many developed countries over the past decade.",
+      type: "negative"
+    },
+    {
+      word: "Demographic shift",
+      partOfSpeech: "Collocations",
+      difficulty: "B2",
+      meaning: "Sự thay đổi nhân khẩu học",
+      example: "The demographic shift toward an aging population has implications for healthcare systems worldwide.",
+      type: "neutral"
+    },
+    {
+      word: "Renewable energy sources",
+      partOfSpeech: "Collocations",
+      difficulty: "B1",
+      meaning: "Các nguồn năng lượng tái tạo",
+      example: "Investing in renewable energy sources is essential for reducing carbon emissions.",
+      type: "positive"
+    },
+    {
+      word: "Global supply chain",
+      partOfSpeech: "Collocations",
+      difficulty: "B2",
+      meaning: "Chuỗi cung ứng toàn cầu",
+      example: "The pandemic has revealed vulnerabilities in global supply chains across many industries.",
+      type: "neutral"
+    }
+  ];
+  
+  // Combine phrase words with additional collocations
+  const allPhraseWords = [...phraseWords, ...additionalCollocations];
+  
   // State for displayed word counts
   const [vocabDisplayCount, setVocabDisplayCount] = useState(14);
-  const [phraseDisplayCount, setPhraseDisplayCount] = useState(14);
+  const [phraseDisplayCount, setPhraseDisplayCount] = useState(8);
   
   // Handle loading more words
   const handleLoadMoreVocab = () => {
@@ -104,11 +176,11 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   
   // Words to display based on current count limits
   const displayedVocabWords = vocabularyWords.slice(0, vocabDisplayCount);
-  const displayedPhraseWords = phraseWords.slice(0, phraseDisplayCount);
+  const displayedPhraseWords = allPhraseWords.slice(0, phraseDisplayCount);
   
   // Check if there are more words to load
   const hasMoreVocab = vocabDisplayCount < vocabularyWords.length;
-  const hasMorePhrases = phraseDisplayCount < phraseWords.length;
+  const hasMorePhrases = phraseDisplayCount < allPhraseWords.length;
 
   return (
     <Card className="mt-8">
