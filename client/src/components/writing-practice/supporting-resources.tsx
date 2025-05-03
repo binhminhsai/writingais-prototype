@@ -70,8 +70,8 @@ export function SupportingResources({ testType, topic }: SupportingResourcesProp
           onValueChange={setActiveTab}
         >
           <TabsList className="w-full grid grid-cols-2">
-            <TabsTrigger value="vocabulary" className="text-xs py-1">Vocabulary</TabsTrigger>
-            <TabsTrigger value="phrases" className="text-xs py-1">Useful Phrases</TabsTrigger>
+            <TabsTrigger value="vocabulary" className="text-sm py-1 font-medium">Vocabulary</TabsTrigger>
+            <TabsTrigger value="phrases" className="text-sm py-1 font-medium">Useful Phrases & Collocations</TabsTrigger>
           </TabsList>
           
           <TabsContent value="vocabulary" className="p-3">

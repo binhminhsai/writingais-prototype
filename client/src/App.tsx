@@ -11,7 +11,7 @@ function Router() {
   return (
     <>
       <Header />
-      <div className="pt-16">
+      <div className="pt-0">
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/writing-practice" component={WritingPractice} />
