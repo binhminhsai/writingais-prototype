@@ -25,29 +25,29 @@ export default function Header() {
         
         {/* Main Navigation - Desktop */}
         <nav className="hidden lg:flex items-center mr-3">
-          <div className="flex items-center space-x-2 text-sm">
+          <div className="flex items-center space-x-2">
             <Link href="/">
-              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 ${location === "/" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 Home
               </button>
             </Link>
             <Link href="/about">
-              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 ${location === "/about" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/about" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 About Us
               </button>
             </Link>
             <Link href="/writing-practice">
-              <button className={`w-36 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 ${location === "/writing-practice" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`w-36 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/writing-practice" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 Writing Practice
               </button>
             </Link>
             <Link href="/vocabulary">
-              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 ${location === "/vocabulary" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/vocabulary" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 Vocabulary
               </button>
             </Link>
             <Link href="/progress">
-              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 ${location === "/progress" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/progress" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
                 Progress
               </button>
             </Link>
