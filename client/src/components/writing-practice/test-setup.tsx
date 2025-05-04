@@ -143,7 +143,12 @@ export function TestSetup({ onStart }: TestSetupProps) {
         </div>
         {topic && (
           <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
-            <Label className="text-teal-700 font-medium">Question:</Label>
+            <Label className="text-teal-700 font-medium">
+              {testType === "ielts-task2" ? "IELTS Writing Task 2:" : 
+               testType === "toefl" ? "TOEFL Independent Writing:" :
+               testType === "general" ? "General Essay:" : 
+               "Business Writing:"}
+            </Label>
             <p className="mt-2 text-sm text-gray-800">{topic}</p>
           </div>
         )}
