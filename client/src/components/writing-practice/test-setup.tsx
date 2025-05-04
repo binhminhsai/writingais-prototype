@@ -37,6 +37,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
   const [testType, setTestType] = useState<WritingTestType>("ielts-task2");
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("medium");
   const [topic, setTopic] = useState("");
+  const [fixedTestType, setFixedTestType] = useState<WritingTestType | null>(null);
   const [timeLimit, setTimeLimit] = useState(30);
 
   const handleGenerateTopic = () => {
@@ -44,6 +45,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
     // Sử dụng với 2 tham số vì hàm generateRandomTopic chỉ nhận 2 tham số
     const randomTopic = generateRandomTopic(testType, difficulty);
     setTopic(randomTopic);
+    setFixedTestType(testType);
   };
 
   const handleStartWriting = () => {
@@ -144,9 +146,9 @@ export function TestSetup({ onStart }: TestSetupProps) {
         {topic && (
           <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
             <Label className="text-teal-700 font-medium">
-              {testType === "ielts-task2" ? "IELTS Writing Task 2:" : 
-               testType === "toefl" ? "TOEFL Independent Writing:" :
-               testType === "general" ? "General Essay:" : 
+              {fixedTestType === "ielts-task2" ? "IELTS Writing Task 2:" : 
+               fixedTestType === "toefl" ? "TOEFL Independent Writing:" :
+               fixedTestType === "general" ? "General Essay:" : 
                "Business Writing:"}
             </Label>
             <p className="mt-2 text-sm text-gray-800">{topic}</p>
