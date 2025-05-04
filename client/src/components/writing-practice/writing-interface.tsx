@@ -254,13 +254,13 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const hasMorePhrases = phraseDisplayCount < allPhraseWords.length;
 
   return (
-    <Card className="mt-4">
+    <Card className="mt-4 p-0 border-0 bg-transparent shadow-none">
       <Tabs 
         defaultValue="vocabulary" 
         value={activeTab}
         onValueChange={setActiveTab}
       >
-        <TabsList className="w-full flex mb-3 gap-3 bg-transparent p-2 border border-gray-200 rounded-lg">
+        <TabsList className="w-full flex mb-3 gap-3 bg-transparent p-0 border border-gray-200 rounded-lg">
           <TabsTrigger 
             value="vocabulary" 
             className="flex-1 text-sm py-2 px-4 font-medium rounded-md border border-gray-200 transition-all
@@ -277,7 +277,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           </TabsTrigger>
         </TabsList>
         
-        <TabsContent value="vocabulary" className="p-2">
+        <TabsContent value="vocabulary" className="p-0">
           {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {displayedVocabWords.map((word, index) => (
@@ -324,7 +324,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           )}
         </TabsContent>
         
-        <TabsContent value="phrases" className="p-2">
+        <TabsContent value="phrases" className="p-0">
           {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {displayedPhraseWords.map((phrase, index) => (
