@@ -79,10 +79,10 @@ export function TestSetup({ onStart }: TestSetupProps) {
               <SelectValue placeholder="Select writing test type" />
             </SelectTrigger>
             <SelectContent className="p-1">
-              <SelectItem value="ielts-task2" className="text-lg font-medium py-1.5">IELTS Writing Task 2</SelectItem>
-              <SelectItem value="toefl" className="text-lg font-medium py-1.5">TOEFL Independent Writing</SelectItem>
-              <SelectItem value="general" className="text-lg font-medium py-1.5">General Essay</SelectItem>
-              <SelectItem value="business" className="text-lg font-medium py-1.5">Business Writing</SelectItem>
+              <SelectItem value="ielts-task2" className="text-xl py-1.5">IELTS Writing Task 2</SelectItem>
+              <SelectItem value="toefl" className="text-xl py-1.5">TOEFL Independent Writing</SelectItem>
+              <SelectItem value="general" className="text-xl py-1.5">General Essay</SelectItem>
+              <SelectItem value="business" className="text-xl py-1.5">Business Writing</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -99,10 +99,10 @@ export function TestSetup({ onStart }: TestSetupProps) {
               <SelectValue placeholder="Select difficulty" />
             </SelectTrigger>
             <SelectContent className="p-1">
-              <SelectItem value="easy" className="text-lg font-medium py-1.5">IELTS 5.0</SelectItem>
-              <SelectItem value="medium" className="text-lg font-medium py-1.5">IELTS 6.0</SelectItem>
-              <SelectItem value="hard" className="text-lg font-medium py-1.5">IELTS 7.0</SelectItem>
-              <SelectItem value="expert" className="text-lg font-medium py-1.5">IELTS 8.0</SelectItem>
+              <SelectItem value="easy" className="text-xl py-1.5">IELTS 5.0</SelectItem>
+              <SelectItem value="medium" className="text-xl py-1.5">IELTS 6.0</SelectItem>
+              <SelectItem value="hard" className="text-xl py-1.5">IELTS 7.0</SelectItem>
+              <SelectItem value="expert" className="text-xl py-1.5">IELTS 8.0</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -169,11 +169,11 @@ export function TestSetup({ onStart }: TestSetupProps) {
               <SelectValue placeholder="Select time limit" />
             </SelectTrigger>
             <SelectContent className="p-1">
-              <SelectItem value="0" className="text-lg font-medium py-1.5">No limit</SelectItem>
-              <SelectItem value="20" className="text-lg font-medium py-1.5">20 minutes</SelectItem>
-              <SelectItem value="30" className="text-lg font-medium py-1.5">30 minutes</SelectItem>
-              <SelectItem value="40" className="text-lg font-medium py-1.5">40 minutes</SelectItem>
-              <SelectItem value="60" className="text-lg font-medium py-1.5">60 minutes</SelectItem>
+              <SelectItem value="0" className="text-xl py-1.5">No limit</SelectItem>
+              <SelectItem value="20" className="text-xl py-1.5">20 minutes</SelectItem>
+              <SelectItem value="30" className="text-xl py-1.5">30 minutes</SelectItem>
+              <SelectItem value="40" className="text-xl py-1.5">40 minutes</SelectItem>
+              <SelectItem value="60" className="text-xl py-1.5">60 minutes</SelectItem>
             </SelectContent>
           </Select>
         </div>
