@@ -32,7 +32,7 @@ import {
 } from "@/components/ui/tooltip";
 import { getOutline } from "@/data/outlines";
 import { getVocabulary } from "@/data/vocabulary";
-import { getPhrases } from "@/data/phrases";
+import { getPhrases, getStructuredPhrases, phraseCategories } from "@/data/phrases";
 import { WritingTestType, DifficultyLevel } from "./test-setup";
 import { Link } from "wouter";
 
@@ -387,34 +387,47 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
           )}
 
           {/* Display additional useful phrases from phrases data */}
-          {phrases.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-gray-200">
-              <h4 className="font-semibold text-gray-800 mb-3 text-sm">Additional Useful Expressions</h4>
-              <div className="flex flex-wrap gap-2">
-                {phrases.flatMap(category => 
-                  category.phrases.map((phrase, phraseIndex) => (
-                    <TooltipProvider key={`${category.name}-${phraseIndex}`}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Badge 
-                            variant="outline"
-                            className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1.5 text-xs border-blue-100 cursor-pointer"
-                          >
-                            {phrase}
-                          </Badge>
-                        </TooltipTrigger>
-                        <TooltipContent className="p-2">
-                          <div className="text-sm">
-                            <p><span className="font-medium">Nghĩa:</span> {typeof phrase === 'string' ? `Cụm từ: ${phrase}` : 'Không có nghĩa'}</p>
-                          </div>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  ))
-                )}
-              </div>
-            </div>
-          )}
+          <div className="mt-4 pt-3 border-t border-gray-200">
+            <h4 className="font-semibold text-gray-800 mb-3 text-sm">Additional Useful Expressions - Các cách diễn đạt hữu ích bổ sung</h4>
+            <p className="text-xs mb-3 text-gray-600">Thể hiện các cách diễn đạt hữu ích có thể dùng trong bài viết</p>
+            
+            <Accordion type="single" collapsible className="w-full">
+              {phraseCategories.map((category, index) => {
+                const phrases = getStructuredPhrases()[category.id as keyof typeof getStructuredPhrases];
+                return (
+                  <AccordionItem key={category.id} value={category.id}>
+                    <AccordionTrigger className="text-sm font-medium py-2 hover:no-underline">
+                      {index + 1}. {category.name}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-xs text-gray-600 mb-2">{category.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {phrases.map((phrase, phraseIndex) => (
+                          <TooltipProvider key={`${category.id}-${phraseIndex}`}>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Badge 
+                                  variant="outline"
+                                  className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1.5 text-xs border-blue-100 cursor-pointer"
+                                >
+                                  {phrase}
+                                </Badge>
+                              </TooltipTrigger>
+                              <TooltipContent className="p-2">
+                                <div className="text-sm">
+                                  <p><span className="font-medium">Nghĩa:</span> {typeof phrase === 'string' ? `Cụm từ: ${phrase}` : 'Không có nghĩa'}</p>
+                                </div>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                );
+              })}
+            </Accordion>
+          </div>
         </TabsContent>
       </Tabs>
     </Card>
