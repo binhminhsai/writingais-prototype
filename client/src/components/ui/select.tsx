@@ -17,15 +17,15 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-14 w-full items-center justify-between rounded-md border border-input bg-background px-4 py-3 text-xl ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className
     )}
-    style={{ fontSize: '2rem' }}
+    style={{ fontSize: '1.25rem' }}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-6 w-6 opacity-70" />
+      <ChevronDown className="h-4 w-4 opacity-70" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ))
@@ -43,7 +43,7 @@ const SelectScrollUpButton = React.forwardRef<
     )}
     {...props}
   >
-    <ChevronUp className="h-6 w-6" />
+    <ChevronUp className="h-4 w-4" />
   </SelectPrimitive.ScrollUpButton>
 ))
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
@@ -60,7 +60,7 @@ const SelectScrollDownButton = React.forwardRef<
     )}
     {...props}
   >
-    <ChevronDown className="h-6 w-6" />
+    <ChevronDown className="h-4 w-4" />
   </SelectPrimitive.ScrollDownButton>
 ))
 SelectScrollDownButton.displayName =
@@ -87,11 +87,11 @@ const SelectContent = React.forwardRef<
         <SelectScrollUpButton />
         <SelectPrimitive.Viewport
           className={cn(
-            "p-2",
+            "p-1",
             position === "popper" &&
               "w-[var(--radix-select-trigger-width)]"
           )}
-          style={{ fontSize: '2rem' }}
+          style={{ fontSize: '1.25rem' }}
         >
           {children}
         </SelectPrimitive.Viewport>
@@ -108,8 +108,8 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn("py-2.5 pl-10 pr-2 text-3xl font-semibold", className)}
-    style={{ fontSize: '1.5rem', fontWeight: 600 }}
+    className={cn("py-1.5 pl-8 pr-2 font-semibold", className)}
+    style={{ fontSize: '1.25rem', fontWeight: 600 }}
     {...props}
   />
 ))
@@ -122,15 +122,15 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default select-none items-center rounded-sm py-3 pl-12 pr-3 outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 my-2",
+      "relative flex w-full cursor-default select-none items-center rounded-sm py-2 pl-8 pr-2 outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 my-0.5",
       className
     )}
-    style={{ fontSize: '2rem' }}
+    style={{ fontSize: '1.25rem' }}
     {...props}
   >
-    <span className="absolute left-3 flex h-7 w-7 items-center justify-center">
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-6 w-6" />
+        <Check className="h-4 w-4" />
       </SelectPrimitive.ItemIndicator>
     </span>
     {children}
