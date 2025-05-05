@@ -45,26 +45,28 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
           </Button>
         </div>
       </CardHeader>
-      <CardContent className="py-2 px-3">
-        {showOutline ? (
-          <ul className="space-y-3 text-xs">
-            {outline.map((section, index) => (
-              <li key={index}>
-                <span className="font-medium text-sm text-gray-700">{section.title}:</span>
-                <ul className="pl-3 mt-1.5 space-y-2 list-disc">
-                  {section.points.map((point, pointIndex) => (
-                    <li key={pointIndex} className="leading-relaxed">{point}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className="flex flex-col justify-center items-center min-h-[150px]">
-            <p className="text-gray-700 font-medium text-base mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
-            <p className="text-primary font-medium text-sm text-center">Good things take time. 😉</p>
-          </div>
-        )}
+      <CardContent className="py-2 px-3 h-[300px] overflow-y-auto">
+        <div className="h-full w-full">
+          {showOutline ? (
+            <ul className="space-y-3 text-xs">
+              {outline.map((section, index) => (
+                <li key={index}>
+                  <span className="font-medium text-sm text-gray-700">{section.title}:</span>
+                  <ul className="pl-3 mt-1.5 space-y-2 list-disc">
+                    {section.points.map((point, pointIndex) => (
+                      <li key={pointIndex} className="leading-relaxed">{point}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="flex flex-col justify-center items-center h-full w-full">
+              <p className="text-gray-700 font-medium text-base mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
+              <p className="text-primary font-medium text-sm text-center">Good things take time. 😉</p>
+            </div>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
