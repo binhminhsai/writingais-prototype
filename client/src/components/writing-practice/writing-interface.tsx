@@ -18,6 +18,12 @@ import { Save, Layers, ArrowLeft, Eye, EyeOff, Smile } from "lucide-react";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { getOutline } from "@/data/outlines";
 import { getVocabulary } from "@/data/vocabulary";
 import { getPhrases } from "@/data/phrases";
@@ -381,13 +387,23 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
               <div className="flex flex-wrap gap-2">
                 {phrases.flatMap(category => 
                   category.phrases.map((phrase, phraseIndex) => (
-                    <Badge 
-                      key={`${category.name}-${phraseIndex}`} 
-                      variant="outline"
-                      className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1.5 text-xs border-blue-100"
-                    >
-                      {phrase}
-                    </Badge>
+                    <TooltipProvider key={`${category.name}-${phraseIndex}`}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Badge 
+                            variant="outline"
+                            className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1.5 text-xs border-blue-100 cursor-pointer"
+                          >
+                            {phrase}
+                          </Badge>
+                        </TooltipTrigger>
+                        <TooltipContent className="p-2">
+                          <div className="text-sm">
+                            <p><span className="font-medium">Nghĩa:</span> {typeof phrase === 'string' ? `Cụm từ: ${phrase}` : 'Không có nghĩa'}</p>
+                          </div>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   ))
                 )}
               </div>
