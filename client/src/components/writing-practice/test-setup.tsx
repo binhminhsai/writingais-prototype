@@ -78,11 +78,11 @@ export function TestSetup({ onStart }: TestSetupProps) {
             <SelectTrigger id="writing-type">
               <SelectValue placeholder="Select writing test type" />
             </SelectTrigger>
-            <SelectContent className="p-1">
-              <SelectItem value="ielts-task2" className="text-xl py-1.5">IELTS Writing Task 2</SelectItem>
-              <SelectItem value="toefl" className="text-xl py-1.5">TOEFL Independent Writing</SelectItem>
-              <SelectItem value="general" className="text-xl py-1.5">General Essay</SelectItem>
-              <SelectItem value="business" className="text-xl py-1.5">Business Writing</SelectItem>
+            <SelectContent>
+              <SelectItem value="ielts-task2">IELTS Writing Task 2</SelectItem>
+              <SelectItem value="toefl">TOEFL Independent Writing</SelectItem>
+              <SelectItem value="general">General Essay</SelectItem>
+              <SelectItem value="business">Business Writing</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -98,11 +98,11 @@ export function TestSetup({ onStart }: TestSetupProps) {
             <SelectTrigger id="difficulty">
               <SelectValue placeholder="Select difficulty" />
             </SelectTrigger>
-            <SelectContent className="p-1">
-              <SelectItem value="easy" className="text-xl py-1.5">IELTS 5.0</SelectItem>
-              <SelectItem value="medium" className="text-xl py-1.5">IELTS 6.0</SelectItem>
-              <SelectItem value="hard" className="text-xl py-1.5">IELTS 7.0</SelectItem>
-              <SelectItem value="expert" className="text-xl py-1.5">IELTS 8.0</SelectItem>
+            <SelectContent>
+              <SelectItem value="easy">IELTS 5.0</SelectItem>
+              <SelectItem value="medium">IELTS 6.0</SelectItem>
+              <SelectItem value="hard">IELTS 7.0</SelectItem>
+              <SelectItem value="expert">IELTS 8.0</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -168,12 +168,12 @@ export function TestSetup({ onStart }: TestSetupProps) {
             <SelectTrigger id="time-limit" className="w-36">
               <SelectValue placeholder="Select time limit" />
             </SelectTrigger>
-            <SelectContent className="p-1">
-              <SelectItem value="0" className="text-xl py-1.5">No limit</SelectItem>
-              <SelectItem value="20" className="text-xl py-1.5">20 minutes</SelectItem>
-              <SelectItem value="30" className="text-xl py-1.5">30 minutes</SelectItem>
-              <SelectItem value="40" className="text-xl py-1.5">40 minutes</SelectItem>
-              <SelectItem value="60" className="text-xl py-1.5">60 minutes</SelectItem>
+            <SelectContent>
+              <SelectItem value="0">No limit</SelectItem>
+              <SelectItem value="20">20 minutes</SelectItem>
+              <SelectItem value="30">30 minutes</SelectItem>
+              <SelectItem value="40">40 minutes</SelectItem>
+              <SelectItem value="60">60 minutes</SelectItem>
             </SelectContent>
           </Select>
         </div>
