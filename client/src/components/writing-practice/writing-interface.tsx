@@ -339,7 +339,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 <div className="flex flex-wrap items-center gap-1 mb-1">
                   <span className="font-semibold text-base text-blue-700">{phrase.word}</span>
                   <Badge className="text-xs font-medium px-1.5 py-0.5">
-                    {phrase.partOfSpeech}
+                    Collocation
                   </Badge>
                   <Badge variant="outline" className="text-xs px-1.5 py-0.5">
                     {phrase.difficulty}
