@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Editor } from "@/components/ui/editor";
 import { Timer } from "@/components/ui/timer";
