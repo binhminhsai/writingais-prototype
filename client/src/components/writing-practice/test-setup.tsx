@@ -76,7 +76,12 @@ export function TestSetup({ onStart }: TestSetupProps) {
             onValueChange={(val) => setTestType(val as WritingTestType)}
           >
             <SelectTrigger id="writing-type">
-              <SelectValue placeholder="Select writing test type" />
+              <SelectValue>
+                {testType === "ielts-task2" && "IELTS Writing Task 2"}
+                {testType === "toefl" && "TOEFL Independent Writing"}
+                {testType === "general" && "General Essay"}
+                {testType === "business" && "Business Writing"}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="ielts-task2">IELTS Writing Task 2</SelectItem>
@@ -96,7 +101,12 @@ export function TestSetup({ onStart }: TestSetupProps) {
             onValueChange={(val) => setDifficulty(val as DifficultyLevel)}
           >
             <SelectTrigger id="difficulty">
-              <SelectValue placeholder="Select difficulty" />
+              <SelectValue>
+                {difficulty === "easy" && "IELTS 5.0"}
+                {difficulty === "medium" && "IELTS 6.0"}
+                {difficulty === "hard" && "IELTS 7.0"}
+                {difficulty === "expert" && "IELTS 8.0"}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="easy">IELTS 5.0</SelectItem>
@@ -166,7 +176,13 @@ export function TestSetup({ onStart }: TestSetupProps) {
             onValueChange={(val) => setTimeLimit(parseInt(val, 10))}
           >
             <SelectTrigger id="time-limit" className="w-36">
-              <SelectValue placeholder="Select time limit" />
+              <SelectValue>
+                {timeLimit === 0 && "No limit"}
+                {timeLimit === 20 && "20 minutes"}
+                {timeLimit === 30 && "30 minutes"}
+                {timeLimit === 40 && "40 minutes"}
+                {timeLimit === 60 && "60 minutes"}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="0">No limit</SelectItem>
