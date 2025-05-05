@@ -30,45 +30,47 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
   const outline = getOutline(testType, topic);
 
   return (
-    <Card className="h-full">
-      <CardHeader className="flex flex-row items-center justify-between py-2 px-3 bg-gray-50">
-        <h3 className="font-medium text-xs">Suggested Outline</h3>
-        <div className="flex space-x-1">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-6 w-6 p-0"
-            title={showOutline ? "Hide Outline" : "Show Outline"}
-            onClick={() => setShowOutline(!showOutline)}
-          >
-            {showOutline ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
-          </Button>
-        </div>
-      </CardHeader>
-      <CardContent className="py-2 px-3 h-[300px] overflow-y-auto">
-        <div className="h-full w-full">
-          {showOutline ? (
-            <ul className="space-y-3 text-xs">
-              {outline.map((section, index) => (
-                <li key={index}>
-                  <span className="font-medium text-sm text-gray-700">{section.title}:</span>
-                  <ul className="pl-3 mt-1.5 space-y-2 list-disc">
-                    {section.points.map((point, pointIndex) => (
-                      <li key={pointIndex} className="leading-relaxed">{point}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="flex flex-col justify-center items-center h-full w-full">
-              <p className="text-gray-700 font-medium text-base mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
-              <p className="text-primary font-medium text-sm text-center">Good things take time. 😉</p>
-            </div>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="h-full flex flex-col">
+      <Card className="flex flex-col flex-1 h-full">
+        <CardHeader className="flex flex-row items-center justify-between py-2 px-3 bg-gray-50 flex-shrink-0">
+          <h3 className="font-medium text-xs">Suggested Outline</h3>
+          <div className="flex space-x-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-6 w-6 p-0"
+              title={showOutline ? "Hide Outline" : "Show Outline"}
+              onClick={() => setShowOutline(!showOutline)}
+            >
+              {showOutline ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="py-2 px-3 flex-1 overflow-y-auto">
+          <div className="h-full w-full">
+            {showOutline ? (
+              <ul className="space-y-3 text-xs">
+                {outline.map((section, index) => (
+                  <li key={index}>
+                    <span className="font-medium text-sm text-gray-700">{section.title}:</span>
+                    <ul className="pl-3 mt-1.5 space-y-2 list-disc">
+                      {section.points.map((point, pointIndex) => (
+                        <li key={pointIndex} className="leading-relaxed">{point}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="flex flex-col justify-center items-center h-full w-full">
+                <p className="text-gray-700 font-medium text-base mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
+                <p className="text-primary font-medium text-sm text-center">Good things take time. 😉</p>
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 
@@ -509,7 +511,7 @@ export function WritingInterface({
           </div>
         </div>
         
-        <div className="hidden lg:block lg:w-2/5 lg:pl-3">
+        <div className="hidden lg:block lg:w-2/5 lg:pl-3 lg:flex lg:flex-col" style={{ minHeight: '500px' }}>
           <OutlineSection 
             testType={testType} 
             topic={topic} 
