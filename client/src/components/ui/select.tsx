@@ -134,7 +134,7 @@ const SelectItem = React.forwardRef<
       </SelectPrimitive.ItemIndicator>
     </span>
 
-    <SelectPrimitive.ItemText className="text-3xl" style={{ fontSize: '1.8rem', fontWeight: 500 }}>{children}</SelectPrimitive.ItemText>
+    <SelectPrimitive.ItemText className="text-3xl" style={{ fontSize: '2.8rem', fontWeight: 500 }}>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 ))
 SelectItem.displayName = SelectPrimitive.Item.displayName
