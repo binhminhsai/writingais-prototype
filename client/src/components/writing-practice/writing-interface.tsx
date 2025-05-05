@@ -79,14 +79,14 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const [activeTab, setActiveTab] = useState("vocabulary");
   const allVocabulary = getVocabulary(testType, topic);
   const phrases = getPhrases(testType);
-  
+
   // Filter vocabulary for each tab
   const vocabularyWords = allVocabulary.flatMap(category => 
     category.words
       .filter(word => ["N", "V", "Adj", "Adv"].includes(word.partOfSpeech))
       .map(word => ({ ...word, type: category.type }))
   );
-  
+
   // Additional vocabulary data
   const additionalVocabulary = [
     {
@@ -154,17 +154,17 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
       type: "neutral"
     }
   ];
-  
+
   // Combine vocabulary words
   const allVocabularyWords = [...vocabularyWords, ...additionalVocabulary];
-  
+
   // Get phrase words from vocabulary data
   const phraseWords = allVocabulary.flatMap(category => 
     category.words
       .filter(word => word.partOfSpeech === "Phrase")
       .map(word => ({ ...word, type: category.type }))
   );
-  
+
   // Additional collocations data
   const additionalCollocations = [
     {
@@ -232,27 +232,27 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
       type: "neutral"
     }
   ];
-  
+
   // Combine phrase words with additional collocations
   const allPhraseWords = [...phraseWords, ...additionalCollocations];
-  
+
   // State for displayed word counts
   const [vocabDisplayCount, setVocabDisplayCount] = useState(10);
   const [phraseDisplayCount, setPhraseDisplayCount] = useState(8);
-  
+
   // Handle loading more words
   const handleLoadMoreVocab = () => {
     setVocabDisplayCount(prevCount => prevCount + 10);
   };
-  
+
   const handleLoadMorePhrases = () => {
     setPhraseDisplayCount(prevCount => prevCount + 10);
   };
-  
+
   // Words to display based on current count limits
   const displayedVocabWords = allVocabularyWords.slice(0, vocabDisplayCount);
   const displayedPhraseWords = allPhraseWords.slice(0, phraseDisplayCount);
-  
+
   // Check if there are more words to load
   const hasMoreVocab = vocabDisplayCount < allVocabularyWords.length;
   const hasMorePhrases = phraseDisplayCount < allPhraseWords.length;
@@ -277,10 +277,10 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             className="flex-1 text-sm py-2 px-2 font-medium rounded-md border border-gray-200 transition-all
                     bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
           >
-            Useful phrases & collocations
+            Useful collocations
           </TabsTrigger>
         </TabsList>
-        
+
         <TabsContent value="vocabulary" className="p-0">
           {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -306,13 +306,13 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 </p>
               </div>
             ))}
-            
+
             {/* Fill in empty cell if odd number of words */}
             {displayedVocabWords.length % 2 !== 0 && (
               <div className="hidden md:block" />
             )}
           </div>
-          
+
           {/* Load more button for vocabulary */}
           {hasMoreVocab && (
             <div className="flex justify-center mt-2">
@@ -327,7 +327,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             </div>
           )}
         </TabsContent>
-        
+
         <TabsContent value="phrases" className="p-0">
           {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -353,13 +353,13 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 </p>
               </div>
             ))}
-            
+
             {/* Fill in empty cell if odd number of phrases */}
             {displayedPhraseWords.length % 2 !== 0 && (
               <div className="hidden md:block" />
             )}
           </div>
-          
+
           {/* Load more button for phrases */}
           {hasMorePhrases && (
             <div className="flex justify-center mt-2">
@@ -373,7 +373,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
               </Button>
             </div>
           )}
-          
+
           {/* Display additional useful phrases from phrases data */}
           {phrases.length > 0 && (
             <div className="mt-4 pt-3 border-t border-gray-200">
@@ -419,7 +419,7 @@ export function WritingInterface({
   const [isWordCountValid, setIsWordCountValid] = useState(true);
   const [showTimeUpDialog, setShowTimeUpDialog] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
-  
+
   const { formattedTime, isRunning, startTimer, updateTimer } = useTimer({
     initialMinutes: timeLimit,
     onTimeUp: () => setShowTimeUpDialog(true),
@@ -461,7 +461,7 @@ export function WritingInterface({
   };
 
   const [showExitDialog, setShowExitDialog] = useState(false);
-  
+
   return (
     <div className="p-4">
       <div className="flex mb-2">
@@ -474,14 +474,14 @@ export function WritingInterface({
           <ArrowLeft className="h-3 w-3 mr-1" /> Back
         </Button>
       </div>
-      
+
       <div className="flex flex-col lg:flex-row lg:space-x-4">
         <div className="lg:w-3/5">
           <div className="bg-cyan-50 rounded-md p-4 mb-3 border-2 border-cyan-200 shadow-sm">
             <div className="text-cyan-700 font-medium mb-1">Question:</div>
             <div className="text-gray-700 text-sm">{topic}</div>
           </div>
-          
+
           <div className="flex items-center justify-between mb-2">
             <Timer 
               time={formattedTime()} 
@@ -494,13 +494,13 @@ export function WritingInterface({
               isValid={isWordCountValid}
             />
           </div>
-          
+
           <Editor
             value={essayContent}
             onChange={setEssayContent}
             onWordCountChange={handleWordCountChange}
           />
-          
+
           <div className="flex justify-end mt-3">
             <Button
               onClick={handleSubmit}
@@ -510,7 +510,7 @@ export function WritingInterface({
             </Button>
           </div>
         </div>
-        
+
         <div className="hidden lg:block lg:w-2/5 lg:pl-3 lg:flex lg:flex-col" style={{ minHeight: '500px' }}>
           <OutlineSection 
             testType={testType} 
@@ -518,20 +518,20 @@ export function WritingInterface({
           />
         </div>
       </div>
-      
+
       <div className="mt-4 lg:hidden">
         <OutlineSection 
           testType={testType} 
           topic={topic} 
         />
       </div>
-      
+
       {/* Resources Section Below */}
       <ResourcesSection 
         testType={testType} 
         topic={topic} 
       />
-      
+
       {/* Exit Confirmation Dialog */}
       <AlertDialog open={showExitDialog} onOpenChange={setShowExitDialog}>
         <AlertDialogContent>
