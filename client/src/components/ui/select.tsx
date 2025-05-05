@@ -17,9 +17,10 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-12 w-full items-center justify-between rounded-md border border-input bg-background px-4 py-3 text-2xl ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "flex h-14 w-full items-center justify-between rounded-md border border-input bg-background px-4 py-3 text-3xl ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className
     )}
+    style={{ fontSize: '1.5rem' }}
     {...props}
   >
     {children}
@@ -86,10 +87,11 @@ const SelectContent = React.forwardRef<
         <SelectScrollUpButton />
         <SelectPrimitive.Viewport
           className={cn(
-            "p-1 text-2xl font-normal",
+            "p-1.5 text-3xl font-normal",
             position === "popper" &&
               "w-[var(--radix-select-trigger-width)]"
           )}
+          style={{ fontSize: '1.5rem' }}
         >
           {children}
         </SelectPrimitive.Viewport>
@@ -106,7 +108,8 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={cn("py-2 pl-8 pr-2 text-2xl font-semibold", className)}
+    className={cn("py-2.5 pl-10 pr-2 text-3xl font-semibold", className)}
+    style={{ fontSize: '1.5rem', fontWeight: 600 }}
     {...props}
   />
 ))
@@ -119,9 +122,10 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default select-none items-center rounded-sm py-3 pl-8 pr-2 text-2xl outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 my-0.5",
+      "relative flex w-full cursor-default select-none items-center rounded-sm py-3 pl-10 pr-2 text-3xl outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 my-1",
       className
     )}
+    style={{ fontSize: '1.5rem' }}
     {...props}
   >
     <span className="absolute left-2 flex h-6 w-6 items-center justify-center">
@@ -130,7 +134,7 @@ const SelectItem = React.forwardRef<
       </SelectPrimitive.ItemIndicator>
     </span>
 
-    <SelectPrimitive.ItemText className="text-2xl">{children}</SelectPrimitive.ItemText>
+    <SelectPrimitive.ItemText className="text-3xl" style={{ fontSize: '1.5rem', fontWeight: 500 }}>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 ))
 SelectItem.displayName = SelectPrimitive.Item.displayName
