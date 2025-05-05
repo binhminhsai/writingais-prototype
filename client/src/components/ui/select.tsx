@@ -128,13 +128,13 @@ const SelectItem = React.forwardRef<
     style={{ fontSize: '1.5rem' }}
     {...props}
   >
-    <span className="absolute left-2 flex h-6 w-6 items-center justify-center">
+    <span className="absolute left-2 flex h-4 w-4 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-6 w-6" />
+        <Check className="h-3 w-3" />
       </SelectPrimitive.ItemIndicator>
     </span>
 
-    <SelectPrimitive.ItemText className="text-3xl" style={{ fontSize: '1.5rem', fontWeight: 500 }}>{children}</SelectPrimitive.ItemText>
+    <SelectPrimitive.ItemText className="text-3xl" style={{ fontSize: '1.8rem', fontWeight: 500 }}>{children}</SelectPrimitive.ItemText>
   </SelectPrimitive.Item>
 ))
 SelectItem.displayName = SelectPrimitive.Item.displayName
