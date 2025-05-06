@@ -35,9 +35,9 @@ export function Timer({ time, onTimeSelect, isRunning = false }: TimerProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <div className="flex items-center bg-gray-100 px-3 py-1 rounded-md text-gray-600 cursor-pointer">
-          <Clock className="mr-2 h-4 w-4" />
-          <span className="font-mono">{time}</span>
+        <div className="flex items-center bg-gray-100 px-2 py-0.5 rounded-md text-gray-600 cursor-pointer h-6">
+          <Clock className="mr-1.5 h-3.5 w-3.5" />
+          <span className="font-mono text-sm">{time}</span>
         </div>
       </DialogTrigger>
       <DialogContent>

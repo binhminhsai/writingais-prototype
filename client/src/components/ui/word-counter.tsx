@@ -13,12 +13,12 @@ export function WordCounter({
 }: WordCounterProps) {
   return (
     <div
-      className={`flex items-center bg-gray-100 px-3 py-1 rounded-md ${
+      className={`flex items-center bg-gray-100 px-2 py-0.5 rounded-md h-6 ${
         isValid ? "text-gray-600" : "text-red-600"
       }`}
     >
-      <FileType className="mr-2 h-4 w-4" />
-      <span className="font-mono">{count}/{maxWords}</span>
+      <FileType className="mr-1.5 h-3.5 w-3.5" />
+      <span className="font-mono text-sm">{count}/{maxWords}</span>
     </div>
   );
 }
