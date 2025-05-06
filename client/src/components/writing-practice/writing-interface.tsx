@@ -517,7 +517,7 @@ export function WritingInterface({
             <div className="text-gray-700 text-sm">{topic}</div>
           </div>
 
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center justify-between mb-2 h-8">
             <Timer 
               time={formattedTime()} 
               onTimeSelect={handleTimeSelect}
