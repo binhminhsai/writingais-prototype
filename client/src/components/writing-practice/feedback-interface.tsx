@@ -153,7 +153,7 @@ export function FeedbackInterface({
         {/* Cột trái */}
         <div className="left-col flex flex-col gap-3">
             {/* Overall Band Score */}
-            <div className="box border-2 border-black rounded-xl p-4" style={{ backgroundColor: "#d9d9d9" }}>
+            <div className="box border-2 border-black rounded-xl p-4" style={{ backgroundColor: "#ededed" }}>
               <div className="score-align flex items-center justify-between">
                 <div className="score-label font-bold text-2xl">Overall Band Score:</div>
                 <div className="score-value text-3xl font-bold" style={{ color: "#44b9b0" }}>
@@ -163,7 +163,7 @@ export function FeedbackInterface({
             </div>
 
             {/* Score Breakdown */}
-            <div className="box border-2 border-black rounded-xl p-4" style={{ backgroundColor: "#d9d9d9" }}>
+            <div className="box border-2 border-black rounded-xl p-4" style={{ backgroundColor: "#ededed" }}>
             <h2 className="text-xl font-bold mt-0 mb-2.5">Score Breakdown:</h2>
 
             <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-2.5">
@@ -244,7 +244,7 @@ export function FeedbackInterface({
         {/* Cột phải */}
         <div className="right-col flex flex-col gap-3">
             {/* Overall Feedback */}
-            <div className="box border-2 border-black rounded-xl p-4" style={{ backgroundColor: "#d9d9d9" }}>
+            <div className="box border-2 border-black rounded-xl p-4" style={{ backgroundColor: "#ededed" }}>
               <h2 className="text-xl font-bold mt-0 mb-2.5">Overall Feedback:</h2>
               <p className="mt-0">
                 Your essay effectively addresses the task and presents a clear position throughout.
@@ -257,7 +257,7 @@ export function FeedbackInterface({
             </div>
 
             {/* Writing Statistic */}
-            <div className="stat-box border-2 border-black rounded-xl p-4 text-center mb-0" style={{ backgroundColor: "#d9d9d9" }}>
+            <div className="stat-box border-2 border-black rounded-xl p-4 text-center mb-0" style={{ backgroundColor: "#ededed" }}>
               <h2 className="text-xl font-bold mt-0 mb-2">Writing Statistic</h2>
               <div className="stat-row flex justify-around mt-2">
                 <div>
