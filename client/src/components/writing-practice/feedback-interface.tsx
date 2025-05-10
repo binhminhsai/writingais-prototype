@@ -244,7 +244,7 @@ export function FeedbackInterface({
         {/* Cột phải */}
         <div className="right-col flex flex-col gap-3">
             {/* Overall Feedback */}
-            <div className="box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa" }}>
+            <div className="box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa", minHeight: "240px" }}>
               <h2 className="text-xl font-bold mt-0 mb-2.5">Overall Feedback:</h2>
               <p className="mt-0">
                 Your essay effectively addresses the task and presents a clear position throughout.
