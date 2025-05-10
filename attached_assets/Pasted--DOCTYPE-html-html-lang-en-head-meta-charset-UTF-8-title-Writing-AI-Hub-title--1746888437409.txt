@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Writing AI-Hub</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 80vh; /* đảm bảo có chiều cao để flex hoạt động */
+    }
+
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* đẩy statistic xuống dưới */
+    }
+
+    .box {
+      background-color: #fff;
+      border: 2px solid #000;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .feedback-box {
+      flex-grow: 1; /* giúp box này chiếm phần còn lại của cột */
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 8px;
+    }
+
+    .stat-label {
+      font-weight: bold;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 4px;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Cột trái -->
+    <div class="left-column">
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 24px; font-weight: bold;">
+          <span>Overall Band Score:</span><span style="font-size: 32px; color: teal;">7.0</span>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2>Score Breakdown:</h2>
+        <p><strong>Task Achievement</strong> <span style="float: right; color: teal;">7.0</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Relevance to Topic 7.5</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Position Clarity 6.5</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Ideas Development 7.0</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Sufficient Length ✗</p>
+        <p><strong>Coherence & Cohesion</strong> <span style="float: right; color: teal;">7.0</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Paragraph Unity 7.0</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Logical Progression 7.0</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Cohesive Use 7.0</p>
+        <p><strong>Lexical Resource</strong> <span style="float: right; color: teal;">7.0</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Vocabulary Range 7.0</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Word Choice 7.0</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Collocation Use 7.0</p>
+        <p><strong>Grammatical Range & Accuracy</strong> <span style="float: right; color: teal;">7.0</span></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Grammatical Range 7.5</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Grammatical Accuracy 6.5</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Clarity of Communication 7.0</p>
+      </div>
+    </div>
+
+    <!-- Cột phải -->
+    <div class="right-column">
+      <div class="box feedback-box">
+        <h2>Overall Feedback:</h2>
+        <p>
+          Your essay effectively addresses the task and presents a clear position throughout. The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration. Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive. Your vocabulary is varied and mostly accurate, with some effective word choices. Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding. To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
+        </p>
+      </div>
+
+      <div class="box stat-box">
+        <h2>Writing Statistic</h2>
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">Word Count</div>
+            <div class="stat-value" style="color: red;">265</div>
+          </div>
+          <div>
+            <div class="stat-label">Completion Time</div>
+            <div class="stat-value">30:43</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -149,104 +149,79 @@ export function FeedbackInterface({
         <h2 className="text-xl font-semibold mb-2">Your essay has been evaluated based on the IELTS Task 2 criteria!</h2>
       </div>
 
-      <div className="grid-container grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 items-start">
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 max-w-6xl mx-auto min-h-[80vh]" style={{ backgroundColor: "#f9f9f9" }}>
         {/* Cột trái */}
-        <div className="left-col flex flex-col gap-2">
+        <div className="left-column flex flex-col gap-4">
             {/* Overall Band Score */}
-            <div className="box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa" }}>
-              <div className="score-align flex items-center justify-between">
-                <div className="score-label font-bold text-2xl">Overall Band Score:</div>
-                <div className="score-value text-3xl font-bold" style={{ color: "#44b9b0" }}>
+            <div className="box bg-white border-2 border-black rounded-lg p-4">
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '24px', fontWeight: 'bold' }}>
+                <span>Overall Band Score:</span>
+                <span style={{ fontSize: '32px', color: '#44b9b0' }}>
                   {feedbackData.scores.overall.toFixed(1)}
-                </div>
+                </span>
               </div>
             </div>
 
             {/* Score Breakdown */}
-            <div className="box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa" }}>
-            <h2 className="text-xl font-bold mt-0 mb-2.5">Score Breakdown:</h2>
-            
-            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-2.5">
-              <div className="score-title font-bold text-lg mb-1">Task Achievement</div>
-              <div className="score-number text-right text-lg font-bold" style={{ color: "#44b9b0" }}>
-                {feedbackData.scores.taskAchievement.toFixed(1)}
-              </div>
-
-              <div className="criteria-label pl-4">• Relevance to Topic</div>
-              <div className="score-number text-right">7.5</div>
-
-              <div className="criteria-label pl-4">• Position Clarity</div>
-              <div className="score-number text-right">6.5</div>
-
-              <div className="criteria-label pl-4">• Ideas Development</div>
-              <div className="score-number text-right">7.0</div>
-
-              <div className="criteria-label pl-4">• Sufficient Length</div>
-              <div className="score-number text-right">
+            <div className="box bg-white border-2 border-black rounded-lg p-4">
+              <h2 className="text-xl font-bold mt-0 mb-4">Score Breakdown:</h2>
+              
+              <p className="mb-2">
+                <strong>Task Achievement</strong> 
+                <span className="float-right" style={{ color: '#44b9b0' }}>
+                  {feedbackData.scores.taskAchievement.toFixed(1)}
+                </span>
+              </p>
+              <p className="mb-1 pl-8">• Relevance to Topic 7.5</p>
+              <p className="mb-1 pl-8">• Position Clarity 6.5</p>
+              <p className="mb-1 pl-8">• Ideas Development 7.0</p>
+              <p className="mb-4 pl-8">
+                • Sufficient Length{' '}
                 {feedbackData.stats.totalWords >= 250 ? (
                   <span className="text-green-500">✓</span>
                 ) : (
                   <span className="text-red-500">✗</span>
                 )}
-              </div>
+              </p>
+              
+              <p className="mb-2">
+                <strong>Coherence & Cohesion</strong> 
+                <span className="float-right" style={{ color: '#44b9b0' }}>
+                  {feedbackData.scores.coherenceCohesion.toFixed(1)}
+                </span>
+              </p>
+              <p className="mb-1 pl-8">• Paragraph Unity 7.0</p>
+              <p className="mb-1 pl-8">• Logical Progression 7.0</p>
+              <p className="mb-4 pl-8">• Cohesive Use 7.0</p>
+              
+              <p className="mb-2">
+                <strong>Lexical Resource</strong> 
+                <span className="float-right" style={{ color: '#44b9b0' }}>
+                  {feedbackData.scores.lexicalResource.toFixed(1)}
+                </span>
+              </p>
+              <p className="mb-1 pl-8">• Vocabulary Range 7.0</p>
+              <p className="mb-1 pl-8">• Word Choice 7.0</p>
+              <p className="mb-4 pl-8">• Collocation Use 7.0</p>
+              
+              <p className="mb-2">
+                <strong>Grammatical Range & Accuracy</strong> 
+                <span className="float-right" style={{ color: '#44b9b0' }}>
+                  {feedbackData.scores.grammar.toFixed(1)}
+                </span>
+              </p>
+              <p className="mb-1 pl-8">• Grammatical Range 7.5</p>
+              <p className="mb-1 pl-8">• Grammatical Accuracy 6.5</p>
+              <p className="mb-1 pl-8">• Clarity of Communication 7.0</p>
             </div>
-
-            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-2.5">
-              <div className="score-title font-bold text-lg mb-1">Coherence & Cohesion</div>
-              <div className="score-number text-right text-lg font-bold" style={{ color: "#44b9b0" }}>
-                {feedbackData.scores.coherenceCohesion.toFixed(1)}
-              </div>
-
-              <div className="criteria-label pl-4">• Paragraph Unity</div>
-              <div className="score-number text-right">7.0</div>
-
-              <div className="criteria-label pl-4">• Logical Progression</div>
-              <div className="score-number text-right">7.0</div>
-
-              <div className="criteria-label pl-4">• Cohesive Use</div>
-              <div className="score-number text-right">7.0</div>
-            </div>
-
-            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-2.5">
-              <div className="score-title font-bold text-lg mb-1">Lexical Resource</div>
-              <div className="score-number text-right text-lg font-bold" style={{ color: "#44b9b0" }}>
-                {feedbackData.scores.lexicalResource.toFixed(1)}
-              </div>
-
-              <div className="criteria-label pl-4">• Vocabulary Range</div>
-              <div className="score-number text-right">7.0</div>
-
-              <div className="criteria-label pl-4">• Word Choice</div>
-              <div className="score-number text-right">7.0</div>
-
-              <div className="criteria-label pl-4">• Collocation Use</div>
-              <div className="score-number text-right">7.0</div>
-            </div>
-
-            <div className="score-group grid grid-cols-[auto_40px] gap-y-1">
-              <div className="score-title font-bold text-lg mb-1">Grammatical Range & Accuracy</div>
-              <div className="score-number text-right text-lg font-bold" style={{ color: "#44b9b0" }}>
-                {feedbackData.scores.grammar.toFixed(1)}
-              </div>
-
-              <div className="criteria-label pl-4">• Grammatical Range</div>
-              <div className="score-number text-right">7.5</div>
-
-              <div className="criteria-label pl-4">• Grammatical Accuracy</div>
-              <div className="score-number text-right">6.5</div>
-
-              <div className="criteria-label pl-4">• Clarity of Communication</div>
-              <div className="score-number text-right">7.0</div>
-            </div>
-          </div>
         </div>
 
         {/* Cột phải */}
-        <div className="right-col flex flex-col gap-3">
+        <div className="right-column flex flex-col justify-between h-full">
             {/* Overall Feedback */}
-            <div className="box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa", minHeight: "240px" }}>
-              <h2 className="text-xl font-bold mt-0 mb-2.5">Overall Feedback:</h2>
-              <p className="mt-0">
+            <div className="feedback-box flex-grow bg-white border-2 border-black rounded-lg p-4 mb-4">
+              <h2 className="text-xl font-bold mt-0 mb-4">Overall Feedback:</h2>
+              <p>
                 Your essay effectively addresses the task and presents a clear position throughout.
                 The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
                 Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive.
@@ -257,9 +232,9 @@ export function FeedbackInterface({
             </div>
 
             {/* Writing Statistic */}
-            <div className="stat-box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa", textAlign: "center", marginBottom: "0" }}>
+            <div className="stat-box bg-white border-2 border-black rounded-lg p-4 text-center">
               <h2 className="text-xl font-bold mt-0 mb-2">Writing Statistic</h2>
-              <div className="stat-row flex justify-around mt-2">
+              <div className="stat-row flex justify-around mt-4">
                 <div>
                   <div className="stat-label font-bold">Word Count</div>
                   <div className={`stat-value font-bold text-2xl mt-1 ${feedbackData.stats.totalWords < 250 ? 'text-red-500' : ''}`}>
