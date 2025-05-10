@@ -165,10 +165,10 @@ export function FeedbackInterface({
             {/* Score Breakdown */}
             <div className="box bg-white border-2 border-black rounded-lg p-4">
               <h2 className="text-xl font-bold mt-0 mb-4">Score Breakdown:</h2>
-              
-              <div className="mb-2 flex justify-between items-center text-lg">
-                <strong>Task Achievement</strong> 
-                <span style={{ color: '#44b9b0' }}>
+
+              <div className="mb-2 flex justify-between items-center">
+                <strong className="text-lg">Task Achievement</strong> 
+                <span className="text-lg" style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.taskAchievement.toFixed(1)}
                 </span>
               </div>
@@ -177,18 +177,12 @@ export function FeedbackInterface({
                 <span>• Position Clarity</span><span>6.5</span>
                 <span>• Ideas Development</span><span>7.0</span>
                 <span>• Sufficient Length</span>
-                <span>
-                  {feedbackData.stats.totalWords >= 250 ? (
-                    <span className="text-green-500">✓</span>
-                  ) : (
-                    <span className="text-red-500">✗</span>
-                  )}
-                </span>
+                <span>{feedbackData.stats.totalWords >= 250 ? <span className="text-green-500">✓</span> : <span className="text-red-500">✗</span>}</span>
               </div>
-              
-              <div className="mb-2 flex justify-between items-center text-lg">
-                <strong>Coherence & Cohesion</strong> 
-                <span style={{ color: '#44b9b0' }}>
+
+              <div className="mb-2 flex justify-between items-center">
+                <strong className="text-lg">Coherence & Cohesion</strong> 
+                <span className="text-lg" style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.coherenceCohesion.toFixed(1)}
                 </span>
               </div>
@@ -197,10 +191,10 @@ export function FeedbackInterface({
                 <span>• Logical Progression</span><span>7.0</span>
                 <span>• Cohesive Use</span><span>7.0</span>
               </div>
-              
-              <div className="mb-2 flex justify-between items-center text-lg">
-                <strong>Lexical Resource</strong> 
-                <span style={{ color: '#44b9b0' }}>
+
+              <div className="mb-2 flex justify-between items-center">
+                <strong className="text-lg">Lexical Resource</strong> 
+                <span className="text-lg" style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.lexicalResource.toFixed(1)}
                 </span>
               </div>
@@ -209,10 +203,10 @@ export function FeedbackInterface({
                 <span>• Word Choice</span><span>7.0</span>
                 <span>• Collocation Use</span><span>7.0</span>
               </div>
-              
-              <div className="mb-2 flex justify-between items-center text-lg">
-                <strong>Grammatical Range & Accuracy</strong> 
-                <span style={{ color: '#44b9b0' }}>
+
+              <div className="mb-2 flex justify-between items-center">
+                <strong className="text-lg">Grammatical Range & Accuracy</strong> 
+                <span className="text-lg" style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.grammar.toFixed(1)}
                 </span>
               </div>
