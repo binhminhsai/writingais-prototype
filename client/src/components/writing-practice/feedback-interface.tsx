@@ -149,111 +149,115 @@ export function FeedbackInterface({
         <h2 className="text-xl font-semibold mb-2">Your essay has been evaluated based on the IELTS Task 2 criteria!</h2>
       </div>
       
-      <div className="container grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {/* Overall Score */}
-        <div className="box border-1.5 border-black rounded-lg p-4 bg-white">
-          <div className="score-header flex justify-between items-center text-xl font-bold mb-2">
-            <span>Overall Band Score:</span>
-            <span className="text-3xl" style={{ color: "#44b9b0" }}>
-              {feedbackData.scores.overall.toFixed(1)}
-            </span>
+      <div className="grid-container grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        {/* Cột trái */}
+        <div className="left-col flex flex-col gap-4">
+          {/* Overall Band Score */}
+          <div className="box border-1.5 border-black rounded-lg p-4 bg-white">
+            <div className="score-align flex items-center justify-between">
+              <div className="score-label font-bold text-2xl md:text-3xl">Overall Band Score:</div>
+              <div className="score-value text-2xl md:text-3xl font-bold" style={{ color: "#44b9b0" }}>
+                {feedbackData.scores.overall.toFixed(1)}
+              </div>
+            </div>
+          </div>
+
+          {/* Score Breakdown */}
+          <div className="box border-1.5 border-black rounded-lg p-4 bg-white">
+            <h2 className="text-xl font-bold mt-0">Score Breakdown:</h2>
+            
+            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
+              <div className="score-title font-bold mt-3">Task Achievement</div>
+              <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
+                {feedbackData.scores.taskAchievement.toFixed(1)}
+              </div>
+
+              <div className="criteria-label pl-4">• Relevance to Topic</div>
+              <div className="score-number text-right">7.5</div>
+
+              <div className="criteria-label pl-4">• Position Clarity</div>
+              <div className="score-number text-right">6.5</div>
+
+              <div className="criteria-label pl-4">• Ideas Development</div>
+              <div className="score-number text-right">7.0</div>
+
+              <div className="criteria-label pl-4">• Sufficient Length</div>
+              <div className="score-number text-right">
+                {feedbackData.stats.totalWords >= 250 ? (
+                  <span className="text-green-500">✓</span>
+                ) : (
+                  <span className="text-red-500">✗</span>
+                )}
+              </div>
+            </div>
+
+            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
+              <div className="score-title font-bold mt-3">Coherence & Cohesion</div>
+              <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
+                {feedbackData.scores.coherenceCohesion.toFixed(1)}
+              </div>
+
+              <div className="criteria-label pl-4">• Paragraph Unity</div>
+              <div className="score-number text-right">7.0</div>
+
+              <div className="criteria-label pl-4">• Logical Progression</div>
+              <div className="score-number text-right">7.0</div>
+
+              <div className="criteria-label pl-4">• Cohesive Use</div>
+              <div className="score-number text-right">7.0</div>
+            </div>
+
+            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
+              <div className="score-title font-bold mt-3">Lexical Resource</div>
+              <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
+                {feedbackData.scores.lexicalResource.toFixed(1)}
+              </div>
+
+              <div className="criteria-label pl-4">• Vocabulary Range</div>
+              <div className="score-number text-right">7.0</div>
+
+              <div className="criteria-label pl-4">• Word Choice</div>
+              <div className="score-number text-right">7.0</div>
+
+              <div className="criteria-label pl-4">• Collocation Use</div>
+              <div className="score-number text-right">7.0</div>
+            </div>
+
+            <div className="score-group grid grid-cols-[auto_40px] gap-y-1">
+              <div className="score-title font-bold mt-3">Grammatical Range & Accuracy</div>
+              <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
+                {feedbackData.scores.grammar.toFixed(1)}
+              </div>
+
+              <div className="criteria-label pl-4">• Grammatical Range</div>
+              <div className="score-number text-right">7.5</div>
+
+              <div className="criteria-label pl-4">• Grammatical Accuracy</div>
+              <div className="score-number text-right">6.5</div>
+
+              <div className="criteria-label pl-4">• Clarity of Communication</div>
+              <div className="score-number text-right">7.0</div>
+            </div>
           </div>
         </div>
 
-        {/* Feedback - spans 2 columns */}
-        <div className="box border-1.5 border-black rounded-lg p-4 bg-white md:col-span-2">
-          <h2 className="text-xl font-bold mt-0">Overall Feedback:</h2>
-          <p>
-            Your essay effectively addresses the task and presents a clear position throughout.
-            The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
-            Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive.
-            Your vocabulary is varied and mostly accurate, with some effective word choices.
-            Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding.
-            To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
-          </p>
-        </div>
-
-        {/* Score Breakdown */}
-        <div className="box border-1.5 border-black rounded-lg p-4 bg-white">
-          <h2 className="text-xl font-bold mt-0">Score Breakdown:</h2>
-          
-          <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
-            <div className="score-title font-bold mt-3">Task Achievement</div>
-            <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
-              {feedbackData.scores.taskAchievement.toFixed(1)}
-            </div>
-
-            <div className="criteria-label pl-4">• Relevance to Topic</div>
-            <div className="score-number text-right">7.5</div>
-
-            <div className="criteria-label pl-4">• Position Clarity</div>
-            <div className="score-number text-right">6.5</div>
-
-            <div className="criteria-label pl-4">• Ideas Development</div>
-            <div className="score-number text-right">7.0</div>
-
-            <div className="criteria-label pl-4">• Sufficient Length</div>
-            <div className="score-number text-right">
-              {feedbackData.stats.totalWords >= 250 ? (
-                <span className="text-green-500">✓</span>
-              ) : (
-                <span className="text-red-500">✗</span>
-              )}
-            </div>
+        {/* Cột phải */}
+        <div className="right-col flex flex-col gap-4">
+          {/* Overall Feedback */}
+          <div className="box border-1.5 border-black rounded-lg p-4 bg-white">
+            <h2 className="text-xl font-bold mt-0">Overall Feedback:</h2>
+            <p>
+              Your essay effectively addresses the task and presents a clear position throughout.
+              The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
+              Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive.
+              Your vocabulary is varied and mostly accurate, with some effective word choices.
+              Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding.
+              To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
+            </p>
           </div>
 
-          <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
-            <div className="score-title font-bold mt-3">Coherence & Cohesion</div>
-            <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
-              {feedbackData.scores.coherenceCohesion.toFixed(1)}
-            </div>
-
-            <div className="criteria-label pl-4">• Paragraph Unity</div>
-            <div className="score-number text-right">7.0</div>
-
-            <div className="criteria-label pl-4">• Logical Progression</div>
-            <div className="score-number text-right">7.0</div>
-
-            <div className="criteria-label pl-4">• Cohesive Use</div>
-            <div className="score-number text-right">7.0</div>
-          </div>
-
-          <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
-            <div className="score-title font-bold mt-3">Lexical Resource</div>
-            <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
-              {feedbackData.scores.lexicalResource.toFixed(1)}
-            </div>
-
-            <div className="criteria-label pl-4">• Vocabulary Range</div>
-            <div className="score-number text-right">7.0</div>
-
-            <div className="criteria-label pl-4">• Word Choice</div>
-            <div className="score-number text-right">7.0</div>
-
-            <div className="criteria-label pl-4">• Collocation Use</div>
-            <div className="score-number text-right">7.0</div>
-          </div>
-
-          <div className="score-group grid grid-cols-[auto_40px] gap-y-1">
-            <div className="score-title font-bold mt-3">Grammatical Range & Accuracy</div>
-            <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
-              {feedbackData.scores.grammar.toFixed(1)}
-            </div>
-
-            <div className="criteria-label pl-4">• Grammatical Range</div>
-            <div className="score-number text-right">7.5</div>
-
-            <div className="criteria-label pl-4">• Grammatical Accuracy</div>
-            <div className="score-number text-right">6.5</div>
-
-            <div className="criteria-label pl-4">• Clarity of Communication</div>
-            <div className="score-number text-right">7.0</div>
-          </div>
-        </div>
-
-        {/* Writing Statistics - spans 2 columns */}
-        <div className="writing-stat md:col-span-2 flex justify-center">
-          <div className="stat-box border-1.5 border-black rounded-lg p-4 bg-white w-96 text-center">
+          {/* Writing Statistic */}
+          <div className="stat-box border-1.5 border-black rounded-lg p-4 bg-white text-center">
             <h2 className="text-xl font-bold mt-0">Writing Statistic</h2>
             <div className="stat-row flex justify-around mt-2">
               <div>

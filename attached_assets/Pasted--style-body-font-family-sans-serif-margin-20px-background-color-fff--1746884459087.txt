@@ -1,0 +1,161 @@
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #fff;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .left-col,
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .box {
+    border: 1.5px solid #000;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  .score-align {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .score-label {
+    font-weight: bold;
+    font-size: 32px;
+  }
+
+  .score-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: teal;
+    text-align: right;
+  }
+
+  .score-group {
+    display: grid;
+    grid-template-columns: auto 40px;
+    row-gap: 4px;
+    margin-bottom: 24px;
+  }
+
+  .score-title {
+    font-weight: bold;
+    margin-top: 12px;
+  }
+
+  .criteria-label {
+    padding-left: 16px;
+  }
+
+  .score-number {
+    text-align: right;
+  }
+
+  .stat-box {
+    border: 1.5px solid #000;
+    padding: 16px;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+  }
+
+  .stat-label {
+    font-weight: bold;
+  }
+
+  .stat-value {
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 4px;
+  }
+</style>
+
+<div class="grid-container">
+  <!-- Cột trái -->
+  <div class="left-col">
+    <!-- Overall Band Score -->
+    <div class="box">
+      <div class="score-align">
+        <div class="score-label">Overall Band Score:</div>
+        <div class="score-value">7.0</div>
+      </div>
+    </div>
+
+    <!-- Score Breakdown -->
+    <div class="box">
+      <h2>Score Breakdown:</h2>
+
+      <div class="score-group">
+        <div class="score-title">Task Achievement</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Relevance to Topic</div><div class="score-number">7.5</div>
+        <div class="criteria-label">• Position Clarity</div><div class="score-number">6.5</div>
+        <div class="criteria-label">• Ideas Development</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Sufficient Length</div><div class="score-number">✓</div>
+      </div>
+
+      <div class="score-group">
+        <div class="score-title">Coherence & Cohesion</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Paragraph Unity</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Logical Progression</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Cohesive Use</div><div class="score-number">7.0</div>
+      </div>
+
+      <div class="score-group">
+        <div class="score-title">Lexical Resource</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Vocabulary Range</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Word Choice</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Collocation Use</div><div class="score-number">7.0</div>
+      </div>
+
+      <div class="score-group">
+        <div class="score-title">Grammatical Range & Accuracy</div><div class="score-number">7.0</div>
+        <div class="criteria-label">• Grammatical Range</div><div class="score-number">7.5</div>
+        <div class="criteria-label">• Grammatical Accuracy</div><div class="score-number">6.5</div>
+        <div class="criteria-label">• Clarity of Communication</div><div class="score-number">7.0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cột phải -->
+  <div class="right-col">
+    <!-- Overall Feedback -->
+    <div class="box">
+      <h2>Overall Feedback:</h2>
+      <p>
+        Your essay effectively addresses the task and presents a clear position throughout. The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration. Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive. Your vocabulary is varied and mostly accurate, with some effective word choices. Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding. To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
+      </p>
+    </div>
+
+    <!-- Writing Statistic -->
+    <div class="stat-box">
+      <h2>Writing Statistic</h2>
+      <div class="stat-row">
+        <div>
+          <div class="stat-label">Word Count</div>
+          <div class="stat-value">267</div>
+        </div>
+        <div>
+          <div class="stat-label">Completion Time</div>
+          <div class="stat-value">30:43</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
