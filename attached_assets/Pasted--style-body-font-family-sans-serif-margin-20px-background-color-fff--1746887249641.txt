@@ -1,0 +1,106 @@
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #fff;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    height: 100vh; /* giới hạn theo chiều cao trình duyệt */
+  }
+
+  .left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* đẩy statistic xuống */
+    gap: 12px;
+  }
+
+  .box {
+    border: 1.5px solid #000;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  .feedback-box {
+    flex-grow: 1; /* cho phép feedback chiếm hết không gian còn lại */
+  }
+
+  .stat-box {
+    text-align: center;
+    border: 1.5px solid #000;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 0; /* loại bỏ khoảng trắng dưới */
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+  }
+
+  .stat-label {
+    font-weight: bold;
+  }
+
+  .stat-value {
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 4px;
+  }
+</style>
+
+<div class="grid-container">
+  <!-- Cột trái -->
+  <div class="left-col">
+    <div class="box">
+      <div style="display: flex; justify-content: space-between; font-size: 24px; font-weight: bold;">
+        <span>Overall Band Score:</span><span style="font-size: 32px; color: teal;">7.0</span>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2 style="margin-bottom: 10px;">Score Breakdown:</h2>
+      <!-- nội dung breakdown (giữ nguyên) -->
+      <p><strong>Task Achievement</strong> <span style="float: right; color: teal;">7.0</span></p>
+      <p><strong>Coherence & Cohesion</strong> <span style="float: right; color: teal;">7.0</span></p>
+      <p><strong>Lexical Resource</strong> <span style="float: right; color: teal;">7.0</span></p>
+      <p><strong>Grammatical Range & Accuracy</strong> <span style="float: right; color: teal;">7.0</span></p>
+    </div>
+  </div>
+
+  <!-- Cột phải -->
+  <div class="right-col">
+    <div class="box feedback-box">
+      <h2>Overall Feedback:</h2>
+      <p>
+        Your essay effectively addresses the task and presents a clear position throughout. The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration. Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive. Your vocabulary is varied and mostly accurate, with some effective word choices. Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding. To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
+      </p>
+    </div>
+
+    <div class="stat-box">
+      <h2>Writing Statistic</h2>
+      <div class="stat-row">
+        <div>
+          <div class="stat-label">Word Count</div>
+          <div class="stat-value" style="color: red;">100</div>
+        </div>
+        <div>
+          <div class="stat-label">Completion Time</div>
+          <div class="stat-value">30:43</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
