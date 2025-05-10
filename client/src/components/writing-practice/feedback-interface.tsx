@@ -149,26 +149,26 @@ export function FeedbackInterface({
         <h2 className="text-xl font-semibold mb-2">Your essay has been evaluated based on the IELTS Task 2 criteria!</h2>
       </div>
 
-      <div className="grid-container grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        
-        <div className="left-col flex flex-col gap-2">
+      <div className="grid-container grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 items-start">
+        {/* Cột trái */}
+        <div className="left-col flex flex-col gap-3">
             {/* Overall Band Score */}
-            <div className="box border-2 border-gray-300 rounded-lg p-4 bg-white shadow-sm">
+            <div className="box border-1.5 border-gray-300 rounded-xl p-4 bg-white">
               <div className="score-align flex items-center justify-between">
-                <div className="score-label font-bold text-2xl md:text-3xl">Overall Band Score:</div>
-                <div className="score-value text-2xl md:text-3xl font-bold" style={{ color: "#44b9b0" }}>
+                <div className="score-label font-bold text-2xl">Overall Band Score:</div>
+                <div className="score-value text-3xl font-bold" style={{ color: "#44b9b0" }}>
                   {feedbackData.scores.overall.toFixed(1)}
                 </div>
               </div>
             </div>
 
             {/* Score Breakdown */}
-            <div className="box border-2 border-gray-300 rounded-lg p-4 bg-white shadow-sm">
-            <h2 className="text-xl font-bold mt-0">Score Breakdown:</h2>
-
-            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
-              <div className="score-title font-bold mt-3">Task Achievement</div>
-              <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
+            <div className="box border-1.5 border-gray-300 rounded-xl p-4 bg-white">
+            <h2 className="text-xl font-bold mt-0 mb-2.5">Score Breakdown:</h2>
+            
+            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-2.5">
+              <div className="score-title font-bold text-lg mb-1">Task Achievement</div>
+              <div className="score-number text-right text-lg font-bold" style={{ color: "#44b9b0" }}>
                 {feedbackData.scores.taskAchievement.toFixed(1)}
               </div>
 
@@ -191,9 +191,9 @@ export function FeedbackInterface({
               </div>
             </div>
 
-            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
-              <div className="score-title font-bold mt-3">Coherence & Cohesion</div>
-              <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
+            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-2.5">
+              <div className="score-title font-bold text-lg mb-1">Coherence & Cohesion</div>
+              <div className="score-number text-right text-lg font-bold" style={{ color: "#44b9b0" }}>
                 {feedbackData.scores.coherenceCohesion.toFixed(1)}
               </div>
 
@@ -207,9 +207,9 @@ export function FeedbackInterface({
               <div className="score-number text-right">7.0</div>
             </div>
 
-            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
-              <div className="score-title font-bold mt-3">Lexical Resource</div>
-              <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
+            <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-2.5">
+              <div className="score-title font-bold text-lg mb-1">Lexical Resource</div>
+              <div className="score-number text-right text-lg font-bold" style={{ color: "#44b9b0" }}>
                 {feedbackData.scores.lexicalResource.toFixed(1)}
               </div>
 
@@ -224,8 +224,8 @@ export function FeedbackInterface({
             </div>
 
             <div className="score-group grid grid-cols-[auto_40px] gap-y-1">
-              <div className="score-title font-bold mt-3">Grammatical Range & Accuracy</div>
-              <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
+              <div className="score-title font-bold text-lg mb-1">Grammatical Range & Accuracy</div>
+              <div className="score-number text-right text-lg font-bold" style={{ color: "#44b9b0" }}>
                 {feedbackData.scores.grammar.toFixed(1)}
               </div>
 
@@ -241,12 +241,12 @@ export function FeedbackInterface({
           </div>
         </div>
 
-        
-        <div className="right-col flex flex-col gap-2">
+        {/* Cột phải */}
+        <div className="right-col flex flex-col gap-3">
             {/* Overall Feedback */}
-            <div className="box border-2 border-gray-300 rounded-lg p-4 bg-white shadow-sm">
-              <h2 className="text-xl font-bold mt-0">Overall Feedback:</h2>
-              <p className="text-gray-700 leading-relaxed">
+            <div className="box border-1.5 border-gray-300 rounded-xl p-4 bg-white">
+              <h2 className="text-xl font-bold mt-0 mb-2.5">Overall Feedback:</h2>
+              <p className="mt-0">
                 Your essay effectively addresses the task and presents a clear position throughout.
                 The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
                 Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive.
@@ -257,23 +257,23 @@ export function FeedbackInterface({
             </div>
 
             {/* Writing Statistic */}
-            <div className="stat-box border-2 border-gray-300 rounded-lg p-4 bg-white shadow-sm text-center">
-            <h2 className="text-xl font-bold mt-0">Writing Statistic</h2>
-            <div className="stat-row flex justify-around mt-2">
-              <div>
-                <div className="stat-label font-bold">Word Count</div>
-                <div className={`stat-value font-bold text-2xl mt-1 ${feedbackData.stats.totalWords < 250 ? 'text-red-500' : ''}`}>
-                  {feedbackData.stats.totalWords}
+            <div className="stat-box border-1.5 border-gray-300 rounded-xl p-4 bg-white text-center mb-0">
+              <h2 className="text-xl font-bold mt-0 mb-2">Writing Statistic</h2>
+              <div className="stat-row flex justify-around mt-2">
+                <div>
+                  <div className="stat-label font-bold">Word Count</div>
+                  <div className={`stat-value font-bold text-2xl mt-1 ${feedbackData.stats.totalWords < 250 ? 'text-red-500' : ''}`}>
+                    {feedbackData.stats.totalWords}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className="stat-label font-bold">Completion Time</div>
-                <div className="stat-value font-bold text-2xl mt-1">
-                  {feedbackData.stats.completionTime}
+                <div>
+                  <div className="stat-label font-bold">Completion Time</div>
+                  <div className="stat-value font-bold text-2xl mt-1">
+                    {feedbackData.stats.completionTime}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
 
