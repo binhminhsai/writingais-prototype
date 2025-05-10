@@ -48,7 +48,7 @@ export function FeedbackInterface({
   onNextPractice,
 }: FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
-  
+
   // This would normally come from an API based on essay analysis
   // Using mock data for frontend-only implementation
   const feedbackData: FeedbackData = {
@@ -86,13 +86,13 @@ export function FeedbackInterface({
     // In a real implementation, this would use API response data to highlight
     // For demo, we'll use simple patterns
     const paragraphs = text.split('\n').filter(p => p.trim().length > 0);
-    
+
     return paragraphs.map((paragraph, index) => {
       // Highlight first paragraph green (good)
       if (index === 0) {
         return <p key={index} className="mb-2 p-2 bg-green-50 border-l-4 border-green-500">{paragraph}</p>;
       }
-      
+
       // Add some yellow highlights for grammar issues (random words for demo)
       if (index === 1) {
         const words = paragraph.split(' ');
@@ -108,7 +108,7 @@ export function FeedbackInterface({
           </p>
         );
       }
-      
+
       // Add some red highlights for vocabulary issues (random words for demo)
       if (index === 2) {
         const words = paragraph.split(' ');
@@ -124,7 +124,7 @@ export function FeedbackInterface({
           </p>
         );
       }
-      
+
       return <p key={index} className="mb-2">{paragraph}</p>;
     });
   };
@@ -148,24 +148,24 @@ export function FeedbackInterface({
       <div className="mb-6 text-center">
         <h2 className="text-xl font-semibold mb-2">Your essay has been evaluated based on the IELTS Task 2 criteria!</h2>
       </div>
-      
+
       <div className="grid-container grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {/* Cột trái */}
-        <div className="left-col flex flex-col gap-4">
-          {/* Overall Band Score */}
-          <div className="box border-1.5 border-black rounded-lg p-4 bg-white">
-            <div className="score-align flex items-center justify-between">
-              <div className="score-label font-bold text-2xl md:text-3xl">Overall Band Score:</div>
-              <div className="score-value text-2xl md:text-3xl font-bold" style={{ color: "#44b9b0" }}>
-                {feedbackData.scores.overall.toFixed(1)}
+        
+        <div className="left-col flex flex-col gap-2">
+            {/* Overall Band Score */}
+            <div className="box border-2 border-gray-300 rounded-lg p-4 bg-white shadow-sm">
+              <div className="score-align flex items-center justify-between">
+                <div className="score-label font-bold text-2xl md:text-3xl">Overall Band Score:</div>
+                <div className="score-value text-2xl md:text-3xl font-bold" style={{ color: "#44b9b0" }}>
+                  {feedbackData.scores.overall.toFixed(1)}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Score Breakdown */}
-          <div className="box border-1.5 border-black rounded-lg p-4 bg-white">
+            {/* Score Breakdown */}
+            <div className="box border-2 border-gray-300 rounded-lg p-4 bg-white shadow-sm">
             <h2 className="text-xl font-bold mt-0">Score Breakdown:</h2>
-            
+
             <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-6">
               <div className="score-title font-bold mt-3">Task Achievement</div>
               <div className="score-number text-right" style={{ color: "#44b9b0", fontWeight: "bold" }}>
@@ -241,23 +241,23 @@ export function FeedbackInterface({
           </div>
         </div>
 
-        {/* Cột phải */}
-        <div className="right-col flex flex-col gap-4">
-          {/* Overall Feedback */}
-          <div className="box border-1.5 border-black rounded-lg p-4 bg-white">
-            <h2 className="text-xl font-bold mt-0">Overall Feedback:</h2>
-            <p>
-              Your essay effectively addresses the task and presents a clear position throughout.
-              The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
-              Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive.
-              Your vocabulary is varied and mostly accurate, with some effective word choices.
-              Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding.
-              To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
-            </p>
-          </div>
+        
+        <div className="right-col flex flex-col gap-2">
+            {/* Overall Feedback */}
+            <div className="box border-2 border-gray-300 rounded-lg p-4 bg-white shadow-sm">
+              <h2 className="text-xl font-bold mt-0">Overall Feedback:</h2>
+              <p className="text-gray-700 leading-relaxed">
+                Your essay effectively addresses the task and presents a clear position throughout.
+                The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
+                Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive.
+                Your vocabulary is varied and mostly accurate, with some effective word choices.
+                Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding.
+                To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
+              </p>
+            </div>
 
-          {/* Writing Statistic */}
-          <div className="stat-box border-1.5 border-black rounded-lg p-4 bg-white text-center">
+            {/* Writing Statistic */}
+            <div className="stat-box border-2 border-gray-300 rounded-lg p-4 bg-white shadow-sm text-center">
             <h2 className="text-xl font-bold mt-0">Writing Statistic</h2>
             <div className="stat-row flex justify-around mt-2">
               <div>
@@ -276,7 +276,7 @@ export function FeedbackInterface({
           </div>
         </div>
       </div>
-      
+
       <div className="flex flex-wrap gap-4 justify-center">
         <Button 
           variant="outline" 
@@ -284,7 +284,7 @@ export function FeedbackInterface({
         >
           <Download className="mr-2 h-4 w-4" /> Download Feedback
         </Button>
-        
+
         <Button 
           variant="secondary"
           className="bg-primary hover:bg-primary/90 text-white"
@@ -292,7 +292,7 @@ export function FeedbackInterface({
         >
           <Pen className="mr-2 h-4 w-4" /> Try Again
         </Button>
-        
+
         <Button 
           className="bg-primary hover:bg-primary/90 text-white"
           onClick={onNextPractice}
