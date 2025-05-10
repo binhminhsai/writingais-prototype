@@ -166,53 +166,61 @@ export function FeedbackInterface({
             <div className="box bg-white border-2 border-black rounded-lg p-4">
               <h2 className="text-xl font-bold mt-0 mb-4">Score Breakdown:</h2>
               
-              <p className="mb-2">
+              <div className="mb-2 flex justify-between items-center text-lg">
                 <strong>Task Achievement</strong> 
-                <span className="float-right" style={{ color: '#44b9b0' }}>
+                <span style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.taskAchievement.toFixed(1)}
                 </span>
-              </p>
-              <p className="mb-1 pl-8">• Relevance to Topic 7.5</p>
-              <p className="mb-1 pl-8">• Position Clarity 6.5</p>
-              <p className="mb-1 pl-8">• Ideas Development 7.0</p>
-              <p className="mb-4 pl-8">
-                • Sufficient Length{' '}
-                {feedbackData.stats.totalWords >= 250 ? (
-                  <span className="text-green-500">✓</span>
-                ) : (
-                  <span className="text-red-500">✗</span>
-                )}
-              </p>
+              </div>
+              <div className="grid grid-cols-[1fr_40px] gap-x-2 pl-8 mb-4">
+                <span>• Relevance to Topic</span><span>7.5</span>
+                <span>• Position Clarity</span><span>6.5</span>
+                <span>• Ideas Development</span><span>7.0</span>
+                <span>• Sufficient Length</span>
+                <span>
+                  {feedbackData.stats.totalWords >= 250 ? (
+                    <span className="text-green-500">✓</span>
+                  ) : (
+                    <span className="text-red-500">✗</span>
+                  )}
+                </span>
+              </div>
               
-              <p className="mb-2">
+              <div className="mb-2 flex justify-between items-center text-lg">
                 <strong>Coherence & Cohesion</strong> 
-                <span className="float-right" style={{ color: '#44b9b0' }}>
+                <span style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.coherenceCohesion.toFixed(1)}
                 </span>
-              </p>
-              <p className="mb-1 pl-8">• Paragraph Unity 7.0</p>
-              <p className="mb-1 pl-8">• Logical Progression 7.0</p>
-              <p className="mb-4 pl-8">• Cohesive Use 7.0</p>
+              </div>
+              <div className="grid grid-cols-[1fr_40px] gap-x-2 pl-8 mb-4">
+                <span>• Paragraph Unity</span><span>7.0</span>
+                <span>• Logical Progression</span><span>7.0</span>
+                <span>• Cohesive Use</span><span>7.0</span>
+              </div>
               
-              <p className="mb-2">
+              <div className="mb-2 flex justify-between items-center text-lg">
                 <strong>Lexical Resource</strong> 
-                <span className="float-right" style={{ color: '#44b9b0' }}>
+                <span style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.lexicalResource.toFixed(1)}
                 </span>
-              </p>
-              <p className="mb-1 pl-8">• Vocabulary Range 7.0</p>
-              <p className="mb-1 pl-8">• Word Choice 7.0</p>
-              <p className="mb-4 pl-8">• Collocation Use 7.0</p>
+              </div>
+              <div className="grid grid-cols-[1fr_40px] gap-x-2 pl-8 mb-4">
+                <span>• Vocabulary Range</span><span>7.0</span>
+                <span>• Word Choice</span><span>7.0</span>
+                <span>• Collocation Use</span><span>7.0</span>
+              </div>
               
-              <p className="mb-2">
+              <div className="mb-2 flex justify-between items-center text-lg">
                 <strong>Grammatical Range & Accuracy</strong> 
-                <span className="float-right" style={{ color: '#44b9b0' }}>
+                <span style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.grammar.toFixed(1)}
                 </span>
-              </p>
-              <p className="mb-1 pl-8">• Grammatical Range 7.5</p>
-              <p className="mb-1 pl-8">• Grammatical Accuracy 6.5</p>
-              <p className="mb-1 pl-8">• Clarity of Communication 7.0</p>
+              </div>
+              <div className="grid grid-cols-[1fr_40px] gap-x-2 pl-8">
+                <span>• Grammatical Range</span><span>7.5</span>
+                <span>• Grammatical Accuracy</span><span>6.5</span>
+                <span>• Clarity of Communication</span><span>7.0</span>
+              </div>
             </div>
         </div>
 
