@@ -1,0 +1,122 @@
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #fff;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .box {
+    border: 1.5px solid #000;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  .box h2 {
+    margin-top: 0;
+  }
+
+  .score-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 14px;
+    white-space: nowrap;
+  }
+
+  .subcriteria {
+    padding-left: 12px;
+    font-weight: normal;
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+
+  .stat {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 8px;
+  }
+</style>
+
+<div class="container">
+  <!-- Overall Score -->
+  <div class="box">
+    <h2>Overall Band Score:</h2>
+    <p style="font-size: 32px; color: teal; margin: 0;"><strong>7.0</strong></p>
+  </div>
+
+  <!-- Writing Statistics -->
+  <div class="box">
+    <h2>Writing Statistic</h2>
+    <div class="stat">
+      <span>Word Count</span>
+      <span style="color: red;">210</span>
+    </div>
+    <div class="stat">
+      <span>Completion Time</span>
+      <span>30:43</span>
+    </div>
+  </div>
+
+  <!-- Score Breakdown -->
+  <div class="box">
+    <h2>Score Breakdown:</h2>
+
+    <div class="score-row">
+      <span>Task Achievement</span><span>7.0</span>
+    </div>
+    <ul class="subcriteria">
+      <li>Relevance to Topic 7.5</li>
+      <li>Position Clarity 6.5</li>
+      <li>Ideas Development 7.0</li>
+      <li>Sufficient Length ✗</li>
+    </ul>
+
+    <div class="score-row">
+      <span>Coherence & Cohesion</span><span>7.0</span>
+    </div>
+    <ul class="subcriteria">
+      <li>Paragraph Unity 7.0</li>
+      <li>Logical Progression 7.0</li>
+      <li>Cohesive Use 7.0</li>
+    </ul>
+
+    <div class="score-row">
+      <span>Lexical Resource</span><span>7.0</span>
+    </div>
+    <ul class="subcriteria">
+      <li>Vocabulary Range 7.0</li>
+      <li>Word Choice 7.0</li>
+      <li>Collocation Use 7.0</li>
+    </ul>
+
+    <div class="score-row">
+      <span>Grammatical Range & Accuracy</span><span>7.0</span>
+    </div>
+    <ul class="subcriteria">
+      <li>Grammatical Range 7.5</li>
+      <li>Grammatical Accuracy 6.5</li>
+      <li>Clarity of Communication 7.0</li>
+    </ul>
+  </div>
+
+  <!-- Overall Feedback -->
+  <div class="box">
+    <h2>Overall Feedback:</h2>
+    <p>
+      Your essay effectively addresses the task and presents a clear position throughout.
+      The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
+      Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive.
+      Your vocabulary is varied and mostly accurate, with some effective word choices.
+      Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding.
+      To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
+    </p>
+  </div>
+</div>
