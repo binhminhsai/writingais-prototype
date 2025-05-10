@@ -1,4 +1,4 @@
-import { Download, Pen, ArrowRight, ArrowLeft, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
+import { Download, Pen, ArrowRight, ArrowLeft, CheckCircle, XCircle, AlertTriangle, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -54,14 +54,14 @@ export function FeedbackInterface({
   const feedbackData: FeedbackData = {
     scores: {
       taskAchievement: 7.0,
-      coherenceCohesion: 7.5,
-      lexicalResource: 6.5,
+      coherenceCohesion: 7.0,
+      lexicalResource: 7.0,
       grammar: 7.0,
       overall: 7.0,
     },
     stats: {
-      totalWords: essayContent.split(/\s+/).filter(Boolean).length || 285,
-      completionTime: "24:36",
+      totalWords: essayContent.split(/\s+/).filter(Boolean).length || 267,
+      completionTime: "30:43",
       vocabularyRange: "Good",
       grammarAccuracy: "Good",
     },
@@ -145,165 +145,159 @@ export function FeedbackInterface({
         </Button>
       </div>
 
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold mb-2">Writing Assessment</h2>
-        <p className="text-gray-600">
-          Your essay has been evaluated based on the IELTS Task 2 criteria.
-        </p>
+      <div className="mb-6 text-center">
+        <h2 className="text-xl font-semibold mb-2">Your essay has been evaluated based on the IELTS Task 2 criteria!</h2>
       </div>
       
-      <div className="grid md:grid-cols-2 gap-6 mb-6">
-        <Card>
-          <CardHeader className="pb-2">
-            <h3 className="font-medium text-lg">Score Breakdown</h3>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">Task Achievement</span>
-                  <span className="text-sm font-medium">
-                    {feedbackData.scores.taskAchievement.toFixed(1)}
-                  </span>
-                </div>
-                <Progress value={getScorePercentage(feedbackData.scores.taskAchievement)} className="bg-gray-200" />
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">Coherence & Cohesion</span>
-                  <span className="text-sm font-medium">
-                    {feedbackData.scores.coherenceCohesion.toFixed(1)}
-                  </span>
-                </div>
-                <Progress value={getScorePercentage(feedbackData.scores.coherenceCohesion)} className="bg-gray-200" />
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">Lexical Resource</span>
-                  <span className="text-sm font-medium">
-                    {feedbackData.scores.lexicalResource.toFixed(1)}
-                  </span>
-                </div>
-                <Progress value={getScorePercentage(feedbackData.scores.lexicalResource)} className="bg-gray-200" />
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-1">
-                  <span className="text-sm font-medium">Grammatical Range & Accuracy</span>
-                  <span className="text-sm font-medium">
-                    {feedbackData.scores.grammar.toFixed(1)}
-                  </span>
-                </div>
-                <Progress value={getScorePercentage(feedbackData.scores.grammar)} className="bg-gray-200" />
-              </div>
-              
-              <div className="pt-3 mt-2 border-t border-gray-200">
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold text-lg">Overall Band Score</span>
-                  <span className="font-bold text-xl text-primary">
-                    {feedbackData.scores.overall.toFixed(1)}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader className="pb-2">
-            <h3 className="font-medium text-lg">Writing Statistics</h3>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gray-50 p-3 rounded-md">
-                <p className="text-sm text-gray-500">Total Words</p>
-                <p className="text-xl font-medium">{feedbackData.stats.totalWords}</p>
-              </div>
-              
-              <div className="bg-gray-50 p-3 rounded-md">
-                <p className="text-sm text-gray-500">Completion Time</p>
-                <p className="text-xl font-medium">{feedbackData.stats.completionTime}</p>
-              </div>
-              
-              <div className="bg-gray-50 p-3 rounded-md">
-                <p className="text-sm text-gray-500">Vocabulary Range</p>
-                <p className="text-xl font-medium">{feedbackData.stats.vocabularyRange}</p>
-              </div>
-              
-              <div className="bg-gray-50 p-3 rounded-md">
-                <p className="text-sm text-gray-500">Grammar Accuracy</p>
-                <p className="text-xl font-medium">{feedbackData.stats.grammarAccuracy}</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-      
-      {/* Two-column detailed feedback */}
-      <Card className="mb-6">
-        <CardHeader className="pb-2">
-          <h3 className="font-medium text-lg">Detailed Feedback</h3>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <div className="flex items-center mb-2">
-                <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
-                <h4 className="font-medium text-gray-800">Strengths</h4>
-              </div>
-              <ul className="mt-2 space-y-1 text-gray-600 pl-5 list-disc">
-                {feedbackData.feedback.strengths.map((strength, index) => (
-                  <li key={index}>{strength}</li>
-                ))}
-              </ul>
+      <div className="border border-gray-300 rounded-lg overflow-hidden mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Left side - Score breakdown */}
+          <div className="p-6 border-r border-b border-gray-300">
+            <div className="text-center mb-4">
+              <h3 className="text-xl font-bold">Overall Band Score:</h3>
+              <span className="text-4xl font-bold" style={{ color: "#44b9b0" }}>
+                {feedbackData.scores.overall.toFixed(1)}
+              </span>
             </div>
             
-            <div>
-              <div className="flex items-center mb-2">
-                <AlertTriangle className="h-5 w-5 text-amber-500 mr-2" />
-                <h4 className="font-medium text-gray-800">Areas for Improvement</h4>
+            <h3 className="text-lg font-bold mb-4">Score Breakdown:</h3>
+            
+            <div className="space-y-3">
+              <div className="flex items-center">
+                <div className="w-1/2">
+                  <div className="font-medium">Task Achievement</div>
+                  <ul className="list-disc pl-6 text-sm">
+                    <li>Relevance to Topic</li>
+                    <li>Position Clarity</li>
+                    <li>Ideas Development</li>
+                    <li>Sufficient Length</li>
+                  </ul>
+                </div>
+                <div className="w-1/2 text-right flex items-center justify-end">
+                  <span className="font-bold text-xl pr-3" style={{ color: "#44b9b0" }}>
+                    {feedbackData.scores.taskAchievement.toFixed(1)}
+                  </span>
+                  <div>
+                    <div className="text-right text-sm">7.5</div>
+                    <div className="text-right text-sm">6.5</div>
+                    <div className="text-right text-sm">7.0</div>
+                    {feedbackData.stats.totalWords >= 250 ? (
+                      <div className="text-right text-sm text-green-500 flex items-center justify-end">
+                        <Check className="h-4 w-4 mr-1" />
+                      </div>
+                    ) : (
+                      <div className="text-right text-sm text-red-500 flex items-center justify-end">
+                        <X className="h-4 w-4 mr-1" />
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-              <ul className="mt-2 space-y-1 text-gray-600 pl-5 list-disc">
-                {feedbackData.feedback.improvements.map((improvement, index) => (
-                  <li key={index}>{improvement}</li>
-                ))}
-              </ul>
+              
+              <div className="flex items-center">
+                <div className="w-1/2">
+                  <div className="font-medium">Coherence & Cohesion</div>
+                  <ul className="list-disc pl-6 text-sm">
+                    <li>Paragraph Unity</li>
+                    <li>Logical Progression</li>
+                    <li>Cohesive Use</li>
+                  </ul>
+                </div>
+                <div className="w-1/2 text-right flex items-center justify-end">
+                  <span className="font-bold text-xl pr-3" style={{ color: "#44b9b0" }}>
+                    {feedbackData.scores.coherenceCohesion.toFixed(1)}
+                  </span>
+                  <div>
+                    <div className="text-right text-sm">7.0</div>
+                    <div className="text-right text-sm">7.0</div>
+                    <div className="text-right text-sm">7.0</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex items-center">
+                <div className="w-1/2">
+                  <div className="font-medium">Lexical Resource</div>
+                  <ul className="list-disc pl-6 text-sm">
+                    <li>Vocabulary Range</li>
+                    <li>Word Choice</li>
+                    <li>Collocation Use</li>
+                  </ul>
+                </div>
+                <div className="w-1/2 text-right flex items-center justify-end">
+                  <span className="font-bold text-xl pr-3" style={{ color: "#44b9b0" }}>
+                    {feedbackData.scores.lexicalResource.toFixed(1)}
+                  </span>
+                  <div>
+                    <div className="text-right text-sm">7.0</div>
+                    <div className="text-right text-sm">7.0</div>
+                    <div className="text-right text-sm">7.0</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex items-center">
+                <div className="w-1/2">
+                  <div className="font-medium">Grammatical Range & Accuracy</div>
+                  <ul className="list-disc pl-6 text-sm">
+                    <li>Grammatical Range</li>
+                    <li>Grammatical Accuracy</li>
+                    <li>Clarity of Communication</li>
+                  </ul>
+                </div>
+                <div className="w-1/2 text-right flex items-center justify-end">
+                  <span className="font-bold text-xl pr-3" style={{ color: "#44b9b0" }}>
+                    {feedbackData.scores.grammar.toFixed(1)}
+                  </span>
+                  <div>
+                    <div className="text-right text-sm">7.5</div>
+                    <div className="text-right text-sm">6.5</div>
+                    <div className="text-right text-sm">7.0</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </CardContent>
-      </Card>
-
-      {/* Essay with highlights */}
-      <Card className="mb-6">
-        <CardHeader className="pb-2">
-          <h3 className="font-medium text-lg">Your Essay with Annotations</h3>
-          <div className="flex flex-wrap gap-3 mt-2 text-sm">
-            <div className="flex items-center">
-              <div className="w-3 h-3 bg-green-100 border border-green-500 mr-1"></div>
-              <span>Excellent sections</span>
+          
+          {/* Right side - Overall Feedback and Writing Statistics */}
+          <div className="p-6">
+            <div className="mb-4">
+              <h3 className="text-xl font-bold mb-3">Overall Feedback:</h3>
+              <p className="text-gray-700">
+                Your essay effectively addresses the task and presents a clear position throughout. The 
+                ideas are generally well-developed and supported, though some explanations could 
+                benefit from further elaboration. Paragraphing is logical, and your use of cohesive devices is 
+                appropriate, though occasionally repetitive. Your vocabulary is varied and mostly 
+                accurate, with some effective word choices. Grammar is handled well, with a good range 
+                of sentence structures and only a few minor errors that do not affect understanding. To 
+                reach a higher band, focus on refining idea depth, enhancing lexical precision, and 
+                reducing small grammatical slips.
+              </p>
             </div>
-            <div className="flex items-center">
-              <div className="w-3 h-3 bg-yellow-100 border border-yellow-400 mr-1"></div>
-              <span>Grammar issues</span>
-            </div>
-            <div className="flex items-center">
-              <div className="w-3 h-3 bg-red-100 border border-red-400 mr-1"></div>
-              <span>Vocabulary issues</span>
+            
+            <div className="mb-4">
+              <h3 className="text-xl font-bold mb-3">Writing Statistic</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center">
+                  <div className="text-lg font-bold mb-1">Word Count</div>
+                  <div className={`text-2xl font-bold ${feedbackData.stats.totalWords < 250 ? 'text-red-500' : 'text-black'}`}>
+                    {feedbackData.stats.totalWords}
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <div className="text-lg font-bold mb-1">Completion Time</div>
+                  <div className="text-2xl font-bold">
+                    {feedbackData.stats.completionTime}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </CardHeader>
-        <CardContent>
-          <div className="border border-gray-200 rounded-md p-4 bg-white">
-            {essayContent.length > 0 
-              ? highlightEssay(essayContent)
-              : highlightEssay("Technology has revolutionized the way we live and work in the modern world. \n\nWhile it has brought many benefits to society, some people argue that it has made our lives more complicated and stressful. This essay will discuss both viewpoints and provide my own opinion on the matter. \n\nOn the one hand, technology has greatly improved the human condition in numerous ways. Medical advances have extended our lifespans and improved the quality of life for many people suffering from illnesses. Communication technology allows us to connect with people around the world instantly, strengthening relationships and fostering global understanding.")}
-          </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
       
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 justify-center">
         <Button 
           variant="outline" 
           className="flex items-center"
