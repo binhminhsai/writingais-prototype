@@ -149,11 +149,11 @@ export function FeedbackInterface({
         <h2 className="text-xl font-semibold mb-2">Your essay has been evaluated based on the IELTS Task 2 criteria!</h2>
       </div>
 
-      <div className="grid-container grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 items-start">
+      <div className="grid-container grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 items-start">
         {/* Cột trái */}
-        <div className="left-col flex flex-col gap-3">
+        <div className="left-col flex flex-col gap-2">
             {/* Overall Band Score */}
-            <div className="box border-1.5 border-gray-300 rounded-xl p-4 bg-white">
+            <div className="box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa" }}>
               <div className="score-align flex items-center justify-between">
                 <div className="score-label font-bold text-2xl">Overall Band Score:</div>
                 <div className="score-value text-3xl font-bold" style={{ color: "#44b9b0" }}>
@@ -163,7 +163,7 @@ export function FeedbackInterface({
             </div>
 
             {/* Score Breakdown */}
-            <div className="box border-1.5 border-gray-300 rounded-xl p-4 bg-white">
+            <div className="box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa" }}>
             <h2 className="text-xl font-bold mt-0 mb-2.5">Score Breakdown:</h2>
             
             <div className="score-group grid grid-cols-[auto_40px] gap-y-1 mb-2.5">
@@ -244,7 +244,7 @@ export function FeedbackInterface({
         {/* Cột phải */}
         <div className="right-col flex flex-col gap-3">
             {/* Overall Feedback */}
-            <div className="box border-1.5 border-gray-300 rounded-xl p-4 bg-white">
+            <div className="box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa" }}>
               <h2 className="text-xl font-bold mt-0 mb-2.5">Overall Feedback:</h2>
               <p className="mt-0">
                 Your essay effectively addresses the task and presents a clear position throughout.
@@ -257,7 +257,7 @@ export function FeedbackInterface({
             </div>
 
             {/* Writing Statistic */}
-            <div className="stat-box border-1.5 border-gray-300 rounded-xl p-4 bg-white text-center mb-0">
+            <div className="stat-box border border-black rounded-lg p-3" style={{ backgroundColor: "#fafafa", textAlign: "center", marginBottom: "0" }}>
               <h2 className="text-xl font-bold mt-0 mb-2">Writing Statistic</h2>
               <div className="stat-row flex justify-around mt-2">
                 <div>
