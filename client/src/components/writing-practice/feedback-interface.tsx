@@ -1,4 +1,4 @@
-import { Download, Pen, ArrowRight, ArrowLeft, CheckCircle, XCircle, AlertTriangle, Check, X } from "lucide-react";
+import { Download, Pen, ArrowRight, ArrowLeft, CheckCircle, XCircle, AlertTriangle, Check, X, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -12,8 +12,29 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { Link } from "wouter";
+
+// Possible issues in essay
+type IssueType = 'error' | 'suggestion' | 'good';
+
+interface SentenceIssue {
+  type: IssueType;
+  original: string;
+  correction?: string;
+  reason?: string;
+  issueDetail?: string;
+}
 
 // Mock feedback data
 interface FeedbackData {
@@ -34,6 +55,9 @@ interface FeedbackData {
     strengths: string[];
     improvements: string[];
   };
+  analysis?: {
+    sentences: Record<string, SentenceIssue>;
+  };
 }
 
 interface FeedbackInterfaceProps {
@@ -48,9 +72,17 @@ export function FeedbackInterface({
   onNextPractice,
 }: FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
+  const [selectedSentence, setSelectedSentence] = useState<string | null>(null);
+  const [showCorrectionDialog, setShowCorrectionDialog] = useState(false);
 
+  // Example animal welfare essay as shown in the screenshot
+  const sampleEssay = essayContent || `In recent years, the way humans treat animals has become a big problem in many societies. Some people believe animals should have equal rights as humans, while others say human needs are more important.
+This essay will look at both sides and give my opinion. On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans. They say animals should not be killed for food, used for testing, or kept in small cages. For example, testing makeup on animals can hurt them and it is not fair.
+People also believe that animals in zoos or farms live in poor condition and this is not right. On the other hand, other people argue that humans must come first. They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy. Some important medicine was tested on animals before used for people.
+In some countries, eating meat is a part of culture and tradition, so it cannot be avoided easily. In my opinion, I believe animals should be treated well, but sometimes human needs are more necessary. We should try to reduce animal suffering, but not forget that people also have needs to live. To conclude, both views are reasonable, and the best way is to find a balance between human needs and animal protection.`;
+  
   // This would normally come from an API based on essay analysis
-  // Using mock data for frontend-only implementation
+  // Using sample data that follows the design in the screenshots
   const feedbackData: FeedbackData = {
     scores: {
       taskAchievement: 7.0,
@@ -60,7 +92,7 @@ export function FeedbackInterface({
       overall: 7.0,
     },
     stats: {
-      totalWords: essayContent.split(/\s+/).filter(Boolean).length || 267,
+      totalWords: sampleEssay.split(/\s+/).filter(Boolean).length || 267,
       completionTime: "30:43",
       vocabularyRange: "Good",
       grammarAccuracy: "Good",
@@ -79,54 +111,99 @@ export function FeedbackInterface({
         "Some sentences are too long and could be broken down for clarity",
       ],
     },
+    analysis: {
+      sentences: {
+        "In recent years, the way humans treat animals has become a big problem in many societies.": {
+          type: 'good',
+          original: "In recent years, the way humans treat animals has become a big problem in many societies."
+        },
+        "Some people believe animals should have equal rights as humans, while others say human needs are more important.": {
+          type: 'good',
+          original: "Some people believe animals should have equal rights as humans, while others say human needs are more important."
+        },
+        "This essay will look at both sides and give my opinion.": {
+          type: 'good',
+          original: "This essay will look at both sides and give my opinion."
+        },
+        "For example, testing makeup on animals can hurt them and it is not fair.": {
+          type: 'suggestion',
+          original: "For example, testing makeup on animals can hurt them and it is not fair.",
+          correction: "For example, testing cosmetics on animals causes them pain and raises serious ethical concerns.",
+          reason: "The phrase 'can hurt them and it is not fair' is somewhat informal and vague. The suggested correction uses more academic language and expresses the ethical dimension more clearly.",
+          issueDetail: "The phrase 'mainly focus on' can be seen as vague and could be more assertive."
+        },
+        "Some important medicine was tested on animals before used for people.": {
+          type: 'error',
+          original: "Some important medicine was tested on animals before used for people.",
+          correction: "Some important medicine was tested on animals before it was used for people.",
+          reason: "Correcting the grammar improves clarity and coherence, which are important for achieving a higher IELTS score.",
+          issueDetail: "Grammar issue (missing 'it was' or 'being')"
+        }
+      }
+    }
   };
 
-  // Helper function to highlight parts of essay
+  // Get current issue details based on selectedSentence
+  const getCurrentIssue = () => {
+    if (!selectedSentence || !feedbackData.analysis?.sentences[selectedSentence]) {
+      return null;
+    }
+    return feedbackData.analysis.sentences[selectedSentence];
+  };
+
+  const currentIssue = getCurrentIssue();
+
+  // Helper function to highlight sentences based on their analysis
   const highlightEssay = (text: string) => {
-    // In a real implementation, this would use API response data to highlight
-    // For demo, we'll use simple patterns
-    const paragraphs = text.split('\n').filter(p => p.trim().length > 0);
-
-    return paragraphs.map((paragraph, index) => {
-      // Highlight first paragraph green (good)
-      if (index === 0) {
-        return <p key={index} className="mb-2 p-2 bg-green-50 border-l-4 border-green-500">{paragraph}</p>;
-      }
-
-      // Add some yellow highlights for grammar issues (random words for demo)
-      if (index === 1) {
-        const words = paragraph.split(' ');
-        return (
-          <p key={index} className="mb-2">
-            {words.map((word, i) => {
-              // Randomly highlight some words as grammar issues for demo
-              if (i === 3 || i === 10) {
-                return <span key={i} className="bg-yellow-100 border-b border-yellow-400">{word} </span>;
-              }
-              return <span key={i}>{word} </span>;
-            })}
-          </p>
-        );
-      }
-
-      // Add some red highlights for vocabulary issues (random words for demo)
-      if (index === 2) {
-        const words = paragraph.split(' ');
-        return (
-          <p key={index} className="mb-2">
-            {words.map((word, i) => {
-              // Randomly highlight some words as vocabulary issues for demo
-              if (i === 5 || i === 8) {
-                return <span key={i} className="bg-red-100 border-b border-red-400">{word} </span>;
-              }
-              return <span key={i}>{word} </span>;
-            })}
-          </p>
-        );
-      }
-
-      return <p key={index} className="mb-2">{paragraph}</p>;
-    });
+    if (!text) return null;
+    
+    // Regex to split into sentences - handles basic sentence endings with . ! ?
+    const sentenceRegex = /([^.!?]+[.!?]+)/g;
+    const sentences = text.match(sentenceRegex) || [];
+    
+    return (
+      <div className="bg-white border border-black rounded-lg p-4">
+        {sentences.map((sentence, index) => {
+          const trimmedSentence = sentence.trim();
+          const issue = feedbackData.analysis?.sentences[trimmedSentence];
+          
+          let className = ""; 
+          let handleClick = () => {};
+          
+          if (issue) {
+            switch (issue.type) {
+              case 'good':
+                className = "text-green-700 font-normal";
+                break;
+              case 'error':
+                className = "bg-red-100 border-b border-red-400 cursor-pointer";
+                handleClick = () => {
+                  setSelectedSentence(trimmedSentence);
+                  setShowCorrectionDialog(true);
+                };
+                break;
+              case 'suggestion':
+                className = "bg-yellow-100 border-b border-yellow-400 cursor-pointer";
+                handleClick = () => {
+                  setSelectedSentence(trimmedSentence);
+                  setShowCorrectionDialog(true);
+                };
+                break;
+            }
+          }
+          
+          return (
+            <span 
+              key={index} 
+              className={className}
+              onClick={handleClick}
+            >
+              {sentence}
+            </span>
+          );
+        })}
+      </div>
+    );
   };
 
   const getScorePercentage = (score: number) => {
@@ -267,6 +344,21 @@ export function FeedbackInterface({
             </div>
         </div>
       </div>
+      
+      {/* Essay Analysis & Highlights Section */}
+      <div className="container max-w-[1100px] mx-auto mb-6">
+        <h2 className="text-2xl font-bold mb-4">Essay Analysis & Highlights</h2>
+        
+        {/* Legend for color coding */}
+        <div className="flex gap-2 mb-4">
+          <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">Good</Badge>
+          <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300">Error</Badge>
+          <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300">Suggestion</Badge>
+        </div>
+        
+        {/* Essay with highlighted sections */}
+        {highlightEssay(sampleEssay)}
+      </div>
 
       <div className="flex flex-wrap gap-4 justify-center">
         <Button 
@@ -311,6 +403,89 @@ export function FeedbackInterface({
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Sentence Correction Dialog */}
+      <Dialog open={showCorrectionDialog} onOpenChange={setShowCorrectionDialog}>
+        <DialogContent className="sm:max-w-[600px]">
+          {currentIssue?.type === 'error' && (
+            <DialogHeader>
+              <DialogTitle className="flex items-center text-red-600 mb-2">
+                <XCircle className="h-5 w-5 mr-2" /> Errors & Corrections
+              </DialogTitle>
+            </DialogHeader>
+          )}
+
+          {currentIssue?.type === 'suggestion' && (
+            <DialogHeader>
+              <DialogTitle className="flex items-center text-yellow-600 mb-2">
+                <AlertTriangle className="h-5 w-5 mr-2" /> Suggestions for Improvement
+              </DialogTitle>
+            </DialogHeader>
+          )}
+
+          {currentIssue && (
+            <div className="py-2">
+              <div className="mb-4">
+                <h4 className="text-sm font-semibold mb-1">Original:</h4>
+                <p className={`p-2 rounded ${
+                  currentIssue.type === 'error' 
+                    ? 'bg-red-50 border-l-4 border-red-300' 
+                    : 'bg-yellow-50 border-l-4 border-yellow-300'
+                }`}>
+                  "{currentIssue.original}"
+                </p>
+              </div>
+
+              {currentIssue.type === 'error' && (
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold mb-1">Error:</h4>
+                  <p className="text-red-700">
+                    {currentIssue.issueDetail}
+                  </p>
+                </div>
+              )}
+
+              {currentIssue.type === 'suggestion' && (
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold mb-1">Issue:</h4>
+                  <p className="text-yellow-700">
+                    {currentIssue.issueDetail}
+                  </p>
+                </div>
+              )}
+
+              {currentIssue.correction && (
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold mb-1">
+                    {currentIssue.type === 'error' ? 'Correction:' : 'Improved:'}
+                  </h4>
+                  <p className="p-2 bg-green-50 border-l-4 border-green-300 rounded">
+                    "{currentIssue.correction}"
+                  </p>
+                </div>
+              )}
+
+              {currentIssue.reason && (
+                <div>
+                  <h4 className="text-sm font-semibold mb-1">Reason:</h4>
+                  <p className="text-gray-700">
+                    {currentIssue.reason}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          <DialogFooter>
+            <Button 
+              variant="outline" 
+              onClick={() => setShowCorrectionDialog(false)}
+            >
+              Close
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
