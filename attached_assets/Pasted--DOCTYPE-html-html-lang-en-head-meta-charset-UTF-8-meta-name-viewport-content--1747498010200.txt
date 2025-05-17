@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Essay Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+
+    .highlight-section {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fdfdfd;
+    }
+
+    .sentence {
+      display: block;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .green { background-color: #e1f5e8; color: #2e7d32; }
+    .yellow { background-color: #fff9c4; color: #f9a825; }
+    .red { background-color: #ffcdd2; color: #c62828; }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      margin: 10% auto;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+    }
+
+    .close {
+      float: right;
+      font-weight: bold;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .close:hover {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Essay Analysis & Highlights</h2>
+  <div class="highlight-section" id="essay"></div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Error Explanation</h3>
+      <p><strong>Original:</strong> <span id="modalOriginal"></span></p>
+      <p><strong>Issue:</strong> <span id="modalIssue"></span></p>
+      <p><strong>Suggested Correction:</strong> <span id="modalCorrection"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const sentences = [
+      "In recent years, how humans treat animals has become a growing concern.",
+      "Some believe animals deserve equal rights as humans.",
+      "People also believe it is cruel to hurt them and it is not fair.",
+      "On the other hand, others argue that humans must come first.",
+      "Some important medicine was tested on animals before used for people.",
+      "In some countries, eating meat is a part of culture and tradition.",
+      "We should try to reduce animal suffering but also consider human needs."
+    ];
+
+    // Randomly assign 1 red, 1 yellow, rest green
+    const shuffled = [...sentences].sort(() => Math.random() - 0.5);
+    const highlights = {};
+    highlights[shuffled[0]] = 'red';
+    highlights[shuffled[1]] = 'yellow';
+    shuffled.slice(2).forEach(s => highlights[s] = 'green');
+
+    const essayEl = document.getElementById("essay");
+
+    sentences.forEach(sentence => {
+      const span = document.createElement("span");
+      span.className = `sentence ${highlights[sentence]}`;
+      span.innerText = sentence;
+      if (highlights[sentence] === 'red' || highlights[sentence] === 'yellow') {
+        span.onclick = () => openModal(sentence, highlights[sentence]);
+      }
+      essayEl.appendChild(span);
+    });
+
+    function openModal(text, type) {
+      document.getElementById("modalOriginal").innerText = text;
+      document.getElementById("modalIssue").innerText = 
+        type === 'red' ? "Grammar error – Missing auxiliary verb ('was')" : "Style – Could be more formal or precise";
+      document.getElementById("modalCorrection").innerText = 
+        type === 'red' ? "Some important medicine was tested on animals before it was used for people." : 
+        "In some cultures, consuming meat is part of long-standing traditions.";
+      document.getElementById("modal").style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

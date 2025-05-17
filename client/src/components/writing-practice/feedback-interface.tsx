@@ -162,28 +162,28 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
     const sentences = text.match(sentenceRegex) || [];
     
     return (
-      <div className="bg-white border border-black rounded-lg p-4">
+      <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-4">
         {sentences.map((sentence, index) => {
           const trimmedSentence = sentence.trim();
           const issue = feedbackData.analysis?.sentences[trimmedSentence];
           
-          let className = ""; 
+          let className = "sentence block mb-2 p-2 rounded-md"; 
           let handleClick = () => {};
           
           if (issue) {
             switch (issue.type) {
               case 'good':
-                className = "text-green-700 font-normal";
+                className += " green bg-[#e1f5e8] text-[#2e7d32]";
                 break;
               case 'error':
-                className = "bg-red-100 border-b border-red-400 cursor-pointer";
+                className += " red bg-[#ffcdd2] text-[#c62828] cursor-pointer";
                 handleClick = () => {
                   setSelectedSentence(trimmedSentence);
                   setShowCorrectionDialog(true);
                 };
                 break;
               case 'suggestion':
-                className = "bg-yellow-100 border-b border-yellow-400 cursor-pointer";
+                className += " yellow bg-[#fff9c4] text-[#f9a825] cursor-pointer";
                 handleClick = () => {
                   setSelectedSentence(trimmedSentence);
                   setShowCorrectionDialog(true);
@@ -193,13 +193,13 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
           }
           
           return (
-            <span 
+            <div 
               key={index} 
               className={className}
               onClick={handleClick}
             >
               {sentence}
-            </span>
+            </div>
           );
         })}
       </div>
@@ -409,7 +409,7 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
         <DialogContent className="sm:max-w-[600px]">
           {currentIssue?.type === 'error' && (
             <DialogHeader>
-              <DialogTitle className="flex items-center text-red-600 mb-2">
+              <DialogTitle className="flex items-center text-[#c62828] mb-2">
                 <XCircle className="h-5 w-5 mr-2" /> Errors & Corrections
               </DialogTitle>
             </DialogHeader>
@@ -417,7 +417,7 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
 
           {currentIssue?.type === 'suggestion' && (
             <DialogHeader>
-              <DialogTitle className="flex items-center text-yellow-600 mb-2">
+              <DialogTitle className="flex items-center text-[#f9a825] mb-2">
                 <AlertTriangle className="h-5 w-5 mr-2" /> Suggestions for Improvement
               </DialogTitle>
             </DialogHeader>
@@ -426,20 +426,20 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
           {currentIssue && (
             <div className="py-2">
               <div className="mb-4">
-                <h4 className="text-sm font-semibold mb-1">Original:</h4>
-                <p className={`p-2 rounded ${
+                <h4 className="font-semibold mb-1">Original:</h4>
+                <p className={`p-2 rounded-md ${
                   currentIssue.type === 'error' 
-                    ? 'bg-red-50 border-l-4 border-red-300' 
-                    : 'bg-yellow-50 border-l-4 border-yellow-300'
+                    ? 'bg-[#ffcdd2] text-[#c62828]' 
+                    : 'bg-[#fff9c4] text-[#f9a825]'
                 }`}>
-                  "{currentIssue.original}"
+                  {currentIssue.original}
                 </p>
               </div>
 
               {currentIssue.type === 'error' && (
                 <div className="mb-4">
-                  <h4 className="text-sm font-semibold mb-1">Error:</h4>
-                  <p className="text-red-700">
+                  <h4 className="font-semibold mb-1">Error:</h4>
+                  <p className="text-[#c62828]">
                     {currentIssue.issueDetail}
                   </p>
                 </div>
@@ -447,8 +447,8 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
 
               {currentIssue.type === 'suggestion' && (
                 <div className="mb-4">
-                  <h4 className="text-sm font-semibold mb-1">Issue:</h4>
-                  <p className="text-yellow-700">
+                  <h4 className="font-semibold mb-1">Issue:</h4>
+                  <p className="text-[#f9a825]">
                     {currentIssue.issueDetail}
                   </p>
                 </div>
@@ -456,19 +456,19 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
 
               {currentIssue.correction && (
                 <div className="mb-4">
-                  <h4 className="text-sm font-semibold mb-1">
+                  <h4 className="font-semibold mb-1">
                     {currentIssue.type === 'error' ? 'Correction:' : 'Improved:'}
                   </h4>
-                  <p className="p-2 bg-green-50 border-l-4 border-green-300 rounded">
-                    "{currentIssue.correction}"
+                  <p className="p-2 bg-[#e1f5e8] text-[#2e7d32] rounded-md">
+                    {currentIssue.correction}
                   </p>
                 </div>
               )}
 
               {currentIssue.reason && (
                 <div>
-                  <h4 className="text-sm font-semibold mb-1">Reason:</h4>
-                  <p className="text-gray-700">
+                  <h4 className="font-semibold mb-1">Reason:</h4>
+                  <p>
                     {currentIssue.reason}
                   </p>
                 </div>
