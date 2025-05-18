@@ -76,11 +76,21 @@ export function FeedbackInterface({
   const [showCorrectionDialog, setShowCorrectionDialog] = useState(false);
 
   // Example animal welfare essay as shown in the screenshot
-  const sampleEssay = essayContent || `In recent years, the way humans treat animals has become a big problem in many societies. Some people believe animals should have equal rights as humans, while others say human needs are more important.
-This essay will look at both sides and give my opinion. On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans. They say animals should not be killed for food, used for testing, or kept in small cages. For example, testing makeup on animals can hurt them and it is not fair.
-People also believe that animals in zoos or farms live in poor condition and this is not right. On the other hand, other people argue that humans must come first. They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy. Some important medicine was tested on animals before used for people.
-In some countries, eating meat is a part of culture and tradition, so it cannot be avoided easily. In my opinion, I believe animals should be treated well, but sometimes human needs are more necessary. We should try to reduce animal suffering, but not forget that people also have needs to live. To conclude, both views are reasonable, and the best way is to find a balance between human needs and animal protection.`;
-  
+  const sampleEssay = `In recent years, the way humans treat animals has become a big problem in many societies.
+Some people believe animals should have equal rights as humans, while others say human needs are more important.
+This essay will look at both sides and give my opinion.
+On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans.
+They say animals should not be killed for food, used for testing, or kept in small cages.
+For example, testing makeup on animals can hurt them and it is not fair.
+People also believe that animals in zoos or farms live in poor condition and this is not right.
+On the other hand, other people argue that humans must come first.
+They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy.
+Some important medicine was tested on animals before used for people.
+In some countries, eating meat is a part of culture and tradition, so it cannot be avoided easily.
+In my opinion, I believe animals should be treated well, but sometimes human needs are more necessary.
+We should try to reduce animal suffering, but not forget that people also have needs to live.
+To conclude, both views are reasonable, and the best way is to find a balance between human needs and animal protection.`;
+
   // This would normally come from an API based on essay analysis
   // Using sample data that follows the design in the screenshots
   const feedbackData: FeedbackData = {
@@ -156,20 +166,20 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
   // Helper function to highlight sentences based on their analysis
   const highlightEssay = (text: string) => {
     if (!text) return null;
-    
+
     // Regex to split into sentences - handles basic sentence endings with . ! ?
     const sentenceRegex = /([^.!?]+[.!?]+)/g;
     const sentences = text.match(sentenceRegex) || [];
-    
+
     return (
       <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-4">
         {sentences.map((sentence, index) => {
           const trimmedSentence = sentence.trim();
           const issue = feedbackData.analysis?.sentences[trimmedSentence];
-          
+
           let className = "sentence block mb-2 p-2 rounded-md"; 
           let handleClick = () => {};
-          
+
           if (issue) {
             switch (issue.type) {
               case 'good':
@@ -191,7 +201,7 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
                 break;
             }
           }
-          
+
           return (
             <div 
               key={index} 
@@ -344,18 +354,18 @@ In some countries, eating meat is a part of culture and tradition, so it cannot 
             </div>
         </div>
       </div>
-      
+
       {/* Essay Analysis & Highlights Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Essay Analysis & Highlights</h2>
-        
+
         {/* Legend for color coding */}
         <div className="flex gap-2 mb-4">
           <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">Good</Badge>
           <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300">Error</Badge>
           <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300">Suggestion</Badge>
         </div>
-        
+
         {/* Essay with highlighted sections */}
         {highlightEssay(sampleEssay)}
       </div>
