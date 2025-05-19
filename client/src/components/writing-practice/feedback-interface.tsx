@@ -243,7 +243,7 @@ To conclude, both views are reasonable, and the best way is to find a balance be
             <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4">
               <div className="score-header flex justify-between text-2xl font-bold">
                 <span>Overall Band Score:</span>
-                <span className="score-value text-5xl" style={{ color: '#44b9b0' }}>
+                <span className="score-value text-3xl" style={{ color: '#44b9b0' }}>
                   {feedbackData.scores.overall.toFixed(1)}
                 </span>
               </div>
@@ -299,7 +299,12 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                 </div>
               </div>
 
-              
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold">Overall Band Score</span>
+                  <span className="text-[#44b9b0] text 2xl font-bold">7.5</span>
+                </div>
+              </div>
             </div>
         </div>
 
