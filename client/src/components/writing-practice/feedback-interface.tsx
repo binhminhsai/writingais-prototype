@@ -250,71 +250,60 @@ To conclude, both views are reasonable, and the best way is to find a balance be
             </div>
 
             {/* Score Breakdown */}
-            <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4">
-              <h2 className="text-xl font-bold mt-0 mb-4">Score Breakdown:</h2>
+            <div className="box bg-[#FAFAFA] rounded-lg border border-gray-200 p-4">
+              <h2 className="text-2xl font-bold mb-6">Score Breakdown</h2>
 
-              {/* Task Achievement */}
-              <div className="score-group grid grid-cols-[1fr_40px] gap-y-1 mb-4">
-                <div className="score-main font-bold text-lg">Task Achievement</div>
-                <div className="score-main-value text-lg font-bold text-right" style={{ color: '#44b9b0' }}>
-                  {feedbackData.scores.taskAchievement.toFixed(1)}
+              <div className="flex flex-col gap-6">
+                {/* Task Response */}
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-bold">Task Response</span>
+                    <span className="text-[#44b9b0] font-bold">7.0</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-[#44b9b0] h-2 rounded-full" style={{ width: '70%' }}></div>
+                  </div>
                 </div>
-                <div className="subcriteria pl-4">• Relevance to Topic</div>
-                <div className="sub-value text-right">7.5</div>
-                <div className="subcriteria pl-4">• Position Clarity</div>
-                <div className="sub-value text-right">6.5</div>
-                <div className="subcriteria pl-4">• Ideas Development</div>
-                <div className="sub-value text-right">7.0</div>
-                <div className="subcriteria pl-4">• Sufficient Length</div>
-                <div className="sub-value text-right">
-                  {feedbackData.stats.totalWords >= 250 ? (
-                    <span className="text-green-500">✓</span>
-                  ) : (
-                    <span className="text-red-500">✗</span>
-                  )}
+
+                {/* Coherence & Cohesion */}
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-bold">Coherence & Cohesion</span>
+                    <span className="text-[#44b9b0] font-bold">8.0</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-[#44b9b0] h-2 rounded-full" style={{ width: '80%' }}></div>
+                  </div>
+                </div>
+
+                {/* Lexical Resource */}
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-bold">Lexical Resource</span>
+                    <span className="text-[#44b9b0] font-bold">7.0</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-[#44b9b0] h-2 rounded-full" style={{ width: '70%' }}></div>
+                  </div>
+                </div>
+
+                {/* Grammatical Range & Accuracy */}
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-bold">Grammatical Range & Accuracy</span>
+                    <span className="text-[#44b9b0] font-bold">7.0</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-[#44b9b0] h-2 rounded-full" style={{ width: '70%' }}></div>
+                  </div>
                 </div>
               </div>
 
-              {/* Coherence & Cohesion */}
-              <div className="score-group grid grid-cols-[1fr_40px] gap-y-1 mb-4">
-                <div className="score-main font-bold text-lg">Coherence & Cohesion</div>
-                <div className="score-main-value text-lg font-bold text-right" style={{ color: '#44b9b0' }}>
-                  {feedbackData.scores.coherenceCohesion.toFixed(1)}
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <div className="flex justify-between items-center">
+                  <span className="text-xl font-bold">Overall Band Score</span>
+                  <span className="text-[#44b9b0] text 2xl font-bold">7.5</span>
                 </div>
-                <div className="subcriteria pl-4">• Paragraph Unity</div>
-                <div className="sub-value text-right">7.0</div>
-                <div className="subcriteria pl-4">• Logical Progression</div>
-                <div className="sub-value text-right">7.0</div>
-                <div className="subcriteria pl-4">• Cohesive Use</div>
-                <div className="sub-value text-right">7.0</div>
-              </div>
-
-              {/* Lexical Resource */}
-              <div className="score-group grid grid-cols-[1fr_40px] gap-y-1 mb-4">
-                <div className="score-main font-bold text-lg">Lexical Resource</div>
-                <div className="score-main-value text-lg font-bold text-right" style={{ color: '#44b9b0' }}>
-                  {feedbackData.scores.lexicalResource.toFixed(1)}
-                </div>
-                <div className="subcriteria pl-4">• Vocabulary Range</div>
-                <div className="sub-value text-right">7.0</div>
-                <div className="subcriteria pl-4">• Word Choice</div>
-                <div className="sub-value text-right">7.0</div>
-                <div className="subcriteria pl-4">• Collocation Use</div>
-                <div className="sub-value text-right">7.0</div>
-              </div>
-
-              {/* GRA */}
-              <div className="score-group grid grid-cols-[1fr_40px] gap-y-1">
-                <div className="score-main font-bold text-lg">Grammatical Range & Accuracy</div>
-                <div className="score-main-value text-lg font-bold text-right" style={{ color: '#44b9b0' }}>
-                  {feedbackData.scores.grammar.toFixed(1)}
-                </div>
-                <div className="subcriteria pl-4">• Grammatical Range</div>
-                <div className="sub-value text-right">7.5</div>
-                <div className="subcriteria pl-4">• Grammatical Accuracy</div>
-                <div className="sub-value text-right">6.5</div>
-                <div className="subcriteria pl-4">• Clarity of Communication</div>
-                <div className="sub-value text-right">7.0</div>
               </div>
             </div>
         </div>
