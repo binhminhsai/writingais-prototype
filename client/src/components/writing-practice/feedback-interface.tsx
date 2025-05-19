@@ -243,51 +243,51 @@ To conclude, both views are reasonable, and the best way is to find a balance be
             
 
             {/* Score Breakdown */}
-            <div className="box bg-[#FAFAFA] rounded-lg border border-black p-4 h-full">
-              <h2 className="text-2xl font-bold mb-6">Score Breakdown</h2>
+            <div className="box bg-[#FAFAFA] rounded-lg border border-black p-4">
+              <h2 className="text-xl font-bold mb-4">Score Breakdown</h2>
 
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-4">
                 {/* Task Response */}
                 <div>
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex justify-between items-center mb-1">
                     <span className="font-bold">Task Response</span>
                     <span className="text-[#44b9b0] font-bold">7.0</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-[#44b9b0] h-2 rounded-full" style={{ width: '70%' }}></div>
+                  <div className="w-full bg-gray-200 rounded-full h-1.5">
+                    <div className="bg-[#44b9b0] h-1.5 rounded-full" style={{ width: '70%' }}></div>
                   </div>
                 </div>
 
                 {/* Coherence & Cohesion */}
                 <div>
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex justify-between items-center mb-1">
                     <span className="font-bold">Coherence & Cohesion</span>
                     <span className="text-[#44b9b0] font-bold">8.0</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-[#44b9b0] h-2 rounded-full" style={{ width: '80%' }}></div>
+                  <div className="w-full bg-gray-200 rounded-full h-1.5">
+                    <div className="bg-[#44b9b0] h-1.5 rounded-full" style={{ width: '80%' }}></div>
                   </div>
                 </div>
 
                 {/* Lexical Resource */}
                 <div>
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex justify-between items-center mb-1">
                     <span className="font-bold">Lexical Resource</span>
                     <span className="text-[#44b9b0] font-bold">7.0</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-[#44b9b0] h-2 rounded-full" style={{ width: '70%' }}></div>
+                  <div className="w-full bg-gray-200 rounded-full h-1.5">
+                    <div className="bg-[#44b9b0] h-1.5 rounded-full" style={{ width: '70%' }}></div>
                   </div>
                 </div>
 
                 {/* Grammatical Range & Accuracy */}
                 <div>
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex justify-between items-center mb-1">
                     <span className="font-bold">Grammatical Range & Accuracy</span>
                     <span className="text-[#44b9b0] font-bold">7.0</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-[#44b9b0] h-2 rounded-full" style={{ width: '70%' }}></div>
+                  <div className="w-full bg-gray-200 rounded-full h-1.5">
+                    <div className="bg-[#44b9b0] h-1.5 rounded-full" style={{ width: '70%' }}></div>
                   </div>
                 </div>
               </div>
