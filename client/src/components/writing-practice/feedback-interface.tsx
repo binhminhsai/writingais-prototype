@@ -240,7 +240,7 @@ To conclude, both views are reasonable, and the best way is to find a balance be
         {/* Left Column */}
         <div className="column flex flex-col gap-4">
             {/* Overall Band Score */}
-            
+
 
             {/* Score Breakdown */}
             <div className="box bg-[#FAFAFA] rounded-lg border border-black p-4 h-full flex flex-col">
@@ -253,8 +253,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                     <span className="font-bold">Task Response</span>
                     <span className="text-[#44b9b0] font-bold">7.0</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-[6px]">
-                    <div className="bg-[#44b9b0] h-[6px] rounded-full" style={{ width: '70%' }}></div>
+                  <div className="w-full bg-gray-200 rounded-full h-[18px]">
+                    <div className="bg-[#44b9b0] h-[18px] rounded-full" style={{ width: '70%' }}></div>
                   </div>
                 </div>
 
@@ -264,8 +264,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                     <span className="font-bold">Coherence & Cohesion</span>
                     <span className="text-[#44b9b0] font-bold">8.0</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-[6px]">
-                    <div className="bg-[#44b9b0] h-[6px] rounded-full" style={{ width: '80%' }}></div>
+                  <div className="w-full bg-gray-200 rounded-full h-[18px]">
+                    <div className="bg-[#44b9b0] h-[18px] rounded-full" style={{ width: '80%' }}></div>
                   </div>
                 </div>
 
@@ -275,8 +275,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                     <span className="font-bold">Lexical Resource</span>
                     <span className="text-[#44b9b0] font-bold">7.0</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-[6px]">
-                    <div className="bg-[#44b9b0] h-[6px] rounded-full" style={{ width: '70%' }}></div>
+                  <div className="w-full bg-gray-200 rounded-full h-[18px]">
+                    <div className="bg-[#44b9b0] h-[18px] rounded-full" style={{ width: '70%' }}></div>
                   </div>
                 </div>
 
@@ -286,8 +286,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                     <span className="font-bold">Grammatical Range & Accuracy</span>
                     <span className="text-[#44b9b0] font-bold">7.0</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-[6px]">
-                    <div className="bg-[#44b9b0] h-[6px] rounded-full" style={{ width: '70%' }}></div>
+                  <div className="w-full bg-gray-200 rounded-full h-[18px]">
+                    <div className="bg-[#44b9b0] h-[18px] rounded-full" style={{ width: '70%' }}></div>
                   </div>
                 </div>
               </div>
