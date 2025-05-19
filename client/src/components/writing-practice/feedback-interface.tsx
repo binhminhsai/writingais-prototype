@@ -243,10 +243,10 @@ To conclude, both views are reasonable, and the best way is to find a balance be
 
 
             {/* Score Breakdown */}
-            <div className="box bg-[#FAFAFA] rounded-lg border border-black p-4 h-full flex flex-col">
-              <h2 className="text-xl font-bold mb-6">Score Breakdown</h2>
+            <div className="box bg-[#FAFAFA] rounded-lg border border-black p-3 h-full flex flex-col">
+              <h2 className="text-lg font-bold mb-3">Score Breakdown</h2>
 
-              <div className="flex flex-col justify-between flex-1 gap-4">
+              <div className="flex flex-col justify-between flex-1 gap-3">
                 {/* Task Response */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
