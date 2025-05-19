@@ -298,13 +298,6 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                   </div>
                 </div>
               </div>
-
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <div className="flex justify-between items-center">
-                  <span className="text-xl font-bold">Overall Band Score</span>
-                  <span className="text-[#44b9b0] text 2xl font-bold">7.5</span>
-                </div>
-              </div>
             </div>
         </div>
 
