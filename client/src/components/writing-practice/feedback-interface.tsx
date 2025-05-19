@@ -243,7 +243,7 @@ To conclude, both views are reasonable, and the best way is to find a balance be
             
 
             {/* Score Breakdown */}
-            <div className="box bg-[#FAFAFA] rounded-lg border border-gray-200 p-4">
+            <div className="box bg-[#FAFAFA] rounded-lg border border-black p-4 h-full">
               <h2 className="text-2xl font-bold mb-6">Score Breakdown</h2>
 
               <div className="flex flex-col gap-6">
@@ -295,7 +295,7 @@ To conclude, both views are reasonable, and the best way is to find a balance be
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <div className="flex justify-between items-center">
                   <span className="text-xl font-bold">Overall Band Score</span>
-                  <span className="text-[#44b9b0] text 2xl font-bold">7.5</span>
+                  <span className="text-[#44b9b0] text-4xl font-extrabold">7.5</span>
                 </div>
               </div>
             </div>
@@ -318,15 +318,15 @@ To conclude, both views are reasonable, and the best way is to find a balance be
 
             {/* Writing Statistic */}
             <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4">
-              <h2 className="text-xl font-bold mt-0 mb-2">Writing Statistic</h2>
+              <h2 className="text-xl font-bold mt-0 mb-2 text-center">Writing Statistic</h2>
               <div className="stat-row flex justify-around mt-2">
-                <div>
+                <div className="text-center">
                   <div className="stat-label font-bold">Word Count</div>
                   <div className={`stat-value font-bold text-2xl mt-1 ${feedbackData.stats.totalWords < 250 ? 'text-red-500' : ''}`}>
                     {feedbackData.stats.totalWords}
                   </div>
                 </div>
-                <div>
+                <div className="text-center">
                   <div className="stat-label font-bold">Completion Time</div>
                   <div className="stat-value font-bold text-2xl mt-1">
                     {feedbackData.stats.completionTime}
