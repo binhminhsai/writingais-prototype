@@ -1,0 +1,57 @@
+US006_AC02
+Rule-based	- Tab Useful Expressions, hiển thị nội dung ở cùng khung hình với phần Suggested Oultline.
+- Các nội dung bên trong tab trình bày dưới dạng Accordion 
+US006_AC05
+Rule-based	Useful Expressions: Các cách diễn đạt hữu ích có thể dùng trong bài viết.
+
+Các loại diễn đạt gồm:
+1. Giới thiệu và Mở đầu chủ đề: Các cụm từ dùng để giới thiệu chủ đề hoặc vấn đề chính.
+2. Trình bày lập luận hoặc quan điểm: Các cụm từ thể hiện quan điểm hoặc lập luận.
+3. Đưa ra ví dụ hoặc chứng minh bằng chứng: Các cụm từ dùng để đưa ra ví dụ, minh họa hoặc bằng chứng.
+4. So sánh hoặc phản biện các quan điểm: Các cụm từ dùng để trình bày các quan điểm đối lập hoặc so sánh.
+5. Kết luận: Các cụm từ dùng để kết luận hoặc tóm tắt luận điểm.
+→ Mỗi loại diễn đạt sẽ hiển thị 6 câu 
+
+Ví dụ: 
+Đề bài - Some people think that people commit crime because of poverty and social problems, while others think it is because of their bad nature. Discuss both these views and give your opinion.
+”
+1. Giới thiệu và Mở đầu chủ đề
+- The issue of crime causation has generated considerable debate in recent years.
+- In contemporary society, the question of why people commit crimes is of paramount importance.
+- Recently, there has been growing interest in understanding the root causes of criminal behavior.
+- Over the past few decades, many theories have been proposed to explain why individuals engage in criminal activities.
+- It is often argued that crime results from either social factors such as poverty or inherent personal traits.
+- When considering the question of why crimes occur, both environmental and personal factors are often discussed.
+
+2. Trình bày lập luận hoặc quan điểm
+- Proponents argue that poverty and social problems such as unemployment and lack of education are the main reasons why people commit crimes.
+- Those who support this view believe that difficult living conditions push individuals towards criminal behavior as a means of survival.
+- On the other hand, some people claim that crime stems from an individual’s bad nature or moral weakness rather than external factors.
+- Critics of the social causes perspective contend that some individuals choose to commit crimes simply because of their inherent character flaws.
+- From my point of view, both poverty and bad nature contribute to criminal acts, but the influence of social environment is often stronger.
+- I believe that while bad nature can lead some to crime, many criminal behaviors are triggered by desperation caused by poverty and social inequality.
+
+3. Đưa ra ví dụ hoặc chứng minh bằng chứng
+- A clear illustration of this is the high crime rates observed in economically disadvantaged neighborhoods, where poverty and unemployment are widespread.
+- For instance, research has shown that areas with limited social services and poor educational opportunities tend to have higher incidences of theft and drug-related crimes.
+- To exemplify this point, studies conducted by criminologists reveal that individuals from broken families or violent environments are more likely to engage in criminal activities.
+- A case in point is the correlation found between juvenile delinquency and lack of parental supervision or social support.
+- This can be demonstrated by statistical data indicating that countries with greater income inequality often experience more violent crimes.
+- Evidence of this can be seen in various social reports that link poverty with an increased risk of involvement in illegal activities.
+
+4. So sánh hoặc phản biện các quan điểm
+- While it is undeniable that poverty and social problems create conditions that may lead to crime, it is equally important to consider that not everyone facing such hardships resorts to illegal behavior.
+- Conversely, the argument that crime stems solely from bad nature overlooks the significant impact that environment and social context have on shaping an individual’s actions.
+- Some critics of the bad nature theory point out that it may be too deterministic and neglects the possibility of change through education and rehabilitation.
+- On the other hand, those who emphasize social causes sometimes underestimate personal accountability and the role of individual choice in committing crimes.
+- It is worth noting that both perspectives have valid points, but neither offers a complete explanation on its own.
+- A balanced view suggests that criminal behavior results from a complex interaction between a person’s character and their social environment.
+
+5. Kết luận
+- In conclusion, both social conditions and individual characteristics contribute to criminal behavior, and neither factor should be ignored.
+- To sum up, while poverty and social problems may increase the likelihood of crime, personal nature ultimately influences one’s decisions.
+- In brief, a balanced understanding of crime causes must take into account both environmental and personal factors.
+- Overall, addressing social inequalities and promoting ethical values are essential to effectively reduce crime rates.
+- Ultimately, reducing crime requires a comprehensive approach that combines social reform with personal accountability.
+- In summary, a multifaceted strategy is necessary to tackle the root causes of crime and build a safer society.
+”
