@@ -52,9 +52,8 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 className="text-base md:text-lg lg:text-xl py-4 md:py-6 px-6 md:px-12 lg:px-16 font-medium rounded-t-lg transition-all relative overflow-hidden
                         bg-gradient-to-b from-white to-gray-50 
                         hover:bg-gray-50
-                        data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 
-                        data-[state=active]:border-t-2 data-[state=active]:border-t-blue-400
-                        data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.2)]"
+                        data-[state=active]:border-t data-[state=active]:border-t-primary/30 data-[state=active]:text-primary 
+                        data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.1)]"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <Layers className="h-4 w-4" />
@@ -66,9 +65,8 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 className="text-base md:text-lg lg:text-xl py-4 md:py-6 px-6 md:px-12 lg:px-16 font-medium rounded-t-lg transition-all relative overflow-hidden
                         bg-gradient-to-b from-white to-gray-50
                         hover:bg-gray-50
-                        data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 
-                        data-[state=active]:border-t-2 data-[state=active]:border-t-blue-400
-                        data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.2)]"
+                        data-[state=active]:border-t data-[state=active]:border-t-primary/30 data-[state=active]:text-primary
+                        data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.1)]"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <Smile className="h-4 w-4" />
@@ -349,17 +347,29 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   // Combine phrase words with additional collocations
   const allPhraseWords = [...phraseWords, ...additionalCollocations];
 
-  // State for displayed word counts
+  // State for displayed word counts and loading states
   const [vocabDisplayCount, setVocabDisplayCount] = useState(10);
   const [phraseDisplayCount, setPhraseDisplayCount] = useState(8);
+  const [isLoadingVocab, setIsLoadingVocab] = useState(false);
+  const [isLoadingPhrases, setIsLoadingPhrases] = useState(false);
 
   // Handle loading more words
   const handleLoadMoreVocab = () => {
-    setVocabDisplayCount(prevCount => prevCount + 10);
+    setIsLoadingVocab(true);
+    // Simulate loading delay
+    setTimeout(() => {
+      setVocabDisplayCount(prevCount => prevCount + 10);
+      setIsLoadingVocab(false);
+    }, 600);
   };
 
   const handleLoadMorePhrases = () => {
-    setPhraseDisplayCount(prevCount => prevCount + 10);
+    setIsLoadingPhrases(true);
+    // Simulate loading delay
+    setTimeout(() => {
+      setPhraseDisplayCount(prevCount => prevCount + 10);
+      setIsLoadingPhrases(false);
+    }, 600);
   };
 
   // Words to display based on current count limits
@@ -384,8 +394,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
               value="vocabulary" 
               className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
                       hover:bg-gray-50
-                      data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-b-2 
-                      data-[state=active]:border-blue-400 data-[state=active]:shadow-sm"
+                      data-[state=active]:border data-[state=active]:border-primary/30 data-[state=active]:text-primary"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                 <path d="M12 20V4"></path><path d="M20 8h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path><path d="M4 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4"></path>
@@ -396,8 +405,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
               value="phrases" 
               className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
                       hover:bg-gray-50
-                      data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-b-2 
-                      data-[state=active]:border-blue-400 data-[state=active]:shadow-sm"
+                      data-[state=active]:border data-[state=active]:border-primary/30 data-[state=active]:text-primary"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -409,30 +417,17 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
 
         <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-            {displayedVocabWords.map((word, index) => {
-              const colorClasses = word.type === "positive" 
-                ? "bg-green-50 border-green-200 text-green-700" 
-                : word.type === "negative" 
-                  ? "bg-rose-50 border-rose-200 text-rose-700"
-                  : "bg-blue-50 border-blue-200 text-blue-700";
-              
-              return (
+            {displayedVocabWords.map((word, index) => (
                 <div 
                   key={`word-${index}`}
-                  className={`p-3 rounded-lg border ${colorClasses} h-full shadow-sm hover:shadow-md transition-shadow`}
+                  className="p-3 rounded-lg border border-blue-200 bg-blue-50 text-blue-700 h-full shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex flex-wrap items-center gap-1.5 mb-2">
                     <span className="font-semibold text-base">{word.word}</span>
-                    <Badge className={`text-xs font-medium px-2 py-0.5 ${
-                      word.type === "positive" 
-                        ? "bg-green-100 text-green-800 hover:bg-green-200" 
-                        : word.type === "negative" 
-                          ? "bg-rose-100 text-rose-800 hover:bg-rose-200"
-                          : "bg-blue-100 text-blue-800 hover:bg-blue-200"
-                    }`}>
+                    <Badge className="text-xs font-medium px-2 py-0.5 bg-blue-100 text-blue-800 hover:bg-blue-200">
                       {word.partOfSpeech}
                     </Badge>
-                    <Badge variant="outline" className={`text-xs px-2 py-0.5 border-current opacity-80`}>
+                    <Badge variant="outline" className="text-xs px-2 py-0.5 border-blue-300">
                       {word.difficulty}
                     </Badge>
                   </div>
@@ -443,8 +438,8 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                     <span className="font-medium not-italic">Example:</span> {word.example}
                   </p>
                 </div>
-              );
-            })}
+              )
+            )}
 
             {/* Fill in empty cell if odd number of words */}
             {displayedVocabWords.length % 2 !== 0 && (
@@ -460,11 +455,24 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 onClick={handleLoadMoreVocab}
                 className="text-primary border-primary/30 hover:border-primary text-xs px-6 py-1.5 h-auto shadow-sm"
                 size="sm"
+                disabled={isLoadingVocab}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
-                  <path d="M12 8v8"></path><path d="M8 12h8"></path>
-                </svg>
-                Load More Words
+                {isLoadingVocab ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Loading...
+                  </>
+                ) : (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
+                      <path d="M12 8v8"></path><path d="M8 12h8"></path>
+                    </svg>
+                    Load More Words
+                  </>
+                )}
               </Button>
             </div>
           )}
@@ -472,30 +480,17 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
 
         <TabsContent value="phrases" className="p-0 min-h-[200px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-            {displayedPhraseWords.map((phrase, index) => {
-              const colorClasses = phrase.type === "positive" 
-                ? "bg-green-50 border-green-200 text-green-700" 
-                : phrase.type === "negative" 
-                  ? "bg-rose-50 border-rose-200 text-rose-700"
-                  : "bg-blue-50 border-blue-200 text-blue-700";
-              
-              return (
+            {displayedPhraseWords.map((phrase, index) => (
                 <div 
                   key={`phrase-${index}`}
-                  className={`p-3 rounded-lg border ${colorClasses} h-full shadow-sm hover:shadow-md transition-shadow`}
+                  className="p-3 rounded-lg border border-blue-200 bg-blue-50 text-blue-700 h-full shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex flex-wrap items-center gap-1.5 mb-2">
                     <span className="font-semibold text-base">{phrase.word}</span>
-                    <Badge className={`text-xs font-medium px-2 py-0.5 ${
-                      phrase.type === "positive" 
-                        ? "bg-green-100 text-green-800 hover:bg-green-200" 
-                        : phrase.type === "negative" 
-                          ? "bg-rose-100 text-rose-800 hover:bg-rose-200"
-                          : "bg-blue-100 text-blue-800 hover:bg-blue-200"
-                    }`}>
+                    <Badge className="text-xs font-medium px-2 py-0.5 bg-blue-100 text-blue-800 hover:bg-blue-200">
                       Collocation
                     </Badge>
-                    <Badge variant="outline" className={`text-xs px-2 py-0.5 border-current opacity-80`}>
+                    <Badge variant="outline" className="text-xs px-2 py-0.5 border-blue-300">
                       {phrase.difficulty}
                     </Badge>
                   </div>
@@ -506,8 +501,8 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                     <span className="font-medium not-italic">Example:</span> {phrase.example}
                   </p>
                 </div>
-              );
-            })}
+              )
+            )}
 
             {/* Fill in empty cell if odd number of phrases */}
             {displayedPhraseWords.length % 2 !== 0 && (
@@ -523,11 +518,24 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 onClick={handleLoadMorePhrases}
                 className="text-primary border-primary/30 hover:border-primary text-xs px-6 py-1.5 h-auto shadow-sm"
                 size="sm"
+                disabled={isLoadingPhrases}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
-                  <path d="M12 8v8"></path><path d="M8 12h8"></path>
-                </svg>
-                Load More Phrases
+                {isLoadingPhrases ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Loading...
+                  </>
+                ) : (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
+                      <path d="M12 8v8"></path><path d="M8 12h8"></path>
+                    </svg>
+                    Load More Phrases
+                  </>
+                )}
               </Button>
             </div>
           )}
