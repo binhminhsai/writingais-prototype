@@ -45,21 +45,21 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
     <div className="h-full flex flex-col">
       {showOutline ? (
         <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
-          <div className="flex items-end justify-between">
+          <div className="flex items-end justify-between border-b border-gray-200">
             <TabsList className="flex gap-0 bg-transparent p-0 border-0">
               <TabsTrigger 
                 value="outline" 
-                className="text-base py-4 px-8 font-medium rounded-t-lg border-2 border-gray-200 transition-all
-                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-white data-[state=active]:-mb-0.5 data-[state=active]:z-10
-                          data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
+                className="text-lg py-6 px-12 font-medium rounded-t-lg border-l border-t border-r border-gray-200 transition-all
+                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-transparent data-[state=active]:-mb-px data-[state=active]:z-10
+                          data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-transparent"
               >
                 Suggested Outline
               </TabsTrigger>
               <TabsTrigger 
                 value="expressions" 
-                className="text-base py-4 px-8 font-medium rounded-t-lg border-2 border-gray-200 transition-all
-                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-white data-[state=active]:-mb-0.5 data-[state=active]:z-10
-                          data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
+                className="text-lg py-6 px-12 font-medium rounded-t-lg border-l border-t border-r border-gray-200 transition-all
+                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-transparent data-[state=active]:-mb-px data-[state=active]:z-10
+                          data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-transparent"
               >
                 Useful Expressions
               </TabsTrigger>
@@ -67,7 +67,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             <Button
               variant="ghost"
               size="sm"
-              className="h-8 w-8 p-0 flex-shrink-0 ml-4 mb-1"
+              className="h-8 w-8 p-0 flex-shrink-0 ml-4 mb-2"
               title="Hide Support"
               onClick={() => setShowOutline(false)}
             >
@@ -75,7 +75,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             </Button>
           </div>
           
-          <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0 border border-gray-200 border-t-0 bg-white p-4">
+          <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0 border-l border-r border-b border-gray-200 bg-white p-4">
             <ul className="space-y-3 text-xs">
               {outline.map((section, index) => (
                 <li key={index}>
@@ -90,7 +90,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             </ul>
           </TabsContent>
           
-          <TabsContent value="expressions" className="flex-1 overflow-y-auto mt-0 border border-gray-200 border-t-0 bg-white p-4">
+          <TabsContent value="expressions" className="flex-1 overflow-y-auto mt-0 border-l border-r border-b border-gray-200 bg-white p-4">
             <div>
               <h4 className="font-semibold text-gray-800 mb-3 text-sm">Useful Expressions - Các cách diễn đạt hữu ích</h4>
               <p className="text-xs mb-3 text-gray-600">Các cách diễn đạt hữu ích có thể dùng trong bài viết</p>
