@@ -49,7 +49,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             {showOutline ? (
               <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
                 <div className="flex items-center justify-between mb-3">
-                  <TabsList className="grid grid-cols-2 flex-1 mr-2 bg-gray-100 p-1 rounded-lg">
+                  <TabsList className="h-10 items-center justify-center grid grid-cols-2 flex-1 mr-2 bg-gray-100 p-1 rounded-lg text-[#ffffff]">
                     <TabsTrigger 
                       value="outline" 
                       className="text-xs font-medium px-3 py-2 rounded-md transition-all duration-200
