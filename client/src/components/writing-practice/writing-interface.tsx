@@ -44,28 +44,25 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
   return (
     <div className="h-full flex flex-col">
       <Card className="flex flex-col flex-1 h-full">
-        <CardHeader className="flex flex-row items-center justify-between py-2 px-3 bg-gray-50 flex-shrink-0">
-          <h3 className="font-medium text-xs">Writing Support</h3>
-          <div className="flex space-x-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-6 w-6 p-0"
-              title={showOutline ? "Hide Support" : "Show Support"}
-              onClick={() => setShowOutline(!showOutline)}
-            >
-              {showOutline ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
-            </Button>
-          </div>
-        </CardHeader>
         <CardContent className="py-2 px-3 flex-1 overflow-y-auto">
           <div className="h-full w-full">
             {showOutline ? (
               <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
-                <TabsList className="grid w-full grid-cols-2 mb-3">
-                  <TabsTrigger value="outline" className="text-xs">Suggested Outline</TabsTrigger>
-                  <TabsTrigger value="expressions" className="text-xs">Useful Expressions</TabsTrigger>
-                </TabsList>
+                <div className="flex items-center justify-between mb-3">
+                  <TabsList className="grid grid-cols-2 flex-1 mr-2">
+                    <TabsTrigger value="outline" className="text-xs">Suggested Outline</TabsTrigger>
+                    <TabsTrigger value="expressions" className="text-xs">Useful Expressions</TabsTrigger>
+                  </TabsList>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 flex-shrink-0"
+                    title="Hide Support"
+                    onClick={() => setShowOutline(false)}
+                  >
+                    <EyeOff className="h-3 w-3" />
+                  </Button>
+                </div>
                 
                 <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0">
                   <ul className="space-y-3 text-xs">
@@ -129,6 +126,14 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
               </Tabs>
             ) : (
               <div className="flex flex-col justify-center items-center h-full w-full">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mb-4"
+                  onClick={() => setShowOutline(true)}
+                >
+                  <Eye className="h-3 w-3 mr-1" /> Show Support
+                </Button>
                 <p className="text-gray-700 font-medium text-base mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
                 <p className="text-primary font-medium text-sm text-center">Good things take time. 😉</p>
               </div>
