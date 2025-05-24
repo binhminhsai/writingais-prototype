@@ -48,19 +48,21 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
           <div className="h-full w-full">
             {showOutline ? (
               <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
-                <div className="flex items-center justify-between mb-3">
-                  <TabsList className="w-full flex gap-2 bg-transparent p-0 border-0 flex-1 mr-2">
+                <div className="flex items-center justify-between mb-0">
+                  <TabsList className="w-full flex gap-0 bg-transparent p-0 border-0 flex-1 mr-2 border-b border-gray-200">
                     <TabsTrigger 
                       value="outline" 
-                      className="flex-1 text-sm py-3 px-4 font-medium rounded-md border border-gray-200 transition-all
-                                bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
+                      className="flex-1 text-sm py-3 px-4 font-medium rounded-t-md border-l border-t border-r border-gray-200 transition-all
+                                bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-b-white data-[state=active]:-mb-px data-[state=active]:z-10
+                                data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
                     >
                       Suggested Outline
                     </TabsTrigger>
                     <TabsTrigger 
                       value="expressions" 
-                      className="flex-1 text-sm py-3 px-4 font-medium rounded-md border border-gray-200 transition-all
-                                bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
+                      className="flex-1 text-sm py-3 px-4 font-medium rounded-t-md border-l border-t border-r border-gray-200 transition-all
+                                bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-b-white data-[state=active]:-mb-px data-[state=active]:z-10
+                                data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
                     >
                       Useful Expressions
                     </TabsTrigger>
@@ -68,7 +70,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 w-6 p-0 flex-shrink-0"
+                    className="h-6 w-6 p-0 flex-shrink-0 ml-2"
                     title="Hide Support"
                     onClick={() => setShowOutline(false)}
                   >
@@ -76,7 +78,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                   </Button>
                 </div>
                 
-                <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0">
+                <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0 border border-gray-200 border-t-0 bg-white p-4 rounded-b-md">
                   <ul className="space-y-3 text-xs">
                     {outline.map((section, index) => (
                       <li key={index}>
@@ -91,7 +93,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                   </ul>
                 </TabsContent>
                 
-                <TabsContent value="expressions" className="flex-1 overflow-y-auto mt-0">
+                <TabsContent value="expressions" className="flex-1 overflow-y-auto mt-0 border border-gray-200 border-t-0 bg-white p-4 rounded-b-md">
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-3 text-sm">Useful Expressions - Các cách diễn đạt hữu ích</h4>
                     <p className="text-xs mb-3 text-gray-600">Các cách diễn đạt hữu ích có thể dùng trong bài viết</p>
