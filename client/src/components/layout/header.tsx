@@ -61,10 +61,12 @@ export default function Header() {
         
         {/* User Actions */}
         <div className="flex items-center gap-3">
-          <button className="bg-white hover:bg-gray-50 text-teal-700 hover:text-teal-800 font-semibold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 text-sm whitespace-nowrap border border-teal-200 hover:border-teal-300">
-            <User size={16} className="text-teal-600" />
-            <span className="hidden sm:inline">Login</span>
-          </button>
+          <Link href="/login">
+            <button className={`bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 text-sm whitespace-nowrap ${location === "/login" ? "ring-2 ring-emerald-300 ring-offset-2 ring-offset-teal-700" : ""}`}>
+              <User size={16} className="text-emerald-100" />
+              <span className="hidden sm:inline">Login</span>
+            </button>
+          </Link>
           
           {/* Mobile Menu Toggle - Shows only on small screens */}
           <button 
@@ -126,13 +128,15 @@ export default function Header() {
             
             {/* Authentication options for mobile */}
             <div className="pt-3 mt-2 border-t border-teal-600/50">
-              <button 
-                className="w-full bg-white hover:bg-gray-50 text-teal-700 hover:text-teal-800 font-semibold py-2.5 px-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 border border-teal-200 hover:border-teal-300"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <User size={16} className="text-teal-600" />
-                Login
-              </button>
+              <Link href="/login">
+                <button 
+                  className={`w-full bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold py-2.5 px-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 ${location === "/login" ? "ring-2 ring-emerald-300" : ""}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <User size={16} className="text-emerald-100" />
+                  Login
+                </button>
+              </Link>
             </div>
           </nav>
         </div>
