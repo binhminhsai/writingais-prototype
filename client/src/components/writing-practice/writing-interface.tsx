@@ -43,118 +43,112 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
   return (
     <div className="h-full flex flex-col">
-      <Card className="flex flex-col flex-1 h-full">
-        <CardContent className="py-2 px-3 flex-1 overflow-y-auto">
-          <div className="h-full w-full">
-            {showOutline ? (
-              <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
-                <div className="flex items-center justify-between mb-0">
-                  <TabsList className="w-full flex gap-0 bg-transparent p-0 border-0 flex-1 mr-2 border-b border-gray-200">
-                    <TabsTrigger 
-                      value="outline" 
-                      className="flex-1 text-sm py-3 px-4 font-medium rounded-t-md border-l border-t border-r border-gray-200 transition-all
-                                bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-b-white data-[state=active]:-mb-px data-[state=active]:z-10
-                                data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
-                    >
-                      Suggested Outline
-                    </TabsTrigger>
-                    <TabsTrigger 
-                      value="expressions" 
-                      className="flex-1 text-sm py-3 px-4 font-medium rounded-t-md border-l border-t border-r border-gray-200 transition-all
-                                bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-b-white data-[state=active]:-mb-px data-[state=active]:z-10
-                                data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
-                    >
-                      Useful Expressions
-                    </TabsTrigger>
-                  </TabsList>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-6 w-6 p-0 flex-shrink-0 ml-2"
-                    title="Hide Support"
-                    onClick={() => setShowOutline(false)}
-                  >
-                    <EyeOff className="h-3 w-3" />
-                  </Button>
-                </div>
-                
-                <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0 border border-gray-200 border-t-0 bg-white p-4 rounded-b-md">
-                  <ul className="space-y-3 text-xs">
-                    {outline.map((section, index) => (
-                      <li key={index}>
-                        <span className="font-medium text-sm text-gray-700">{section.title}:</span>
-                        <ul className="pl-3 mt-1.5 space-y-2 list-disc">
-                          {section.points.map((point, pointIndex) => (
-                            <li key={pointIndex} className="leading-relaxed">{point}</li>
-                          ))}
-                        </ul>
-                      </li>
+      {showOutline ? (
+        <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
+          <div className="flex items-center justify-between">
+            <TabsList className="flex gap-0 bg-transparent p-0 border-0">
+              <TabsTrigger 
+                value="outline" 
+                className="text-sm py-3 px-6 font-medium rounded-t-md border-l border-t border-r border-gray-200 transition-all
+                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-b-white data-[state=active]:-mb-px data-[state=active]:z-10
+                          data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
+              >
+                Suggested Outline
+              </TabsTrigger>
+              <TabsTrigger 
+                value="expressions" 
+                className="text-sm py-3 px-6 font-medium rounded-t-md border-l border-t border-r border-gray-200 transition-all
+                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-b-white data-[state=active]:-mb-px data-[state=active]:z-10
+                          data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
+              >
+                Useful Expressions
+              </TabsTrigger>
+            </TabsList>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-8 w-8 p-0 flex-shrink-0 ml-4"
+              title="Hide Support"
+              onClick={() => setShowOutline(false)}
+            >
+              <EyeOff className="h-4 w-4" />
+            </Button>
+          </div>
+          
+          <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0 border border-gray-200 border-t-0 bg-white p-4">
+            <ul className="space-y-3 text-xs">
+              {outline.map((section, index) => (
+                <li key={index}>
+                  <span className="font-medium text-sm text-gray-700">{section.title}:</span>
+                  <ul className="pl-3 mt-1.5 space-y-2 list-disc">
+                    {section.points.map((point, pointIndex) => (
+                      <li key={pointIndex} className="leading-relaxed">{point}</li>
                     ))}
                   </ul>
-                </TabsContent>
-                
-                <TabsContent value="expressions" className="flex-1 overflow-y-auto mt-0 border border-gray-200 border-t-0 bg-white p-4 rounded-b-md">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-3 text-sm">Useful Expressions - Các cách diễn đạt hữu ích</h4>
-                    <p className="text-xs mb-3 text-gray-600">Các cách diễn đạt hữu ích có thể dùng trong bài viết</p>
-                    
-                    <Accordion type="single" collapsible className="w-full">
-                      {phraseCategories.map((category, index) => {
-                        const structuredPhrases = getStructuredPhrases();
-                        const phrases = structuredPhrases[category.id as keyof typeof structuredPhrases] || [];
-                        return (
-                          <AccordionItem key={category.id} value={category.id}>
-                            <AccordionTrigger className="text-sm font-medium py-2 hover:no-underline">
-                              {index + 1}. {category.name}
-                            </AccordionTrigger>
-                            <AccordionContent>
-                              <p className="text-xs text-gray-600 mb-2">{category.description}</p>
-                              <div className="flex flex-wrap gap-2">
-                                {Array.isArray(phrases) && phrases.map((phrase: string, phraseIndex: number) => (
-                                  <TooltipProvider key={`${category.id}-${phraseIndex}`}>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Badge 
-                                          variant="outline"
-                                          className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1.5 text-xs border-blue-100 cursor-pointer"
-                                        >
-                                          {phrase}
-                                        </Badge>
-                                      </TooltipTrigger>
-                                      <TooltipContent className="p-2">
-                                        <div className="text-sm">
-                                          <p><span className="font-medium">Nghĩa:</span> Cụm từ: {phrase}</p>
-                                        </div>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
-                                ))}
-                              </div>
-                            </AccordionContent>
-                          </AccordionItem>
-                        );
-                      })}
-                    </Accordion>
-                  </div>
-                </TabsContent>
-              </Tabs>
-            ) : (
-              <div className="flex flex-col justify-center items-center h-full w-full">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="mb-4"
-                  onClick={() => setShowOutline(true)}
-                >
-                  <Eye className="h-3 w-3 mr-1" /> Show Support
-                </Button>
-                <p className="text-gray-700 font-medium text-base mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
-                <p className="text-primary font-medium text-sm text-center">Good things take time. 😉</p>
-              </div>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+                </li>
+              ))}
+            </ul>
+          </TabsContent>
+          
+          <TabsContent value="expressions" className="flex-1 overflow-y-auto mt-0 border border-gray-200 border-t-0 bg-white p-4">
+            <div>
+              <h4 className="font-semibold text-gray-800 mb-3 text-sm">Useful Expressions - Các cách diễn đạt hữu ích</h4>
+              <p className="text-xs mb-3 text-gray-600">Các cách diễn đạt hữu ích có thể dùng trong bài viết</p>
+              
+              <Accordion type="single" collapsible className="w-full">
+                {phraseCategories.map((category, index) => {
+                  const structuredPhrases = getStructuredPhrases();
+                  const phrases = structuredPhrases[category.id as keyof typeof structuredPhrases] || [];
+                  return (
+                    <AccordionItem key={category.id} value={category.id}>
+                      <AccordionTrigger className="text-sm font-medium py-2 hover:no-underline">
+                        {index + 1}. {category.name}
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-xs text-gray-600 mb-2">{category.description}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {Array.isArray(phrases) && phrases.map((phrase: string, phraseIndex: number) => (
+                            <TooltipProvider key={`${category.id}-${phraseIndex}`}>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Badge 
+                                    variant="outline"
+                                    className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1.5 text-xs border-blue-100 cursor-pointer"
+                                  >
+                                    {phrase}
+                                  </Badge>
+                                </TooltipTrigger>
+                                <TooltipContent className="p-2">
+                                  <div className="text-sm">
+                                    <p><span className="font-medium">Nghĩa:</span> Cụm từ: {phrase}</p>
+                                  </div>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
+              </Accordion>
+            </div>
+          </TabsContent>
+        </Tabs>
+      ) : (
+        <div className="flex flex-col justify-center items-center h-full w-full bg-gray-50 border border-gray-200 rounded-md p-8">
+          <Button
+            variant="outline"
+            size="sm"
+            className="mb-4"
+            onClick={() => setShowOutline(true)}
+          >
+            <Eye className="h-3 w-3 mr-1" /> Show Support
+          </Button>
+          <p className="text-gray-700 font-medium text-base mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
+          <p className="text-primary font-medium text-sm text-center">Good things take time. 😉</p>
+        </div>
+      )}
     </div>
   );
 }
