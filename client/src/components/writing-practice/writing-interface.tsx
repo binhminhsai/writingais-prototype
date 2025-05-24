@@ -44,7 +44,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
   return (
     <div className="h-full flex flex-col">
       {showOutline ? (
-        <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
+        <Tabs defaultValue="outline" className="w-full h-full flex flex-col" style={{ minHeight: '450px' }}>
           <div className="mb-4 relative">
             <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
               <TabsTrigger 
@@ -70,7 +70,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
           <TabsContent 
             value="outline" 
-            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md max-h-[400px]"
+            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md h-full"
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
@@ -137,7 +137,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
           <TabsContent 
             value="expressions" 
-            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md max-h-[400px]"
+            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md h-full"
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
