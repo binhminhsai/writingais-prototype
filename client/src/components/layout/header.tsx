@@ -10,16 +10,16 @@ export default function Header() {
   
   return (
     <header className="bg-gradient-to-r from-teal-600 via-teal-700 to-teal-600 text-white shadow-lg mb-2 border-b border-teal-500/30">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         {/* Logo/Website Name */}
         <Link href="/">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2">
             <img 
               src={logoImage} 
               alt="VAI Logo" 
-              className="w-10 h-10 object-contain filter brightness-110"
+              className="w-8 h-8 object-contain filter brightness-110"
             />
-            <h1 className="text-2xl font-bold cursor-pointer whitespace-nowrap bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h1 className="text-xl font-bold cursor-pointer whitespace-nowrap bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Writing AI-Hub
             </h1>
           </div>
