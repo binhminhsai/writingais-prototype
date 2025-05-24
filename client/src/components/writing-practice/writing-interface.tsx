@@ -45,39 +45,31 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
     <div className="h-full flex flex-col">
       {showOutline ? (
         <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
-          <div className="flex items-end justify-between border-b-0 relative">
-            <TabsList className="flex w-full bg-transparent border-0 p-0 gap-1">
+          <div className="mb-4 relative">
+            <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
               <TabsTrigger 
                 value="outline" 
-                className="text-base md:text-lg lg:text-xl py-4 md:py-6 px-6 md:px-12 lg:px-16 font-medium rounded-t-lg transition-all relative overflow-hidden
-                        bg-gradient-to-b from-white to-gray-50 
+                className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
                         hover:bg-gray-50
-                        data-[state=active]:border-t-2 data-[state=active]:border-t-primary data-[state=active]:text-primary 
-                        data-[state=active]:font-bold data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.1)]"
+                        data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  <Layers className="h-4 w-4" />
-                  <span>Suggested Outline</span>
-                </span>
+                <Layers className="h-4 w-4" />
+                Suggested Outline
               </TabsTrigger>
               <TabsTrigger 
                 value="expressions" 
-                className="text-base md:text-lg lg:text-xl py-4 md:py-6 px-6 md:px-12 lg:px-16 font-medium rounded-t-lg transition-all relative overflow-hidden
-                        bg-gradient-to-b from-white to-gray-50
+                className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
                         hover:bg-gray-50
-                        data-[state=active]:border-t-2 data-[state=active]:border-t-primary data-[state=active]:text-primary
-                        data-[state=active]:font-bold data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.1)]"
+                        data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  <Smile className="h-4 w-4" />
-                  <span>Useful Expressions</span>
-                </span>
+                <Smile className="h-4 w-4" />
+                Useful Expressions
               </TabsTrigger>
             </TabsList>
             <Button
               variant="outline"
               size="sm"
-              className="h-8 w-8 p-0 flex-shrink-0 absolute right-2 top-2 rounded-full bg-white hover:bg-gray-100 border border-gray-200 shadow-sm z-20"
+              className="h-8 w-8 p-0 flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white hover:bg-gray-100 border border-gray-200 shadow-sm z-20"
               title="Hide Support"
               onClick={() => setShowOutline(false)}
             >
