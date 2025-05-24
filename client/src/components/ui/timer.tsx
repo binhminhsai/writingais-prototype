@@ -55,26 +55,22 @@ export function Timer({ time, onTimeSelect, isRunning = false }: TimerProps) {
             onValueChange={setSelectedTime}
             className="flex flex-col space-y-4"
           >
-            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
-              <RadioGroupItem value="20" id="time-20" />
-              <Label htmlFor="time-20" className="cursor-pointer">20 minutes</Label>
-            </div>
-            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
-              <RadioGroupItem value="30" id="time-30" />
-              <Label htmlFor="time-30" className="cursor-pointer">30 minutes</Label>
-            </div>
-            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
-              <RadioGroupItem value="40" id="time-40" />
-              <Label htmlFor="time-40" className="cursor-pointer">40 minutes</Label>
-            </div>
-            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
-              <RadioGroupItem value="60" id="time-60" />
-              <Label htmlFor="time-60" className="cursor-pointer">60 minutes</Label>
-            </div>
-            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
-              <RadioGroupItem value="0" id="time-0" />
-              <Label htmlFor="time-0" className="cursor-pointer">No time limit</Label>
-            </div>
+            {[
+              { value: "20", label: "20 minutes" },
+              { value: "30", label: "30 minutes" },
+              { value: "40", label: "40 minutes" },
+              { value: "60", label: "60 minutes" },
+              { value: "0", label: "No time limit" }
+            ].map(({ value, label }) => (
+              <div 
+                key={value}
+                className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer"
+                onClick={() => setSelectedTime(value)}
+              >
+                <RadioGroupItem value={value} id={`time-${value}`} checked={selectedTime === value} />
+                <Label htmlFor={`time-${value}`} className="cursor-pointer w-full">{label}</Label>
+              </div>
+            ))}
           </RadioGroup>
         </div>
         <Button 
