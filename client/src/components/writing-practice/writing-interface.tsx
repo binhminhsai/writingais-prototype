@@ -46,10 +46,10 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
       {showOutline ? (
         <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
           <div className="flex items-end justify-between border-b border-gray-200">
-            <TabsList className="flex gap-0 bg-transparent p-0 border-0">
+            <TabsList className="flex bg-transparent border-0">
               <TabsTrigger 
                   value="outline" 
-                  className="text-2xl py-8 px-16 font-semibold rounded-t-lg border-l border-t border-r border-gray-200 transition-all
+                  className="text-2xl py-8 px-20 font-semibold rounded-t-lg border-l border-t border-r border-gray-200 transition-all
                           bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-transparent data-[state=active]:-mb-px data-[state=active]:z-10
                           data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-transparent"
                 >
@@ -57,7 +57,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 </TabsTrigger>
               <TabsTrigger 
                   value="expressions" 
-                  className="text-2xl py-8 px-16 font-semibold rounded-t-lg border-l border-t border-r border-gray-200 transition-all
+                  className="text-2xl py-8 px-20 font-semibold rounded-t-lg border-l border-t border-r border-gray-200 transition-all
                           bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-transparent data-[state=active]:-mb-px data-[state=active]:z-10
                           data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-transparent"
                 >
