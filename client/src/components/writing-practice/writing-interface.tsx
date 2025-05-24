@@ -454,21 +454,21 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             {displayedVocabWords.map((word, index) => (
                 <div 
                   key={`word-${index}`}
-                  className="p-3 rounded-lg border border-primary/30 bg-primary/5 h-full shadow-sm hover:shadow-md transition-shadow"
+                  className="p-2.5 rounded-lg border border-primary/30 bg-primary/5 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="flex flex-wrap items-center gap-1.5 mb-2">
-                    <span className="font-semibold text-base text-primary">{word.word}</span>
-                    <div className="text-xs font-medium px-2 py-0.5 bg-gray-50 border border-gray-100 rounded-md">
+                  <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                    <span className="font-semibold text-sm text-primary">{word.word}</span>
+                    <div className="text-xs font-medium px-1.5 py-0.5 bg-teal-100 text-teal-700 rounded-full">
                       {word.partOfSpeech}
                     </div>
-                    <div className="text-xs px-2 py-0.5 border border-gray-100 rounded-md">
+                    <div className="text-xs px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded-full">
                       {word.difficulty}
                     </div>
                   </div>
-                  <p className="text-xs text-gray-700 mb-1.5">
+                  <p className="text-xs text-gray-700 mb-1">
                     <span className="font-medium">Meaning:</span> {word.meaning}
                   </p>
-                  <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1.5 mt-1.5">
+                  <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
                     <span className="font-medium not-italic">Example:</span> {word.example}
                   </p>
                 </div>
@@ -517,21 +517,21 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             {displayedPhraseWords.map((phrase, index) => (
                 <div 
                   key={`phrase-${index}`}
-                  className="p-3 rounded-lg border border-primary/30 bg-primary/5 h-full shadow-sm hover:shadow-md transition-shadow"
+                  className="p-2.5 rounded-lg border border-primary/30 bg-primary/5 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <div className="flex flex-wrap items-center gap-1.5 mb-2">
-                    <span className="font-semibold text-base text-primary">{phrase.word}</span>
-                    <div className="text-xs font-medium px-2 py-0.5 bg-gray-50 border border-gray-100 rounded-md">
+                  <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                    <span className="font-semibold text-sm text-primary">{phrase.word}</span>
+                    <div className="text-xs font-medium px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-full">
                       Collocation
                     </div>
-                    <div className="text-xs px-2 py-0.5 border border-gray-100 rounded-md">
+                    <div className="text-xs px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded-full">
                       {phrase.difficulty}
                     </div>
                   </div>
-                  <p className="text-xs text-gray-700 mb-1.5">
+                  <p className="text-xs text-gray-700 mb-1">
                     <span className="font-medium">Meaning:</span> {phrase.meaning}
                   </p>
-                  <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1.5 mt-1.5">
+                  <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
                     <span className="font-medium not-italic">Example:</span> {phrase.example}
                   </p>
                 </div>
