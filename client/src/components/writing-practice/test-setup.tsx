@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sparkles, Shuffle } from "lucide-react";
+import { Sparkles, Shuffle, AlertTriangle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
@@ -191,7 +191,10 @@ export function TestSetup({ onStart }: TestSetupProps) {
         {/* Error Message */}
         {errorMessage && (
           <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-700 text-sm font-medium">{errorMessage}</p>
+            <p className="text-red-700 text-sm font-medium flex items-center">
+              <AlertTriangle className="h-4 w-4 mr-2" />
+              {errorMessage}
+            </p>
           </div>
         )}
         
