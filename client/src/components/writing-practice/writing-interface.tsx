@@ -66,38 +66,78 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 Useful Expressions
               </TabsTrigger>
             </TabsList>
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-8 w-8 p-0 flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white hover:bg-gray-100 border border-gray-200 shadow-sm z-20"
-              title="Hide Support"
-              onClick={() => setShowOutline(false)}
-            >
-              <EyeOff className="h-3.5 w-3.5" />
-            </Button>
           </div>
 
           <TabsContent 
             value="outline" 
-            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md max-h-[400px]"
           >
-            <ul className="space-y-4 text-xs">
-              {outline.map((section, index) => (
-                <li key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                  <span className="font-medium text-sm text-primary block mb-2">{section.title}:</span>
-                  <ul className="pl-4 space-y-2 list-disc">
-                    {section.points.map((point, pointIndex) => (
-                      <li key={pointIndex} className="leading-relaxed text-gray-700">{point}</li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
+                <Layers className="h-4 w-4" />
+                Suggested Outline - Đề xuất cấu trúc bài viết
+              </h4>
+              <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
+                Cấu trúc đề xuất giúp bạn tổ chức ý tưởng và viết bài tốt hơn
+              </p>
+
+              <Accordion type="single" collapsible className="w-full space-y-2">
+                {outline.map((section, index) => (
+                  <AccordionItem 
+                    key={`outline-${index}`} 
+                    value={`section-${index}`}
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          {index + 1}
+                        </span>
+                        {section.title}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <ul className="pl-4 space-y-2 list-disc">
+                        {section.points.map((point, pointIndex) => (
+                          <li key={pointIndex} className="text-xs leading-relaxed text-gray-700">{point}</li>
+                        ))}
+                      </ul>
+                      {index === 0 && (
+                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                          <p className="mb-2 font-medium text-primary">Sample Introduction:</p>
+                          <p className="mb-2">There is an ongoing debate about what drives individuals to commit crimes. Some argue that socioeconomic factors, such as poverty and social inequality, are the primary causes, while others attribute criminal behavior to an individual's inherent bad nature. This essay will examine both perspectives before offering my own viewpoint.</p>
+                        </div>
+                      )}
+                      {index === 1 && (
+                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                          <p className="mb-2 font-medium text-primary">Sample Body Paragraph:</p>
+                          <p className="mb-2">Advocates of the view that crime stems from poverty and social problems emphasize the significant influence of external circumstances. When people lack access to basic necessities like food, shelter, or healthcare, they may feel compelled to turn to illegal activities to survive. Moreover, social challenges such as unemployment, limited education, and systemic discrimination can foster an environment where crime appears to be the only option.</p>
+                        </div>
+                      )}
+                      {index === 2 && (
+                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                          <p className="mb-2 font-medium text-primary">Sample Body Paragraph:</p>
+                          <p className="mb-2">Conversely, others contend that criminal behavior arises from an individual's innate bad nature. They argue that some people are predisposed to crime due to personality traits or moral shortcomings, irrespective of their financial situation. This is evident in cases where wealthy individuals commit crimes like fraud or embezzlement, driven not by need but by greed or a lack of ethical restraint.</p>
+                        </div>
+                      )}
+                      {index === 3 && (
+                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                          <p className="mb-2 font-medium text-primary">Sample Conclusion:</p>
+                          <p className="mb-2">In conclusion, the causes of crime are complex and multifaceted, involving both socioeconomic factors and individual characteristics. While poverty and social inequality undeniably contribute to criminal activity, the influence of personal nature cannot be overlooked. I believe that a balanced approach, addressing both societal challenges and individual accountability, is essential to effectively reduce crime.</p>
+                        </div>
+                      )}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </TabsContent>
 
           <TabsContent 
             value="expressions" 
-            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md max-h-[400px]"
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
@@ -137,12 +177,12 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                                 <TooltipTrigger asChild>
                                   <Badge 
                                     variant="outline"
-                                    className="bg-blue-50 whitespace-normal text-wrap my-0.5 p-2 text-xs border-blue-100 hover:bg-blue-100 transition-colors cursor-pointer"
+                                    className="bg-primary/5 whitespace-normal text-wrap my-0.5 p-2 text-xs border-primary/20 hover:bg-primary/10 transition-colors cursor-pointer"
                                   >
                                     {phrase}
                                   </Badge>
                                 </TooltipTrigger>
-                                <TooltipContent className="p-2 bg-blue-50 border-blue-200">
+                                <TooltipContent className="p-2 bg-primary/5 border-primary/20">
                                   <div className="text-sm">
                                     <p><span className="font-medium">Nghĩa:</span> Cụm từ: {phrase}</p>
                                   </div>
