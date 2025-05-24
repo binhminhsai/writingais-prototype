@@ -70,7 +70,8 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
           <TabsContent 
             value="outline" 
-            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md h-full"
+            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+            style={{ height: '450px' }}
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
@@ -124,8 +125,14 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       )}
                       {index === 3 && (
                         <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                          <p className="mb-2 font-medium text-primary">Sample Body Paragraph 3 (optional):</p>
+                          <p className="mb-2">Another key factor influencing criminal behavior is the role of education and upbringing. Studies show that individuals raised in environments without adequate education or positive role models are more prone to criminal activities. For example, children experiencing neglect or violence at home may develop aggressive behaviors, while limited access to quality education can hinder lawful job opportunities, pushing them toward crime. Additionally, untreated mental health issues, often linked to poor upbringing, can further contribute. This highlights the need for early intervention and robust support systems to address these root causes and prevent criminal tendencies.</p>
+                        </div>
+                      )}
+                      {index === 4 && (
+                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
                           <p className="mb-2 font-medium text-primary">Sample Conclusion:</p>
-                          <p className="mb-2">In conclusion, the causes of crime are complex and multifaceted, involving both socioeconomic factors and individual characteristics. While poverty and social inequality undeniably contribute to criminal activity, the influence of personal nature cannot be overlooked. I believe that a balanced approach, addressing both societal challenges and individual accountability, is essential to effectively reduce crime.</p>
+                          <p className="mb-2">In conclusion, crime stems from multiple causes, including socioeconomic conditions, individual traits, and the impact of education and upbringing. While poverty and personal nature significantly contribute, the effects of early life experiences and mental well-being are equally critical. Tackling crime requires a holistic strategy that not only addresses economic and personal factors but also enhances education and support systems to foster positive development and reduce criminal behavior effectively.</p>
                         </div>
                       )}
                     </AccordionContent>
@@ -137,7 +144,8 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
           <TabsContent 
             value="expressions" 
-            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md h-full"
+            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+            style={{ height: '450px' }}
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
