@@ -61,8 +61,8 @@ export default function Header() {
         
         {/* User Actions */}
         <div className="flex items-center gap-3">
-          <button className="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm whitespace-nowrap border-2 border-amber-400/50 hover:border-amber-300 transform hover:scale-105">
-            <User size={16} className="text-amber-100" />
+          <button className="bg-white hover:bg-gray-50 text-teal-700 hover:text-teal-800 font-semibold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 text-sm whitespace-nowrap border border-teal-200 hover:border-teal-300">
+            <User size={16} className="text-teal-600" />
             <span className="hidden sm:inline">Login</span>
           </button>
           
@@ -127,10 +127,10 @@ export default function Header() {
             {/* Authentication options for mobile */}
             <div className="pt-3 mt-2 border-t border-teal-600/50">
               <button 
-                className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-2.5 px-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 border-2 border-orange-400/50"
+                className="w-full bg-white hover:bg-gray-50 text-teal-700 hover:text-teal-800 font-semibold py-2.5 px-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 border border-teal-200 hover:border-teal-300"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <User size={16} className="text-orange-100" />
+                <User size={16} className="text-teal-600" />
                 Login
               </button>
             </div>
