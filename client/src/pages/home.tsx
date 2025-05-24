@@ -86,18 +86,26 @@ export default function Home() {
         </Card>
       </div>
 
-      <div className="bg-teal-50 rounded-lg p-8 text-center">
-        <div className="flex items-center justify-center mb-4">
-          <Medal className="h-8 w-8 text-yellow-500 mr-2" />
-          <h2 className="text-2xl font-bold text-gray-900">Premium Writing Assistant</h2>
+      <div className="bg-gradient-to-br from-teal-50 via-primary/5 to-yellow-50 rounded-2xl p-10 text-center transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border border-teal-100/50 relative overflow-hidden group">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-yellow-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="relative">
+          <div className="flex items-center justify-center mb-6">
+            <div className="bg-gradient-to-br from-yellow-200 to-yellow-400 p-4 rounded-2xl shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+              <Medal className="h-10 w-10 text-yellow-700" />
+            </div>
+            <h2 className="text-3xl font-bold ml-4 bg-gradient-to-r from-primary to-teal-600 bg-clip-text text-transparent">Premium Writing Assistant</h2>
+          </div>
+          <p className="text-gray-700 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+            Get advanced features with our premium plan: detailed essay analysis,
+            personalized improvement suggestions, and professional evaluation.
+          </p>
+          <Button 
+            className="bg-gradient-to-r from-primary to-teal-600 hover:from-teal-600 hover:to-primary text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-auto transform hover:scale-105" 
+            disabled
+          >
+            Upgrade to Premium
+          </Button>
         </div>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-6">
-          Get advanced features with our premium plan: detailed essay analysis,
-          personalized improvement suggestions, and professional evaluation.
-        </p>
-        <Button className="bg-gradient-to-r from-teal-500 to-primary hover:opacity-90" disabled>
-          Upgrade to Premium
-        </Button>
       </div>
     </div>
   );
