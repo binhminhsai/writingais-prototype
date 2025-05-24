@@ -61,7 +61,7 @@ export default function Header() {
         
         {/* User Actions */}
         <div className="flex items-center gap-3">
-          <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm whitespace-nowrap border-2 border-orange-400/50 hover:border-orange-300 transform hover:scale-105">
+          <button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 text-sm whitespace-nowrap border-2 border-purple-400/50 hover:border-purple-300 transform hover:scale-105">
             <User size={16} className="text-orange-100" />
             <span className="hidden sm:inline">Login</span>
           </button>
