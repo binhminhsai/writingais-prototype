@@ -86,16 +86,21 @@ export default function Home() {
         </Card>
       </div>
 
-      <div className="bg-teal-50 rounded-lg p-8 text-center">
+      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-8 text-center border border-purple-100 shadow-lg hover:shadow-xl transition-all duration-300">
         <div className="flex items-center justify-center mb-4">
-          <Medal className="h-8 w-8 text-yellow-500 mr-2" />
-          <h2 className="text-2xl font-bold text-gray-900">Premium Writing Assistant</h2>
+          <div className="p-3 bg-yellow-100 rounded-full mr-3 transform group-hover:rotate-12 transition-transform duration-300">
+            <Medal className="h-8 w-8 text-yellow-600" />
+          </div>
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-700 to-indigo-600 bg-clip-text text-transparent">Premium Writing Assistant</h2>
         </div>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-6">
+        <p className="text-gray-700 max-w-2xl mx-auto mb-6">
           Get advanced features with our premium plan: detailed essay analysis,
           personalized improvement suggestions, and professional evaluation.
         </p>
-        <Button className="bg-gradient-to-r from-teal-500 to-primary hover:opacity-90" disabled>
+        <Button 
+          className="bg-purple-600 hover:bg-purple-700 text-yellow-300 border-2 border-yellow-400 hover:border-yellow-300 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105" 
+          disabled
+        >
           Upgrade to Premium
         </Button>
       </div>
