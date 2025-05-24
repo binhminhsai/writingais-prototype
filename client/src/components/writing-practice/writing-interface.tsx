@@ -48,21 +48,21 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
           <div className="flex items-end justify-between border-b border-gray-200">
             <TabsList className="flex gap-0 bg-transparent p-0 border-0">
               <TabsTrigger 
-                value="outline" 
-                className="text-lg py-6 px-12 font-medium rounded-t-lg border-l border-t border-r border-gray-200 transition-all
+                  value="outline" 
+                  className="text-2xl py-8 px-16 font-semibold rounded-t-lg border-l border-t border-r border-gray-200 transition-all
                           bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-transparent data-[state=active]:-mb-px data-[state=active]:z-10
                           data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-transparent"
-              >
-                Suggested Outline
-              </TabsTrigger>
+                >
+                  Suggested Outline
+                </TabsTrigger>
               <TabsTrigger 
-                value="expressions" 
-                className="text-lg py-6 px-12 font-medium rounded-t-lg border-l border-t border-r border-gray-200 transition-all
+                  value="expressions" 
+                  className="text-2xl py-8 px-16 font-semibold rounded-t-lg border-l border-t border-r border-gray-200 transition-all
                           bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-transparent data-[state=active]:-mb-px data-[state=active]:z-10
                           data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-transparent"
-              >
-                Useful Expressions
-              </TabsTrigger>
+                >
+                  Useful Expressions
+                </TabsTrigger>
             </TabsList>
             <Button
               variant="ghost"
@@ -74,7 +74,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
               <EyeOff className="h-4 w-4" />
             </Button>
           </div>
-          
+
           <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0 border-l border-r border-b border-gray-200 bg-white p-4">
             <ul className="space-y-3 text-xs">
               {outline.map((section, index) => (
@@ -89,12 +89,12 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
               ))}
             </ul>
           </TabsContent>
-          
+
           <TabsContent value="expressions" className="flex-1 overflow-y-auto mt-0 border-l border-r border-b border-gray-200 bg-white p-4">
             <div>
               <h4 className="font-semibold text-gray-800 mb-3 text-sm">Useful Expressions - Các cách diễn đạt hữu ích</h4>
               <p className="text-xs mb-3 text-gray-600">Các cách diễn đạt hữu ích có thể dùng trong bài viết</p>
-              
+
               <Accordion type="single" collapsible className="w-full">
                 {phraseCategories.map((category, index) => {
                   const structuredPhrases = getStructuredPhrases();
