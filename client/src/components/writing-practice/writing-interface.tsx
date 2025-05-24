@@ -44,7 +44,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
   return (
     <div className="h-full flex flex-col">
       {showOutline ? (
-        <Tabs defaultValue="outline" className="w-full h-full flex flex-col" style={{ minHeight: '450px' }}>
+        <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
           <div className="mb-4 relative">
             <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
               <TabsTrigger 
@@ -71,7 +71,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
           <TabsContent 
             value="outline" 
             className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
-            style={{ height: '450px' }}
+            style={{ height: '500px' }}
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
@@ -145,7 +145,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
           <TabsContent 
             value="expressions" 
             className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
-            style={{ height: '450px' }}
+            style={{ height: '500px' }}
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
@@ -180,23 +180,13 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         <p className="text-xs text-gray-600 mb-3 italic bg-gray-50 p-2 rounded-md">{category.description}</p>
                         <div className="flex flex-wrap gap-1.5">
                           {Array.isArray(phrases) && phrases.map((phrase: string, phraseIndex: number) => (
-                            <TooltipProvider key={`${category.id}-${phraseIndex}`}>
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <Badge 
-                                    variant="outline"
-                                    className="bg-primary/5 whitespace-normal text-wrap my-0.5 p-2 text-xs border-primary/20 hover:bg-primary/10 transition-colors cursor-pointer"
-                                  >
-                                    {phrase}
-                                  </Badge>
-                                </TooltipTrigger>
-                                <TooltipContent className="p-2 bg-primary/5 border-primary/20">
-                                  <div className="text-sm">
-                                    <p><span className="font-medium">Nghĩa:</span> Cụm từ: {phrase}</p>
-                                  </div>
-                                </TooltipContent>
-                              </Tooltip>
-                            </TooltipProvider>
+                            <div 
+                              key={`${category.id}-${phraseIndex}`}
+                              className="text-xs p-2 bg-gray-50 border border-gray-100 rounded-md text-gray-700 whitespace-normal text-wrap my-0.5 hover:bg-gray-100 transition-colors cursor-pointer"
+                              title={`Nghĩa: Cụm từ: ${phrase}`}
+                            >
+                              {phrase}
+                            </div>
                           ))}
                         </div>
                       </AccordionContent>
@@ -464,12 +454,12 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 >
                   <div className="flex flex-wrap items-center gap-1.5 mb-2">
                     <span className="font-semibold text-base text-primary">{word.word}</span>
-                    <Badge className="text-xs font-medium px-2 py-0.5 bg-primary/10 text-primary hover:bg-primary/20">
+                    <div className="text-xs font-medium px-2 py-0.5 bg-gray-50 border border-gray-100 rounded-md">
                       {word.partOfSpeech}
-                    </Badge>
-                    <Badge variant="outline" className="text-xs px-2 py-0.5 border-primary/40">
+                    </div>
+                    <div className="text-xs px-2 py-0.5 border border-gray-100 rounded-md">
                       {word.difficulty}
-                    </Badge>
+                    </div>
                   </div>
                   <p className="text-xs text-gray-700 mb-1.5">
                     <span className="font-medium">Meaning:</span> {word.meaning}
@@ -527,12 +517,12 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 >
                   <div className="flex flex-wrap items-center gap-1.5 mb-2">
                     <span className="font-semibold text-base text-primary">{phrase.word}</span>
-                    <Badge className="text-xs font-medium px-2 py-0.5 bg-primary/10 text-primary hover:bg-primary/20">
+                    <div className="text-xs font-medium px-2 py-0.5 bg-gray-50 border border-gray-100 rounded-md">
                       Collocation
-                    </Badge>
-                    <Badge variant="outline" className="text-xs px-2 py-0.5 border-primary/40">
+                    </div>
+                    <div className="text-xs px-2 py-0.5 border border-gray-100 rounded-md">
                       {phrase.difficulty}
-                    </Badge>
+                    </div>
                   </div>
                   <p className="text-xs text-gray-700 mb-1.5">
                     <span className="font-medium">Meaning:</span> {phrase.meaning}
