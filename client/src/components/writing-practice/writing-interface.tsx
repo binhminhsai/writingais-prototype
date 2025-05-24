@@ -49,24 +49,18 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             {showOutline ? (
               <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
                 <div className="flex items-center justify-between mb-3">
-                  <TabsList className="h-10 items-center justify-center grid grid-cols-2 flex-1 mr-2 bg-gray-100 p-1 rounded-lg text-[#ffffff]">
+                  <TabsList className="w-full flex gap-3 bg-transparent p-0 border-0 flex-1 mr-2">
                     <TabsTrigger 
                       value="outline" 
-                      className="text-xs font-medium px-3 py-2 rounded-md transition-all duration-200
-                                data-[state=active]:bg-white data-[state=active]:shadow-sm 
-                                data-[state=active]:text-primary data-[state=active]:border-primary/20
-                                data-[state=inactive]:text-gray-600 data-[state=inactive]:hover:text-gray-800
-                                data-[state=inactive]:hover:bg-gray-50"
+                      className="flex-1 text-xs py-2 px-2 font-medium rounded-md border border-gray-200 transition-all
+                                bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
                     >
                       Suggested Outline
                     </TabsTrigger>
                     <TabsTrigger 
                       value="expressions" 
-                      className="text-xs font-medium px-3 py-2 rounded-md transition-all duration-200
-                                data-[state=active]:bg-white data-[state=active]:shadow-sm 
-                                data-[state=active]:text-primary data-[state=active]:border-primary/20
-                                data-[state=inactive]:text-gray-600 data-[state=inactive]:hover:text-gray-800
-                                data-[state=inactive]:hover:bg-gray-50"
+                      className="flex-1 text-xs py-2 px-2 font-medium rounded-md border border-gray-200 transition-all
+                                bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
                     >
                       Useful Expressions
                     </TabsTrigger>
