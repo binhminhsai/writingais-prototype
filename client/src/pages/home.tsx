@@ -98,9 +98,8 @@ export default function Home() {
           personalized improvement suggestions, and professional evaluation.
         </p>
         <Button 
-          className="bg-gradient-to-r from-purple-600 to-indigo-600 text-yellow-300 font-semibold text-lg px-8 py-6 h-auto border-2 border-yellow-400 shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200 transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-90" 
-          onClick={() => alert('Premium features coming soon!')}
-          disabled={false}
+          className="bg-purple-600 hover:bg-purple-700 text-yellow-300 border-2 border-yellow-400 hover:border-yellow-300 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105" 
+          disabled
         >
           Upgrade to Premium
         </Button>
