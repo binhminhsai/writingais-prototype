@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Clock } from "lucide-react";
 import {
@@ -28,14 +29,15 @@ export function Timer({ time, onTimeSelect, isRunning = false }: TimerProps) {
   }, [isRunning]);
 
   const handleConfirm = () => {
-    onTimeSelect?.(parseInt(selectedTime, 10));
+    const minutes = parseInt(selectedTime, 10);
+    onTimeSelect?.(minutes);
     setOpen(false);
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <div className="flex items-center bg-gray-100 px-2 py-0.5 rounded-md text-gray-600 cursor-pointer h-6">
+        <div className="flex items-center bg-gray-100 px-2 py-0.5 rounded-md text-gray-600 cursor-pointer h-6 hover:bg-gray-200 transition-colors">
           <Clock className="mr-1.5 h-3.5 w-3.5" />
           <span className="font-mono text-sm">{time}</span>
         </div>
@@ -53,29 +55,32 @@ export function Timer({ time, onTimeSelect, isRunning = false }: TimerProps) {
             onValueChange={setSelectedTime}
             className="flex flex-col space-y-4"
           >
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
               <RadioGroupItem value="20" id="time-20" />
-              <Label htmlFor="time-20">20 minutes</Label>
+              <Label htmlFor="time-20" className="cursor-pointer">20 minutes</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
               <RadioGroupItem value="30" id="time-30" />
-              <Label htmlFor="time-30">30 minutes</Label>
+              <Label htmlFor="time-30" className="cursor-pointer">30 minutes</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
               <RadioGroupItem value="40" id="time-40" />
-              <Label htmlFor="time-40">40 minutes</Label>
+              <Label htmlFor="time-40" className="cursor-pointer">40 minutes</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
               <RadioGroupItem value="60" id="time-60" />
-              <Label htmlFor="time-60">60 minutes</Label>
+              <Label htmlFor="time-60" className="cursor-pointer">60 minutes</Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded-md cursor-pointer">
               <RadioGroupItem value="0" id="time-0" />
-              <Label htmlFor="time-0">No time limit</Label>
+              <Label htmlFor="time-0" className="cursor-pointer">No time limit</Label>
             </div>
           </RadioGroup>
         </div>
-        <Button className="w-full" onClick={handleConfirm}>
+        <Button 
+          className="w-full bg-primary hover:bg-primary/90 transition-colors" 
+          onClick={handleConfirm}
+        >
           Confirm
         </Button>
       </DialogContent>
