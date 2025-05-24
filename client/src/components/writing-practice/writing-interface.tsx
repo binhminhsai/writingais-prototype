@@ -51,8 +51,9 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 value="outline" 
                 className="text-base md:text-lg lg:text-xl py-4 md:py-6 px-6 md:px-12 lg:px-16 font-medium rounded-t-lg transition-all relative overflow-hidden
                         bg-gradient-to-b from-white to-gray-50 
-                        data-[state=active]:from-primary/10 data-[state=active]:to-primary/5 
-                        data-[state=active]:text-primary data-[state=active]:border-t-2 data-[state=active]:border-t-primary
+                        hover:bg-gray-50
+                        data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 
+                        data-[state=active]:border-t-2 data-[state=active]:border-t-blue-400
                         data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.2)]"
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -64,8 +65,9 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 value="expressions" 
                 className="text-base md:text-lg lg:text-xl py-4 md:py-6 px-6 md:px-12 lg:px-16 font-medium rounded-t-lg transition-all relative overflow-hidden
                         bg-gradient-to-b from-white to-gray-50
-                        data-[state=active]:from-primary/10 data-[state=active]:to-primary/5
-                        data-[state=active]:text-primary data-[state=active]:border-t-2 data-[state=active]:border-t-primary
+                        hover:bg-gray-50
+                        data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 
+                        data-[state=active]:border-t-2 data-[state=active]:border-t-blue-400
                         data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.2)]"
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -381,8 +383,9 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             <TabsTrigger 
               value="vocabulary" 
               className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
-                      data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary/80 data-[state=active]:to-primary 
-                      data-[state=active]:text-white data-[state=active]:shadow-md"
+                      hover:bg-gray-50
+                      data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-b-2 
+                      data-[state=active]:border-blue-400 data-[state=active]:shadow-sm"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                 <path d="M12 20V4"></path><path d="M20 8h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path><path d="M4 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4"></path>
@@ -392,8 +395,9 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
             <TabsTrigger 
               value="phrases" 
               className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
-                      data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary/80 data-[state=active]:to-primary 
-                      data-[state=active]:text-white data-[state=active]:shadow-md"
+                      hover:bg-gray-50
+                      data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 data-[state=active]:border-b-2 
+                      data-[state=active]:border-blue-400 data-[state=active]:shadow-sm"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
