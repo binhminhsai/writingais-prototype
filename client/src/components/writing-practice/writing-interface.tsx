@@ -82,63 +82,65 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 Cấu trúc đề xuất giúp bạn tổ chức ý tưởng và viết bài tốt hơn
               </p>
 
-              <Accordion type="single" collapsible className="w-full space-y-2">
-                {outline.map((section, index) => (
-                  <AccordionItem 
-                    key={`outline-${index}`} 
-                    value={`section-${index}`}
-                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
-                  >
-                    <AccordionTrigger 
-                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+              <div className="overflow-y-auto" style={{ maxHeight: '430px' }}>
+                <Accordion type="single" collapsible className="w-full space-y-2">
+                  {outline.map((section, index) => (
+                    <AccordionItem 
+                      key={`outline-${index}`} 
+                      value={`section-${index}`}
+                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
                     >
-                      <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                          {index + 1}
+                      <AccordionTrigger 
+                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                      >
+                        <span className="flex items-center gap-2">
+                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                            {index + 1}
+                          </span>
+                          {section.title}
                         </span>
-                        {section.title}
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="p-3 bg-white">
-                      <ul className="pl-4 space-y-2 list-disc">
-                        {section.points.map((point, pointIndex) => (
-                          <li key={pointIndex} className="text-xs leading-relaxed text-gray-700">{point}</li>
-                        ))}
-                      </ul>
-                      {index === 0 && (
-                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                          <p className="mb-2 font-medium text-primary">Sample Introduction:</p>
-                          <p className="mb-2">There is an ongoing debate about what drives individuals to commit crimes. Some argue that socioeconomic factors, such as poverty and social inequality, are the primary causes, while others attribute criminal behavior to an individual's inherent bad nature. This essay will examine both perspectives before offering my own viewpoint.</p>
-                        </div>
-                      )}
-                      {index === 1 && (
-                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                          <p className="mb-2 font-medium text-primary">Sample Body Paragraph:</p>
-                          <p className="mb-2">Advocates of the view that crime stems from poverty and social problems emphasize the significant influence of external circumstances. When people lack access to basic necessities like food, shelter, or healthcare, they may feel compelled to turn to illegal activities to survive. Moreover, social challenges such as unemployment, limited education, and systemic discrimination can foster an environment where crime appears to be the only option.</p>
-                        </div>
-                      )}
-                      {index === 2 && (
-                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                          <p className="mb-2 font-medium text-primary">Sample Body Paragraph:</p>
-                          <p className="mb-2">Conversely, others contend that criminal behavior arises from an individual's innate bad nature. They argue that some people are predisposed to crime due to personality traits or moral shortcomings, irrespective of their financial situation. This is evident in cases where wealthy individuals commit crimes like fraud or embezzlement, driven not by need but by greed or a lack of ethical restraint.</p>
-                        </div>
-                      )}
-                      {index === 3 && (
-                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                          <p className="mb-2 font-medium text-primary">Sample Body Paragraph 3 (optional):</p>
-                          <p className="mb-2">Another key factor influencing criminal behavior is the role of education and upbringing. Studies show that individuals raised in environments without adequate education or positive role models are more prone to criminal activities. For example, children experiencing neglect or violence at home may develop aggressive behaviors, while limited access to quality education can hinder lawful job opportunities, pushing them toward crime. Additionally, untreated mental health issues, often linked to poor upbringing, can further contribute. This highlights the need for early intervention and robust support systems to address these root causes and prevent criminal tendencies.</p>
-                        </div>
-                      )}
-                      {index === 4 && (
-                        <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                          <p className="mb-2 font-medium text-primary">Sample Conclusion:</p>
-                          <p className="mb-2">In conclusion, crime stems from multiple causes, including socioeconomic conditions, individual traits, and the impact of education and upbringing. While poverty and personal nature significantly contribute, the effects of early life experiences and mental well-being are equally critical. Tackling crime requires a holistic strategy that not only addresses economic and personal factors but also enhances education and support systems to foster positive development and reduce criminal behavior effectively.</p>
-                        </div>
-                      )}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+                      </AccordionTrigger>
+                      <AccordionContent className="p-3 bg-white">
+                        <ul className="pl-4 space-y-2 list-disc">
+                          {section.points.map((point, pointIndex) => (
+                            <li key={pointIndex} className="text-xs leading-relaxed text-gray-700">{point}</li>
+                          ))}
+                        </ul>
+                        {index === 0 && (
+                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                            <p className="mb-2 font-medium text-primary">Sample Introduction:</p>
+                            <p className="mb-2">There is an ongoing debate about what drives individuals to commit crimes. Some argue that socioeconomic factors, such as poverty and social inequality, are the primary causes, while others attribute criminal behavior to an individual's inherent bad nature. This essay will examine both perspectives before offering my own viewpoint.</p>
+                          </div>
+                        )}
+                        {index === 1 && (
+                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                            <p className="mb-2 font-medium text-primary">Sample Body Paragraph:</p>
+                            <p className="mb-2">Advocates of the view that crime stems from poverty and social problems emphasize the significant influence of external circumstances. When people lack access to basic necessities like food, shelter, or healthcare, they may feel compelled to turn to illegal activities to survive. Moreover, social challenges such as unemployment, limited education, and systemic discrimination can foster an environment where crime appears to be the only option.</p>
+                          </div>
+                        )}
+                        {index === 2 && (
+                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                            <p className="mb-2 font-medium text-primary">Sample Body Paragraph:</p>
+                            <p className="mb-2">Conversely, others contend that criminal behavior arises from an individual's innate bad nature. They argue that some people are predisposed to crime due to personality traits or moral shortcomings, irrespective of their financial situation. This is evident in cases where wealthy individuals commit crimes like fraud or embezzlement, driven not by need but by greed or a lack of ethical restraint.</p>
+                          </div>
+                        )}
+                        {index === 3 && (
+                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                            <p className="mb-2 font-medium text-primary">Sample Body Paragraph 3 (optional):</p>
+                            <p className="mb-2">Another key factor influencing criminal behavior is the role of education and upbringing. Studies show that individuals raised in environments without adequate education or positive role models are more prone to criminal activities. For example, children experiencing neglect or violence at home may develop aggressive behaviors, while limited access to quality education can hinder lawful job opportunities, pushing them toward crime. Additionally, untreated mental health issues, often linked to poor upbringing, can further contribute. This highlights the need for early intervention and robust support systems to address these root causes and prevent criminal tendencies.</p>
+                          </div>
+                        )}
+                        {index === 4 && (
+                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                            <p className="mb-2 font-medium text-primary">Sample Conclusion:</p>
+                            <p className="mb-2">In conclusion, crime stems from multiple causes, including socioeconomic conditions, individual traits, and the impact of education and upbringing. While poverty and personal nature significantly contribute, the effects of early life experiences and mental well-being are equally critical. Tackling crime requires a holistic strategy that not only addresses economic and personal factors but also enhances education and support systems to foster positive development and reduce criminal behavior effectively.</p>
+                          </div>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
             </div>
           </TabsContent>
 
@@ -156,44 +158,46 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 Các cách diễn đạt hữu ích có thể dùng trong bài viết
               </p>
 
-              <Accordion type="single" collapsible className="w-full space-y-2">
-                {phraseCategories.map((category, index) => {
-                  const structuredPhrases = getStructuredPhrases();
-                  const phrases = structuredPhrases[category.id as keyof typeof structuredPhrases] || [];
-                  return (
-                    <AccordionItem 
-                      key={category.id} 
-                      value={category.id}
-                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
-                    >
-                      <AccordionTrigger 
-                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+              <div className="overflow-y-auto" style={{ maxHeight: '430px' }}>
+                <Accordion type="single" collapsible className="w-full space-y-2">
+                  {phraseCategories.map((category, index) => {
+                    const structuredPhrases = getStructuredPhrases();
+                    const phrases = structuredPhrases[category.id as keyof typeof structuredPhrases] || [];
+                    return (
+                      <AccordionItem 
+                        key={category.id} 
+                        value={category.id}
+                        className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
                       >
-                        <span className="flex items-center gap-2">
-                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                            {index + 1}
+                        <AccordionTrigger 
+                          className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                        >
+                          <span className="flex items-center gap-2">
+                            <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                              {index + 1}
+                            </span>
+                            {category.name}
                           </span>
-                          {category.name}
-                        </span>
-                      </AccordionTrigger>
-                      <AccordionContent className="p-3 bg-white">
-                        <p className="text-xs text-gray-600 mb-3 italic bg-gray-50 p-2 rounded-md">{category.description}</p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {Array.isArray(phrases) && phrases.map((phrase: string, phraseIndex: number) => (
-                            <div 
-                              key={`${category.id}-${phraseIndex}`}
-                              className="text-xs p-2 bg-gray-50 border border-gray-100 rounded-md text-gray-700 whitespace-normal text-wrap my-0.5 hover:bg-gray-100 transition-colors cursor-pointer"
-                              title={`Nghĩa: Cụm từ: ${phrase}`}
-                            >
-                              {phrase}
-                            </div>
-                          ))}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  );
-                })}
-              </Accordion>
+                        </AccordionTrigger>
+                        <AccordionContent className="p-3 bg-white">
+                          <p className="text-xs text-gray-600 mb-3 italic bg-gray-50 p-2 rounded-md">{category.description}</p>
+                          <div className="flex flex-wrap gap-1.5">
+                            {Array.isArray(phrases) && phrases.map((phrase: string, phraseIndex: number) => (
+                              <div 
+                                key={`${category.id}-${phraseIndex}`}
+                                className="text-xs p-2 bg-gray-50 border border-gray-100 rounded-md text-gray-700 whitespace-normal text-wrap my-0.5 hover:bg-gray-100 transition-colors cursor-pointer"
+                                title={`Nghĩa: Cụm từ: ${phrase}`}
+                              >
+                                {phrase}
+                              </div>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    );
+                  })}
+                </Accordion>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
