@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useState } from "react";
-import { PenSquare, User } from "lucide-react";
+import { User } from "lucide-react";
+import logoImage from "@assets/ChatGPT Image May 24, 2025, 09_40_14 PM.png";
 
 export default function Header() {
   // Add this to make header accessible from all pages
@@ -8,13 +9,17 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   return (
-    <header className="bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-md mb-2">
-      <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+    <header className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white shadow-lg mb-2 border-b border-slate-700">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo/Website Name */}
         <Link href="/">
-          <div className="flex items-center space-x-1.5">
-            <PenSquare size={20} className="text-teal-200" />
-            <h1 className="text-xl font-bold cursor-pointer whitespace-nowrap">
+          <div className="flex items-center space-x-3">
+            <img 
+              src={logoImage} 
+              alt="VAI Logo" 
+              className="w-10 h-10 object-contain filter brightness-110"
+            />
+            <h1 className="text-2xl font-bold cursor-pointer whitespace-nowrap bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Writing AI-Hub
             </h1>
           </div>
@@ -24,30 +29,30 @@ export default function Header() {
         <div className="flex-grow"></div>
         
         {/* Main Navigation - Desktop */}
-        <nav className="hidden lg:flex items-center mr-3">
-          <div className="flex items-center space-x-2">
+        <nav className="hidden lg:flex items-center mr-4">
+          <div className="flex items-center space-x-1">
             <Link href="/">
-              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${location === "/" ? "bg-slate-700 text-white border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-800"}`}>
                 Home
               </button>
             </Link>
             <Link href="/about">
-              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/about" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${location === "/about" ? "bg-slate-700 text-white border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-800"}`}>
                 About Us
               </button>
             </Link>
             <Link href="/writing-practice">
-              <button className={`w-36 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/writing-practice" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${location === "/writing-practice" ? "bg-slate-700 text-white border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-800"}`}>
                 Writing Practice
               </button>
             </Link>
             <Link href="/vocabulary">
-              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/vocabulary" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${location === "/vocabulary" ? "bg-slate-700 text-white border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-800"}`}>
                 Vocabulary
               </button>
             </Link>
             <Link href="/progress">
-              <button className={`w-24 h-9 px-3 rounded hover:bg-teal-500 transition-colors duration-200 text-sm ${location === "/progress" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white"}`}>
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${location === "/progress" ? "bg-slate-700 text-white border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-800"}`}>
                 Progress
               </button>
             </Link>
@@ -55,10 +60,10 @@ export default function Header() {
         </nav>
         
         {/* User Actions */}
-        <div className="flex items-center gap-2">
-          <button className="font-medium text-teal-700 bg-white p-1.5 px-3 rounded-md hover:bg-teal-50 hover:shadow-md transition-all duration-200 shadow-sm flex items-center gap-1.5 text-sm whitespace-nowrap">
-            <User size={14} className="text-teal-600" />
-            <span className="hidden md:inline">Login</span>
+        <div className="flex items-center gap-3">
+          <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2 text-sm whitespace-nowrap border border-blue-500 hover:border-blue-400">
+            <User size={16} className="text-blue-100" />
+            <span className="hidden sm:inline">Login</span>
           </button>
           
           {/* Mobile Menu Toggle - Shows only on small screens */}
@@ -76,11 +81,11 @@ export default function Header() {
       
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-teal-700 px-4 py-2 shadow-inner text-sm">
-          <nav className="flex flex-col space-y-1">
+        <div className="lg:hidden bg-slate-800 px-4 py-3 shadow-inner text-sm border-t border-slate-700">
+          <nav className="flex flex-col space-y-2">
             <Link href="/">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
+                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-200 ${location === "/" ? "bg-slate-700 text-white font-medium border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-700"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
@@ -88,7 +93,7 @@ export default function Header() {
             </Link>
             <Link href="/about">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/about" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
+                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-200 ${location === "/about" ? "bg-slate-700 text-white font-medium border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-700"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About Us
@@ -96,7 +101,7 @@ export default function Header() {
             </Link>
             <Link href="/writing-practice">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/writing-practice" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
+                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-200 ${location === "/writing-practice" ? "bg-slate-700 text-white font-medium border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-700"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Writing Practice
@@ -104,7 +109,7 @@ export default function Header() {
             </Link>
             <Link href="/vocabulary">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/vocabulary" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
+                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-200 ${location === "/vocabulary" ? "bg-slate-700 text-white font-medium border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-700"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Vocabulary
@@ -112,7 +117,7 @@ export default function Header() {
             </Link>
             <Link href="/progress">
               <button 
-                className={`w-full text-left py-1.5 px-2 rounded transition-all duration-200 ${location === "/progress" ? "bg-teal-500 text-white font-medium border border-white shadow-sm" : "text-white hover:bg-teal-500"}`}
+                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-200 ${location === "/progress" ? "bg-slate-700 text-white font-medium border border-slate-600 shadow-md" : "text-gray-300 hover:text-white hover:bg-slate-700"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Progress
@@ -120,12 +125,12 @@ export default function Header() {
             </Link>
             
             {/* Authentication options for mobile */}
-            <div className="pt-3 mt-2 border-t border-teal-600 flex flex-col space-y-2">
+            <div className="pt-3 mt-2 border-t border-slate-600">
               <button 
-                className="w-full text-left py-1.5 px-2 rounded bg-white text-teal-700 font-medium shadow-sm flex items-center gap-1.5"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-2.5 px-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2 border border-blue-500"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <User size={14} className="text-teal-600" />
+                <User size={16} className="text-blue-100" />
                 Login
               </button>
             </div>
