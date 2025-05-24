@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Shuffle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,7 +42,18 @@ export function TestSetup({ onStart }: TestSetupProps) {
 
   const handleGenerateTopic = () => {
     const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
+    if (!textareaValue.trim()) {
+      alert("Please enter some information in the Topic/Question field first.");
+      return;
+    }
     // Sử dụng với 2 tham số vì hàm generateRandomTopic chỉ nhận 2 tham số
+    const randomTopic = generateRandomTopic(testType, difficulty);
+    setTopic(randomTopic);
+    setFixedTestType(testType);
+  };
+
+  const handleRandomQuestion = () => {
+    // Tạo câu hỏi random hoàn toàn không cần input từ user
     const randomTopic = generateRandomTopic(testType, difficulty);
     setTopic(randomTopic);
     setFixedTestType(testType);
@@ -129,7 +140,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
 - Enter your own question and select the Using my question button to use your question."
           className="h-24"
         />
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
           <Button 
             variant="secondary" 
             size="sm"
@@ -145,12 +156,23 @@ export function TestSetup({ onStart }: TestSetupProps) {
             className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-6"
             onClick={() => {
               const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
-              if (textareaValue.trim()) {
-                setTopic(textareaValue);
+              if (!textareaValue.trim()) {
+                alert("Please enter your question in the Topic/Question field first.");
+                return;
               }
+              setTopic(textareaValue);
             }}
           >
             <span className="text-sm">Using my question</span>
+          </Button>
+          <Button 
+            variant="secondary"
+            size="sm" 
+            className="mt-2 w-[180px] h-9 bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center gap-2 px-6"
+            onClick={handleRandomQuestion}
+          >
+            <Shuffle className="h-3.5 w-3.5" />
+            <span className="text-sm">Random question</span>
           </Button>
         </div>
         {topic && (
