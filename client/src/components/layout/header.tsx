@@ -62,7 +62,7 @@ export default function Header() {
         {/* User Actions */}
         <div className="flex items-center gap-3">
           <Link href="/login">
-            <button className={`bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 text-sm whitespace-nowrap ${location === "/login" ? "ring-2 ring-yellow-300 ring-offset-2 ring-offset-teal-700" : ""}`}>
+            <button className={`bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 text-sm whitespace-nowrap ${location === "/login" ? "ring-2 ring-yellow-300 ring-offset-2 ring-offset-teal-700" : ""}`}>
               <User size={16} className="text-emerald-100" />
               <span className="hidden sm:inline">Login</span>
             </button>
