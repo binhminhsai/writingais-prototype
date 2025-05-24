@@ -39,13 +39,15 @@ export function TestSetup({ onStart }: TestSetupProps) {
   const [topic, setTopic] = useState("");
   const [fixedTestType, setFixedTestType] = useState<WritingTestType | null>(null);
   const [timeLimit, setTimeLimit] = useState(30);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleGenerateTopic = () => {
     const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
     if (!textareaValue.trim()) {
-      alert("Please enter some information in the Topic/Question field first.");
+      setErrorMessage("Vui lòng nhập Topic/Question trước khi nhấn nút Generate question");
       return;
     }
+    setErrorMessage("");
     // Sử dụng với 2 tham số vì hàm generateRandomTopic chỉ nhận 2 tham số
     const randomTopic = generateRandomTopic(testType, difficulty);
     setTopic(randomTopic);
@@ -54,6 +56,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
 
   const handleRandomQuestion = () => {
     // Tạo câu hỏi random hoàn toàn không cần input từ user
+    setErrorMessage("");
     const randomTopic = generateRandomTopic(testType, difficulty);
     setTopic(randomTopic);
     setFixedTestType(testType);
@@ -156,10 +159,19 @@ export function TestSetup({ onStart }: TestSetupProps) {
             className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-6"
             onClick={() => {
               const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
+              const wordCount = textareaValue.trim().split(/\s+/).filter(word => word.length > 0).length;
+              
               if (!textareaValue.trim()) {
-                alert("Please enter your question in the Topic/Question field first.");
+                setErrorMessage("Vui lòng nhập câu hỏi của bạn trước khi nhấn nút Use my question");
                 return;
               }
+              
+              if (wordCount < 15) {
+                setErrorMessage("Vui lòng nhập câu hỏi của bạn trước khi nhấn nút Use my question");
+                return;
+              }
+              
+              setErrorMessage("");
               setTopic(textareaValue);
             }}
           >
@@ -175,6 +187,14 @@ export function TestSetup({ onStart }: TestSetupProps) {
             <span className="text-sm">Random question</span>
           </Button>
         </div>
+        
+        {/* Error Message */}
+        {errorMessage && (
+          <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-700 text-sm font-medium">{errorMessage}</p>
+          </div>
+        )}
+        
         {topic && (
           <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
             <Label className="text-teal-700 font-medium">
