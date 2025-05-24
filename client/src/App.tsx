@@ -6,12 +6,13 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import WritingPractice from "@/pages/writing-practice";
 import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 
 function Router() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="pt-0">
+      <div className="flex-grow pt-0">
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/writing-practice" component={WritingPractice} />
@@ -21,7 +22,8 @@ function Router() {
           <Route component={NotFound} />
         </Switch>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 
