@@ -49,17 +49,17 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             {showOutline ? (
               <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
                 <div className="flex items-center justify-between mb-3">
-                  <TabsList className="w-full flex gap-3 bg-transparent p-0 border-0 flex-1 mr-2">
+                  <TabsList className="w-full flex gap-2 bg-transparent p-0 border-0 flex-1 mr-2">
                     <TabsTrigger 
                       value="outline" 
-                      className="flex-1 text-xs py-2 px-2 font-medium rounded-md border border-gray-200 transition-all
+                      className="flex-1 text-sm py-3 px-4 font-medium rounded-md border border-gray-200 transition-all
                                 bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
                     >
                       Suggested Outline
                     </TabsTrigger>
                     <TabsTrigger 
                       value="expressions" 
-                      className="flex-1 text-xs py-2 px-2 font-medium rounded-md border border-gray-200 transition-all
+                      className="flex-1 text-sm py-3 px-4 font-medium rounded-md border border-gray-200 transition-all
                                 bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
                     >
                       Useful Expressions
