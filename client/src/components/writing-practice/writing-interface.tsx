@@ -45,44 +45,57 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
     <div className="h-full flex flex-col">
       {showOutline ? (
         <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
-          <div className="flex items-end justify-between border-b border-gray-200">
-            <TabsList className="flex bg-transparent border-0">
+          <div className="flex items-end justify-between border-b-0 relative">
+            <TabsList className="flex w-full bg-transparent border-0 p-0 gap-1">
               <TabsTrigger 
-                  value="outline" 
-                  className="text-2xl py-8 px-20 font-semibold rounded-t-lg border-l border-t border-r border-gray-200 transition-all
-                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-transparent data-[state=active]:-mb-px data-[state=active]:z-10
-                          data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-transparent"
-                >
-                  Suggested Outline
-                </TabsTrigger>
+                value="outline" 
+                className="text-base md:text-lg lg:text-xl py-4 md:py-6 px-6 md:px-12 lg:px-16 font-medium rounded-t-lg transition-all relative overflow-hidden
+                        bg-gradient-to-b from-white to-gray-50 
+                        data-[state=active]:from-primary/10 data-[state=active]:to-primary/5 
+                        data-[state=active]:text-primary data-[state=active]:border-t-2 data-[state=active]:border-t-primary
+                        data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.2)]"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Layers className="h-4 w-4" />
+                  <span>Suggested Outline</span>
+                </span>
+              </TabsTrigger>
               <TabsTrigger 
-                  value="expressions" 
-                  className="text-2xl py-8 px-20 font-semibold rounded-t-lg border-l border-t border-r border-gray-200 transition-all
-                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-transparent data-[state=active]:-mb-px data-[state=active]:z-10
-                          data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-transparent"
-                >
-                  Useful Expressions
-                </TabsTrigger>
+                value="expressions" 
+                className="text-base md:text-lg lg:text-xl py-4 md:py-6 px-6 md:px-12 lg:px-16 font-medium rounded-t-lg transition-all relative overflow-hidden
+                        bg-gradient-to-b from-white to-gray-50
+                        data-[state=active]:from-primary/10 data-[state=active]:to-primary/5
+                        data-[state=active]:text-primary data-[state=active]:border-t-2 data-[state=active]:border-t-primary
+                        data-[state=active]:shadow-[0_4px_10px_-8px_rgba(0,0,0,0.2)]"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Smile className="h-4 w-4" />
+                  <span>Useful Expressions</span>
+                </span>
+              </TabsTrigger>
             </TabsList>
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
-              className="h-8 w-8 p-0 flex-shrink-0 ml-4 mb-2"
+              className="h-8 w-8 p-0 flex-shrink-0 absolute right-2 top-2 rounded-full bg-white hover:bg-gray-100 border border-gray-200 shadow-sm z-20"
               title="Hide Support"
               onClick={() => setShowOutline(false)}
             >
-              <EyeOff className="h-4 w-4" />
+              <EyeOff className="h-3.5 w-3.5" />
             </Button>
           </div>
 
-          <TabsContent value="outline" className="flex-1 overflow-y-auto mt-0 border-l border-r border-b border-gray-200 bg-white p-4">
-            <ul className="space-y-3 text-xs">
+          <TabsContent 
+            value="outline" 
+            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+          >
+            <ul className="space-y-4 text-xs">
               {outline.map((section, index) => (
-                <li key={index}>
-                  <span className="font-medium text-sm text-gray-700">{section.title}:</span>
-                  <ul className="pl-3 mt-1.5 space-y-2 list-disc">
+                <li key={index} className="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                  <span className="font-medium text-sm text-primary block mb-2">{section.title}:</span>
+                  <ul className="pl-4 space-y-2 list-disc">
                     {section.points.map((point, pointIndex) => (
-                      <li key={pointIndex} className="leading-relaxed">{point}</li>
+                      <li key={pointIndex} className="leading-relaxed text-gray-700">{point}</li>
                     ))}
                   </ul>
                 </li>
@@ -90,35 +103,54 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             </ul>
           </TabsContent>
 
-          <TabsContent value="expressions" className="flex-1 overflow-y-auto mt-0 border-l border-r border-b border-gray-200 bg-white p-4">
+          <TabsContent 
+            value="expressions" 
+            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+          >
             <div>
-              <h4 className="font-semibold text-gray-800 mb-3 text-sm">Useful Expressions - Các cách diễn đạt hữu ích</h4>
-              <p className="text-xs mb-3 text-gray-600">Các cách diễn đạt hữu ích có thể dùng trong bài viết</p>
+              <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
+                <Smile className="h-4 w-4" />
+                Useful Expressions - Các cách diễn đạt hữu ích
+              </h4>
+              <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
+                Các cách diễn đạt hữu ích có thể dùng trong bài viết
+              </p>
 
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion type="single" collapsible className="w-full space-y-2">
                 {phraseCategories.map((category, index) => {
                   const structuredPhrases = getStructuredPhrases();
                   const phrases = structuredPhrases[category.id as keyof typeof structuredPhrases] || [];
                   return (
-                    <AccordionItem key={category.id} value={category.id}>
-                      <AccordionTrigger className="text-sm font-medium py-2 hover:no-underline">
-                        {index + 1}. {category.name}
+                    <AccordionItem 
+                      key={category.id} 
+                      value={category.id}
+                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                    >
+                      <AccordionTrigger 
+                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                      >
+                        <span className="flex items-center gap-2">
+                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                            {index + 1}
+                          </span>
+                          {category.name}
+                        </span>
                       </AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-xs text-gray-600 mb-2">{category.description}</p>
-                        <div className="flex flex-wrap gap-2">
+                      <AccordionContent className="p-3 bg-white">
+                        <p className="text-xs text-gray-600 mb-3 italic bg-gray-50 p-2 rounded-md">{category.description}</p>
+                        <div className="flex flex-wrap gap-1.5">
                           {Array.isArray(phrases) && phrases.map((phrase: string, phraseIndex: number) => (
                             <TooltipProvider key={`${category.id}-${phraseIndex}`}>
                               <Tooltip>
                                 <TooltipTrigger asChild>
                                   <Badge 
                                     variant="outline"
-                                    className="bg-gray-50 whitespace-normal text-wrap my-0.5 p-1.5 text-xs border-blue-100 cursor-pointer"
+                                    className="bg-blue-50 whitespace-normal text-wrap my-0.5 p-2 text-xs border-blue-100 hover:bg-blue-100 transition-colors cursor-pointer"
                                   >
                                     {phrase}
                                   </Badge>
                                 </TooltipTrigger>
-                                <TooltipContent className="p-2">
+                                <TooltipContent className="p-2 bg-blue-50 border-blue-200">
                                   <div className="text-sm">
                                     <p><span className="font-medium">Nghĩa:</span> Cụm từ: {phrase}</p>
                                   </div>
@@ -136,14 +168,14 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
           </TabsContent>
         </Tabs>
       ) : (
-        <div className="flex flex-col justify-center items-center h-full w-full bg-gray-50 border border-gray-200 rounded-md p-8">
+        <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
           <Button
             variant="outline"
             size="sm"
-            className="mb-4"
+            className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
             onClick={() => setShowOutline(true)}
           >
-            <Eye className="h-3 w-3 mr-1" /> Show Support
+            <Eye className="h-3.5 w-3.5 mr-2 text-primary" /> Show Support
           </Button>
           <p className="text-gray-700 font-medium text-base mb-2 text-center">Hãy cố gắng hết mình nhé!</p>
           <p className="text-primary font-medium text-sm text-center">Good things take time. 😉</p>
@@ -337,54 +369,78 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const hasMorePhrases = phraseDisplayCount < allPhraseWords.length;
 
   return (
-    <Card className="mt-4 p-0 border-0 bg-transparent shadow-none">
+    <Card className="mt-6 p-0 border-0 bg-transparent shadow-none">
       <Tabs 
         defaultValue="vocabulary" 
         value={activeTab}
         onValueChange={setActiveTab}
+        className="relative"
       >
-        <TabsList className="w-full flex mb-3 gap-3 bg-transparent p-0 border-0">
-          <TabsTrigger 
-            value="vocabulary" 
-            className="flex-1 text-sm py-2 px-2 font-medium rounded-md border border-gray-200 transition-all
-                    bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
-          >
-            Vocabulary
-          </TabsTrigger>
-          <TabsTrigger 
-            value="phrases" 
-            className="flex-1 text-sm py-2 px-2 font-medium rounded-md border border-gray-200 transition-all
-                    bg-gray-50 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-primary"
-          >
-            Useful collocations
-          </TabsTrigger>
-        </TabsList>
+        <div className="mb-4 relative">
+          <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
+            <TabsTrigger 
+              value="vocabulary" 
+              className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
+                      data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary/80 data-[state=active]:to-primary 
+                      data-[state=active]:text-white data-[state=active]:shadow-md"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                <path d="M12 20V4"></path><path d="M20 8h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path><path d="M4 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4"></path>
+              </svg>
+              Vocabulary
+            </TabsTrigger>
+            <TabsTrigger 
+              value="phrases" 
+              className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
+                      data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary/80 data-[state=active]:to-primary 
+                      data-[state=active]:text-white data-[state=active]:shadow-md"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              Useful collocations
+            </TabsTrigger>
+          </TabsList>
+        </div>
 
-        <TabsContent value="vocabulary" className="p-0">
-          {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {displayedVocabWords.map((word, index) => (
-              <div 
-                key={`word-${index}`}
-                className="p-2 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
-              >
-                <div className="flex flex-wrap items-center gap-1 mb-1">
-                  <span className="font-semibold text-base text-blue-700">{word.word}</span>
-                  <Badge className="text-xs font-medium px-1.5 py-0.5">
-                    {word.partOfSpeech}
-                  </Badge>
-                  <Badge variant="outline" className="text-xs px-1.5 py-0.5">
-                    {word.difficulty}
-                  </Badge>
+        <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            {displayedVocabWords.map((word, index) => {
+              const colorClasses = word.type === "positive" 
+                ? "bg-green-50 border-green-200 text-green-700" 
+                : word.type === "negative" 
+                  ? "bg-rose-50 border-rose-200 text-rose-700"
+                  : "bg-blue-50 border-blue-200 text-blue-700";
+              
+              return (
+                <div 
+                  key={`word-${index}`}
+                  className={`p-3 rounded-lg border ${colorClasses} h-full shadow-sm hover:shadow-md transition-shadow`}
+                >
+                  <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                    <span className="font-semibold text-base">{word.word}</span>
+                    <Badge className={`text-xs font-medium px-2 py-0.5 ${
+                      word.type === "positive" 
+                        ? "bg-green-100 text-green-800 hover:bg-green-200" 
+                        : word.type === "negative" 
+                          ? "bg-rose-100 text-rose-800 hover:bg-rose-200"
+                          : "bg-blue-100 text-blue-800 hover:bg-blue-200"
+                    }`}>
+                      {word.partOfSpeech}
+                    </Badge>
+                    <Badge variant="outline" className={`text-xs px-2 py-0.5 border-current opacity-80`}>
+                      {word.difficulty}
+                    </Badge>
+                  </div>
+                  <p className="text-xs text-gray-700 mb-1.5">
+                    <span className="font-medium">Meaning:</span> {word.meaning}
+                  </p>
+                  <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1.5 mt-1.5">
+                    <span className="font-medium not-italic">Example:</span> {word.example}
+                  </p>
                 </div>
-                <p className="text-xs text-gray-700 mb-1">
-                  <span className="font-medium">Meaning:</span> {word.meaning}
-                </p>
-                <p className="text-xs text-gray-600 italic">
-                  <span className="font-medium not-italic">Example:</span> {word.example}
-                </p>
-              </div>
-            ))}
+              );
+            })}
 
             {/* Fill in empty cell if odd number of words */}
             {displayedVocabWords.length % 2 !== 0 && (
@@ -394,44 +450,60 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
 
           {/* Load more button for vocabulary */}
           {hasMoreVocab && (
-            <div className="flex justify-center mt-2">
+            <div className="flex justify-center mt-4 mb-2">
               <Button 
                 variant="outline" 
                 onClick={handleLoadMoreVocab}
-                className="text-primary text-xs px-2 py-1 h-auto"
+                className="text-primary border-primary/30 hover:border-primary text-xs px-6 py-1.5 h-auto shadow-sm"
                 size="sm"
               >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
+                  <path d="M12 8v8"></path><path d="M8 12h8"></path>
+                </svg>
                 Load More Words
               </Button>
             </div>
           )}
         </TabsContent>
 
-        <TabsContent value="phrases" className="p-0">
-          {/* Grid layout with 1 column on small screens, 2 columns on medium screens and above */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            {displayedPhraseWords.map((phrase, index) => (
-              <div 
-                key={`phrase-${index}`}
-                className="p-2 rounded-md border bg-blue-50 border-blue-200 h-full shadow-sm"
-              >
-                <div className="flex flex-wrap items-center gap-1 mb-1">
-                  <span className="font-semibold text-base text-blue-700">{phrase.word}</span>
-                  <Badge className="text-xs font-medium px-1.5 py-0.5">
-                    Collocation
-                  </Badge>
-                  <Badge variant="outline" className="text-xs px-1.5 py-0.5">
-                    {phrase.difficulty}
-                  </Badge>
+        <TabsContent value="phrases" className="p-0 min-h-[200px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            {displayedPhraseWords.map((phrase, index) => {
+              const colorClasses = phrase.type === "positive" 
+                ? "bg-green-50 border-green-200 text-green-700" 
+                : phrase.type === "negative" 
+                  ? "bg-rose-50 border-rose-200 text-rose-700"
+                  : "bg-blue-50 border-blue-200 text-blue-700";
+              
+              return (
+                <div 
+                  key={`phrase-${index}`}
+                  className={`p-3 rounded-lg border ${colorClasses} h-full shadow-sm hover:shadow-md transition-shadow`}
+                >
+                  <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                    <span className="font-semibold text-base">{phrase.word}</span>
+                    <Badge className={`text-xs font-medium px-2 py-0.5 ${
+                      phrase.type === "positive" 
+                        ? "bg-green-100 text-green-800 hover:bg-green-200" 
+                        : phrase.type === "negative" 
+                          ? "bg-rose-100 text-rose-800 hover:bg-rose-200"
+                          : "bg-blue-100 text-blue-800 hover:bg-blue-200"
+                    }`}>
+                      Collocation
+                    </Badge>
+                    <Badge variant="outline" className={`text-xs px-2 py-0.5 border-current opacity-80`}>
+                      {phrase.difficulty}
+                    </Badge>
+                  </div>
+                  <p className="text-xs text-gray-700 mb-1.5">
+                    <span className="font-medium">Meaning:</span> {phrase.meaning}
+                  </p>
+                  <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1.5 mt-1.5">
+                    <span className="font-medium not-italic">Example:</span> {phrase.example}
+                  </p>
                 </div>
-                <p className="text-xs text-gray-700 mb-1">
-                  <span className="font-medium">Meaning:</span> {phrase.meaning}
-                </p>
-                <p className="text-xs text-gray-600 italic">
-                  <span className="font-medium not-italic">Example:</span> {phrase.example}
-                </p>
-              </div>
-            ))}
+              );
+            })}
 
             {/* Fill in empty cell if odd number of phrases */}
             {displayedPhraseWords.length % 2 !== 0 && (
@@ -441,19 +513,20 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
 
           {/* Load more button for phrases */}
           {hasMorePhrases && (
-            <div className="flex justify-center mt-2">
+            <div className="flex justify-center mt-4 mb-2">
               <Button 
                 variant="outline" 
                 onClick={handleLoadMorePhrases}
-                className="text-primary text-xs px-2 py-1 h-auto"
+                className="text-primary border-primary/30 hover:border-primary text-xs px-6 py-1.5 h-auto shadow-sm"
                 size="sm"
               >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
+                  <path d="M12 8v8"></path><path d="M8 12h8"></path>
+                </svg>
                 Load More Phrases
               </Button>
             </div>
           )}
-
-
         </TabsContent>
       </Tabs>
     </Card>
