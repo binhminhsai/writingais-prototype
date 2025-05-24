@@ -45,20 +45,20 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
     <div className="h-full flex flex-col">
       {showOutline ? (
         <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
-          <div className="flex items-center justify-between">
+          <div className="flex items-end justify-between">
             <TabsList className="flex gap-0 bg-transparent p-0 border-0">
               <TabsTrigger 
                 value="outline" 
-                className="text-sm py-3 px-6 font-medium rounded-t-md border-l border-t border-r border-gray-200 transition-all
-                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-b-white data-[state=active]:-mb-px data-[state=active]:z-10
+                className="text-base py-4 px-8 font-medium rounded-t-lg border-2 border-gray-200 transition-all
+                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-white data-[state=active]:-mb-0.5 data-[state=active]:z-10
                           data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
               >
                 Suggested Outline
               </TabsTrigger>
               <TabsTrigger 
                 value="expressions" 
-                className="text-sm py-3 px-6 font-medium rounded-t-md border-l border-t border-r border-gray-200 transition-all
-                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-b-white data-[state=active]:-mb-px data-[state=active]:z-10
+                className="text-base py-4 px-8 font-medium rounded-t-lg border-2 border-gray-200 transition-all
+                          bg-white data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:border-primary data-[state=active]:border-b-white data-[state=active]:-mb-0.5 data-[state=active]:z-10
                           data-[state=inactive]:bg-gray-50 data-[state=inactive]:border-b-gray-200"
               >
                 Useful Expressions
@@ -67,7 +67,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             <Button
               variant="ghost"
               size="sm"
-              className="h-8 w-8 p-0 flex-shrink-0 ml-4"
+              className="h-8 w-8 p-0 flex-shrink-0 ml-4 mb-1"
               title="Hide Support"
               onClick={() => setShowOutline(false)}
             >
