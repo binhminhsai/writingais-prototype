@@ -343,17 +343,29 @@ To conclude, both views are reasonable, and the best way is to find a balance be
         <h2 className="text-2xl font-bold mb-4">Detailed Feedback</h2>
         
         <Tabs defaultValue="task-response" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-4 bg-gray-200">
-            <TabsTrigger value="task-response" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white bg-gray-100 text-gray-700">
+          <TabsList className="grid w-full grid-cols-4 mb-4 bg-white border border-gray-300 rounded-lg h-12 p-1">
+            <TabsTrigger 
+              value="task-response" 
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+            >
               Task Response
             </TabsTrigger>
-            <TabsTrigger value="coherence-cohesion" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white bg-gray-100 text-gray-700">
+            <TabsTrigger 
+              value="coherence-cohesion" 
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+            >
               Coherence & Cohesion
             </TabsTrigger>
-            <TabsTrigger value="lexical-resource" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white bg-gray-100 text-gray-700">
+            <TabsTrigger 
+              value="lexical-resource" 
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+            >
               Lexical Resource
             </TabsTrigger>
-            <TabsTrigger value="grammar-accuracy" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white bg-gray-100 text-gray-700">
+            <TabsTrigger 
+              value="grammar-accuracy" 
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+            >
               Grammar & Accuracy
             </TabsTrigger>
           </TabsList>
