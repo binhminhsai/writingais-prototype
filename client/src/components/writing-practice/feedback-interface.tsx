@@ -338,37 +338,22 @@ To conclude, both views are reasonable, and the best way is to find a balance be
         </div>
       </div>
 
-      {/* Essay Analysis & Highlights Section */}
-      <div className="container max-w-[1100px] mx-auto mb-6">
-        <h2 className="text-2xl font-bold mb-4">Essay Analysis & Highlights</h2>
-
-        {/* Legend for color coding */}
-        <div className="flex gap-2 mb-4">
-          <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">Good</Badge>
-          <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300">Error</Badge>
-          <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300">Suggestion</Badge>
-        </div>
-
-        {/* Essay with highlighted sections */}
-        {highlightEssay(sampleEssay)}
-      </div>
-
       {/* Detailed Feedback Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Detailed Feedback</h2>
         
         <Tabs defaultValue="task-response" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-4">
-            <TabsTrigger value="task-response" className="bg-[#64c4bc] text-white data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white">
+          <TabsList className="grid w-full grid-cols-4 mb-4 bg-gray-200">
+            <TabsTrigger value="task-response" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white bg-gray-100 text-gray-700">
               Task Response
             </TabsTrigger>
-            <TabsTrigger value="coherence-cohesion" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white">
+            <TabsTrigger value="coherence-cohesion" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white bg-gray-100 text-gray-700">
               Coherence & Cohesion
             </TabsTrigger>
-            <TabsTrigger value="lexical-resource" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white">
+            <TabsTrigger value="lexical-resource" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white bg-gray-100 text-gray-700">
               Lexical Resource
             </TabsTrigger>
-            <TabsTrigger value="grammar-accuracy" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white">
+            <TabsTrigger value="grammar-accuracy" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white bg-gray-100 text-gray-700">
               Grammar & Accuracy
             </TabsTrigger>
           </TabsList>
@@ -494,6 +479,28 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                   The essay demonstrates good coherence and cohesion with logical organization and appropriate use of cohesive devices.
                 </p>
               </div>
+
+              {/* Why not Band 7 + 0.5? */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 + 0.5?</h3>
+                </div>
+                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
+                  Some cohesive devices are repetitive and could be more varied. For instance, the overuse of "however" and "furthermore" makes the writing feel mechanical. A more sophisticated approach would vary these transitions: "Nevertheless," "In contrast," "Additionally," or "Moreover" to enhance the natural flow and demonstrate greater lexical resource in cohesive devices.
+                </p>
+              </div>
+
+              {/* Why not Band 7 - 0.5? */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 - 0.5?</h3>
+                </div>
+                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
+                  The essay maintains clear paragraph structure with logical topic sentences and supporting details. Each paragraph focuses on a distinct aspect of the argument, and the progression from advantages to disadvantages to personal opinion follows a coherent pattern that readers can easily follow.
+                </p>
+              </div>
             </div>
           </TabsContent>
 
@@ -543,6 +550,28 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                 </div>
                 <p className="text-gray-700">
                   The vocabulary is varied and mostly accurate with some effective word choices, though greater precision would enhance the score.
+                </p>
+              </div>
+
+              {/* Why not Band 7 + 0.5? */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 + 0.5?</h3>
+                </div>
+                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
+                  Some word choices could be more precise and academic. For example, "big problem" could be replaced with "significant issue" or "pressing concern." Additionally, "better infrastructure" could be more specific as "enhanced transportation networks and public facilities" to demonstrate greater lexical sophistication and precision.
+                </p>
+              </div>
+
+              {/* Why not Band 7 - 0.5? */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 - 0.5?</h3>
+                </div>
+                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
+                  The essay demonstrates good vocabulary range with effective phrases like "undeniable advantages," "economic development," and "equally distributed." The writer shows awareness of appropriate academic vocabulary and uses topic-specific terms related to economics and social policy effectively throughout the response.
                 </p>
               </div>
             </div>
@@ -596,9 +625,46 @@ To conclude, both views are reasonable, and the best way is to find a balance be
                   Grammar is handled well with a good range of sentence structures and only minor errors that do not affect understanding.
                 </p>
               </div>
+
+              {/* Why not Band 7 + 0.5? */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 + 0.5?</h3>
+                </div>
+                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
+                  There are minor grammatical errors that prevent a higher score. For example, "more people can employed" should be "more people can be employed." Additionally, some sentence constructions could be more sophisticated, and the use of conditional structures could be enhanced to demonstrate greater grammatical range.
+                </p>
+              </div>
+
+              {/* Why not Band 7 - 0.5? */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 - 0.5?</h3>
+                </div>
+                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
+                  The essay demonstrates good control of grammar with a variety of complex sentence structures. Most sentences are error-free, and the few minor mistakes do not impede communication. The writer successfully uses complex sentences with subordinate clauses and shows good command of tenses throughout the response.
+                </p>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
+      </div>
+
+      {/* Essay Analysis & Highlights Section */}
+      <div className="container max-w-[1100px] mx-auto mb-6">
+        <h2 className="text-2xl font-bold mb-4">Essay Analysis & Highlights</h2>
+
+        {/* Legend for color coding */}
+        <div className="flex gap-2 mb-4">
+          <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">Good</Badge>
+          <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300">Error</Badge>
+          <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300">Suggestion</Badge>
+        </div>
+
+        {/* Essay with highlighted sections */}
+        {highlightEssay(sampleEssay)}
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center">
