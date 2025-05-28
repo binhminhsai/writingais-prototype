@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import WritingPractice from "@/pages/writing-practice";
 import Login from "@/pages/login";
 import Blog from "@/pages/blog";
+import WordPressDemo from "@/pages/wordpress-demo";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
@@ -19,6 +20,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/writing-practice" component={WritingPractice} />
           <Route path="/blog" component={Blog} />
+          <Route path="/wordpress-demo" component={WordPressDemo} />
           <Route path="/login" component={Login} />
           <Route path="/about" component={NotFound} />
           <Route path="/vocabulary" component={NotFound} />

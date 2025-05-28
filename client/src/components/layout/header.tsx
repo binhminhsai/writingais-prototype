@@ -56,8 +56,8 @@ export default function Header() {
                 Progress
               </button>
             </Link>
-            <Link href="/blog">
-              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location === "/blog" ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}>
+            <Link href="/wordpress-demo">
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location === "/wordpress-demo" ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}>
                 Blog
               </button>
             </Link>
@@ -130,9 +130,9 @@ export default function Header() {
                 Progress
               </button>
             </Link>
-            <Link href="/blog">
+            <Link href="/wordpress-demo">
               <button 
-                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-300 ${location === "/blog" ? "bg-white text-teal-700 shadow-lg font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}
+                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-300 ${location === "/wordpress-demo" ? "bg-white text-teal-700 shadow-lg font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Blog
