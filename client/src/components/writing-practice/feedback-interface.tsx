@@ -22,6 +22,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { Link } from "wouter";
 
@@ -350,6 +351,254 @@ To conclude, both views are reasonable, and the best way is to find a balance be
 
         {/* Essay with highlighted sections */}
         {highlightEssay(sampleEssay)}
+      </div>
+
+      {/* Detailed Feedback Section */}
+      <div className="container max-w-[1100px] mx-auto mb-6">
+        <h2 className="text-2xl font-bold mb-4">Detailed Feedback</h2>
+        
+        <Tabs defaultValue="task-response" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 mb-4">
+            <TabsTrigger value="task-response" className="bg-[#64c4bc] text-white data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white">
+              Task Response
+            </TabsTrigger>
+            <TabsTrigger value="coherence-cohesion" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white">
+              Coherence & Cohesion
+            </TabsTrigger>
+            <TabsTrigger value="lexical-resource" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white">
+              Lexical Resource
+            </TabsTrigger>
+            <TabsTrigger value="grammar-accuracy" className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white">
+              Grammar & Accuracy
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="task-response" className="border border-gray-300 rounded-lg p-6 bg-white">
+            <div className="space-y-4">
+              {/* Strengths */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <h3 className="text-lg font-semibold text-green-600">Strengths</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>The essay addresses the prompt by discussing both the advantages and disadvantages of economic growth, stating that 'economic development brings undeniable advantages, such as higher employment rates and better infrastructure.'</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>The writer presents a clear position, concluding that 'although economic growth improves overall prosperity, its benefits are not equally distributed.'</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                  <h3 className="text-lg font-semibold text-yellow-600">Areas for Improvement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Some ideas are not fully developed, such as the mention of 'social problems' without specific examples or elaboration.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>The essay could benefit from a more explicit discussion of the extent to which the writer agrees or disagrees with the statement, as it remains somewhat vague.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Band Score Justification */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Band Score Justification: <span className="text-[#64c4bc]">Band 7</span></h3>
+                </div>
+                <p className="text-gray-700">
+                  The essay sufficiently addresses the task and presents a clear position, but some ideas lack depth and clarity, which prevents it from reaching a higher band.
+                </p>
+              </div>
+
+              {/* Why not Band 7 + 0.5? */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 + 0.5?</h3>
+                </div>
+                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
+                  The essay does not fully explore the implications of economic growth on society, particularly in terms of specific social problems. For example, the phrase 'social problems' could be expanded to include specific issues like crime or health disparities. A rewritten version could be: 'This inequality can lead to social unrest and increased crime rates, as seen in many developed nations where the cost of living rises faster than salaries.'
+                </p>
+              </div>
+
+              {/* Why not Band 7 - 0.5? */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 - 0.5?</h3>
+                </div>
+                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
+                  The essay maintains a logical structure and presents relevant ideas, such as the benefits of job creation and government revenue, which supports the current band score. The statement 'As incomes expand, more people can employed, reducing poverty and improving quality of life' clearly illustrates the positive aspects of economic growth.
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="coherence-cohesion" className="border border-gray-300 rounded-lg p-6 bg-white">
+            <div className="space-y-4">
+              {/* Strengths */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <h3 className="text-lg font-semibold text-green-600">Strengths</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Clear logical progression with well-organized paragraphs that follow a coherent structure from introduction to conclusion.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Effective use of linking words and phrases such as "however," "furthermore," and "in conclusion" to connect ideas.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                  <h3 className="text-lg font-semibold text-yellow-600">Areas for Improvement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Some cohesive devices are overused or repetitive, which can make the writing feel mechanical.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Transitions between some ideas could be smoother to enhance the overall flow of the essay.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Band Score Justification */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Band Score Justification: <span className="text-[#64c4bc]">Band 7</span></h3>
+                </div>
+                <p className="text-gray-700">
+                  The essay demonstrates good coherence and cohesion with logical organization and appropriate use of cohesive devices.
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="lexical-resource" className="border border-gray-300 rounded-lg p-6 bg-white">
+            <div className="space-y-4">
+              {/* Strengths */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <h3 className="text-lg font-semibold text-green-600">Strengths</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Good range of vocabulary with some sophisticated word choices like "undeniable advantages" and "infrastructure."</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Appropriate use of topic-specific vocabulary related to economics and social issues.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                  <h3 className="text-lg font-semibold text-yellow-600">Areas for Improvement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Some word choices could be more precise and academic to enhance the overall lexical sophistication.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Occasional repetition of certain words and phrases that could be varied for better lexical diversity.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Band Score Justification */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Band Score Justification: <span className="text-[#64c4bc]">Band 7</span></h3>
+                </div>
+                <p className="text-gray-700">
+                  The vocabulary is varied and mostly accurate with some effective word choices, though greater precision would enhance the score.
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="grammar-accuracy" className="border border-gray-300 rounded-lg p-6 bg-white">
+            <div className="space-y-4">
+              {/* Strengths */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <h3 className="text-lg font-semibold text-green-600">Strengths</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Good range of sentence structures including complex sentences with subordinate clauses.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Generally accurate grammar with only minor errors that do not impede understanding.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                  <h3 className="text-lg font-semibold text-yellow-600">Areas for Improvement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Some minor grammatical errors in complex sentence constructions that could be refined.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Occasional issues with article usage and preposition selection in advanced structures.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Band Score Justification */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <Info className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Band Score Justification: <span className="text-[#64c4bc]">Band 7</span></h3>
+                </div>
+                <p className="text-gray-700">
+                  Grammar is handled well with a good range of sentence structures and only minor errors that do not affect understanding.
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center">
