@@ -120,26 +120,14 @@ export default function Wordcraft() {
                   {card.title}
                 </h3>
               </div>
-              
-              {/* Word Count - Bottom Center */}
-              <div className="absolute bottom-2 right-2">
-                <span className="text-xs text-gray-600 bg-white px-2 py-1 rounded shadow-sm">
-                  {card.wordCount} từ vựng
-                </span>
-              </div>
             </div>
             
-            {/* Rating and Actions */}
+            {/* Word Count and Actions */}
             <div className="p-2">
               <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="text-sm font-medium text-gray-900 mr-1">C</span>
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`h-2 w-2 ${i < (card.studyCount || 0) / 3 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                    ))}
-                  </div>
-                </div>
+                <span className="text-sm font-medium text-gray-900">
+                  {card.wordCount} từ vựng
+                </span>
                 <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
                   <span className="text-sm">⋯</span>
                 </Button>
