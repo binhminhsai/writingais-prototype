@@ -129,7 +129,7 @@ export default function WordcraftWordDetail() {
             </div>
 
             <div className="mb-6">
-              <p className="text-lg text-gray-600 mb-2">({currentWord.partOfSpeech}) ({currentWord.difficulty || "C1"})</p>
+              <p className="text-lg text-gray-600 mb-2">({currentWord.partOfSpeech}) (C1)</p>
               
               <div className="flex flex-wrap gap-2 mb-4">
                 {currentWord.tags?.map((tag, index) => (

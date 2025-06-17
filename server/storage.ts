@@ -145,12 +145,23 @@ export class MemStorage implements IStorage {
     ];
 
     sampleCards.forEach(card => {
-      this.vocabularyCards.set(card.id, card);
+      const cardWithDefaults: VocabularyCard = {
+        ...card,
+        description: card.description || null,
+        studyCount: card.studyCount || 0
+      };
+      this.vocabularyCards.set(card.id, cardWithDefaults);
       this.currentCardId = Math.max(this.currentCardId, card.id + 1);
     });
 
     sampleWords.forEach(word => {
-      this.vocabularyWords.set(word.id, word);
+      const wordWithDefaults: VocabularyWord = {
+        ...word,
+        cardId: word.cardId || null,
+        pronunciation: word.pronunciation || null,
+        tags: word.tags || null
+      };
+      this.vocabularyWords.set(word.id, wordWithDefaults);
       this.currentWordId = Math.max(this.currentWordId, word.id + 1);
     });
   }
@@ -182,7 +193,12 @@ export class MemStorage implements IStorage {
 
   async createVocabularyCard(insertCard: InsertVocabularyCard): Promise<VocabularyCard> {
     const id = this.currentCardId++;
-    const card: VocabularyCard = { ...insertCard, id };
+    const card: VocabularyCard = { 
+      ...insertCard, 
+      id,
+      description: insertCard.description || null,
+      studyCount: insertCard.studyCount || 0
+    };
     this.vocabularyCards.set(id, card);
     return card;
   }
@@ -199,7 +215,13 @@ export class MemStorage implements IStorage {
 
   async createVocabularyWord(insertWord: InsertVocabularyWord): Promise<VocabularyWord> {
     const id = this.currentWordId++;
-    const word: VocabularyWord = { ...insertWord, id };
+    const word: VocabularyWord = { 
+      ...insertWord, 
+      id,
+      cardId: insertWord.cardId || null,
+      pronunciation: insertWord.pronunciation || null,
+      tags: insertWord.tags || null
+    };
     this.vocabularyWords.set(id, word);
     return word;
   }
