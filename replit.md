@@ -141,6 +141,8 @@ Changelog:
   - Added "Tất cả chủ đề" option and improved dropdown behavior
   - Changed button text from "Xem từ vựng" to "Danh sách từ vựng"
   - Implemented proper button navigation to vocabulary list screen
+  - Created comprehensive vocabulary cards with authentic content from user files
+  - Fixed API query endpoints for vocabulary word fetching
 
 ## User Preferences
 

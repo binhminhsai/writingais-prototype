@@ -19,7 +19,7 @@ export default function WordcraftWords() {
   });
 
   const { data: words = [], isLoading: wordsLoading } = useQuery<VocabularyWord[]>({
-    queryKey: ["/api/vocabulary-cards", cardId, "words"],
+    queryKey: [`/api/vocabulary-cards/${cardId}/words`],
     enabled: !!cardId,
   });
 
@@ -88,18 +88,27 @@ export default function WordcraftWords() {
           
           <div className="flex-1">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">{card.title}</h1>
-            <p className="text-gray-600 mb-4">{card.description}</p>
+            {card.description && (
+              <p className="text-gray-600 mb-4">{card.description}</p>
+            )}
             
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="text-sm text-gray-600">Chủ đề:</span>
-              <Badge variant="secondary">{card.category}</Badge>
-              <Badge variant="secondary" className="ml-2">{card.difficulty}</Badge>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">Chủ đề:</span>
+                {card.topics && card.topics.length > 0 ? (
+                  card.topics.map((topic, index) => (
+                    <Badge key={index} variant="secondary">{topic}</Badge>
+                  ))
+                ) : (
+                  <Badge variant="secondary">Kinh doanh</Badge>
+                )}
+              </div>
+              
+              <Button className="bg-gray-900 hover:bg-gray-800 text-white">
+                <BookOpen className="h-4 w-4 mr-2" />
+                Học từ vựng
+              </Button>
             </div>
-
-            <Button className="bg-gray-900 hover:bg-gray-800 text-white">
-              <BookOpen className="h-4 w-4 mr-2" />
-              Học từ vựng
-            </Button>
           </div>
         </div>
       </div>
