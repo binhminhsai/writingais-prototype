@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown } from "lucide-react";
-import type { VocabularyCard } from "@shared/schema";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import type { VocabularyCard, InsertVocabularyCard } from "@shared/schema";
 
 export default function Wordcraft() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,8 +26,38 @@ export default function Wordcraft() {
     category: ""
   });
 
+  const { toast } = useToast();
+
   const { data: cards = [], isLoading } = useQuery<VocabularyCard[]>({
     queryKey: ["/api/vocabulary-cards"],
+  });
+
+  const createCardMutation = useMutation({
+    mutationFn: async (cardData: InsertVocabularyCard) => {
+      return apiRequest<VocabularyCard>("/api/vocabulary-cards", {
+        method: "POST",
+        body: JSON.stringify(cardData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/vocabulary-cards"] });
+      toast({
+        title: "Thành công!",
+        description: "Bộ thẻ từ vựng đã được tạo thành công.",
+      });
+      setNewCardData({ title: "", description: "", category: "" });
+      setIsAddCardOpen(false);
+    },
+    onError: () => {
+      toast({
+        title: "Lỗi!",
+        description: "Không thể tạo bộ thẻ từ vựng. Vui lòng thử lại.",
+        variant: "destructive",
+      });
+    },
   });
 
   const categories = ["Environment", "Business", "Company", "Technology", "Idioms"];
@@ -61,9 +93,14 @@ export default function Wordcraft() {
   };
 
   const handleAddCard = () => {
-    if (newCardData.title.trim() && newCardData.category) {
+    if (newCardData.title.trim()) {
+      // Convert "none" back to empty string for storage
+      const cardToCreate = {
+        ...newCardData,
+        category: newCardData.category === "none" ? "" : newCardData.category
+      };
       // Here you would normally create the card via API
-      console.log("Adding new card:", newCardData);
+      console.log("Adding new card:", cardToCreate);
       setNewCardData({ title: "", description: "", category: "" });
       setIsAddCardOpen(false);
     }
@@ -300,7 +337,7 @@ export default function Wordcraft() {
                     <SelectValue placeholder="Không phân loại" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Không phân loại</SelectItem>
+                    <SelectItem value="none">Không phân loại</SelectItem>
                     {categories.map(category => (
                       <SelectItem key={category} value={category}>
                         {category}
