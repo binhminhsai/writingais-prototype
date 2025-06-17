@@ -135,6 +135,8 @@ Changelog:
   - Implemented complete API integration for card creation
   - Added loading states and toast notifications
   - Changed category label from "Phân loại" to "Chủ đề" per user request
+  - Implemented multi-topic selection with dropdown checkbox interface
+  - Added smart topic display (shows badges or count when multiple selected)
 
 ## User Preferences
 

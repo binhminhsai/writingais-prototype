@@ -72,6 +72,14 @@ export default function Wordcraft() {
     );
   };
 
+  const handleSelectAllCategories = () => {
+    if (selectedCategories.length === categories.length) {
+      setSelectedCategories([]);
+    } else {
+      setSelectedCategories([...categories]);
+    }
+  };
+
   const getFilterButtonText = () => {
     if (selectedCategories.length === 0) return "Tất cả chủ đề";
     if (selectedCategories.length === 1) return selectedCategories[0];
@@ -93,6 +101,13 @@ export default function Wordcraft() {
       categories: prev.categories.includes(category)
         ? prev.categories.filter(c => c !== category)
         : [...prev.categories, category]
+    }));
+  };
+
+  const handleSelectAllCategoriesForCard = () => {
+    setNewCardData(prev => ({
+      ...prev,
+      categories: prev.categories.length === categories.length ? [] : [...categories]
     }));
   };
 
@@ -178,18 +193,26 @@ export default function Wordcraft() {
         <div className="flex items-center justify-between">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="rounded-full h-9 px-4">
+              <Button variant="outline" className="rounded-full h-9 px-4 min-w-[140px]">
                 <Filter className="h-4 w-4 mr-2" />
                 {getFilterButtonText()}
                 <ChevronDown className="h-4 w-4 ml-2" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-56">
+              <DropdownMenuCheckboxItem
+                checked={selectedCategories.length === categories.length}
+                onCheckedChange={handleSelectAllCategories}
+                onSelect={(e) => e.preventDefault()}
+              >
+                Tất cả chủ đề
+              </DropdownMenuCheckboxItem>
               {categories.map(category => (
                 <DropdownMenuCheckboxItem
                   key={category}
                   checked={selectedCategories.includes(category)}
                   onCheckedChange={() => handleCategoryToggle(category)}
+                  onSelect={(e) => e.preventDefault()}
                 >
                   {category}
                 </DropdownMenuCheckboxItem>
@@ -331,34 +354,50 @@ export default function Wordcraft() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Chủ đề {newCardData.categories.length > 0 && `(${newCardData.categories.length} đã chọn)`}
+                  Chủ đề
                 </label>
-                <div className="space-y-2 max-h-32 overflow-y-auto border rounded-md p-3">
-                  {categories.map(category => (
-                    <div key={category} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`category-${category}`}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      className="w-full justify-between h-10 px-3 py-2 text-left"
+                    >
+                      <div className="flex flex-wrap gap-1 overflow-hidden">
+                        {newCardData.categories.length === 0 ? (
+                          <span className="text-gray-500">Chọn chủ đề</span>
+                        ) : newCardData.categories.length <= 2 ? (
+                          newCardData.categories.map(category => (
+                            <Badge key={category} variant="secondary" className="text-xs">
+                              {category}
+                            </Badge>
+                          ))
+                        ) : (
+                          <>
+                            <Badge variant="secondary" className="text-xs">
+                              {newCardData.categories[0]}
+                            </Badge>
+                            <Badge variant="secondary" className="text-xs">
+                              +{newCardData.categories.length - 1} khác
+                            </Badge>
+                          </>
+                        )}
+                      </div>
+                      <ChevronDown className="h-4 w-4 opacity-50" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56">
+                    {categories.map(category => (
+                      <DropdownMenuCheckboxItem
+                        key={category}
                         checked={newCardData.categories.includes(category)}
                         onCheckedChange={() => handleCategoryToggleForCard(category)}
-                      />
-                      <label 
-                        htmlFor={`category-${category}`} 
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        onSelect={(e) => e.preventDefault()}
                       >
                         {category}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-                {newCardData.categories.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-1">
-                    {newCardData.categories.map(category => (
-                      <Badge key={category} variant="secondary" className="text-xs">
-                        {category}
-                      </Badge>
+                      </DropdownMenuCheckboxItem>
                     ))}
-                  </div>
-                )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
 
               <div className="flex justify-end pt-2">
