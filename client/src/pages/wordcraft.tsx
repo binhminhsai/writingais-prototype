@@ -6,12 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown } from "lucide-react";
 import type { VocabularyCard } from "@shared/schema";
 
 export default function Wordcraft() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [isAddTopicOpen, setIsAddTopicOpen] = useState(false);
+  const [newTopicName, setNewTopicName] = useState("");
 
   const { data: cards = [], isLoading } = useQuery<VocabularyCard[]>({
     queryKey: ["/api/vocabulary-cards"],
@@ -38,6 +41,15 @@ export default function Wordcraft() {
     if (selectedCategories.length === 0) return "Tất cả chủ đề";
     if (selectedCategories.length === 1) return selectedCategories[0];
     return "Đang chọn nhiều chủ đề";
+  };
+
+  const handleAddTopic = () => {
+    if (newTopicName.trim()) {
+      // Here you would normally add the topic to your data store
+      console.log("Adding new topic:", newTopicName);
+      setNewTopicName("");
+      setIsAddTopicOpen(false);
+    }
   };
 
   const getDifficultyColor = (difficulty: string) => {
@@ -127,10 +139,38 @@ export default function Wordcraft() {
             </DropdownMenuContent>
           </DropdownMenu>
           
-          <Button variant="outline" size="sm" className="ml-4">
-            <Plus className="h-4 w-4 mr-2" />
-            Thêm chủ đề
-          </Button>
+          <Dialog open={isAddTopicOpen} onOpenChange={setIsAddTopicOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline" size="sm" className="ml-4">
+                <Plus className="h-4 w-4 mr-2" />
+                Thêm chủ đề
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Thêm chủ đề mới</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 pt-4">
+                <div>
+                  <label htmlFor="topic-name" className="block text-sm font-medium text-gray-700 mb-2">
+                    Tên chủ đề:
+                  </label>
+                  <Input
+                    id="topic-name"
+                    value={newTopicName}
+                    onChange={(e) => setNewTopicName(e.target.value)}
+                    placeholder="Nhập tên chủ đề mới"
+                    onKeyPress={(e) => e.key === 'Enter' && handleAddTopic()}
+                  />
+                </div>
+                <div className="flex justify-end">
+                  <Button onClick={handleAddTopic} disabled={!newTopicName.trim()}>
+                    Thêm chủ đề mới
+                  </Button>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 
