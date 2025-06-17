@@ -59,8 +59,8 @@ export default function Wordcraft() {
 
       {/* Search and Filter */}
       <div className="mb-8 space-y-4">
-        {/* Search Bar and Site Toggle Buttons */}
-        <div className="flex items-center gap-4">
+        {/* Search Bar */}
+        <div className="flex items-center justify-between">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <Input
@@ -72,39 +72,42 @@ export default function Wordcraft() {
           </div>
           
           {/* Site Toggle Buttons */}
-          <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+          <div className="flex">
             <Button 
               variant="default" 
               size="sm" 
-              className="rounded-none bg-blue-600 hover:bg-blue-700 text-white border-0"
+              className="bg-blue-600 hover:bg-blue-700 text-white rounded-r-none border-r-0"
             >
               Bộ thẻ từ vựng
             </Button>
             <Button 
               variant="outline" 
               size="sm" 
-              className="rounded-none border-0 border-l border-gray-300 hover:bg-gray-50"
+              className="rounded-l-none hover:bg-gray-50"
             >
               Từ vựng đã lưu
             </Button>
           </div>
+        </div>
+
+        {/* Category Tabs and Add Button */}
+        <div className="flex items-center justify-between">
+          <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="flex-1">
+            <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
+              <TabsTrigger value="all">Tất cả</TabsTrigger>
+              {categories.map(category => (
+                <TabsTrigger key={category} value={category}>
+                  {category}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
           
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="ml-4">
             <Plus className="h-4 w-4 mr-2" />
             Thêm chủ đề
           </Button>
         </div>
-
-        <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
-            <TabsTrigger value="all">Tất cả</TabsTrigger>
-            {categories.map(category => (
-              <TabsTrigger key={category} value={category}>
-                {category}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
       </div>
 
       {/* Cards Grid */}
