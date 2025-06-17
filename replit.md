@@ -143,6 +143,9 @@ Changelog:
   - Implemented proper button navigation to vocabulary list screen
   - Created comprehensive vocabulary cards with authentic content from user files
   - Fixed API query endpoints for vocabulary word fetching
+  - Updated all vocabulary card names and descriptions to Vietnamese
+  - Implemented accurate word count calculation based on real vocabulary data
+  - Fixed card title display to show exact names from database
 
 ## User Preferences
 

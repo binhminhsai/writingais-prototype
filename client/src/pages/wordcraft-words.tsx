@@ -14,7 +14,7 @@ export default function WordcraftWords() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
-    queryKey: ["/api/vocabulary-cards", cardId],
+    queryKey: [`/api/vocabulary-cards/${cardId}`],
     enabled: !!cardId,
   });
 
@@ -57,6 +57,7 @@ export default function WordcraftWords() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Không tìm thấy bộ thẻ</h2>
+          <p className="text-gray-600 mb-4">Card ID: {cardId}</p>
           <Link href="/wordcraft">
             <Button>Quay lại danh sách</Button>
           </Link>
@@ -88,16 +89,16 @@ export default function WordcraftWords() {
           
           <div className="flex-1">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              {card?.title || "Tên bộ thẻ"}
+              {card.title}
             </h1>
-            {card?.description && (
+            {card.description && (
               <p className="text-gray-600 mb-4">{card.description}</p>
             )}
             
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">Chủ đề:</span>
-                <Badge variant="secondary">{card?.category || "Kinh doanh"}</Badge>
+                <Badge variant="secondary">{card.category}</Badge>
               </div>
               
               <Button className="bg-gray-900 hover:bg-gray-800 text-white">
