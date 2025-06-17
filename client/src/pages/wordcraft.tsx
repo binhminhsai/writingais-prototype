@@ -5,13 +5,13 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, Plus, BookOpen, Users, Star } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown } from "lucide-react";
 import type { VocabularyCard } from "@shared/schema";
 
 export default function Wordcraft() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const { data: cards = [], isLoading } = useQuery<VocabularyCard[]>({
     queryKey: ["/api/vocabulary-cards"],
@@ -22,9 +22,23 @@ export default function Wordcraft() {
   const filteredCards = cards.filter(card => {
     const matchesSearch = card.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          card.description?.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === "all" || card.category === selectedCategory;
+    const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(card.category);
     return matchesSearch && matchesCategory;
   });
+
+  const handleCategoryToggle = (category: string) => {
+    setSelectedCategories(prev => 
+      prev.includes(category) 
+        ? prev.filter(c => c !== category)
+        : [...prev, category]
+    );
+  };
+
+  const getFilterButtonText = () => {
+    if (selectedCategories.length === 0) return "Tất cả chủ đề";
+    if (selectedCategories.length === 1) return selectedCategories[0];
+    return "Đang chọn nhiều chủ đề";
+  };
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
@@ -90,18 +104,28 @@ export default function Wordcraft() {
           </div>
         </div>
 
-        {/* Category Tabs and Add Button */}
+        {/* Category Filter and Add Button */}
         <div className="flex items-center justify-between">
-          <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="flex-1">
-            <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
-              <TabsTrigger value="all">Tất cả</TabsTrigger>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="rounded-full h-9 px-4">
+                <Filter className="h-4 w-4 mr-2" />
+                {getFilterButtonText()}
+                <ChevronDown className="h-4 w-4 ml-2" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56">
               {categories.map(category => (
-                <TabsTrigger key={category} value={category}>
+                <DropdownMenuCheckboxItem
+                  key={category}
+                  checked={selectedCategories.includes(category)}
+                  onCheckedChange={() => handleCategoryToggle(category)}
+                >
                   {category}
-                </TabsTrigger>
+                </DropdownMenuCheckboxItem>
               ))}
-            </TabsList>
-          </Tabs>
+            </DropdownMenuContent>
+          </DropdownMenu>
           
           <Button variant="outline" size="sm" className="ml-4">
             <Plus className="h-4 w-4 mr-2" />
