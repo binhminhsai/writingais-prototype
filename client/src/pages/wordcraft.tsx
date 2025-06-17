@@ -304,9 +304,13 @@ export default function Wordcraft() {
                     variant="outline" 
                     size="sm" 
                     className="flex-1 text-xs h-7"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      window.location.href = `/wordcraft/${card.id}/words`;
+                    }}
                   >
-                    Xem từ vựng
+                    Danh sách từ vựng
                   </Button>
                   <Button 
                     variant="outline" 

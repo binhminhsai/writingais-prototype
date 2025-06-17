@@ -139,6 +139,8 @@ Changelog:
   - Added smart topic display (shows badges or count when multiple selected)
   - Made vocabulary cards fully clickable to navigate to word detail view
   - Added "Tất cả chủ đề" option and improved dropdown behavior
+  - Changed button text from "Xem từ vựng" to "Danh sách từ vựng"
+  - Implemented proper button navigation to vocabulary list screen
 
 ## User Preferences
 

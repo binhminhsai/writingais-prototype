@@ -89,6 +89,26 @@ export class MemStorage implements IStorage {
         wordCount: 10,
         studyCount: 5,
         createdAt: "2025-04-10"
+      },
+      {
+        id: 5,
+        title: "Business Vocabulary - Complete",
+        description: "Từ vựng thiết yếu trong môi trường công sở và kinh doanh hiện đại",
+        category: "Business",
+        difficulty: "Advanced",
+        wordCount: 5,
+        studyCount: 0,
+        createdAt: "2025-06-17"
+      },
+      {
+        id: 6,
+        title: "Idioms & Expressions",
+        description: "Thành ngữ và cách diễn đạt tự nhiên giúp giao tiếp như người bản xứ",
+        category: "Idioms",
+        difficulty: "Advanced",
+        wordCount: 1,
+        studyCount: 0,
+        createdAt: "2025-06-17"
       }
     ];
 
@@ -141,6 +161,80 @@ export class MemStorage implements IStorage {
         example: "I just wanted to look up one recipe, but three hours later, I was deep down a YouTube rabbit hole about medieval cooking.",
         exampleVietnamese: "Tôi chỉ muốn tìm một công thức nấu ăn thôi, vậy mà ba tiếng sau lại sa đã vào cả loạt video YouTube về ẩm thực thời trung cổ.",
         tags: ["idiom", "distraction", "internet"]
+      },
+      // Business Vocabulary - Complete card (id: 5)
+      {
+        id: 5,
+        cardId: 5,
+        word: "Resilience",
+        pronunciation: "/rɪˈzɪljəns/",
+        partOfSpeech: "N",
+        definition: "The ability to become strong, healthy, or successful again after something bad happens. The quality of being able to return quickly to a previous good condition after problems.",
+        vietnamese: "Khả năng phục hồi nhanh chóng sau khó khăn, tính kiên cường và bền bỉ. Sự dẻo dai trong việc vượt qua thử thách.",
+        example: "The company showed great resilience during the economic downturn and managed to stay profitable.",
+        exampleVietnamese: "Công ty đã thể hiện sự kiên cường tuyệt vời trong thời kỳ suy thoái kinh tế và vẫn duy trì được lợi nhuận.",
+        tags: ["business", "strength", "recovery"]
+      },
+      {
+        id: 6,
+        cardId: 5,
+        word: "Comprehensive",
+        pronunciation: "/ˌkɒmprɪˈhensɪv/",
+        partOfSpeech: "Adj",
+        definition: "Including all or nearly all elements or aspects of something",
+        vietnamese: "Toàn diện, bao quát",
+        example: "We need a comprehensive analysis of the market trends.",
+        exampleVietnamese: "Chúng ta cần một phân tích toàn diện về xu hướng thị trường.",
+        tags: ["analysis", "complete", "thorough"]
+      },
+      {
+        id: 7,
+        cardId: 5,
+        word: "Collaborate",
+        pronunciation: "/kəˈlæbəreɪt/",
+        partOfSpeech: "V",
+        definition: "To work together with others to achieve a common goal",
+        vietnamese: "Hợp tác, cộng tác",
+        example: "Teams must collaborate effectively to meet project deadlines.",
+        exampleVietnamese: "Các nhóm phải hợp tác hiệu quả để đáp ứng thời hạn dự án.",
+        tags: ["teamwork", "cooperation", "partnership"]
+      },
+      {
+        id: 8,
+        cardId: 5,
+        word: "Fragile",
+        pronunciation: "/ˈfrædʒaɪl/",
+        partOfSpeech: "Adj",
+        definition: "Easily broken or damaged; delicate",
+        vietnamese: "Dễ vỡ, dễ bị hư hại",
+        example: "The economic recovery remains fragile and could be affected by external factors.",
+        exampleVietnamese: "Sự phục hồi kinh tế vẫn còn mong manh và có thể bị ảnh hưởng bởi các yếu tố bên ngoài.",
+        tags: ["delicate", "vulnerable", "breakable"]
+      },
+      {
+        id: 9,
+        cardId: 5,
+        word: "However",
+        pronunciation: "/haʊˈevə/",
+        partOfSpeech: "Adv",
+        definition: "Used to introduce a statement that contrasts with something that has been said previously",
+        vietnamese: "Tuy nhiên, mặc dù vậy",
+        example: "The project was challenging; however, the team managed to complete it on time.",
+        exampleVietnamese: "Dự án rất thử thách; tuy nhiên, nhóm đã hoàn thành đúng thời hạn.",
+        tags: ["contrast", "transition", "conjunction"]
+      },
+      // Idioms & Expressions card (id: 6)
+      {
+        id: 10,
+        cardId: 6,
+        word: "Go down a rabbit hole",
+        pronunciation: "/ɡəʊ daʊn ə ˈræbɪt həʊl/",
+        partOfSpeech: "Idiom",
+        definition: "A bizarre or confusing situation or environment, often one that becomes increasingly complicated the deeper one explores it. The term is also used to describe getting deeply involved in an activity or topic, especially on the internet.",
+        vietnamese: "Một tình huống kỳ quái hoặc rối rắm, thường trở nên phức tạp hơn khi bạn càng tìm hiểu sâu. Cũng dùng để chỉ việc bạn 'sa đà' vào một chủ đề hay hoạt động (đặc biệt trên mạng) đến mức mất thời gian mà không để ý.",
+        example: "I just wanted to look up one recipe, but three hours later, I was deep down a YouTube rabbit hole about medieval cooking.",
+        exampleVietnamese: "Tôi chỉ muốn tìm một công thức nấu ăn thôi, vậy mà ba tiếng sau lại sa đà vào cả loạt video YouTube về ẩm thực thời trung cổ.",
+        tags: ["idiom", "distraction", "internet", "time-wasting"]
       }
     ];
 
