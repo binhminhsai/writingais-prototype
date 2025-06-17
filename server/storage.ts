@@ -278,11 +278,24 @@ export class MemStorage implements IStorage {
   }
 
   async getAllVocabularyCards(): Promise<VocabularyCard[]> {
-    return Array.from(this.vocabularyCards.values());
+    const cards = Array.from(this.vocabularyCards.values());
+    // Update word count for each card based on actual words
+    return cards.map(card => ({
+      ...card,
+      wordCount: Array.from(this.vocabularyWords.values()).filter(word => word.cardId === card.id).length
+    }));
   }
 
   async getVocabularyCard(id: number): Promise<VocabularyCard | undefined> {
-    return this.vocabularyCards.get(id);
+    const card = this.vocabularyCards.get(id);
+    if (!card) return undefined;
+    
+    // Update word count based on actual words
+    const wordCount = Array.from(this.vocabularyWords.values()).filter(word => word.cardId === card.id).length;
+    return {
+      ...card,
+      wordCount
+    };
   }
 
   async createVocabularyCard(insertCard: InsertVocabularyCard): Promise<VocabularyCard> {
