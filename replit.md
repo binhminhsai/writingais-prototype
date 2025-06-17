@@ -137,6 +137,8 @@ Changelog:
   - Changed category label from "Phân loại" to "Chủ đề" per user request
   - Implemented multi-topic selection with dropdown checkbox interface
   - Added smart topic display (shows badges or count when multiple selected)
+  - Made vocabulary cards fully clickable to navigate to word detail view
+  - Added "Tất cả chủ đề" option and improved dropdown behavior
 
 ## User Preferences
 

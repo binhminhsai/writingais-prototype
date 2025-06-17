@@ -258,52 +258,68 @@ export default function Wordcraft() {
       {/* Cards Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
         {filteredCards.map((card) => (
-          <Card key={card.id} className="border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-            {/* Image Area with Title Overlay and Star */}
-            <div className="relative h-32 bg-gray-100 flex items-center justify-center">
-              <div className="text-4xl text-gray-400">✕</div>
-              
-              {/* Favorite Star - Top Right */}
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="absolute top-1 right-1 h-6 w-6 p-0 hover:bg-white/80"
-              >
-                <Star className="h-4 w-4 text-gray-400 hover:text-yellow-400" />
-              </Button>
-              
-              {/* Title - Bottom Left */}
-              <div className="absolute bottom-2 left-2">
-                <h3 className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
-                  {card.title}
-                </h3>
-              </div>
-            </div>
-            
-            {/* Word Count and Actions */}
-            <div className="p-2">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-900">
-                  {card.wordCount} từ vựng
-                </span>
-                <Button variant="ghost" size="sm" className="h-5 w-5 p-0">
-                  <span className="text-sm">⋯</span>
+          <Link key={card.id} href={`/wordcraft/${card.id}/words`} className="block">
+            <Card className="border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+              {/* Image Area with Title Overlay and Star */}
+              <div className="relative h-32 bg-gray-100 flex items-center justify-center">
+                <div className="text-4xl text-gray-400">✕</div>
+                
+                {/* Favorite Star - Top Right */}
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="absolute top-1 right-1 h-6 w-6 p-0 hover:bg-white/80 z-10"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <Star className="h-4 w-4 text-gray-400 hover:text-yellow-400" />
                 </Button>
+                
+                {/* Title - Bottom Left */}
+                <div className="absolute bottom-2 left-2">
+                  <h3 className="text-xs font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
+                    {card.title}
+                  </h3>
+                </div>
               </div>
               
-              {/* Action Buttons */}
-              <div className="flex space-x-1">
-                <Link href={`/wordcraft/${card.id}/words`} className="flex-1">
-                  <Button variant="outline" size="sm" className="w-full text-xs h-7">
+              {/* Word Count and Actions */}
+              <div className="p-2">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-900">
+                    {card.wordCount} từ vựng
+                  </span>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    className="h-5 w-5 p-0 z-10"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <span className="text-sm">⋯</span>
+                  </Button>
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="flex space-x-1">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="flex-1 text-xs h-7"
+                    onClick={(e) => e.preventDefault()}
+                  >
                     Xem từ vựng
                   </Button>
-                </Link>
-                <Button variant="outline" size="sm" className="text-xs h-7 px-2">
-                  Học
-                </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="text-xs h-7 px-2"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    Học
+                  </Button>
+                </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </Link>
         ))}
 
         {/* Add New Card */}
