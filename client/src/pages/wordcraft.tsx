@@ -34,13 +34,8 @@ export default function Wordcraft() {
 
   const createCardMutation = useMutation({
     mutationFn: async (cardData: InsertVocabularyCard) => {
-      return apiRequest<VocabularyCard>("/api/vocabulary-cards", {
-        method: "POST",
-        body: JSON.stringify(cardData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await apiRequest("POST", "/api/vocabulary-cards", cardData);
+      return response.json() as Promise<VocabularyCard>;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/vocabulary-cards"] });
@@ -95,14 +90,15 @@ export default function Wordcraft() {
   const handleAddCard = () => {
     if (newCardData.title.trim()) {
       // Convert "none" back to empty string for storage
-      const cardToCreate = {
-        ...newCardData,
-        category: newCardData.category === "none" ? "" : newCardData.category
+      const cardToCreate: InsertVocabularyCard = {
+        title: newCardData.title.trim(),
+        category: newCardData.category === "none" ? "Uncategorized" : newCardData.category,
+        difficulty: "Intermediate", // Default difficulty
+        wordCount: 0, // Start with 0 words
+        createdAt: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
+        description: newCardData.description.trim() || null,
       };
-      // Here you would normally create the card via API
-      console.log("Adding new card:", cardToCreate);
-      setNewCardData({ title: "", description: "", category: "" });
-      setIsAddCardOpen(false);
+      createCardMutation.mutate(cardToCreate);
     }
   };
 
@@ -350,10 +346,10 @@ export default function Wordcraft() {
               <div className="flex justify-end pt-2">
                 <Button 
                   onClick={handleAddCard} 
-                  disabled={!newCardData.title.trim()}
+                  disabled={!newCardData.title.trim() || createCardMutation.isPending}
                   className="bg-teal-500 hover:bg-teal-600 text-white"
                 >
-                  Tạo bộ thẻ mới
+                  {createCardMutation.isPending ? "Đang tạo..." : "Tạo bộ thẻ mới"}
                 </Button>
               </div>
             </div>
