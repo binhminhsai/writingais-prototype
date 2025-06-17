@@ -16,6 +16,7 @@ export const vocabularyCards = pgTable("vocabulary_cards", {
   difficulty: text("difficulty").notNull(),
   wordCount: integer("word_count").notNull(),
   studyCount: integer("study_count").default(0),
+  isFavorited: integer("is_favorited").default(0),
   createdAt: text("created_at").notNull(),
 });
 

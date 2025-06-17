@@ -20,6 +20,7 @@ export interface IStorage {
   getAllVocabularyCards(): Promise<VocabularyCard[]>;
   getVocabularyCard(id: number): Promise<VocabularyCard | undefined>;
   createVocabularyCard(card: InsertVocabularyCard): Promise<VocabularyCard>;
+  updateVocabularyCardFavorite(id: number, isFavorited: boolean): Promise<VocabularyCard | undefined>;
   
   // Vocabulary Words
   getVocabularyWordsByCardId(cardId: number): Promise<VocabularyWord[]>;
@@ -58,6 +59,7 @@ export class MemStorage implements IStorage {
         difficulty: "Intermediate",
         wordCount: 12,
         studyCount: 7,
+        isFavorited: 0,
         createdAt: "2025-04-20"
       },
       {
@@ -68,6 +70,7 @@ export class MemStorage implements IStorage {
         difficulty: "Advanced",
         wordCount: 15,
         studyCount: 3,
+        isFavorited: 0,
         createdAt: "2025-04-15"
       },
       {
@@ -78,6 +81,7 @@ export class MemStorage implements IStorage {
         difficulty: "Intermediate",
         wordCount: 18,
         studyCount: 12,
+        isFavorited: 0,
         createdAt: "2025-04-12"
       },
       {
@@ -88,6 +92,7 @@ export class MemStorage implements IStorage {
         difficulty: "Beginner",
         wordCount: 10,
         studyCount: 5,
+        isFavorited: 0,
         createdAt: "2025-04-10"
       },
       {
@@ -98,6 +103,7 @@ export class MemStorage implements IStorage {
         difficulty: "Advanced",
         wordCount: 5,
         studyCount: 0,
+        isFavorited: 0,
         createdAt: "2025-06-17"
       },
       {
@@ -108,6 +114,7 @@ export class MemStorage implements IStorage {
         difficulty: "Advanced",
         wordCount: 1,
         studyCount: 0,
+        isFavorited: 0,
         createdAt: "2025-06-17"
       }
     ];
@@ -304,10 +311,20 @@ export class MemStorage implements IStorage {
       ...insertCard, 
       id,
       description: insertCard.description || null,
-      studyCount: insertCard.studyCount || 0
+      studyCount: insertCard.studyCount || 0,
+      isFavorited: 0
     };
     this.vocabularyCards.set(id, card);
     return card;
+  }
+
+  async updateVocabularyCardFavorite(id: number, isFavorited: boolean): Promise<VocabularyCard | undefined> {
+    const card = this.vocabularyCards.get(id);
+    if (!card) return undefined;
+    
+    const updatedCard = { ...card, isFavorited: isFavorited ? 1 : 0 };
+    this.vocabularyCards.set(id, updatedCard);
+    return updatedCard;
   }
 
   async getVocabularyWordsByCardId(cardId: number): Promise<VocabularyWord[]> {
