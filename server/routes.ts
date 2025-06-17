@@ -37,6 +37,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.patch("/api/vocabulary-cards/:id/favorite", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { isFavorited } = req.body;
+      const card = await storage.updateVocabularyCardFavorite(id, isFavorited);
+      if (!card) {
+        return res.status(404).json({ error: "Vocabulary card not found" });
+      }
+      res.json(card);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update vocabulary card favorite" });
+    }
+  });
+
   // Vocabulary Words API
   app.get("/api/vocabulary-cards/:cardId/words", async (req, res) => {
     try {

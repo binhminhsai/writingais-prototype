@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,12 +13,27 @@ import type { VocabularyCard, VocabularyWord } from "@shared/schema";
 export default function WordcraftWords() {
   const { cardId } = useParams<{ cardId: string }>();
   const [searchQuery, setSearchQuery] = useState("");
-  const [isFavorited, setIsFavorited] = useState(false);
+  const queryClient = useQueryClient();
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
     queryKey: [`/api/vocabulary-cards/${cardId}`],
     enabled: !!cardId,
   });
+
+  const favoriteMutation = useMutation({
+    mutationFn: async (isFavorited: boolean) => {
+      return await apiRequest("PATCH", `/api/vocabulary-cards/${cardId}/favorite`, { isFavorited });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/vocabulary-cards/${cardId}`] });
+      queryClient.invalidateQueries({ queryKey: ["/api/vocabulary-cards"] });
+    }
+  });
+
+  const handleFavoriteToggle = () => {
+    const newFavoriteState = !card?.isFavorited;
+    favoriteMutation.mutate(newFavoriteState);
+  };
 
   const { data: words = [], isLoading: wordsLoading } = useQuery<VocabularyWord[]>({
     queryKey: [`/api/vocabulary-cards/${cardId}/words`],
@@ -125,10 +141,11 @@ export default function WordcraftWords() {
         <Button 
           variant="ghost" 
           size="sm" 
-          onClick={() => setIsFavorited(!isFavorited)}
-          className={`${isFavorited ? 'text-yellow-500 hover:text-yellow-600' : 'text-gray-400 hover:text-yellow-400'}`}
+          onClick={handleFavoriteToggle}
+          disabled={favoriteMutation.isPending}
+          className={`${card?.isFavorited ? 'text-yellow-500 hover:text-yellow-600' : 'text-gray-400 hover:text-yellow-400'}`}
         >
-          <Star className={`h-4 w-4 ${isFavorited ? 'fill-current' : ''}`} />
+          <Star className={`h-4 w-4 ${card?.isFavorited ? 'fill-current' : ''}`} />
         </Button>
       </div>
 
