@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown } from "lucide-react";
 import type { VocabularyCard } from "@shared/schema";
 
@@ -15,6 +17,12 @@ export default function Wordcraft() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [isAddTopicOpen, setIsAddTopicOpen] = useState(false);
   const [newTopicName, setNewTopicName] = useState("");
+  const [isAddCardOpen, setIsAddCardOpen] = useState(false);
+  const [newCardData, setNewCardData] = useState({
+    title: "",
+    description: "",
+    category: ""
+  });
 
   const { data: cards = [], isLoading } = useQuery<VocabularyCard[]>({
     queryKey: ["/api/vocabulary-cards"],
@@ -49,6 +57,15 @@ export default function Wordcraft() {
       console.log("Adding new topic:", newTopicName);
       setNewTopicName("");
       setIsAddTopicOpen(false);
+    }
+  };
+
+  const handleAddCard = () => {
+    if (newCardData.title.trim() && newCardData.category) {
+      // Here you would normally create the card via API
+      console.log("Adding new card:", newCardData);
+      setNewCardData({ title: "", description: "", category: "" });
+      setIsAddCardOpen(false);
     }
   };
 
@@ -226,18 +243,85 @@ export default function Wordcraft() {
         ))}
 
         {/* Add New Card */}
-        <Card className="border-dashed border-2 border-gray-300 hover:border-gray-400 transition-colors cursor-pointer">
-          <div className="relative h-32 bg-gray-50 flex items-center justify-center">
-            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-              <Plus className="h-6 w-6 text-gray-400" />
+        <Dialog open={isAddCardOpen} onOpenChange={setIsAddCardOpen}>
+          <DialogTrigger asChild>
+            <Card className="border-dashed border-2 border-gray-300 hover:border-gray-400 transition-colors cursor-pointer">
+              <div className="relative h-32 bg-gray-50 flex items-center justify-center">
+                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+                  <Plus className="h-6 w-6 text-gray-400" />
+                </div>
+              </div>
+              <div className="p-2">
+                <div className="text-center">
+                  <h3 className="text-xs font-medium text-gray-700">Thêm bộ thẻ từ vựng</h3>
+                </div>
+              </div>
+            </Card>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Tạo thẻ từ vựng</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 pt-4">
+              <div>
+                <label htmlFor="card-title" className="block text-sm font-medium text-gray-700 mb-2">
+                  Tên bộ thẻ mới
+                </label>
+                <Input
+                  id="card-title"
+                  value={newCardData.title}
+                  onChange={(e) => setNewCardData(prev => ({ ...prev, title: e.target.value }))}
+                  placeholder="Nhập tên bộ thẻ từ vựng"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="card-description" className="block text-sm font-medium text-gray-700 mb-2">
+                  Mô tả
+                </label>
+                <Textarea
+                  id="card-description"
+                  value={newCardData.description}
+                  onChange={(e) => setNewCardData(prev => ({ ...prev, description: e.target.value }))}
+                  placeholder="Nhập mô tả cho bộ thẻ từ vựng"
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="card-category" className="block text-sm font-medium text-gray-700 mb-2">
+                  Phân loại
+                </label>
+                <Select
+                  value={newCardData.category}
+                  onValueChange={(value) => setNewCardData(prev => ({ ...prev, category: value }))}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Không phân loại" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">Không phân loại</SelectItem>
+                    {categories.map(category => (
+                      <SelectItem key={category} value={category}>
+                        {category}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="flex justify-end pt-2">
+                <Button 
+                  onClick={handleAddCard} 
+                  disabled={!newCardData.title.trim()}
+                  className="bg-teal-500 hover:bg-teal-600 text-white"
+                >
+                  Tạo bộ thẻ mới
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className="p-2">
-            <div className="text-center">
-              <h3 className="text-xs font-medium text-gray-700">Thêm bộ thẻ từ vựng</h3>
-            </div>
-          </div>
-        </Card>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

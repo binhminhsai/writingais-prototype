@@ -24,9 +24,9 @@ export default function WordcraftWords() {
   });
 
   const filteredWords = words.filter(word => 
-    word.word.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    word.definition.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    word.vietnamese.toLowerCase().includes(searchQuery.toLowerCase())
+    word.word?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    word.definition?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    word.vietnamese?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const getPartOfSpeechColor = (pos: string) => {
