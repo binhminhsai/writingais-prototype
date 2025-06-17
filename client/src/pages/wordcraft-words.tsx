@@ -1,0 +1,187 @@
+import { useState } from "react";
+import { Link, useParams } from "wouter";
+import { useQuery } from "@tanstack/react-query";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus } from "lucide-react";
+import type { VocabularyCard, VocabularyWord } from "@shared/schema";
+
+export default function WordcraftWords() {
+  const { cardId } = useParams<{ cardId: string }>();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
+    queryKey: ["/api/vocabulary-cards", cardId],
+    enabled: !!cardId,
+  });
+
+  const { data: words = [], isLoading: wordsLoading } = useQuery<VocabularyWord[]>({
+    queryKey: ["/api/vocabulary-cards", cardId, "words"],
+    enabled: !!cardId,
+  });
+
+  const filteredWords = words.filter(word => 
+    word.word.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    word.definition.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    word.vietnamese.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const getPartOfSpeechColor = (pos: string) => {
+    switch (pos) {
+      case "N": return "bg-blue-100 text-blue-800";
+      case "V": return "bg-green-100 text-green-800";
+      case "Adj": return "bg-purple-100 text-purple-800";
+      case "Adv": return "bg-orange-100 text-orange-800";
+      case "Idiom": return "bg-pink-100 text-pink-800";
+      default: return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  if (cardLoading || wordsLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="animate-pulse space-y-6">
+          <div className="h-8 bg-gray-200 rounded w-1/4"></div>
+          <div className="h-32 bg-gray-200 rounded"></div>
+          <div className="h-64 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!card) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Không tìm thấy bộ thẻ</h2>
+          <Link href="/wordcraft">
+            <Button>Quay lại danh sách</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      {/* Header */}
+      <div className="mb-6">
+        <div className="flex items-center mb-4">
+          <Link href="/wordcraft">
+            <Button variant="ghost" size="sm" className="mr-4">
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Trở về
+            </Button>
+          </Link>
+          <Button variant="ghost" size="sm" className="ml-auto">
+            <Settings className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="w-full lg:w-48 h-32 bg-gray-100 rounded-md flex items-center justify-center">
+            <div className="text-4xl text-gray-400">✕</div>
+          </div>
+          
+          <div className="flex-1">
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">{card.title}</h1>
+            <p className="text-gray-600 mb-4">{card.description}</p>
+            
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="text-sm text-gray-600">Chủ đề:</span>
+              <Badge variant="secondary">{card.category}</Badge>
+              <Badge variant="secondary" className="ml-2">{card.difficulty}</Badge>
+            </div>
+
+            <Button className="bg-gray-900 hover:bg-gray-800 text-white">
+              <BookOpen className="h-4 w-4 mr-2" />
+              Học từ vựng
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Search */}
+      <div className="mb-6">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Input
+            placeholder="Tìm kiếm từ mô tả bạn muốn ôn lại"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <div className="flex items-center justify-end mt-4">
+          <Button variant="ghost" size="sm" className="mr-2">
+            <Star className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Words Table */}
+      <div className="bg-white rounded-lg border">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-12">STT</TableHead>
+              <TableHead>Từ vựng</TableHead>
+              <TableHead>Phiên âm</TableHead>
+              <TableHead>Loại từ</TableHead>
+              <TableHead>Định nghĩa</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredWords.map((word, index) => (
+              <TableRow 
+                key={word.id} 
+                className={index === 4 ? "bg-blue-50" : "hover:bg-gray-50"}
+              >
+                <TableCell className="font-medium">{index + 1}</TableCell>
+                <TableCell className="font-medium">{word.word}</TableCell>
+                <TableCell className="text-gray-600">{word.pronunciation}</TableCell>
+                <TableCell>
+                  <Badge variant="secondary" className={getPartOfSpeechColor(word.partOfSpeech)}>
+                    {word.partOfSpeech}
+                  </Badge>
+                </TableCell>
+                <TableCell className="max-w-md">
+                  <p className="line-clamp-2">{word.definition}</p>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+
+      {/* Footer Stats */}
+      <div className="mt-6 flex items-center justify-between">
+        <div className="flex items-center space-x-6">
+          <div className="flex items-center text-sm text-gray-600">
+            <BookOpen className="h-4 w-4 mr-1" />
+            Số từ vựng: {card.wordCount}
+          </div>
+          <div className="flex items-center text-sm text-gray-600">
+            <Users className="h-4 w-4 mr-1" />
+            Số lần học: {card.studyCount}
+          </div>
+        </div>
+
+        <div className="flex space-x-2">
+          <Link href={`/wordcraft/${cardId}/words/${filteredWords[0]?.id || 1}/detail`}>
+            <Button variant="outline">
+              Xem chi tiết
+            </Button>
+          </Link>
+          <Button>
+            <Plus className="h-4 w-4 mr-2" />
+            Thêm từ vựng
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -44,7 +44,7 @@ export default function Home() {
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-green-600" /> Vocabulary Builder
+              <BookOpen className="h-5 w-5 text-green-600" /> Wordcraft
             </CardTitle>
             <CardDescription>
               Expand your vocabulary with targeted word lists
@@ -57,9 +57,11 @@ export default function Home() {
             </p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline" className="w-full" disabled>
-              Coming Soon
-            </Button>
+            <Link href="/wordcraft">
+              <Button className="w-full">
+                Explore Wordcraft <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
 
