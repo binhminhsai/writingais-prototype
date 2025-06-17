@@ -59,14 +59,40 @@ export default function Wordcraft() {
 
       {/* Search and Filter */}
       <div className="mb-8 space-y-4">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-          <Input
-            placeholder="Tìm kiếm tên bộ thẻ bạn muốn ôn lại"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10"
-          />
+        {/* Search Bar and Site Toggle Buttons */}
+        <div className="flex items-center gap-4">
+          <div className="relative flex-1 max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <Input
+              placeholder="Tìm kiếm tên bộ thẻ bạn muốn ôn lại"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+          
+          {/* Site Toggle Buttons */}
+          <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+            <Button 
+              variant="default" 
+              size="sm" 
+              className="rounded-none bg-blue-600 hover:bg-blue-700 text-white border-0"
+            >
+              Bộ thẻ từ vựng
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="rounded-none border-0 border-l border-gray-300 hover:bg-gray-50"
+            >
+              Từ vựng đã lưu
+            </Button>
+          </div>
+          
+          <Button variant="outline" size="sm">
+            <Plus className="h-4 w-4 mr-2" />
+            Thêm chủ đề
+          </Button>
         </div>
 
         <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
@@ -79,22 +105,6 @@ export default function Wordcraft() {
             ))}
           </TabsList>
         </Tabs>
-
-        <div className="flex justify-between items-center">
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm">
-              <BookOpen className="h-4 w-4 mr-2" />
-              Bộ thẻ từ vựng
-            </Button>
-            <Button variant="outline" size="sm">
-              Từ vựng đã lưu
-            </Button>
-          </div>
-          <Button variant="outline" size="sm">
-            <Plus className="h-4 w-4 mr-2" />
-            Thêm chủ đề
-          </Button>
-        </div>
       </div>
 
       {/* Cards Grid */}
