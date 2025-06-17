@@ -123,6 +123,13 @@ This is a full-stack English writing practice application built with React, Expr
 
 Changelog:
 - June 17, 2025. Initial setup
+- June 17, 2025. Implemented Wordcraft vocabulary learning system:
+  - Renamed "Vocabulary Builder" to "Wordcraft"
+  - Created bilingual vocabulary card and word data models
+  - Built three-page navigation flow: card list → word list → word detail
+  - Implemented horizontal card layout matching wireframe specifications
+  - Added Vietnamese-English vocabulary examples with sample data
+  - Created responsive grid layout for vocabulary cards
 
 ## User Preferences
 

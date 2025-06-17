@@ -98,58 +98,61 @@ export default function Wordcraft() {
       </div>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {filteredCards.map((card) => (
-          <Card key={card.id} className="flex flex-col hover:shadow-lg transition-shadow">
-            <CardHeader className="pb-3">
-              <div className="w-full h-32 bg-gray-100 rounded-md mb-3 flex items-center justify-center">
-                <div className="text-4xl text-gray-400">✕</div>
+          <Card key={card.id} className="border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+            {/* Image Area with Title Overlay */}
+            <div className="relative h-40 bg-gray-100 flex items-center justify-center">
+              <div className="text-6xl text-gray-400">✕</div>
+              <div className="absolute bottom-2 left-2">
+                <h3 className="text-sm font-medium text-gray-900 bg-white px-2 py-1 rounded shadow-sm">
+                  {card.title}
+                </h3>
               </div>
-              <div className="flex items-center justify-between">
-                <Badge variant="secondary" className={getDifficultyColor(card.difficulty)}>
-                  {card.difficulty}
-                </Badge>
-                <div className="flex items-center text-sm text-gray-500">
-                  <Star className="h-4 w-4 mr-1" />
-                  {card.studyCount}
+            </div>
+            
+            {/* Rating and Actions */}
+            <div className="p-3">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center">
+                  <span className="text-lg font-medium text-gray-900 mr-2">C</span>
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className={`h-3 w-3 ${i < (card.studyCount || 0) / 3 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <CardTitle className="text-lg mb-2">{card.title}</CardTitle>
-              <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                {card.description}
-              </p>
-              <div className="flex items-center text-sm text-gray-500 mb-2">
-                <Users className="h-4 w-4 mr-1" />
-                Số từ vựng: {card.wordCount}
-              </div>
-              <div className="flex items-center text-sm text-gray-500">
-                <BookOpen className="h-4 w-4 mr-1" />
-                Số lần học: {card.studyCount}
-              </div>
-            </CardContent>
-            <CardFooter className="pt-3 space-x-2">
-              <Link href={`/wordcraft/${card.id}/words`} className="flex-1">
-                <Button variant="outline" className="w-full">
-                  Xem từ vựng
+                <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                  <span className="text-lg">⋯</span>
                 </Button>
-              </Link>
-              <Button variant="outline" size="sm">
-                Học
-              </Button>
-            </CardFooter>
+              </div>
+              
+              {/* Action Buttons */}
+              <div className="flex space-x-2">
+                <Link href={`/wordcraft/${card.id}/words`} className="flex-1">
+                  <Button variant="outline" size="sm" className="w-full text-xs">
+                    Xem từ vựng
+                  </Button>
+                </Link>
+                <Button variant="outline" size="sm" className="text-xs">
+                  Học
+                </Button>
+              </div>
+            </div>
           </Card>
         ))}
 
         {/* Add New Card */}
-        <Card className="flex flex-col items-center justify-center h-full min-h-[300px] border-dashed border-2 border-gray-300 hover:border-gray-400 transition-colors cursor-pointer">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+        <Card className="border-dashed border-2 border-gray-300 hover:border-gray-400 transition-colors cursor-pointer">
+          <div className="relative h-40 bg-gray-50 flex items-center justify-center">
+            <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
               <Plus className="h-8 w-8 text-gray-400" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Thêm bộ thẻ từ vựng</h3>
-            <p className="text-sm text-gray-500">Tạo bộ thẻ từ vựng của riêng bạn</p>
+          </div>
+          <div className="p-3">
+            <div className="text-center">
+              <h3 className="text-sm font-medium text-gray-700 mb-1">Thêm bộ thẻ từ vựng</h3>
+            </div>
           </div>
         </Card>
       </div>
