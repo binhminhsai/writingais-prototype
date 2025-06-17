@@ -386,6 +386,13 @@ export default function Wordcraft() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="start" className="w-56">
+                    <DropdownMenuCheckboxItem
+                      checked={newCardData.categories.length === categories.length}
+                      onCheckedChange={handleSelectAllCategoriesForCard}
+                      onSelect={(e) => e.preventDefault()}
+                    >
+                      Tất cả chủ đề
+                    </DropdownMenuCheckboxItem>
                     {categories.map(category => (
                       <DropdownMenuCheckboxItem
                         key={category}
