@@ -52,8 +52,8 @@ export class MemStorage implements IStorage {
     const sampleCards: VocabularyCard[] = [
       {
         id: 1,
-        title: "Business - 20/04",
-        description: "Essential business vocabulary for professional communication",
+        title: "Từ vựng Kinh doanh Cơ bản",
+        description: "Tổng hợp các từ vựng thiết yếu trong giao tiếp công sở và môi trường kinh doanh hiện đại",
         category: "Business",
         difficulty: "Intermediate",
         wordCount: 12,
@@ -62,8 +62,8 @@ export class MemStorage implements IStorage {
       },
       {
         id: 2,
-        title: "Technology - 15/04",
-        description: "Modern technology terms and concepts",
+        title: "Công nghệ Thông tin",
+        description: "Thuật ngữ và khái niệm công nghệ hiện đại, từ vựng IT và digital transformation",
         category: "Technology", 
         difficulty: "Advanced",
         wordCount: 15,
@@ -72,8 +72,8 @@ export class MemStorage implements IStorage {
       },
       {
         id: 3,
-        title: "Environment - 12/04",
-        description: "Environmental vocabulary and climate terms",
+        title: "Môi trường & Khí hậu",
+        description: "Từ vựng về môi trường, biến đổi khí hậu và phát triển bền vững",
         category: "Environment",
         difficulty: "Intermediate",
         wordCount: 18,
@@ -82,8 +82,8 @@ export class MemStorage implements IStorage {
       },
       {
         id: 4,
-        title: "Company - 10/04",
-        description: "Corporate structure and company-related vocabulary",
+        title: "Cấu trúc Công ty",
+        description: "Từ vựng về tổ chức công ty, chức danh và quy trình làm việc trong doanh nghiệp",
         category: "Company",
         difficulty: "Beginner",
         wordCount: 10,
@@ -92,8 +92,8 @@ export class MemStorage implements IStorage {
       },
       {
         id: 5,
-        title: "Business Vocabulary - Complete",
-        description: "Từ vựng thiết yếu trong môi trường công sở và kinh doanh hiện đại",
+        title: "Từ vựng Kinh doanh Nâng cao",
+        description: "Bộ từ vựng chuyên sâu cho giao tiếp kinh doanh, bao gồm các thuật ngữ về hợp tác, phân tích và khả năng phục hồi",
         category: "Business",
         difficulty: "Advanced",
         wordCount: 5,
@@ -102,8 +102,8 @@ export class MemStorage implements IStorage {
       },
       {
         id: 6,
-        title: "Idioms & Expressions",
-        description: "Thành ngữ và cách diễn đạt tự nhiên giúp giao tiếp như người bản xứ",
+        title: "Thành ngữ & Cách diễn đạt",
+        description: "Những thành ngữ và cách diễn đạt tự nhiên thường gặp trong giao tiếp hàng ngày và văn phong học thuật",
         category: "Idioms",
         difficulty: "Advanced",
         wordCount: 1,
