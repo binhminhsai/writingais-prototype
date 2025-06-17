@@ -87,21 +87,17 @@ export default function WordcraftWords() {
           </div>
           
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">{card.title}</h1>
-            {card.description && (
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+              {card?.title || "Tên bộ thẻ"}
+            </h1>
+            {card?.description && (
               <p className="text-gray-600 mb-4">{card.description}</p>
             )}
             
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">Chủ đề:</span>
-                {card.topics && card.topics.length > 0 ? (
-                  card.topics.map((topic, index) => (
-                    <Badge key={index} variant="secondary">{topic}</Badge>
-                  ))
-                ) : (
-                  <Badge variant="secondary">Kinh doanh</Badge>
-                )}
+                <Badge variant="secondary">{card?.category || "Kinh doanh"}</Badge>
               </div>
               
               <Button className="bg-gray-900 hover:bg-gray-800 text-white">
