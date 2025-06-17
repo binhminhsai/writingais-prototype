@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -23,7 +23,7 @@ export default function Wordcraft() {
   const [newCardData, setNewCardData] = useState({
     title: "",
     description: "",
-    category: ""
+    categories: [] as string[]
   });
 
   const { toast } = useToast();
@@ -43,7 +43,7 @@ export default function Wordcraft() {
         title: "Thành công!",
         description: "Bộ thẻ từ vựng đã được tạo thành công.",
       });
-      setNewCardData({ title: "", description: "", category: "" });
+      setNewCardData({ title: "", description: "", categories: [] });
       setIsAddCardOpen(false);
     },
     onError: () => {
@@ -87,12 +87,20 @@ export default function Wordcraft() {
     }
   };
 
+  const handleCategoryToggleForCard = (category: string) => {
+    setNewCardData(prev => ({
+      ...prev,
+      categories: prev.categories.includes(category)
+        ? prev.categories.filter(c => c !== category)
+        : [...prev.categories, category]
+    }));
+  };
+
   const handleAddCard = () => {
     if (newCardData.title.trim()) {
-      // Convert "none" back to empty string for storage
       const cardToCreate: InsertVocabularyCard = {
         title: newCardData.title.trim(),
-        category: newCardData.category === "none" ? "Uncategorized" : newCardData.category,
+        category: newCardData.categories.length > 0 ? newCardData.categories.join(", ") : "Uncategorized",
         difficulty: "Intermediate", // Default difficulty
         wordCount: 0, // Start with 0 words
         createdAt: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
@@ -322,25 +330,35 @@ export default function Wordcraft() {
               </div>
 
               <div>
-                <label htmlFor="card-category" className="block text-sm font-medium text-gray-700 mb-2">
-                  Phân loại
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Chủ đề {newCardData.categories.length > 0 && `(${newCardData.categories.length} đã chọn)`}
                 </label>
-                <Select
-                  value={newCardData.category}
-                  onValueChange={(value) => setNewCardData(prev => ({ ...prev, category: value }))}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Không phân loại" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="none">Không phân loại</SelectItem>
-                    {categories.map(category => (
-                      <SelectItem key={category} value={category}>
+                <div className="space-y-2 max-h-32 overflow-y-auto border rounded-md p-3">
+                  {categories.map(category => (
+                    <div key={category} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`category-${category}`}
+                        checked={newCardData.categories.includes(category)}
+                        onCheckedChange={() => handleCategoryToggleForCard(category)}
+                      />
+                      <label 
+                        htmlFor={`category-${category}`} 
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
                         {category}
-                      </SelectItem>
+                      </label>
+                    </div>
+                  ))}
+                </div>
+                {newCardData.categories.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {newCardData.categories.map(category => (
+                      <Badge key={category} variant="secondary" className="text-xs">
+                        {category}
+                      </Badge>
                     ))}
-                  </SelectContent>
-                </Select>
+                  </div>
+                )}
               </div>
 
               <div className="flex justify-end pt-2">

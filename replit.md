@@ -130,6 +130,11 @@ Changelog:
   - Implemented horizontal card layout matching wireframe specifications
   - Added Vietnamese-English vocabulary examples with sample data
   - Created responsive grid layout for vocabulary cards
+- June 17, 2025. Fixed vocabulary card creation functionality:
+  - Resolved Select component error with empty string values
+  - Implemented complete API integration for card creation
+  - Added loading states and toast notifications
+  - Changed category label from "Phân loại" to "Chủ đề" per user request
 
 ## User Preferences
 
