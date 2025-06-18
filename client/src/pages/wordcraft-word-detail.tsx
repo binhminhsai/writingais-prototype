@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "wouter";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -37,6 +38,28 @@ export default function WordcraftWordDetail() {
     if (newIndex >= 0 && newIndex < words.length) {
       const newWordId = words[newIndex].id;
       window.location.href = `/wordcraft/${cardId}/words/${newWordId}/detail`;
+    }
+  };
+
+  const favoriteMutation = useMutation({
+    mutationFn: async (isFavorited: boolean) => {
+      const response = await fetch(`/api/vocabulary-cards/${cardId}/favorite`, {
+        method: "PATCH",
+        body: JSON.stringify({ isFavorited }),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!response.ok) throw new Error("Failed to update favorite");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/vocabulary-cards", cardId] });
+      queryClient.invalidateQueries({ queryKey: ["/api/vocabulary-cards"] });
+    },
+  });
+
+  const handleFavoriteToggle = () => {
+    if (card) {
+      favoriteMutation.mutate(!card.isFavorited);
     }
   };
 
@@ -87,9 +110,20 @@ export default function WordcraftWordDetail() {
               Trở về
             </Button>
           </Link>
-          <Button variant="ghost" size="sm" className="hover:bg-gray-50">
-            <Settings className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={handleFavoriteToggle}
+              disabled={favoriteMutation.isPending}
+              className={`hover:bg-yellow-50 ${card?.isFavorited ? 'text-yellow-500 hover:text-yellow-600' : 'text-gray-400 hover:text-yellow-400'}`}
+            >
+              <Star className={`h-4 w-4 ${card?.isFavorited ? 'fill-current' : ''}`} />
+            </Button>
+            <Button variant="ghost" size="sm" className="hover:bg-gray-50">
+              <Settings className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
 
         {/* Card Info with beautiful design */}
@@ -343,7 +377,7 @@ export default function WordcraftWordDetail() {
             {/* Word Counter */}
             <div className="text-center mt-8 pt-6 border-t border-gray-200">
               <div className="text-2xl font-bold text-gray-900">
-                2/12
+                {currentWordIndex + 1}/{totalWords}
               </div>
             </div>
           </div>
@@ -355,11 +389,11 @@ export default function WordcraftWordDetail() {
             <div className="flex items-center space-x-6">
               <div className="flex items-center text-sm text-gray-700 font-medium">
                 <BookOpen className="h-4 w-4 mr-2 text-blue-600" />
-                Số từ vựng: <span className="text-blue-600 font-semibold ml-1">12</span>
+                Số từ vựng: <span className="text-blue-600 font-semibold ml-1">{card?.wordCount || totalWords}</span>
               </div>
               <div className="flex items-center text-sm text-gray-700 font-medium">
                 <Users className="h-4 w-4 mr-2 text-blue-600" />
-                Số lần học: <span className="text-blue-600 font-semibold ml-1">7</span>
+                Số lần học: <span className="text-blue-600 font-semibold ml-1">{card?.studyCount || 0}</span>
               </div>
             </div>
 
