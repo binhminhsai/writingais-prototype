@@ -120,15 +120,9 @@ export default function WordcraftWords() {
             )}
             
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-gray-600">Chủ đề:</span>
-                  <Badge variant="secondary" className="text-xs">{card.category}</Badge>
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <BookOpen className="h-4 w-4 mr-1" />
-                  {card.wordCount} từ
-                </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">Chủ đề:</span>
+                <Badge variant="secondary" className="text-xs">{card.category}</Badge>
               </div>
               
               <Button size="sm" className="bg-gray-900 hover:bg-gray-800 text-white">
@@ -140,8 +134,8 @@ export default function WordcraftWords() {
         </div>
       </div>
 
-      {/* Search */}
-      <div className="mb-4">
+      {/* Search and Word Count */}
+      <div className="mb-4 flex items-center justify-between">
         <div className="relative max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
@@ -150,6 +144,10 @@ export default function WordcraftWords() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 h-9"
           />
+        </div>
+        <div className="flex items-center text-sm text-gray-600">
+          <BookOpen className="h-4 w-4 mr-1" />
+          {card.wordCount} từ vựng
         </div>
       </div>
 
