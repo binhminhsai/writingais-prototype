@@ -168,7 +168,6 @@ export default function WordcraftWords() {
           </div>
         </div>
       </div>
-
       {/* Search and Word Count - Only show in list view */}
       {viewMode === "list" && (
         <div className="mb-4 flex items-center justify-between">
@@ -187,11 +186,10 @@ export default function WordcraftWords() {
           </div>
         </div>
       )}
-
       {/* Words Content - List or Detail View */}
       {viewMode === "list" ? (
         /* Words Table */
-        <div className="bg-white rounded-lg border-2 border-gray-100 shadow-sm overflow-hidden">
+        (<div className="bg-white rounded-lg border-2 border-gray-100 shadow-sm overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
@@ -223,10 +221,10 @@ export default function WordcraftWords() {
               ))}
             </TableBody>
           </Table>
-        </div>
+        </div>)
       ) : (
         /* Word Detail View */
-        <div className="w-full mx-auto relative">
+        (<div className="w-full mx-auto relative">
           {/* Left Navigation Arrow */}
           <button
             onClick={() => navigateToWord("prev")}
@@ -239,7 +237,6 @@ export default function WordcraftWords() {
               className="w-8 h-8 md:w-12 md:h-12 object-contain"
             />
           </button>
-
           {/* Right Navigation Arrow */}
           <button
             onClick={() => navigateToWord("next")}
@@ -252,8 +249,7 @@ export default function WordcraftWords() {
               className="w-8 h-8 md:w-12 md:h-12 object-contain"
             />
           </button>
-
-          <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden mx-2 md:mx-0">
+          <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden mx-2 md:mx-0 pt-[0px] pb-[0px] pl-[0px] pr-[0px]">
             <div className="p-3 md:p-4">
               <div className="flex items-center justify-between mb-2 md:mb-3">
                 <div className="flex items-center space-x-2 md:space-x-3">
@@ -443,9 +439,8 @@ export default function WordcraftWords() {
               </div>
             </div>
           </div>
-        </div>
+        </div>)
       )}
-
       {/* Footer Actions */}
       <div className="mt-3 bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-2 shadow-sm">
         <div className="flex items-center justify-between">
