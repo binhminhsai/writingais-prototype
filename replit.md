@@ -187,6 +187,12 @@ Changelog:
   - Implemented sticky edit button (icon only) positioned with word counter at bottom
   - Created authentic Resilience vocabulary content with etymology and phrase examples
   - Removed all padding from card details container for maximum space efficiency
+- June 18, 2025. Streamlined navigation and removed redundant routes:
+  - Changed card click behavior to navigate to /wordcraft/1/words?view=detail instead of separate details page
+  - Removed /wordcraft/1/details route and associated component import from App.tsx
+  - Added URL parameter handling to automatically show detail view when accessed from card
+  - Integrated authentic Resilience content (etymology and phrases) into main word detail view
+  - Maintained dual-mode functionality within single page component for better user experience
 
 ## User Preferences
 
