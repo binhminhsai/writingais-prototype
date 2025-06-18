@@ -7,7 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2 } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2, X } from "lucide-react";
 import leftArrowIcon from "@assets/left-arrow_1750231743172.png";
 import rightArrowIcon from "@assets/right-arrow_1750231743193.png";
 import type { VocabularyCard, VocabularyWord } from "@shared/schema";
@@ -24,7 +28,29 @@ export default function WordcraftWords() {
   const [viewMode, setViewMode] = useState<"list" | "detail">(initialViewMode);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("definition");
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [newWord, setNewWord] = useState({
+    word: "",
+    pronunciation: "",
+    partOfSpeech: "",
+    definition: "",
+    vietnamese: "",
+    example: "",
+    exampleVietnamese: ""
+  });
   const queryClient = useQueryClient();
+
+  const resetForm = () => {
+    setNewWord({
+      word: "",
+      pronunciation: "",
+      partOfSpeech: "",
+      definition: "",
+      vietnamese: "",
+      example: "",
+      exampleVietnamese: ""
+    });
+  };
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
     queryKey: [`/api/vocabulary-cards/${cardId}`],
@@ -41,9 +67,36 @@ export default function WordcraftWords() {
     }
   });
 
+  const addWordMutation = useMutation({
+    mutationFn: async (wordData: any) => {
+      return await apiRequest("POST", "/api/vocabulary-words", {
+        ...wordData,
+        cardId: parseInt(cardId!)
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/vocabulary-cards/${cardId}/words`] });
+      queryClient.invalidateQueries({ queryKey: [`/api/vocabulary-cards/${cardId}`] });
+      setIsAddDialogOpen(false);
+      resetForm();
+    }
+  });
+
   const handleFavoriteToggle = () => {
     const newFavoriteState = !card?.isFavorited;
     favoriteMutation.mutate(newFavoriteState);
+  };
+
+  const handleAddWord = () => {
+    if (!newWord.word.trim() || !newWord.definition.trim()) {
+      return;
+    }
+    addWordMutation.mutate(newWord);
+  };
+
+  const handleDialogClose = () => {
+    setIsAddDialogOpen(false);
+    resetForm();
   };
 
   const { data: words = [], isLoading: wordsLoading } = useQuery<VocabularyWord[]>({
@@ -487,10 +540,139 @@ export default function WordcraftWords() {
               Quay lại danh sách
             </Button>
           )}
-          <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 h-7 text-xs px-2">
-            <Plus className="h-3 w-3 mr-1" />
-            Thêm từ vựng
-          </Button>
+          <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+            <DialogTrigger asChild>
+              <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 h-7 text-xs px-2">
+                <Plus className="h-3 w-3 mr-1" />
+                Thêm từ vựng
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="text-lg font-semibold text-gray-900">Thêm từ vựng mới</DialogTitle>
+              </DialogHeader>
+              
+              <div className="space-y-4 py-4">
+                {/* Row 1: Word, Pronunciation, Part of Speech */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="word" className="text-sm font-medium">
+                      Từ vựng <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="word"
+                      value={newWord.word}
+                      onChange={(e) => setNewWord({...newWord, word: e.target.value})}
+                      placeholder="Nhập từ vựng"
+                      className="w-full"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="pronunciation" className="text-sm font-medium">Phiên âm</Label>
+                    <Input
+                      id="pronunciation"
+                      value={newWord.pronunciation}
+                      onChange={(e) => setNewWord({...newWord, pronunciation: e.target.value})}
+                      placeholder="/ˈwɜːrd/"
+                      className="w-full"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="partOfSpeech" className="text-sm font-medium">Loại từ</Label>
+                    <Select value={newWord.partOfSpeech} onValueChange={(value) => setNewWord({...newWord, partOfSpeech: value})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Chọn loại từ" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="N">Danh từ (N)</SelectItem>
+                        <SelectItem value="V">Động từ (V)</SelectItem>
+                        <SelectItem value="Adj">Tính từ (Adj)</SelectItem>
+                        <SelectItem value="Adv">Trạng từ (Adv)</SelectItem>
+                        <SelectItem value="Prep">Giới từ (Prep)</SelectItem>
+                        <SelectItem value="Conj">Liên từ (Conj)</SelectItem>
+                        <SelectItem value="Phrase">Cụm từ (Phrase)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                {/* Row 2: Definition */}
+                <div className="space-y-2">
+                  <Label htmlFor="definition" className="text-sm font-medium">
+                    Định nghĩa (Tiếng Anh) <span className="text-red-500">*</span>
+                  </Label>
+                  <Textarea
+                    id="definition"
+                    value={newWord.definition}
+                    onChange={(e) => setNewWord({...newWord, definition: e.target.value})}
+                    placeholder="Nhập định nghĩa tiếng Anh"
+                    rows={3}
+                    className="w-full"
+                  />
+                </div>
+
+                {/* Row 3: Vietnamese Definition */}
+                <div className="space-y-2">
+                  <Label htmlFor="vietnamese" className="text-sm font-medium">Định nghĩa (Tiếng Việt)</Label>
+                  <Textarea
+                    id="vietnamese"
+                    value={newWord.vietnamese}
+                    onChange={(e) => setNewWord({...newWord, vietnamese: e.target.value})}
+                    placeholder="Nhập định nghĩa tiếng Việt"
+                    rows={2}
+                    className="w-full"
+                  />
+                </div>
+
+                {/* Row 4: Example */}
+                <div className="space-y-2">
+                  <Label htmlFor="example" className="text-sm font-medium">Ví dụ (Tiếng Anh)</Label>
+                  <Textarea
+                    id="example"
+                    value={newWord.example}
+                    onChange={(e) => setNewWord({...newWord, example: e.target.value})}
+                    placeholder="Nhập ví dụ tiếng Anh"
+                    rows={2}
+                    className="w-full"
+                  />
+                </div>
+
+                {/* Row 5: Vietnamese Example */}
+                <div className="space-y-2">
+                  <Label htmlFor="exampleVietnamese" className="text-sm font-medium">Ví dụ (Tiếng Việt)</Label>
+                  <Textarea
+                    id="exampleVietnamese"
+                    value={newWord.exampleVietnamese}
+                    onChange={(e) => setNewWord({...newWord, exampleVietnamese: e.target.value})}
+                    placeholder="Nhập ví dụ tiếng Việt"
+                    rows={2}
+                    className="w-full"
+                  />
+                </div>
+              </div>
+
+              {/* Dialog Actions */}
+              <div className="flex justify-end space-x-2 pt-4 border-t">
+                <Button
+                  variant="outline"
+                  onClick={handleDialogClose}
+                  className="px-4 py-2"
+                >
+                  Hủy
+                </Button>
+                <Button
+                  onClick={handleAddWord}
+                  disabled={!newWord.word.trim() || !newWord.definition.trim() || addWordMutation.isPending}
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-4 py-2"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  {addWordMutation.isPending ? "Đang thêm..." : "Thêm từ vựng"}
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </div>
