@@ -218,17 +218,17 @@ export default function WordcraftWords() {
         </div>
       ) : (
         /* Word Detail View */
-        <div className="max-w-4xl mx-auto relative">
+        <div className="w-full mx-auto relative">
           {/* Left Navigation Arrow */}
           <button
             onClick={() => navigateToWord("prev")}
             disabled={currentWordIndex <= 0}
-            className="absolute left-[-100px] top-[180px] w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="absolute left-[-60px] md:left-[-100px] top-[180px] w-12 md:w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <img 
               src={leftArrowIcon} 
               alt="Previous" 
-              className="w-12 h-12 object-contain"
+              className="w-8 h-8 md:w-12 md:h-12 object-contain"
             />
           </button>
 
@@ -236,35 +236,35 @@ export default function WordcraftWords() {
           <button
             onClick={() => navigateToWord("next")}
             disabled={currentWordIndex >= filteredWords.length - 1}
-            className="absolute right-[-100px] top-[180px] w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="absolute right-[-60px] md:right-[-100px] top-[180px] w-12 md:w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <img 
               src={rightArrowIcon} 
               alt="Next" 
-              className="w-12 h-12 object-contain"
+              className="w-8 h-8 md:w-12 md:h-12 object-contain"
             />
           </button>
 
-          <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden">
-            <div className="p-4">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center space-x-3">
-                  <h2 className="text-2xl font-bold text-gray-900">{currentWord?.word || "Từ vựng"}</h2>
+          <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden mx-2 md:mx-0">
+            <div className="p-3 md:p-4">
+              <div className="flex items-center justify-between mb-2 md:mb-3">
+                <div className="flex items-center space-x-2 md:space-x-3">
+                  <h2 className="text-lg md:text-2xl font-bold text-gray-900">{currentWord?.word || "Từ vựng"}</h2>
                   <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500">
                     <Star className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
 
-              <div className="mb-3">
-                <p className="text-base text-gray-600 mb-3">({currentWord?.partOfSpeech || "N"}) {currentWord?.pronunciation && `${currentWord.pronunciation}`}</p>
+              <div className="mb-2 md:mb-3">
+                <p className="text-sm md:text-base text-gray-600 mb-2 md:mb-3">({currentWord?.partOfSpeech || "N"}) {currentWord?.pronunciation && `${currentWord.pronunciation}`}</p>
                 
                 {/* Tab Navigation */}
                 <div className="flex items-center justify-between border-b border-gray-200">
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 overflow-x-auto">
                     <button
                       onClick={() => setActiveTab("definition")}
-                      className={`px-3 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                      className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
                         activeTab === "definition"
                           ? "bg-green-100 text-green-800 border-b-2 border-green-500"
                           : "text-gray-600 hover:text-green-600 hover:bg-green-50"
@@ -274,7 +274,7 @@ export default function WordcraftWords() {
                     </button>
                     <button
                       onClick={() => setActiveTab("etymology")}
-                      className={`px-3 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                      className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
                         activeTab === "etymology"
                           ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
                           : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
@@ -284,7 +284,7 @@ export default function WordcraftWords() {
                     </button>
                     <button
                       onClick={() => setActiveTab("phrases")}
-                      className={`px-3 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                      className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
                         activeTab === "phrases"
                           ? "bg-orange-100 text-orange-800 border-b-2 border-orange-500"
                           : "text-gray-600 hover:text-orange-600 hover:bg-orange-50"
@@ -293,8 +293,8 @@ export default function WordcraftWords() {
                       Cụm từ thường gặp
                     </button>
                   </div>
-                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 mb-2">
-                    <Plus className="h-4 w-4" />
+                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 mb-1 md:mb-2">
+                    <Plus className="h-3 w-3 md:h-4 md:w-4" />
                   </Button>
                 </div>
               </div>
@@ -365,20 +365,22 @@ export default function WordcraftWords() {
                   </div>
                 )}
 
-                {/* Sticky Edit Button */}
-                <Button
-                  size="sm"
-                  className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 z-50"
-                >
-                  <Edit className="h-4 w-4 mr-2" />
-                  Chỉnh sửa
-                </Button>
               </div>
 
-              {/* Word Counter */}
-              <div className="text-center mt-4 pt-3 border-t border-gray-200">
-                <div className="text-xl font-bold text-gray-900">
-                  {currentWordIndex + 1}/{filteredWords.length}
+              {/* Word Counter and Edit Button */}
+              <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-200 px-2 md:px-3">
+                <div></div>
+                <div className="flex items-center space-x-3">
+                  <div className="text-sm font-medium text-gray-700">
+                    {currentWordIndex + 1}/{filteredWords.length}
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="w-8 h-8 p-0 text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                  >
+                    <Edit className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
             </div>
