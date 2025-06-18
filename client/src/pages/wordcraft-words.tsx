@@ -7,12 +7,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus } from "lucide-react";
+import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit } from "lucide-react";
+import leftArrowIcon from "@assets/left-arrow_1750231743172.png";
+import rightArrowIcon from "@assets/right-arrow_1750231743193.png";
 import type { VocabularyCard, VocabularyWord } from "@shared/schema";
 
 export default function WordcraftWords() {
   const { cardId } = useParams<{ cardId: string }>();
   const [searchQuery, setSearchQuery] = useState("");
+  const [viewMode, setViewMode] = useState<"list" | "detail">("list");
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState("definition");
   const queryClient = useQueryClient();
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
@@ -45,6 +50,25 @@ export default function WordcraftWords() {
     word.definition?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     word.vietnamese?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const currentWord = filteredWords[currentWordIndex];
+
+  const navigateToWord = (direction: "prev" | "next") => {
+    const newIndex = direction === "prev" ? currentWordIndex - 1 : currentWordIndex + 1;
+    if (newIndex >= 0 && newIndex < filteredWords.length) {
+      setCurrentWordIndex(newIndex);
+    }
+  };
+
+  const handleViewDetail = () => {
+    setViewMode("detail");
+    setCurrentWordIndex(0);
+  };
+
+  const handleBackToList = () => {
+    setViewMode("list");
+    setCurrentWordIndex(0);
+  };
 
   const getPartOfSpeechColor = (pos: string) => {
     switch (pos) {
@@ -156,40 +180,211 @@ export default function WordcraftWords() {
         </div>
       </div>
 
-      {/* Words Table */}
-      <div className="bg-white rounded-lg border-2 border-gray-100 shadow-sm overflow-hidden">
-        <Table>
-          <TableHeader>
-            <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
-              <TableHead className="w-12 font-semibold text-gray-700">STT</TableHead>
-              <TableHead className="font-semibold text-gray-700">Từ vựng</TableHead>
-              <TableHead className="font-semibold text-gray-700">Phiên âm</TableHead>
-              <TableHead className="font-semibold text-gray-700">Loại từ</TableHead>
-              <TableHead className="font-semibold text-gray-700">Định nghĩa</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredWords.map((word, index) => (
-              <TableRow 
-                key={word.id} 
-                className={index === 4 ? "bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-300" : "hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-200"}
-              >
-                <TableCell className="font-medium text-gray-800">{index + 1}</TableCell>
-                <TableCell className="font-semibold text-gray-900">{word.word}</TableCell>
-                <TableCell className="text-gray-600 italic">{word.pronunciation}</TableCell>
-                <TableCell>
-                  <Badge variant="secondary" className={getPartOfSpeechColor(word.partOfSpeech)}>
-                    {word.partOfSpeech}
-                  </Badge>
-                </TableCell>
-                <TableCell className="max-w-md">
-                  <p className="line-clamp-2 text-gray-700">{word.definition}</p>
-                </TableCell>
+      {/* Words Content - List or Detail View */}
+      {viewMode === "list" ? (
+        /* Words Table */
+        <div className="bg-white rounded-lg border-2 border-gray-100 shadow-sm overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
+                <TableHead className="w-12 font-semibold text-gray-700">STT</TableHead>
+                <TableHead className="font-semibold text-gray-700">Từ vựng</TableHead>
+                <TableHead className="font-semibold text-gray-700">Phiên âm</TableHead>
+                <TableHead className="font-semibold text-gray-700">Loại từ</TableHead>
+                <TableHead className="font-semibold text-gray-700">Định nghĩa</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+            </TableHeader>
+            <TableBody>
+              {filteredWords.map((word, index) => (
+                <TableRow 
+                  key={word.id} 
+                  className={index === 4 ? "bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-300" : "hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-200"}
+                >
+                  <TableCell className="font-medium text-gray-800">{index + 1}</TableCell>
+                  <TableCell className="font-semibold text-gray-900">{word.word}</TableCell>
+                  <TableCell className="text-gray-600 italic">{word.pronunciation}</TableCell>
+                  <TableCell>
+                    <Badge variant="secondary" className={getPartOfSpeechColor(word.partOfSpeech)}>
+                      {word.partOfSpeech}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="max-w-md">
+                    <p className="line-clamp-2 text-gray-700">{word.definition}</p>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      ) : (
+        /* Word Detail View */
+        <div className="max-w-4xl mx-auto relative">
+          {/* Left Navigation Arrow */}
+          <button
+            onClick={() => navigateToWord("prev")}
+            disabled={currentWordIndex <= 0}
+            className="absolute left-[-100px] top-[180px] w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <img 
+              src={leftArrowIcon} 
+              alt="Previous" 
+              className="w-12 h-12 object-contain"
+            />
+          </button>
+
+          {/* Right Navigation Arrow */}
+          <button
+            onClick={() => navigateToWord("next")}
+            disabled={currentWordIndex >= filteredWords.length - 1}
+            className="absolute right-[-100px] top-[180px] w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <img 
+              src={rightArrowIcon} 
+              alt="Next" 
+              className="w-12 h-12 object-contain"
+            />
+          </button>
+
+          <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden">
+            <div className="p-8">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-4">
+                  <h2 className="text-3xl font-bold text-gray-900">{currentWord?.word || "Từ vựng"}</h2>
+                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500">
+                    <Star className="h-5 w-5" />
+                  </Button>
+                </div>
+                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600">
+                  <Plus className="h-5 w-5" />
+                </Button>
+              </div>
+
+              <div className="mb-6">
+                <p className="text-lg text-gray-600 mb-6">({currentWord?.partOfSpeech || "N"}) {currentWord?.pronunciation && `${currentWord.pronunciation}`}</p>
+                
+                {/* Tab Navigation */}
+                <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-200">
+                  <button
+                    onClick={() => setActiveTab("definition")}
+                    className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                      activeTab === "definition"
+                        ? "bg-green-100 text-green-800 border-b-2 border-green-500"
+                        : "text-gray-600 hover:text-green-600 hover:bg-green-50"
+                    }`}
+                  >
+                    Định nghĩa
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("etymology")}
+                    className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                      activeTab === "etymology"
+                        ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
+                        : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
+                    }`}
+                  >
+                    Nguồn gốc
+                  </button>
+                  <button
+                    onClick={() => setActiveTab("phrases")}
+                    className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                      activeTab === "phrases"
+                        ? "bg-orange-100 text-orange-800 border-b-2 border-orange-500"
+                        : "text-gray-600 hover:text-orange-600 hover:bg-orange-50"
+                    }`}
+                  >
+                    Cụm từ thường gặp
+                  </button>
+                </div>
+              </div>
+
+              {/* Tab Content */}
+              <div className="relative min-h-[400px]">
+                {activeTab === "definition" && (
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-4 text-xl">Định nghĩa</h3>
+                      <div className="space-y-6">
+                        <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                          <h4 className="font-medium text-blue-900 mb-3">Tiếng Anh:</h4>
+                          <p className="text-gray-700 leading-relaxed">
+                            {currentWord?.definition || "Định nghĩa sẽ được cập nhật sau"}
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                          <h4 className="font-medium text-green-900 mb-3">Tiếng Việt:</h4>
+                          <p className="text-gray-700 leading-relaxed">
+                            {currentWord?.vietnamese || "Nghĩa tiếng Việt sẽ được cập nhật sau"}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-4 text-xl">Ví dụ</h3>
+                      <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div className="space-y-4">
+                          <p className="text-gray-700 leading-relaxed text-lg">
+                            {currentWord?.example ? (
+                              <>
+                                "{currentWord.example}"
+                              </>
+                            ) : (
+                              "Ví dụ sẽ được cập nhật sau"
+                            )}
+                          </p>
+                          {currentWord?.exampleVietnamese && (
+                            <p className="text-gray-600 italic">
+                              ({currentWord.exampleVietnamese})
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "etymology" && (
+                  <div className="space-y-6">
+                    <h3 className="font-semibold text-gray-900 mb-4 text-xl">Nguồn gốc từ vựng</h3>
+                    <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                      <div className="space-y-4">
+                        <div className="text-center text-purple-600">
+                          <p>Thông tin nguồn gốc sẽ được cập nhật sau</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "phrases" && (
+                  <div className="space-y-6">
+                    <h3 className="font-semibold text-gray-900 mb-4 text-xl">Cụm từ thường gặp</h3>
+                    <div className="text-center text-orange-600">
+                      <p>Cụm từ thường gặp sẽ được cập nhật sau</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Sticky Edit Button */}
+                <Button
+                  size="sm"
+                  className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 z-50"
+                >
+                  <Edit className="h-4 w-4 mr-2" />
+                  Chỉnh sửa
+                </Button>
+              </div>
+
+              {/* Word Counter */}
+              <div className="text-center mt-8 pt-6 border-t border-gray-200">
+                <div className="text-2xl font-bold text-gray-900">
+                  {currentWordIndex + 1}/{filteredWords.length}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer Actions */}
       <div className="mt-6 bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-4 shadow-sm">
@@ -200,11 +395,26 @@ export default function WordcraftWords() {
           </div>
 
           <div className="flex space-x-3">
-            <Link href={`/wordcraft/${cardId}/words/${filteredWords[0]?.id || 1}/detail`}>
-              <Button variant="outline" size="sm" className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200">
+            {viewMode === "list" ? (
+              <Button 
+                onClick={handleViewDetail}
+                variant="outline" 
+                size="sm" 
+                className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200"
+                disabled={filteredWords.length === 0}
+              >
                 Xem chi tiết
               </Button>
-            </Link>
+            ) : (
+              <Button 
+                onClick={handleBackToList}
+                variant="outline" 
+                size="sm" 
+                className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200"
+              >
+                Quay lại danh sách
+              </Button>
+            )}
             <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200">
               <Plus className="h-4 w-4 mr-2" />
               Thêm từ vựng

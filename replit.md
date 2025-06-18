@@ -168,6 +168,13 @@ Changelog:
   - Added dynamic word counter showing current position (e.g., 3/12)
   - Updated footer statistics to display actual card data (word count, study count)
   - Positioned sticky edit button in bottom-right corner for content modification
+- June 18, 2025. Implemented in-page view toggle for vocabulary words:
+  - Added toggle functionality between list view (table) and detail view (tabs) within same page
+  - Maintained header and footer sections while transforming main content area
+  - Integrated arrow navigation and word counter for seamless browsing
+  - Updated "Xem chi tiết" button to switch views instead of navigating to separate page
+  - Added "Quay lại danh sách" button to return from detail to list view
+  - Preserved all existing styling and functionality while adding new view mode
 
 ## User Preferences
 
