@@ -129,8 +129,30 @@ export default function WordcraftWordDetail() {
         </div>
       </div>
 
-      {/* Word Detail Card */}
-      <div className="max-w-4xl mx-auto">
+      {/* Word Detail Card with Navigation */}
+      <div className="max-w-4xl mx-auto relative">
+        {/* Left Navigation Arrow */}
+        <Button 
+          variant="ghost" 
+          size="lg"
+          onClick={() => navigateToWord("prev")}
+          disabled={currentWordIndex <= 0}
+          className="absolute left-[-60px] top-1/2 transform -translate-y-1/2 flex items-center hover:bg-blue-50 bg-white shadow-md border border-gray-200 z-10"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </Button>
+
+        {/* Right Navigation Arrow */}
+        <Button 
+          variant="ghost" 
+          size="lg"
+          onClick={() => navigateToWord("next")}
+          disabled={currentWordIndex >= totalWords - 1}
+          className="absolute right-[-60px] top-1/2 transform -translate-y-1/2 flex items-center hover:bg-blue-50 bg-white shadow-md border border-gray-200 z-10"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </Button>
+
         <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden">
           <div className="p-8">
             <div className="flex items-center justify-between mb-6">
@@ -322,33 +344,11 @@ export default function WordcraftWordDetail() {
               </Button>
             </div>
 
-            {/* Navigation Arrows */}
-            <div className="flex justify-between items-center mt-10 pt-6 border-t border-gray-200">
-              <Button 
-                variant="ghost" 
-                size="lg"
-                onClick={() => navigateToWord("prev")}
-                disabled={currentWordIndex <= 0}
-                className="flex items-center hover:bg-blue-50"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </Button>
-
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">
-                  2/12
-                </div>
+            {/* Word Counter */}
+            <div className="text-center mt-8 pt-6 border-t border-gray-200">
+              <div className="text-2xl font-bold text-gray-900">
+                2/12
               </div>
-
-              <Button 
-                variant="ghost" 
-                size="lg"
-                onClick={() => navigateToWord("next")}
-                disabled={currentWordIndex >= totalWords - 1}
-                className="flex items-center hover:bg-blue-50"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </Button>
             </div>
           </div>
         </div>
