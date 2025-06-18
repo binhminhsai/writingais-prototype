@@ -94,21 +94,11 @@ export default function WordcraftWordDetail() {
 
         {/* Card Info with beautiful design */}
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 rounded-lg p-6 shadow-sm">
-          <div className="flex items-start gap-6">
-            {/* Placeholder for image */}
-            <div className="w-48 h-32 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 border-2 border-dashed border-gray-300">
-              <div className="text-center text-gray-400">
-                <div className="text-4xl mb-2">✕</div>
-                <div className="text-sm">Hình ảnh</div>
-              </div>
-            </div>
-            
+          <div className="flex items-start gap-4">
             <div className="flex-1">
-              <div className="flex items-center justify-between mb-2">
-                <h1 className="text-2xl font-bold text-gray-900">{card.title}</h1>
-                <span className="text-sm text-gray-600 font-medium">20/04</span>
-              </div>
-              
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                {card.title}
+              </h1>
               {card.description && (
                 <p className="text-gray-700 mb-4 leading-relaxed">{card.description}</p>
               )}
