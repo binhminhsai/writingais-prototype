@@ -190,43 +190,50 @@ export default function WordcraftWords() {
       {viewMode === "list" ? (
         /* Words Table */
         (<div className="bg-white rounded-lg border-2 border-gray-300 shadow-lg overflow-hidden">
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-gradient-to-r from-blue-600 to-indigo-700 border-b-2 border-blue-800">
-                <TableHead className="w-12 font-bold text-white text-xs py-2">STT</TableHead>
-                <TableHead className="font-bold text-white text-xs py-2">Từ vựng</TableHead>
-                <TableHead className="font-bold text-white text-xs py-2">Phiên âm</TableHead>
-                <TableHead className="font-bold text-white text-xs py-2">Loại từ</TableHead>
-                <TableHead className="font-bold text-white text-xs py-2">Định nghĩa</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredWords.map((word, index) => (
-                <TableRow 
-                  key={word.id} 
-                  className={`
-                    border-b border-gray-200 transition-all duration-200 py-1
-                    ${index % 2 === 0 
-                      ? "bg-gray-50 hover:bg-blue-100" 
-                      : "bg-white hover:bg-blue-50"
-                    }
-                  `}
-                >
-                  <TableCell className="font-medium text-gray-800 text-xs py-2">{index + 1}</TableCell>
-                  <TableCell className="font-semibold text-gray-900 text-xs py-2">{word.word}</TableCell>
-                  <TableCell className="text-gray-600 italic text-xs py-2">{word.pronunciation}</TableCell>
-                  <TableCell className="py-2">
-                    <Badge variant="secondary" className={`text-xs ${getPartOfSpeechColor(word.partOfSpeech)}`}>
-                      {word.partOfSpeech}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="max-w-md py-2">
-                    <p className="line-clamp-2 text-gray-700 text-xs leading-tight">{word.definition}</p>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <div className="relative">
+            {/* Sticky Header */}
+            <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-indigo-700 border-b-2 border-blue-800">
+              <div className="grid grid-cols-12 gap-2 px-4 py-1">
+                <div className="col-span-1 font-bold text-white text-xs">STT</div>
+                <div className="col-span-2 font-bold text-white text-xs">Từ vựng</div>
+                <div className="col-span-3 font-bold text-white text-xs">Phiên âm</div>
+                <div className="col-span-2 font-bold text-white text-xs">Loại từ</div>
+                <div className="col-span-4 font-bold text-white text-xs">Định nghĩa</div>
+              </div>
+            </div>
+            
+            {/* Scrollable Table Body */}
+            <div className="max-h-96 overflow-y-auto">
+              <Table>
+                <TableBody>
+                  {filteredWords.map((word, index) => (
+                    <TableRow 
+                      key={word.id} 
+                      className={`
+                        border-b border-gray-200 transition-all duration-200 py-1
+                        ${index % 2 === 0 
+                          ? "bg-gray-50 hover:bg-blue-100" 
+                          : "bg-white hover:bg-blue-50"
+                        }
+                      `}
+                    >
+                      <TableCell className="font-medium text-gray-800 text-xs py-2 w-16">{index + 1}</TableCell>
+                      <TableCell className="font-semibold text-gray-900 text-xs py-2 w-32">{word.word}</TableCell>
+                      <TableCell className="text-gray-600 italic text-xs py-2 w-40">{word.pronunciation}</TableCell>
+                      <TableCell className="py-2 w-24">
+                        <Badge variant="secondary" className={`text-xs ${getPartOfSpeechColor(word.partOfSpeech)}`}>
+                          {word.partOfSpeech}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="max-w-md py-2">
+                        <p className="line-clamp-2 text-gray-700 text-xs leading-tight">{word.definition}</p>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
         </div>)
       ) : (
         /* Word Detail View */
