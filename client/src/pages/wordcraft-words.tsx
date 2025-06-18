@@ -288,93 +288,85 @@ export default function WordcraftWords() {
         </div>)
       ) : (
         /* Word Detail View */
-        (<div className="w-full mx-auto relative">
-          {/* Left Navigation Arrow */}
-          <button
-            onClick={() => navigateToWord("prev")}
-            disabled={currentWordIndex <= 0}
-            className="absolute left-[-60px] md:left-[-100px] top-[180px] w-12 md:w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <img 
-              src={leftArrowIcon} 
-              alt="Previous" 
-              className="w-8 h-8 md:w-12 md:h-12 object-contain"
-            />
-          </button>
-          {/* Right Navigation Arrow */}
-          <button
-            onClick={() => navigateToWord("next")}
-            disabled={currentWordIndex >= filteredWords.length - 1}
-            className="absolute right-[-60px] md:right-[-100px] top-[180px] w-12 md:w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <img 
-              src={rightArrowIcon} 
-              alt="Next" 
-              className="w-8 h-8 md:w-12 md:h-12 object-contain"
-            />
-          </button>
-          <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden mx-2 md:mx-0">
-            <div className="p-0">
-              <div className="flex items-center justify-between mb-2 md:mb-3">
-                <div className="flex items-center space-x-2">
-                  <h2 className="text-lg md:text-2xl font-bold text-gray-900">{currentWord?.word || "Resilience"}</h2>
-                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-blue-500 p-1">
-                    <Volume2 className="h-4 w-4" />
-                  </Button>
-                  <span className="text-sm md:text-base text-gray-600 italic">{currentWord?.pronunciation || "/rɪˈzɪljəns/"}</span>
-                  <Badge variant="secondary" className={getPartOfSpeechColor(currentWord?.partOfSpeech || "N")}>
-                    {currentWord?.partOfSpeech || "N"}
-                  </Badge>
-                </div>
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500">
-                  <Star className="h-4 w-4" />
-                </Button>
-              </div>
+        (<div className="w-full mx-auto">
+          <div className="flex items-stretch gap-2 md:gap-4">
+            {/* Left Navigation Arrow */}
+            <div className="flex-shrink-0 flex items-center">
+              <button
+                onClick={() => navigateToWord("prev")}
+                disabled={currentWordIndex <= 0}
+                className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 disabled:opacity-30 disabled:cursor-not-allowed bg-white rounded-full shadow-md border border-gray-200 hover:shadow-lg"
+              >
+                <img 
+                  src={leftArrowIcon} 
+                  alt="Previous" 
+                  className="w-5 h-5 md:w-8 md:h-8 object-contain"
+                />
+              </button>
+            </div>
 
-              <div className="mb-2 md:mb-3">
-                
-                {/* Tab Navigation */}
-                <div className="flex items-center justify-between border-b border-gray-200">
-                  <div className="flex gap-1 overflow-x-auto">
-                    <button
-                      onClick={() => setActiveTab("definition")}
-                      className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
-                        activeTab === "definition"
-                          ? "bg-green-100 text-green-800 border-b-2 border-green-500"
-                          : "text-gray-600 hover:text-green-600 hover:bg-green-50"
-                      }`}
-                    >
-                      Định nghĩa
-                    </button>
-                    <button
-                      onClick={() => setActiveTab("etymology")}
-                      className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
-                        activeTab === "etymology"
-                          ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
-                          : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
-                      }`}
-                    >
-                      Nguồn gốc
-                    </button>
-                    <button
-                      onClick={() => setActiveTab("phrases")}
-                      className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
-                        activeTab === "phrases"
-                          ? "bg-orange-100 text-orange-800 border-b-2 border-orange-500"
-                          : "text-gray-600 hover:text-orange-600 hover:bg-orange-50"
-                      }`}
-                    >
-                      Cụm từ thường gặp
-                    </button>
+            {/* Main Content Area */}
+            <div className="flex-1 bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden">
+              <div className="p-0">
+                <div className="flex items-center justify-between mb-2 md:mb-3">
+                  <div className="flex items-center space-x-2">
+                    <h2 className="text-lg md:text-2xl font-bold text-gray-900">{currentWord?.word || "Resilience"}</h2>
+                    <Button variant="ghost" size="sm" className="text-gray-400 hover:text-blue-500 p-1">
+                      <Volume2 className="h-4 w-4" />
+                    </Button>
+                    <span className="text-sm md:text-base text-gray-600 italic">{currentWord?.pronunciation || "/rɪˈzɪljəns/"}</span>
+                    <Badge variant="secondary" className={getPartOfSpeechColor(currentWord?.partOfSpeech || "N")}>
+                      {currentWord?.partOfSpeech || "N"}
+                    </Badge>
                   </div>
-                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 mb-1 md:mb-2">
-                    <Plus className="h-3 w-3 md:h-4 md:w-4" />
+                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500">
+                    <Star className="h-4 w-4" />
                   </Button>
                 </div>
-              </div>
 
-              {/* Tab Content */}
-              <div className="relative min-h-[300px] mt-4">
+                <div className="mb-2 md:mb-3">
+                  {/* Tab Navigation */}
+                  <div className="flex items-center justify-between border-b border-gray-200">
+                    <div className="flex gap-1 overflow-x-auto">
+                      <button
+                        onClick={() => setActiveTab("definition")}
+                        className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
+                          activeTab === "definition"
+                            ? "bg-green-100 text-green-800 border-b-2 border-green-500"
+                            : "text-gray-600 hover:text-green-600 hover:bg-green-50"
+                        }`}
+                      >
+                        Định nghĩa
+                      </button>
+                      <button
+                        onClick={() => setActiveTab("etymology")}
+                        className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
+                          activeTab === "etymology"
+                            ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
+                            : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
+                        }`}
+                      >
+                        Nguồn gốc
+                      </button>
+                      <button
+                        onClick={() => setActiveTab("phrases")}
+                        className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
+                          activeTab === "phrases"
+                            ? "bg-orange-100 text-orange-800 border-b-2 border-orange-500"
+                            : "text-gray-600 hover:text-orange-600 hover:bg-orange-50"
+                        }`}
+                      >
+                        Cụm từ thường gặp
+                      </button>
+                    </div>
+                    <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 mb-1 md:mb-2">
+                      <Plus className="h-3 w-3 md:h-4 md:w-4" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Tab Content */}
+                <div className="relative min-h-[300px] mt-4">
                 {activeTab === "definition" && (
                   <div className="space-y-4">
                     <div>
@@ -509,6 +501,22 @@ export default function WordcraftWords() {
                   </Button>
                 </div>
               </div>
+              </div>
+            </div>
+
+            {/* Right Navigation Arrow */}
+            <div className="flex-shrink-0 flex items-center">
+              <button
+                onClick={() => navigateToWord("next")}
+                disabled={currentWordIndex >= filteredWords.length - 1}
+                className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 disabled:opacity-30 disabled:cursor-not-allowed bg-white rounded-full shadow-md border border-gray-200 hover:shadow-lg"
+              >
+                <img 
+                  src={rightArrowIcon} 
+                  alt="Next" 
+                  className="w-5 h-5 md:w-8 md:h-8 object-contain"
+                />
+              </button>
             </div>
           </div>
         </div>)
