@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit } from "lucide-react";
+import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2 } from "lucide-react";
 import leftArrowIcon from "@assets/left-arrow_1750231743172.png";
 import rightArrowIcon from "@assets/right-arrow_1750231743193.png";
 import type { VocabularyCard, VocabularyWord } from "@shared/schema";
@@ -253,7 +253,16 @@ export default function WordcraftWords() {
             <div className="p-0">
               <div className="flex items-center justify-between mb-2 md:mb-3">
                 <div className="flex items-center space-x-2 md:space-x-3">
-                  <h2 className="text-lg md:text-2xl font-bold text-gray-900">{currentWord?.word || "Từ vựng"}</h2>
+                  <div className="flex items-center space-x-2">
+                    <h2 className="text-lg md:text-2xl font-bold text-gray-900">{currentWord?.word || "Resilience"}</h2>
+                    <span className="text-sm md:text-base text-gray-600 italic">/rɪˈzɪljəns/</span>
+                    <Button variant="ghost" size="sm" className="text-gray-400 hover:text-blue-500 p-1">
+                      <Volume2 className="h-4 w-4" />
+                    </Button>
+                    <Badge variant="secondary" className={getPartOfSpeechColor(currentWord?.partOfSpeech || "N")}>
+                      {currentWord?.partOfSpeech || "N"}
+                    </Badge>
+                  </div>
                   <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500">
                     <Star className="h-4 w-4" />
                   </Button>
@@ -261,7 +270,6 @@ export default function WordcraftWords() {
               </div>
 
               <div className="mb-2 md:mb-3">
-                <p className="text-sm md:text-base text-gray-600 mb-2 md:mb-3">({currentWord?.partOfSpeech || "N"}) {currentWord?.pronunciation && `${currentWord.pronunciation}`}</p>
                 
                 {/* Tab Navigation */}
                 <div className="flex items-center justify-between border-b border-gray-200">
