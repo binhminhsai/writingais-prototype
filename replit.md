@@ -175,6 +175,14 @@ Changelog:
   - Updated "Xem chi tiết" button to switch views instead of navigating to separate page
   - Added "Quay lại danh sách" button to return from detail to list view
   - Preserved all existing styling and functionality while adding new view mode
+- June 18, 2025. Optimized spacing and layout for compact UI design:
+  - Reduced main container padding from p-8 to p-3/p-4 across detail views
+  - Minimized spacing between elements (mb-6 to mb-2/mb-3)
+  - Shrunk font sizes for titles, headings, and content for more compact display
+  - Reduced tab button padding and added text-sm for tighter navigation
+  - Decreased min-height from 400px to 250px-300px for content areas
+  - Positioned Plus button inline with tab navigation for optimal space usage
+  - Applied consistent compact styling across both wordcraft-words and wordcraft-card-details pages
 
 ## User Preferences
 
