@@ -84,41 +84,43 @@ export default function WordcraftWords() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center mb-4">
+      <div className="mb-4">
+        <div className="flex items-center justify-between mb-3">
           <Link href="/wordcraft">
-            <Button variant="ghost" size="sm" className="mr-4">
+            <Button variant="ghost" size="sm">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Trở về
             </Button>
           </Link>
-          <Button variant="ghost" size="sm" className="ml-auto">
+          <Button variant="ghost" size="sm">
             <Settings className="h-4 w-4" />
           </Button>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-6">
-          <div className="w-full lg:w-48 h-32 bg-gray-100 rounded-md flex items-center justify-center">
-            <div className="text-4xl text-gray-400">✕</div>
-          </div>
-          
+        <div className="flex items-start gap-4">
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            <h1 className="text-xl font-bold text-gray-900 mb-1">
               {card.title}
             </h1>
             {card.description && (
-              <p className="text-gray-600 mb-4">{card.description}</p>
+              <p className="text-sm text-gray-600 mb-3">{card.description}</p>
             )}
             
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600">Chủ đề:</span>
-                <Badge variant="secondary">{card.category}</Badge>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-600">Chủ đề:</span>
+                  <Badge variant="secondary" className="text-xs">{card.category}</Badge>
+                </div>
+                <div className="flex items-center text-sm text-gray-600">
+                  <BookOpen className="h-4 w-4 mr-1" />
+                  {card.wordCount} từ
+                </div>
               </div>
               
-              <Button className="bg-gray-900 hover:bg-gray-800 text-white">
+              <Button size="sm" className="bg-gray-900 hover:bg-gray-800 text-white">
                 <BookOpen className="h-4 w-4 mr-2" />
                 Học từ vựng
               </Button>
@@ -128,14 +130,14 @@ export default function WordcraftWords() {
       </div>
 
       {/* Search and Favorite */}
-      <div className="mb-6 flex items-center gap-4">
+      <div className="mb-4 flex items-center gap-4">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
             placeholder="Tìm kiếm từ mô tả bạn muốn ôn lại"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10"
+            className="pl-10 h-9"
           />
         </div>
         <Button 
@@ -184,26 +186,20 @@ export default function WordcraftWords() {
         </Table>
       </div>
 
-      {/* Footer Stats */}
-      <div className="mt-6 flex items-center justify-between">
-        <div className="flex items-center space-x-6">
-          <div className="flex items-center text-sm text-gray-600">
-            <BookOpen className="h-4 w-4 mr-1" />
-            Số từ vựng: {card.wordCount}
-          </div>
-          <div className="flex items-center text-sm text-gray-600">
-            <Users className="h-4 w-4 mr-1" />
-            Số lần học: {card.studyCount}
-          </div>
+      {/* Footer Actions */}
+      <div className="mt-4 flex items-center justify-between">
+        <div className="flex items-center text-sm text-gray-600">
+          <Users className="h-4 w-4 mr-1" />
+          Đã học: {card.studyCount || 0} lần
         </div>
 
         <div className="flex space-x-2">
           <Link href={`/wordcraft/${cardId}/words/${filteredWords[0]?.id || 1}/detail`}>
-            <Button variant="outline">
+            <Button variant="outline" size="sm">
               Xem chi tiết
             </Button>
           </Link>
-          <Button>
+          <Button size="sm">
             <Plus className="h-4 w-4 mr-2" />
             Thêm từ vựng
           </Button>

@@ -146,6 +146,9 @@ Changelog:
   - Updated all vocabulary card names and descriptions to Vietnamese
   - Implemented accurate word count calculation based on real vocabulary data
   - Fixed card title display to show exact names from database
+  - Optimized header layout to reduce space usage by 40%
+  - Implemented compact search bar and star favorite functionality
+  - Integrated vocabulary count into header for better space utilization
 
 ## User Preferences
 
