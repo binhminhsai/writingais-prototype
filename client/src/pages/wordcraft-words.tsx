@@ -424,16 +424,18 @@ export default function WordcraftWords() {
               {/* Word Counter and Edit Button */}
               <div className="flex items-center justify-between mt-1 pt-1 border-t border-gray-200 px-2 md:px-3">
                 <div></div>
-                <div className="flex items-center space-x-2">
-                  <div className="text-xs font-medium text-gray-600">
+                <div className="flex items-center justify-center flex-1">
+                  <div className="text-sm font-semibold text-gray-700">
                     {currentWordIndex + 1}/{filteredWords.length}
                   </div>
+                </div>
+                <div>
                   <Button
                     size="sm"
                     variant="ghost"
-                    className="w-6 h-6 p-0 text-gray-500 hover:text-blue-600 hover:bg-blue-50"
+                    className="w-7 h-7 p-0 text-blue-600 hover:text-blue-700 hover:bg-blue-100 border border-blue-200 hover:border-blue-300 rounded-md transition-all duration-200"
                   >
-                    <Edit className="h-3 w-3" />
+                    <Edit className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
