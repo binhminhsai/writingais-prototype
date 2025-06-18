@@ -189,33 +189,41 @@ export default function WordcraftWords() {
       {/* Words Content - List or Detail View */}
       {viewMode === "list" ? (
         /* Words Table */
-        (<div className="bg-white rounded-lg border-2 border-gray-100 shadow-sm overflow-hidden">
+        (<div className="bg-white rounded-lg border-2 border-gray-300 shadow-lg overflow-hidden">
           <Table>
             <TableHeader>
-              <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
-                <TableHead className="w-12 font-semibold text-gray-700">STT</TableHead>
-                <TableHead className="font-semibold text-gray-700">Từ vựng</TableHead>
-                <TableHead className="font-semibold text-gray-700">Phiên âm</TableHead>
-                <TableHead className="font-semibold text-gray-700">Loại từ</TableHead>
-                <TableHead className="font-semibold text-gray-700">Định nghĩa</TableHead>
+              <TableRow className="bg-gradient-to-r from-blue-600 to-indigo-700 border-b-2 border-blue-800">
+                <TableHead className="w-12 font-bold text-white text-sm py-4">STT</TableHead>
+                <TableHead className="font-bold text-white text-sm py-4">Từ vựng</TableHead>
+                <TableHead className="font-bold text-white text-sm py-4">Phiên âm</TableHead>
+                <TableHead className="font-bold text-white text-sm py-4">Loại từ</TableHead>
+                <TableHead className="font-bold text-white text-sm py-4">Định nghĩa</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredWords.map((word, index) => (
                 <TableRow 
                   key={word.id} 
-                  className={index === 4 ? "bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-300" : "hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-200"}
+                  className={`
+                    border-b border-gray-200 transition-all duration-200 py-3
+                    ${index === 4 
+                      ? "bg-gradient-to-r from-yellow-100 to-orange-100 border-l-4 border-orange-400 hover:from-yellow-200 hover:to-orange-200" 
+                      : index % 2 === 0 
+                        ? "bg-gray-50 hover:bg-blue-100" 
+                        : "bg-white hover:bg-blue-50"
+                    }
+                  `}
                 >
-                  <TableCell className="font-medium text-gray-800">{index + 1}</TableCell>
-                  <TableCell className="font-semibold text-gray-900">{word.word}</TableCell>
-                  <TableCell className="text-gray-600 italic">{word.pronunciation}</TableCell>
-                  <TableCell>
+                  <TableCell className="font-semibold text-gray-800 text-sm py-4">{index + 1}</TableCell>
+                  <TableCell className="font-bold text-gray-900 text-sm py-4">{word.word}</TableCell>
+                  <TableCell className="text-gray-600 italic text-sm py-4">{word.pronunciation}</TableCell>
+                  <TableCell className="py-4">
                     <Badge variant="secondary" className={getPartOfSpeechColor(word.partOfSpeech)}>
                       {word.partOfSpeech}
                     </Badge>
                   </TableCell>
-                  <TableCell className="max-w-md">
-                    <p className="line-clamp-2 text-gray-700">{word.definition}</p>
+                  <TableCell className="max-w-md py-4">
+                    <p className="line-clamp-2 text-gray-700 text-sm leading-relaxed">{word.definition}</p>
                   </TableCell>
                 </TableRow>
               ))}
