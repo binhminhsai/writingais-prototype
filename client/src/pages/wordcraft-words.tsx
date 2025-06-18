@@ -203,7 +203,7 @@ export default function WordcraftWords() {
             </div>
             
             {/* Scrollable Table Body */}
-            <div className="max-h-[400px] overflow-y-auto">
+            <div className="max-h-[444px] overflow-y-auto">
               <Table>
                 <TableBody>
                   {filteredWords.map((word, index) => (
