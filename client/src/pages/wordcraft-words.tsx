@@ -312,13 +312,13 @@ export default function WordcraftWords() {
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-3 text-lg">Định nghĩa</h3>
                       <div className="space-y-3">
-                        <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
+                        <div className="bg-blue-50 p-3 rounded-lg">
                           <h4 className="font-medium text-blue-900 mb-2">Tiếng Anh:</h4>
                           <p className="text-gray-700 leading-relaxed text-sm">
                             {currentWord?.definition || "Định nghĩa sẽ được cập nhật sau"}
                           </p>
                         </div>
-                        <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
+                        <div className="bg-green-50 p-3 rounded-lg">
                           <h4 className="font-medium text-green-900 mb-2">Tiếng Việt:</h4>
                           <p className="text-gray-700 leading-relaxed text-sm">
                             {currentWord?.vietnamese || "Nghĩa tiếng Việt sẽ được cập nhật sau"}
@@ -329,7 +329,7 @@ export default function WordcraftWords() {
 
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-3 text-lg">Ví dụ</h3>
-                      <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                      <div className="bg-gray-50 p-3 rounded-lg">
                         <div className="space-y-2">
                           <p className="text-gray-700 leading-relaxed text-sm">
                             {currentWord?.example ? (
@@ -354,7 +354,7 @@ export default function WordcraftWords() {
                 {activeTab === "etymology" && (
                   <div className="space-y-3">
                     <h3 className="font-semibold text-gray-900 mb-2 text-lg">Nguồn gốc từ vựng</h3>
-                    <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                    <div className="bg-purple-50 p-3 rounded-lg">
                       <div className="space-y-3">
                         <div className="flex items-start space-x-2">
                           <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
@@ -393,27 +393,27 @@ export default function WordcraftWords() {
                   <div className="space-y-3">
                     <h3 className="font-semibold text-gray-900 mb-2 text-lg">Cụm từ thường gặp</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 hover:shadow-md transition-shadow">
+                      <div className="bg-blue-50 p-3 rounded-lg hover:shadow-md transition-shadow">
                         <p className="font-semibold text-blue-900 mb-1 text-sm">Emotional resilience</p>
                         <p className="text-xs text-blue-700">Sức bền cảm xúc</p>
                       </div>
-                      <div className="bg-green-50 p-3 rounded-lg border border-green-200 hover:shadow-md transition-shadow">
+                      <div className="bg-green-50 p-3 rounded-lg hover:shadow-md transition-shadow">
                         <p className="font-semibold text-green-900 mb-1 text-sm">Build resilience</p>
                         <p className="text-xs text-green-700">Xây dựng sức bền/khả năng phục hồi</p>
                       </div>
-                      <div className="bg-purple-50 p-3 rounded-lg border border-purple-200 hover:shadow-md transition-shadow">
+                      <div className="bg-purple-50 p-3 rounded-lg hover:shadow-md transition-shadow">
                         <p className="font-semibold text-purple-900 mb-1 text-sm">Resilience training</p>
                         <p className="text-xs text-purple-700">Đào tạo khả năng phục hồi</p>
                       </div>
-                      <div className="bg-orange-50 p-3 rounded-lg border border-orange-200 hover:shadow-md transition-shadow">
+                      <div className="bg-orange-50 p-3 rounded-lg hover:shadow-md transition-shadow">
                         <p className="font-semibold text-orange-900 mb-1 text-sm">Mental resilience</p>
                         <p className="text-xs text-orange-700">Sức bền tinh thần</p>
                       </div>
-                      <div className="bg-pink-50 p-3 rounded-lg border border-pink-200 hover:shadow-md transition-shadow">
+                      <div className="bg-pink-50 p-3 rounded-lg hover:shadow-md transition-shadow">
                         <p className="font-semibold text-pink-900 mb-1 text-sm">Show remarkable resilience</p>
                         <p className="text-xs text-pink-700">Thể hiện khả năng phục hồi đáng kinh ngạc</p>
                       </div>
-                      <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-200 hover:shadow-md transition-shadow">
+                      <div className="bg-indigo-50 p-3 rounded-lg hover:shadow-md transition-shadow">
                         <p className="font-semibold text-indigo-900 mb-1 text-sm">Economic resilience</p>
                         <p className="text-xs text-indigo-700">Sức bền kinh tế</p>
                       </div>
