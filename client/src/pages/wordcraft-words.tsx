@@ -48,12 +48,12 @@ export default function WordcraftWords() {
 
   const getPartOfSpeechColor = (pos: string) => {
     switch (pos) {
-      case "N": return "bg-blue-100 text-blue-800";
-      case "V": return "bg-green-100 text-green-800";
-      case "Adj": return "bg-purple-100 text-purple-800";
-      case "Adv": return "bg-orange-100 text-orange-800";
-      case "Idiom": return "bg-pink-100 text-pink-800";
-      default: return "bg-gray-100 text-gray-800";
+      case "N": return "bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border border-blue-300 shadow-sm font-medium";
+      case "V": return "bg-gradient-to-r from-green-100 to-green-200 text-green-800 border border-green-300 shadow-sm font-medium";
+      case "Adj": return "bg-gradient-to-r from-purple-100 to-purple-200 text-purple-800 border border-purple-300 shadow-sm font-medium";
+      case "Adv": return "bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 border border-orange-300 shadow-sm font-medium";
+      case "Idiom": return "bg-gradient-to-r from-pink-100 to-pink-200 text-pink-800 border border-pink-300 shadow-sm font-medium";
+      default: return "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border border-gray-300 shadow-sm font-medium";
     }
   };
 
@@ -86,11 +86,11 @@ export default function WordcraftWords() {
   return (
     <div className="container mx-auto px-4 py-4">
       {/* Header */}
-      <div className="mb-4">
-        <div className="flex items-center justify-between mb-3">
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-4">
           <Link href="/wordcraft">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
+            <Button variant="ghost" size="sm" className="hover:bg-blue-50">
+              <ArrowLeft className="h-4 w-4 mr-1" />
               Trở về
             </Button>
           </Link>
@@ -100,35 +100,40 @@ export default function WordcraftWords() {
               size="sm" 
               onClick={handleFavoriteToggle}
               disabled={favoriteMutation.isPending}
-              className={`${card?.isFavorited ? 'text-yellow-500 hover:text-yellow-600' : 'text-gray-400 hover:text-yellow-400'}`}
+              className={`hover:bg-yellow-50 ${card?.isFavorited ? 'text-yellow-500 hover:text-yellow-600' : 'text-gray-400 hover:text-yellow-400'}`}
             >
               <Star className={`h-4 w-4 ${card?.isFavorited ? 'fill-current' : ''}`} />
             </Button>
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className="hover:bg-gray-50">
               <Settings className="h-4 w-4" />
             </Button>
           </div>
         </div>
 
-        <div className="flex items-start gap-4">
-          <div className="flex-1">
-            <h1 className="text-xl font-bold text-gray-900 mb-1">
-              {card.title}
-            </h1>
-            {card.description && (
-              <p className="text-sm text-gray-600 mb-3">{card.description}</p>
-            )}
-            
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600">Chủ đề:</span>
-                <Badge variant="secondary" className="text-xs">{card.category}</Badge>
-              </div>
+        {/* Card Info with beautiful design */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 rounded-lg p-6 shadow-sm">
+          <div className="flex items-start gap-4">
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                {card.title}
+              </h1>
+              {card.description && (
+                <p className="text-gray-700 mb-4 leading-relaxed">{card.description}</p>
+              )}
               
-              <Button size="sm" className="bg-gray-900 hover:bg-gray-800 text-white">
-                <BookOpen className="h-4 w-4 mr-2" />
-                Học từ vựng
-              </Button>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-medium text-gray-600">Chủ đề:</span>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-800 hover:bg-blue-200 px-3 py-1">
+                    {card.category}
+                  </Badge>
+                </div>
+                
+                <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-md hover:shadow-lg transition-all duration-200">
+                  <BookOpen className="h-4 w-4 mr-2" />
+                  Học từ vựng
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -136,7 +141,7 @@ export default function WordcraftWords() {
 
       {/* Search and Word Count */}
       <div className="mb-4 flex items-center justify-between">
-        <div className="relative max-w-md">
+        <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
             placeholder="Tìm kiếm từ mô tả bạn muốn ôn lại"
@@ -152,33 +157,33 @@ export default function WordcraftWords() {
       </div>
 
       {/* Words Table */}
-      <div className="bg-white rounded-lg border">
+      <div className="bg-white rounded-lg border-2 border-gray-100 shadow-sm overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead className="w-12">STT</TableHead>
-              <TableHead>Từ vựng</TableHead>
-              <TableHead>Phiên âm</TableHead>
-              <TableHead>Loại từ</TableHead>
-              <TableHead>Định nghĩa</TableHead>
+            <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
+              <TableHead className="w-12 font-semibold text-gray-700">STT</TableHead>
+              <TableHead className="font-semibold text-gray-700">Từ vựng</TableHead>
+              <TableHead className="font-semibold text-gray-700">Phiên âm</TableHead>
+              <TableHead className="font-semibold text-gray-700">Loại từ</TableHead>
+              <TableHead className="font-semibold text-gray-700">Định nghĩa</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredWords.map((word, index) => (
               <TableRow 
                 key={word.id} 
-                className={index === 4 ? "bg-blue-50" : "hover:bg-gray-50"}
+                className={index === 4 ? "bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-300" : "hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-200"}
               >
-                <TableCell className="font-medium">{index + 1}</TableCell>
-                <TableCell className="font-medium">{word.word}</TableCell>
-                <TableCell className="text-gray-600">{word.pronunciation}</TableCell>
+                <TableCell className="font-medium text-gray-800">{index + 1}</TableCell>
+                <TableCell className="font-semibold text-gray-900">{word.word}</TableCell>
+                <TableCell className="text-gray-600 italic">{word.pronunciation}</TableCell>
                 <TableCell>
                   <Badge variant="secondary" className={getPartOfSpeechColor(word.partOfSpeech)}>
                     {word.partOfSpeech}
                   </Badge>
                 </TableCell>
                 <TableCell className="max-w-md">
-                  <p className="line-clamp-2">{word.definition}</p>
+                  <p className="line-clamp-2 text-gray-700">{word.definition}</p>
                 </TableCell>
               </TableRow>
             ))}
@@ -187,22 +192,24 @@ export default function WordcraftWords() {
       </div>
 
       {/* Footer Actions */}
-      <div className="mt-4 flex items-center justify-between">
-        <div className="flex items-center text-sm text-gray-600">
-          <Users className="h-4 w-4 mr-1" />
-          Đã học: {card.studyCount || 0} lần
-        </div>
+      <div className="mt-6 bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-4 shadow-sm">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center text-sm text-gray-700 font-medium">
+            <Users className="h-4 w-4 mr-2 text-blue-600" />
+            Đã học: <span className="text-blue-600 font-semibold ml-1">{card.studyCount || 0}</span> lần
+          </div>
 
-        <div className="flex space-x-2">
-          <Link href={`/wordcraft/${cardId}/words/${filteredWords[0]?.id || 1}/detail`}>
-            <Button variant="outline" size="sm">
-              Xem chi tiết
+          <div className="flex space-x-3">
+            <Link href={`/wordcraft/${cardId}/words/${filteredWords[0]?.id || 1}/detail`}>
+              <Button variant="outline" size="sm" className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200">
+                Xem chi tiết
+              </Button>
+            </Link>
+            <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200">
+              <Plus className="h-4 w-4 mr-2" />
+              Thêm từ vựng
             </Button>
-          </Link>
-          <Button size="sm">
-            <Plus className="h-4 w-4 mr-2" />
-            Thêm từ vựng
-          </Button>
+          </div>
         </div>
       </div>
     </div>

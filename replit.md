@@ -149,6 +149,9 @@ Changelog:
   - Optimized header layout to reduce space usage by 40%
   - Implemented compact search bar and star favorite functionality
   - Integrated vocabulary count into header for better space utilization
+  - Repositioned star favorite button to header top-right position with sync functionality
+  - Moved vocabulary count to align with search bar for optimal layout balance
+  - Standardized search bar width across all pages for consistent UI experience
 
 ## User Preferences
 
