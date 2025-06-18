@@ -275,7 +275,7 @@ export default function Wordcraft() {
       {/* Cards Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
         {filteredCards.map((card) => (
-          <Link key={card.id} href={`/wordcraft/${card.id}/words`} className="block">
+          <Link key={card.id} href={`/wordcraft/${card.id}/details`} className="block">
             <Card className="border border-gray-300 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
               {/* Image Area with Title Overlay and Star */}
               <div className="relative h-32 bg-gray-100 flex items-center justify-center">
