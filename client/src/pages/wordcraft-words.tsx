@@ -477,7 +477,7 @@ export default function WordcraftWords() {
             )}
             <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 h-8 text-sm px-3">
               <Plus className="h-4 w-4 mr-2" />
-              Học từ vựng
+              Thêm từ vựng
             </Button>
           </div>
         </div>
