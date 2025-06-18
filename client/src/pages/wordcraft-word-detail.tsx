@@ -134,23 +134,21 @@ export default function WordcraftWordDetail() {
         {/* Left Navigation Arrow */}
         <Button 
           variant="ghost" 
-          size="lg"
           onClick={() => navigateToWord("prev")}
           disabled={currentWordIndex <= 0}
-          className="absolute left-[-60px] top-1/2 transform -translate-y-1/2 flex items-center hover:bg-blue-50 bg-white shadow-md border border-gray-200 z-10"
+          className="absolute left-[-80px] top-[170px] w-16 h-80 flex items-center justify-center hover:bg-blue-50 bg-white shadow-lg border-2 border-gray-300 z-10 rounded-lg font-bold"
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-8 w-8" />
         </Button>
 
         {/* Right Navigation Arrow */}
         <Button 
           variant="ghost" 
-          size="lg"
           onClick={() => navigateToWord("next")}
           disabled={currentWordIndex >= totalWords - 1}
-          className="absolute right-[-60px] top-1/2 transform -translate-y-1/2 flex items-center hover:bg-blue-50 bg-white shadow-md border border-gray-200 z-10"
+          className="absolute right-[-80px] top-[170px] w-16 h-80 flex items-center justify-center hover:bg-blue-50 bg-white shadow-lg border-2 border-gray-300 z-10 rounded-lg font-bold"
         >
-          <ChevronRight className="h-6 w-6" />
+          <ChevronRight className="h-8 w-8" />
         </Button>
 
         <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden">
