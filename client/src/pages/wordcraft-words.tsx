@@ -367,140 +367,140 @@ export default function WordcraftWords() {
 
                 {/* Tab Content */}
                 <div className="relative min-h-[300px] mt-4">
-                {activeTab === "definition" && (
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-3 text-lg">Định nghĩa</h3>
-                      <div className="space-y-3">
-                        <div className="bg-blue-50 p-3 rounded-lg">
-                          <h4 className="font-medium text-blue-900 mb-2">Tiếng Anh:</h4>
-                          <p className="text-gray-700 leading-relaxed text-sm">
-                            {currentWord?.definition || "Định nghĩa sẽ được cập nhật sau"}
-                          </p>
-                        </div>
-                        <div className="bg-green-50 p-3 rounded-lg">
-                          <h4 className="font-medium text-green-900 mb-2">Tiếng Việt:</h4>
-                          <p className="text-gray-700 leading-relaxed text-sm">
-                            {currentWord?.vietnamese || "Nghĩa tiếng Việt sẽ được cập nhật sau"}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-3 text-lg">Ví dụ</h3>
-                      <div className="bg-gray-50 p-3 rounded-lg">
-                        <div className="space-y-2">
-                          <p className="text-gray-700 leading-relaxed text-sm">
-                            {currentWord?.example ? (
-                              <>
-                                "{currentWord.example}"
-                              </>
-                            ) : (
-                              "Ví dụ sẽ được cập nhật sau"
-                            )}
-                          </p>
-                          {currentWord?.exampleVietnamese && (
-                            <p className="text-gray-600 italic text-sm">
-                              ({currentWord.exampleVietnamese})
+                  {activeTab === "definition" && (
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-3 text-lg">Định nghĩa</h3>
+                        <div className="space-y-3">
+                          <div className="bg-blue-50 p-3 rounded-lg">
+                            <h4 className="font-medium text-blue-900 mb-2">Tiếng Anh:</h4>
+                            <p className="text-gray-700 leading-relaxed text-sm">
+                              {currentWord?.definition || "Định nghĩa sẽ được cập nhật sau"}
                             </p>
-                          )}
+                          </div>
+                          <div className="bg-green-50 p-3 rounded-lg">
+                            <h4 className="font-medium text-green-900 mb-2">Tiếng Việt:</h4>
+                            <p className="text-gray-700 leading-relaxed text-sm">
+                              {currentWord?.vietnamese || "Nghĩa tiếng Việt sẽ được cập nhật sau"}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                )}
 
-                {activeTab === "etymology" && (
-                  <div className="space-y-3">
-                    <h3 className="font-semibold text-gray-900 mb-2 text-lg">Nguồn gốc từ vựng</h3>
-                    <div className="bg-purple-50 p-3 rounded-lg">
-                      <div className="space-y-3">
-                        <div className="flex items-start space-x-2">
-                          <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
-                          <div>
-                            <strong className="text-purple-900 text-sm">Gốc Latin:</strong>
-                            <span className="text-gray-700 ml-2 text-sm">"resilire" có nghĩa là "nhảy trở lại" hoặc "bật trở lại"</span>
-                          </div>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
-                          <div>
-                            <strong className="text-purple-900 text-sm">Tiền tố:</strong>
-                            <span className="text-gray-700 ml-2 text-sm">"re-" (trở lại) + "salire" (nhảy)</span>
-                          </div>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
-                          <div>
-                            <strong className="text-purple-900 text-sm">Xuất hiện:</strong>
-                            <span className="text-gray-700 ml-2 text-sm">Thế kỷ 17, ban đầu được sử dụng trong vật lý học để mô tả tính chất đàn hồi của vật liệu</span>
-                          </div>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
-                          <div>
-                            <strong className="text-purple-900 text-sm">Mở rộng nghĩa:</strong>
-                            <span className="text-gray-700 ml-2 text-sm">Thế kỷ 20, được áp dụng vào tâm lý học và khoa học xã hội</span>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-3 text-lg">Ví dụ</h3>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <div className="space-y-2">
+                            <p className="text-gray-700 leading-relaxed text-sm">
+                              {currentWord?.example ? (
+                                <>
+                                  "{currentWord.example}"
+                                </>
+                              ) : (
+                                "Ví dụ sẽ được cập nhật sau"
+                              )}
+                            </p>
+                            {currentWord?.exampleVietnamese && (
+                              <p className="text-gray-600 italic text-sm">
+                                ({currentWord.exampleVietnamese})
+                              </p>
+                            )}
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {activeTab === "phrases" && (
-                  <div className="space-y-3">
-                    <h3 className="font-semibold text-gray-900 mb-2 text-lg">Cụm từ thường gặp</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      <div className="bg-blue-50 p-3 rounded-lg hover:shadow-md transition-shadow">
-                        <p className="font-semibold text-blue-900 mb-1 text-sm">Emotional resilience</p>
-                        <p className="text-xs text-blue-700">Sức bền cảm xúc</p>
-                      </div>
-                      <div className="bg-green-50 p-3 rounded-lg hover:shadow-md transition-shadow">
-                        <p className="font-semibold text-green-900 mb-1 text-sm">Build resilience</p>
-                        <p className="text-xs text-green-700">Xây dựng sức bền/khả năng phục hồi</p>
-                      </div>
-                      <div className="bg-purple-50 p-3 rounded-lg hover:shadow-md transition-shadow">
-                        <p className="font-semibold text-purple-900 mb-1 text-sm">Resilience training</p>
-                        <p className="text-xs text-purple-700">Đào tạo khả năng phục hồi</p>
-                      </div>
-                      <div className="bg-orange-50 p-3 rounded-lg hover:shadow-md transition-shadow">
-                        <p className="font-semibold text-orange-900 mb-1 text-sm">Mental resilience</p>
-                        <p className="text-xs text-orange-700">Sức bền tinh thần</p>
-                      </div>
-                      <div className="bg-pink-50 p-3 rounded-lg hover:shadow-md transition-shadow">
-                        <p className="font-semibold text-pink-900 mb-1 text-sm">Show remarkable resilience</p>
-                        <p className="text-xs text-pink-700">Thể hiện khả năng phục hồi đáng kinh ngạc</p>
-                      </div>
-                      <div className="bg-indigo-50 p-3 rounded-lg hover:shadow-md transition-shadow">
-                        <p className="font-semibold text-indigo-900 mb-1 text-sm">Economic resilience</p>
-                        <p className="text-xs text-indigo-700">Sức bền kinh tế</p>
+                  {activeTab === "etymology" && (
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-gray-900 mb-2 text-lg">Nguồn gốc từ vựng</h3>
+                      <div className="bg-purple-50 p-3 rounded-lg">
+                        <div className="space-y-3">
+                          <div className="flex items-start space-x-2">
+                            <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+                            <div>
+                              <strong className="text-purple-900 text-sm">Gốc Latin:</strong>
+                              <span className="text-gray-700 ml-2 text-sm">"resilire" có nghĩa là "nhảy trở lại" hoặc "bật trở lại"</span>
+                            </div>
+                          </div>
+                          <div className="flex items-start space-x-2">
+                            <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+                            <div>
+                              <strong className="text-purple-900 text-sm">Tiền tố:</strong>
+                              <span className="text-gray-700 ml-2 text-sm">"re-" (trở lại) + "salire" (nhảy)</span>
+                            </div>
+                          </div>
+                          <div className="flex items-start space-x-2">
+                            <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+                            <div>
+                              <strong className="text-purple-900 text-sm">Xuất hiện:</strong>
+                              <span className="text-gray-700 ml-2 text-sm">Thế kỷ 17, ban đầu được sử dụng trong vật lý học để mô tả tính chất đàn hồi của vật liệu</span>
+                            </div>
+                          </div>
+                          <div className="flex items-start space-x-2">
+                            <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+                            <div>
+                              <strong className="text-purple-900 text-sm">Mở rộng nghĩa:</strong>
+                              <span className="text-gray-700 ml-2 text-sm">Thế kỷ 20, được áp dụng vào tâm lý học và khoa học xã hội</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  )}
+
+                  {activeTab === "phrases" && (
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-gray-900 mb-2 text-lg">Cụm từ thường gặp</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div className="bg-blue-50 p-3 rounded-lg hover:shadow-md transition-shadow">
+                          <p className="font-semibold text-blue-900 mb-1 text-sm">Emotional resilience</p>
+                          <p className="text-xs text-blue-700">Sức bền cảm xúc</p>
+                        </div>
+                        <div className="bg-green-50 p-3 rounded-lg hover:shadow-md transition-shadow">
+                          <p className="font-semibold text-green-900 mb-1 text-sm">Build resilience</p>
+                          <p className="text-xs text-green-700">Xây dựng sức bền/khả năng phục hồi</p>
+                        </div>
+                        <div className="bg-purple-50 p-3 rounded-lg hover:shadow-md transition-shadow">
+                          <p className="font-semibold text-purple-900 mb-1 text-sm">Resilience training</p>
+                          <p className="text-xs text-purple-700">Đào tạo khả năng phục hồi</p>
+                        </div>
+                        <div className="bg-orange-50 p-3 rounded-lg hover:shadow-md transition-shadow">
+                          <p className="font-semibold text-orange-900 mb-1 text-sm">Mental resilience</p>
+                          <p className="text-xs text-orange-700">Sức bền tinh thần</p>
+                        </div>
+                        <div className="bg-pink-50 p-3 rounded-lg hover:shadow-md transition-shadow">
+                          <p className="font-semibold text-pink-900 mb-1 text-sm">Show remarkable resilience</p>
+                          <p className="text-xs text-pink-700">Thể hiện khả năng phục hồi đáng kinh ngạc</p>
+                        </div>
+                        <div className="bg-indigo-50 p-3 rounded-lg hover:shadow-md transition-shadow">
+                          <p className="font-semibold text-indigo-900 mb-1 text-sm">Economic resilience</p>
+                          <p className="text-xs text-indigo-700">Sức bền kinh tế</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+
+                {/* Word Counter and Edit Button */}
+                <div className="flex items-center justify-between mt-1 pt-1 border-t border-gray-200 px-2 md:px-3">
+                  <div></div>
+                  <div className="flex items-center justify-center flex-1">
+                    <div className="text-sm font-semibold text-gray-700">
+                      {currentWordIndex + 1}/{filteredWords.length}
+                    </div>
                   </div>
-                )}
-
-              </div>
-
-              {/* Word Counter and Edit Button */}
-              <div className="flex items-center justify-between mt-1 pt-1 border-t border-gray-200 px-2 md:px-3">
-                <div></div>
-                <div className="flex items-center justify-center flex-1">
-                  <div className="text-sm font-semibold text-gray-700">
-                    {currentWordIndex + 1}/{filteredWords.length}
+                  <div>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="w-7 h-7 p-0 text-blue-600 hover:text-blue-700 hover:bg-blue-100 border border-blue-200 hover:border-blue-300 rounded-md transition-all duration-200"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
-                <div>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="w-7 h-7 p-0 text-blue-600 hover:text-blue-700 hover:bg-blue-100 border border-blue-200 hover:border-blue-300 rounded-md transition-all duration-200"
-                  >
-                    <Edit className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
               </div>
             </div>
 
