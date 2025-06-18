@@ -151,7 +151,6 @@ export default function WordcraftCardDetails() {
           </div>
         </div>
       </div>
-
       {/* Word Detail Card with Navigation */}
       <div className="max-w-4xl mx-auto relative">
         {/* Left Navigation Arrow */}
@@ -180,7 +179,7 @@ export default function WordcraftCardDetails() {
           />
         </button>
 
-        <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
           <div className="p-3">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center space-x-2">
