@@ -193,11 +193,11 @@ export default function WordcraftWords() {
           <Table>
             <TableHeader>
               <TableRow className="bg-gradient-to-r from-blue-600 to-indigo-700 border-b-2 border-blue-800">
-                <TableHead className="w-12 font-bold text-white text-sm py-4">STT</TableHead>
-                <TableHead className="font-bold text-white text-sm py-4">Từ vựng</TableHead>
-                <TableHead className="font-bold text-white text-sm py-4">Phiên âm</TableHead>
-                <TableHead className="font-bold text-white text-sm py-4">Loại từ</TableHead>
-                <TableHead className="font-bold text-white text-sm py-4">Định nghĩa</TableHead>
+                <TableHead className="w-12 font-bold text-white text-xs py-2">STT</TableHead>
+                <TableHead className="font-bold text-white text-xs py-2">Từ vựng</TableHead>
+                <TableHead className="font-bold text-white text-xs py-2">Phiên âm</TableHead>
+                <TableHead className="font-bold text-white text-xs py-2">Loại từ</TableHead>
+                <TableHead className="font-bold text-white text-xs py-2">Định nghĩa</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -205,23 +205,23 @@ export default function WordcraftWords() {
                 <TableRow 
                   key={word.id} 
                   className={`
-                    border-b border-gray-200 transition-all duration-200 py-3
+                    border-b border-gray-200 transition-all duration-200 py-1
                     ${index % 2 === 0 
                       ? "bg-gray-50 hover:bg-blue-100" 
                       : "bg-white hover:bg-blue-50"
                     }
                   `}
                 >
-                  <TableCell className="font-semibold text-gray-800 text-sm py-4">{index + 1}</TableCell>
-                  <TableCell className="font-bold text-gray-900 text-sm py-4">{word.word}</TableCell>
-                  <TableCell className="text-gray-600 italic text-sm py-4">{word.pronunciation}</TableCell>
-                  <TableCell className="py-4">
-                    <Badge variant="secondary" className={getPartOfSpeechColor(word.partOfSpeech)}>
+                  <TableCell className="font-medium text-gray-800 text-xs py-2">{index + 1}</TableCell>
+                  <TableCell className="font-semibold text-gray-900 text-xs py-2">{word.word}</TableCell>
+                  <TableCell className="text-gray-600 italic text-xs py-2">{word.pronunciation}</TableCell>
+                  <TableCell className="py-2">
+                    <Badge variant="secondary" className={`text-xs ${getPartOfSpeechColor(word.partOfSpeech)}`}>
                       {word.partOfSpeech}
                     </Badge>
                   </TableCell>
-                  <TableCell className="max-w-md py-4">
-                    <p className="line-clamp-2 text-gray-700 text-sm leading-relaxed">{word.definition}</p>
+                  <TableCell className="max-w-md py-2">
+                    <p className="line-clamp-2 text-gray-700 text-xs leading-tight">{word.definition}</p>
                   </TableCell>
                 </TableRow>
               ))}
