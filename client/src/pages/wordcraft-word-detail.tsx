@@ -5,6 +5,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ArrowRight, Settings, Star, BookOpen, Users, Plus, ChevronLeft, ChevronRight, Edit } from "lucide-react";
+import leftArrowIcon from "@assets/left-arrow_1750231743172.png";
+import rightArrowIcon from "@assets/right-arrow_1750231743193.png";
 import type { VocabularyCard, VocabularyWord } from "@shared/schema";
 
 export default function WordcraftWordDetail() {
@@ -132,24 +134,30 @@ export default function WordcraftWordDetail() {
       {/* Word Detail Card with Navigation */}
       <div className="max-w-4xl mx-auto relative">
         {/* Left Navigation Arrow */}
-        <Button 
-          variant="ghost" 
+        <button
           onClick={() => navigateToWord("prev")}
           disabled={currentWordIndex <= 0}
-          className="absolute left-[-80px] top-[170px] w-16 h-80 flex items-center justify-center hover:bg-blue-50 bg-white shadow-lg border-2 border-gray-300 z-10 rounded-lg font-bold"
+          className="absolute left-[-100px] top-[180px] w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          <ChevronLeft className="h-8 w-8" />
-        </Button>
+          <img 
+            src={leftArrowIcon} 
+            alt="Previous" 
+            className="w-12 h-12 object-contain"
+          />
+        </button>
 
         {/* Right Navigation Arrow */}
-        <Button 
-          variant="ghost" 
+        <button
           onClick={() => navigateToWord("next")}
           disabled={currentWordIndex >= totalWords - 1}
-          className="absolute right-[-80px] top-[170px] w-16 h-80 flex items-center justify-center hover:bg-blue-50 bg-white shadow-lg border-2 border-gray-300 z-10 rounded-lg font-bold"
+          className="absolute right-[-100px] top-[180px] w-20 h-72 flex items-center justify-center hover:opacity-70 transition-opacity duration-200 z-10 disabled:opacity-30 disabled:cursor-not-allowed"
         >
-          <ChevronRight className="h-8 w-8" />
-        </Button>
+          <img 
+            src={rightArrowIcon} 
+            alt="Next" 
+            className="w-12 h-12 object-contain"
+          />
+        </button>
 
         <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden">
           <div className="p-8">
