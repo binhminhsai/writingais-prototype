@@ -169,22 +169,24 @@ export default function WordcraftWords() {
         </div>
       </div>
 
-      {/* Search and Word Count */}
-      <div className="mb-4 flex items-center justify-between">
-        <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-          <Input
-            placeholder="Tìm kiếm từ mô tả bạn muốn ôn lại"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10 h-9"
-          />
+      {/* Search and Word Count - Only show in list view */}
+      {viewMode === "list" && (
+        <div className="mb-4 flex items-center justify-between">
+          <div className="relative flex-1 max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <Input
+              placeholder="Tìm kiếm từ mô tả bạn muốn ôn lại"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 h-9"
+            />
+          </div>
+          <div className="flex items-center text-sm text-gray-600">
+            <BookOpen className="h-4 w-4 mr-1" />
+            {card.wordCount} từ vựng
+          </div>
         </div>
-        <div className="flex items-center text-sm text-gray-600">
-          <BookOpen className="h-4 w-4 mr-1" />
-          {card.wordCount} từ vựng
-        </div>
-      </div>
+      )}
 
       {/* Words Content - List or Detail View */}
       {viewMode === "list" ? (
