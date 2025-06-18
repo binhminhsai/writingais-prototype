@@ -196,6 +196,14 @@ Changelog:
   - Hidden search bar in detail view mode for cleaner interface
   - Removed all borders from content cards for minimalist design
   - Optimized footer button sizes and updated text to "Học từ vựng" and "Số lần đã học: 7 lần"
+- June 18, 2025. Expanded vocabulary database with complete 20-word business set:
+  - Added all 20 vocabulary words from user's provided list to card ID 1
+  - Implemented complete bilingual definitions (English/Vietnamese) for each word
+  - Added proper pronunciation data, part-of-speech tags, and example sentences
+  - Updated card word count from 12 to 20 to reflect actual content
+  - Integrated dynamic pronunciation display in detail view using real data
+  - Created comprehensive vocabulary tags for better categorization
+  - Maintained consistent data structure across all vocabulary entries
 
 ## User Preferences
 

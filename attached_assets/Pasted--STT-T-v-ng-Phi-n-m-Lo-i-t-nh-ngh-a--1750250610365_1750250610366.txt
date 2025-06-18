@@ -1,0 +1,22 @@
+| STT | Từ vựng       | Phiên âm         | Loại từ | Định nghĩa                                                            |
+| --- | ------------- | ---------------- | ------- | --------------------------------------------------------------------- |
+| 1   | Resilience    | /rɪˈzɪljəns/     | N       | The ability to recover quickly from difficulties; toughness.          |
+| 2   | Comprehensive | /ˌkɒmprɪˈhensɪv/ | Adj     | Including all or almost all elements or aspects.                      |
+| 3   | Collaborate   | /kəˈlæbəreɪt/    | V       | To work together with someone to achieve something.                   |
+| 4   | Fragile       | /ˈfrædʒaɪl/      | Adj     | Easily broken or damaged; delicate.                                   |
+| 5   | However       | /haʊˈevə/        | Adv     | Used to introduce a contrast or opposing idea.                        |
+| 6   | Innovation    | /ˌɪnəˈveɪʃn/     | N       | A new idea, method, or device; the act of innovating.                 |
+| 7   | Efficiency    | /ɪˈfɪʃnsi/       | N       | The ability to do something well without wasting time or resources.   |
+| 8   | Reliable      | /rɪˈlaɪəbl/      | Adj     | Consistently good in quality or performance; dependable.              |
+| 9   | Adaptable     | /əˈdæptəbl/      | Adj     | Able to change or be changed in order to deal with new situations.    |
+| 10  | Sustain       | /səˈsteɪn/       | V       | To maintain or support over time.                                     |
+| 11  | Crucial       | /ˈkruːʃl/        | Adj     | Extremely important or necessary.                                     |
+| 12  | Disrupt       | /dɪsˈrʌpt/       | V       | To interrupt the normal progress of something.                        |
+| 13  | Evaluate      | /ɪˈvæljueɪt/     | V       | To judge or calculate the quality, importance, or value of something. |
+| 14  | Determine     | /dɪˈtɜːmɪn/      | V       | To decide something officially or to discover the facts.              |
+| 15  | Strategy      | /ˈstrætədʒi/     | N       | A plan of action designed to achieve a long-term or overall aim.      |
+| 16  | Diverse       | /daɪˈvɜːs/       | Adj     | Showing a great deal of variety; very different.                      |
+| 17  | Negotiate     | /nɪˈɡəʊʃieɪt/    | V       | To discuss something in order to reach an agreement.                  |
+| 18  | Emphasize     | /ˈemfəsaɪz/      | V       | To give special importance or attention to something.                 |
+| 19  | Ambiguous     | /æmˈbɪɡjuəs/     | Adj     | Open to more than one interpretation; unclear.                        |
+| 20  | Allocate      | /ˈæləkeɪt/       | V       | To distribute resources or duties for a specific purpose.             |

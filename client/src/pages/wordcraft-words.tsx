@@ -257,7 +257,7 @@ export default function WordcraftWords() {
                   <Button variant="ghost" size="sm" className="text-gray-400 hover:text-blue-500 p-1">
                     <Volume2 className="h-4 w-4" />
                   </Button>
-                  <span className="text-sm md:text-base text-gray-600 italic">/rɪˈzɪljəns/</span>
+                  <span className="text-sm md:text-base text-gray-600 italic">{currentWord?.pronunciation || "/rɪˈzɪljəns/"}</span>
                   <Badge variant="secondary" className={getPartOfSpeechColor(currentWord?.partOfSpeech || "N")}>
                     {currentWord?.partOfSpeech || "N"}
                   </Badge>
