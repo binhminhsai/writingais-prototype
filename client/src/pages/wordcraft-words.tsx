@@ -246,73 +246,75 @@ export default function WordcraftWords() {
           </button>
 
           <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden">
-            <div className="p-8">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-4">
-                  <h2 className="text-3xl font-bold text-gray-900">{currentWord?.word || "Từ vựng"}</h2>
+            <div className="p-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center space-x-3">
+                  <h2 className="text-2xl font-bold text-gray-900">{currentWord?.word || "Từ vựng"}</h2>
                   <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500">
-                    <Star className="h-5 w-5" />
+                    <Star className="h-4 w-4" />
                   </Button>
                 </div>
-                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600">
-                  <Plus className="h-5 w-5" />
-                </Button>
               </div>
 
-              <div className="mb-6">
-                <p className="text-lg text-gray-600 mb-6">({currentWord?.partOfSpeech || "N"}) {currentWord?.pronunciation && `${currentWord.pronunciation}`}</p>
+              <div className="mb-3">
+                <p className="text-base text-gray-600 mb-3">({currentWord?.partOfSpeech || "N"}) {currentWord?.pronunciation && `${currentWord.pronunciation}`}</p>
                 
                 {/* Tab Navigation */}
-                <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-200">
-                  <button
-                    onClick={() => setActiveTab("definition")}
-                    className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
-                      activeTab === "definition"
-                        ? "bg-green-100 text-green-800 border-b-2 border-green-500"
-                        : "text-gray-600 hover:text-green-600 hover:bg-green-50"
-                    }`}
-                  >
-                    Định nghĩa
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("etymology")}
-                    className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
-                      activeTab === "etymology"
-                        ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
-                        : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
-                    }`}
-                  >
-                    Nguồn gốc
-                  </button>
-                  <button
-                    onClick={() => setActiveTab("phrases")}
-                    className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
-                      activeTab === "phrases"
-                        ? "bg-orange-100 text-orange-800 border-b-2 border-orange-500"
-                        : "text-gray-600 hover:text-orange-600 hover:bg-orange-50"
-                    }`}
-                  >
-                    Cụm từ thường gặp
-                  </button>
+                <div className="flex items-center justify-between border-b border-gray-200">
+                  <div className="flex gap-1">
+                    <button
+                      onClick={() => setActiveTab("definition")}
+                      className={`px-3 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                        activeTab === "definition"
+                          ? "bg-green-100 text-green-800 border-b-2 border-green-500"
+                          : "text-gray-600 hover:text-green-600 hover:bg-green-50"
+                      }`}
+                    >
+                      Định nghĩa
+                    </button>
+                    <button
+                      onClick={() => setActiveTab("etymology")}
+                      className={`px-3 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                        activeTab === "etymology"
+                          ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
+                          : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
+                      }`}
+                    >
+                      Nguồn gốc
+                    </button>
+                    <button
+                      onClick={() => setActiveTab("phrases")}
+                      className={`px-3 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                        activeTab === "phrases"
+                          ? "bg-orange-100 text-orange-800 border-b-2 border-orange-500"
+                          : "text-gray-600 hover:text-orange-600 hover:bg-orange-50"
+                      }`}
+                    >
+                      Cụm từ thường gặp
+                    </button>
+                  </div>
+                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 mb-2">
+                    <Plus className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
 
               {/* Tab Content */}
-              <div className="relative min-h-[400px]">
+              <div className="relative min-h-[300px] mt-4">
                 {activeTab === "definition" && (
-                  <div className="space-y-8">
+                  <div className="space-y-4">
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-4 text-xl">Định nghĩa</h3>
-                      <div className="space-y-6">
-                        <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
-                          <h4 className="font-medium text-blue-900 mb-3">Tiếng Anh:</h4>
-                          <p className="text-gray-700 leading-relaxed">
+                      <h3 className="font-semibold text-gray-900 mb-3 text-lg">Định nghĩa</h3>
+                      <div className="space-y-3">
+                        <div className="bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
+                          <h4 className="font-medium text-blue-900 mb-2">Tiếng Anh:</h4>
+                          <p className="text-gray-700 leading-relaxed text-sm">
                             {currentWord?.definition || "Định nghĩa sẽ được cập nhật sau"}
                           </p>
                         </div>
-                        <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
-                          <h4 className="font-medium text-green-900 mb-3">Tiếng Việt:</h4>
-                          <p className="text-gray-700 leading-relaxed">
+                        <div className="bg-green-50 p-3 rounded-lg border-l-4 border-green-400">
+                          <h4 className="font-medium text-green-900 mb-2">Tiếng Việt:</h4>
+                          <p className="text-gray-700 leading-relaxed text-sm">
                             {currentWord?.vietnamese || "Nghĩa tiếng Việt sẽ được cập nhật sau"}
                           </p>
                         </div>
@@ -320,10 +322,10 @@ export default function WordcraftWords() {
                     </div>
 
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-4 text-xl">Ví dụ</h3>
-                      <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                        <div className="space-y-4">
-                          <p className="text-gray-700 leading-relaxed text-lg">
+                      <h3 className="font-semibold text-gray-900 mb-3 text-lg">Ví dụ</h3>
+                      <div className="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        <div className="space-y-2">
+                          <p className="text-gray-700 leading-relaxed text-sm">
                             {currentWord?.example ? (
                               <>
                                 "{currentWord.example}"
@@ -333,7 +335,7 @@ export default function WordcraftWords() {
                             )}
                           </p>
                           {currentWord?.exampleVietnamese && (
-                            <p className="text-gray-600 italic">
+                            <p className="text-gray-600 italic text-sm">
                               ({currentWord.exampleVietnamese})
                             </p>
                           )}
@@ -344,23 +346,21 @@ export default function WordcraftWords() {
                 )}
 
                 {activeTab === "etymology" && (
-                  <div className="space-y-6">
-                    <h3 className="font-semibold text-gray-900 mb-4 text-xl">Nguồn gốc từ vựng</h3>
-                    <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
-                      <div className="space-y-4">
-                        <div className="text-center text-purple-600">
-                          <p>Thông tin nguồn gốc sẽ được cập nhật sau</p>
-                        </div>
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-gray-900 mb-3 text-lg">Nguồn gốc từ vựng</h3>
+                    <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                      <div className="text-center text-purple-600">
+                        <p className="text-sm">Thông tin nguồn gốc sẽ được cập nhật sau</p>
                       </div>
                     </div>
                   </div>
                 )}
 
                 {activeTab === "phrases" && (
-                  <div className="space-y-6">
-                    <h3 className="font-semibold text-gray-900 mb-4 text-xl">Cụm từ thường gặp</h3>
+                  <div className="space-y-4">
+                    <h3 className="font-semibold text-gray-900 mb-3 text-lg">Cụm từ thường gặp</h3>
                     <div className="text-center text-orange-600">
-                      <p>Cụm từ thường gặp sẽ được cập nhật sau</p>
+                      <p className="text-sm">Cụm từ thường gặp sẽ được cập nhật sau</p>
                     </div>
                   </div>
                 )}
@@ -376,8 +376,8 @@ export default function WordcraftWords() {
               </div>
 
               {/* Word Counter */}
-              <div className="text-center mt-8 pt-6 border-t border-gray-200">
-                <div className="text-2xl font-bold text-gray-900">
+              <div className="text-center mt-4 pt-3 border-t border-gray-200">
+                <div className="text-xl font-bold text-gray-900">
                   {currentWordIndex + 1}/{filteredWords.length}
                 </div>
               </div>
