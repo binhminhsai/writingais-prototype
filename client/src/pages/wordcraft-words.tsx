@@ -249,8 +249,8 @@ export default function WordcraftWords() {
               className="w-8 h-8 md:w-12 md:h-12 object-contain"
             />
           </button>
-          <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden mx-2 md:mx-0 pt-[0px] pb-[0px] pl-[0px] pr-[0px]">
-            <div className="p-3 md:p-4">
+          <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden mx-2 md:mx-0">
+            <div className="p-0">
               <div className="flex items-center justify-between mb-2 md:mb-3">
                 <div className="flex items-center space-x-2 md:space-x-3">
                   <h2 className="text-lg md:text-2xl font-bold text-gray-900">{currentWord?.word || "Từ vựng"}</h2>
