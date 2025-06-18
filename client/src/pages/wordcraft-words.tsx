@@ -193,45 +193,43 @@ export default function WordcraftWords() {
           <div className="relative">
             {/* Sticky Header */}
             <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-indigo-700 border-b-2 border-blue-800">
-              <div className="grid grid-cols-12 gap-2 px-4 py-1">
-                <div className="col-span-1 font-bold text-white text-xs">STT</div>
-                <div className="col-span-2 font-bold text-white text-xs">Từ vựng</div>
-                <div className="col-span-3 font-bold text-white text-xs">Phiên âm</div>
-                <div className="col-span-2 font-bold text-white text-xs">Loại từ</div>
-                <div className="col-span-4 font-bold text-white text-xs">Định nghĩa</div>
+              <div className="flex px-4 py-1">
+                <div className="w-16 font-bold text-white text-xs flex-shrink-0">STT</div>
+                <div className="w-32 font-bold text-white text-xs flex-shrink-0">Từ vựng</div>
+                <div className="w-40 font-bold text-white text-xs flex-shrink-0">Phiên âm</div>
+                <div className="w-24 font-bold text-white text-xs flex-shrink-0">Loại từ</div>
+                <div className="flex-1 font-bold text-white text-xs">Định nghĩa</div>
               </div>
             </div>
             
             {/* Scrollable Table Body */}
             <div className="max-h-[444px] overflow-y-auto">
-              <Table>
-                <TableBody>
-                  {filteredWords.map((word, index) => (
-                    <TableRow 
-                      key={word.id} 
-                      className={`
-                        border-b border-gray-200 transition-all duration-200 py-1
-                        ${index % 2 === 0 
-                          ? "bg-gray-50 hover:bg-blue-100" 
-                          : "bg-white hover:bg-blue-50"
-                        }
-                      `}
-                    >
-                      <TableCell className="font-medium text-gray-800 text-xs py-2 w-16">{index + 1}</TableCell>
-                      <TableCell className="font-semibold text-gray-900 text-xs py-2 w-32">{word.word}</TableCell>
-                      <TableCell className="text-gray-600 italic text-xs py-2 w-40">{word.pronunciation}</TableCell>
-                      <TableCell className="py-2 w-24">
-                        <Badge variant="secondary" className={`text-xs ${getPartOfSpeechColor(word.partOfSpeech)}`}>
-                          {word.partOfSpeech}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="max-w-md py-2">
-                        <p className="line-clamp-2 text-gray-700 text-xs leading-tight">{word.definition}</p>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+              <div>
+                {filteredWords.map((word, index) => (
+                  <div 
+                    key={word.id} 
+                    className={`
+                      flex px-4 py-2 border-b border-gray-200 transition-all duration-200
+                      ${index % 2 === 0 
+                        ? "bg-gray-50 hover:bg-blue-100" 
+                        : "bg-white hover:bg-blue-50"
+                      }
+                    `}
+                  >
+                    <div className="w-16 font-medium text-gray-800 text-xs flex-shrink-0 flex items-center">{index + 1}</div>
+                    <div className="w-32 font-semibold text-gray-900 text-xs flex-shrink-0 flex items-center">{word.word}</div>
+                    <div className="w-40 text-gray-600 italic text-xs flex-shrink-0 flex items-center">{word.pronunciation}</div>
+                    <div className="w-24 flex-shrink-0 flex items-center">
+                      <Badge variant="secondary" className={`text-xs ${getPartOfSpeechColor(word.partOfSpeech)}`}>
+                        {word.partOfSpeech}
+                      </Badge>
+                    </div>
+                    <div className="flex-1 flex items-center">
+                      <p className="line-clamp-2 text-gray-700 text-xs leading-tight">{word.definition}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>)
