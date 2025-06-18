@@ -252,21 +252,19 @@ export default function WordcraftWords() {
           <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm overflow-hidden mx-2 md:mx-0">
             <div className="p-0">
               <div className="flex items-center justify-between mb-2 md:mb-3">
-                <div className="flex items-center space-x-2 md:space-x-3">
-                  <div className="flex items-center space-x-2">
-                    <h2 className="text-lg md:text-2xl font-bold text-gray-900">{currentWord?.word || "Resilience"}</h2>
-                    <span className="text-sm md:text-base text-gray-600 italic">/rɪˈzɪljəns/</span>
-                    <Button variant="ghost" size="sm" className="text-gray-400 hover:text-blue-500 p-1">
-                      <Volume2 className="h-4 w-4" />
-                    </Button>
-                    <Badge variant="secondary" className={getPartOfSpeechColor(currentWord?.partOfSpeech || "N")}>
-                      {currentWord?.partOfSpeech || "N"}
-                    </Badge>
-                  </div>
-                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500">
-                    <Star className="h-4 w-4" />
+                <div className="flex items-center space-x-2">
+                  <h2 className="text-lg md:text-2xl font-bold text-gray-900">{currentWord?.word || "Resilience"}</h2>
+                  <Button variant="ghost" size="sm" className="text-gray-400 hover:text-blue-500 p-1">
+                    <Volume2 className="h-4 w-4" />
                   </Button>
+                  <span className="text-sm md:text-base text-gray-600 italic">/rɪˈzɪljəns/</span>
+                  <Badge variant="secondary" className={getPartOfSpeechColor(currentWord?.partOfSpeech || "N")}>
+                    {currentWord?.partOfSpeech || "N"}
+                  </Badge>
                 </div>
+                <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500">
+                  <Star className="h-4 w-4" />
+                </Button>
               </div>
 
               <div className="mb-2 md:mb-3">
