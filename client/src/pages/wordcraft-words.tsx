@@ -206,11 +206,9 @@ export default function WordcraftWords() {
                   key={word.id} 
                   className={`
                     border-b border-gray-200 transition-all duration-200 py-3
-                    ${index === 4 
-                      ? "bg-gradient-to-r from-yellow-100 to-orange-100 border-l-4 border-orange-400 hover:from-yellow-200 hover:to-orange-200" 
-                      : index % 2 === 0 
-                        ? "bg-gray-50 hover:bg-blue-100" 
-                        : "bg-white hover:bg-blue-50"
+                    ${index % 2 === 0 
+                      ? "bg-gray-50 hover:bg-blue-100" 
+                      : "bg-white hover:bg-blue-50"
                     }
                   `}
                 >
