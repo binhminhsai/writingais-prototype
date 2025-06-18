@@ -193,6 +193,9 @@ Changelog:
   - Added URL parameter handling to automatically show detail view when accessed from card
   - Integrated authentic Resilience content (etymology and phrases) into main word detail view
   - Maintained dual-mode functionality within single page component for better user experience
+  - Hidden search bar in detail view mode for cleaner interface
+  - Removed all borders from content cards for minimalist design
+  - Optimized footer button sizes and updated text to "Học từ vựng" and "Số lần đã học: 7 lần"
 
 ## User Preferences
 

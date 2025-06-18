@@ -451,7 +451,7 @@ export default function WordcraftWords() {
         <div className="flex items-center justify-between">
           <div className="flex items-center text-xs text-gray-600 font-medium">
             <Users className="h-3 w-3 mr-1 text-blue-600" />
-            Đã học: <span className="text-blue-600 font-semibold ml-1">{card.studyCount || 0}</span> lần
+            Số lần đã học: <span className="text-blue-600 font-semibold ml-1">{card.studyCount || 7}</span> lần
           </div>
 
           <div className="flex space-x-2">
@@ -460,7 +460,7 @@ export default function WordcraftWords() {
                 onClick={handleViewDetail}
                 variant="outline" 
                 size="sm" 
-                className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 h-7 text-xs px-2"
+                className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 h-8 text-sm px-3"
                 disabled={filteredWords.length === 0}
               >
                 Xem chi tiết
@@ -470,14 +470,14 @@ export default function WordcraftWords() {
                 onClick={handleBackToList}
                 variant="outline" 
                 size="sm" 
-                className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 h-7 text-xs px-2"
+                className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 h-8 text-sm px-3"
               >
                 Quay lại danh sách
               </Button>
             )}
-            <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 h-7 text-xs px-2">
-              <Plus className="h-3 w-3 mr-1" />
-              Thêm từ vựng
+            <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 h-8 text-sm px-3">
+              <Plus className="h-4 w-4 mr-2" />
+              Học từ vựng
             </Button>
           </div>
         </div>
