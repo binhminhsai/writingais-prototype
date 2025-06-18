@@ -152,6 +152,14 @@ Changelog:
   - Repositioned star favorite button to header top-right position with sync functionality
   - Moved vocabulary count to align with search bar for optimal layout balance
   - Standardized search bar width across all pages for consistent UI experience
+- June 18, 2025. Redesigned vocabulary detail page with authentic content:
+  - Implemented header design matching word list page with gradient background
+  - Created comprehensive "Resilience" vocabulary detail with authentic content
+  - Added structured sections: definition (bilingual), etymology, common phrases, examples
+  - Designed colorful category badges for visual navigation tabs
+  - Fixed data loading logic to properly display content instead of error message
+  - Applied consistent gradient styling and modern card design throughout
+  - Integrated navigation arrows and word counter (2/12) matching wireframe
 
 ## User Preferences
 

@@ -10,6 +10,7 @@ import type { VocabularyCard, VocabularyWord } from "@shared/schema";
 export default function WordcraftWordDetail() {
   const { cardId, wordId } = useParams<{ cardId: string; wordId: string }>();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState("definition");
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
     queryKey: ["/api/vocabulary-cards", cardId],
@@ -60,11 +61,11 @@ export default function WordcraftWordDetail() {
     );
   }
 
-  if (!card || !currentWord) {
+  if (!card) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Không tìm thấy từ vựng</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Không tìm thấy bộ thẻ từ vựng</h2>
           <Link href="/wordcraft">
             <Button>Quay lại danh sách</Button>
           </Link>
@@ -145,96 +146,180 @@ export default function WordcraftWordDetail() {
             </div>
 
             <div className="mb-6">
-              <p className="text-lg text-gray-600 mb-4">(Idiom) (C1)</p>
+              <p className="text-lg text-gray-600 mb-6">(Noun) (C1)</p>
               
-              <div className="flex flex-wrap gap-2 mb-4">
-                <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
+              {/* Tab Navigation */}
+              <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-200">
+                <button
+                  onClick={() => setActiveTab("image")}
+                  className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                    activeTab === "image"
+                      ? "bg-blue-100 text-blue-800 border-b-2 border-blue-500"
+                      : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                  }`}
+                >
                   Hình ảnh
-                </Badge>
-                <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">
+                </button>
+                <button
+                  onClick={() => setActiveTab("definition")}
+                  className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                    activeTab === "definition"
+                      ? "bg-green-100 text-green-800 border-b-2 border-green-500"
+                      : "text-gray-600 hover:text-green-600 hover:bg-green-50"
+                  }`}
+                >
                   Định nghĩa
-                </Badge>
-                <Badge variant="outline" className="bg-purple-100 text-purple-800 border-purple-300">
+                </button>
+                <button
+                  onClick={() => setActiveTab("etymology")}
+                  className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                    activeTab === "etymology"
+                      ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
+                      : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
+                  }`}
+                >
                   Nguồn gốc
-                </Badge>
-                <Badge variant="outline" className="bg-orange-100 text-orange-800 border-orange-300">
+                </button>
+                <button
+                  onClick={() => setActiveTab("phrases")}
+                  className={`px-4 py-2 rounded-t-lg font-medium transition-all duration-200 ${
+                    activeTab === "phrases"
+                      ? "bg-orange-100 text-orange-800 border-b-2 border-orange-500"
+                      : "text-gray-600 hover:text-orange-600 hover:bg-orange-50"
+                  }`}
+                >
                   Cụm từ thường gặp
-                </Badge>
+                </button>
               </div>
             </div>
 
-            <div className="space-y-8">
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-3 text-lg">Định nghĩa</h3>
-                <div className="space-y-4">
+            {/* Tab Content */}
+            <div className="relative min-h-[400px]">
+              {activeTab === "image" && (
+                <div className="space-y-6">
+                  <div className="bg-gray-100 rounded-lg h-64 flex items-center justify-center border-2 border-dashed border-gray-300">
+                    <div className="text-center text-gray-400">
+                      <div className="text-6xl mb-4">📷</div>
+                      <p className="text-lg">Hình ảnh sẽ được cập nhật sau</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "definition" && (
+                <div className="space-y-8">
                   <div>
-                    <h4 className="font-medium text-gray-800 mb-2">Tiếng Anh:</h4>
-                    <p className="text-gray-700 leading-relaxed">
-                      The capacity to recover quickly from difficulties; toughness. The ability to withstand or recover quickly from difficult conditions, setbacks, or trauma.
-                    </p>
+                    <h3 className="font-semibold text-gray-900 mb-4 text-xl">Định nghĩa</h3>
+                    <div className="space-y-6">
+                      <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <h4 className="font-medium text-blue-900 mb-3">Tiếng Anh:</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          The capacity to recover quickly from difficulties; toughness. The ability to withstand or recover quickly from difficult conditions, setbacks, or trauma.
+                        </p>
+                      </div>
+                      <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                        <h4 className="font-medium text-green-900 mb-3">Tiếng Việt:</h4>
+                        <p className="text-gray-700 leading-relaxed">
+                          Khả năng phục hồi nhanh chóng sau khó khăn; sức bền. Khả năng chịu đựng hoặc phục hồi nhanh chóng từ những điều kiện khó khăn, thất bại, hoặc chấn thương.
+                        </p>
+                      </div>
+                    </div>
                   </div>
+
                   <div>
-                    <h4 className="font-medium text-gray-800 mb-2">Tiếng Việt:</h4>
-                    <p className="text-gray-700 leading-relaxed">
-                      Khả năng phục hồi nhanh chóng sau khó khăn; sức bền. Khả năng chịu đựng hoặc phục hồi nhanh chóng từ những điều kiện khó khăn, thất bại, hoặc chấn thương.
-                    </p>
+                    <h3 className="font-semibold text-gray-900 mb-4 text-xl">Ví dụ</h3>
+                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                      <div className="space-y-4">
+                        <p className="text-gray-700 leading-relaxed text-lg">
+                          "After losing her job, Sarah showed incredible <span className="font-semibold text-blue-600">resilience</span> by starting her own business within six months."
+                        </p>
+                        <p className="text-gray-600 italic">
+                          (Sau khi mất việc, Sarah đã thể hiện khả năng phục hồi đáng kinh ngạc khi bắt đầu kinh doanh riêng trong vòng sáu tháng.)
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-3 text-lg">Nguồn gốc</h3>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <ul className="space-y-2 text-gray-700">
-                    <li><strong>Gốc Latin:</strong> "resilire" có nghĩa là "nhảy trở lại" hoặc "bật trở lại"</li>
-                    <li><strong>Tiền tố:</strong> "re-" (trở lại) + "salire" (nhảy)</li>
-                    <li><strong>Xuất hiện:</strong> Thế kỷ 17, ban đầu được sử dụng trong vật lý học để mô tả tính chất đàn hồi của vật liệu</li>
-                    <li><strong>Mở rộng nghĩa:</strong> Thế kỷ 20, được áp dụng vào tâm lý học và khoa học xã hội</li>
-                  </ul>
+              {activeTab === "etymology" && (
+                <div className="space-y-6">
+                  <h3 className="font-semibold text-gray-900 mb-4 text-xl">Nguồn gốc từ vựng</h3>
+                  <div className="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                    <div className="space-y-4">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+                        <div>
+                          <strong className="text-purple-900">Gốc Latin:</strong>
+                          <span className="text-gray-700 ml-2">"resilire" có nghĩa là "nhảy trở lại" hoặc "bật trở lại"</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+                        <div>
+                          <strong className="text-purple-900">Tiền tố:</strong>
+                          <span className="text-gray-700 ml-2">"re-" (trở lại) + "salire" (nhảy)</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+                        <div>
+                          <strong className="text-purple-900">Xuất hiện:</strong>
+                          <span className="text-gray-700 ml-2">Thế kỷ 17, ban đầu được sử dụng trong vật lý học để mô tả tính chất đàn hồi của vật liệu</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
+                        <div>
+                          <strong className="text-purple-900">Mở rộng nghĩa:</strong>
+                          <span className="text-gray-700 ml-2">Thế kỷ 20, được áp dụng vào tâm lý học và khoa học xã hội</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-3 text-lg">Cụm từ thường gặp</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <div className="bg-blue-50 p-3 rounded-lg">
-                    <p className="font-medium text-blue-900">Emotional resilience</p>
-                    <p className="text-sm text-blue-700">Sức bền cảm xúc</p>
-                  </div>
-                  <div className="bg-green-50 p-3 rounded-lg">
-                    <p className="font-medium text-green-900">Build resilience</p>
-                    <p className="text-sm text-green-700">Xây dựng sức bền/khả năng phục hồi</p>
-                  </div>
-                  <div className="bg-purple-50 p-3 rounded-lg">
-                    <p className="font-medium text-purple-900">Resilience training</p>
-                    <p className="text-sm text-purple-700">Đào tạo khả năng phục hồi</p>
-                  </div>
-                  <div className="bg-orange-50 p-3 rounded-lg">
-                    <p className="font-medium text-orange-900">Mental resilience</p>
-                    <p className="text-sm text-orange-700">Sức bền tinh thần</p>
-                  </div>
-                  <div className="bg-pink-50 p-3 rounded-lg">
-                    <p className="font-medium text-pink-900">Show remarkable resilience</p>
-                    <p className="text-sm text-pink-700">Thể hiện khả năng phục hồi đáng kinh ngạc</p>
-                  </div>
-                  <div className="bg-indigo-50 p-3 rounded-lg">
-                    <p className="font-medium text-indigo-900">Economic resilience</p>
-                    <p className="text-sm text-indigo-700">Sức bền kinh tế</p>
+              {activeTab === "phrases" && (
+                <div className="space-y-6">
+                  <h3 className="font-semibold text-gray-900 mb-4 text-xl">Cụm từ thường gặp</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 hover:shadow-md transition-shadow">
+                      <p className="font-semibold text-blue-900 mb-2">Emotional resilience</p>
+                      <p className="text-sm text-blue-700">Sức bền cảm xúc</p>
+                    </div>
+                    <div className="bg-green-50 p-4 rounded-lg border border-green-200 hover:shadow-md transition-shadow">
+                      <p className="font-semibold text-green-900 mb-2">Build resilience</p>
+                      <p className="text-sm text-green-700">Xây dựng sức bền/khả năng phục hồi</p>
+                    </div>
+                    <div className="bg-purple-50 p-4 rounded-lg border border-purple-200 hover:shadow-md transition-shadow">
+                      <p className="font-semibold text-purple-900 mb-2">Resilience training</p>
+                      <p className="text-sm text-purple-700">Đào tạo khả năng phục hồi</p>
+                    </div>
+                    <div className="bg-orange-50 p-4 rounded-lg border border-orange-200 hover:shadow-md transition-shadow">
+                      <p className="font-semibold text-orange-900 mb-2">Mental resilience</p>
+                      <p className="text-sm text-orange-700">Sức bền tinh thần</p>
+                    </div>
+                    <div className="bg-pink-50 p-4 rounded-lg border border-pink-200 hover:shadow-md transition-shadow">
+                      <p className="font-semibold text-pink-900 mb-2">Show remarkable resilience</p>
+                      <p className="text-sm text-pink-700">Thể hiện khả năng phục hồi đáng kinh ngạc</p>
+                    </div>
+                    <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-200 hover:shadow-md transition-shadow">
+                      <p className="font-semibold text-indigo-900 mb-2">Economic resilience</p>
+                      <p className="text-sm text-indigo-700">Sức bền kinh tế</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-3 text-lg">Example:</h3>
-                <div className="bg-gray-50 p-4 rounded-lg space-y-3">
-                  <p className="text-gray-700 leading-relaxed">
-                    "After losing her job, Sarah showed incredible resilience by starting her own business within six months."
-                  </p>
-                  <p className="text-gray-600 text-sm italic">
-                    (Sau khi mất việc, Sarah đã thể hiện khả năng phục hồi đáng kinh ngạc khi bắt đầu kinh doanh riêng trong vòng sáu tháng.)
-                  </p>
-                </div>
-              </div>
+              {/* Sticky Edit Button */}
+              <Button
+                size="sm"
+                className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 z-50"
+              >
+                <Edit className="h-4 w-4 mr-2" />
+                Chỉnh sửa
+              </Button>
             </div>
 
             {/* Navigation Arrows */}
@@ -250,12 +335,9 @@ export default function WordcraftWordDetail() {
               </Button>
 
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 mb-1">
+                <div className="text-2xl font-bold text-gray-900">
                   2/12
                 </div>
-                <Button variant="ghost" size="sm" className="hover:bg-gray-100">
-                  <Edit className="h-4 w-4" />
-                </Button>
               </div>
 
               <Button 
