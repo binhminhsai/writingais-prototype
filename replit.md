@@ -211,6 +211,9 @@ Changelog:
   - Structured expanded content with separate sections for English definition, Vietnamese definition, and examples
   - Enhanced UX with hover effects, smooth transitions, and multiple expandable cards simultaneously
   - Maintained responsive design and consistent styling across mobile and desktop breakpoints
+  - Enhanced card info section with vocabulary count (bottom-left) and study frequency statistics (bottom-right)
+  - Fixed validation warnings by replacing nested button elements with interactive spans
+  - Added statistics row with border separator and icon indicators for better visual hierarchy
 
 ## User Preferences
 

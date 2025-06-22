@@ -195,7 +195,7 @@ export default function WordcraftWords() {
         </div>
 
         {/* Card Info with beautiful design */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 rounded-lg p-6 shadow-sm">
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 rounded-lg p-6 shadow-sm relative">
           <div className="flex items-start gap-4">
             <div className="flex-1">
               <h1 className="text-2xl font-bold text-gray-900 mb-2">
@@ -217,6 +217,21 @@ export default function WordcraftWords() {
                   <BookOpen className="h-4 w-4 mr-2" />
                   Học từ vựng
                 </Button>
+              </div>
+              
+              {/* Statistics Row */}
+              <div className="flex items-center justify-between mt-4 pt-3 border-t border-blue-200">
+                <div className="flex items-center text-sm text-gray-600">
+                  <BookOpen className="h-4 w-4 mr-1 text-blue-600" />
+                  <span className="font-medium">{card.wordCount || filteredWords.length}</span>
+                  <span className="ml-1">từ vựng</span>
+                </div>
+                
+                <div className="flex items-center text-sm text-gray-600">
+                  <Users className="h-4 w-4 mr-1 text-green-600" />
+                  <span className="font-medium">{card.studyCount || 7}</span>
+                  <span className="ml-1">lần đã học</span>
+                </div>
               </div>
             </div>
           </div>
@@ -257,18 +272,18 @@ export default function WordcraftWords() {
                       <span className="text-sm font-medium text-gray-500 min-w-[2rem]">#{index + 1}</span>
                       <div className="flex items-center space-x-2">
                         <h3 className="text-base font-semibold text-gray-900">{word.word}</h3>
-                        <Button variant="ghost" size="sm" className="text-gray-400 hover:text-blue-500 p-1">
+                        <span className="text-gray-400 hover:text-blue-500 p-1 cursor-pointer">
                           <Volume2 className="h-3 w-3" />
-                        </Button>
+                        </span>
                         <span className="text-sm text-gray-600 italic">{word.pronunciation}</span>
                         <Badge variant="secondary" className={`text-xs ${getPartOfSpeechColor(word.partOfSpeech)}`}>
                           {word.partOfSpeech}
                         </Badge>
                       </div>
                     </div>
-                    <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500 p-1">
+                    <span className="text-gray-400 hover:text-yellow-500 p-1 cursor-pointer">
                       <Star className="h-4 w-4" />
-                    </Button>
+                    </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="px-4 pb-4 pt-0">
