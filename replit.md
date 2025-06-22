@@ -219,6 +219,7 @@ Changelog:
   - Improved button positioning and sizing for better user experience
   - Added action buttons ("Thêm từ vựng", "Xem danh sách từ") to detail view above content area
   - Maintained consistent button styling between list and detail views without search bar in detail mode
+  - Removed footer card section from both list and detail views for cleaner interface
 
 ## User Preferences
 

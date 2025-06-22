@@ -858,23 +858,6 @@ export default function WordcraftWords() {
           </div>
         </div>)
       )}
-      {/* Footer Actions */}
-      <div className="mt-2 flex items-center justify-between bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-md p-1.5 shadow-sm">
-        <div className="flex items-center text-xs text-gray-600 font-medium">
-          <Users className="h-3 w-3 mr-1 text-blue-600" />
-          Số lần đã học: <span className="text-blue-600 font-semibold ml-1">{card.studyCount || 7}</span> lần
-        </div>
-        {viewMode === "detail" && (
-          <Button 
-            onClick={handleBackToList}
-            variant="outline" 
-            size="sm" 
-            className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 h-7 text-xs px-2"
-          >
-            Quay lại danh sách
-          </Button>
-        )}
-      </div>
     </div>
   );
 }
