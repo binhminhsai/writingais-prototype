@@ -204,6 +204,13 @@ Changelog:
   - Integrated dynamic pronunciation display in detail view using real data
   - Created comprehensive vocabulary tags for better categorization
   - Maintained consistent data structure across all vocabulary entries
+- June 22, 2025. Redesigned vocabulary list with card-based accordion interface:
+  - Replaced table layout with individual accordion cards for each vocabulary word
+  - Implemented collapsible cards showing word info in header and detailed content when expanded
+  - Added proper pronunciation buttons, star favorites, and part-of-speech badges in card headers
+  - Structured expanded content with separate sections for English definition, Vietnamese definition, and examples
+  - Enhanced UX with hover effects, smooth transitions, and multiple expandable cards simultaneously
+  - Maintained responsive design and consistent styling across mobile and desktop breakpoints
 
 ## User Preferences
 

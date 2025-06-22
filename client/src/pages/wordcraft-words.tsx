@@ -11,7 +11,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2, X } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2, X, ChevronDown } from "lucide-react";
 import leftArrowIcon from "@assets/left-arrow_1750231743172.png";
 import rightArrowIcon from "@assets/right-arrow_1750231743193.png";
 import type { VocabularyCard, VocabularyWord } from "@shared/schema";
@@ -241,50 +242,76 @@ export default function WordcraftWords() {
       )}
       {/* Words Content - List or Detail View */}
       {viewMode === "list" ? (
-        /* Words Table */
-        (<div className="bg-white rounded-lg border-2 border-gray-300 shadow-lg overflow-hidden">
-          <div className="relative">
-            {/* Sticky Header */}
-            <div className="sticky top-0 z-10 bg-gradient-to-r from-blue-600 to-indigo-700 border-b-2 border-blue-800">
-              <div className="flex px-4 py-1">
-                <div className="w-16 font-bold text-white text-xs flex-shrink-0">STT</div>
-                <div className="w-32 font-bold text-white text-xs flex-shrink-0">Từ vựng</div>
-                <div className="w-40 font-bold text-white text-xs flex-shrink-0">Phiên âm</div>
-                <div className="w-24 font-bold text-white text-xs flex-shrink-0">Loại từ</div>
-                <div className="flex-1 font-bold text-white text-xs">Định nghĩa</div>
-              </div>
-            </div>
-            
-            {/* Scrollable Table Body */}
-            <div className="max-h-[444px] overflow-y-auto">
-              <div>
-                {filteredWords.map((word, index) => (
-                  <div 
-                    key={word.id} 
-                    className={`
-                      flex px-4 py-2 border-b border-gray-200 transition-all duration-200
-                      ${index % 2 === 0 
-                        ? "bg-gray-50 hover:bg-blue-100" 
-                        : "bg-white hover:bg-blue-50"
-                      }
-                    `}
-                  >
-                    <div className="w-16 font-medium text-gray-800 text-xs flex-shrink-0 flex items-center">{index + 1}</div>
-                    <div className="w-32 font-semibold text-gray-900 text-xs flex-shrink-0 flex items-center">{word.word}</div>
-                    <div className="w-40 text-gray-600 italic text-xs flex-shrink-0 flex items-center">{word.pronunciation}</div>
-                    <div className="w-24 flex-shrink-0 flex items-center">
-                      <Badge variant="secondary" className={`text-xs ${getPartOfSpeechColor(word.partOfSpeech)}`}>
-                        {word.partOfSpeech}
-                      </Badge>
+        /* Words Accordion Cards */
+        (<div className="space-y-2">
+          <Accordion type="multiple" className="w-full">
+            {filteredWords.map((word, index) => (
+              <AccordionItem 
+                key={word.id} 
+                value={`word-${word.id}`}
+                className="border border-gray-200 rounded-lg mb-2 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200"
+              >
+                <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-gray-50 [&>svg]:h-4 [&>svg]:w-4">
+                  <div className="flex items-center justify-between w-full pr-2">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-sm font-medium text-gray-500 min-w-[2rem]">#{index + 1}</span>
+                      <div className="flex items-center space-x-2">
+                        <h3 className="text-base font-semibold text-gray-900">{word.word}</h3>
+                        <Button variant="ghost" size="sm" className="text-gray-400 hover:text-blue-500 p-1">
+                          <Volume2 className="h-3 w-3" />
+                        </Button>
+                        <span className="text-sm text-gray-600 italic">{word.pronunciation}</span>
+                        <Badge variant="secondary" className={`text-xs ${getPartOfSpeechColor(word.partOfSpeech)}`}>
+                          {word.partOfSpeech}
+                        </Badge>
+                      </div>
                     </div>
-                    <div className="flex-1 flex items-center">
-                      <p className="line-clamp-2 text-gray-700 text-xs leading-tight">{word.definition}</p>
-                    </div>
+                    <Button variant="ghost" size="sm" className="text-gray-400 hover:text-yellow-500 p-1">
+                      <Star className="h-4 w-4" />
+                    </Button>
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-4 pb-4 pt-0">
+                  <div className="space-y-4">
+                    {/* English Definition */}
+                    <div>
+                      <h4 className="font-medium text-blue-900 mb-2 text-sm">Định nghĩa 1: Tiếng Anh</h4>
+                      <p className="text-gray-700 text-sm leading-relaxed">
+                        {word.definition || "Định nghĩa sẽ được cập nhật sau"}
+                      </p>
+                    </div>
+                    
+                    {/* Vietnamese Definition */}
+                    {word.vietnamese && (
+                      <div>
+                        <h4 className="font-medium text-green-900 mb-2 text-sm">Định nghĩa 2: Tiếng Việt</h4>
+                        <p className="text-gray-700 text-sm leading-relaxed">
+                          {word.vietnamese}
+                        </p>
+                      </div>
+                    )}
+                    
+                    {/* Example */}
+                    {word.example && (
+                      <div>
+                        <h4 className="font-medium text-purple-900 mb-2 text-sm">Ví dụ</h4>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <p className="text-gray-700 text-sm leading-relaxed">
+                            "{word.example}"
+                          </p>
+                          {word.exampleVietnamese && (
+                            <p className="text-gray-600 italic text-sm mt-1">
+                              ({word.exampleVietnamese})
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>)
       ) : (
         /* Word Detail View */
