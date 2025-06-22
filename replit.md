@@ -214,6 +214,9 @@ Changelog:
   - Enhanced card info section with vocabulary count (bottom-left) and study frequency statistics (bottom-right)
   - Fixed validation warnings by replacing nested button elements with interactive spans
   - Added statistics row with border separator and icon indicators for better visual hierarchy
+  - Redesigned search bar layout with integrated search button and moved action buttons to the right
+  - Streamlined footer to show only study statistics and back button for detail view
+  - Improved button positioning and sizing for better user experience
 
 ## User Preferences
 
