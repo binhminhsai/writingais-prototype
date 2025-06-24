@@ -220,6 +220,12 @@ Changelog:
   - Added action buttons ("Thêm từ vựng", "Xem danh sách từ") to detail view above content area
   - Maintained consistent button styling between list and detail views without search bar in detail mode
   - Removed footer card section from both list and detail views for cleaner interface
+- June 24, 2025. Added "Thêm từ vựng" button to main wordcraft page:
+  - Positioned "Thêm từ vựng" button next to "Thêm chủ đề" button in top action bar
+  - Created comprehensive vocabulary addition dialog with card selection dropdown
+  - Implemented bilingual input fields for English/Vietnamese definitions
+  - Added pronunciation, part of speech, and example sentence fields
+  - Integrated proper API calls and validation with loading states and toast notifications
 
 ## User Preferences
 

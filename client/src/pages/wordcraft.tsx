@@ -305,38 +305,165 @@ export default function Wordcraft() {
             </DropdownMenuContent>
           </DropdownMenu>
           
-          <Dialog open={isAddTopicOpen} onOpenChange={setIsAddTopicOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="sm" className="ml-4">
-                <Plus className="h-4 w-4 mr-2" />
-                Thêm chủ đề
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle>Thêm chủ đề mới</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4 pt-4">
-                <div>
-                  <label htmlFor="topic-name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Tên chủ đề:
-                  </label>
-                  <Input
-                    id="topic-name"
-                    value={newTopicName}
-                    onChange={(e) => setNewTopicName(e.target.value)}
-                    placeholder="Nhập tên chủ đề mới"
-                    onKeyPress={(e) => e.key === 'Enter' && handleAddTopic()}
-                  />
+          <div className="flex space-x-2">
+            <Dialog open={isAddTopicOpen} onOpenChange={setIsAddTopicOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm" className="ml-4">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Thêm chủ đề
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Thêm chủ đề mới</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 pt-4">
+                  <div>
+                    <label htmlFor="topic-name" className="block text-sm font-medium text-gray-700 mb-2">
+                      Tên chủ đề:
+                    </label>
+                    <Input
+                      id="topic-name"
+                      value={newTopicName}
+                      onChange={(e) => setNewTopicName(e.target.value)}
+                      placeholder="Nhập tên chủ đề mới"
+                      onKeyPress={(e) => e.key === 'Enter' && handleAddTopic()}
+                    />
+                  </div>
+                  <div className="flex justify-end">
+                    <Button onClick={handleAddTopic} disabled={!newTopicName.trim()}>
+                      Thêm chủ đề mới
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex justify-end">
-                  <Button onClick={handleAddTopic} disabled={!newTopicName.trim()}>
-                    Thêm chủ đề mới
-                  </Button>
+              </DialogContent>
+            </Dialog>
+
+            <Dialog open={isAddVocabOpen} onOpenChange={setIsAddVocabOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" size="sm">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Thêm từ vựng
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-lg">
+                <DialogHeader>
+                  <DialogTitle>Thêm từ vựng mới</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 pt-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Chọn bộ thẻ
+                    </label>
+                    <Select value={selectedCardId?.toString() || ""} onValueChange={(value) => setSelectedCardId(Number(value))}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Chọn bộ thẻ từ vựng" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {cards.map((card) => (
+                          <SelectItem key={card.id} value={card.id.toString()}>
+                            {card.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="vocab-word" className="block text-sm font-medium text-gray-700 mb-2">
+                        Từ vựng
+                      </label>
+                      <Input
+                        id="vocab-word"
+                        value={newVocabData.word}
+                        onChange={(e) => setNewVocabData(prev => ({ ...prev, word: e.target.value }))}
+                        placeholder="Nhập từ vựng"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="vocab-pronunciation" className="block text-sm font-medium text-gray-700 mb-2">
+                        Phát âm
+                      </label>
+                      <Input
+                        id="vocab-pronunciation"
+                        value={newVocabData.pronunciation}
+                        onChange={(e) => setNewVocabData(prev => ({ ...prev, pronunciation: e.target.value }))}
+                        placeholder="/pronunciation/"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Loại từ
+                    </label>
+                    <Select value={newVocabData.partOfSpeech} onValueChange={(value) => setNewVocabData(prev => ({ ...prev, partOfSpeech: value }))}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Chọn loại từ" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="N">Danh từ (N)</SelectItem>
+                        <SelectItem value="V">Động từ (V)</SelectItem>
+                        <SelectItem value="Adj">Tính từ (Adj)</SelectItem>
+                        <SelectItem value="Adv">Trạng từ (Adv)</SelectItem>
+                        <SelectItem value="Phrase">Cụm từ (Phrase)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="vocab-english" className="block text-sm font-medium text-gray-700 mb-2">
+                      Định nghĩa tiếng Anh
+                    </label>
+                    <Textarea
+                      id="vocab-english"
+                      value={newVocabData.englishDefinition}
+                      onChange={(e) => setNewVocabData(prev => ({ ...prev, englishDefinition: e.target.value }))}
+                      placeholder="English definition"
+                      rows={2}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="vocab-vietnamese" className="block text-sm font-medium text-gray-700 mb-2">
+                      Định nghĩa tiếng Việt
+                    </label>
+                    <Textarea
+                      id="vocab-vietnamese"
+                      value={newVocabData.vietnameseDefinition}
+                      onChange={(e) => setNewVocabData(prev => ({ ...prev, vietnameseDefinition: e.target.value }))}
+                      placeholder="Định nghĩa tiếng Việt"
+                      rows={2}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="vocab-example" className="block text-sm font-medium text-gray-700 mb-2">
+                      Ví dụ
+                    </label>
+                    <Textarea
+                      id="vocab-example"
+                      value={newVocabData.example}
+                      onChange={(e) => setNewVocabData(prev => ({ ...prev, example: e.target.value }))}
+                      placeholder="Câu ví dụ"
+                      rows={2}
+                    />
+                  </div>
+
+                  <div className="flex justify-end pt-2">
+                    <Button 
+                      onClick={handleAddVocab} 
+                      disabled={!selectedCardId || !newVocabData.word.trim() || createVocabMutation.isPending}
+                      className="bg-teal-500 hover:bg-teal-600 text-white"
+                    >
+                      {createVocabMutation.isPending ? "Đang thêm..." : "Thêm từ vựng"}
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </div>
 
