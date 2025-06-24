@@ -235,6 +235,12 @@ Changelog:
     * Dropdown card selection with "Bộ thẻ mới" option when on main page
     * Loading animation with progress percentage during vocabulary creation
     * Batch vocabulary creation with proper error handling and success feedback
+  - Redesigned popup interface to match wireframe specifications exactly:
+    * Gray background cards with blue numbered circles
+    * Expandable content sections with proper spacing
+    * Bottom section with card selection and word count display
+    * Blue action button matching wireframe design
+    * Fixed API validation errors and data structure compatibility
 
 ## User Preferences
 
