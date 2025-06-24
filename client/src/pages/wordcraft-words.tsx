@@ -12,7 +12,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2, X, ChevronDown } from "lucide-react";
+import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2, X, ChevronDown, ChevronUp, Minus } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import leftArrowIcon from "@assets/left-arrow_1750231743172.png";
 import rightArrowIcon from "@assets/right-arrow_1750231743193.png";
 import type { VocabularyCard, VocabularyWord } from "@shared/schema";
@@ -30,27 +31,69 @@ export default function WordcraftWords() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("definition");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [newWord, setNewWord] = useState({
-    word: "",
-    pronunciation: "",
-    partOfSpeech: "",
-    definition: "",
-    vietnamese: "",
-    example: "",
-    exampleVietnamese: ""
-  });
-  const queryClient = useQueryClient();
-
-  const resetForm = () => {
-    setNewWord({
+  const [isCreatingVocab, setIsCreatingVocab] = useState(false);
+  const [creationProgress, setCreationProgress] = useState(0);
+  const [vocabularyEntries, setVocabularyEntries] = useState([
+    {
+      id: 1,
       word: "",
       pronunciation: "",
       partOfSpeech: "",
-      definition: "",
-      vietnamese: "",
+      englishDefinition: "",
+      vietnameseDefinition: "",
       example: "",
-      exampleVietnamese: ""
-    });
+      content: "",
+      isExpanded: false
+    }
+  ]);
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
+
+  const addVocabularyEntry = () => {
+    const newId = Math.max(...vocabularyEntries.map(v => v.id)) + 1;
+    setVocabularyEntries([...vocabularyEntries, {
+      id: newId,
+      word: "",
+      pronunciation: "",
+      partOfSpeech: "",
+      englishDefinition: "",
+      vietnameseDefinition: "",
+      example: "",
+      content: "",
+      isExpanded: false
+    }]);
+  };
+
+  const removeVocabularyEntry = (id: number) => {
+    if (vocabularyEntries.length > 1) {
+      setVocabularyEntries(vocabularyEntries.filter(v => v.id !== id));
+    }
+  };
+
+  const updateVocabularyEntry = (id: number, field: string, value: string) => {
+    setVocabularyEntries(vocabularyEntries.map(v => 
+      v.id === id ? { ...v, [field]: value } : v
+    ));
+  };
+
+  const toggleEntryExpansion = (id: number) => {
+    setVocabularyEntries(vocabularyEntries.map(v => 
+      v.id === id ? { ...v, isExpanded: !v.isExpanded } : v
+    ));
+  };
+
+  const resetForm = () => {
+    setVocabularyEntries([{
+      id: 1,
+      word: "",
+      pronunciation: "",
+      partOfSpeech: "",
+      englishDefinition: "",
+      vietnameseDefinition: "",
+      example: "",
+      content: "",
+      isExpanded: false
+    }]);
   };
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
@@ -78,10 +121,71 @@ export default function WordcraftWords() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`/api/vocabulary-cards/${cardId}/words`] });
       queryClient.invalidateQueries({ queryKey: [`/api/vocabulary-cards/${cardId}`] });
-      setIsAddDialogOpen(false);
-      resetForm();
     }
   });
+
+  const handleAddVocabularies = async () => {
+    const validEntries = vocabularyEntries.filter(entry => entry.word.trim());
+    
+    if (validEntries.length === 0) {
+      toast({
+        title: "Lỗi!",
+        description: "Vui lòng nhập ít nhất một từ vựng.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsCreatingVocab(true);
+    setCreationProgress(0);
+
+    const progressInterval = setInterval(() => {
+      setCreationProgress(prev => {
+        if (prev >= 95) {
+          clearInterval(progressInterval);
+          return 95;
+        }
+        return prev + Math.random() * 15;
+      });
+    }, 200);
+
+    try {
+      for (let i = 0; i < validEntries.length; i++) {
+        const entry = validEntries[i];
+        const vocabToCreate = {
+          word: entry.word,
+          pronunciation: entry.pronunciation || "",
+          partOfSpeech: entry.partOfSpeech || "N",
+          englishDefinition: entry.content || "",
+          vietnameseDefinition: entry.vietnameseDefinition || "",
+          example: entry.example || "",
+          tags: []
+        };
+
+        await addWordMutation.mutateAsync(vocabToCreate);
+      }
+
+      clearInterval(progressInterval);
+      setCreationProgress(100);
+      
+      setTimeout(() => {
+        toast({
+          title: "Thành công!",
+          description: `Đã thêm ${validEntries.length} từ vựng thành công.`,
+        });
+        
+        resetForm();
+        setIsAddDialogOpen(false);
+        setIsCreatingVocab(false);
+        setCreationProgress(0);
+      }, 500);
+      
+    } catch (error) {
+      clearInterval(progressInterval);
+      setIsCreatingVocab(false);
+      setCreationProgress(0);
+    }
+  };
 
   const handleFavoriteToggle = () => {
     const newFavoriteState = !card?.isFavorited;
