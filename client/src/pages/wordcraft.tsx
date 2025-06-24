@@ -9,22 +9,34 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuCheckboxItem, DropdownMe
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import type { VocabularyCard, InsertVocabularyCard } from "@shared/schema";
+import type { VocabularyCard, InsertVocabularyCard, InsertVocabularyWord } from "@shared/schema";
 
 export default function Wordcraft() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [isAddTopicOpen, setIsAddTopicOpen] = useState(false);
+  const [isAddVocabOpen, setIsAddVocabOpen] = useState(false);
   const queryClient = useQueryClient();
   const [newTopicName, setNewTopicName] = useState("");
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
   const [newCardData, setNewCardData] = useState({
     title: "",
     description: "",
     categories: [] as string[]
+  });
+  const [newVocabData, setNewVocabData] = useState({
+    word: "",
+    pronunciation: "",
+    partOfSpeech: "",
+    englishDefinition: "",
+    vietnameseDefinition: "",
+    example: "",
+    tags: [] as string[]
   });
 
   const { toast } = useToast();
@@ -62,6 +74,38 @@ export default function Wordcraft() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/vocabulary-cards"] });
+    }
+  });
+
+  const createVocabMutation = useMutation({
+    mutationFn: async (vocabData: InsertVocabularyWord) => {
+      const response = await apiRequest("POST", "/api/vocabulary-words", vocabData);
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/vocabulary-cards"] });
+      toast({
+        title: "Thành công!",
+        description: "Từ vựng đã được thêm thành công.",
+      });
+      setNewVocabData({
+        word: "",
+        pronunciation: "",
+        partOfSpeech: "",
+        englishDefinition: "",
+        vietnameseDefinition: "",
+        example: "",
+        tags: []
+      });
+      setIsAddVocabOpen(false);
+      setSelectedCardId(null);
+    },
+    onError: () => {
+      toast({
+        title: "Lỗi!",
+        description: "Có lỗi xảy ra khi thêm từ vựng.",
+        variant: "destructive",
+      });
     }
   });
 
@@ -140,6 +184,30 @@ export default function Wordcraft() {
       };
       createCardMutation.mutate(cardToCreate);
     }
+  };
+
+  const handleAddVocab = () => {
+    if (!selectedCardId || !newVocabData.word.trim()) {
+      toast({
+        title: "Lỗi!",
+        description: "Vui lòng chọn bộ thẻ và nhập từ vựng.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const vocabToCreate: InsertVocabularyWord = {
+      cardId: selectedCardId,
+      word: newVocabData.word,
+      pronunciation: newVocabData.pronunciation,
+      partOfSpeech: newVocabData.partOfSpeech,
+      englishDefinition: newVocabData.englishDefinition,
+      vietnameseDefinition: newVocabData.vietnameseDefinition,
+      example: newVocabData.example,
+      tags: newVocabData.tags
+    };
+
+    createVocabMutation.mutate(vocabToCreate);
   };
 
   const getDifficultyColor = (difficulty: string) => {
