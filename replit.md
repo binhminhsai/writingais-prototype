@@ -226,6 +226,7 @@ Changelog:
   - Implemented bilingual input fields for English/Vietnamese definitions
   - Added pronunciation, part of speech, and example sentence fields
   - Integrated proper API calls and validation with loading states and toast notifications
+  - Updated button styling to use consistent green gradient matching vocabulary section theme
 
 ## User Preferences
 

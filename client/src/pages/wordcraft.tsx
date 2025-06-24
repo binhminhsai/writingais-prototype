@@ -455,7 +455,7 @@ export default function Wordcraft() {
                     <Button 
                       onClick={handleAddVocab} 
                       disabled={!selectedCardId || !newVocabData.word.trim() || createVocabMutation.isPending}
-                      className="bg-teal-500 hover:bg-teal-600 text-white"
+                      className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
                     >
                       {createVocabMutation.isPending ? "Đang thêm..." : "Thêm từ vựng"}
                     </Button>
