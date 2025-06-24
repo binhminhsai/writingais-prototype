@@ -192,13 +192,6 @@ export default function WordcraftWords() {
     favoriteMutation.mutate(newFavoriteState);
   };
 
-  const handleAddWord = () => {
-    if (!newWord.word.trim() || !newWord.definition.trim()) {
-      return;
-    }
-    addWordMutation.mutate(newWord);
-  };
-
   const handleDialogClose = () => {
     setIsAddDialogOpen(false);
     resetForm();
