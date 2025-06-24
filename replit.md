@@ -227,14 +227,6 @@ Changelog:
   - Added pronunciation, part of speech, and example sentence fields
   - Integrated proper API calls and validation with loading states and toast notifications
   - Updated button styling to use consistent green gradient matching vocabulary section theme
-  - Implemented enhanced vocabulary addition functionality with wireframe-based design:
-    * Modal only closes with X button (prevents accidental closure from outside clicks)
-    * Multi-vocabulary entry system with accordion-style expandable cards
-    * Add/remove vocabulary entries with "Thêm từ" and minus buttons
-    * Fixed card selection when inside specific vocabulary sets
-    * Dropdown card selection with "Bộ thẻ mới" option when on main page
-    * Loading animation with progress percentage during vocabulary creation
-    * Batch vocabulary creation with proper error handling and success feedback
 
 ## User Preferences
 
