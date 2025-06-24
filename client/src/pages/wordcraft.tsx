@@ -249,10 +249,9 @@ export default function Wordcraft() {
           word: entry.word,
           pronunciation: entry.pronunciation || "",
           partOfSpeech: entry.partOfSpeech || "N",
-          definition: entry.content || entry.word,
-          vietnamese: entry.vietnameseDefinition || entry.word,
-          example: entry.example || `Example: ${entry.word}`,
-          exampleVietnamese: `Ví dụ: ${entry.word}`,
+          englishDefinition: entry.content || "",
+          vietnameseDefinition: entry.vietnameseDefinition || "",
+          example: entry.example || "",
           tags: []
         };
 
@@ -431,16 +430,16 @@ export default function Wordcraft() {
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto" onPointerDownOutside={(e) => e.preventDefault()}>
-                <DialogHeader className="flex flex-row items-center justify-between pb-4 border-b">
-                  <DialogTitle className="text-lg font-semibold">Thêm từ vựng</DialogTitle>
+                <DialogHeader className="flex flex-row items-center justify-between">
+                  <DialogTitle>Thêm từ vựng</DialogTitle>
                   <Button 
                     variant="ghost" 
                     size="sm" 
-                    className="h-8 w-8 p-0 rounded-full hover:bg-gray-100" 
+                    className="h-6 w-6 p-0" 
                     onClick={() => !isCreatingVocab && setIsAddVocabOpen(false)}
                     disabled={isCreatingVocab}
                   >
-                    <X className="h-5 w-5" />
+                    <X className="h-4 w-4" />
                   </Button>
                 </DialogHeader>
 
@@ -453,59 +452,94 @@ export default function Wordcraft() {
                   </div>
                 ) : (
                   <div className="space-y-4 pt-4">
+                    {/* Card Selection */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Bộ thẻ
+                      </label>
+                      {currentCardContext ? (
+                        <div className="p-3 bg-gray-50 border border-gray-200 rounded-md">
+                          <span className="text-sm font-medium text-gray-900">{currentCardContext.title}</span>
+                          <span className="text-xs text-gray-500 ml-2">(cố định)</span>
+                        </div>
+                      ) : (
+                        <Select value={selectedCardId?.toString() || ""} onValueChange={(value) => setSelectedCardId(Number(value))}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Chưa chọn bộ thẻ" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="new">Bộ thẻ mới</SelectItem>
+                            {cards.map((card) => (
+                              <SelectItem key={card.id} value={card.id.toString()}>
+                                {card.title}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+                    </div>
+
                     {/* Vocabulary Entries */}
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       {vocabularyEntries.map((entry, index) => (
-                        <div key={entry.id} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center space-x-3">
-                              <div className="flex items-center justify-center w-6 h-6 bg-blue-500 text-white rounded-full text-sm font-medium">
+                        <div key={entry.id} className="border border-gray-200 rounded-lg p-3">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center space-x-2">
+                              <span className="flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full text-sm font-medium">
                                 {index + 1}
-                              </div>
+                              </span>
                               <span className="text-sm font-medium text-gray-700">Từ vựng</span>
-                              <div className="flex items-center space-x-1">
-                                <Button 
-                                  variant="ghost" 
-                                  size="sm" 
-                                  className="h-6 w-6 p-0"
-                                  onClick={() => toggleEntryExpansion(entry.id)}
-                                >
-                                  {entry.isExpanded ? (
-                                    <ChevronUp className="h-4 w-4" />
-                                  ) : (
-                                    <ChevronDown className="h-4 w-4" />
-                                  )}
-                                </Button>
-                              </div>
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                className="h-5 w-5 p-0"
+                                onClick={() => toggleEntryExpansion(entry.id)}
+                              >
+                                {entry.isExpanded ? (
+                                  <ChevronUp className="h-3 w-3" />
+                                ) : (
+                                  <ChevronDown className="h-3 w-3" />
+                                )}
+                              </Button>
                             </div>
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
-                              onClick={() => removeVocabularyEntry(entry.id)}
-                              disabled={vocabularyEntries.length === 1}
-                            >
-                              <Minus className="h-4 w-4" />
-                            </Button>
+                            <div className="flex items-center space-x-1">
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                className="h-6 w-6 p-0 text-green-600"
+                                onClick={() => toggleEntryExpansion(entry.id)}
+                              >
+                                <ChevronDown className="h-3 w-3" />
+                              </Button>
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                className="h-6 w-6 p-0 text-red-600"
+                                onClick={() => removeVocabularyEntry(entry.id)}
+                                disabled={vocabularyEntries.length === 1}
+                              >
+                                <Minus className="h-3 w-3" />
+                              </Button>
+                            </div>
                           </div>
 
                           <Input
                             value={entry.word}
                             onChange={(e) => updateVocabularyEntry(entry.id, 'word', e.target.value)}
                             placeholder="illuminate"
-                            className="mb-2 bg-white"
+                            className="mb-2"
                           />
 
                           {entry.isExpanded && (
-                            <div className="space-y-3 mt-3 pt-3 border-t border-gray-200">
+                            <div className="space-y-2 mt-2">
                               <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Nội dung</label>
+                                <label className="block text-xs text-gray-600 mb-1">Nội dung</label>
                                 <Textarea
                                   value={entry.content}
                                   onChange={(e) => updateVocabularyEntry(entry.id, 'content', e.target.value)}
                                   placeholder="Nhập nội dung chi tiết..."
-                                  rows={4}
-                                  className="bg-white text-sm resize-none"
+                                  rows={3}
+                                  className="text-sm"
                                 />
                               </div>
                             </div>
@@ -518,51 +552,26 @@ export default function Wordcraft() {
                     <Button 
                       variant="outline" 
                       onClick={addVocabularyEntry}
-                      className="w-full border-dashed border-2 border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 py-6"
+                      className="w-full border-dashed border-2 border-gray-300 hover:border-gray-400"
                     >
-                      <Plus className="h-5 w-5 mr-2" />
+                      <Plus className="h-4 w-4 mr-2" />
                       Thêm từ
                     </Button>
 
                     {/* Bottom Section */}
-                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mt-6">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Bộ thẻ:</label>
-                            {currentCardContext ? (
-                              <span className="text-sm text-gray-900">{currentCardContext.title}</span>
-                            ) : (
-                              <Select value={selectedCardId?.toString() || ""} onValueChange={(value) => setSelectedCardId(Number(value))}>
-                                <SelectTrigger className="w-48 h-8">
-                                  <SelectValue placeholder="Từ vựng Kinh doanh Cơ bản" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="new">Bộ thẻ mới</SelectItem>
-                                  {cards.map((card) => (
-                                    <SelectItem key={card.id} value={card.id.toString()}>
-                                      {card.title}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                            )}
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Số từ:</label>
-                            <span className="text-sm text-gray-900">
-                              {vocabularyEntries.filter(e => e.word.trim()).length} từ
-                            </span>
-                          </div>
-                        </div>
-                        <Button 
-                          onClick={handleAddVocabularies}
-                          disabled={(!selectedCardId && !currentCardContext) || vocabularyEntries.filter(e => e.word.trim()).length === 0}
-                          className="bg-blue-500 hover:bg-blue-600 text-white px-6"
-                        >
-                          Thêm từ vựng
-                        </Button>
+                    <div className="flex items-center justify-between pt-4 border-t">
+                      <div className="flex items-center space-x-4">
+                        <span className="text-sm text-gray-600">
+                          Số từ: {vocabularyEntries.filter(e => e.word.trim()).length} từ
+                        </span>
                       </div>
+                      <Button 
+                        onClick={handleAddVocabularies}
+                        disabled={(!selectedCardId && !currentCardContext) || vocabularyEntries.filter(e => e.word.trim()).length === 0}
+                        className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+                      >
+                        Thêm từ vựng
+                      </Button>
                     </div>
                   </div>
                 )}
