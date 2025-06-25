@@ -295,6 +295,7 @@ Changelog:
   - Centered "Thêm từ vựng" title text in vocabulary addition popup dialogs
   - Fixed React.Children.only error by properly structuring DialogTrigger components
   - Added proper DialogTitle and DialogDescription components for accessibility compliance
+  - Updated "Học" button to navigate to detail view with ?view=detail parameter for direct learning mode access
 
 ## User Preferences
 

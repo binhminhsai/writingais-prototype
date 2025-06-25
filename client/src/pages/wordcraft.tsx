@@ -721,7 +721,10 @@ export default function Wordcraft() {
                     variant="outline" 
                     size="sm" 
                     className="text-xs h-7 px-2"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = `/wordcraft/${card.id}/words?view=detail`;
+                    }}
                   >
                     Học
                   </Button>
