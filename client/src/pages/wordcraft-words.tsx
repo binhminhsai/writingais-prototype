@@ -12,7 +12,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2, X, ChevronDown } from "lucide-react";
+import { ArrowLeft, Search, Settings, Star, BookOpen, Users, Plus, Edit, Volume2, X, ChevronDown, Minus } from "lucide-react";
+import closeIcon from "@assets/close_1750834202412.png";
 import leftArrowIcon from "@assets/left-arrow_1750231743172.png";
 import rightArrowIcon from "@assets/right-arrow_1750231743193.png";
 import type { VocabularyCard, VocabularyWord } from "@shared/schema";
@@ -30,27 +31,43 @@ export default function WordcraftWords() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("definition");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [newWord, setNewWord] = useState({
-    word: "",
-    pronunciation: "",
-    partOfSpeech: "",
-    definition: "",
-    vietnamese: "",
-    example: "",
-    exampleVietnamese: ""
-  });
+  
+  // Vocabulary entries for accordion-style popup
+  const [vocabEntries, setVocabEntries] = useState([
+    { id: 1, word: "", content: "", isExpanded: false }
+  ]);
+  
   const queryClient = useQueryClient();
 
+  const resetVocabForm = () => {
+    setVocabEntries([{ id: 1, word: "", content: "", isExpanded: false }]);
+  };
+
+  const addVocabEntry = () => {
+    const newId = Math.max(...vocabEntries.map(e => e.id)) + 1;
+    setVocabEntries([...vocabEntries, { id: newId, word: "", content: "", isExpanded: false }]);
+  };
+
+  const removeVocabEntry = (id: number) => {
+    if (vocabEntries.length > 1) {
+      setVocabEntries(vocabEntries.filter(entry => entry.id !== id));
+    }
+  };
+
+  const updateVocabEntry = (id: number, field: string, value: string) => {
+    setVocabEntries(vocabEntries.map(entry => 
+      entry.id === id ? { ...entry, [field]: value } : entry
+    ));
+  };
+
+  const toggleVocabExpansion = (id: number) => {
+    setVocabEntries(vocabEntries.map(entry => 
+      entry.id === id ? { ...entry, isExpanded: !entry.isExpanded } : entry
+    ));
+  };
+
   const resetForm = () => {
-    setNewWord({
-      word: "",
-      pronunciation: "",
-      partOfSpeech: "",
-      definition: "",
-      vietnamese: "",
-      example: "",
-      exampleVietnamese: ""
-    });
+    resetVocabForm();
   };
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
@@ -69,11 +86,20 @@ export default function WordcraftWords() {
   });
 
   const addWordMutation = useMutation({
-    mutationFn: async (wordData: any) => {
-      return await apiRequest("POST", "/api/vocabulary-words", {
-        ...wordData,
-        cardId: parseInt(cardId!)
-      });
+    mutationFn: async (wordEntries: any[]) => {
+      const promises = wordEntries.map(entry => 
+        apiRequest("POST", "/api/vocabulary-words", {
+          word: entry.word,
+          definition: entry.content || "",
+          vietnamese: "",
+          example: "",
+          exampleVietnamese: "",
+          pronunciation: "",
+          partOfSpeech: "N",
+          cardId: parseInt(cardId!)
+        })
+      );
+      return Promise.all(promises);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`/api/vocabulary-cards/${cardId}/words`] });
@@ -88,11 +114,11 @@ export default function WordcraftWords() {
     favoriteMutation.mutate(newFavoriteState);
   };
 
-  const handleAddWord = () => {
-    if (!newWord.word.trim() || !newWord.definition.trim()) {
-      return;
-    }
-    addWordMutation.mutate(newWord);
+  const handleAddVocab = () => {
+    const validEntries = vocabEntries.filter(entry => entry.word.trim());
+    if (validEntries.length === 0) return;
+    
+    addWordMutation.mutate(validEntries);
   };
 
   const handleDialogClose = () => {
