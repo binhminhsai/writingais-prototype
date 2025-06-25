@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
@@ -29,7 +29,8 @@ export default function Wordcraft() {
   const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
   const [selectedCardValue, setSelectedCardValue] = useState<string>("");
   const [isCardSelectOpen, setIsCardSelectOpen] = useState(false);
-  const [searchCardValue, setSearchCardValue] = useState("");
+  const [searchCardValue, setSearchCardValue] = useState<string>("");
+  
   const [newCardData, setNewCardData] = useState({
     title: "",
     description: "",
@@ -124,6 +125,14 @@ export default function Wordcraft() {
     return matchesSearch && matchesCategory;
   });
 
+  // Filter cards for dropdown selection with useMemo for performance
+  const filteredCardsForSelect = useMemo(() => {
+    if (!searchCardValue) return cards;
+    return cards.filter(card => 
+      card.title.toLowerCase().includes(searchCardValue.toLowerCase())
+    );
+  }, [cards, searchCardValue]);
+
   const handleCategoryToggle = (category: string) => {
     setSelectedCategories(prev => 
       prev.includes(category) 
@@ -188,7 +197,6 @@ export default function Wordcraft() {
   const resetVocabForm = () => {
     setSelectedCardId(null);
     setSelectedCardValue("");
-    setSearchCardValue("");
     setVocabEntries([{
       id: 1,
       word: "",
@@ -210,9 +218,7 @@ export default function Wordcraft() {
       : selectedCard.title;
   };
 
-  const filteredCardsForSelect = cards.filter(card =>
-    card.title.toLowerCase().includes(searchCardValue.toLowerCase())
-  );
+  
 
   const addVocabEntry = () => {
     const newId = Math.max(...vocabEntries.map(entry => entry.id)) + 1;
@@ -589,13 +595,11 @@ export default function Wordcraft() {
                               <Command>
                                 <CommandInput 
                                   placeholder="Tìm bộ thẻ..." 
-                                  value={searchCardValue}
-                                  onValueChange={setSearchCardValue}
                                   className="h-8 text-sm"
                                 />
                                 <CommandList className="max-h-[200px] overflow-y-auto">
                                   <CommandEmpty>Không tìm thấy bộ thẻ.</CommandEmpty>
-                                  <CommandGroup className="pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
+                                  <CommandGroup>
                                     <CommandItem
                                       value="new"
                                       onSelect={() => {
