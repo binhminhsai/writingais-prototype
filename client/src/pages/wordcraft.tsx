@@ -301,7 +301,6 @@ export default function Wordcraft() {
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Khám phá Wordcraft nào!</h1>
         <p className="text-gray-600">Học từ vựng hiệu quả với các bộ thẻ được tuyển chọn kỹ lưỡng</p>
       </div>
-
       {/* Search and Filter */}
       <div className="mb-8 space-y-4">
         {/* Search Bar */}
@@ -418,17 +417,17 @@ export default function Wordcraft() {
               <DialogContent className="sm:max-w-4xl max-h-[90vh] flex flex-col" onPointerDownOutside={(e) => e.preventDefault()}>
                 {isVocabLoading ? (
                   // Loading State
-                  <div className="flex flex-col items-center justify-center p-8 space-y-4">
+                  (<div className="flex flex-col items-center justify-center p-8 space-y-4">
                     <div className="relative">
                       <div className="w-16 h-16 border-4 border-gray-200 border-t-black rounded-full animate-spin"></div>
                     </div>
                     <div className="text-center">
                       <p className="text-lg font-medium text-gray-900">Đang tạo thẻ từ vựng: {loadingProgress}%</p>
                     </div>
-                  </div>
+                  </div>)
                 ) : (
                   // Main Content
-                  <>
+                  (<>
                     <DialogHeader className="border-b border-emerald-200 pb-2 bg-gradient-to-r from-emerald-100 to-teal-100">
                       <div className="flex items-center justify-center relative">
                         <DialogTitle className="text-lg font-semibold text-emerald-800">Thêm từ vựng</DialogTitle>
@@ -445,7 +444,6 @@ export default function Wordcraft() {
                         </Button>
                       </div>
                     </DialogHeader>
-
                     <div className="flex-1 overflow-y-auto p-3 space-y-2 min-h-0">
                       {/* Vocabulary Entry Cards */}
                       <div className="space-y-2">
@@ -459,7 +457,7 @@ export default function Wordcraft() {
                             {/* Card content */}
                             <div className="flex-1 border border-emerald-200 rounded-lg bg-gradient-to-r from-emerald-50 to-teal-50">
                               {/* Entry Header */}
-                              <div className="flex items-start gap-2 p-2">
+                              <div className="flex items-start gap-2 p-2 pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
                                 <div className="flex-1">
                                   <div className="flex items-center justify-between mb-1">
                                     <label className="block text-xs font-medium text-emerald-700">
@@ -532,7 +530,6 @@ export default function Wordcraft() {
                         Thêm từ
                       </Button>
                     </div>
-
                     {/* Footer - Fixed */}
                     <div className="border-t border-emerald-200 p-3 flex-shrink-0 bg-gradient-to-r from-emerald-50 to-teal-50">
                       <div className="flex items-end justify-between">
@@ -580,14 +577,13 @@ export default function Wordcraft() {
                         </Button>
                       </div>
                     </div>
-                  </>
+                  </>)
                 )}
               </DialogContent>
             </Dialog>
           </div>
         </div>
       </div>
-
       {/* Cards Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
         {filteredCards.map((card) => (
