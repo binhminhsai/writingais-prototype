@@ -204,9 +204,9 @@ export default function Wordcraft() {
     if (selectedCardValue === "new") return "Bộ thẻ mới";
     const selectedCard = cards.find(card => card.id.toString() === selectedCardValue);
     if (!selectedCard) return "Chưa chọn bộ thẻ";
-    // Truncate long titles with ellipsis
-    return selectedCard.title.length > 25 
-      ? `${selectedCard.title.substring(0, 25)}...` 
+    // Truncate long titles with ellipsis for larger button
+    return selectedCard.title.length > 40 
+      ? `${selectedCard.title.substring(0, 40)}...` 
       : selectedCard.title;
   };
 
@@ -579,13 +579,13 @@ export default function Wordcraft() {
                                 variant="outline"
                                 role="combobox"
                                 aria-expanded={isCardSelectOpen}
-                                className="w-56 justify-between h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
+                                className="w-72 justify-between h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300 px-2"
                               >
                                 <span className="truncate">{getSelectedCardLabel()}</span>
                                 <ChevronsUpDown className="ml-2 h-3 w-3 shrink-0 opacity-50" />
                               </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-56 p-0">
+                            <PopoverContent className="w-72 p-0">
                               <Command>
                                 <CommandInput 
                                   placeholder="Tìm bộ thẻ..." 
@@ -593,9 +593,9 @@ export default function Wordcraft() {
                                   onValueChange={setSearchCardValue}
                                   className="h-8 text-sm"
                                 />
-                                <CommandList>
+                                <CommandList className="max-h-[200px] overflow-y-auto">
                                   <CommandEmpty>Không tìm thấy bộ thẻ.</CommandEmpty>
-                                  <CommandGroup>
+                                  <CommandGroup className="pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
                                     <CommandItem
                                       value="new"
                                       onSelect={() => {
@@ -629,8 +629,8 @@ export default function Wordcraft() {
                                           }`}
                                         />
                                         <span className="truncate">
-                                          {card.title.length > 35 
-                                            ? `${card.title.substring(0, 35)}...` 
+                                          {card.title.length > 50 
+                                            ? `${card.title.substring(0, 50)}...` 
                                             : card.title}
                                         </span>
                                       </CommandItem>

@@ -282,6 +282,9 @@ Changelog:
   - Added real-time search functionality to filter vocabulary cards by title
   - Enhanced dropdown to properly display selected values including "Bộ thẻ mới" option
   - Improved user experience with keyboard navigation and clear visual feedback
+  - Optimized button and dropdown widths (w-72) with reduced padding for better space utilization
+  - Added maximum height (200px) with scrolling for dropdown when many cards exist
+  - Updated text truncation limits: 40 characters for button display, 50 for dropdown items
 
 ## User Preferences
 
