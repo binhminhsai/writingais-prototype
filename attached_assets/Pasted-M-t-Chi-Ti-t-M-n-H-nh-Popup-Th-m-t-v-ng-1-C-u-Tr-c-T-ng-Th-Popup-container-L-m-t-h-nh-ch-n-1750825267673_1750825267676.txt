@@ -1,0 +1,68 @@
+Mô tả Chi Tiết Màn Hình Popup "Thêm từ vựng"
+1. Cấu Trúc Tổng Thể
+Popup container:
+Là một hình chữ nhật với nền màu xám nhạt.
+Có viền bao quanh và hiệu ứng bóng nhẹ để nổi bật trên nền màn hình chính.
+Thanh tiêu đề:
+Nằm ở phần trên cùng của popup.
+Bao gồm:
+Tiêu đề: Văn bản "Thêm từ vựng" được căn giữa theo chiều ngang.
+Nút đóng (X): Nằm ở góc trên bên phải, ngang hàng với tiêu đề, có dạng hình vuông nhỏ chứa dấu "X".
+2. Khu Vực Nội Dung Chính
+*Trường "Bộ thẻ"**:
+Vị trí: Góc dưới bên trái của popup.
+Chi tiết:
+Nếu người dùng đang ở trong một bộ thẻ cụ thể (ví dụ: "Từ vựng Kinh doanh cơ bản"), đây là văn bản cố định, không chỉnh sửa được.
+Nếu người dùng truy cập từ màn hình /wordcraft, đây là một dropdown với các tùy chọn:
+Danh sách các bộ thẻ của người dùng.
+Tùy chọn "Bộ thẻ mới" ở đầu danh sách.
+Giá trị mặc định là "Chưa chọn bộ thẻ".
+Hiển thị "Số từ":
+Vị trí: Bên phải trường "Bộ thẻ*".
+Chi tiết: Văn bản dạng "Số từ: X từ", trong đó X là số lượng thẻ từ vựng hiện tại trong popup.
+Danh sách thẻ từ vựng:
+Vị trí: Khu vực chính giữa của popup.
+Cấu trúc mỗi thẻ từ vựng:
+Nhãn: Đánh số thứ tự (ví dụ: "1. Từ vựng*", "2. Từ vựng*"), nằm ở bên trái.
+Trường nhập liệu: Bên phải nhãn, là ô nhập để người dùng điền từ vựng (ví dụ: "illuminate").
+Nút mở rộng/thu gọn (mũi tên):
+Nằm ngay bên phải trường nhập liệu.
+Hình dạng: Mũi tên hướng xuống (khi chưa mở rộng) hoặc hướng lên (khi đã mở rộng).
+Chức năng: Hiển thị/ẩn trường "Nội dung*".
+Nút xóa ("-"):
+Vị trí: Nằm ngoài cùng bên phải của thẻ từ vựng.
+Hình dạng: Một hình tròn chứa dấu "-".
+Chi tiết: Nút này được đặt tách biệt ở phía ngoài của thẻ, không chồng lấn với các thành phần khác, để dễ nhận diện và thao tác.
+*Trường "Nội dung" (khi mở rộng)**:
+Xuất hiện bên dưới trường nhập liệu từ vựng khi nhấn nút mở rộng.
+Là một khu vực nhập liệu lớn hơn (text area) với nhãn "Nội dung*".
+Nút "Thêm từ":
+Vị trí: Phía dưới danh sách thẻ từ vựng, căn sang bên trái.
+Hình dạng: Nút tròn với biểu tượng "+" và nhãn "Thêm từ".
+Chức năng: Thêm một thẻ từ vựng mới vào danh sách.
+Nút "Thêm từ vựng" (Xác nhận):
+Vị trí: Góc dưới bên phải của popup.
+Hình dạng: Nút hình chữ nhật với viền nhẹ.
+Chức năng: Xác nhận việc thêm các từ vựng đã nhập, kèm theo hiệu ứng loading (ví dụ: spinner) khi xử lý.
+3. Hành Vi và Tương Tác
+Đóng popup:
+Chỉ có thể đóng bằng cách nhấn nút "X" ở góc trên bên phải.
+Nhấp chuột ra ngoài popup không đóng được.
+Accordion trong thẻ từ vựng:
+Nhấn nút mũi tên để mở rộng hoặc thu gọn trường "Nội dung*".
+Trạng thái mũi tên thay đổi tương ứng: xuống (thu gọn), lên (mở rộng).
+Hiệu ứng khi xác nhận:
+Nhấn nút "Thêm từ vựng" sẽ hiển thị spinner để biểu thị quá trình xử lý.
+Tóm Tắt Vị Trí Các Thành Phần Chính
+Tiêu đề "Thêm từ vựng": Căn giữa ở trên cùng.
+Nút đóng "X": Góc trên bên phải.
+*Trường "Bộ thẻ"**: Góc dưới bên trái.
+Hiển thị "Số từ": Bên phải trường "Bộ thẻ*".
+Danh sách thẻ từ vựng: Khu vực chính giữa.
+Mỗi thẻ:
+Nhãn và trường nhập liệu: Bên trái.
+Nút mở rộng/thu gọn: Bên phải trường nhập liệu.
+Nút "-" (xóa): Ngoài cùng bên phải của thẻ, trong hình tròn.
+Nút "Thêm từ": Dưới danh sách thẻ, bên trái.
+Nút "Thêm từ vựng" (Xác nhận): Góc dưới bên phải.
+Mô tả này đã được làm chi tiết hơn, đặc biệt với vị trí của nút "-", đảm bảo nó nằm ngoài cùng bên phải của mỗi thẻ từ vựng, giúp giao diện rõ ràng và dễ triển khai.
