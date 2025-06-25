@@ -77,16 +77,7 @@ export default function WordcraftWords() {
     setSearchCardValue("");
   };
 
-  const getSelectedCardLabel = () => {
-    if (!selectedCardValue) return "Chưa chọn bộ thẻ";
-    if (selectedCardValue === "new") return "Bộ thẻ mới";
-    const selectedCard = allCards.find(card => card.id.toString() === selectedCardValue);
-    return selectedCard ? selectedCard.title : "Chưa chọn bộ thẻ";
-  };
 
-  const filteredCards = allCards.filter(card =>
-    card.title.toLowerCase().includes(searchCardValue.toLowerCase())
-  );
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
     queryKey: [`/api/vocabulary-cards/${cardId}`],
@@ -148,6 +139,17 @@ export default function WordcraftWords() {
   const { data: allCards = [] } = useQuery<VocabularyCard[]>({
     queryKey: ["/api/vocabulary-cards"],
   });
+
+  const getSelectedCardLabel = () => {
+    if (!selectedCardValue) return "Chưa chọn bộ thẻ";
+    if (selectedCardValue === "new") return "Bộ thẻ mới";
+    const selectedCard = allCards.find(card => card.id.toString() === selectedCardValue);
+    return selectedCard ? selectedCard.title : "Chưa chọn bộ thẻ";
+  };
+
+  const filteredCards = allCards.filter(card =>
+    card.title.toLowerCase().includes(searchCardValue.toLowerCase())
+  );
 
   const filteredWords = words.filter(word =>
     word.word.toLowerCase().includes(searchQuery.toLowerCase())
@@ -443,6 +445,74 @@ export default function WordcraftWords() {
                       {/* Footer - Fixed */}
                       <div className="border-t border-emerald-200 p-3 flex-shrink-0 bg-gradient-to-r from-emerald-50 to-teal-50">
                         <div className="flex items-end justify-between">
+                          {/* Card Selection - Left */}
+                          <div>
+                            <label className="block text-xs font-medium text-emerald-700 mb-1">
+                              Bộ thẻ <span className="text-red-500">*</span>
+                            </label>
+                            <Popover open={isCardSelectOpen} onOpenChange={setIsCardSelectOpen}>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                  role="combobox"
+                                  aria-expanded={isCardSelectOpen}
+                                  className="w-[200px] justify-between h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
+                                >
+                                  {getSelectedCardLabel()}
+                                  <ChevronsUpDown className="ml-2 h-3 w-3 shrink-0 opacity-50" />
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-[200px] p-0">
+                                <Command>
+                                  <CommandInput 
+                                    placeholder="Tìm bộ thẻ..." 
+                                    value={searchCardValue}
+                                    onValueChange={setSearchCardValue}
+                                    className="h-8 text-sm"
+                                  />
+                                  <CommandList>
+                                    <CommandEmpty>Không tìm thấy bộ thẻ.</CommandEmpty>
+                                    <CommandGroup>
+                                      <CommandItem
+                                        value="new"
+                                        onSelect={() => {
+                                          setSelectedCardValue("new");
+                                          setIsCardSelectOpen(false);
+                                        }}
+                                        className="text-sm"
+                                      >
+                                        <Check
+                                          className={`mr-2 h-3 w-3 ${
+                                            selectedCardValue === "new" ? "opacity-100" : "opacity-0"
+                                          }`}
+                                        />
+                                        Bộ thẻ mới
+                                      </CommandItem>
+                                      {filteredCards.map((card) => (
+                                        <CommandItem
+                                          key={card.id}
+                                          value={card.id.toString()}
+                                          onSelect={(currentValue) => {
+                                            setSelectedCardValue(currentValue);
+                                            setIsCardSelectOpen(false);
+                                          }}
+                                          className="text-sm"
+                                        >
+                                          <Check
+                                            className={`mr-2 h-3 w-3 ${
+                                              selectedCardValue === card.id.toString() ? "opacity-100" : "opacity-0"
+                                            }`}
+                                          />
+                                          {card.title}
+                                        </CommandItem>
+                                      ))}
+                                    </CommandGroup>
+                                  </CommandList>
+                                </Command>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+
                           {/* Word Count - Center */}
                           <div className="text-xs text-emerald-700 font-medium self-end pb-1">
                             Số từ: {vocabEntries.filter(entry => entry.word.trim()).length} từ
@@ -682,22 +752,93 @@ export default function WordcraftWords() {
                               </Button>
                             </div>
                           ))}
-                        </div>
-
-                        {/* Add Word Button */}
-                        <Button
-                          variant="outline"
-                          onClick={addVocabEntry}
-                          className="w-auto flex items-center gap-2 border-dashed border-emerald-300 text-emerald-600 hover:border-emerald-400 hover:text-emerald-700 hover:bg-emerald-50 h-8 text-sm transition-colors mt-2"
-                        >
-                          <Plus className="h-3 w-3" />
-                          Thêm từ
-                        </Button>
-                      </div>
-
                       {/* Footer - Fixed */}
                       <div className="border-t border-emerald-200 p-3 flex-shrink-0 bg-gradient-to-r from-emerald-50 to-teal-50">
                         <div className="flex items-end justify-between">
+                          {/* Card Selection - Left */}
+                          <div>
+                            <label className="block text-xs font-medium text-emerald-700 mb-1">
+                              Bộ thẻ <span className="text-red-500">*</span>
+                            </label>
+                            <Popover open={isCardSelectOpen} onOpenChange={setIsCardSelectOpen}>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="outline"
+                                  role="combobox"
+                                  aria-expanded={isCardSelectOpen}
+                                  className="w-[200px] justify-between h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
+                                >
+                                  {getSelectedCardLabel()}
+                                  <ChevronsUpDown className="ml-2 h-3 w-3 shrink-0 opacity-50" />
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-[200px] p-0">
+                                <Command>
+                                  <CommandInput 
+                                    placeholder="Tìm bộ thẻ..." 
+                                    value={searchCardValue}
+                                    onValueChange={setSearchCardValue}
+                                    className="h-8 text-sm"
+                                  />
+                                  <CommandList>
+                                    <CommandEmpty>Không tìm thấy bộ thẻ.</CommandEmpty>
+                                    <CommandGroup>
+                                      <CommandItem
+                                        value="new"
+                                        onSelect={() => {
+                                          setSelectedCardValue("new");
+                                          setIsCardSelectOpen(false);
+                                        }}
+                                        className="text-sm"
+                                      >
+                                        <Check
+                                          className={`mr-2 h-3 w-3 ${
+                                            selectedCardValue === "new" ? "opacity-100" : "opacity-0"
+                                          }`}
+                                        />
+                                        Bộ thẻ mới
+                                      </CommandItem>
+                                      {filteredCards.map((card) => (
+                                        <CommandItem
+                                          key={card.id}
+                                          value={card.id.toString()}
+                                          onSelect={(currentValue) => {
+                                            setSelectedCardValue(currentValue);
+                                            setIsCardSelectOpen(false);
+                                          }}
+                                          className="text-sm"
+                                        >
+                                          <Check
+                                            className={`mr-2 h-3 w-3 ${
+                                              selectedCardValue === card.id.toString() ? "opacity-100" : "opacity-0"
+                                            }`}
+                                          />
+                                          {card.title}
+                                        </CommandItem>
+                                      ))}
+                                    </CommandGroup>
+                                  </CommandList>
+                                </Command>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+
+                          {/* Word Count - Center */}
+                          <div className="text-xs text-emerald-700 font-medium self-end pb-1">
+                            Số từ: {vocabEntries.filter(entry => entry.word.trim()).length} từ
+                          </div>
+
+                          {/* Submit Button - Right */}
+                          <Button 
+                            onClick={handleAddVocab}
+                            disabled={vocabEntries.filter(entry => entry.word.trim()).length === 0}
+                            className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-4 h-8 text-sm shadow-md hover:shadow-lg transition-all duration-200"
+                          >
+                            Thêm từ vựng
+                          </Button>
+                        </div>
+                      </div>
+
                           {/* Word Count - Center */}
                           <div className="text-xs text-emerald-700 font-medium self-end pb-1">
                             Số từ: {vocabEntries.filter(entry => entry.word.trim()).length} từ
