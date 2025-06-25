@@ -1,0 +1,56 @@
+Mô tả Tính Năng
+1. Hiển thị Popup
+Khi người dùng nhấn nút "Thêm từ vựng", một popup xuất hiện để nhập từ vựng mới.
+Popup chỉ đóng được bằng cách nhấn nút "X" ở góc trên bên phải. Nhấp chuột ra ngoài popup không có tác dụng đóng.
+2. Thao tác trong Popup
+Nút "Thêm từ":
+Thêm một thẻ từ vựng mới vào danh sách trong popup để người dùng nhập thông tin.
+Nút "-":
+Mỗi thẻ từ vựng có nút "-" để xóa thẻ đó khỏi danh sách.
+Accordion trong thẻ:
+Mỗi thẻ từ vựng có thể mở rộng kiểu accordion (bằng cách nhấn mũi tên xuống) để hiển thị trường "Nội dung" cho thông tin chi tiết.
+3. Trường "Bộ thẻ"
+Trường hợp 1: Nếu người dùng nhấn "Thêm từ vựng" khi đang xem danh sách từ vựng của một bộ thẻ cụ thể (ví dụ: "Từ vựng Kinh doanh cơ bản"):
+Trường "Bộ thẻ" hiển thị tên bộ thẻ đó và không thể chỉnh sửa.
+Trường hợp 2: Nếu người dùng nhấn "Thêm từ vựng" từ ngoài màn hình /wordcraft (không ở trong bộ thẻ nào):
+Trường "Bộ thẻ" là một dropdown list với các tùy chọn:
+Tất cả bộ thẻ hiện có của người dùng.
+Tùy chọn "Bộ thẻ mới" ở đầu danh sách.
+Giá trị mặc định là "Chưa chọn bộ thẻ" (giá trị này không nằm trong dropdown).
+4. Hiệu ứng Loading
+Khi nhấn nút "Thêm từ vựng" (nút xác nhận trong popup), hiển thị hiệu ứng loading (ví dụ: spinner) để mô phỏng quá trình thêm từ vựng.
+Mô tả Hình Ảnh
+Cấu trúc Popup
+Tiêu đề:
+Văn bản "Thêm từ vựng" căn giữa ở trên cùng.
+Bên phải tiêu đề, có nút "X" trong một hình vuông nhỏ để đóng popup.
+Nền:
+Popup có nền màu xám nhạt, viền hình chữ nhật, và hiệu ứng bóng nhẹ để nổi bật trên màn hình chính.
+Phần Nội Dung Chính
+*Trường "Bộ thẻ"**:
+Vị trí: Phía dưới bên trái của popup.
+Nếu cố định: Hiển thị tên bộ thẻ (ví dụ: "Từ vựng Kinh doanh cơ bản") và không cho chỉnh sửa.
+Nếu dropdown: Hiển thị danh sách các bộ thẻ, với "Bộ thẻ mới" ở đầu và giá trị mặc định là "Chưa chọn bộ thẻ".
+Hiển thị "Số từ":
+Vị trí: Bên phải trường "Bộ thẻ*".
+Văn bản dạng: "Số từ: X từ" (X là số thẻ từ vựng hiện tại).
+Nút "Thêm từ vựng" (Xác nhận):
+Vị trí: Góc dưới bên phải của popup.
+Hình dạng: Nút hình chữ nhật với viền nhẹ.
+Khi nhấn: Kích hoạt hiệu ứng loading (spinner).
+Danh Sách Thẻ Từ Vựng
+Cấu trúc mỗi thẻ:
+Đánh số thứ tự (ví dụ: "1. Từ vựng*", "2. Từ vựng*").
+Một trường nhập liệu cho từ vựng (ví dụ: "illuminate").
+Bên phải trường nhập liệu:
+Biểu tượng mũi tên xuống (hoặc lên nếu đã mở) để mở rộng accordion.
+Nút tròn với dấu "-" để xóa thẻ.
+Khi mở accordion: Hiển thị trường nhập liệu lớn hơn với nhãn "Nội dung"* bên dưới trường từ vựng.
+Nút "Thêm từ":
+Vị trí: Phía dưới bên trái, dưới danh sách thẻ từ vựng.
+Hình dạng: Nút tròn với biểu tượng "+" và nhãn "Thêm từ".
+Chức năng: Thêm một thẻ từ vựng mới vào danh sách.
+Lưu Ý
+Popup không đóng khi nhấp ra ngoài, chỉ đóng bằng nút "X".
+Hiệu ứng loading xuất hiện khi nhấn nút xác nhận "Thêm từ vựng".
+Trường "Bộ thẻ" thay đổi tùy ngữ cảnh (cố định hoặc dropdown).

@@ -227,6 +227,13 @@ Changelog:
   - Added pronunciation, part of speech, and example sentence fields
   - Integrated proper API calls and validation with loading states and toast notifications
   - Updated button styling to use consistent green gradient matching vocabulary section theme
+- June 24, 2025. Redesigned vocabulary addition popup with wireframe-based interface:
+  - Created accordion-style vocabulary entry cards with expandable content sections
+  - Implemented add/remove functionality for multiple vocabulary entries
+  - Added dropdown selection with "Bộ thẻ mới" option at top of list
+  - Built loading state with spinner and progress percentage display
+  - Made popup non-dismissible except via X button (prevents outside click closing)
+  - Added word count display and proper validation for required fields
 
 ## User Preferences
 

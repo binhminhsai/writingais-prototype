@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown } from "lucide-react";
+import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown, ChevronUp, Minus, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { VocabularyCard, InsertVocabularyCard, InsertVocabularyWord } from "@shared/schema";
@@ -29,15 +29,16 @@ export default function Wordcraft() {
     description: "",
     categories: [] as string[]
   });
-  const [newVocabData, setNewVocabData] = useState({
-    word: "",
-    pronunciation: "",
-    partOfSpeech: "",
-    englishDefinition: "",
-    vietnameseDefinition: "",
-    example: "",
-    tags: [] as string[]
-  });
+  const [vocabEntries, setVocabEntries] = useState([
+    {
+      id: 1,
+      word: "",
+      content: "",
+      isExpanded: false
+    }
+  ]);
+  const [isVocabLoading, setIsVocabLoading] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
 
   const { toast } = useToast();
 
@@ -88,15 +89,7 @@ export default function Wordcraft() {
         title: "Thành công!",
         description: "Từ vựng đã được thêm thành công.",
       });
-      setNewVocabData({
-        word: "",
-        pronunciation: "",
-        partOfSpeech: "",
-        englishDefinition: "",
-        vietnameseDefinition: "",
-        example: "",
-        tags: []
-      });
+      // Reset vocabulary entries
       setIsAddVocabOpen(false);
       setSelectedCardId(null);
     },
@@ -186,28 +179,96 @@ export default function Wordcraft() {
     }
   };
 
-  const handleAddVocab = () => {
-    if (!selectedCardId || !newVocabData.word.trim()) {
+  const addVocabEntry = () => {
+    const newId = Math.max(...vocabEntries.map(entry => entry.id)) + 1;
+    setVocabEntries(prev => [...prev, {
+      id: newId,
+      word: "",
+      content: "",
+      isExpanded: false
+    }]);
+  };
+
+  const removeVocabEntry = (id: number) => {
+    if (vocabEntries.length > 1) {
+      setVocabEntries(prev => prev.filter(entry => entry.id !== id));
+    }
+  };
+
+  const toggleVocabExpansion = (id: number) => {
+    setVocabEntries(prev => prev.map(entry => 
+      entry.id === id ? { ...entry, isExpanded: !entry.isExpanded } : entry
+    ));
+  };
+
+  const updateVocabEntry = (id: number, field: string, value: string) => {
+    setVocabEntries(prev => prev.map(entry =>
+      entry.id === id ? { ...entry, [field]: value } : entry
+    ));
+  };
+
+  const handleAddVocab = async () => {
+    if (!selectedCardId) {
       toast({
         title: "Lỗi!",
-        description: "Vui lòng chọn bộ thẻ và nhập từ vựng.",
+        description: "Vui lòng chọn bộ thẻ.",
         variant: "destructive",
       });
       return;
     }
 
-    const vocabToCreate: InsertVocabularyWord = {
-      cardId: selectedCardId,
-      word: newVocabData.word,
-      pronunciation: newVocabData.pronunciation,
-      partOfSpeech: newVocabData.partOfSpeech,
-      englishDefinition: newVocabData.englishDefinition,
-      vietnameseDefinition: newVocabData.vietnameseDefinition,
-      example: newVocabData.example,
-      tags: newVocabData.tags
-    };
+    const validEntries = vocabEntries.filter(entry => entry.word.trim());
+    if (validEntries.length === 0) {
+      toast({
+        title: "Lỗi!",
+        description: "Vui lòng nhập ít nhất một từ vựng.",
+        variant: "destructive",
+      });
+      return;
+    }
 
-    createVocabMutation.mutate(vocabToCreate);
+    setIsVocabLoading(true);
+    setLoadingProgress(0);
+
+    // Simulate loading progress
+    const progressInterval = setInterval(() => {
+      setLoadingProgress(prev => {
+        if (prev >= 85) {
+          clearInterval(progressInterval);
+          return 85;
+        }
+        return prev + 5;
+      });
+    }, 100);
+
+    try {
+      for (const entry of validEntries) {
+        const vocabToCreate: InsertVocabularyWord = {
+          cardId: selectedCardId,
+          word: entry.word,
+          pronunciation: "",
+          partOfSpeech: "N",
+          englishDefinition: entry.content || "",
+          vietnameseDefinition: "",
+          example: "",
+          tags: []
+        };
+        await createVocabMutation.mutateAsync(vocabToCreate);
+      }
+      
+      setLoadingProgress(100);
+      setTimeout(() => {
+        setIsVocabLoading(false);
+        setIsAddVocabOpen(false);
+        setVocabEntries([{ id: 1, word: "", content: "", isExpanded: false }]);
+        setSelectedCardId(null);
+        setLoadingProgress(0);
+      }, 500);
+    } catch (error) {
+      clearInterval(progressInterval);
+      setIsVocabLoading(false);
+      setLoadingProgress(0);
+    }
   };
 
   const getDifficultyColor = (difficulty: string) => {
@@ -339,128 +400,175 @@ export default function Wordcraft() {
               </DialogContent>
             </Dialog>
 
-            <Dialog open={isAddVocabOpen} onOpenChange={setIsAddVocabOpen}>
+            <Dialog open={isAddVocabOpen} onOpenChange={(open) => {
+              if (!isVocabLoading) {
+                setIsAddVocabOpen(open);
+                if (!open) {
+                  setVocabEntries([{ id: 1, word: "", content: "", isExpanded: false }]);
+                  setSelectedCardId(null);
+                }
+              }
+            }}>
               <DialogTrigger asChild>
                 <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200">
                   <Plus className="h-4 w-4 mr-2 text-white" />
                   Thêm từ vựng
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-lg">
-                <DialogHeader>
-                  <DialogTitle>Thêm từ vựng mới</DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4 pt-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Chọn bộ thẻ
-                    </label>
-                    <Select value={selectedCardId?.toString() || ""} onValueChange={(value) => setSelectedCardId(Number(value))}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Chọn bộ thẻ từ vựng" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {cards.map((card) => (
-                          <SelectItem key={card.id} value={card.id.toString()}>
-                            {card.title}
-                          </SelectItem>
+              <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-hidden" onPointerDownOutside={(e) => e.preventDefault()}>
+                {isVocabLoading ? (
+                  // Loading State
+                  <div className="flex flex-col items-center justify-center p-8 space-y-4">
+                    <div className="relative">
+                      <div className="w-16 h-16 border-4 border-gray-200 border-t-black rounded-full animate-spin"></div>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-lg font-medium text-gray-900">Đang tạo thẻ từ vựng: {loadingProgress}%</p>
+                    </div>
+                  </div>
+                ) : (
+                  // Main Content
+                  <>
+                    <DialogHeader className="border-b border-gray-200 pb-4">
+                      <div className="flex items-center justify-between">
+                        <DialogTitle className="text-xl font-semibold text-gray-900">Thêm từ vựng</DialogTitle>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0 hover:bg-gray-100"
+                          onClick={() => setIsAddVocabOpen(false)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </DialogHeader>
+
+                    <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                      {/* Vocabulary Entry Cards */}
+                      <div className="space-y-3">
+                        {vocabEntries.map((entry, index) => (
+                          <div key={entry.id} className="border border-gray-200 rounded-lg bg-gray-50">
+                            {/* Entry Header */}
+                            <div className="flex items-center gap-3 p-4">
+                              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-sm font-medium">
+                                {index + 1}
+                              </span>
+                              <div className="flex-1">
+                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                                  Từ vựng {index === 0 ? <span className="text-red-500">*</span> : ""}
+                                </label>
+                                <Input
+                                  value={entry.word}
+                                  onChange={(e) => updateVocabEntry(entry.id, "word", e.target.value)}
+                                  placeholder="illuminate"
+                                  className="bg-white"
+                                />
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-8 w-8 p-0 hover:bg-gray-200"
+                                  onClick={() => toggleVocabExpansion(entry.id)}
+                                >
+                                  {entry.isExpanded ? (
+                                    <ChevronUp className="h-4 w-4" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4" />
+                                  )}
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-8 w-8 p-0 hover:bg-red-100 hover:text-red-600"
+                                  onClick={() => removeVocabEntry(entry.id)}
+                                  disabled={vocabEntries.length === 1}
+                                >
+                                  <Minus className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            </div>
+
+                            {/* Expanded Content */}
+                            {entry.isExpanded && (
+                              <div className="px-4 pb-4">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                  Nội dung <span className="text-red-500">*</span>
+                                </label>
+                                <Textarea
+                                  value={entry.content}
+                                  onChange={(e) => updateVocabEntry(entry.id, "content", e.target.value)}
+                                  placeholder="Nhập định nghĩa và ví dụ..."
+                                  rows={4}
+                                  className="bg-white"
+                                />
+                              </div>
+                            )}
+                          </div>
                         ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="vocab-word" className="block text-sm font-medium text-gray-700 mb-2">
-                        Từ vựng
-                      </label>
-                      <Input
-                        id="vocab-word"
-                        value={newVocabData.word}
-                        onChange={(e) => setNewVocabData(prev => ({ ...prev, word: e.target.value }))}
-                        placeholder="Nhập từ vựng"
-                      />
+                      </div>
+
+                      {/* Add Word Button */}
+                      <Button
+                        variant="outline"
+                        onClick={addVocabEntry}
+                        className="w-auto flex items-center gap-2 border-dashed border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-700"
+                      >
+                        <Plus className="h-4 w-4" />
+                        Thêm từ
+                      </Button>
                     </div>
-                    <div>
-                      <label htmlFor="vocab-pronunciation" className="block text-sm font-medium text-gray-700 mb-2">
-                        Phát âm
-                      </label>
-                      <Input
-                        id="vocab-pronunciation"
-                        value={newVocabData.pronunciation}
-                        onChange={(e) => setNewVocabData(prev => ({ ...prev, pronunciation: e.target.value }))}
-                        placeholder="/pronunciation/"
-                      />
+
+                    {/* Footer */}
+                    <div className="border-t border-gray-200 p-4">
+                      <div className="flex items-center justify-between">
+                        {/* Card Selection */}
+                        <div className="flex items-center gap-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              Bộ thẻ <span className="text-red-500">*</span>
+                            </label>
+                            <Select 
+                              value={selectedCardId?.toString() || ""} 
+                              onValueChange={(value) => {
+                                if (value === "new") {
+                                  // Handle new card creation
+                                  setSelectedCardId(null);
+                                } else {
+                                  setSelectedCardId(Number(value));
+                                }
+                              }}
+                            >
+                              <SelectTrigger className="w-64">
+                                <SelectValue placeholder="Chưa chọn bộ thẻ" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="new">Bộ thẻ mới</SelectItem>
+                                {cards.map((card) => (
+                                  <SelectItem key={card.id} value={card.id.toString()}>
+                                    {card.title}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="text-sm text-gray-600">
+                            Số từ: {vocabEntries.filter(entry => entry.word.trim()).length} từ
+                          </div>
+                        </div>
+
+                        {/* Submit Button */}
+                        <Button 
+                          onClick={handleAddVocab}
+                          disabled={!selectedCardId || vocabEntries.filter(entry => entry.word.trim()).length === 0}
+                          className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-6"
+                        >
+                          Thêm từ vựng
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Loại từ
-                    </label>
-                    <Select value={newVocabData.partOfSpeech} onValueChange={(value) => setNewVocabData(prev => ({ ...prev, partOfSpeech: value }))}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Chọn loại từ" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="N">Danh từ (N)</SelectItem>
-                        <SelectItem value="V">Động từ (V)</SelectItem>
-                        <SelectItem value="Adj">Tính từ (Adj)</SelectItem>
-                        <SelectItem value="Adv">Trạng từ (Adv)</SelectItem>
-                        <SelectItem value="Phrase">Cụm từ (Phrase)</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="vocab-english" className="block text-sm font-medium text-gray-700 mb-2">
-                      Định nghĩa tiếng Anh
-                    </label>
-                    <Textarea
-                      id="vocab-english"
-                      value={newVocabData.englishDefinition}
-                      onChange={(e) => setNewVocabData(prev => ({ ...prev, englishDefinition: e.target.value }))}
-                      placeholder="English definition"
-                      rows={2}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="vocab-vietnamese" className="block text-sm font-medium text-gray-700 mb-2">
-                      Định nghĩa tiếng Việt
-                    </label>
-                    <Textarea
-                      id="vocab-vietnamese"
-                      value={newVocabData.vietnameseDefinition}
-                      onChange={(e) => setNewVocabData(prev => ({ ...prev, vietnameseDefinition: e.target.value }))}
-                      placeholder="Định nghĩa tiếng Việt"
-                      rows={2}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="vocab-example" className="block text-sm font-medium text-gray-700 mb-2">
-                      Ví dụ
-                    </label>
-                    <Textarea
-                      id="vocab-example"
-                      value={newVocabData.example}
-                      onChange={(e) => setNewVocabData(prev => ({ ...prev, example: e.target.value }))}
-                      placeholder="Câu ví dụ"
-                      rows={2}
-                    />
-                  </div>
-
-                  <div className="flex justify-end pt-2">
-                    <Button 
-                      onClick={handleAddVocab} 
-                      disabled={!selectedCardId || !newVocabData.word.trim() || createVocabMutation.isPending}
-                      className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
-                    >
-                      {createVocabMutation.isPending ? "Đang thêm..." : "Thêm từ vựng"}
-                    </Button>
-                  </div>
-                </div>
+                  </>
+                )}
               </DialogContent>
             </Dialog>
           </div>
