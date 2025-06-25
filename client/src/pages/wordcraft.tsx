@@ -10,7 +10,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, Dialog
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown, ChevronUp, Minus, X } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown, ChevronUp, Minus, X, Check, ChevronsUpDown } from "lucide-react";
 import closeIconPath from "@assets/close_1750834202412.png";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
@@ -26,6 +28,8 @@ export default function Wordcraft() {
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
   const [selectedCardValue, setSelectedCardValue] = useState<string>("");
+  const [isCardSelectOpen, setIsCardSelectOpen] = useState(false);
+  const [searchCardValue, setSearchCardValue] = useState("");
   const [newCardData, setNewCardData] = useState({
     title: "",
     description: "",
@@ -691,6 +695,9 @@ export default function Wordcraft() {
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle>Tạo thẻ từ vựng</DialogTitle>
+              <DialogDescription>
+                Tạo bộ thẻ từ vựng mới với tên, mô tả và chủ đề
+              </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 pt-4">
               <div>
