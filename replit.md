@@ -259,6 +259,7 @@ Changelog:
   - Added shadow effects and smooth transitions for better visual appeal
   - Simplified header to use main website color scheme with single X button
   - Replaced default X icon with custom close icon from user assets
+  - Fixed duplicate close buttons by removing default DialogContent close button
 
 ## User Preferences
 
