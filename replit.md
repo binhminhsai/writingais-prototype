@@ -293,6 +293,8 @@ Changelog:
   - Streamlined layout with cleaner, more focused interface design
   - Updated header navigation to properly link Vocabulary button to /wordcraft route
   - Centered "Thêm từ vựng" title text in vocabulary addition popup dialogs
+  - Fixed React.Children.only error by properly structuring DialogTrigger components
+  - Added proper DialogTitle and DialogDescription components for accessibility compliance
 
 ## User Preferences
 

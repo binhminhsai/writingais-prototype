@@ -328,7 +328,8 @@ export default function WordcraftWords() {
                 >
                   {/* Header - Fixed */}
                   <div className="flex items-center justify-center relative p-4 border-b border-gray-200 bg-white flex-shrink-0 pt-[4px] pb-[4px]">
-                    <h2 className="text-lg font-semibold text-gray-900">Thêm từ vựng</h2>
+                    <DialogTitle className="text-lg font-semibold text-gray-900">Thêm từ vựng</DialogTitle>
+                    <DialogDescription className="sr-only">Thêm từ vựng mới vào bộ thẻ học tập</DialogDescription>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -632,8 +633,6 @@ export default function WordcraftWords() {
                 }
               }}>
                 <DialogTrigger asChild>
-                  <DialogTitle className="sr-only">Thêm từ vựng</DialogTitle>
-                  <DialogDescription className="sr-only">Thêm từ vựng mới vào bộ thẻ học tập</DialogDescription>
                   <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 h-9 text-sm px-3">
                     <Plus className="h-4 w-4 mr-1" />
                     Thêm từ vựng
@@ -651,7 +650,8 @@ export default function WordcraftWords() {
                 >
                   {/* Header - Fixed */}
                   <div className="flex items-center justify-center relative p-4 border-b border-gray-200 bg-white flex-shrink-0">
-                    <h2 className="text-lg font-semibold text-gray-900">Thêm từ vựng</h2>
+                    <DialogTitle className="text-lg font-semibold text-gray-900">Thêm từ vựng</DialogTitle>
+                    <DialogDescription className="sr-only">Thêm từ vựng mới vào bộ thẻ học tập</DialogDescription>
                     <Button
                       variant="ghost"
                       size="sm"
