@@ -266,6 +266,7 @@ Changelog:
   - Updated placeholder text for vocabulary input fields with more descriptive examples
   - Added "Thêm nội dung" label next to accordion expansion button for better user guidance
   - Set card content padding to 0 for minimal spacing as requested
+  - Combined "Thêm nội dung" text and accordion icon into single clickable button for improved usability
 
 ## User Preferences
 

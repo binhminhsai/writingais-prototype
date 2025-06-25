@@ -477,25 +477,23 @@ export default function Wordcraft() {
                                     <label className="block text-xs font-medium text-emerald-700">
                                       Từ vựng <span className="text-red-500">*</span>
                                     </label>
-                                    <div className="flex items-center gap-1">
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="flex items-center gap-1 h-5 px-1 hover:bg-emerald-100 flex-shrink-0"
+                                      onClick={() => toggleVocabExpansion(entry.id)}
+                                    >
                                       <span className="text-xs text-emerald-600">Thêm nội dung</span>
-                                      <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        className="h-5 w-5 p-0 hover:bg-emerald-100 flex-shrink-0"
-                                        onClick={() => toggleVocabExpansion(entry.id)}
-                                      >
-                                        {entry.isExpanded ? (
-                                          <div className="h-3 w-3 bg-emerald-600" style={{
-                                            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
-                                          }}></div>
-                                        ) : (
-                                          <div className="h-3 w-3 bg-emerald-600" style={{
-                                            clipPath: 'polygon(0% 0%, 50% 100%, 100% 0%)'
-                                          }}></div>
-                                        )}
-                                      </Button>
-                                    </div>
+                                      {entry.isExpanded ? (
+                                        <div className="h-3 w-3 bg-emerald-600" style={{
+                                          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
+                                        }}></div>
+                                      ) : (
+                                        <div className="h-3 w-3 bg-emerald-600" style={{
+                                          clipPath: 'polygon(0% 0%, 50% 100%, 100% 0%)'
+                                        }}></div>
+                                      )}
+                                    </Button>
                                   </div>
                                   <Input
                                     value={entry.word}
