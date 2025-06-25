@@ -752,6 +752,19 @@ export default function WordcraftWords() {
                               </Button>
                             </div>
                           ))}
+
+                          {/* Add Word Button */}
+                          <Button
+                            variant="outline"
+                            onClick={addVocabEntry}
+                            className="w-auto flex items-center gap-2 border-dashed border-emerald-300 text-emerald-600 hover:border-emerald-400 hover:text-emerald-700 hover:bg-emerald-50 h-8 text-sm transition-colors mt-2"
+                          >
+                            <Plus className="h-3 w-3" />
+                            Thêm từ
+                          </Button>
+                        </div>
+                      </div>
+
                       {/* Footer - Fixed */}
                       <div className="border-t border-emerald-200 p-3 flex-shrink-0 bg-gradient-to-r from-emerald-50 to-teal-50">
                         <div className="flex items-end justify-between">
@@ -822,22 +835,6 @@ export default function WordcraftWords() {
                               </PopoverContent>
                             </Popover>
                           </div>
-
-                          {/* Word Count - Center */}
-                          <div className="text-xs text-emerald-700 font-medium self-end pb-1">
-                            Số từ: {vocabEntries.filter(entry => entry.word.trim()).length} từ
-                          </div>
-
-                          {/* Submit Button - Right */}
-                          <Button 
-                            onClick={handleAddVocab}
-                            disabled={vocabEntries.filter(entry => entry.word.trim()).length === 0}
-                            className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-4 h-8 text-sm shadow-md hover:shadow-lg transition-all duration-200"
-                          >
-                            Thêm từ vựng
-                          </Button>
-                        </div>
-                      </div>
 
                           {/* Word Count - Center */}
                           <div className="text-xs text-emerald-700 font-medium self-end pb-1">

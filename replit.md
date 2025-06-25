@@ -296,6 +296,8 @@ Changelog:
   - Fixed React.Children.only error by properly structuring DialogTrigger components
   - Added proper DialogTitle and DialogDescription components for accessibility compliance
   - Updated "Học" button to navigate to detail view with ?view=detail parameter for direct learning mode access
+  - Fixed syntax errors in vocabulary addition popup by repairing malformed JSX structure
+  - Cleaned up duplicated code and standardized popup functionality across both main and detail views
 
 ## User Preferences
 
