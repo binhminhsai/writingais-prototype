@@ -260,6 +260,8 @@ Changelog:
   - Simplified header to use main website color scheme with single X button
   - Replaced default X icon with custom close icon from user assets
   - Fixed duplicate close buttons by removing default DialogContent close button
+  - Fixed Select component display issues: now properly shows selected values including "Bộ thẻ mới" option
+  - Added form reset functionality to clear all fields when popup opens
 
 ## User Preferences
 

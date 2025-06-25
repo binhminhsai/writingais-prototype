@@ -25,6 +25,7 @@ export default function Wordcraft() {
   const [newTopicName, setNewTopicName] = useState("");
   const [isAddCardOpen, setIsAddCardOpen] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
+  const [selectedCardValue, setSelectedCardValue] = useState<string>("");
   const [newCardData, setNewCardData] = useState({
     title: "",
     description: "",
@@ -180,6 +181,19 @@ export default function Wordcraft() {
     }
   };
 
+  const resetVocabForm = () => {
+    setSelectedCardId(null);
+    setSelectedCardValue("");
+    setVocabEntries([{
+      id: 1,
+      word: "",
+      content: "",
+      isExpanded: false
+    }]);
+    setIsVocabLoading(false);
+    setLoadingProgress(0);
+  };
+
   const addVocabEntry = () => {
     const newId = Math.max(...vocabEntries.map(entry => entry.id)) + 1;
     setVocabEntries(prev => [...prev, {
@@ -209,7 +223,7 @@ export default function Wordcraft() {
   };
 
   const handleAddVocab = async () => {
-    if (!selectedCardId) {
+    if (!selectedCardValue) {
       toast({
         title: "Lỗi!",
         description: "Vui lòng chọn bộ thẻ.",
@@ -403,9 +417,8 @@ export default function Wordcraft() {
             <Dialog open={isAddVocabOpen} onOpenChange={(open) => {
               if (!isVocabLoading) {
                 setIsAddVocabOpen(open);
-                if (!open) {
-                  setVocabEntries([{ id: 1, word: "", content: "", isExpanded: false }]);
-                  setSelectedCardId(null);
+                if (open) {
+                  resetVocabForm();
                 }
               }
             }}>
@@ -540,8 +553,9 @@ export default function Wordcraft() {
                             Bộ thẻ <span className="text-red-500">*</span>
                           </label>
                           <Select 
-                            value={selectedCardId?.toString() || ""} 
+                            value={selectedCardValue} 
                             onValueChange={(value) => {
+                              setSelectedCardValue(value);
                               if (value === "new") {
                                 setSelectedCardId(null);
                               } else {
@@ -571,7 +585,7 @@ export default function Wordcraft() {
                         {/* Submit Button - Right */}
                         <Button 
                           onClick={handleAddVocab}
-                          disabled={!selectedCardId || vocabEntries.filter(entry => entry.word.trim()).length === 0}
+                          disabled={!selectedCardValue || vocabEntries.filter(entry => entry.word.trim()).length === 0}
                           className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-4 h-8 text-sm shadow-md hover:shadow-lg transition-all duration-200"
                         >
                           Thêm từ vựng
