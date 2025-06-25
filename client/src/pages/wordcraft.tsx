@@ -188,6 +188,7 @@ export default function Wordcraft() {
   const resetVocabForm = () => {
     setSelectedCardId(null);
     setSelectedCardValue("");
+    setSearchCardValue("");
     setVocabEntries([{
       id: 1,
       word: "",
@@ -197,6 +198,21 @@ export default function Wordcraft() {
     setIsVocabLoading(false);
     setLoadingProgress(0);
   };
+
+  const getSelectedCardLabel = () => {
+    if (!selectedCardValue) return "Chưa chọn bộ thẻ";
+    if (selectedCardValue === "new") return "Bộ thẻ mới";
+    const selectedCard = cards.find(card => card.id.toString() === selectedCardValue);
+    if (!selectedCard) return "Chưa chọn bộ thẻ";
+    // Truncate long titles with ellipsis
+    return selectedCard.title.length > 25 
+      ? `${selectedCard.title.substring(0, 25)}...` 
+      : selectedCard.title;
+  };
+
+  const filteredCardsForSelect = cards.filter(card =>
+    card.title.toLowerCase().includes(searchCardValue.toLowerCase())
+  );
 
   const addVocabEntry = () => {
     const newId = Math.max(...vocabEntries.map(entry => entry.id)) + 1;
@@ -557,29 +573,73 @@ export default function Wordcraft() {
                           <label className="block text-xs font-medium text-emerald-700 mb-1">
                             Bộ thẻ <span className="text-red-500">*</span>
                           </label>
-                          <Select 
-                            value={selectedCardValue} 
-                            onValueChange={(value) => {
-                              setSelectedCardValue(value);
-                              if (value === "new") {
-                                setSelectedCardId(null);
-                              } else {
-                                setSelectedCardId(Number(value));
-                              }
-                            }}
-                          >
-                            <SelectTrigger className="w-56 h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300">
-                              <SelectValue placeholder="Chưa chọn bộ thẻ" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="new">Bộ thẻ mới</SelectItem>
-                              {cards.map((card) => (
-                                <SelectItem key={card.id} value={card.id.toString()}>
-                                  {card.title}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <Popover open={isCardSelectOpen} onOpenChange={setIsCardSelectOpen}>
+                            <PopoverTrigger asChild>
+                              <Button
+                                variant="outline"
+                                role="combobox"
+                                aria-expanded={isCardSelectOpen}
+                                className="w-56 justify-between h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
+                              >
+                                <span className="truncate">{getSelectedCardLabel()}</span>
+                                <ChevronsUpDown className="ml-2 h-3 w-3 shrink-0 opacity-50" />
+                              </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-56 p-0">
+                              <Command>
+                                <CommandInput 
+                                  placeholder="Tìm bộ thẻ..." 
+                                  value={searchCardValue}
+                                  onValueChange={setSearchCardValue}
+                                  className="h-8 text-sm"
+                                />
+                                <CommandList>
+                                  <CommandEmpty>Không tìm thấy bộ thẻ.</CommandEmpty>
+                                  <CommandGroup>
+                                    <CommandItem
+                                      value="new"
+                                      onSelect={() => {
+                                        setSelectedCardValue("new");
+                                        setSelectedCardId(null);
+                                        setIsCardSelectOpen(false);
+                                      }}
+                                      className="text-sm"
+                                    >
+                                      <Check
+                                        className={`mr-2 h-3 w-3 ${
+                                          selectedCardValue === "new" ? "opacity-100" : "opacity-0"
+                                        }`}
+                                      />
+                                      Bộ thẻ mới
+                                    </CommandItem>
+                                    {filteredCardsForSelect.map((card) => (
+                                      <CommandItem
+                                        key={card.id}
+                                        value={card.id.toString()}
+                                        onSelect={(currentValue) => {
+                                          setSelectedCardValue(currentValue);
+                                          setSelectedCardId(Number(currentValue));
+                                          setIsCardSelectOpen(false);
+                                        }}
+                                        className="text-sm"
+                                      >
+                                        <Check
+                                          className={`mr-2 h-3 w-3 ${
+                                            selectedCardValue === card.id.toString() ? "opacity-100" : "opacity-0"
+                                          }`}
+                                        />
+                                        <span className="truncate">
+                                          {card.title.length > 35 
+                                            ? `${card.title.substring(0, 35)}...` 
+                                            : card.title}
+                                        </span>
+                                      </CommandItem>
+                                    ))}
+                                  </CommandGroup>
+                                </CommandList>
+                              </Command>
+                            </PopoverContent>
+                          </Popover>
                         </div>
 
                         {/* Word Count - Center */}
