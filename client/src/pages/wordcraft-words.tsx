@@ -451,67 +451,13 @@ export default function WordcraftWords() {
                             <label className="block text-xs font-medium text-emerald-700 mb-1">
                               Bộ thẻ <span className="text-red-500">*</span>
                             </label>
-                            <Popover open={isCardSelectOpen} onOpenChange={setIsCardSelectOpen}>
-                              <PopoverTrigger asChild>
-                                <Button
-                                  variant="outline"
-                                  role="combobox"
-                                  aria-expanded={isCardSelectOpen}
-                                  className="w-[200px] justify-between h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
-                                >
-                                  {getSelectedCardLabel()}
-                                  <ChevronsUpDown className="ml-2 h-3 w-3 shrink-0 opacity-50" />
-                                </Button>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-[200px] p-0">
-                                <Command>
-                                  <CommandInput 
-                                    placeholder="Tìm bộ thẻ..." 
-                                    value={searchCardValue}
-                                    onValueChange={setSearchCardValue}
-                                    className="h-8 text-sm"
-                                  />
-                                  <CommandList>
-                                    <CommandEmpty>Không tìm thấy bộ thẻ.</CommandEmpty>
-                                    <CommandGroup>
-                                      <CommandItem
-                                        value="new"
-                                        onSelect={() => {
-                                          setSelectedCardValue("new");
-                                          setIsCardSelectOpen(false);
-                                        }}
-                                        className="text-sm"
-                                      >
-                                        <Check
-                                          className={`mr-2 h-3 w-3 ${
-                                            selectedCardValue === "new" ? "opacity-100" : "opacity-0"
-                                          }`}
-                                        />
-                                        Bộ thẻ mới
-                                      </CommandItem>
-                                      {filteredCards.map((card) => (
-                                        <CommandItem
-                                          key={card.id}
-                                          value={card.id.toString()}
-                                          onSelect={(currentValue) => {
-                                            setSelectedCardValue(currentValue);
-                                            setIsCardSelectOpen(false);
-                                          }}
-                                          className="text-sm"
-                                        >
-                                          <Check
-                                            className={`mr-2 h-3 w-3 ${
-                                              selectedCardValue === card.id.toString() ? "opacity-100" : "opacity-0"
-                                            }`}
-                                          />
-                                          {card.title}
-                                        </CommandItem>
-                                      ))}
-                                    </CommandGroup>
-                                  </CommandList>
-                                </Command>
-                              </PopoverContent>
-                            </Popover>
+                            <Button
+                              variant="outline"
+                              disabled
+                              className="w-[200px] justify-start h-8 text-sm border-emerald-200 bg-emerald-50 text-emerald-700 cursor-not-allowed opacity-75"
+                            >
+                              {card?.title || "Đang tải..."}
+                            </Button>
                           </div>
 
                           {/* Word Count - Center */}
