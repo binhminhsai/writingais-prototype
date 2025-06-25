@@ -33,6 +33,9 @@ export default function WordcraftWords() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("definition");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [selectedCardValue, setSelectedCardValue] = useState<string>("");
+  const [searchCardValue, setSearchCardValue] = useState<string>("");
+  const [isCardSelectOpen, setIsCardSelectOpen] = useState<boolean>(false);
   
   // Vocabulary entries for accordion-style popup
   const [vocabEntries, setVocabEntries] = useState([
@@ -70,7 +73,20 @@ export default function WordcraftWords() {
 
   const resetForm = () => {
     resetVocabForm();
+    setSelectedCardValue("");
+    setSearchCardValue("");
   };
+
+  const getSelectedCardLabel = () => {
+    if (!selectedCardValue) return "Chưa chọn bộ thẻ";
+    if (selectedCardValue === "new") return "Bộ thẻ mới";
+    const selectedCard = allCards.find(card => card.id.toString() === selectedCardValue);
+    return selectedCard ? selectedCard.title : "Chưa chọn bộ thẻ";
+  };
+
+  const filteredCards = allCards.filter(card =>
+    card.title.toLowerCase().includes(searchCardValue.toLowerCase())
+  );
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
     queryKey: [`/api/vocabulary-cards/${cardId}`],
@@ -126,6 +142,11 @@ export default function WordcraftWords() {
   const { data: words = [], isLoading: wordsLoading } = useQuery<VocabularyWord[]>({
     queryKey: [`/api/vocabulary-cards/${cardId}/words`],
     enabled: !!cardId,
+  });
+
+  // Query for all vocabulary cards for the dropdown
+  const { data: allCards = [] } = useQuery<VocabularyCard[]>({
+    queryKey: ["/api/vocabulary-cards"],
   });
 
   const filteredWords = words.filter(word =>
@@ -288,6 +309,8 @@ export default function WordcraftWords() {
                 <DialogTrigger asChild>
                   <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 h-9 text-sm px-3">
                     <Plus className="h-4 w-4 mr-1" />
+                  <DialogTitle className="sr-only">Thêm từ vựng</DialogTitle>
+                  <DialogDescription className="sr-only">Thêm từ vựng mới vào bộ thẻ học tập</DialogDescription>
                     Thêm từ vựng
                   </Button>
                 </DialogTrigger>
@@ -539,6 +562,8 @@ export default function WordcraftWords() {
                 }
               }}>
                 <DialogTrigger asChild>
+                  <DialogTitle className="sr-only">Thêm từ vựng</DialogTitle>
+                  <DialogDescription className="sr-only">Thêm từ vựng mới vào bộ thẻ học tập</DialogDescription>
                   <Button size="sm" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 h-9 text-sm px-3">
                     <Plus className="h-4 w-4 mr-1" />
                     Thêm từ vựng

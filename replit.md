@@ -274,6 +274,14 @@ Changelog:
   - Integrated loading states with progress indicators and non-dismissible popup behavior
   - Updated API integration to handle multiple vocabulary entries simultaneously
   - Maintained all existing functionality while improving user experience consistency
+- June 25, 2025. Enhanced card info bar and improved card selection functionality:
+  - Redesigned card info bar with comprehensive information display: card name with star bookmark, description, topic badge, word count, and study count
+  - Added blue gradient background with improved visual hierarchy and proper spacing
+  - Fixed Dialog accessibility warnings by adding DialogTitle and DialogDescription components
+  - Implemented searchable combobox for card selection with Command component
+  - Added real-time search functionality to filter vocabulary cards by title
+  - Enhanced dropdown to properly display selected values including "Bộ thẻ mới" option
+  - Improved user experience with keyboard navigation and clear visual feedback
 
 ## User Preferences
 
