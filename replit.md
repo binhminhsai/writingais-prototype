@@ -258,6 +258,7 @@ Changelog:
   - Improved footer styling with matching color scheme and enhanced button designs
   - Added shadow effects and smooth transitions for better visual appeal
   - Simplified header to use main website color scheme with single X button
+  - Replaced default X icon with custom close icon from user assets
 
 ## User Preferences
 

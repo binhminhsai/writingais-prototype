@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Plus, BookOpen, Users, Star, Filter, ChevronDown, ChevronUp, Minus, X } from "lucide-react";
+import closeIconPath from "@assets/close_1750834202412.png";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { VocabularyCard, InsertVocabularyCard, InsertVocabularyWord } from "@shared/schema";
@@ -440,7 +441,7 @@ export default function Wordcraft() {
                           className="absolute right-0 h-6 w-6 p-0 hover:bg-gray-100 rounded-full"
                           onClick={() => setIsAddVocabOpen(false)}
                         >
-                          <X className="h-4 w-4 text-black" />
+                          <img src={closeIconPath} alt="Close" className="h-4 w-4" />
                         </Button>
                       </div>
                     </DialogHeader>
