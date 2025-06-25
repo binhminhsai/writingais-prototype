@@ -262,6 +262,7 @@ Changelog:
   - Fixed duplicate close buttons by removing default DialogContent close button
   - Fixed Select component display issues: now properly shows selected values including "Bộ thẻ mới" option
   - Added form reset functionality to clear all fields when popup opens
+  - Improved spacing and layout for vocabulary entry cards with better padding and margin structure
 
 ## User Preferences
 

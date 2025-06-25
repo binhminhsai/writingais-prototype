@@ -471,9 +471,9 @@ export default function Wordcraft() {
                             {/* Card content */}
                             <div className="flex-1 border border-emerald-200 rounded-lg bg-gradient-to-r from-emerald-50 to-teal-50">
                               {/* Entry Header */}
-                              <div className="flex items-start gap-2 p-2 pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
+                              <div className="p-3">
                                 <div className="flex-1">
-                                  <div className="flex items-center justify-between mb-1">
+                                  <div className="flex items-center justify-between mb-2">
                                     <label className="block text-xs font-medium text-emerald-700">
                                       Từ vựng <span className="text-red-500">*</span>
                                     </label>
@@ -501,23 +501,23 @@ export default function Wordcraft() {
                                     className="bg-white h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
                                   />
                                 </div>
-                              </div>
 
-                              {/* Expanded Content */}
-                              {entry.isExpanded && (
-                                <div className="px-2 pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
-                                  <label className="block text-xs font-medium text-emerald-700 mb-1">
-                                    Nội dung
-                                  </label>
-                                  <Textarea
-                                    value={entry.content}
-                                    onChange={(e) => updateVocabEntry(entry.id, "content", e.target.value)}
-                                    placeholder="Nhập định nghĩa và ví dụ..."
-                                    rows={3}
-                                    className="bg-white text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
-                                  />
-                                </div>
-                              )}
+                                {/* Expanded Content */}
+                                {entry.isExpanded && (
+                                  <div className="mt-3">
+                                    <label className="block text-xs font-medium text-emerald-700 mb-2">
+                                      Nội dung
+                                    </label>
+                                    <Textarea
+                                      value={entry.content}
+                                      onChange={(e) => updateVocabEntry(entry.id, "content", e.target.value)}
+                                      placeholder="Nhập định nghĩa và ví dụ..."
+                                      rows={3}
+                                      className="bg-white text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
+                                    />
+                                  </div>
+                                )}
+                              </div>
                             </div>
 
                             {/* Delete button outside card - right */}
