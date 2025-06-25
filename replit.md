@@ -263,6 +263,9 @@ Changelog:
   - Fixed Select component display issues: now properly shows selected values including "Bộ thẻ mới" option
   - Added form reset functionality to clear all fields when popup opens
   - Improved spacing and layout for vocabulary entry cards with better padding and margin structure
+  - Updated placeholder text for vocabulary input fields with more descriptive examples
+  - Added "Thêm nội dung" label next to accordion expansion button for better user guidance
+  - Set card content padding to 0 for minimal spacing as requested
 
 ## User Preferences
 

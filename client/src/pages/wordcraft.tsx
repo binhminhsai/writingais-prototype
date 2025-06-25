@@ -471,33 +471,36 @@ export default function Wordcraft() {
                             {/* Card content */}
                             <div className="flex-1 border border-emerald-200 rounded-lg bg-gradient-to-r from-emerald-50 to-teal-50">
                               {/* Entry Header */}
-                              <div className="p-3 pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
+                              <div className="p-0">
                                 <div className="flex-1">
                                   <div className="flex items-center justify-between mb-2">
                                     <label className="block text-xs font-medium text-emerald-700">
                                       Từ vựng <span className="text-red-500">*</span>
                                     </label>
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      className="h-5 w-5 p-0 hover:bg-emerald-100 flex-shrink-0"
-                                      onClick={() => toggleVocabExpansion(entry.id)}
-                                    >
-                                      {entry.isExpanded ? (
-                                        <div className="h-3 w-3 bg-emerald-600" style={{
-                                          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
-                                        }}></div>
-                                      ) : (
-                                        <div className="h-3 w-3 bg-emerald-600" style={{
-                                          clipPath: 'polygon(0% 0%, 50% 100%, 100% 0%)'
-                                        }}></div>
-                                      )}
-                                    </Button>
+                                    <div className="flex items-center gap-1">
+                                      <span className="text-xs text-emerald-600">Thêm nội dung</span>
+                                      <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className="h-5 w-5 p-0 hover:bg-emerald-100 flex-shrink-0"
+                                        onClick={() => toggleVocabExpansion(entry.id)}
+                                      >
+                                        {entry.isExpanded ? (
+                                          <div className="h-3 w-3 bg-emerald-600" style={{
+                                            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
+                                          }}></div>
+                                        ) : (
+                                          <div className="h-3 w-3 bg-emerald-600" style={{
+                                            clipPath: 'polygon(0% 0%, 50% 100%, 100% 0%)'
+                                          }}></div>
+                                        )}
+                                      </Button>
+                                    </div>
                                   </div>
                                   <Input
                                     value={entry.word}
                                     onChange={(e) => updateVocabEntry(entry.id, "word", e.target.value)}
-                                    placeholder="illuminate"
+                                    placeholder="Nhập từ vựng ở đây (Ví dụ: illuminate)"
                                     className="bg-white h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
                                   />
                                 </div>
@@ -511,7 +514,7 @@ export default function Wordcraft() {
                                     <Textarea
                                       value={entry.content}
                                       onChange={(e) => updateVocabEntry(entry.id, "content", e.target.value)}
-                                      placeholder="Nhập định nghĩa và ví dụ..."
+                                      placeholder="Nhập nội dung liên quan đến từ vựng ở đây như định nghĩa, ví dụ,...."
                                       rows={3}
                                       className="bg-white text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
                                     />
