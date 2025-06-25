@@ -243,6 +243,13 @@ Changelog:
   - Repositioned word count next to card selection dropdown for better layout flow
   - Moved submit button to bottom-right corner of footer section
   - Enhanced minus button positioning outside card boundaries with circular styling
+- June 25, 2025. Restructured popup layout according to detailed specifications:
+  - Moved sequence numbers outside cards to the left with proper spacing
+  - Repositioned red delete buttons outside cards to the right with red background
+  - Replaced accordion icons with custom CSS triangle shapes using clip-path
+  - Updated validation: "Từ vựng" remains required, "Nội dung" made optional
+  - Restructured footer with three-column layout: card selection (left), word count (center), submit button (right)
+  - Implemented proper scroll behavior with fixed header/footer and scrollable content area
 
 ## User Preferences
 

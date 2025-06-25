@@ -415,7 +415,7 @@ export default function Wordcraft() {
                   Thêm từ vựng
                 </Button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-hidden" onPointerDownOutside={(e) => e.preventDefault()}>
+              <DialogContent className="sm:max-w-4xl max-h-[90vh] flex flex-col" onPointerDownOutside={(e) => e.preventDefault()}>
                 {isVocabLoading ? (
                   // Loading State
                   <div className="flex flex-col items-center justify-center p-8 space-y-4">
@@ -446,65 +446,76 @@ export default function Wordcraft() {
                       </div>
                     </DialogHeader>
 
-                    <div className="flex-1 overflow-y-auto p-3 space-y-2">
+                    <div className="flex-1 overflow-y-auto p-3 space-y-2 min-h-0">
                       {/* Vocabulary Entry Cards */}
                       <div className="space-y-2">
                         {vocabEntries.map((entry, index) => (
-                          <div key={entry.id} className="border border-gray-200 rounded-lg bg-gray-50">
-                            {/* Entry Header */}
-                            <div className="flex items-center gap-2 p-2 relative">
-                              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-100 text-blue-800 text-xs font-medium">
-                                {index + 1}
-                              </span>
-                              <div className="flex-1">
-                                <label className="block text-xs font-medium text-gray-700 mb-1">
-                                  Từ vựng {index === 0 ? <span className="text-red-500">*</span> : ""}
-                                </label>
-                                <Input
-                                  value={entry.word}
-                                  onChange={(e) => updateVocabEntry(entry.id, "word", e.target.value)}
-                                  placeholder="illuminate"
-                                  className="bg-white h-8 text-sm"
-                                />
+                          <div key={entry.id} className="flex items-start gap-2 relative">
+                            {/* Number outside card - left */}
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-medium mt-2 flex-shrink-0">
+                              {index + 1}
+                            </span>
+                            
+                            {/* Card content */}
+                            <div className="flex-1 border border-gray-200 rounded-lg bg-gray-50">
+                              {/* Entry Header */}
+                              <div className="flex items-center gap-2 p-2">
+                                <div className="flex-1">
+                                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                                    Từ vựng <span className="text-red-500">*</span>
+                                  </label>
+                                  <Input
+                                    value={entry.word}
+                                    onChange={(e) => updateVocabEntry(entry.id, "word", e.target.value)}
+                                    placeholder="illuminate"
+                                    className="bg-white h-8 text-sm"
+                                  />
+                                </div>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-6 w-6 p-0 hover:bg-gray-200 flex-shrink-0"
+                                  onClick={() => toggleVocabExpansion(entry.id)}
+                                >
+                                  {entry.isExpanded ? (
+                                    <div className="h-3 w-3 bg-black" style={{
+                                      clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
+                                    }}></div>
+                                  ) : (
+                                    <div className="h-3 w-3 bg-black" style={{
+                                      clipPath: 'polygon(0% 0%, 50% 100%, 100% 0%)'
+                                    }}></div>
+                                  )}
+                                </Button>
                               </div>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="h-6 w-6 p-0 hover:bg-gray-200"
-                                onClick={() => toggleVocabExpansion(entry.id)}
-                              >
-                                {entry.isExpanded ? (
-                                  <ChevronUp className="h-3 w-3" />
-                                ) : (
-                                  <ChevronDown className="h-3 w-3" />
-                                )}
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="absolute -right-2 -top-1 h-5 w-5 p-0 bg-white border border-gray-300 rounded-full hover:bg-red-50 hover:text-red-600 hover:border-red-300"
-                                onClick={() => removeVocabEntry(entry.id)}
-                                disabled={vocabEntries.length === 1}
-                              >
-                                <Minus className="h-3 w-3" />
-                              </Button>
+
+                              {/* Expanded Content */}
+                              {entry.isExpanded && (
+                                <div className="px-2 pb-2">
+                                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                                    Nội dung
+                                  </label>
+                                  <Textarea
+                                    value={entry.content}
+                                    onChange={(e) => updateVocabEntry(entry.id, "content", e.target.value)}
+                                    placeholder="Nhập định nghĩa và ví dụ..."
+                                    rows={3}
+                                    className="bg-white text-sm"
+                                  />
+                                </div>
+                              )}
                             </div>
 
-                            {/* Expanded Content */}
-                            {entry.isExpanded && (
-                              <div className="px-2 pb-2">
-                                <label className="block text-xs font-medium text-gray-700 mb-1">
-                                  Nội dung <span className="text-red-500">*</span>
-                                </label>
-                                <Textarea
-                                  value={entry.content}
-                                  onChange={(e) => updateVocabEntry(entry.id, "content", e.target.value)}
-                                  placeholder="Nhập định nghĩa và ví dụ..."
-                                  rows={3}
-                                  className="bg-white text-sm"
-                                />
-                              </div>
-                            )}
+                            {/* Delete button outside card - right */}
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-6 w-6 p-0 bg-red-500 hover:bg-red-600 text-white rounded-full mt-2 flex-shrink-0"
+                              onClick={() => removeVocabEntry(entry.id)}
+                              disabled={vocabEntries.length === 1}
+                            >
+                              <Minus className="h-3 w-3" />
+                            </Button>
                           </div>
                         ))}
                       </div>
@@ -520,44 +531,44 @@ export default function Wordcraft() {
                       </Button>
                     </div>
 
-                    {/* Footer */}
-                    <div className="border-t border-gray-200 p-3">
+                    {/* Footer - Fixed */}
+                    <div className="border-t border-gray-200 p-3 flex-shrink-0">
                       <div className="flex items-end justify-between">
-                        {/* Card Selection with Word Count */}
-                        <div className="flex items-center gap-3">
-                          <div>
-                            <label className="block text-xs font-medium text-gray-700 mb-1">
-                              Bộ thẻ <span className="text-red-500">*</span>
-                            </label>
-                            <Select 
-                              value={selectedCardId?.toString() || ""} 
-                              onValueChange={(value) => {
-                                if (value === "new") {
-                                  setSelectedCardId(null);
-                                } else {
-                                  setSelectedCardId(Number(value));
-                                }
-                              }}
-                            >
-                              <SelectTrigger className="w-56 h-8 text-sm">
-                                <SelectValue placeholder="Chưa chọn bộ thẻ" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="new">Bộ thẻ mới</SelectItem>
-                                {cards.map((card) => (
-                                  <SelectItem key={card.id} value={card.id.toString()}>
-                                    {card.title}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="text-xs text-gray-600 self-center">
-                            Số từ: {vocabEntries.filter(entry => entry.word.trim()).length} từ
-                          </div>
+                        {/* Card Selection - Left */}
+                        <div>
+                          <label className="block text-xs font-medium text-gray-700 mb-1">
+                            Bộ thẻ <span className="text-red-500">*</span>
+                          </label>
+                          <Select 
+                            value={selectedCardId?.toString() || ""} 
+                            onValueChange={(value) => {
+                              if (value === "new") {
+                                setSelectedCardId(null);
+                              } else {
+                                setSelectedCardId(Number(value));
+                              }
+                            }}
+                          >
+                            <SelectTrigger className="w-56 h-8 text-sm">
+                              <SelectValue placeholder="Chưa chọn bộ thẻ" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="new">Bộ thẻ mới</SelectItem>
+                              {cards.map((card) => (
+                                <SelectItem key={card.id} value={card.id.toString()}>
+                                  {card.title}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                         </div>
 
-                        {/* Submit Button */}
+                        {/* Word Count - Center */}
+                        <div className="text-xs text-gray-600 self-end pb-1">
+                          Số từ: {vocabEntries.filter(entry => entry.word.trim()).length} từ
+                        </div>
+
+                        {/* Submit Button - Right */}
                         <Button 
                           onClick={handleAddVocab}
                           disabled={!selectedCardId || vocabEntries.filter(entry => entry.word.trim()).length === 0}
