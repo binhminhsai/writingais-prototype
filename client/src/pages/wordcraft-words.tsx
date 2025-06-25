@@ -649,7 +649,7 @@ export default function WordcraftWords() {
                   }}
                 >
                   {/* Header - Fixed */}
-                  <div className="flex items-center justify-center relative p-4 border-b border-gray-200 bg-white flex-shrink-0">
+                  <div className="flex items-center justify-center relative p-4 border-b border-gray-200 bg-white flex-shrink-0 pt-[3.2px] pb-[3.2px] pl-[14.2px] pr-[14.2px]">
                     <DialogTitle className="text-lg font-semibold text-gray-900">Thêm từ vựng</DialogTitle>
                     <DialogDescription className="sr-only">Thêm từ vựng mới vào bộ thẻ học tập</DialogDescription>
                     <Button
