@@ -405,7 +405,7 @@ export default function WordcraftWords() {
                           </Button>
                         </div>
                       </div>
-                    </>)
+                    </>
                   )}
                 </DialogContent>
               </Dialog>
@@ -658,7 +658,7 @@ export default function WordcraftWords() {
                           </Button>
                         </div>
                       </div>
-                    </>)
+                    </>
                   )}
                 </DialogContent>
               </Dialog>
