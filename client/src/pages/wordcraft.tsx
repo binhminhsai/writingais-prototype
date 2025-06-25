@@ -471,7 +471,7 @@ export default function Wordcraft() {
                             {/* Card content */}
                             <div className="flex-1 border border-emerald-200 rounded-lg bg-gradient-to-r from-emerald-50 to-teal-50">
                               {/* Entry Header */}
-                              <div className="p-3">
+                              <div className="p-3 pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
                                 <div className="flex-1">
                                   <div className="flex items-center justify-between mb-2">
                                     <label className="block text-xs font-medium text-emerald-700">
