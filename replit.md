@@ -250,6 +250,13 @@ Changelog:
   - Updated validation: "Từ vựng" remains required, "Nội dung" made optional
   - Restructured footer with three-column layout: card selection (left), word count (center), submit button (right)
   - Implemented proper scroll behavior with fixed header/footer and scrollable content area
+- June 25, 2025. Enhanced popup UI design and button alignment:
+  - Aligned accordion button with "Từ vựng" label instead of textbox for consistent input widths
+  - Applied comprehensive emerald/teal color scheme throughout popup interface
+  - Enhanced header with gradient background and emerald-themed styling
+  - Updated card backgrounds with subtle emerald-50 to teal-50 gradients
+  - Improved footer styling with matching color scheme and enhanced button designs
+  - Added shadow effects and smooth transitions for better visual appeal
 
 ## User Preferences
 

@@ -429,19 +429,19 @@ export default function Wordcraft() {
                 ) : (
                   // Main Content
                   <>
-                    <DialogHeader className="border-b border-gray-200 pb-2">
+                    <DialogHeader className="border-b border-emerald-200 pb-2 bg-gradient-to-r from-emerald-100 to-teal-100">
                       <div className="flex items-center justify-center relative">
-                        <DialogTitle className="text-lg font-semibold text-gray-900">Thêm từ vựng</DialogTitle>
+                        <DialogTitle className="text-lg font-semibold text-emerald-800">Thêm từ vựng</DialogTitle>
                         <DialogDescription className="sr-only">
                           Thêm từ vựng mới vào bộ thẻ học tập
                         </DialogDescription>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="absolute right-0 h-6 w-6 p-0 hover:bg-gray-100"
+                          className="absolute right-0 h-6 w-6 p-0 hover:bg-emerald-200 rounded-full"
                           onClick={() => setIsAddVocabOpen(false)}
                         >
-                          <X className="h-4 w-4 text-black" />
+                          <X className="h-4 w-4 text-emerald-800" />
                         </Button>
                       </div>
                     </DialogHeader>
@@ -452,47 +452,49 @@ export default function Wordcraft() {
                         {vocabEntries.map((entry, index) => (
                           <div key={entry.id} className="flex items-start gap-2 relative">
                             {/* Number outside card - left */}
-                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-medium mt-2 flex-shrink-0">
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-medium mt-2 flex-shrink-0 shadow-sm">
                               {index + 1}
                             </span>
                             
                             {/* Card content */}
-                            <div className="flex-1 border border-gray-200 rounded-lg bg-gray-50">
+                            <div className="flex-1 border border-emerald-200 rounded-lg bg-gradient-to-r from-emerald-50 to-teal-50">
                               {/* Entry Header */}
-                              <div className="flex items-center gap-2 p-2">
+                              <div className="flex items-start gap-2 p-2">
                                 <div className="flex-1">
-                                  <label className="block text-xs font-medium text-gray-700 mb-1">
-                                    Từ vựng <span className="text-red-500">*</span>
-                                  </label>
+                                  <div className="flex items-center justify-between mb-1">
+                                    <label className="block text-xs font-medium text-emerald-700">
+                                      Từ vựng <span className="text-red-500">*</span>
+                                    </label>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="h-5 w-5 p-0 hover:bg-emerald-100 flex-shrink-0"
+                                      onClick={() => toggleVocabExpansion(entry.id)}
+                                    >
+                                      {entry.isExpanded ? (
+                                        <div className="h-3 w-3 bg-emerald-600" style={{
+                                          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
+                                        }}></div>
+                                      ) : (
+                                        <div className="h-3 w-3 bg-emerald-600" style={{
+                                          clipPath: 'polygon(0% 0%, 50% 100%, 100% 0%)'
+                                        }}></div>
+                                      )}
+                                    </Button>
+                                  </div>
                                   <Input
                                     value={entry.word}
                                     onChange={(e) => updateVocabEntry(entry.id, "word", e.target.value)}
                                     placeholder="illuminate"
-                                    className="bg-white h-8 text-sm"
+                                    className="bg-white h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
                                   />
                                 </div>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="h-6 w-6 p-0 hover:bg-gray-200 flex-shrink-0"
-                                  onClick={() => toggleVocabExpansion(entry.id)}
-                                >
-                                  {entry.isExpanded ? (
-                                    <div className="h-3 w-3 bg-black" style={{
-                                      clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'
-                                    }}></div>
-                                  ) : (
-                                    <div className="h-3 w-3 bg-black" style={{
-                                      clipPath: 'polygon(0% 0%, 50% 100%, 100% 0%)'
-                                    }}></div>
-                                  )}
-                                </Button>
                               </div>
 
                               {/* Expanded Content */}
                               {entry.isExpanded && (
                                 <div className="px-2 pb-2">
-                                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                                  <label className="block text-xs font-medium text-emerald-700 mb-1">
                                     Nội dung
                                   </label>
                                   <Textarea
@@ -500,7 +502,7 @@ export default function Wordcraft() {
                                     onChange={(e) => updateVocabEntry(entry.id, "content", e.target.value)}
                                     placeholder="Nhập định nghĩa và ví dụ..."
                                     rows={3}
-                                    className="bg-white text-sm"
+                                    className="bg-white text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300"
                                   />
                                 </div>
                               )}
@@ -524,7 +526,7 @@ export default function Wordcraft() {
                       <Button
                         variant="outline"
                         onClick={addVocabEntry}
-                        className="w-auto flex items-center gap-2 border-dashed border-gray-300 text-gray-600 hover:border-gray-400 hover:text-gray-700 h-8 text-sm"
+                        className="w-auto flex items-center gap-2 border-dashed border-emerald-300 text-emerald-600 hover:border-emerald-400 hover:text-emerald-700 hover:bg-emerald-50 h-8 text-sm transition-colors"
                       >
                         <Plus className="h-3 w-3" />
                         Thêm từ
@@ -532,11 +534,11 @@ export default function Wordcraft() {
                     </div>
 
                     {/* Footer - Fixed */}
-                    <div className="border-t border-gray-200 p-3 flex-shrink-0">
+                    <div className="border-t border-emerald-200 p-3 flex-shrink-0 bg-gradient-to-r from-emerald-50 to-teal-50">
                       <div className="flex items-end justify-between">
                         {/* Card Selection - Left */}
                         <div>
-                          <label className="block text-xs font-medium text-gray-700 mb-1">
+                          <label className="block text-xs font-medium text-emerald-700 mb-1">
                             Bộ thẻ <span className="text-red-500">*</span>
                           </label>
                           <Select 
@@ -549,7 +551,7 @@ export default function Wordcraft() {
                               }
                             }}
                           >
-                            <SelectTrigger className="w-56 h-8 text-sm">
+                            <SelectTrigger className="w-56 h-8 text-sm border-emerald-200 focus:border-emerald-400 focus:ring-emerald-300">
                               <SelectValue placeholder="Chưa chọn bộ thẻ" />
                             </SelectTrigger>
                             <SelectContent>
@@ -564,7 +566,7 @@ export default function Wordcraft() {
                         </div>
 
                         {/* Word Count - Center */}
-                        <div className="text-xs text-gray-600 self-end pb-1">
+                        <div className="text-xs text-emerald-700 font-medium self-end pb-1">
                           Số từ: {vocabEntries.filter(entry => entry.word.trim()).length} từ
                         </div>
 
@@ -572,7 +574,7 @@ export default function Wordcraft() {
                         <Button 
                           onClick={handleAddVocab}
                           disabled={!selectedCardId || vocabEntries.filter(entry => entry.word.trim()).length === 0}
-                          className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-4 h-8 text-sm"
+                          className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-4 h-8 text-sm shadow-md hover:shadow-lg transition-all duration-200"
                         >
                           Thêm từ vựng
                         </Button>
