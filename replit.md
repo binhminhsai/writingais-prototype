@@ -285,6 +285,8 @@ Changelog:
   - Optimized button and dropdown widths (w-72) with reduced padding for better space utilization
   - Added maximum height (200px) with scrolling for dropdown when many cards exist
   - Updated text truncation limits: 40 characters for button display, 50 for dropdown items
+  - Fixed search functionality with proper filtering logic and useMemo optimization
+  - Standardized styling across all dropdown items for consistent user experience
 
 ## User Preferences
 
