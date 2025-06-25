@@ -327,12 +327,12 @@ export default function WordcraftWords() {
                   }}
                 >
                   {/* Header - Fixed */}
-                  <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white flex-shrink-0 pt-[4px] pb-[4px]">
+                  <div className="flex items-center justify-center relative p-4 border-b border-gray-200 bg-white flex-shrink-0 pt-[4px] pb-[4px]">
                     <h2 className="text-lg font-semibold text-gray-900">Thêm từ vựng</h2>
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-6 w-6 p-0 hover:bg-gray-100"
+                      className="absolute right-4 h-6 w-6 p-0 hover:bg-gray-100"
                       onClick={() => {
                         if (!addWordMutation.isPending) {
                           setIsAddDialogOpen(false);

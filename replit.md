@@ -292,6 +292,7 @@ Changelog:
   - Added search button next to search bar for explicit search action
   - Streamlined layout with cleaner, more focused interface design
   - Updated header navigation to properly link Vocabulary button to /wordcraft route
+  - Centered "Thêm từ vựng" title text in vocabulary addition popup dialogs
 
 ## User Preferences
 
