@@ -287,6 +287,10 @@ Changelog:
   - Updated text truncation limits: 40 characters for button display, 50 for dropdown items
   - Fixed search functionality with proper filtering logic and useMemo optimization
   - Standardized styling across all dropdown items for consistent user experience
+- June 25, 2025. Simplified header interface by removing navigation buttons:
+  - Removed "Bộ thẻ từ vựng" and "Từ vựng đã lưu" toggle buttons from header
+  - Added search button next to search bar for explicit search action
+  - Streamlined layout with cleaner, more focused interface design
 
 ## User Preferences
 
