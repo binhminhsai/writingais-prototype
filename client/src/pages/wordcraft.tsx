@@ -505,7 +505,7 @@ export default function Wordcraft() {
 
                               {/* Expanded Content */}
                               {entry.isExpanded && (
-                                <div className="px-2 pb-2">
+                                <div className="px-2 pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
                                   <label className="block text-xs font-medium text-emerald-700 mb-1">
                                     Nội dung
                                   </label>
