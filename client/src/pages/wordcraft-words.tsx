@@ -327,7 +327,7 @@ export default function WordcraftWords() {
                   }}
                 >
                   {/* Header - Fixed */}
-                  <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white flex-shrink-0 pt-[0px] pb-[0px]">
+                  <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white flex-shrink-0 pt-[4px] pb-[4px]">
                     <h2 className="text-lg font-semibold text-gray-900">Thêm từ vựng</h2>
                     <Button
                       variant="ghost"
