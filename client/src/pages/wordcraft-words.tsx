@@ -327,7 +327,7 @@ export default function WordcraftWords() {
                   }}
                 >
                   {/* Header - Fixed */}
-                  <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white flex-shrink-0">
+                  <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white flex-shrink-0 pt-[0px] pb-[0px]">
                     <h2 className="text-lg font-semibold text-gray-900">Thêm từ vựng</h2>
                     <Button
                       variant="ghost"
@@ -346,13 +346,13 @@ export default function WordcraftWords() {
 
                   {addWordMutation.isPending ? (
                     /* Loading State */
-                    <div className="flex flex-col items-center justify-center p-8 space-y-4">
+                    (<div className="flex flex-col items-center justify-center p-8 space-y-4">
                       <div className="w-8 h-8 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
                       <p className="text-emerald-700 font-medium">Đang thêm từ vựng...</p>
                       <p className="text-emerald-600 text-sm">
                         {Math.round((100 / vocabEntries.filter(e => e.word.trim()).length) * 50)}%
                       </p>
-                    </div>
+                    </div>)
                   ) : (
                     <>
                       {/* Content - Scrollable */}
@@ -650,12 +650,12 @@ export default function WordcraftWords() {
                   }}
                 >
                   {/* Header - Fixed */}
-                  <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white flex-shrink-0">
+                  <div className="flex items-center justify-center relative p-4 border-b border-gray-200 bg-white flex-shrink-0">
                     <h2 className="text-lg font-semibold text-gray-900">Thêm từ vựng</h2>
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-6 w-6 p-0 hover:bg-gray-100"
+                      className="absolute right-4 h-6 w-6 p-0 hover:bg-gray-100"
                       onClick={() => {
                         if (!addWordMutation.isPending) {
                           setIsAddDialogOpen(false);
@@ -669,13 +669,13 @@ export default function WordcraftWords() {
 
                   {addWordMutation.isPending ? (
                     /* Loading State */
-                    <div className="flex flex-col items-center justify-center p-8 space-y-4">
+                    (<div className="flex flex-col items-center justify-center p-8 space-y-4">
                       <div className="w-8 h-8 border-4 border-emerald-200 border-t-emerald-600 rounded-full animate-spin"></div>
                       <p className="text-emerald-700 font-medium">Đang thêm từ vựng...</p>
                       <p className="text-emerald-600 text-sm">
                         {Math.round((100 / vocabEntries.filter(e => e.word.trim()).length) * 50)}%
                       </p>
-                    </div>
+                    </div>)
                   ) : (
                     <>
                       {/* Content - Scrollable */}
