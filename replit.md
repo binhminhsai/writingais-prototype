@@ -291,6 +291,7 @@ Changelog:
   - Removed "Bộ thẻ từ vựng" and "Từ vựng đã lưu" toggle buttons from header
   - Added search button next to search bar for explicit search action
   - Streamlined layout with cleaner, more focused interface design
+  - Updated header navigation to properly link Vocabulary button to /wordcraft route
 
 ## User Preferences
 

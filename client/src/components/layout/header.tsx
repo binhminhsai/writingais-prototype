@@ -46,8 +46,8 @@ export default function Header() {
                 Writing Practice
               </button>
             </Link>
-            <Link href="/vocabulary">
-              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location === "/vocabulary" ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}>
+            <Link href="/wordcraft">
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location === "/wordcraft" ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}>
                 Vocabulary
               </button>
             </Link>
@@ -114,9 +114,9 @@ export default function Header() {
                 Writing Practice
               </button>
             </Link>
-            <Link href="/vocabulary">
+            <Link href="/wordcraft">
               <button 
-                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-300 ${location === "/vocabulary" ? "bg-white text-teal-700 shadow-lg font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}
+                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-300 ${location === "/wordcraft" ? "bg-white text-teal-700 shadow-lg font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Vocabulary
