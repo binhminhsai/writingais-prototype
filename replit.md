@@ -298,6 +298,7 @@ Changelog:
   - Updated "Học" button to navigate to detail view with ?view=detail parameter for direct learning mode access
   - Fixed syntax errors in vocabulary addition popup by repairing malformed JSX structure
   - Cleaned up duplicated code and standardized popup functionality across both main and detail views
+  - Fixed card selection button in vocabulary addition popup to show current card name and be disabled when inside a specific card
 
 ## User Preferences
 
