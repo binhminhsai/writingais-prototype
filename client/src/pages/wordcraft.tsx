@@ -428,19 +428,19 @@ export default function Wordcraft() {
                 ) : (
                   // Main Content
                   (<>
-                    <DialogHeader className="border-b border-emerald-200 pb-2 bg-gradient-to-r from-emerald-100 to-teal-100">
+                    <DialogHeader className="border-b border-gray-200 pb-2">
                       <div className="flex items-center justify-center relative">
-                        <DialogTitle className="text-lg font-semibold text-emerald-800">Thêm từ vựng</DialogTitle>
+                        <DialogTitle className="text-lg font-semibold text-gray-900">Thêm từ vựng</DialogTitle>
                         <DialogDescription className="sr-only">
                           Thêm từ vựng mới vào bộ thẻ học tập
                         </DialogDescription>
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="absolute right-0 h-6 w-6 p-0 hover:bg-emerald-200 rounded-full"
+                          className="absolute right-0 h-6 w-6 p-0 hover:bg-gray-100 rounded-full"
                           onClick={() => setIsAddVocabOpen(false)}
                         >
-                          <X className="h-4 w-4 text-emerald-800" />
+                          <X className="h-4 w-4 text-black" />
                         </Button>
                       </div>
                     </DialogHeader>

@@ -257,6 +257,7 @@ Changelog:
   - Updated card backgrounds with subtle emerald-50 to teal-50 gradients
   - Improved footer styling with matching color scheme and enhanced button designs
   - Added shadow effects and smooth transitions for better visual appeal
+  - Simplified header to use main website color scheme with single X button
 
 ## User Preferences
 
