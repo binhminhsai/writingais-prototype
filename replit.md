@@ -267,6 +267,13 @@ Changelog:
   - Added "Thêm nội dung" label next to accordion expansion button for better user guidance
   - Set card content padding to 0 for minimal spacing as requested
   - Combined "Thêm nội dung" text and accordion icon into single clickable button for improved usability
+- June 25, 2025. Redesigned vocabulary addition popup in wordcraft-words.tsx to match main page:
+  - Replaced traditional form layout with accordion-style vocabulary entry cards
+  - Implemented consistent emerald/teal color scheme and design patterns
+  - Added sequence numbers, delete buttons, and expandable content sections
+  - Integrated loading states with progress indicators and non-dismissible popup behavior
+  - Updated API integration to handle multiple vocabulary entries simultaneously
+  - Maintained all existing functionality while improving user experience consistency
 
 ## User Preferences
 
