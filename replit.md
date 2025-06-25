@@ -299,6 +299,7 @@ Changelog:
   - Fixed syntax errors in vocabulary addition popup by repairing malformed JSX structure
   - Cleaned up duplicated code and standardized popup functionality across both main and detail views
   - Fixed both card selection buttons in vocabulary addition popups (list view and detail view) to show current card name and be disabled when inside a specific card
+  - Enhanced card name display with bolder borders (border-2), darker text (text-emerald-900), and improved contrast for better visibility
 
 ## User Preferences
 
