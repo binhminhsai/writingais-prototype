@@ -454,7 +454,7 @@ export default function WordcraftWords() {
                             <Button
                               variant="outline"
                               disabled
-                              className="w-[200px] justify-start h-8 text-sm border-emerald-200 bg-emerald-50 text-emerald-700 cursor-not-allowed opacity-75"
+                              className="w-[200px] justify-start h-8 text-sm border-2 border-emerald-400 bg-emerald-100 text-emerald-900 font-semibold cursor-not-allowed opacity-90"
                             >
                               {card?.title || "Đang tải..."}
                             </Button>
@@ -722,7 +722,7 @@ export default function WordcraftWords() {
                             <Button
                               variant="outline"
                               disabled
-                              className="w-[200px] justify-start h-8 text-sm border-emerald-200 bg-emerald-50 text-emerald-700 cursor-not-allowed opacity-75"
+                              className="w-[200px] justify-start h-8 text-sm border-2 border-emerald-400 bg-emerald-100 text-emerald-900 font-semibold cursor-not-allowed opacity-90"
                             >
                               {card?.title || "Đang tải..."}
                             </Button>
