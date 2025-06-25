@@ -185,35 +185,63 @@ export default function WordcraftWords() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-3">
-        {/* Header */}
-        <div className="flex flex-col space-y-2 mb-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Link href="/wordcraft">
-                <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800">
-                  <ArrowLeft className="h-4 w-4 mr-1" />
-                  Quay lại
-                </Button>
-              </Link>
-              <div className="flex items-center space-x-2">
-                <h1 className="text-xl font-bold text-gray-900">{card?.title}</h1>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="text-gray-400 hover:text-yellow-500"
-                  onClick={handleFavoriteToggle}
-                  disabled={favoriteMutation.isPending}
-                >
-                  <Star className={`h-4 w-4 ${card?.isFavorited ? 'text-yellow-500 fill-current' : ''}`} />
-                </Button>
-              </div>
-            </div>
-            <div className="text-sm text-gray-600">
-              {filteredWords.length} từ vựng
+        {/* Header - Back Button */}
+        <div className="mb-4">
+          <Link href="/wordcraft">
+            <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800">
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              Quay lại
+            </Button>
+          </Link>
+        </div>
+
+        {/* Card Info Bar */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 mb-4 shadow-sm">
+          <div className="flex items-start justify-between mb-3">
+            {/* Card Title and Star */}
+            <div className="flex items-center space-x-2">
+              <h1 className="text-xl font-bold text-gray-900">{card?.title || "Tên bộ thẻ"}</h1>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="text-gray-400 hover:text-yellow-500 p-1"
+                onClick={handleFavoriteToggle}
+                disabled={favoriteMutation.isPending}
+              >
+                <Star className={`h-5 w-5 ${card?.isFavorited ? 'text-yellow-500 fill-current' : ''}`} />
+              </Button>
             </div>
           </div>
           
-          <p className="text-sm text-gray-600">{card?.description}</p>
+          {/* Description */}
+          <p className="text-gray-700 mb-3 text-sm leading-relaxed">
+            {card?.description || "Mô tả bộ thẻ sẽ được cập nhật sau"}
+          </p>
+          
+          {/* Info Row */}
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center space-x-4">
+              {/* Topic */}
+              <div className="flex items-center space-x-1">
+                <span className="text-gray-500">Chủ đề:</span>
+                <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-300">
+                  {card?.category || "Business"}
+                </Badge>
+              </div>
+              
+              {/* Word Count */}
+              <div className="flex items-center space-x-1">
+                <span className="text-gray-500">Số từ:</span>
+                <span className="font-medium text-gray-900">{filteredWords.length} từ vựng</span>
+              </div>
+            </div>
+            
+            {/* Study Count */}
+            <div className="flex items-center space-x-1">
+              <span className="text-gray-500">Đã học:</span>
+              <span className="font-medium text-gray-900">{card?.studyCount || 4} lần</span>
+            </div>
+          </div>
         </div>
 
         {/* Search and Actions */}
