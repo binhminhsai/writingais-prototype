@@ -33,6 +33,7 @@ export default function WordcraftWords() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("images");
   const [wordImages, setWordImages] = useState<string[]>([]);
+  const [isEditMode, setIsEditMode] = useState(false);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedCardValue, setSelectedCardValue] = useState<string>("");
   const [searchCardValue, setSearchCardValue] = useState<string>("");
@@ -848,84 +849,82 @@ export default function WordcraftWords() {
                   <div className="relative h-[400px] mt-4 overflow-y-auto pr-2">
                     {activeTab === "images" && (
                       <div className="space-y-3">
-                        <h3 className="font-semibold text-gray-900 mb-2 text-lg">Hình ảnh minh họa</h3>
-                        <div className="bg-blue-50 p-3 rounded-lg">
+                        {/* Header with title and add button */}
+                        <div className="flex items-center justify-between">
+                          <h3 className="font-semibold text-gray-900 text-lg">Hình ảnh minh họa</h3>
+                          {wordImages.length < 2 && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-blue-600 border-blue-300 hover:bg-blue-50"
+                              onClick={() => {
+                                if (wordImages.length < 2) {
+                                  setWordImages([...wordImages, `new-image-${wordImages.length + 1}`]);
+                                }
+                              }}
+                            >
+                              <Plus className="h-4 w-4 mr-1" />
+                              Thêm hình ảnh
+                            </Button>
+                          )}
+                        </div>
+                        
+                        <div className="bg-blue-50 p-4 rounded-lg">
                           {wordImages.length === 0 ? (
-                            // No images - show placeholder and add button
-                            <div className="space-y-3">
-                              <div className="aspect-square bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300 max-w-[150px] mx-auto">
-                                <div className="text-center">
-                                  <span className="text-gray-500 text-sm mb-2 block">Chưa có hình ảnh</span>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="text-blue-600 border-blue-300 hover:bg-blue-50"
-                                    onClick={() => {
-                                      // Simulate adding an image
-                                      setWordImages(['placeholder-image-1']);
-                                    }}
-                                  >
-                                    <Plus className="h-4 w-4 mr-1" />
-                                    Thêm hình ảnh
-                                  </Button>
-                                </div>
+                            // No images - show placeholder
+                            <div className="flex justify-center">
+                              <div 
+                                className="w-40 bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
+                                style={{ aspectRatio: '4/3' }}
+                              >
+                                <span className="text-gray-500 text-sm">Chưa có hình ảnh</span>
                               </div>
                             </div>
                           ) : (
-                            // Has images - show up to 2 images with controls
-                            <div className="space-y-3">
-                              <div className="grid grid-cols-2 gap-3 max-w-[320px] mx-auto">
+                            // Has images - show up to 2 images
+                            <div className="flex justify-center">
+                              <div className="grid grid-cols-2 gap-4 max-w-[340px]">
                                 {wordImages.slice(0, 2).map((image, index) => (
                                   <div key={index} className="relative">
-                                    <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300 max-w-[150px]">
-                                      <span className="text-gray-500 text-xs">Hình ảnh {index + 1}</span>
-                                    </div>
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      className="absolute top-2 right-2 text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
-                                      onClick={() => {
-                                        // Simulate changing image
-                                        const newImages = [...wordImages];
-                                        newImages[index] = `updated-image-${index + 1}`;
-                                        setWordImages(newImages);
-                                      }}
+                                    <div 
+                                      className="w-40 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                      style={{ aspectRatio: '4/3' }}
                                     >
-                                      <Edit className="h-3 w-3" />
-                                    </Button>
+                                      <span className="text-gray-500 text-sm">Hình ảnh {index + 1}</span>
+                                    </div>
+                                    
+                                    {/* Edit mode controls */}
+                                    {isEditMode && (
+                                      <div className="absolute top-2 right-2 flex gap-1">
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          className="text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
+                                          onClick={() => {
+                                            // Replace image
+                                            const newImages = [...wordImages];
+                                            newImages[index] = `updated-image-${index + 1}`;
+                                            setWordImages(newImages);
+                                          }}
+                                        >
+                                          <Edit className="h-3 w-3" />
+                                        </Button>
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          className="text-red-600 border-red-300 hover:bg-red-50 h-6 w-6 p-0"
+                                          onClick={() => {
+                                            // Remove image
+                                            const newImages = wordImages.filter((_, i) => i !== index);
+                                            setWordImages(newImages);
+                                          }}
+                                        >
+                                          <X className="h-3 w-3" />
+                                        </Button>
+                                      </div>
+                                    )}
                                   </div>
                                 ))}
-                              </div>
-                              
-                              {/* Add/Change buttons */}
-                              <div className="flex gap-2 justify-center">
-                                {wordImages.length < 2 && (
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="text-blue-600 border-blue-300 hover:bg-blue-50"
-                                    onClick={() => {
-                                      if (wordImages.length < 2) {
-                                        setWordImages([...wordImages, `new-image-${wordImages.length + 1}`]);
-                                      }
-                                    }}
-                                  >
-                                    <Plus className="h-4 w-4 mr-1" />
-                                    Thêm hình ảnh
-                                  </Button>
-                                )}
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="text-gray-600 border-gray-300 hover:bg-gray-50"
-                                  onClick={() => {
-                                    // Simulate changing all images
-                                    setWordImages(wordImages.map((_, index) => `changed-image-${index + 1}`));
-                                  }}
-                                >
-                                  <Edit className="h-4 w-4 mr-1" />
-                                  Thay đổi hình ảnh
-                                </Button>
                               </div>
                             </div>
                           )}
@@ -1113,9 +1112,10 @@ export default function WordcraftWords() {
               <Button
                 variant="outline"
                 className="text-gray-600 hover:text-gray-800 border-gray-300 hover:border-gray-400"
+                onClick={() => setIsEditMode(!isEditMode)}
               >
                 <Edit className="h-4 w-4 mr-2" />
-                Chỉnh sửa
+                {isEditMode ? "Hoàn thành" : "Chỉnh sửa"}
               </Button>
             </div>
           </div>)

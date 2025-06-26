@@ -317,6 +317,12 @@ Changelog:
   - Redesigned images tab with placeholder state and maximum 2 images limit
   - Added "Thêm hình ảnh" and "Thay đổi hình ảnh" functionality with proper state management
   - Optimized image frame sizes to be more compact (150px max width) for better interface fit
+- June 26, 2025. Enhanced images tab with improved layout and edit functionality:
+  - Changed image frames to 4:3 aspect ratio (160px width) for balanced appearance
+  - Moved "Thêm hình ảnh" button to header level, aligned with title
+  - Implemented edit mode toggle via "Chỉnh sửa" button (changes to "Hoàn thành")
+  - Added edit mode controls: replace and delete buttons appear only when editing
+  - Removed standalone change/delete buttons from normal view mode
 
 ## User Preferences
 
