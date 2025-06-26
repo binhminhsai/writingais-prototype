@@ -314,6 +314,8 @@ Changelog:
   - Redesigned phrases tab with individual card frames for each phrase and example sentences
   - Added contextual example sentences with Vietnamese translations in italics for common phrases
   - Fixed content area height to 400px with vertical scrolling for overflow content
+  - Redesigned images tab with placeholder state and maximum 2 images limit
+  - Added "Thêm hình ảnh" and "Thay đổi hình ảnh" functionality with proper state management
 
 ## User Preferences
 
