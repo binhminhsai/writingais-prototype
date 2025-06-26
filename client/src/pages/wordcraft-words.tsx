@@ -853,7 +853,7 @@ export default function WordcraftWords() {
                           {wordImages.length === 0 ? (
                             // No images - show placeholder and add button
                             <div className="space-y-3">
-                              <div className="aspect-square bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300">
+                              <div className="aspect-square bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300 max-w-[150px] mx-auto">
                                 <div className="text-center">
                                   <span className="text-gray-500 text-sm mb-2 block">Chưa có hình ảnh</span>
                                   <Button
@@ -874,10 +874,10 @@ export default function WordcraftWords() {
                           ) : (
                             // Has images - show up to 2 images with controls
                             <div className="space-y-3">
-                              <div className="grid grid-cols-2 gap-3">
+                              <div className="grid grid-cols-2 gap-3 max-w-[320px] mx-auto">
                                 {wordImages.slice(0, 2).map((image, index) => (
                                   <div key={index} className="relative">
-                                    <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300">
+                                    <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300 max-w-[150px]">
                                       <span className="text-gray-500 text-xs">Hình ảnh {index + 1}</span>
                                     </div>
                                     <Button

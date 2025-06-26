@@ -316,6 +316,7 @@ Changelog:
   - Fixed content area height to 400px with vertical scrolling for overflow content
   - Redesigned images tab with placeholder state and maximum 2 images limit
   - Added "Thêm hình ảnh" and "Thay đổi hình ảnh" functionality with proper state management
+  - Optimized image frame sizes to be more compact (150px max width) for better interface fit
 
 ## User Preferences
 
