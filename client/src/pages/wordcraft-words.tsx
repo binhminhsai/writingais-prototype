@@ -31,7 +31,7 @@ export default function WordcraftWords() {
   
   const [viewMode, setViewMode] = useState<"list" | "detail">(initialViewMode);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState("definition");
+  const [activeTab, setActiveTab] = useState("images");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedCardValue, setSelectedCardValue] = useState<string>("");
   const [searchCardValue, setSearchCardValue] = useState<string>("");
@@ -789,6 +789,16 @@ export default function WordcraftWords() {
                     <div className="flex items-center justify-between border-b border-gray-200">
                       <div className="flex gap-1 overflow-x-auto">
                         <button
+                          onClick={() => setActiveTab("images")}
+                          className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
+                            activeTab === "images"
+                              ? "bg-blue-100 text-blue-800 border-b-2 border-blue-500"
+                              : "text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                          }`}
+                        >
+                          Hình ảnh
+                        </button>
+                        <button
                           onClick={() => setActiveTab("definition")}
                           className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
                             activeTab === "definition"
@@ -797,16 +807,6 @@ export default function WordcraftWords() {
                           }`}
                         >
                           Định nghĩa
-                        </button>
-                        <button
-                          onClick={() => setActiveTab("etymology")}
-                          className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
-                            activeTab === "etymology"
-                              ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
-                              : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
-                          }`}
-                        >
-                          Nguồn gốc
                         </button>
                         <button
                           onClick={() => setActiveTab("phrases")}
@@ -818,6 +818,16 @@ export default function WordcraftWords() {
                         >
                           Cụm từ thường gặp
                         </button>
+                        <button
+                          onClick={() => setActiveTab("synonyms")}
+                          className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
+                            activeTab === "synonyms"
+                              ? "bg-purple-100 text-purple-800 border-b-2 border-purple-500"
+                              : "text-gray-600 hover:text-purple-600 hover:bg-purple-50"
+                          }`}
+                        >
+                          Từ đồng nghĩa và trái nghĩa
+                        </button>
                       </div>
                       <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 mb-1 md:mb-2">
                         <Plus className="h-3 w-3 md:h-4 md:w-4" />
@@ -827,6 +837,25 @@ export default function WordcraftWords() {
 
                   {/* Tab Content */}
                   <div className="relative min-h-[300px] mt-4">
+                    {activeTab === "images" && (
+                      <div className="space-y-3">
+                        <h3 className="font-semibold text-gray-900 mb-2 text-lg">Hình ảnh minh họa</h3>
+                        <div className="bg-blue-50 p-3 rounded-lg">
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                              <span className="text-gray-500 text-xs">Hình ảnh 1</span>
+                            </div>
+                            <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                              <span className="text-gray-500 text-xs">Hình ảnh 2</span>
+                            </div>
+                            <div className="aspect-square bg-gray-200 rounded-lg flex items-center justify-center">
+                              <span className="text-gray-500 text-xs">Hình ảnh 3</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                     {activeTab === "definition" && (
                       <div className="space-y-4">
                         <div>
@@ -871,30 +900,6 @@ export default function WordcraftWords() {
                       </div>
                     )}
 
-                    {activeTab === "etymology" && (
-                      <div className="space-y-3">
-                        <h3 className="font-semibold text-gray-900 mb-2 text-lg">Nguồn gốc từ vựng</h3>
-                        <div className="bg-purple-50 p-3 rounded-lg">
-                          <div className="space-y-3">
-                            <div className="flex items-start space-x-2">
-                              <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
-                              <div>
-                                <strong className="text-purple-900 text-sm">Gốc Latin:</strong>
-                                <span className="text-gray-700 ml-2 text-sm">"resilire" có nghĩa là "nhảy trở lại" hoặc "bật trở lại"</span>
-                              </div>
-                            </div>
-                            <div className="flex items-start space-x-2">
-                              <div className="w-2 h-2 rounded-full bg-purple-500 mt-2 flex-shrink-0"></div>
-                              <div>
-                                <strong className="text-purple-900 text-sm">Tiền tố:</strong>
-                                <span className="text-gray-700 ml-2 text-sm">"re-" (trở lại) + "salire" (nhảy)</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
                     {activeTab === "phrases" && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-gray-900 mb-2 text-lg">Cụm từ thường gặp</h3>
@@ -903,6 +908,35 @@ export default function WordcraftWords() {
                             <p className="text-gray-700 text-sm">• Show resilience - Thể hiện sự kiên cường</p>
                             <p className="text-gray-700 text-sm">• Build resilience - Xây dựng khả năng phục hồi</p>
                             <p className="text-gray-700 text-sm">• Emotional resilience - Sự kiên cường về cảm xúc</p>
+                            <p className="text-gray-700 text-sm">• Physical resilience - Sự bền bỉ về thể chất</p>
+                            <p className="text-gray-700 text-sm">• Develop resilience - Phát triển khả năng chống chịu</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === "synonyms" && (
+                      <div className="space-y-3">
+                        <h3 className="font-semibold text-gray-900 mb-2 text-lg">Từ đồng nghĩa và trái nghĩa</h3>
+                        <div className="space-y-3">
+                          <div className="bg-green-50 p-3 rounded-lg">
+                            <h4 className="font-medium text-green-900 mb-2">Từ đồng nghĩa:</h4>
+                            <div className="flex flex-wrap gap-2">
+                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">toughness</span>
+                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">strength</span>
+                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">endurance</span>
+                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">durability</span>
+                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">flexibility</span>
+                            </div>
+                          </div>
+                          <div className="bg-red-50 p-3 rounded-lg">
+                            <h4 className="font-medium text-red-900 mb-2">Từ trái nghĩa:</h4>
+                            <div className="flex flex-wrap gap-2">
+                              <span className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">fragility</span>
+                              <span className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">weakness</span>
+                              <span className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">vulnerability</span>
+                              <span className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">brittleness</span>
+                            </div>
                           </div>
                         </div>
                       </div>
