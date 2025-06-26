@@ -509,8 +509,15 @@ export default function WordcraftWords() {
                           </Badge>
                         </div>
                       </div>
-                      <span className="text-gray-400 hover:text-yellow-500 p-1 cursor-pointer">
-                        <Star className="h-4 w-4" />
+                      <span
+                        className="h-7 px-3 py-1 text-xs border border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200 rounded-full cursor-pointer inline-flex items-center justify-center bg-white"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentWordIndex(index);
+                          setViewMode("detail");
+                        }}
+                      >
+                        Chi tiết
                       </span>
                     </div>
                   </AccordionTrigger>

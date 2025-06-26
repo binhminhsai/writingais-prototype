@@ -300,6 +300,13 @@ Changelog:
   - Cleaned up duplicated code and standardized popup functionality across both main and detail views
   - Fixed both card selection buttons in vocabulary addition popups (list view and detail view) to show current card name and be disabled when inside a specific card
   - Enhanced card name display with bolder borders (border-2), darker text (text-emerald-900), and improved contrast for better visibility
+- June 26, 2025. Updated vocabulary detail tabs and interface improvements:
+  - Restructured tabs to: "Hình ảnh", "Định nghĩa", "Cụm từ thường gặp", "Từ đồng nghĩa và trái nghĩa"
+  - Added "Hình ảnh" tab with image placeholder grid layout
+  - Created "Từ đồng nghĩa và trái nghĩa" tab with synonym/antonym word tags
+  - Set "Hình ảnh" as default active tab for better user experience
+  - Replaced star icon with rounded "Chi tiết" button in vocabulary list view
+  - Added click functionality to navigate directly to word detail view from list
 
 ## User Preferences
 
