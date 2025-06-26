@@ -310,6 +310,7 @@ Changelog:
   - Redesigned definition tab with numbered format: "Định nghĩa 1", "Định nghĩa 2", etc.
   - Added multiple numbered examples with Vietnamese translations in italics
   - Implemented proper indentation and structured layout for definitions and examples
+  - Updated accordion content in list view to match definition tab format with one example per definition
 
 ## User Preferences
 

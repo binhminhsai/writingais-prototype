@@ -522,38 +522,39 @@ export default function WordcraftWords() {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pb-4 pt-0">
-                    <div className="space-y-4">
-                      {/* English Definition */}
+                    <div className="space-y-3">
+                      {/* Definition 1 */}
                       <div>
-                        <h4 className="font-medium text-blue-900 mb-2 text-sm">Định nghĩa 1: Tiếng Anh</h4>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                          {word.definition || "Định nghĩa sẽ được cập nhật sau"}
+                        <p className="text-gray-900 text-sm leading-relaxed mb-2">
+                          <span className="font-semibold">Định nghĩa 1:</span> {word.definition || "The ability to recover quickly from difficulties; toughness"}{" "}
+                          <span className="italic text-gray-700">({word.vietnamese || "Khả năng phục hồi nhanh chóng từ khó khăn; sức bền"})</span>
                         </p>
-                      </div>
-                      
-                      {/* Vietnamese Definition */}
-                      {word.vietnamese && (
-                        <div>
-                          <h4 className="font-medium text-green-900 mb-2 text-sm">Định nghĩa 2: Tiếng Việt</h4>
+                        
+                        <div className="ml-4">
                           <p className="text-gray-700 text-sm leading-relaxed">
-                            {word.vietnamese}
+                            1. {word.example || "She showed great resilience in overcoming the challenges at work."}{" "}
+                            <span className="italic text-gray-600">
+                              ({word.exampleVietnamese || "Cô ấy đã thể hiện khả năng phục hồi tuyệt vời trong việc vượt qua những thử thách tại nơi làm việc."})
+                            </span>
                           </p>
                         </div>
-                      )}
-                      
-                      {/* Example */}
-                      {word.example && (
+                      </div>
+
+                      {/* Definition 2 (if word has multiple meanings) */}
+                      {word.word === "Resilience" && (
                         <div>
-                          <h4 className="font-medium text-purple-900 mb-2 text-sm">Ví dụ</h4>
-                          <div className="bg-gray-50 p-3 rounded-lg">
+                          <p className="text-gray-900 text-sm leading-relaxed mb-2">
+                            <span className="font-semibold">Định nghĩa 2:</span> The ability of a material to return to its original shape after being bent or stretched{" "}
+                            <span className="italic text-gray-700">(Khả năng của vật liệu trở lại hình dạng ban đầu sau khi bị uốn cong hoặc kéo giãn)</span>
+                          </p>
+                          
+                          <div className="ml-4">
                             <p className="text-gray-700 text-sm leading-relaxed">
-                              "{word.example}"
+                              1. The rubber ball demonstrated excellent resilience when it bounced back perfectly.{" "}
+                              <span className="italic text-gray-600">
+                                (Quả bóng cao su thể hiện độ đàn hồi tuyệt vời khi nó nảy trở lại hoàn hảo.)
+                              </span>
                             </p>
-                            {word.exampleVietnamese && (
-                              <p className="text-gray-600 italic text-sm mt-1">
-                                ({word.exampleVietnamese})
-                              </p>
-                            )}
                           </div>
                         </div>
                       )}
