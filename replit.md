@@ -307,6 +307,9 @@ Changelog:
   - Set "Hình ảnh" as default active tab for better user experience
   - Replaced star icon with rounded "Chi tiết" button in vocabulary list view
   - Added click functionality to navigate directly to word detail view from list
+  - Redesigned definition tab with numbered format: "Định nghĩa 1", "Định nghĩa 2", etc.
+  - Added multiple numbered examples with Vietnamese translations in italics
+  - Implemented proper indentation and structured layout for definitions and examples
 
 ## User Preferences
 

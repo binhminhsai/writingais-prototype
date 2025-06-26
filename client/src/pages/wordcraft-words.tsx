@@ -865,42 +865,62 @@ export default function WordcraftWords() {
 
                     {activeTab === "definition" && (
                       <div className="space-y-4">
-                        <div>
-                          <h3 className="font-semibold text-gray-900 mb-3 text-lg">Định nghĩa</h3>
-                          <div className="space-y-3">
-                            <div className="bg-blue-50 p-3 rounded-lg">
-                              <h4 className="font-medium text-blue-900 mb-2">Tiếng Anh:</h4>
-                              <p className="text-gray-700 leading-relaxed text-sm">
-                                {currentWord?.definition || "Định nghĩa sẽ được cập nhật sau"}
-                              </p>
-                            </div>
-                            <div className="bg-green-50 p-3 rounded-lg">
-                              <h4 className="font-medium text-green-900 mb-2">Tiếng Việt:</h4>
-                              <p className="text-gray-700 leading-relaxed text-sm">
-                                {currentWord?.vietnamese || "Nghĩa tiếng Việt sẽ được cập nhật sau"}
-                              </p>
+                        <div className="space-y-4">
+                          {/* Definition 1 */}
+                          <div>
+                            <p className="text-gray-900 text-sm leading-relaxed mb-3">
+                              <span className="font-semibold">Định nghĩa 1:</span> The ability to recover quickly from difficulties; toughness{" "}
+                              <span className="italic text-gray-700">({currentWord?.vietnamese || "Khả năng phục hồi nhanh chóng từ khó khăn; sức bền"})</span>
+                            </p>
+                            
+                            <div className="ml-4 space-y-2">
+                              <p className="text-gray-700 text-sm font-medium mb-2">Ví dụ:</p>
+                              <div className="space-y-2">
+                                <p className="text-gray-700 text-sm leading-relaxed">
+                                  1. She showed great resilience in overcoming the challenges at work.{" "}
+                                  <span className="italic text-gray-600">
+                                    (Cô ấy đã thể hiện khả năng phục hồi tuyệt vời trong việc vượt qua những thử thách tại nơi làm việc.)
+                                  </span>
+                                </p>
+                                <p className="text-gray-700 text-sm leading-relaxed">
+                                  2. The company's resilience helped it survive the economic downturn.{" "}
+                                  <span className="italic text-gray-600">
+                                    (Khả năng phục hồi của công ty đã giúp nó tồn tại qua cuộc suy thoái kinh tế.)
+                                  </span>
+                                </p>
+                                <p className="text-gray-700 text-sm leading-relaxed">
+                                  3. Building emotional resilience is crucial for mental health.{" "}
+                                  <span className="italic text-gray-600">
+                                    (Xây dựng khả năng phục hồi cảm xúc là rất quan trọng cho sức khỏe tâm thần.)
+                                  </span>
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div>
-                          <h3 className="font-semibold text-gray-900 mb-3 text-lg">Ví dụ</h3>
-                          <div className="bg-gray-50 p-3 rounded-lg">
-                            <div className="space-y-2">
-                              <p className="text-gray-700 leading-relaxed text-sm">
-                                {currentWord?.example ? (
-                                  <>
-                                    "{currentWord.example}"
-                                  </>
-                                ) : (
-                                  "Ví dụ sẽ được cập nhật sau"
-                                )}
-                              </p>
-                              {currentWord?.exampleVietnamese && (
-                                <p className="text-gray-600 italic text-sm">
-                                  ({currentWord.exampleVietnamese})
+                          {/* Definition 2 (if applicable) */}
+                          <div>
+                            <p className="text-gray-900 text-sm leading-relaxed mb-3">
+                              <span className="font-semibold">Định nghĩa 2:</span> The ability of a material to return to its original shape after being bent or stretched{" "}
+                              <span className="italic text-gray-700">(Khả năng của vật liệu trở lại hình dạng ban đầu sau khi bị uốn cong hoặc kéo giãn)</span>
+                            </p>
+                            
+                            <div className="ml-4 space-y-2">
+                              <p className="text-gray-700 text-sm font-medium mb-2">Ví dụ:</p>
+                              <div className="space-y-2">
+                                <p className="text-gray-700 text-sm leading-relaxed">
+                                  1. The rubber ball demonstrated excellent resilience when it bounced back perfectly.{" "}
+                                  <span className="italic text-gray-600">
+                                    (Quả bóng cao su thể hiện độ đàn hồi tuyệt vời khi nó nảy trở lại hoàn hảo.)
+                                  </span>
                                 </p>
-                              )}
+                                <p className="text-gray-700 text-sm leading-relaxed">
+                                  2. The bridge's design incorporates materials with high resilience to withstand earthquakes.{" "}
+                                  <span className="italic text-gray-600">
+                                    (Thiết kế cây cầu kết hợp các vật liệu có độ đàn hồi cao để chịu được động đất.)
+                                  </span>
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
