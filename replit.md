@@ -313,6 +313,7 @@ Changelog:
   - Updated accordion content in list view to match definition tab format with one example per definition
   - Redesigned phrases tab with individual card frames for each phrase and example sentences
   - Added contextual example sentences with Vietnamese translations in italics for common phrases
+  - Fixed content area height to 400px with vertical scrolling for overflow content
 
 ## User Preferences
 

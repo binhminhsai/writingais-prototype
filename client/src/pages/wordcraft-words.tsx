@@ -844,7 +844,7 @@ export default function WordcraftWords() {
                   </div>
 
                   {/* Tab Content */}
-                  <div className="relative min-h-[300px] mt-4">
+                  <div className="relative h-[400px] mt-4 overflow-y-auto pr-2">
                     {activeTab === "images" && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-gray-900 mb-2 text-lg">Hình ảnh minh họa</h3>
