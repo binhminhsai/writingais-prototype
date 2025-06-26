@@ -311,6 +311,8 @@ Changelog:
   - Added multiple numbered examples with Vietnamese translations in italics
   - Implemented proper indentation and structured layout for definitions and examples
   - Updated accordion content in list view to match definition tab format with one example per definition
+  - Redesigned phrases tab with individual card frames for each phrase and example sentences
+  - Added contextual example sentences with Vietnamese translations in italics for common phrases
 
 ## User Preferences
 

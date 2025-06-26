@@ -931,13 +931,60 @@ export default function WordcraftWords() {
                     {activeTab === "phrases" && (
                       <div className="space-y-3">
                         <h3 className="font-semibold text-gray-900 mb-2 text-lg">Cụm từ thường gặp</h3>
-                        <div className="bg-orange-50 p-3 rounded-lg">
-                          <div className="space-y-2">
-                            <p className="text-gray-700 text-sm">• Show resilience - Thể hiện sự kiên cường</p>
-                            <p className="text-gray-700 text-sm">• Build resilience - Xây dựng khả năng phục hồi</p>
-                            <p className="text-gray-700 text-sm">• Emotional resilience - Sự kiên cường về cảm xúc</p>
-                            <p className="text-gray-700 text-sm">• Physical resilience - Sự bền bỉ về thể chất</p>
-                            <p className="text-gray-700 text-sm">• Develop resilience - Phát triển khả năng chống chịu</p>
+                        <div className="space-y-3">
+                          {/* Phrase 1 */}
+                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                            <p className="text-gray-700 text-sm font-medium mb-2">Show resilience - Thể hiện sự kiên cường</p>
+                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
+                              → The team showed remarkable resilience during the crisis.{" "}
+                              <span className="italic text-gray-600">
+                                (Nhóm đã thể hiện sự kiên cường đáng chú ý trong suốt cuộc khủng hoảng.)
+                              </span>
+                            </p>
+                          </div>
+
+                          {/* Phrase 2 */}
+                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                            <p className="text-gray-700 text-sm font-medium mb-2">Build resilience - Xây dựng khả năng phục hồi</p>
+                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
+                              → Regular exercise helps build physical and mental resilience.{" "}
+                              <span className="italic text-gray-600">
+                                (Tập thể dục thường xuyên giúp xây dựng khả năng phục hồi về thể chất và tinh thần.)
+                              </span>
+                            </p>
+                          </div>
+
+                          {/* Phrase 3 */}
+                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                            <p className="text-gray-700 text-sm font-medium mb-2">Emotional resilience - Sự kiên cường về cảm xúc</p>
+                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
+                              → Developing emotional resilience is key to handling stress effectively.{" "}
+                              <span className="italic text-gray-600">
+                                (Phát triển sự kiên cường về cảm xúc là chìa khóa để xử lý căng thẳng một cách hiệu quả.)
+                              </span>
+                            </p>
+                          </div>
+
+                          {/* Phrase 4 */}
+                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                            <p className="text-gray-700 text-sm font-medium mb-2">Physical resilience - Sự bền bỉ về thể chất</p>
+                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
+                              → Athletes train to improve their physical resilience and endurance.{" "}
+                              <span className="italic text-gray-600">
+                                (Các vận động viên tập luyện để cải thiện sự bền bỉ về thể chất và sức bền.)
+                              </span>
+                            </p>
+                          </div>
+
+                          {/* Phrase 5 */}
+                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                            <p className="text-gray-700 text-sm font-medium mb-2">Develop resilience - Phát triển khả năng chống chịu</p>
+                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
+                              → Children develop resilience through facing and overcoming challenges.{" "}
+                              <span className="italic text-gray-600">
+                                (Trẻ em phát triển khả năng chống chịu thông qua việc đối mặt và vượt qua thử thách.)
+                              </span>
+                            </p>
                           </div>
                         </div>
                       </div>
