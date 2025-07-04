@@ -113,6 +113,29 @@ export default function WordcraftWords() {
   const [editableAntonyms, setEditableAntonyms] = useState([
     "fragility", "weakness", "vulnerability", "brittleness"
   ]);
+
+  // Auto-resize function for textareas
+  const autoResizeTextarea = (element: HTMLTextAreaElement) => {
+    element.style.height = 'auto';
+    const newHeight = Math.max(32, Math.min(element.scrollHeight, 200));
+    element.style.height = newHeight + 'px';
+  };
+
+  // Effect to auto-resize textareas when content changes
+  useEffect(() => {
+    if (isEditMode) {
+      // Auto-resize all phrase textareas
+      setTimeout(() => {
+        const textareas = document.querySelectorAll('.phrases-tab textarea');
+        textareas.forEach((textarea) => {
+          if (textarea instanceof HTMLTextAreaElement) {
+            autoResizeTextarea(textarea);
+          }
+        });
+      }, 10);
+    }
+  }, [editablePhrases, isEditMode]);
+
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedCardValue, setSelectedCardValue] = useState<string>("");
   const [searchCardValue, setSearchCardValue] = useState<string>("");
@@ -1198,7 +1221,7 @@ export default function WordcraftWords() {
                     )}
 
                     {activeTab === "phrases" && (
-                      <div className="space-y-3">
+                      <div className="space-y-3 phrases-tab">
                         <h3 className="font-semibold text-gray-900 mb-1 text-lg">Cụm từ thường gặp</h3>
                         <div className="space-y-2">
                           {editablePhrases.map((phrase, phraseIndex) => (
@@ -1242,17 +1265,14 @@ export default function WordcraftWords() {
                                       
                                       // Auto-resize
                                       const target = e.target as HTMLTextAreaElement;
-                                      setTimeout(() => {
-                                        target.style.height = 'auto';
-                                        target.style.height = Math.min(target.scrollHeight, 120) + 'px';
-                                      }, 0);
+                                      setTimeout(() => autoResizeTextarea(target), 0);
                                     }}
                                     placeholder="Show resilience - Thể hiện sự kiên cường"
                                     className="min-h-[32px] text-sm resize-none"
                                     style={{
                                       height: '32px',
                                       minHeight: '32px',
-                                      maxHeight: '120px',
+                                      maxHeight: '200px',
                                       overflowY: 'auto'
                                     }}
                                   />
@@ -1265,17 +1285,14 @@ export default function WordcraftWords() {
                                       
                                       // Auto-resize
                                       const target = e.target as HTMLTextAreaElement;
-                                      setTimeout(() => {
-                                        target.style.height = 'auto';
-                                        target.style.height = Math.min(target.scrollHeight, 150) + 'px';
-                                      }, 0);
+                                      setTimeout(() => autoResizeTextarea(target), 0);
                                     }}
                                     placeholder="The team showed remarkable resilience during the crisis. (Nhóm đã thể hiện sự kiên cường đáng chú ý trong suốt cuộc khủng hoảng.)"
                                     className="min-h-[32px] text-sm resize-none"
                                     style={{
                                       height: '32px',
                                       minHeight: '32px',
-                                      maxHeight: '150px',
+                                      maxHeight: '200px',
                                       overflowY: 'auto'
                                     }}
                                   />
