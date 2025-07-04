@@ -927,9 +927,9 @@ export default function WordcraftWords() {
                   {/* Tab Content */}
                   <div className="relative h-[400px] mt-4 overflow-y-auto pr-2">
                     {activeTab === "images" && (
-                      <div className="space-y-3">
+                      <div className="h-full flex flex-col">
                         {/* Header with title and add button */}
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between mb-4">
                           <h3 className="font-semibold text-gray-900 text-lg">Hình ảnh minh họa</h3>
                           <Button
                             variant="outline"
@@ -947,111 +947,106 @@ export default function WordcraftWords() {
                           </Button>
                         </div>
                         
-                        <div className="bg-blue-50 p-4 rounded-lg">
+                        {/* Content area centered vertically */}
+                        <div className="flex-1 flex flex-col items-center justify-center space-y-6">
                           {wordImages.length === 0 ? (
                             // No images - show placeholder
-                            <div className="flex justify-center">
-                              <div 
-                                className="w-72 bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
-                                style={{ aspectRatio: '16/9' }}
-                              >
-                                <span className="text-gray-500 text-sm">Chưa thêm hình ảnh</span>
-                              </div>
+                            <div 
+                              className="w-80 bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
+                              style={{ aspectRatio: '16/9' }}
+                            >
+                              <span className="text-gray-500 text-sm">Chưa thêm hình ảnh</span>
                             </div>
                           ) : wordImages.length === 1 ? (
                             // One image - center it
-                            <div className="flex justify-center">
-                              <div className="relative">
-                                <div 
-                                  className="w-72 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
-                                  style={{ aspectRatio: '16/9' }}
-                                >
-                                  <span className="text-gray-500 text-sm">Hình ảnh 1</span>
-                                </div>
-                                
-                                {/* Edit mode controls */}
-                                {isEditMode && (
-                                  <div className="absolute top-2 right-2 flex gap-1">
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      className="text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
-                                      onClick={() => {
-                                        // Replace image
-                                        const newImages = [...wordImages];
-                                        newImages[0] = `updated-image-1`;
-                                        setWordImages(newImages);
-                                      }}
-                                    >
-                                      <Edit className="h-3 w-3" />
-                                    </Button>
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      className="text-red-600 border-red-300 hover:bg-red-50 h-6 w-6 p-0"
-                                      onClick={() => {
-                                        // Remove image
-                                        setWordImages([]);
-                                      }}
-                                    >
-                                      <X className="h-3 w-3" />
-                                    </Button>
-                                  </div>
-                                )}
+                            <div className="relative">
+                              <div 
+                                className="w-80 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                style={{ aspectRatio: '16/9' }}
+                              >
+                                <span className="text-gray-500 text-sm">Hình ảnh 1</span>
                               </div>
+                              
+                              {/* Edit mode controls */}
+                              {isEditMode && (
+                                <div className="absolute top-2 right-2 flex gap-1">
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
+                                    onClick={() => {
+                                      // Replace image
+                                      const newImages = [...wordImages];
+                                      newImages[0] = `updated-image-1`;
+                                      setWordImages(newImages);
+                                    }}
+                                  >
+                                    <Edit className="h-3 w-3" />
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="text-red-600 border-red-300 hover:bg-red-50 h-6 w-6 p-0"
+                                    onClick={() => {
+                                      // Remove image
+                                      setWordImages([]);
+                                    }}
+                                  >
+                                    <X className="h-3 w-3" />
+                                  </Button>
+                                </div>
+                              )}
                             </div>
                           ) : (
                             // Two images - show them side by side
-                            <div className="flex justify-center">
-                              <div className="grid grid-cols-2 gap-4 max-w-[600px]">
-                                {wordImages.slice(0, 2).map((image, index) => (
-                                  <div key={index} className="relative">
-                                    <div 
-                                      className="w-72 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
-                                      style={{ aspectRatio: '16/9' }}
-                                    >
-                                      <span className="text-gray-500 text-sm">Hình ảnh {index + 1}</span>
-                                    </div>
-                                    
-                                    {/* Edit mode controls */}
-                                    {isEditMode && (
-                                      <div className="absolute top-2 right-2 flex gap-1">
-                                        <Button
-                                          variant="outline"
-                                          size="sm"
-                                          className="text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
-                                          onClick={() => {
-                                            // Replace image
-                                            const newImages = [...wordImages];
-                                            newImages[index] = `updated-image-${index + 1}`;
-                                            setWordImages(newImages);
-                                          }}
-                                        >
-                                          <Edit className="h-3 w-3" />
-                                        </Button>
-                                        <Button
-                                          variant="outline"
-                                          size="sm"
-                                          className="text-red-600 border-red-300 hover:bg-red-50 h-6 w-6 p-0"
-                                          onClick={() => {
-                                            // Remove image
-                                            const newImages = wordImages.filter((_, i) => i !== index);
-                                            setWordImages(newImages);
-                                          }}
-                                        >
-                                          <X className="h-3 w-3" />
-                                        </Button>
-                                      </div>
-                                    )}
+                            <div className="grid grid-cols-2 gap-4 max-w-[680px]">
+                              {wordImages.slice(0, 2).map((image, index) => (
+                                <div key={index} className="relative">
+                                  <div 
+                                    className="w-80 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                    style={{ aspectRatio: '16/9' }}
+                                  >
+                                    <span className="text-gray-500 text-sm">Hình ảnh {index + 1}</span>
                                   </div>
-                                ))}
-                              </div>
+                                  
+                                  {/* Edit mode controls */}
+                                  {isEditMode && (
+                                    <div className="absolute top-2 right-2 flex gap-1">
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
+                                        onClick={() => {
+                                          // Replace image
+                                          const newImages = [...wordImages];
+                                          newImages[index] = `updated-image-${index + 1}`;
+                                          setWordImages(newImages);
+                                        }}
+                                      >
+                                        <Edit className="h-3 w-3" />
+                                      </Button>
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="text-red-600 border-red-300 hover:bg-red-50 h-6 w-6 p-0"
+                                        onClick={() => {
+                                          // Remove image
+                                          const newImages = wordImages.filter((_, i) => i !== index);
+                                          setWordImages(newImages);
+                                        }}
+                                      >
+                                        <X className="h-3 w-3" />
+                                      </Button>
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
                             </div>
                           )}
                           
                           {/* Centered question text */}
-                          <div className="text-center mt-4">
-                            <p className="text-gray-700 text-sm">Nghĩa của từ vựng này là gì?</p>
+                          <div className="text-center">
+                            <p className="text-gray-700 text-base">Nghĩa của từ vựng này là gì?</p>
                           </div>
                         </div>
                       </div>
