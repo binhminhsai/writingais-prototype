@@ -952,7 +952,7 @@ export default function WordcraftWords() {
                           {wordImages.length === 0 ? (
                             // No images - show placeholder
                             <div 
-                              className="w-80 bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
+                              className="w-96 bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
                               style={{ aspectRatio: '16/9' }}
                             >
                               <span className="text-gray-500 text-sm">Chưa thêm hình ảnh</span>
@@ -961,7 +961,7 @@ export default function WordcraftWords() {
                             // One image - center it
                             <div className="relative">
                               <div 
-                                className="w-80 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                className="w-96 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
                                 style={{ aspectRatio: '16/9' }}
                               >
                                 <span className="text-gray-500 text-sm">Hình ảnh 1</span>
@@ -999,11 +999,11 @@ export default function WordcraftWords() {
                             </div>
                           ) : (
                             // Two images - show them side by side
-                            <div className="grid grid-cols-2 gap-4 max-w-[680px]">
+                            <div className="grid grid-cols-2 gap-6 max-w-[820px]">
                               {wordImages.slice(0, 2).map((image, index) => (
                                 <div key={index} className="relative">
                                   <div 
-                                    className="w-80 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                    className="w-96 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
                                     style={{ aspectRatio: '16/9' }}
                                   >
                                     <span className="text-gray-500 text-sm">Hình ảnh {index + 1}</span>
