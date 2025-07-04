@@ -1083,87 +1083,78 @@ export default function WordcraftWords() {
                                 // Edit mode
                                 <div className="bg-gray-50 p-4 rounded-lg border">
                                   <div className="space-y-3">
-                                    <div className="grid grid-cols-1 gap-2">
-                                      <Label className="text-sm font-medium">{def.title}</Label>
+                                    <div className="flex items-center justify-between">
+                                      <Label className="text-sm font-medium">{def.title} (Bắt buộc phải có nội dung)</Label>
+                                      {defIndex > 0 && (
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          className="h-6 w-6 p-0 text-red-600"
+                                          onClick={() => {
+                                            const newDefs = editableDefinitions.filter((_, i) => i !== defIndex);
+                                            setEditableDefinitions(newDefs);
+                                          }}
+                                        >
+                                          <X className="h-3 w-3" />
+                                        </Button>
+                                      )}
+                                    </div>
+                                    
+                                    <div className="space-y-2">
+                                      <Label className="text-xs text-gray-600">Định nghĩa (Tiếng Anh và Tiếng Việt):</Label>
                                       <Textarea
-                                        value={def.definition}
+                                        value={def.definition && def.vietnamese ? `${def.definition} (${def.vietnamese})` : ''}
                                         onChange={(e) => {
                                           const newDefs = [...editableDefinitions];
-                                          newDefs[defIndex].definition = e.target.value;
+                                          const value = e.target.value;
+                                          
+                                          // Parse combined bilingual content
+                                          const match = value.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+                                          if (match) {
+                                            newDefs[defIndex].definition = match[1].trim();
+                                            newDefs[defIndex].vietnamese = match[2].trim();
+                                          } else {
+                                            newDefs[defIndex].definition = value;
+                                            newDefs[defIndex].vietnamese = '';
+                                          }
                                           setEditableDefinitions(newDefs);
                                         }}
                                         className="min-h-[60px] text-sm"
-                                        placeholder="English definition..."
-                                      />
-                                      <Textarea
-                                        value={def.vietnamese}
-                                        onChange={(e) => {
-                                          const newDefs = [...editableDefinitions];
-                                          newDefs[defIndex].vietnamese = e.target.value;
-                                          setEditableDefinitions(newDefs);
-                                        }}
-                                        className="min-h-[60px] text-sm italic"
-                                        placeholder="Vietnamese definition..."
+                                        placeholder="The ability to recover quickly from difficulties; toughness (Khả năng phục hồi nhanh chóng từ khó khăn; sức bền)"
                                       />
                                     </div>
                                     
                                     <div className="space-y-2">
-                                      <Label className="text-sm font-medium">Ví dụ:</Label>
-                                      {def.examples.map((example, exIndex) => (
-                                        <div key={exIndex} className="grid grid-cols-1 gap-2 p-3 bg-white rounded border">
-                                          <div className="flex items-center justify-between">
-                                            <span className="text-sm font-medium">Ví dụ {exIndex + 1}:</span>
-                                            <Button
-                                              variant="outline"
-                                              size="sm"
-                                              className="h-6 w-6 p-0 text-red-600"
-                                              onClick={() => {
-                                                const newDefs = [...editableDefinitions];
-                                                newDefs[defIndex].examples.splice(exIndex, 1);
-                                                setEditableDefinitions(newDefs);
-                                              }}
-                                            >
-                                              <X className="h-3 w-3" />
-                                            </Button>
-                                          </div>
-                                          <Textarea
-                                            value={example.english}
-                                            onChange={(e) => {
-                                              const newDefs = [...editableDefinitions];
-                                              newDefs[defIndex].examples[exIndex].english = e.target.value;
-                                              setEditableDefinitions(newDefs);
-                                            }}
-                                            className="min-h-[50px] text-sm"
-                                            placeholder="English example..."
-                                          />
-                                          <Textarea
-                                            value={example.vietnamese}
-                                            onChange={(e) => {
-                                              const newDefs = [...editableDefinitions];
-                                              newDefs[defIndex].examples[exIndex].vietnamese = e.target.value;
-                                              setEditableDefinitions(newDefs);
-                                            }}
-                                            className="min-h-[50px] text-sm italic"
-                                            placeholder="Vietnamese example..."
-                                          />
-                                        </div>
-                                      ))}
-                                      <Button
-                                        variant="outline"
-                                        size="sm"
-                                        className="text-blue-600"
-                                        onClick={() => {
+                                      <Label className="text-xs text-gray-600">Ví dụ (Tùy chọn):</Label>
+                                      <Textarea
+                                        value={def.examples.map((ex, idx) => 
+                                          `${idx + 1}. ${ex.english} (${ex.vietnamese})`
+                                        ).join('\n')}
+                                        onChange={(e) => {
                                           const newDefs = [...editableDefinitions];
-                                          newDefs[defIndex].examples.push({
-                                            english: "",
-                                            vietnamese: ""
+                                          const value = e.target.value;
+                                          
+                                          // Parse numbered examples
+                                          const examples = value.split('\n').filter(line => line.trim()).map(line => {
+                                            const match = line.match(/^\d+\.\s*(.*?)\s*\(([^)]+)\)\s*$/);
+                                            if (match) {
+                                              return {
+                                                english: match[1].trim(),
+                                                vietnamese: match[2].trim()
+                                              };
+                                            }
+                                            return {
+                                              english: line.replace(/^\d+\.\s*/, '').trim(),
+                                              vietnamese: ''
+                                            };
                                           });
+                                          
+                                          newDefs[defIndex].examples = examples;
                                           setEditableDefinitions(newDefs);
                                         }}
-                                      >
-                                        <Plus className="h-4 w-4 mr-1" />
-                                        Thêm ví dụ
-                                      </Button>
+                                        className="min-h-[120px] text-sm"
+                                        placeholder="1. She showed great resilience in overcoming the challenges at work. (Cô ấy đã thể hiện khả năng phục hồi tuyệt vời trong việc vượt qua những thử thách tại nơi làm việc.)&#10;2. The company's resilience helped it survive the economic downturn. (Khả năng phục hồi của công ty đã giúp nó tồn tại qua cuộc suy thoái kinh tế.)&#10;3. Building emotional resilience is crucial for mental health. (Xây dựng khả năng phục hồi cảm xúc là rất quan trọng cho sức khỏe tâm thần.)"
+                                      />
                                     </div>
                                   </div>
                                 </div>
@@ -1450,7 +1441,26 @@ export default function WordcraftWords() {
               <Button
                 variant="outline"
                 className="text-gray-600 hover:text-gray-800 border-gray-300 hover:border-gray-400"
-                onClick={() => setIsEditMode(!isEditMode)}
+                onClick={() => {
+                  if (isEditMode) {
+                    // Filter out empty definitions when saving
+                    const filteredDefinitions = editableDefinitions.filter(def => 
+                      def.definition.trim() !== '' || def.vietnamese.trim() !== ''
+                    );
+                    setEditableDefinitions(filteredDefinitions);
+                    
+                    // Filter out empty phrases
+                    const filteredPhrases = editablePhrases.filter(phrase => 
+                      phrase.phrase.trim() !== '' || phrase.vietnamese.trim() !== ''
+                    );
+                    setEditablePhrases(filteredPhrases);
+                    
+                    // Filter out empty synonyms and antonyms
+                    setEditableSynonyms(editableSynonyms.filter(word => word.trim() !== ''));
+                    setEditableAntonyms(editableAntonyms.filter(word => word.trim() !== ''));
+                  }
+                  setIsEditMode(!isEditMode);
+                }}
               >
                 <Edit className="h-4 w-4 mr-2" />
                 {isEditMode ? "Hoàn thành" : "Chỉnh sửa"}
