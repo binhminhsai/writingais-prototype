@@ -948,18 +948,18 @@ export default function WordcraftWords() {
                         </div>
                         
                         {/* Content area centered vertically */}
-                        <div className="flex-1 flex flex-col items-center justify-center space-y-6 px-4">
+                        <div className="flex-1 flex flex-col items-center justify-center space-y-6 px-2 sm:px-4">
                           {wordImages.length === 0 ? (
                             // No images - show placeholder
                             <div 
-                              className="w-full max-w-[420px] bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
+                              className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px] bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
                               style={{ aspectRatio: '16/9' }}
                             >
                               <span className="text-gray-500 text-sm">Chưa thêm hình ảnh</span>
                             </div>
                           ) : wordImages.length === 1 ? (
                             // One image - center it
-                            <div className="relative w-full max-w-[420px]">
+                            <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px]">
                               <div 
                                 className="w-full bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
                                 style={{ aspectRatio: '16/9' }}
@@ -998,10 +998,10 @@ export default function WordcraftWords() {
                               )}
                             </div>
                           ) : (
-                            // Two images - responsive layout
-                            <div className="w-full flex flex-col xl:flex-row items-center justify-center gap-4 xl:gap-8">
+                            // Two images - professional responsive layout
+                            <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6 xl:gap-8">
                               {wordImages.slice(0, 2).map((image, index) => (
-                                <div key={index} className="relative w-full max-w-[420px] xl:max-w-[380px]">
+                                <div key={index} className="relative w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[300px] xl:max-w-[340px] 2xl:max-w-[380px]">
                                   <div 
                                     className="w-full bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
                                     style={{ aspectRatio: '16/9' }}
@@ -1045,8 +1045,8 @@ export default function WordcraftWords() {
                           )}
                           
                           {/* Centered question text */}
-                          <div className="text-center">
-                            <p className="text-gray-700 text-base">Nghĩa của từ vựng này là gì?</p>
+                          <div className="text-center px-2">
+                            <p className="text-gray-700 text-sm sm:text-base">Nghĩa của từ vựng này là gì?</p>
                           </div>
                         </div>
                       </div>
