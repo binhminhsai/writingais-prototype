@@ -323,6 +323,12 @@ Changelog:
   - Implemented edit mode toggle via "Chỉnh sửa" button (changes to "Hoàn thành")
   - Added edit mode controls: replace and delete buttons appear only when editing
   - Removed standalone change/delete buttons from normal view mode
+  - Implemented comprehensive edit functionality across all tabs:
+    - "Chỉnh sửa" button toggles edit mode for current tab content
+    - Definition tab: Edit definitions, Vietnamese translations, examples with add/remove
+    - Phrases tab: Edit phrase pairs, translations, and example sentences
+    - Synonyms/Antonyms tab: Edit word lists with add/remove functionality
+    - Images tab: Edit/replace/delete images when in edit mode
 
 ## User Preferences
 

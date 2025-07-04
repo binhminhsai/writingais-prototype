@@ -34,6 +34,85 @@ export default function WordcraftWords() {
   const [activeTab, setActiveTab] = useState("images");
   const [wordImages, setWordImages] = useState<string[]>([]);
   const [isEditMode, setIsEditMode] = useState(false);
+  
+  // Editable content state
+  const [editableDefinitions, setEditableDefinitions] = useState([
+    {
+      title: "Định nghĩa 1:",
+      definition: "The ability to recover quickly from difficulties; toughness",
+      vietnamese: "Khả năng phục hồi nhanh chóng từ khó khăn; sức bền",
+      examples: [
+        {
+          english: "She showed great resilience in overcoming the challenges at work.",
+          vietnamese: "Cô ấy đã thể hiện khả năng phục hồi tuyệt vời trong việc vượt qua những thử thách tại nơi làm việc."
+        },
+        {
+          english: "The company's resilience helped it survive the economic downturn.",
+          vietnamese: "Khả năng phục hồi của công ty đã giúp nó tồn tại qua cuộc suy thoái kinh tế."
+        },
+        {
+          english: "Building emotional resilience is crucial for mental health.",
+          vietnamese: "Xây dựng khả năng phục hồi cảm xúc là rất quan trọng cho sức khỏe tâm thần."
+        }
+      ]
+    },
+    {
+      title: "Định nghĩa 2:",
+      definition: "The ability of a material to return to its original shape after being bent or stretched",
+      vietnamese: "Khả năng của vật liệu trở lại hình dạng ban đầu sau khi bị uốn cong hoặc kéo giãn",
+      examples: [
+        {
+          english: "The rubber ball demonstrated excellent resilience when it bounced back perfectly.",
+          vietnamese: "Quả bóng cao su thể hiện độ đàn hồi tuyệt vời khi nó nảy trở lại hoàn hảo."
+        },
+        {
+          english: "The bridge's design incorporates materials with high resilience to withstand earthquakes.",
+          vietnamese: "Thiết kế cây cầu kết hợp các vật liệu có độ đàn hồi cao để chịu được động đất."
+        }
+      ]
+    }
+  ]);
+  
+  const [editablePhrases, setEditablePhrases] = useState([
+    {
+      phrase: "Show resilience",
+      vietnamese: "Thể hiện sự kiên cường",
+      example: "The team showed remarkable resilience during the crisis.",
+      exampleVietnamese: "Nhóm đã thể hiện sự kiên cường đáng chú ý trong suốt cuộc khủng hoảng."
+    },
+    {
+      phrase: "Build resilience",
+      vietnamese: "Xây dựng khả năng phục hồi",
+      example: "Regular exercise helps build physical and mental resilience.",
+      exampleVietnamese: "Tập thể dục thường xuyên giúp xây dựng khả năng phục hồi về thể chất và tinh thần."
+    },
+    {
+      phrase: "Emotional resilience",
+      vietnamese: "Sự kiên cường về cảm xúc",
+      example: "Developing emotional resilience is key to handling stress effectively.",
+      exampleVietnamese: "Phát triển sự kiên cường về cảm xúc là chìa khóa để xử lý căng thẳng một cách hiệu quả."
+    },
+    {
+      phrase: "Physical resilience",
+      vietnamese: "Sự bền bỉ về thể chất",
+      example: "Athletes train to improve their physical resilience and endurance.",
+      exampleVietnamese: "Các vận động viên tập luyện để cải thiện sự bền bỉ về thể chất và sức bền."
+    },
+    {
+      phrase: "Develop resilience",
+      vietnamese: "Phát triển khả năng chống chịu",
+      example: "Children develop resilience through facing and overcoming challenges.",
+      exampleVietnamese: "Trẻ em phát triển khả năng chống chịu thông qua việc đối mặt và vượt qua thử thách."
+    }
+  ]);
+  
+  const [editableSynonyms, setEditableSynonyms] = useState([
+    "toughness", "strength", "endurance", "durability", "flexibility"
+  ]);
+  
+  const [editableAntonyms, setEditableAntonyms] = useState([
+    "fragility", "weakness", "vulnerability", "brittleness"
+  ]);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedCardValue, setSelectedCardValue] = useState<string>("");
   const [searchCardValue, setSearchCardValue] = useState<string>("");
@@ -935,63 +1014,139 @@ export default function WordcraftWords() {
                     {activeTab === "definition" && (
                       <div className="space-y-4">
                         <div className="space-y-4">
-                          {/* Definition 1 */}
-                          <div>
-                            <p className="text-gray-900 text-sm leading-relaxed mb-3">
-                              <span className="font-semibold">Định nghĩa 1:</span> The ability to recover quickly from difficulties; toughness{" "}
-                              <span className="italic text-gray-700">({currentWord?.vietnamese || "Khả năng phục hồi nhanh chóng từ khó khăn; sức bền"})</span>
-                            </p>
-                            
-                            <div className="ml-4 space-y-2">
-                              <p className="text-gray-700 text-sm font-medium mb-2">Ví dụ:</p>
-                              <div className="space-y-2">
-                                <p className="text-gray-700 text-sm leading-relaxed">
-                                  1. She showed great resilience in overcoming the challenges at work.{" "}
-                                  <span className="italic text-gray-600">
-                                    (Cô ấy đã thể hiện khả năng phục hồi tuyệt vời trong việc vượt qua những thử thách tại nơi làm việc.)
-                                  </span>
-                                </p>
-                                <p className="text-gray-700 text-sm leading-relaxed">
-                                  2. The company's resilience helped it survive the economic downturn.{" "}
-                                  <span className="italic text-gray-600">
-                                    (Khả năng phục hồi của công ty đã giúp nó tồn tại qua cuộc suy thoái kinh tế.)
-                                  </span>
-                                </p>
-                                <p className="text-gray-700 text-sm leading-relaxed">
-                                  3. Building emotional resilience is crucial for mental health.{" "}
-                                  <span className="italic text-gray-600">
-                                    (Xây dựng khả năng phục hồi cảm xúc là rất quan trọng cho sức khỏe tâm thần.)
-                                  </span>
-                                </p>
-                              </div>
+                          {editableDefinitions.map((def, defIndex) => (
+                            <div key={defIndex}>
+                              {!isEditMode ? (
+                                // View mode
+                                <div>
+                                  <p className="text-gray-900 text-sm leading-relaxed mb-3">
+                                    <span className="font-semibold">{def.title}</span> {def.definition}{" "}
+                                    <span className="italic text-gray-700">({def.vietnamese})</span>
+                                  </p>
+                                  
+                                  <div className="ml-4 space-y-2">
+                                    <p className="text-gray-700 text-sm font-medium mb-2">Ví dụ:</p>
+                                    <div className="space-y-2">
+                                      {def.examples.map((example, exIndex) => (
+                                        <p key={exIndex} className="text-gray-700 text-sm leading-relaxed">
+                                          {exIndex + 1}. {example.english}{" "}
+                                          <span className="italic text-gray-600">
+                                            ({example.vietnamese})
+                                          </span>
+                                        </p>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              ) : (
+                                // Edit mode
+                                <div className="bg-gray-50 p-4 rounded-lg border">
+                                  <div className="space-y-3">
+                                    <div className="grid grid-cols-1 gap-2">
+                                      <Label className="text-sm font-medium">{def.title}</Label>
+                                      <Textarea
+                                        value={def.definition}
+                                        onChange={(e) => {
+                                          const newDefs = [...editableDefinitions];
+                                          newDefs[defIndex].definition = e.target.value;
+                                          setEditableDefinitions(newDefs);
+                                        }}
+                                        className="min-h-[60px] text-sm"
+                                        placeholder="English definition..."
+                                      />
+                                      <Textarea
+                                        value={def.vietnamese}
+                                        onChange={(e) => {
+                                          const newDefs = [...editableDefinitions];
+                                          newDefs[defIndex].vietnamese = e.target.value;
+                                          setEditableDefinitions(newDefs);
+                                        }}
+                                        className="min-h-[60px] text-sm italic"
+                                        placeholder="Vietnamese definition..."
+                                      />
+                                    </div>
+                                    
+                                    <div className="space-y-2">
+                                      <Label className="text-sm font-medium">Ví dụ:</Label>
+                                      {def.examples.map((example, exIndex) => (
+                                        <div key={exIndex} className="grid grid-cols-1 gap-2 p-3 bg-white rounded border">
+                                          <div className="flex items-center justify-between">
+                                            <span className="text-sm font-medium">Ví dụ {exIndex + 1}:</span>
+                                            <Button
+                                              variant="outline"
+                                              size="sm"
+                                              className="h-6 w-6 p-0 text-red-600"
+                                              onClick={() => {
+                                                const newDefs = [...editableDefinitions];
+                                                newDefs[defIndex].examples.splice(exIndex, 1);
+                                                setEditableDefinitions(newDefs);
+                                              }}
+                                            >
+                                              <X className="h-3 w-3" />
+                                            </Button>
+                                          </div>
+                                          <Textarea
+                                            value={example.english}
+                                            onChange={(e) => {
+                                              const newDefs = [...editableDefinitions];
+                                              newDefs[defIndex].examples[exIndex].english = e.target.value;
+                                              setEditableDefinitions(newDefs);
+                                            }}
+                                            className="min-h-[50px] text-sm"
+                                            placeholder="English example..."
+                                          />
+                                          <Textarea
+                                            value={example.vietnamese}
+                                            onChange={(e) => {
+                                              const newDefs = [...editableDefinitions];
+                                              newDefs[defIndex].examples[exIndex].vietnamese = e.target.value;
+                                              setEditableDefinitions(newDefs);
+                                            }}
+                                            className="min-h-[50px] text-sm italic"
+                                            placeholder="Vietnamese example..."
+                                          />
+                                        </div>
+                                      ))}
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="text-blue-600"
+                                        onClick={() => {
+                                          const newDefs = [...editableDefinitions];
+                                          newDefs[defIndex].examples.push({
+                                            english: "",
+                                            vietnamese: ""
+                                          });
+                                          setEditableDefinitions(newDefs);
+                                        }}
+                                      >
+                                        <Plus className="h-4 w-4 mr-1" />
+                                        Thêm ví dụ
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
                             </div>
-                          </div>
-
-                          {/* Definition 2 (if applicable) */}
-                          <div>
-                            <p className="text-gray-900 text-sm leading-relaxed mb-3">
-                              <span className="font-semibold">Định nghĩa 2:</span> The ability of a material to return to its original shape after being bent or stretched{" "}
-                              <span className="italic text-gray-700">(Khả năng của vật liệu trở lại hình dạng ban đầu sau khi bị uốn cong hoặc kéo giãn)</span>
-                            </p>
-                            
-                            <div className="ml-4 space-y-2">
-                              <p className="text-gray-700 text-sm font-medium mb-2">Ví dụ:</p>
-                              <div className="space-y-2">
-                                <p className="text-gray-700 text-sm leading-relaxed">
-                                  1. The rubber ball demonstrated excellent resilience when it bounced back perfectly.{" "}
-                                  <span className="italic text-gray-600">
-                                    (Quả bóng cao su thể hiện độ đàn hồi tuyệt vời khi nó nảy trở lại hoàn hảo.)
-                                  </span>
-                                </p>
-                                <p className="text-gray-700 text-sm leading-relaxed">
-                                  2. The bridge's design incorporates materials with high resilience to withstand earthquakes.{" "}
-                                  <span className="italic text-gray-600">
-                                    (Thiết kế cây cầu kết hợp các vật liệu có độ đàn hồi cao để chịu được động đất.)
-                                  </span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
+                          ))}
+                          
+                          {isEditMode && (
+                            <Button
+                              variant="outline"
+                              className="text-blue-600 border-blue-300"
+                              onClick={() => {
+                                setEditableDefinitions([...editableDefinitions, {
+                                  title: `Định nghĩa ${editableDefinitions.length + 1}:`,
+                                  definition: "",
+                                  vietnamese: "",
+                                  examples: []
+                                }]);
+                              }}
+                            >
+                              <Plus className="h-4 w-4 mr-1" />
+                              Thêm định nghĩa
+                            </Button>
+                          )}
                         </div>
                       </div>
                     )}
@@ -1000,60 +1155,102 @@ export default function WordcraftWords() {
                       <div className="space-y-3">
                         <h3 className="font-semibold text-gray-900 mb-2 text-lg">Cụm từ thường gặp</h3>
                         <div className="space-y-3">
-                          {/* Phrase 1 */}
-                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
-                            <p className="text-gray-700 text-sm font-medium mb-2">Show resilience - Thể hiện sự kiên cường</p>
-                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
-                              → The team showed remarkable resilience during the crisis.{" "}
-                              <span className="italic text-gray-600">
-                                (Nhóm đã thể hiện sự kiên cường đáng chú ý trong suốt cuộc khủng hoảng.)
-                              </span>
-                            </p>
-                          </div>
-
-                          {/* Phrase 2 */}
-                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
-                            <p className="text-gray-700 text-sm font-medium mb-2">Build resilience - Xây dựng khả năng phục hồi</p>
-                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
-                              → Regular exercise helps build physical and mental resilience.{" "}
-                              <span className="italic text-gray-600">
-                                (Tập thể dục thường xuyên giúp xây dựng khả năng phục hồi về thể chất và tinh thần.)
-                              </span>
-                            </p>
-                          </div>
-
-                          {/* Phrase 3 */}
-                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
-                            <p className="text-gray-700 text-sm font-medium mb-2">Emotional resilience - Sự kiên cường về cảm xúc</p>
-                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
-                              → Developing emotional resilience is key to handling stress effectively.{" "}
-                              <span className="italic text-gray-600">
-                                (Phát triển sự kiên cường về cảm xúc là chìa khóa để xử lý căng thẳng một cách hiệu quả.)
-                              </span>
-                            </p>
-                          </div>
-
-                          {/* Phrase 4 */}
-                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
-                            <p className="text-gray-700 text-sm font-medium mb-2">Physical resilience - Sự bền bỉ về thể chất</p>
-                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
-                              → Athletes train to improve their physical resilience and endurance.{" "}
-                              <span className="italic text-gray-600">
-                                (Các vận động viên tập luyện để cải thiện sự bền bỉ về thể chất và sức bền.)
-                              </span>
-                            </p>
-                          </div>
-
-                          {/* Phrase 5 */}
-                          <div className="bg-orange-50 p-3 rounded-lg border border-orange-200">
-                            <p className="text-gray-700 text-sm font-medium mb-2">Develop resilience - Phát triển khả năng chống chịu</p>
-                            <p className="text-gray-700 text-sm leading-relaxed ml-2">
-                              → Children develop resilience through facing and overcoming challenges.{" "}
-                              <span className="italic text-gray-600">
-                                (Trẻ em phát triển khả năng chống chịu thông qua việc đối mặt và vượt qua thử thách.)
-                              </span>
-                            </p>
-                          </div>
+                          {editablePhrases.map((phrase, phraseIndex) => (
+                            <div key={phraseIndex} className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                              {!isEditMode ? (
+                                // View mode
+                                <div>
+                                  <p className="text-gray-700 text-sm font-medium mb-2">
+                                    {phrase.phrase} - {phrase.vietnamese}
+                                  </p>
+                                  <p className="text-gray-700 text-sm leading-relaxed ml-2">
+                                    → {phrase.example}{" "}
+                                    <span className="italic text-gray-600">
+                                      ({phrase.exampleVietnamese})
+                                    </span>
+                                  </p>
+                                </div>
+                              ) : (
+                                // Edit mode
+                                <div className="space-y-3">
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-sm font-medium">Cụm từ {phraseIndex + 1}:</span>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-6 w-6 p-0 text-red-600"
+                                      onClick={() => {
+                                        const newPhrases = editablePhrases.filter((_, i) => i !== phraseIndex);
+                                        setEditablePhrases(newPhrases);
+                                      }}
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </Button>
+                                  </div>
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <Input
+                                      value={phrase.phrase}
+                                      onChange={(e) => {
+                                        const newPhrases = [...editablePhrases];
+                                        newPhrases[phraseIndex].phrase = e.target.value;
+                                        setEditablePhrases(newPhrases);
+                                      }}
+                                      placeholder="English phrase..."
+                                      className="text-sm"
+                                    />
+                                    <Input
+                                      value={phrase.vietnamese}
+                                      onChange={(e) => {
+                                        const newPhrases = [...editablePhrases];
+                                        newPhrases[phraseIndex].vietnamese = e.target.value;
+                                        setEditablePhrases(newPhrases);
+                                      }}
+                                      placeholder="Vietnamese translation..."
+                                      className="text-sm italic"
+                                    />
+                                  </div>
+                                  <Textarea
+                                    value={phrase.example}
+                                    onChange={(e) => {
+                                      const newPhrases = [...editablePhrases];
+                                      newPhrases[phraseIndex].example = e.target.value;
+                                      setEditablePhrases(newPhrases);
+                                    }}
+                                    placeholder="English example..."
+                                    className="min-h-[50px] text-sm"
+                                  />
+                                  <Textarea
+                                    value={phrase.exampleVietnamese}
+                                    onChange={(e) => {
+                                      const newPhrases = [...editablePhrases];
+                                      newPhrases[phraseIndex].exampleVietnamese = e.target.value;
+                                      setEditablePhrases(newPhrases);
+                                    }}
+                                    placeholder="Vietnamese example..."
+                                    className="min-h-[50px] text-sm italic"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                          
+                          {isEditMode && (
+                            <Button
+                              variant="outline"
+                              className="text-blue-600 border-blue-300"
+                              onClick={() => {
+                                setEditablePhrases([...editablePhrases, {
+                                  phrase: "",
+                                  vietnamese: "",
+                                  example: "",
+                                  exampleVietnamese: ""
+                                }]);
+                              }}
+                            >
+                              <Plus className="h-4 w-4 mr-1" />
+                              Thêm cụm từ
+                            </Button>
+                          )}
                         </div>
                       </div>
                     )}
@@ -1062,24 +1259,124 @@ export default function WordcraftWords() {
                       <div className="space-y-3">
                         <h3 className="font-semibold text-gray-900 mb-2 text-lg">Từ đồng nghĩa và trái nghĩa</h3>
                         <div className="space-y-3">
+                          {/* Synonyms Section */}
                           <div className="bg-green-50 p-3 rounded-lg">
-                            <h4 className="font-medium text-green-900 mb-2">Từ đồng nghĩa:</h4>
-                            <div className="flex flex-wrap gap-2">
-                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">toughness</span>
-                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">strength</span>
-                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">endurance</span>
-                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">durability</span>
-                              <span className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">flexibility</span>
+                            <div className="flex items-center justify-between mb-2">
+                              <h4 className="font-medium text-green-900">Từ đồng nghĩa:</h4>
+                              {isEditMode && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="text-green-600 h-6"
+                                  onClick={() => {
+                                    setEditableSynonyms([...editableSynonyms, ""]);
+                                  }}
+                                >
+                                  <Plus className="h-3 w-3 mr-1" />
+                                  Thêm
+                                </Button>
+                              )}
                             </div>
+                            
+                            {!isEditMode ? (
+                              // View mode
+                              <div className="flex flex-wrap gap-2">
+                                {editableSynonyms.map((synonym, index) => (
+                                  <span key={index} className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">
+                                    {synonym}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : (
+                              // Edit mode
+                              <div className="space-y-2">
+                                {editableSynonyms.map((synonym, index) => (
+                                  <div key={index} className="flex items-center gap-2">
+                                    <Input
+                                      value={synonym}
+                                      onChange={(e) => {
+                                        const newSynonyms = [...editableSynonyms];
+                                        newSynonyms[index] = e.target.value;
+                                        setEditableSynonyms(newSynonyms);
+                                      }}
+                                      placeholder="Synonym..."
+                                      className="text-sm flex-1"
+                                    />
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-8 w-8 p-0 text-red-600"
+                                      onClick={() => {
+                                        const newSynonyms = editableSynonyms.filter((_, i) => i !== index);
+                                        setEditableSynonyms(newSynonyms);
+                                      }}
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </Button>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
+                          
+                          {/* Antonyms Section */}
                           <div className="bg-red-50 p-3 rounded-lg">
-                            <h4 className="font-medium text-red-900 mb-2">Từ trái nghĩa:</h4>
-                            <div className="flex flex-wrap gap-2">
-                              <span className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">fragility</span>
-                              <span className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">weakness</span>
-                              <span className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">vulnerability</span>
-                              <span className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">brittleness</span>
+                            <div className="flex items-center justify-between mb-2">
+                              <h4 className="font-medium text-red-900">Từ trái nghĩa:</h4>
+                              {isEditMode && (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="text-red-600 h-6"
+                                  onClick={() => {
+                                    setEditableAntonyms([...editableAntonyms, ""]);
+                                  }}
+                                >
+                                  <Plus className="h-3 w-3 mr-1" />
+                                  Thêm
+                                </Button>
+                              )}
                             </div>
+                            
+                            {!isEditMode ? (
+                              // View mode
+                              <div className="flex flex-wrap gap-2">
+                                {editableAntonyms.map((antonym, index) => (
+                                  <span key={index} className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">
+                                    {antonym}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : (
+                              // Edit mode
+                              <div className="space-y-2">
+                                {editableAntonyms.map((antonym, index) => (
+                                  <div key={index} className="flex items-center gap-2">
+                                    <Input
+                                      value={antonym}
+                                      onChange={(e) => {
+                                        const newAntonyms = [...editableAntonyms];
+                                        newAntonyms[index] = e.target.value;
+                                        setEditableAntonyms(newAntonyms);
+                                      }}
+                                      placeholder="Antonym..."
+                                      className="text-sm flex-1"
+                                    />
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-8 w-8 p-0 text-red-600"
+                                      onClick={() => {
+                                        const newAntonyms = editableAntonyms.filter((_, i) => i !== index);
+                                        setEditableAntonyms(newAntonyms);
+                                      }}
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </Button>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
