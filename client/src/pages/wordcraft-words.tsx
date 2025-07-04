@@ -931,21 +931,20 @@ export default function WordcraftWords() {
                         {/* Header with title and add button */}
                         <div className="flex items-center justify-between">
                           <h3 className="font-semibold text-gray-900 text-lg">Hình ảnh minh họa</h3>
-                          {wordImages.length < 2 && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="text-blue-600 border-blue-300 hover:bg-blue-50"
-                              onClick={() => {
-                                if (wordImages.length < 2) {
-                                  setWordImages([...wordImages, `new-image-${wordImages.length + 1}`]);
-                                }
-                              }}
-                            >
-                              <Plus className="h-4 w-4 mr-1" />
-                              Thêm hình ảnh
-                            </Button>
-                          )}
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="text-blue-600 border-blue-300 hover:bg-blue-50"
+                            disabled={wordImages.length >= 2}
+                            onClick={() => {
+                              if (wordImages.length < 2) {
+                                setWordImages([...wordImages, `new-image-${wordImages.length + 1}`]);
+                              }
+                            }}
+                          >
+                            <Plus className="h-4 w-4 mr-1" />
+                            Thêm hình ảnh
+                          </Button>
                         </div>
                         
                         <div className="bg-blue-50 p-4 rounded-lg">
@@ -956,11 +955,53 @@ export default function WordcraftWords() {
                                 className="w-40 bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
                                 style={{ aspectRatio: '4/3' }}
                               >
-                                <span className="text-gray-500 text-sm">Chưa có hình ảnh</span>
+                                <span className="text-gray-500 text-sm">Chưa thêm hình ảnh</span>
+                              </div>
+                            </div>
+                          ) : wordImages.length === 1 ? (
+                            // One image - center it
+                            <div className="flex justify-center">
+                              <div className="relative">
+                                <div 
+                                  className="w-40 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                  style={{ aspectRatio: '4/3' }}
+                                >
+                                  <span className="text-gray-500 text-sm">Hình ảnh 1</span>
+                                </div>
+                                
+                                {/* Edit mode controls */}
+                                {isEditMode && (
+                                  <div className="absolute top-2 right-2 flex gap-1">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
+                                      onClick={() => {
+                                        // Replace image
+                                        const newImages = [...wordImages];
+                                        newImages[0] = `updated-image-1`;
+                                        setWordImages(newImages);
+                                      }}
+                                    >
+                                      <Edit className="h-3 w-3" />
+                                    </Button>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="text-red-600 border-red-300 hover:bg-red-50 h-6 w-6 p-0"
+                                      onClick={() => {
+                                        // Remove image
+                                        setWordImages([]);
+                                      }}
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </Button>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           ) : (
-                            // Has images - show up to 2 images
+                            // Two images - show them side by side
                             <div className="flex justify-center">
                               <div className="grid grid-cols-2 gap-4 max-w-[340px]">
                                 {wordImages.slice(0, 2).map((image, index) => (
@@ -1007,6 +1048,11 @@ export default function WordcraftWords() {
                               </div>
                             </div>
                           )}
+                          
+                          {/* Centered question text */}
+                          <div className="text-center mt-4">
+                            <p className="text-gray-700 text-sm">Nghĩa của từ vựng này là gì?</p>
+                          </div>
                         </div>
                       </div>
                     )}
