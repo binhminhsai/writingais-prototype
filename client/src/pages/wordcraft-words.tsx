@@ -925,7 +925,7 @@ export default function WordcraftWords() {
                   </div>
 
                   {/* Tab Content */}
-                  <div className="relative h-[400px] mt-4 overflow-y-auto overflow-x-hidden pr-2">
+                  <div className="relative h-[400px] mt-4 overflow-y-auto pr-2">
                     {activeTab === "images" && (
                       <div className="h-full flex flex-col">
                         {/* Header with title and add button */}
