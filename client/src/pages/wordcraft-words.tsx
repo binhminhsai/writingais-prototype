@@ -952,8 +952,8 @@ export default function WordcraftWords() {
                             // No images - show placeholder
                             <div className="flex justify-center">
                               <div 
-                                className="w-40 bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
-                                style={{ aspectRatio: '4/3' }}
+                                className="w-72 bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
+                                style={{ aspectRatio: '16/9' }}
                               >
                                 <span className="text-gray-500 text-sm">Chưa thêm hình ảnh</span>
                               </div>
@@ -963,8 +963,8 @@ export default function WordcraftWords() {
                             <div className="flex justify-center">
                               <div className="relative">
                                 <div 
-                                  className="w-40 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
-                                  style={{ aspectRatio: '4/3' }}
+                                  className="w-72 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                  style={{ aspectRatio: '16/9' }}
                                 >
                                   <span className="text-gray-500 text-sm">Hình ảnh 1</span>
                                 </div>
@@ -1003,12 +1003,12 @@ export default function WordcraftWords() {
                           ) : (
                             // Two images - show them side by side
                             <div className="flex justify-center">
-                              <div className="grid grid-cols-2 gap-4 max-w-[340px]">
+                              <div className="grid grid-cols-2 gap-4 max-w-[600px]">
                                 {wordImages.slice(0, 2).map((image, index) => (
                                   <div key={index} className="relative">
                                     <div 
-                                      className="w-40 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
-                                      style={{ aspectRatio: '4/3' }}
+                                      className="w-72 bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                      style={{ aspectRatio: '16/9' }}
                                     >
                                       <span className="text-gray-500 text-sm">Hình ảnh {index + 1}</span>
                                     </div>
