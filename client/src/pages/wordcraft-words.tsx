@@ -1199,10 +1199,10 @@ export default function WordcraftWords() {
 
                     {activeTab === "phrases" && (
                       <div className="space-y-3">
-                        <h3 className="font-semibold text-gray-900 mb-2 text-lg">Cụm từ thường gặp</h3>
-                        <div className="space-y-3">
+                        <h3 className="font-semibold text-gray-900 mb-1 text-lg">Cụm từ thường gặp</h3>
+                        <div className="space-y-2">
                           {editablePhrases.map((phrase, phraseIndex) => (
-                            <div key={phraseIndex} className="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                            <div key={phraseIndex} className="bg-orange-50 p-2 rounded-lg border border-orange-200">
                               {!isEditMode ? (
                                 // View mode
                                 <div>
@@ -1218,8 +1218,8 @@ export default function WordcraftWords() {
                                 </div>
                               ) : (
                                 // Edit mode
-                                <div className="space-y-3">
-                                  <div className="flex items-center justify-between">
+                                <div className="space-y-2">
+                                  <div className="flex items-center justify-between mb-1">
                                     <span className="text-sm font-medium">Cụm từ {phraseIndex + 1}:</span>
                                     <Button
                                       variant="outline"
@@ -1233,42 +1233,52 @@ export default function WordcraftWords() {
                                       <X className="h-3 w-3" />
                                     </Button>
                                   </div>
-                                  <Input
+                                  <Textarea
                                     value={phrase.phrase}
                                     onChange={(e) => {
                                       const newPhrases = [...editablePhrases];
                                       newPhrases[phraseIndex].phrase = e.target.value;
                                       setEditablePhrases(newPhrases);
+                                      
+                                      // Auto-resize
+                                      const target = e.target as HTMLTextAreaElement;
+                                      setTimeout(() => {
+                                        target.style.height = 'auto';
+                                        target.style.height = Math.min(target.scrollHeight, 100) + 'px';
+                                      }, 0);
                                     }}
-                                    placeholder="Nhập cụm từ..."
-                                    className="text-sm"
+                                    placeholder="Show resilience - Thể hiện sự kiên cường"
+                                    className="min-h-[40px] text-sm resize-none"
+                                    style={{
+                                      height: 'auto',
+                                      minHeight: '40px',
+                                      maxHeight: '100px',
+                                      overflowY: 'auto'
+                                    }}
                                   />
-                                  <div className="space-y-1">
-                                    <span className="text-sm font-medium">Ví dụ:</span>
-                                    <Textarea
-                                      value={phrase.example}
-                                      onChange={(e) => {
-                                        const newPhrases = [...editablePhrases];
-                                        newPhrases[phraseIndex].example = e.target.value;
-                                        setEditablePhrases(newPhrases);
-                                        
-                                        // Auto-resize
-                                        const target = e.target as HTMLTextAreaElement;
-                                        setTimeout(() => {
-                                          target.style.height = 'auto';
-                                          target.style.height = Math.min(target.scrollHeight, 200) + 'px';
-                                        }, 0);
-                                      }}
-                                      placeholder="Nhập ví dụ cho cụm từ..."
-                                      className="min-h-[50px] text-sm resize-none"
-                                      style={{
-                                        height: 'auto',
-                                        minHeight: '50px',
-                                        maxHeight: '200px',
-                                        overflowY: 'auto'
-                                      }}
-                                    />
-                                  </div>
+                                  <Textarea
+                                    value={phrase.example}
+                                    onChange={(e) => {
+                                      const newPhrases = [...editablePhrases];
+                                      newPhrases[phraseIndex].example = e.target.value;
+                                      setEditablePhrases(newPhrases);
+                                      
+                                      // Auto-resize
+                                      const target = e.target as HTMLTextAreaElement;
+                                      setTimeout(() => {
+                                        target.style.height = 'auto';
+                                        target.style.height = Math.min(target.scrollHeight, 120) + 'px';
+                                      }, 0);
+                                    }}
+                                    placeholder="The team showed remarkable resilience during the crisis. (Nhóm đã thể hiện sự kiên cường đáng chú ý trong suốt cuộc khủng hoảng.)"
+                                    className="min-h-[50px] text-sm resize-none"
+                                    style={{
+                                      height: 'auto',
+                                      minHeight: '50px',
+                                      maxHeight: '120px',
+                                      overflowY: 'auto'
+                                    }}
+                                  />
                                 </div>
                               )}
                             </div>
