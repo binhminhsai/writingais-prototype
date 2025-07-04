@@ -107,11 +107,18 @@ export default function WordcraftWords() {
   ]);
   
   const [editableSynonyms, setEditableSynonyms] = useState([
-    "toughness", "strength", "endurance", "durability", "flexibility"
+    { word: "toughness", example: "The toughness of the material made it perfect for construction" },
+    { word: "strength", example: "Her mental strength helped her overcome challenges" },
+    { word: "endurance", example: "Marathon runners need great endurance" },
+    { word: "durability", example: "The phone's durability impressed all users" },
+    { word: "flexibility", example: "Mental flexibility is key to problem-solving" }
   ]);
   
   const [editableAntonyms, setEditableAntonyms] = useState([
-    "fragility", "weakness", "vulnerability", "brittleness"
+    { word: "fragility", example: "The glass showed its fragility when it broke easily" },
+    { word: "weakness", example: "His weakness became apparent under pressure" },
+    { word: "vulnerability", example: "The system's vulnerability was exposed by hackers" },
+    { word: "brittleness", example: "The old wood's brittleness made it unsafe" }
   ]);
 
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
@@ -1305,7 +1312,7 @@ export default function WordcraftWords() {
                                   size="sm"
                                   className="text-green-600 h-6"
                                   onClick={() => {
-                                    setEditableSynonyms([...editableSynonyms, ""]);
+                                    setEditableSynonyms([...editableSynonyms, { word: "", example: "" }]);
                                   }}
                                 >
                                   <Plus className="h-3 w-3 mr-1" />
@@ -1316,11 +1323,12 @@ export default function WordcraftWords() {
                             
                             {!isEditMode ? (
                               // View mode
-                              <div className="flex flex-wrap gap-2">
+                              <div className="space-y-2">
                                 {editableSynonyms.map((synonym, index) => (
-                                  <span key={index} className="bg-green-200 text-green-800 px-2 py-1 rounded text-sm">
-                                    {synonym}
-                                  </span>
+                                  <div key={index} className="text-sm text-gray-700">
+                                    <span className="font-medium text-green-800">{synonym.word}</span>
+                                    <span className="text-gray-600"> - {synonym.example}</span>
+                                  </div>
                                 ))}
                               </div>
                             ) : (
@@ -1329,14 +1337,19 @@ export default function WordcraftWords() {
                                 {editableSynonyms.map((synonym, index) => (
                                   <div key={index} className="flex items-center gap-2">
                                     <Input
-                                      value={synonym}
+                                      value={`${synonym.word}${synonym.example ? ' - ' + synonym.example : ''}`}
                                       onChange={(e) => {
                                         const newSynonyms = [...editableSynonyms];
-                                        newSynonyms[index] = e.target.value;
+                                        const value = e.target.value;
+                                        const parts = value.split(' - ');
+                                        newSynonyms[index] = { 
+                                          word: parts[0] || '', 
+                                          example: parts[1] || '' 
+                                        };
                                         setEditableSynonyms(newSynonyms);
                                       }}
-                                      placeholder="Synonym..."
-                                      className="text-sm flex-1"
+                                      placeholder="strength - Her mental strength helped her overcome challenges"
+                                      className="text-sm flex-1 h-8"
                                     />
                                     <Button
                                       variant="outline"
@@ -1365,7 +1378,7 @@ export default function WordcraftWords() {
                                   size="sm"
                                   className="text-red-600 h-6"
                                   onClick={() => {
-                                    setEditableAntonyms([...editableAntonyms, ""]);
+                                    setEditableAntonyms([...editableAntonyms, { word: "", example: "" }]);
                                   }}
                                 >
                                   <Plus className="h-3 w-3 mr-1" />
@@ -1376,11 +1389,12 @@ export default function WordcraftWords() {
                             
                             {!isEditMode ? (
                               // View mode
-                              <div className="flex flex-wrap gap-2">
+                              <div className="space-y-2">
                                 {editableAntonyms.map((antonym, index) => (
-                                  <span key={index} className="bg-red-200 text-red-800 px-2 py-1 rounded text-sm">
-                                    {antonym}
-                                  </span>
+                                  <div key={index} className="text-sm text-gray-700">
+                                    <span className="font-medium text-red-800">{antonym.word}</span>
+                                    <span className="text-gray-600"> - {antonym.example}</span>
+                                  </div>
                                 ))}
                               </div>
                             ) : (
@@ -1389,14 +1403,19 @@ export default function WordcraftWords() {
                                 {editableAntonyms.map((antonym, index) => (
                                   <div key={index} className="flex items-center gap-2">
                                     <Input
-                                      value={antonym}
+                                      value={`${antonym.word}${antonym.example ? ' - ' + antonym.example : ''}`}
                                       onChange={(e) => {
                                         const newAntonyms = [...editableAntonyms];
-                                        newAntonyms[index] = e.target.value;
+                                        const value = e.target.value;
+                                        const parts = value.split(' - ');
+                                        newAntonyms[index] = { 
+                                          word: parts[0] || '', 
+                                          example: parts[1] || '' 
+                                        };
                                         setEditableAntonyms(newAntonyms);
                                       }}
-                                      placeholder="Antonym..."
-                                      className="text-sm flex-1"
+                                      placeholder="weakness - His weakness became apparent under pressure"
+                                      className="text-sm flex-1 h-8"
                                     />
                                     <Button
                                       variant="outline"
@@ -1460,8 +1479,8 @@ export default function WordcraftWords() {
                     setEditablePhrases(filteredPhrases);
                     
                     // Filter out empty synonyms and antonyms
-                    setEditableSynonyms(editableSynonyms.filter(word => word.trim() !== ''));
-                    setEditableAntonyms(editableAntonyms.filter(word => word.trim() !== ''));
+                    setEditableSynonyms(editableSynonyms.filter(item => item.word.trim() !== '' || item.example.trim() !== ''));
+                    setEditableAntonyms(editableAntonyms.filter(item => item.word.trim() !== '' || item.example.trim() !== ''));
                   }
                   setIsEditMode(!isEditMode);
                 }}
