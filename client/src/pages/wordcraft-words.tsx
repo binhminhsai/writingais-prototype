@@ -948,11 +948,11 @@ export default function WordcraftWords() {
                         </div>
                         
                         {/* Content area centered vertically */}
-                        <div className="flex-1 flex flex-col items-center justify-center space-y-6">
+                        <div className="flex-1 flex flex-col items-center justify-center space-y-4 md:space-y-6">
                           {wordImages.length === 0 ? (
                             // No images - show placeholder
                             <div 
-                              className="w-[420px] bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
+                              className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[420px] bg-gray-200 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-gray-300"
                               style={{ aspectRatio: '16/9' }}
                             >
                               <span className="text-gray-500 text-sm">Chưa thêm hình ảnh</span>
@@ -961,7 +961,7 @@ export default function WordcraftWords() {
                             // One image - center it
                             <div className="relative">
                               <div 
-                                className="w-[420px] bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[420px] bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
                                 style={{ aspectRatio: '16/9' }}
                               >
                                 <span className="text-gray-500 text-sm">Hình ảnh 1</span>
@@ -998,57 +998,55 @@ export default function WordcraftWords() {
                               )}
                             </div>
                           ) : (
-                            // Two images - show them side by side with perfect centering
-                            <div className="w-full flex justify-center">
-                              <div className="flex gap-8 items-center justify-center">
-                                {wordImages.slice(0, 2).map((image, index) => (
-                                  <div key={index} className="relative">
-                                    <div 
-                                      className="w-[420px] bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
-                                      style={{ aspectRatio: '16/9' }}
-                                    >
-                                      <span className="text-gray-500 text-sm">Hình ảnh {index + 1}</span>
-                                    </div>
-                                    
-                                    {/* Edit mode controls */}
-                                    {isEditMode && (
-                                      <div className="absolute top-2 right-2 flex gap-1">
-                                        <Button
-                                          variant="outline"
-                                          size="sm"
-                                          className="text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
-                                          onClick={() => {
-                                            // Replace image
-                                            const newImages = [...wordImages];
-                                            newImages[index] = `updated-image-${index + 1}`;
-                                            setWordImages(newImages);
-                                          }}
-                                        >
-                                          <Edit className="h-3 w-3" />
-                                        </Button>
-                                        <Button
-                                          variant="outline"
-                                          size="sm"
-                                          className="text-red-600 border-red-300 hover:bg-red-50 h-6 w-6 p-0"
-                                          onClick={() => {
-                                            // Remove image
-                                            const newImages = wordImages.filter((_, i) => i !== index);
-                                            setWordImages(newImages);
-                                          }}
-                                        >
-                                          <X className="h-3 w-3" />
-                                        </Button>
-                                      </div>
-                                    )}
+                            // Two images - responsive layout
+                            <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-8">
+                              {wordImages.slice(0, 2).map((image, index) => (
+                                <div key={index} className="relative">
+                                  <div 
+                                    className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[420px] bg-gray-200 rounded-lg flex items-center justify-center border border-gray-300"
+                                    style={{ aspectRatio: '16/9' }}
+                                  >
+                                    <span className="text-gray-500 text-sm">Hình ảnh {index + 1}</span>
                                   </div>
-                                ))}
-                              </div>
+                                  
+                                  {/* Edit mode controls */}
+                                  {isEditMode && (
+                                    <div className="absolute top-2 right-2 flex gap-1">
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="text-blue-600 border-blue-300 hover:bg-blue-50 h-6 w-6 p-0"
+                                        onClick={() => {
+                                          // Replace image
+                                          const newImages = [...wordImages];
+                                          newImages[index] = `updated-image-${index + 1}`;
+                                          setWordImages(newImages);
+                                        }}
+                                      >
+                                        <Edit className="h-3 w-3" />
+                                      </Button>
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="text-red-600 border-red-300 hover:bg-red-50 h-6 w-6 p-0"
+                                        onClick={() => {
+                                          // Remove image
+                                          const newImages = wordImages.filter((_, i) => i !== index);
+                                          setWordImages(newImages);
+                                        }}
+                                      >
+                                        <X className="h-3 w-3" />
+                                      </Button>
+                                    </div>
+                                  )}
+                                </div>
+                              ))}
                             </div>
                           )}
                           
                           {/* Centered question text */}
-                          <div className="text-center">
-                            <p className="text-gray-700 text-base">Nghĩa của từ vựng này là gì?</p>
+                          <div className="text-center px-4">
+                            <p className="text-gray-700 text-sm md:text-base">Nghĩa của từ vựng này là gì?</p>
                           </div>
                         </div>
                       </div>
