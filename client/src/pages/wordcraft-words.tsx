@@ -1084,7 +1084,9 @@ export default function WordcraftWords() {
                                 <div className="bg-gray-50 p-4 rounded-lg border">
                                   <div className="space-y-3">
                                     <div className="flex items-center justify-between">
-                                      <Label className="text-sm font-medium">{def.title} (Bắt buộc phải có nội dung)</Label>
+                                      <Label className="text-sm font-medium">
+                                        {def.title} <span className="text-red-500">*</span>
+                                      </Label>
                                       {defIndex > 0 && (
                                         <Button
                                           variant="outline"
@@ -1101,7 +1103,6 @@ export default function WordcraftWords() {
                                     </div>
                                     
                                     <div className="space-y-2">
-                                      <Label className="text-xs text-gray-600">Định nghĩa (Tiếng Anh và Tiếng Việt):</Label>
                                       <Textarea
                                         value={def.definition && def.vietnamese ? `${def.definition} (${def.vietnamese})` : ''}
                                         onChange={(e) => {
@@ -1125,7 +1126,7 @@ export default function WordcraftWords() {
                                     </div>
                                     
                                     <div className="space-y-2">
-                                      <Label className="text-xs text-gray-600">Ví dụ (Tùy chọn):</Label>
+                                      <Label className="text-xs text-gray-600">Ví dụ:</Label>
                                       <Textarea
                                         value={def.examples.map((ex, idx) => 
                                           `${idx + 1}. ${ex.english} (${ex.vietnamese})`
