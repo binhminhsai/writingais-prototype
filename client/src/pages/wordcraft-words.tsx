@@ -1152,18 +1152,21 @@ export default function WordcraftWords() {
                                           
                                           newDefs[defIndex].examples = examples;
                                           setEditableDefinitions(newDefs);
+                                          
+                                          // Auto-resize
+                                          const target = e.target as HTMLTextAreaElement;
+                                          setTimeout(() => {
+                                            target.style.height = 'auto';
+                                            target.style.height = Math.min(target.scrollHeight, 400) + 'px';
+                                          }, 0);
                                         }}
-                                        className="min-h-[120px] text-sm resize-none overflow-hidden"
+                                        className="min-h-[120px] text-sm resize-none"
                                         placeholder="1. She showed great resilience in overcoming the challenges at work. (Cô ấy đã thể hiện khả năng phục hồi tuyệt vời trong việc vượt qua những thử thách tại nơi làm việc.)&#10;2. The company's resilience helped it survive the economic downturn. (Khả năng phục hồi của công ty đã giúp nó tồn tại qua cuộc suy thoái kinh tế.)&#10;3. Building emotional resilience is crucial for mental health. (Xây dựng khả năng phục hồi cảm xúc là rất quan trọng cho sức khỏe tâm thần.)"
                                         style={{
                                           height: 'auto',
                                           minHeight: '120px',
-                                          maxHeight: '400px'
-                                        }}
-                                        onInput={(e) => {
-                                          const target = e.target as HTMLTextAreaElement;
-                                          target.style.height = 'auto';
-                                          target.style.height = Math.min(target.scrollHeight, 400) + 'px';
+                                          maxHeight: '400px',
+                                          overflowY: 'auto'
                                         }}
                                       />
                                     </div>
@@ -1258,18 +1261,21 @@ export default function WordcraftWords() {
                                       const newPhrases = [...editablePhrases];
                                       newPhrases[phraseIndex].example = e.target.value;
                                       setEditablePhrases(newPhrases);
+                                      
+                                      // Auto-resize
+                                      const target = e.target as HTMLTextAreaElement;
+                                      setTimeout(() => {
+                                        target.style.height = 'auto';
+                                        target.style.height = Math.min(target.scrollHeight, 200) + 'px';
+                                      }, 0);
                                     }}
                                     placeholder="English example..."
-                                    className="min-h-[50px] text-sm resize-none overflow-hidden"
+                                    className="min-h-[50px] text-sm resize-none"
                                     style={{
                                       height: 'auto',
                                       minHeight: '50px',
-                                      maxHeight: '200px'
-                                    }}
-                                    onInput={(e) => {
-                                      const target = e.target as HTMLTextAreaElement;
-                                      target.style.height = 'auto';
-                                      target.style.height = Math.min(target.scrollHeight, 200) + 'px';
+                                      maxHeight: '200px',
+                                      overflowY: 'auto'
                                     }}
                                   />
                                   <Textarea
@@ -1278,18 +1284,21 @@ export default function WordcraftWords() {
                                       const newPhrases = [...editablePhrases];
                                       newPhrases[phraseIndex].exampleVietnamese = e.target.value;
                                       setEditablePhrases(newPhrases);
+                                      
+                                      // Auto-resize
+                                      const target = e.target as HTMLTextAreaElement;
+                                      setTimeout(() => {
+                                        target.style.height = 'auto';
+                                        target.style.height = Math.min(target.scrollHeight, 200) + 'px';
+                                      }, 0);
                                     }}
                                     placeholder="Vietnamese example..."
-                                    className="min-h-[50px] text-sm italic resize-none overflow-hidden"
+                                    className="min-h-[50px] text-sm italic resize-none"
                                     style={{
                                       height: 'auto',
                                       minHeight: '50px',
-                                      maxHeight: '200px'
-                                    }}
-                                    onInput={(e) => {
-                                      const target = e.target as HTMLTextAreaElement;
-                                      target.style.height = 'auto';
-                                      target.style.height = Math.min(target.scrollHeight, 200) + 'px';
+                                      maxHeight: '200px',
+                                      overflowY: 'auto'
                                     }}
                                   />
                                 </div>
