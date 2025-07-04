@@ -1244,15 +1244,15 @@ export default function WordcraftWords() {
                                       const target = e.target as HTMLTextAreaElement;
                                       setTimeout(() => {
                                         target.style.height = 'auto';
-                                        target.style.height = Math.min(target.scrollHeight, 100) + 'px';
+                                        target.style.height = Math.min(target.scrollHeight, 120) + 'px';
                                       }, 0);
                                     }}
                                     placeholder="Show resilience - Thể hiện sự kiên cường"
-                                    className="min-h-[40px] text-sm resize-none"
+                                    className="min-h-[32px] text-sm resize-none"
                                     style={{
-                                      height: 'auto',
-                                      minHeight: '40px',
-                                      maxHeight: '100px',
+                                      height: '32px',
+                                      minHeight: '32px',
+                                      maxHeight: '120px',
                                       overflowY: 'auto'
                                     }}
                                   />
@@ -1267,15 +1267,15 @@ export default function WordcraftWords() {
                                       const target = e.target as HTMLTextAreaElement;
                                       setTimeout(() => {
                                         target.style.height = 'auto';
-                                        target.style.height = Math.min(target.scrollHeight, 120) + 'px';
+                                        target.style.height = Math.min(target.scrollHeight, 150) + 'px';
                                       }, 0);
                                     }}
                                     placeholder="The team showed remarkable resilience during the crisis. (Nhóm đã thể hiện sự kiên cường đáng chú ý trong suốt cuộc khủng hoảng.)"
-                                    className="min-h-[50px] text-sm resize-none"
+                                    className="min-h-[32px] text-sm resize-none"
                                     style={{
-                                      height: 'auto',
-                                      minHeight: '50px',
-                                      maxHeight: '120px',
+                                      height: '32px',
+                                      minHeight: '32px',
+                                      maxHeight: '150px',
                                       overflowY: 'auto'
                                     }}
                                   />
