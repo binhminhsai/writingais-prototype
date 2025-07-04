@@ -114,28 +114,6 @@ export default function WordcraftWords() {
     "fragility", "weakness", "vulnerability", "brittleness"
   ]);
 
-  // Auto-resize function for textareas
-  const autoResizeTextarea = (element: HTMLTextAreaElement) => {
-    element.style.height = 'auto';
-    const newHeight = Math.max(32, Math.min(element.scrollHeight, 200));
-    element.style.height = newHeight + 'px';
-  };
-
-  // Effect to auto-resize textareas when content changes
-  useEffect(() => {
-    if (isEditMode) {
-      // Auto-resize all phrase textareas
-      setTimeout(() => {
-        const textareas = document.querySelectorAll('.phrases-tab textarea');
-        textareas.forEach((textarea) => {
-          if (textarea instanceof HTMLTextAreaElement) {
-            autoResizeTextarea(textarea);
-          }
-        });
-      }, 10);
-    }
-  }, [editablePhrases, isEditMode]);
-
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [selectedCardValue, setSelectedCardValue] = useState<string>("");
   const [searchCardValue, setSearchCardValue] = useState<string>("");
@@ -1256,45 +1234,36 @@ export default function WordcraftWords() {
                                       <X className="h-3 w-3" />
                                     </Button>
                                   </div>
-                                  <Textarea
-                                    value={phrase.phrase}
+                                  <Input
+                                    value={`${phrase.phrase}${phrase.vietnamese ? ' - ' + phrase.vietnamese : ''}`}
                                     onChange={(e) => {
                                       const newPhrases = [...editablePhrases];
-                                      newPhrases[phraseIndex].phrase = e.target.value;
+                                      const value = e.target.value;
+                                      const parts = value.split(' - ');
+                                      newPhrases[phraseIndex].phrase = parts[0] || '';
+                                      newPhrases[phraseIndex].vietnamese = parts[1] || '';
                                       setEditablePhrases(newPhrases);
-                                      
-                                      // Auto-resize
-                                      const target = e.target as HTMLTextAreaElement;
-                                      setTimeout(() => autoResizeTextarea(target), 0);
                                     }}
                                     placeholder="Show resilience - Thể hiện sự kiên cường"
-                                    className="min-h-[32px] text-sm resize-none"
-                                    style={{
-                                      height: '32px',
-                                      minHeight: '32px',
-                                      maxHeight: '200px',
-                                      overflowY: 'auto'
-                                    }}
+                                    className="h-8 text-sm"
                                   />
-                                  <Textarea
-                                    value={phrase.example}
+                                  <Input
+                                    value={`${phrase.example}${phrase.exampleVietnamese ? ' (' + phrase.exampleVietnamese + ')' : ''}`}
                                     onChange={(e) => {
                                       const newPhrases = [...editablePhrases];
-                                      newPhrases[phraseIndex].example = e.target.value;
+                                      const value = e.target.value;
+                                      const match = value.match(/^(.*?)\s*\((.*?)\)\s*$/);
+                                      if (match) {
+                                        newPhrases[phraseIndex].example = match[1].trim();
+                                        newPhrases[phraseIndex].exampleVietnamese = match[2].trim();
+                                      } else {
+                                        newPhrases[phraseIndex].example = value;
+                                        newPhrases[phraseIndex].exampleVietnamese = '';
+                                      }
                                       setEditablePhrases(newPhrases);
-                                      
-                                      // Auto-resize
-                                      const target = e.target as HTMLTextAreaElement;
-                                      setTimeout(() => autoResizeTextarea(target), 0);
                                     }}
                                     placeholder="The team showed remarkable resilience during the crisis. (Nhóm đã thể hiện sự kiên cường đáng chú ý trong suốt cuộc khủng hoảng.)"
-                                    className="min-h-[32px] text-sm resize-none"
-                                    style={{
-                                      height: '32px',
-                                      minHeight: '32px',
-                                      maxHeight: '200px',
-                                      overflowY: 'auto'
-                                    }}
+                                    className="h-8 text-sm"
                                   />
                                 </div>
                               )}
