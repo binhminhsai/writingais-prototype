@@ -1233,74 +1233,42 @@ export default function WordcraftWords() {
                                       <X className="h-3 w-3" />
                                     </Button>
                                   </div>
-                                  <div className="grid grid-cols-2 gap-2">
-                                    <Input
-                                      value={phrase.phrase}
+                                  <Input
+                                    value={phrase.phrase}
+                                    onChange={(e) => {
+                                      const newPhrases = [...editablePhrases];
+                                      newPhrases[phraseIndex].phrase = e.target.value;
+                                      setEditablePhrases(newPhrases);
+                                    }}
+                                    placeholder="Nhập cụm từ..."
+                                    className="text-sm"
+                                  />
+                                  <div className="space-y-1">
+                                    <span className="text-sm font-medium">Ví dụ:</span>
+                                    <Textarea
+                                      value={phrase.example}
                                       onChange={(e) => {
                                         const newPhrases = [...editablePhrases];
-                                        newPhrases[phraseIndex].phrase = e.target.value;
+                                        newPhrases[phraseIndex].example = e.target.value;
                                         setEditablePhrases(newPhrases);
+                                        
+                                        // Auto-resize
+                                        const target = e.target as HTMLTextAreaElement;
+                                        setTimeout(() => {
+                                          target.style.height = 'auto';
+                                          target.style.height = Math.min(target.scrollHeight, 200) + 'px';
+                                        }, 0);
                                       }}
-                                      placeholder="English phrase..."
-                                      className="text-sm"
-                                    />
-                                    <Input
-                                      value={phrase.vietnamese}
-                                      onChange={(e) => {
-                                        const newPhrases = [...editablePhrases];
-                                        newPhrases[phraseIndex].vietnamese = e.target.value;
-                                        setEditablePhrases(newPhrases);
+                                      placeholder="Nhập ví dụ cho cụm từ..."
+                                      className="min-h-[50px] text-sm resize-none"
+                                      style={{
+                                        height: 'auto',
+                                        minHeight: '50px',
+                                        maxHeight: '200px',
+                                        overflowY: 'auto'
                                       }}
-                                      placeholder="Vietnamese translation..."
-                                      className="text-sm italic"
                                     />
                                   </div>
-                                  <Textarea
-                                    value={phrase.example}
-                                    onChange={(e) => {
-                                      const newPhrases = [...editablePhrases];
-                                      newPhrases[phraseIndex].example = e.target.value;
-                                      setEditablePhrases(newPhrases);
-                                      
-                                      // Auto-resize
-                                      const target = e.target as HTMLTextAreaElement;
-                                      setTimeout(() => {
-                                        target.style.height = 'auto';
-                                        target.style.height = Math.min(target.scrollHeight, 200) + 'px';
-                                      }, 0);
-                                    }}
-                                    placeholder="English example..."
-                                    className="min-h-[50px] text-sm resize-none"
-                                    style={{
-                                      height: 'auto',
-                                      minHeight: '50px',
-                                      maxHeight: '200px',
-                                      overflowY: 'auto'
-                                    }}
-                                  />
-                                  <Textarea
-                                    value={phrase.exampleVietnamese}
-                                    onChange={(e) => {
-                                      const newPhrases = [...editablePhrases];
-                                      newPhrases[phraseIndex].exampleVietnamese = e.target.value;
-                                      setEditablePhrases(newPhrases);
-                                      
-                                      // Auto-resize
-                                      const target = e.target as HTMLTextAreaElement;
-                                      setTimeout(() => {
-                                        target.style.height = 'auto';
-                                        target.style.height = Math.min(target.scrollHeight, 200) + 'px';
-                                      }, 0);
-                                    }}
-                                    placeholder="Vietnamese example..."
-                                    className="min-h-[50px] text-sm italic resize-none"
-                                    style={{
-                                      height: 'auto',
-                                      minHeight: '50px',
-                                      maxHeight: '200px',
-                                      overflowY: 'auto'
-                                    }}
-                                  />
                                 </div>
                               )}
                             </div>
