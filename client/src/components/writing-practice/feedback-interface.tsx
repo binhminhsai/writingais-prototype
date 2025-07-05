@@ -13,14 +13,11 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
@@ -73,8 +70,6 @@ export function FeedbackInterface({
   onNextPractice,
 }: FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
-  const [selectedSentence, setSelectedSentence] = useState<string | null>(null);
-  const [showCorrectionDialog, setShowCorrectionDialog] = useState(false);
 
   // Example animal welfare essay as shown in the screenshot
   const sampleEssay = `In recent years, the way humans treat animals has become a big problem in many societies.
@@ -175,15 +170,7 @@ To conclude, both views are reasonable, and the best way is to find a balance be
     }
   };
 
-  // Get current issue details based on selectedSentence
-  const getCurrentIssue = () => {
-    if (!selectedSentence || !feedbackData.analysis?.sentences[selectedSentence]) {
-      return null;
-    }
-    return feedbackData.analysis.sentences[selectedSentence];
-  };
 
-  const currentIssue = getCurrentIssue();
 
   // Helper function to highlight sentences based on their analysis
   const highlightEssay = (text: string) => {
@@ -206,30 +193,57 @@ To conclude, both views are reasonable, and the best way is to find a balance be
         const trimmedSentence = currentSentence.trim();
         const issue = feedbackData.analysis?.sentences[trimmedSentence];
         
-        if (issue) {
-          let className = "inline cursor-pointer hover:opacity-80 transition-opacity";
-          let handleClick = () => {
-            setSelectedSentence(trimmedSentence);
-            setShowCorrectionDialog(true);
-          };
-
+        if (issue && issue.type !== 'good') {
+          let className = "inline cursor-pointer hover:opacity-80 transition-opacity px-1 rounded";
+          
           switch (issue.type) {
-            case 'good':
-              className += " bg-[#e1f5e8] text-[#2e7d32] px-1 rounded";
-              break;
             case 'error':
-              className += " bg-[#ffcdd2] text-[#c62828] px-1 rounded";
+              className += " bg-[#ffcdd2] text-[#c62828]";
               break;
             case 'suggestion':
-              className += " bg-[#fff9c4] text-[#f9a825] px-1 rounded";
+              className += " bg-[#fff9c4] text-[#f9a825]";
               break;
           }
 
+          // Create tooltip content
+          const tooltipContent = (
+            <div className="max-w-sm space-y-2">
+              <div>
+                <h4 className="font-semibold text-sm mb-1">
+                  {issue.type === 'error' ? 'Lỗi:' : 'Vấn đề:'}
+                </h4>
+                <p className="text-xs text-gray-200">
+                  {issue.issueDetail}
+                </p>
+              </div>
+              {issue.correction && (
+                <div>
+                  <h4 className="font-semibold text-sm mb-1">Cải thiện:</h4>
+                  <p className="text-xs text-gray-200">
+                    {issue.correction}
+                  </p>
+                </div>
+              )}
+            </div>
+          );
+
+          result.push(
+            <Tooltip key={wordIndex}>
+              <TooltipTrigger asChild>
+                <span className={className}>
+                  {currentSentence}
+                </span>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" className="bg-gray-800 text-white p-3">
+                {tooltipContent}
+              </TooltipContent>
+            </Tooltip>
+          );
+        } else if (issue && issue.type === 'good') {
           result.push(
             <span 
               key={wordIndex} 
-              className={className}
-              onClick={issue.type !== 'good' ? handleClick : undefined}
+              className="inline bg-[#e1f5e8] text-[#2e7d32] px-1 rounded"
             >
               {currentSentence}
             </span>
@@ -262,7 +276,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
   };
 
   return (
-    <div className="p-6">
+    <TooltipProvider>
+      <div className="p-6">
       <div className="flex mb-3">
         <Button 
           variant="outline" 
@@ -763,95 +778,7 @@ To conclude, both views are reasonable, and the best way is to find a balance be
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* Sentence Correction Dialog */}
-      <Dialog open={showCorrectionDialog} onOpenChange={setShowCorrectionDialog}>
-        <DialogContent className="sm:max-w-[600px]">
-          {currentIssue?.type === 'error' && (
-            <DialogHeader>
-              <DialogTitle className="flex items-center text-[#c62828] mb-2">
-                <XCircle className="h-5 w-5 mr-2" /> Errors & Corrections
-              </DialogTitle>
-              <DialogDescription>
-                Review the error and suggested correction for your sentence.
-              </DialogDescription>
-            </DialogHeader>
-          )}
-
-          {currentIssue?.type === 'suggestion' && (
-            <DialogHeader>
-              <DialogTitle className="flex items-center text-[#f9a825] mb-2">
-                <AlertTriangle className="h-5 w-5 mr-2" /> Suggestions for Improvement
-              </DialogTitle>
-              <DialogDescription>
-                Review the improvement suggestion for your sentence.
-              </DialogDescription>
-            </DialogHeader>
-          )}
-
-          {currentIssue && (
-            <div className="py-2">
-              <div className="mb-4">
-                <h4 className="font-semibold mb-1">Original:</h4>
-                <p className={`p-3 rounded-md border ${
-                  currentIssue.type === 'error' 
-                    ? 'bg-[#ffcdd2] text-[#c62828] border-red-300' 
-                    : 'bg-[#fff9c4] text-[#f9a825] border-yellow-300'
-                }`}>
-                  {currentIssue.original}
-                </p>
-              </div>
-
-              {currentIssue.type === 'error' && (
-                <div className="mb-4">
-                  <h4 className="font-semibold mb-1 text-[#c62828]">Error:</h4>
-                  <p className="text-gray-700 text-sm bg-gray-50 p-2 rounded border-l-4 border-red-500">
-                    {currentIssue.issueDetail}
-                  </p>
-                </div>
-              )}
-
-              {currentIssue.type === 'suggestion' && (
-                <div className="mb-4">
-                  <h4 className="font-semibold mb-1 text-[#f9a825]">Issue:</h4>
-                  <p className="text-gray-700 text-sm bg-gray-50 p-2 rounded border-l-4 border-yellow-500">
-                    {currentIssue.issueDetail}
-                  </p>
-                </div>
-              )}
-
-              {currentIssue.correction && (
-                <div className="mb-4">
-                  <h4 className="font-semibold mb-1 text-[#2e7d32]">
-                    {currentIssue.type === 'error' ? 'Correction:' : 'Improved:'}
-                  </h4>
-                  <p className="p-3 bg-[#e1f5e8] text-[#2e7d32] rounded-md border border-green-300">
-                    {currentIssue.correction}
-                  </p>
-                </div>
-              )}
-
-              {currentIssue.reason && (
-                <div>
-                  <h4 className="font-semibold mb-1 text-blue-700">Reason:</h4>
-                  <p className="text-gray-700 text-sm bg-blue-50 p-3 rounded border-l-4 border-blue-500">
-                    {currentIssue.reason}
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-
-          <DialogFooter>
-            <Button 
-              variant="outline" 
-              onClick={() => setShowCorrectionDialog(false)}
-              className="px-6"
-            >
-              Close
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </div>
+      </div>
+    </TooltipProvider>
   );
 }
