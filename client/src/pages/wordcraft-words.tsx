@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
@@ -166,133 +166,70 @@ export default function WordcraftWords() {
     setSearchCardValue("");
   };
 
-  // Essay analysis state
-  const [selectedSentence, setSelectedSentence] = useState<string>("");
-  const [showCorrectionDialog, setShowCorrectionDialog] = useState(false);
+  // Game state for quiz
+  const [selectedAnswer, setSelectedAnswer] = useState<string>("");
+  const [showResult, setShowResult] = useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-  // Sample essay with analysis data
-  const sampleEssay = `In recent years, the way humans treat animals has become a big problem in many societies. Some people believe animals should have equal rights as humans, while others say human needs are more important. This essay will look at both sides and give my opinion. On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans. They say animals should not be killed for food, used for testing, or kept in small cages. For example, testing makeup on animals can hurt them and it is not fair. People also believe that animals in zoos or farms live in poor condition and this is not right. On the other hand, other people argue that humans must come first. They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy. Some important medicine was tested on animals before used for people. In some countries, eating meat is a part of culture and tradition, so it cannot be avoided easily. In my opinion, I believe animals should be treated well, but sometimes human needs are more necessary. We should try to reduce animal suffering, but not forget that people also have needs to live. To conclude, both views are reasonable, and the best way is to find a balance between human needs and animal protection.`;
+  // Sample quiz questions
+  const quizQuestions = [
+    {
+      id: 1,
+      question: "The use of _____ technologies helps ensure sustainable development for future generations.",
+      options: [
+        { value: "A", text: "renewable" },
+        { value: "B", text: "harmful" },
+        { value: "C", text: "wasteful" },
+        { value: "D", text: "outdated" }
+      ],
+      correctAnswer: "A",
+      explanation: "Renewable technologies như năng lượng mặt trời, gió giúp phát triển bền vững."
+    },
+    {
+      id: 2,
+      question: "Companies must adopt _____ practices to contribute to sustainable business models.",
+      options: [
+        { value: "A", text: "destructive" },
+        { value: "B", text: "eco-friendly" },
+        { value: "C", text: "polluting" },
+        { value: "D", text: "wasteful" }
+      ],
+      correctAnswer: "B",
+      explanation: "Eco-friendly practices (thân thiện với môi trường) giúp doanh nghiệp phát triển bền vững."
+    },
+    {
+      id: 3,
+      question: "Sustainable agriculture focuses on _____ farming methods that protect the environment.",
+      options: [
+        { value: "A", text: "chemical-intensive" },
+        { value: "B", text: "organic" },
+        { value: "C", text: "harmful" },
+        { value: "D", text: "toxic" }
+      ],
+      correctAnswer: "B",
+      explanation: "Organic farming (nông nghiệp hữu cơ) bảo vệ môi trường và phát triển bền vững."
+    }
+  ];
 
-  // Analysis data mapping sentences to issues
-  const analysisData: { [key: string]: { type: string; issueDetail?: string; correction?: string; reason?: string } } = {
-    "In recent years, the way humans treat animals has become a big problem in many societies.": {
-      type: 'suggestion',
-      issueDetail: 'The phrase "big problem" is somewhat vague and could be more impactful',
-      correction: 'In recent years, the way humans treat animals has become a significant ethical concern in many societies.',
-      reason: 'Using more specific and academic vocabulary like "significant ethical concern" instead of "big problem" makes the writing more sophisticated and precise.'
-    },
-    "Some people believe animals should have equal rights as humans, while others say human needs are more important.": {
-      type: 'good'
-    },
-    "This essay will look at both sides and give my opinion.": {
-      type: 'suggestion',
-      issueDetail: 'The sentence is somewhat informal and could be more academic',
-      correction: 'This essay will examine both perspectives and present my position on this complex issue.',
-      reason: 'Academic writing should use more formal language. "Examine both perspectives" and "present my position" sound more scholarly than "look at both sides" and "give my opinion".'
-    },
-    "On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans.": {
-      type: 'good'
-    },
-    "They say animals should not be killed for food, used for testing, or kept in small cages.": {
-      type: 'good'
-    },
-    "For example, testing makeup on animals can hurt them and it is not fair.": {
-      type: 'suggestion',
-      issueDetail: 'The phrase "not fair" is too informal for academic writing',
-      correction: 'For example, testing makeup on animals can cause suffering and is ethically questionable.',
-      reason: 'Academic writing requires more formal language. "Ethically questionable" is more appropriate than "not fair" in an essay context.'
-    },
-    "People also believe that animals in zoos or farms live in poor condition and this is not right.": {
-      type: 'error',
-      issueDetail: 'Grammar – missing article and poor word choice',
-      correction: 'People also believe that animals in zoos or farms live in poor conditions and this is unacceptable.',
-      reason: 'The correct form is "conditions" (plural) and "unacceptable" is more formal than "not right".'
-    },
-    "On the other hand, other people argue that humans must come first.": {
-      type: 'good'
-    },
-    "They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy.": {
-      type: 'error',
-      issueDetail: 'Grammar – subject-verb disagreement',
-      correction: 'They think animals can be used for food, clothes or research, especially when it helps humans survive or be healthy.',
-      reason: 'The subject "it" requires the verb "helps" (third person singular) not "help".'
-    },
-    "Some important medicine was tested on animals before used for people.": {
-      type: 'error',
-      issueDetail: 'Grammar – missing verb in passive construction',
-      correction: 'Some important medicine was tested on animals before being used for people.',
-      reason: 'The passive construction requires "being used" not just "used" after "before".'
-    },
-    "In some countries, eating meat is a part of culture and tradition, so it cannot be avoided easily.": {
-      type: 'good'
-    },
-    "In my opinion, I believe animals should be treated well, but sometimes human needs are more necessary.": {
-      type: 'suggestion',
-      issueDetail: 'Redundant phrase - using both "In my opinion" and "I believe"',
-      correction: 'I believe animals should be treated well, but sometimes human needs take priority.',
-      reason: 'Avoid redundancy by using either "In my opinion" or "I believe", not both. "Take priority" is more precise than "are more necessary".'
-    },
-    "We should try to reduce animal suffering, but not forget that people also have needs to live.": {
-      type: 'good'
-    },
-    "To conclude, both views are reasonable, and the best way is to find a balance between human needs and animal protection.": {
-      type: 'good'
+  const currentQuestion = quizQuestions[currentQuestionIndex];
+
+  const handleAnswerSubmit = () => {
+    if (selectedAnswer) {
+      setShowResult(true);
     }
   };
 
-  const currentIssue = selectedSentence ? analysisData[selectedSentence] : null;
-
-  // Function to render highlighted essay
-  const renderHighlightedEssay = (text: string) => {
-    // Split into sentences - handles basic sentence endings with . ! ?
-    const sentenceRegex = /([^.!?]+[.!?]+)/g;
-    const sentences = text.match(sentenceRegex) || [];
-
-    return (
-      <div className="bg-white border border-gray-300 rounded-lg p-6 leading-relaxed">
-        {sentences.map((sentence, index) => {
-          const trimmedSentence = sentence.trim();
-          const issue = analysisData[trimmedSentence];
-
-          let className = "inline mr-1 p-1 rounded transition-colors duration-200"; 
-          let handleClick = () => {};
-
-          if (issue) {
-            switch (issue.type) {
-              case 'good':
-                className += " bg-green-100 text-green-800";
-                break;
-              case 'error':
-                className += " bg-red-100 text-red-800 cursor-pointer hover:bg-red-200";
-                handleClick = () => {
-                  setSelectedSentence(trimmedSentence);
-                  setShowCorrectionDialog(true);
-                };
-                break;
-              case 'suggestion':
-                className += " bg-yellow-100 text-yellow-800 cursor-pointer hover:bg-yellow-200";
-                handleClick = () => {
-                  setSelectedSentence(trimmedSentence);
-                  setShowCorrectionDialog(true);
-                };
-                break;
-            }
-          } else {
-            className += " hover:bg-gray-50";
-          }
-
-          return (
-            <span 
-              key={index} 
-              className={className}
-              onClick={handleClick}
-            >
-              {sentence}
-            </span>
-          );
-        })}
-      </div>
-    );
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < quizQuestions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedAnswer("");
+      setShowResult(false);
+    } else {
+      // Reset to first question
+      setCurrentQuestionIndex(0);
+      setSelectedAnswer("");
+      setShowResult(false);
+    }
   };
 
 
@@ -1588,26 +1525,98 @@ export default function WordcraftWords() {
 
                     {activeTab === "games" && (
                       <div className="h-full flex flex-col">
-                        <div className="space-y-4">
-                          <div className="text-center mb-4">
-                            <h3 className="font-semibold text-gray-900 text-lg mb-2">Essay Analysis & Highlights</h3>
-                            <p className="text-gray-600 text-sm">Nhấp vào các câu được đánh dấu để xem chi tiết phân tích</p>
+                        <div className="space-y-6">
+                          <div className="text-center mb-6">
+                            <h3 className="font-semibold text-gray-900 text-lg mb-2">Trò chơi gợi nhớ</h3>
+                            <p className="text-gray-600 text-sm">Câu hỏi {currentQuestionIndex + 1} / {quizQuestions.length}</p>
                           </div>
 
-                          {/* Legend for color coding */}
-                          <div className="flex gap-2 justify-center mb-4">
-                            <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">Good</Badge>
-                            <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300">Error</Badge>
-                            <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300">Suggestion</Badge>
+                          <div className="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+                            <p className="text-gray-800 text-base leading-relaxed mb-6">
+                              {currentQuestion.question}
+                            </p>
+
+                            <div className="space-y-3">
+                              {currentQuestion.options.map((option) => (
+                                <label
+                                  key={option.value}
+                                  className={`flex items-center p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+                                    selectedAnswer === option.value
+                                      ? "bg-indigo-200 border-2 border-indigo-500"
+                                      : "bg-white border border-gray-300 hover:bg-indigo-50 hover:border-indigo-300"
+                                  } ${
+                                    showResult
+                                      ? option.value === currentQuestion.correctAnswer
+                                        ? "bg-green-100 border-green-500"
+                                        : option.value === selectedAnswer && option.value !== currentQuestion.correctAnswer
+                                          ? "bg-red-100 border-red-500"
+                                          : "bg-gray-100 border-gray-300"
+                                      : ""
+                                  }`}
+                                >
+                                  <input
+                                    type="radio"
+                                    name="answer"
+                                    value={option.value}
+                                    checked={selectedAnswer === option.value}
+                                    onChange={(e) => setSelectedAnswer(e.target.value)}
+                                    disabled={showResult}
+                                    className="mr-3"
+                                  />
+                                  <span className="font-medium text-gray-800 mr-2">{option.value}.</span>
+                                  <span className="text-gray-700">{option.text}</span>
+                                </label>
+                              ))}
+                            </div>
+
+                            {!showResult ? (
+                              <div className="mt-6 text-center">
+                                <Button
+                                  onClick={handleAnswerSubmit}
+                                  disabled={!selectedAnswer}
+                                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2"
+                                >
+                                  Trả lời
+                                </Button>
+                              </div>
+                            ) : (
+                              <div className="mt-6">
+                                <div className={`p-4 rounded-lg mb-4 ${
+                                  selectedAnswer === currentQuestion.correctAnswer
+                                    ? "bg-green-100 border border-green-300"
+                                    : "bg-red-100 border border-red-300"
+                                }`}>
+                                  <p className={`font-medium mb-2 ${
+                                    selectedAnswer === currentQuestion.correctAnswer
+                                      ? "text-green-800"
+                                      : "text-red-800"
+                                  }`}>
+                                    {selectedAnswer === currentQuestion.correctAnswer
+                                      ? "Chính xác! 🎉"
+                                      : "Chưa đúng rồi"}
+                                  </p>
+                                  <p className="text-gray-700 text-sm">
+                                    <strong>Đáp án đúng:</strong> {currentQuestion.correctAnswer}. {currentQuestion.options.find(opt => opt.value === currentQuestion.correctAnswer)?.text}
+                                  </p>
+                                  <p className="text-gray-600 text-sm mt-2">
+                                    <strong>Giải thích:</strong> {currentQuestion.explanation}
+                                  </p>
+                                </div>
+                                
+                                <div className="text-center">
+                                  <Button
+                                    onClick={handleNextQuestion}
+                                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2"
+                                  >
+                                    {currentQuestionIndex < quizQuestions.length - 1 ? "Câu tiếp theo" : "Chơi lại"}
+                                  </Button>
+                                </div>
+                              </div>
+                            )}
                           </div>
 
-                          {/* Essay with highlighted sections */}
-                          <div className="flex-1">
-                            {renderHighlightedEssay(sampleEssay)}
-                          </div>
-
-                          <div className="text-center text-sm text-gray-500 mt-4">
-                            <p>Phân tích bài luận với các gợi ý cải thiện</p>
+                          <div className="text-center text-sm text-gray-500">
+                            <p>Thực hành từ vựng về phát triển bền vững</p>
                           </div>
                         </div>
                       </div>
@@ -1668,89 +1677,6 @@ export default function WordcraftWords() {
           </div>)
         )}
       </div>
-
-      {/* Sentence Correction Dialog */}
-      <Dialog open={showCorrectionDialog} onOpenChange={setShowCorrectionDialog}>
-        <DialogContent className="sm:max-w-[600px]">
-          {currentIssue?.type === 'error' && (
-            <DialogHeader>
-              <DialogTitle className="flex items-center text-red-600 mb-2">
-                <X className="h-5 w-5 mr-2" /> Errors & Corrections
-              </DialogTitle>
-            </DialogHeader>
-          )}
-
-          {currentIssue?.type === 'suggestion' && (
-            <DialogHeader>
-              <DialogTitle className="flex items-center text-yellow-600 mb-2">
-                <Edit className="h-5 w-5 mr-2" /> Suggestions for Improvement
-              </DialogTitle>
-            </DialogHeader>
-          )}
-
-          {currentIssue && (
-            <div className="py-2">
-              <div className="mb-4">
-                <h4 className="font-semibold mb-1">Original:</h4>
-                <p className={`p-2 rounded-md ${
-                  currentIssue.type === 'error' 
-                    ? 'bg-red-100 text-red-800' 
-                    : 'bg-yellow-100 text-yellow-800'
-                }`}>
-                  {selectedSentence}
-                </p>
-              </div>
-
-              {currentIssue.type === 'error' && (
-                <div className="mb-4">
-                  <h4 className="font-semibold mb-1">Error:</h4>
-                  <p className="text-red-600">
-                    {currentIssue.issueDetail}
-                  </p>
-                </div>
-              )}
-
-              {currentIssue.type === 'suggestion' && (
-                <div className="mb-4">
-                  <h4 className="font-semibold mb-1">Issue:</h4>
-                  <p className="text-yellow-600">
-                    {currentIssue.issueDetail}
-                  </p>
-                </div>
-              )}
-
-              {currentIssue.correction && (
-                <div className="mb-4">
-                  <h4 className="font-semibold mb-1">
-                    {currentIssue.type === 'error' ? 'Correction:' : 'Improved:'}
-                  </h4>
-                  <p className="p-2 bg-green-100 text-green-800 rounded-md">
-                    {currentIssue.correction}
-                  </p>
-                </div>
-              )}
-
-              {currentIssue.reason && (
-                <div>
-                  <h4 className="font-semibold mb-1">Reason:</h4>
-                  <p className="text-gray-700">
-                    {currentIssue.reason}
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-
-          <DialogFooter>
-            <Button 
-              variant="outline" 
-              onClick={() => setShowCorrectionDialog(false)}
-            >
-              Đóng
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
