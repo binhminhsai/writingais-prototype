@@ -71,21 +71,26 @@ export function FeedbackInterface({
 }: FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
 
-  // Example animal welfare essay as shown in the screenshot
-  const sampleEssay = `In recent years, the way humans treat animals has become a big problem in many societies.
-Some people believe animals should have equal rights as humans, while others say human needs are more important.
-This essay will look at both sides and give my opinion.
-On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans.
-They say animals should not be killed for food, used for testing, or kept in small cages.
-For example, testing makeup on animals can hurt them and it is not fair.
-People also believe that animals in zoos or farms live in poor condition and this is not right.
-On the other hand, other people argue that humans must come first.
-They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy.
-Some important medicine was tested on animals before used for people.
-In some countries, eating meat is a part of culture and tradition, so it cannot be avoided easily.
-In my opinion, I believe animals should be treated well, but sometimes human needs are more necessary.
-We should try to reduce animal suffering, but not forget that people also have needs to live.
-To conclude, both views are reasonable, and the best way is to find a balance between human needs and animal protection.`;
+  // Example sustainable development essay - 300 words
+  const sampleEssay = `In recent years, sustainable development has become one of the most critical issues facing governments worldwide.
+While some people argue that economic growth should be the primary focus, others believe environmental protection must take priority.
+This essay will examine both perspectives and present my own viewpoint.
+On one hand, supporters of economic growth argue that development is essential for improving living standards and reducing poverty.
+They believe that industrial expansion create jobs and generate income, which allow people to meet their basic needs.
+For example, developing countries like China and India have achieved significant economic progress through manufacturing and industrialization.
+These nations has lifted millions of people out of poverty and improved infrastructure substantially.
+Moreover, proponents claim that wealthier societies are better equipped to invest in clean technologies and environmental solutions.
+On the other hand, environmentalists contend that unchecked economic growth leads to serious ecological problems.
+They argue that industrial activities cause pollution, deforestation, and climate change, which threaten the planet's future.
+For instance, excessive carbon emissions from factories and vehicles has contributed to global warming and extreme weather events.
+Many scientists warn that without immediate action, the environmental damage will be irreversible and affect future generations severely.
+Furthermore, they suggest that sustainable practices can actually boost long-term economic benefits through green technologies.
+In my opinion, I believe both economic development and environmental protection are equally important for society's well-being.
+However, I think governments should prioritize sustainable growth over rapid expansion.
+Countries must invest in renewable energy, promote eco-friendly industries, and implement strict environmental regulations.
+This approach ensures that economic progress does not compromise the planet's health for future generations.
+To conclude, while economic growth remains important for human development, it must be balanced with environmental sustainability.
+Only through careful planning and responsible policies can societies achieve prosperity without destroying the natural world that supports all life.`;
 
   // This would normally come from an API based on essay analysis
   // Using sample data that follows the design in the screenshots
@@ -98,8 +103,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
       overall: 7.0,
     },
     stats: {
-      totalWords: sampleEssay.split(/\s+/).filter(Boolean).length || 267,
-      completionTime: "30:43",
+      totalWords: sampleEssay.split(/\s+/).filter(Boolean).length || 299,
+      completionTime: "35:22",
       vocabularyRange: "Good",
       grammarAccuracy: "Good",
     },
@@ -119,52 +124,45 @@ To conclude, both views are reasonable, and the best way is to find a balance be
     },
     analysis: {
       sentences: {
-        "In recent years, the way humans treat animals has become a big problem in many societies.": {
+        "In recent years, sustainable development has become one of the most critical issues facing governments worldwide.": {
           type: 'good',
-          original: "In recent years, the way humans treat animals has become a big problem in many societies."
+          original: "In recent years, sustainable development has become one of the most critical issues facing governments worldwide."
         },
-        "Some people believe animals should have equal rights as humans, while others say human needs are more important.": {
+        "This essay will examine both perspectives and present my own viewpoint.": {
           type: 'good',
-          original: "Some people believe animals should have equal rights as humans, while others say human needs are more important."
+          original: "This essay will examine both perspectives and present my own viewpoint."
         },
-        "This essay will look at both sides and give my opinion.": {
+        "They believe that industrial expansion create jobs and generate income, which allow people to meet their basic needs.": {
+          type: 'error',
+          original: "They believe that industrial expansion create jobs and generate income, which allow people to meet their basic needs.",
+          correction: "They believe that industrial expansion creates jobs and generates income, which allows people to meet their basic needs.",
+          reason: "Subject-verb agreement errors affect the overall grammatical accuracy score. The singular subject 'industrial expansion' requires the verbs 'creates' and 'generates' rather than 'create' and 'generate'.",
+          issueDetail: "Grammar - subject-verb agreement error (expansion creates, not create)"
+        },
+        "These nations has lifted millions of people out of poverty and improved infrastructure substantially.": {
+          type: 'error',
+          original: "These nations has lifted millions of people out of poverty and improved infrastructure substantially.",
+          correction: "These nations have lifted millions of people out of poverty and improved infrastructure substantially.",
+          reason: "The plural subject 'These nations' requires the plural auxiliary verb 'have' rather than the singular 'has'. This is a fundamental grammar rule that affects the overall accuracy score.",
+          issueDetail: "Grammar - incorrect auxiliary verb (nations have, not has)"
+        },
+        "For instance, excessive carbon emissions from factories and vehicles has contributed to global warming and extreme weather events.": {
+          type: 'error',
+          original: "For instance, excessive carbon emissions from factories and vehicles has contributed to global warming and extreme weather events.",
+          correction: "For instance, excessive carbon emissions from factories and vehicles have contributed to global warming and extreme weather events.",
+          reason: "The plural subject 'emissions' requires the plural auxiliary verb 'have' rather than the singular 'has'. This grammatical error affects sentence clarity and scoring.",
+          issueDetail: "Grammar - plural subject needs plural verb (emissions have, not has)"
+        },
+        "Many scientists warn that without immediate action, the environmental damage will be irreversible and affect future generations severely.": {
           type: 'suggestion',
-          original: "This essay will look at both sides and give my opinion.",
-          correction: "This essay will examine both perspectives and present my own viewpoint.",
-          reason: "Using more academic vocabulary like 'examine' and 'perspectives' instead of 'look at' and 'sides' enhances the formality and sophistication of the writing, which is valued in IELTS Task 2.",
-          issueDetail: "The sentence is somewhat vague and could be more impactful"
+          original: "Many scientists warn that without immediate action, the environmental damage will be irreversible and affect future generations severely.",
+          correction: "Many scientists warn that without immediate action, environmental damage will be irreversible and severely affect future generations.",
+          reason: "Repositioning 'severely' improves sentence flow and sounds more natural. Academic writing benefits from varied sentence structures and natural word order.",
+          issueDetail: "The adverb placement could be more natural"
         },
-        "On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans.": {
+        "However, I think governments should prioritize sustainable growth over rapid expansion.": {
           type: 'good',
-          original: "On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans."
-        },
-        "For example, testing makeup on animals can hurt them and it is not fair.": {
-          type: 'suggestion',
-          original: "For example, testing makeup on animals can hurt them and it is not fair.",
-          correction: "For example, testing cosmetics on animals causes them pain and raises serious ethical concerns.",
-          reason: "The phrase 'can hurt them and it is not fair' is somewhat informal and vague. The suggested correction uses more academic language and expresses the ethical dimension more clearly.",
-          issueDetail: "The language is too informal for academic writing"
-        },
-        "People also believe that animals in zoos or farms live in poor condition and this is not right.": {
-          type: 'error',
-          original: "People also believe that animals in zoos or farms live in poor condition and this is not right.",
-          correction: "People also believe that animals in zoos or farms live in poor conditions and this is not right.",
-          reason: "Correcting the grammar improves clarity and demonstrates better command of English, which directly impacts the Grammatical Range and Accuracy score.",
-          issueDetail: "Grammar - should be 'conditions' (plural)"
-        },
-        "They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy.": {
-          type: 'error',
-          original: "They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy.",
-          correction: "They think animals can be used for food, clothes or research, especially when it helps humans survive or be healthy.",
-          reason: "Subject-verb agreement errors affect the overall grammatical accuracy score. The singular subject 'it' requires the verb 'helps' rather than 'help'.",
-          issueDetail: "Grammar - missing verb agreement (it helps, not it help)"
-        },
-        "Some important medicine was tested on animals before used for people.": {
-          type: 'error',
-          original: "Some important medicine was tested on animals before used for people.",
-          correction: "Some important medicine was tested on animals before being used for people.",
-          reason: "This correction completes the grammatical structure by adding the necessary gerund 'being', which makes the sentence grammatically correct and clearer.",
-          issueDetail: "Grammar - missing 'being' or 'it was'"
+          original: "However, I think governments should prioritize sustainable growth over rapid expansion."
         }
       }
     }
