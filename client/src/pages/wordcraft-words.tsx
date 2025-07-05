@@ -166,6 +166,72 @@ export default function WordcraftWords() {
     setSearchCardValue("");
   };
 
+  // Game state for quiz
+  const [selectedAnswer, setSelectedAnswer] = useState<string>("");
+  const [showResult, setShowResult] = useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  // Sample quiz questions
+  const quizQuestions = [
+    {
+      id: 1,
+      question: "The use of _____ technologies helps ensure sustainable development for future generations.",
+      options: [
+        { value: "A", text: "renewable" },
+        { value: "B", text: "harmful" },
+        { value: "C", text: "wasteful" },
+        { value: "D", text: "outdated" }
+      ],
+      correctAnswer: "A",
+      explanation: "Renewable technologies như năng lượng mặt trời, gió giúp phát triển bền vững."
+    },
+    {
+      id: 2,
+      question: "Companies must adopt _____ practices to contribute to sustainable business models.",
+      options: [
+        { value: "A", text: "destructive" },
+        { value: "B", text: "eco-friendly" },
+        { value: "C", text: "polluting" },
+        { value: "D", text: "wasteful" }
+      ],
+      correctAnswer: "B",
+      explanation: "Eco-friendly practices (thân thiện với môi trường) giúp doanh nghiệp phát triển bền vững."
+    },
+    {
+      id: 3,
+      question: "Sustainable agriculture focuses on _____ farming methods that protect the environment.",
+      options: [
+        { value: "A", text: "chemical-intensive" },
+        { value: "B", text: "organic" },
+        { value: "C", text: "harmful" },
+        { value: "D", text: "toxic" }
+      ],
+      correctAnswer: "B",
+      explanation: "Organic farming (nông nghiệp hữu cơ) bảo vệ môi trường và phát triển bền vững."
+    }
+  ];
+
+  const currentQuestion = quizQuestions[currentQuestionIndex];
+
+  const handleAnswerSubmit = () => {
+    if (selectedAnswer) {
+      setShowResult(true);
+    }
+  };
+
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < quizQuestions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setSelectedAnswer("");
+      setShowResult(false);
+    } else {
+      // Reset to first question
+      setCurrentQuestionIndex(0);
+      setSelectedAnswer("");
+      setShowResult(false);
+    }
+  };
+
 
 
   const { data: card, isLoading: cardLoading } = useQuery<VocabularyCard>({
@@ -925,6 +991,16 @@ export default function WordcraftWords() {
                         >
                           Từ đồng nghĩa và trái nghĩa
                         </button>
+                        <button
+                          onClick={() => setActiveTab("games")}
+                          className={`px-2 md:px-3 py-1 md:py-2 rounded-t-lg font-medium text-xs md:text-sm transition-all duration-200 whitespace-nowrap ${
+                            activeTab === "games"
+                              ? "bg-indigo-100 text-indigo-800 border-b-2 border-indigo-500"
+                              : "text-gray-600 hover:text-indigo-600 hover:bg-indigo-50"
+                          }`}
+                        >
+                          Trò chơi
+                        </button>
                       </div>
                       <Button variant="ghost" size="sm" className="text-gray-400 hover:text-gray-600 mb-1 md:mb-2">
                         <Plus className="h-3 w-3 md:h-4 md:w-4" />
@@ -1442,6 +1518,105 @@ export default function WordcraftWords() {
                                 ))}
                               </div>
                             )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeTab === "games" && (
+                      <div className="h-full flex flex-col">
+                        <div className="space-y-6">
+                          <div className="text-center mb-6">
+                            <h3 className="font-semibold text-gray-900 text-lg mb-2">Trò chơi gợi nhớ</h3>
+                            <p className="text-gray-600 text-sm">Câu hỏi {currentQuestionIndex + 1} / {quizQuestions.length}</p>
+                          </div>
+
+                          <div className="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+                            <p className="text-gray-800 text-base leading-relaxed mb-6">
+                              {currentQuestion.question}
+                            </p>
+
+                            <div className="space-y-3">
+                              {currentQuestion.options.map((option) => (
+                                <label
+                                  key={option.value}
+                                  className={`flex items-center p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+                                    selectedAnswer === option.value
+                                      ? "bg-indigo-200 border-2 border-indigo-500"
+                                      : "bg-white border border-gray-300 hover:bg-indigo-50 hover:border-indigo-300"
+                                  } ${
+                                    showResult
+                                      ? option.value === currentQuestion.correctAnswer
+                                        ? "bg-green-100 border-green-500"
+                                        : option.value === selectedAnswer && option.value !== currentQuestion.correctAnswer
+                                          ? "bg-red-100 border-red-500"
+                                          : "bg-gray-100 border-gray-300"
+                                      : ""
+                                  }`}
+                                >
+                                  <input
+                                    type="radio"
+                                    name="answer"
+                                    value={option.value}
+                                    checked={selectedAnswer === option.value}
+                                    onChange={(e) => setSelectedAnswer(e.target.value)}
+                                    disabled={showResult}
+                                    className="mr-3"
+                                  />
+                                  <span className="font-medium text-gray-800 mr-2">{option.value}.</span>
+                                  <span className="text-gray-700">{option.text}</span>
+                                </label>
+                              ))}
+                            </div>
+
+                            {!showResult ? (
+                              <div className="mt-6 text-center">
+                                <Button
+                                  onClick={handleAnswerSubmit}
+                                  disabled={!selectedAnswer}
+                                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2"
+                                >
+                                  Trả lời
+                                </Button>
+                              </div>
+                            ) : (
+                              <div className="mt-6">
+                                <div className={`p-4 rounded-lg mb-4 ${
+                                  selectedAnswer === currentQuestion.correctAnswer
+                                    ? "bg-green-100 border border-green-300"
+                                    : "bg-red-100 border border-red-300"
+                                }`}>
+                                  <p className={`font-medium mb-2 ${
+                                    selectedAnswer === currentQuestion.correctAnswer
+                                      ? "text-green-800"
+                                      : "text-red-800"
+                                  }`}>
+                                    {selectedAnswer === currentQuestion.correctAnswer
+                                      ? "Chính xác! 🎉"
+                                      : "Chưa đúng rồi"}
+                                  </p>
+                                  <p className="text-gray-700 text-sm">
+                                    <strong>Đáp án đúng:</strong> {currentQuestion.correctAnswer}. {currentQuestion.options.find(opt => opt.value === currentQuestion.correctAnswer)?.text}
+                                  </p>
+                                  <p className="text-gray-600 text-sm mt-2">
+                                    <strong>Giải thích:</strong> {currentQuestion.explanation}
+                                  </p>
+                                </div>
+                                
+                                <div className="text-center">
+                                  <Button
+                                    onClick={handleNextQuestion}
+                                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2"
+                                  >
+                                    {currentQuestionIndex < quizQuestions.length - 1 ? "Câu tiếp theo" : "Chơi lại"}
+                                  </Button>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
+                          <div className="text-center text-sm text-gray-500">
+                            <p>Thực hành từ vựng về phát triển bền vững</p>
                           </div>
                         </div>
                       </div>
