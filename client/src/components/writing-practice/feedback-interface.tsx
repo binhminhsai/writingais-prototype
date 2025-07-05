@@ -133,22 +133,43 @@ To conclude, both views are reasonable, and the best way is to find a balance be
           original: "Some people believe animals should have equal rights as humans, while others say human needs are more important."
         },
         "This essay will look at both sides and give my opinion.": {
+          type: 'suggestion',
+          original: "This essay will look at both sides and give my opinion.",
+          correction: "This essay will examine both perspectives and present my own viewpoint.",
+          reason: "Using more academic vocabulary like 'examine' and 'perspectives' instead of 'look at' and 'sides' enhances the formality and sophistication of the writing, which is valued in IELTS Task 2.",
+          issueDetail: "The sentence is somewhat vague and could be more impactful"
+        },
+        "On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans.": {
           type: 'good',
-          original: "This essay will look at both sides and give my opinion."
+          original: "On one hand, many people think that animals have feelings like pain, fear and happiness, so they should be protected like humans."
         },
         "For example, testing makeup on animals can hurt them and it is not fair.": {
           type: 'suggestion',
           original: "For example, testing makeup on animals can hurt them and it is not fair.",
           correction: "For example, testing cosmetics on animals causes them pain and raises serious ethical concerns.",
           reason: "The phrase 'can hurt them and it is not fair' is somewhat informal and vague. The suggested correction uses more academic language and expresses the ethical dimension more clearly.",
-          issueDetail: "The phrase 'mainly focus on' can be seen as vague and could be more assertive."
+          issueDetail: "The language is too informal for academic writing"
+        },
+        "People also believe that animals in zoos or farms live in poor condition and this is not right.": {
+          type: 'error',
+          original: "People also believe that animals in zoos or farms live in poor condition and this is not right.",
+          correction: "People also believe that animals in zoos or farms live in poor conditions and this is not right.",
+          reason: "Correcting the grammar improves clarity and demonstrates better command of English, which directly impacts the Grammatical Range and Accuracy score.",
+          issueDetail: "Grammar - should be 'conditions' (plural)"
+        },
+        "They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy.": {
+          type: 'error',
+          original: "They think animals can be used for food, clothes or research, especially when it help humans survive or be healthy.",
+          correction: "They think animals can be used for food, clothes or research, especially when it helps humans survive or be healthy.",
+          reason: "Subject-verb agreement errors affect the overall grammatical accuracy score. The singular subject 'it' requires the verb 'helps' rather than 'help'.",
+          issueDetail: "Grammar - missing verb agreement (it helps, not it help)"
         },
         "Some important medicine was tested on animals before used for people.": {
           type: 'error',
           original: "Some important medicine was tested on animals before used for people.",
-          correction: "Some important medicine was tested on animals before it was used for people.",
-          reason: "Correcting the grammar improves clarity and coherence, which are important for achieving a higher IELTS score.",
-          issueDetail: "Grammar issue (missing 'it was' or 'being')"
+          correction: "Some important medicine was tested on animals before being used for people.",
+          reason: "This correction completes the grammatical structure by adding the necessary gerund 'being', which makes the sentence grammatically correct and clearer.",
+          issueDetail: "Grammar - missing 'being' or 'it was'"
         }
       }
     }
@@ -168,51 +189,70 @@ To conclude, both views are reasonable, and the best way is to find a balance be
   const highlightEssay = (text: string) => {
     if (!text) return null;
 
-    // Regex to split into sentences - handles basic sentence endings with . ! ?
-    const sentenceRegex = /([^.!?]+[.!?]+)/g;
-    const sentences = text.match(sentenceRegex) || [];
+    // Split text into words and punctuation to reconstruct as paragraph
+    const words = text.split(/(\s+)/);
+    let result: JSX.Element[] = [];
+    let currentSentence = "";
+    let wordIndex = 0;
 
-    return (
-      <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-4">
-        {sentences.map((sentence, index) => {
-          const trimmedSentence = sentence.trim();
-          const issue = feedbackData.analysis?.sentences[trimmedSentence];
+    // Regex to detect sentence endings
+    const sentenceEndRegex = /[.!?]+$/;
 
-          let className = "sentence block mb-2 p-2 rounded-md"; 
-          let handleClick = () => {};
+    words.forEach((word, index) => {
+      currentSentence += word;
+      
+      // Check if this word ends a sentence
+      if (word.trim() && sentenceEndRegex.test(word.trim())) {
+        const trimmedSentence = currentSentence.trim();
+        const issue = feedbackData.analysis?.sentences[trimmedSentence];
+        
+        if (issue) {
+          let className = "inline cursor-pointer hover:opacity-80 transition-opacity";
+          let handleClick = () => {
+            setSelectedSentence(trimmedSentence);
+            setShowCorrectionDialog(true);
+          };
 
-          if (issue) {
-            switch (issue.type) {
-              case 'good':
-                className += " green bg-[#e1f5e8] text-[#2e7d32]";
-                break;
-              case 'error':
-                className += " red bg-[#ffcdd2] text-[#c62828] cursor-pointer";
-                handleClick = () => {
-                  setSelectedSentence(trimmedSentence);
-                  setShowCorrectionDialog(true);
-                };
-                break;
-              case 'suggestion':
-                className += " yellow bg-[#fff9c4] text-[#f9a825] cursor-pointer";
-                handleClick = () => {
-                  setSelectedSentence(trimmedSentence);
-                  setShowCorrectionDialog(true);
-                };
-                break;
-            }
+          switch (issue.type) {
+            case 'good':
+              className += " bg-[#e1f5e8] text-[#2e7d32] px-1 rounded";
+              break;
+            case 'error':
+              className += " bg-[#ffcdd2] text-[#c62828] px-1 rounded";
+              break;
+            case 'suggestion':
+              className += " bg-[#fff9c4] text-[#f9a825] px-1 rounded";
+              break;
           }
 
-          return (
-            <div 
-              key={index} 
+          result.push(
+            <span 
+              key={wordIndex} 
               className={className}
-              onClick={handleClick}
+              onClick={issue.type !== 'good' ? handleClick : undefined}
             >
-              {sentence}
-            </div>
+              {currentSentence}
+            </span>
           );
-        })}
+        } else {
+          result.push(<span key={wordIndex}>{currentSentence}</span>);
+        }
+        
+        currentSentence = "";
+        wordIndex++;
+      }
+    });
+
+    // Add any remaining text
+    if (currentSentence.trim()) {
+      result.push(<span key={wordIndex}>{currentSentence}</span>);
+    }
+
+    return (
+      <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
+        <p className="text-base leading-relaxed">
+          {result}
+        </p>
       </div>
     );
   };
@@ -731,6 +771,9 @@ To conclude, both views are reasonable, and the best way is to find a balance be
               <DialogTitle className="flex items-center text-[#c62828] mb-2">
                 <XCircle className="h-5 w-5 mr-2" /> Errors & Corrections
               </DialogTitle>
+              <DialogDescription>
+                Review the error and suggested correction for your sentence.
+              </DialogDescription>
             </DialogHeader>
           )}
 
@@ -739,6 +782,9 @@ To conclude, both views are reasonable, and the best way is to find a balance be
               <DialogTitle className="flex items-center text-[#f9a825] mb-2">
                 <AlertTriangle className="h-5 w-5 mr-2" /> Suggestions for Improvement
               </DialogTitle>
+              <DialogDescription>
+                Review the improvement suggestion for your sentence.
+              </DialogDescription>
             </DialogHeader>
           )}
 
@@ -746,10 +792,10 @@ To conclude, both views are reasonable, and the best way is to find a balance be
             <div className="py-2">
               <div className="mb-4">
                 <h4 className="font-semibold mb-1">Original:</h4>
-                <p className={`p-2 rounded-md ${
+                <p className={`p-3 rounded-md border ${
                   currentIssue.type === 'error' 
-                    ? 'bg-[#ffcdd2] text-[#c62828]' 
-                    : 'bg-[#fff9c4] text-[#f9a825]'
+                    ? 'bg-[#ffcdd2] text-[#c62828] border-red-300' 
+                    : 'bg-[#fff9c4] text-[#f9a825] border-yellow-300'
                 }`}>
                   {currentIssue.original}
                 </p>
@@ -757,8 +803,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
 
               {currentIssue.type === 'error' && (
                 <div className="mb-4">
-                  <h4 className="font-semibold mb-1">Error:</h4>
-                  <p className="text-[#c62828]">
+                  <h4 className="font-semibold mb-1 text-[#c62828]">Error:</h4>
+                  <p className="text-gray-700 text-sm bg-gray-50 p-2 rounded border-l-4 border-red-500">
                     {currentIssue.issueDetail}
                   </p>
                 </div>
@@ -766,8 +812,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
 
               {currentIssue.type === 'suggestion' && (
                 <div className="mb-4">
-                  <h4 className="font-semibold mb-1">Issue:</h4>
-                  <p className="text-[#f9a825]">
+                  <h4 className="font-semibold mb-1 text-[#f9a825]">Issue:</h4>
+                  <p className="text-gray-700 text-sm bg-gray-50 p-2 rounded border-l-4 border-yellow-500">
                     {currentIssue.issueDetail}
                   </p>
                 </div>
@@ -775,10 +821,10 @@ To conclude, both views are reasonable, and the best way is to find a balance be
 
               {currentIssue.correction && (
                 <div className="mb-4">
-                  <h4 className="font-semibold mb-1">
+                  <h4 className="font-semibold mb-1 text-[#2e7d32]">
                     {currentIssue.type === 'error' ? 'Correction:' : 'Improved:'}
                   </h4>
-                  <p className="p-2 bg-[#e1f5e8] text-[#2e7d32] rounded-md">
+                  <p className="p-3 bg-[#e1f5e8] text-[#2e7d32] rounded-md border border-green-300">
                     {currentIssue.correction}
                   </p>
                 </div>
@@ -786,8 +832,8 @@ To conclude, both views are reasonable, and the best way is to find a balance be
 
               {currentIssue.reason && (
                 <div>
-                  <h4 className="font-semibold mb-1">Reason:</h4>
-                  <p>
+                  <h4 className="font-semibold mb-1 text-blue-700">Reason:</h4>
+                  <p className="text-gray-700 text-sm bg-blue-50 p-3 rounded border-l-4 border-blue-500">
                     {currentIssue.reason}
                   </p>
                 </div>
@@ -799,6 +845,7 @@ To conclude, both views are reasonable, and the best way is to find a balance be
             <Button 
               variant="outline" 
               onClick={() => setShowCorrectionDialog(false)}
+              className="px-6"
             >
               Close
             </Button>
