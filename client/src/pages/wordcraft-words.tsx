@@ -1335,30 +1335,17 @@ export default function WordcraftWords() {
                               // Edit mode
                               <div className="space-y-2">
                                 {editableSynonyms.map((synonym, index) => (
-                                  <div key={index} className="space-y-1">
-                                    <div className="flex items-center gap-2">
-                                      <Input
-                                        value={synonym.word}
-                                        onChange={(e) => {
-                                          const newSynonyms = [...editableSynonyms];
-                                          newSynonyms[index].word = e.target.value;
-                                          setEditableSynonyms(newSynonyms);
-                                        }}
-                                        placeholder="strength"
-                                        className="text-sm flex-1 h-8"
-                                      />
-                                      <Button
-                                        variant="outline"
-                                        size="sm"
-                                        className="h-8 w-8 p-0 text-red-600"
-                                        onClick={() => {
-                                          const newSynonyms = editableSynonyms.filter((_, i) => i !== index);
-                                          setEditableSynonyms(newSynonyms);
-                                        }}
-                                      >
-                                        <X className="h-3 w-3" />
-                                      </Button>
-                                    </div>
+                                  <div key={index} className="flex items-center gap-2">
+                                    <Input
+                                      value={synonym.word}
+                                      onChange={(e) => {
+                                        const newSynonyms = [...editableSynonyms];
+                                        newSynonyms[index].word = e.target.value;
+                                        setEditableSynonyms(newSynonyms);
+                                      }}
+                                      placeholder="strength"
+                                      className="text-sm w-32 h-8"
+                                    />
                                     <Input
                                       value={synonym.example}
                                       onChange={(e) => {
@@ -1367,8 +1354,19 @@ export default function WordcraftWords() {
                                         setEditableSynonyms(newSynonyms);
                                       }}
                                       placeholder="Her mental strength helped her overcome challenges"
-                                      className="text-sm h-8"
+                                      className="text-sm flex-1 h-8"
                                     />
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-8 w-8 p-0 text-red-600"
+                                      onClick={() => {
+                                        const newSynonyms = editableSynonyms.filter((_, i) => i !== index);
+                                        setEditableSynonyms(newSynonyms);
+                                      }}
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </Button>
                                   </div>
                                 ))}
                               </div>
@@ -1408,30 +1406,17 @@ export default function WordcraftWords() {
                               // Edit mode
                               <div className="space-y-2">
                                 {editableAntonyms.map((antonym, index) => (
-                                  <div key={index} className="space-y-1">
-                                    <div className="flex items-center gap-2">
-                                      <Input
-                                        value={antonym.word}
-                                        onChange={(e) => {
-                                          const newAntonyms = [...editableAntonyms];
-                                          newAntonyms[index].word = e.target.value;
-                                          setEditableAntonyms(newAntonyms);
-                                        }}
-                                        placeholder="weakness"
-                                        className="text-sm flex-1 h-8"
-                                      />
-                                      <Button
-                                        variant="outline"
-                                        size="sm"
-                                        className="h-8 w-8 p-0 text-red-600"
-                                        onClick={() => {
-                                          const newAntonyms = editableAntonyms.filter((_, i) => i !== index);
-                                          setEditableAntonyms(newAntonyms);
-                                        }}
-                                      >
-                                        <X className="h-3 w-3" />
-                                      </Button>
-                                    </div>
+                                  <div key={index} className="flex items-center gap-2">
+                                    <Input
+                                      value={antonym.word}
+                                      onChange={(e) => {
+                                        const newAntonyms = [...editableAntonyms];
+                                        newAntonyms[index].word = e.target.value;
+                                        setEditableAntonyms(newAntonyms);
+                                      }}
+                                      placeholder="weakness"
+                                      className="text-sm w-32 h-8"
+                                    />
                                     <Input
                                       value={antonym.example}
                                       onChange={(e) => {
@@ -1440,8 +1425,19 @@ export default function WordcraftWords() {
                                         setEditableAntonyms(newAntonyms);
                                       }}
                                       placeholder="His weakness became apparent under pressure"
-                                      className="text-sm h-8"
+                                      className="text-sm flex-1 h-8"
                                     />
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-8 w-8 p-0 text-red-600"
+                                      onClick={() => {
+                                        const newAntonyms = editableAntonyms.filter((_, i) => i !== index);
+                                        setEditableAntonyms(newAntonyms);
+                                      }}
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </Button>
                                   </div>
                                 ))}
                               </div>
