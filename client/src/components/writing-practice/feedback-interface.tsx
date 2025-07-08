@@ -441,38 +441,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 </ul>
               </div>
 
-              {/* Band Score Justification */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Band Score Justification: <span className="text-[#64c4bc]">Band 7</span></h3>
-                </div>
-                <p className="text-gray-700">
-                  The essay sufficiently addresses the task and presents a clear position, but some ideas lack depth and clarity, which prevents it from reaching a higher band.
-                </p>
-              </div>
-
-              {/* Why not Band 7 + 0.5? */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 + 0.5?</h3>
-                </div>
-                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
-                  The essay does not fully explore the implications of economic growth on society, particularly in terms of specific social problems. For example, the phrase 'social problems' could be expanded to include specific issues like crime or health disparities. A rewritten version could be: 'This inequality can lead to social unrest and increased crime rates, as seen in many developed nations where the cost of living rises faster than salaries.'
-                </p>
-              </div>
-
-              {/* Why not Band 7 - 0.5? */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 - 0.5?</h3>
-                </div>
-                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
-                  The essay maintains a logical structure and presents relevant ideas, such as the benefits of job creation and government revenue, which supports the current band score. The statement 'As incomes expand, more people can employed, reducing poverty and improving quality of life' clearly illustrates the positive aspects of economic growth.
-                </p>
-              </div>
+              
             </div>
           </TabsContent>
 
@@ -514,38 +483,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 </ul>
               </div>
 
-              {/* Band Score Justification */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Band Score Justification: <span className="text-[#64c4bc]">Band 7</span></h3>
-                </div>
-                <p className="text-gray-700">
-                  The essay demonstrates good coherence and cohesion with logical organization and appropriate use of cohesive devices.
-                </p>
-              </div>
-
-              {/* Why not Band 7 + 0.5? */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 + 0.5?</h3>
-                </div>
-                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
-                  Some cohesive devices are repetitive and could be more varied. For instance, the overuse of "however" and "furthermore" makes the writing feel mechanical. A more sophisticated approach would vary these transitions: "Nevertheless," "In contrast," "Additionally," or "Moreover" to enhance the natural flow and demonstrate greater lexical resource in cohesive devices.
-                </p>
-              </div>
-
-              {/* Why not Band 7 - 0.5? */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 - 0.5?</h3>
-                </div>
-                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
-                  The essay maintains clear paragraph structure with logical topic sentences and supporting details. Each paragraph focuses on a distinct aspect of the argument, and the progression from advantages to disadvantages to personal opinion follows a coherent pattern that readers can easily follow.
-                </p>
-              </div>
+              
             </div>
           </TabsContent>
 
@@ -587,38 +525,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 </ul>
               </div>
 
-              {/* Band Score Justification */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Band Score Justification: <span className="text-[#64c4bc]">Band 7</span></h3>
-                </div>
-                <p className="text-gray-700">
-                  The vocabulary is varied and mostly accurate with some effective word choices, though greater precision would enhance the score.
-                </p>
-              </div>
-
-              {/* Why not Band 7 + 0.5? */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 + 0.5?</h3>
-                </div>
-                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
-                  Some word choices could be more precise and academic. For example, "big problem" could be replaced with "significant issue" or "pressing concern." Additionally, "better infrastructure" could be more specific as "enhanced transportation networks and public facilities" to demonstrate greater lexical sophistication and precision.
-                </p>
-              </div>
-
-              {/* Why not Band 7 - 0.5? */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 - 0.5?</h3>
-                </div>
-                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
-                  The essay demonstrates good vocabulary range with effective phrases like "undeniable advantages," "economic development," and "equally distributed." The writer shows awareness of appropriate academic vocabulary and uses topic-specific terms related to economics and social policy effectively throughout the response.
-                </p>
-              </div>
+              
             </div>
           </TabsContent>
 
@@ -660,38 +567,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 </ul>
               </div>
 
-              {/* Band Score Justification */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Band Score Justification: <span className="text-[#64c4bc]">Band 7</span></h3>
-                </div>
-                <p className="text-gray-700">
-                  Grammar is handled well with a good range of sentence structures and only minor errors that do not affect understanding.
-                </p>
-              </div>
-
-              {/* Why not Band 7 + 0.5? */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 + 0.5?</h3>
-                </div>
-                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
-                  There are minor grammatical errors that prevent a higher score. For example, "more people can employed" should be "more people can be employed." Additionally, some sentence constructions could be more sophisticated, and the use of conditional structures could be enhanced to demonstrate greater grammatical range.
-                </p>
-              </div>
-
-              {/* Why not Band 7 - 0.5? */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Info className="h-5 w-5 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-blue-600">Why not Band 7 - 0.5?</h3>
-                </div>
-                <p className="text-gray-700 bg-blue-50 p-3 rounded-md">
-                  The essay demonstrates good control of grammar with a variety of complex sentence structures. Most sentences are error-free, and the few minor mistakes do not impede communication. The writer successfully uses complex sentences with subordinate clauses and shows good command of tenses throughout the response.
-                </p>
-              </div>
+              
             </div>
           </TabsContent>
         </Tabs>
