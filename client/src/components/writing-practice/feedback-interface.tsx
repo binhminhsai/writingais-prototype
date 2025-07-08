@@ -191,25 +191,14 @@ Only through careful planning and responsible policies can societies achieve pro
         const trimmedSentence = currentSentence.trim();
         const issue = feedbackData.analysis?.sentences[trimmedSentence];
         
-        if (issue && issue.type !== 'good') {
-          let className = "inline cursor-pointer hover:opacity-80 transition-opacity px-1 rounded";
-          
-          switch (issue.type) {
-            case 'error':
-              className += " bg-[#ffcdd2] text-[#c62828]";
-              break;
-            case 'suggestion':
-              className += " bg-[#fff9c4] text-[#f9a825]";
-              break;
-          }
+        if (issue && issue.type === 'error') {
+          let className = "inline cursor-pointer hover:opacity-80 transition-opacity px-1 rounded bg-[#ffcdd2] text-[#c62828]";
 
           // Create tooltip content
           const tooltipContent = (
             <div className="max-w-sm space-y-2">
               <div>
-                <h4 className="font-semibold text-sm mb-1">
-                  {issue.type === 'error' ? 'Lỗi:' : 'Vấn đề:'}
-                </h4>
+                <h4 className="font-semibold text-sm mb-1">Lỗi:</h4>
                 <p className="text-xs text-gray-200">
                   {issue.issueDetail}
                 </p>
@@ -236,15 +225,6 @@ Only through careful planning and responsible policies can societies achieve pro
                 {tooltipContent}
               </TooltipContent>
             </Tooltip>
-          );
-        } else if (issue && issue.type === 'good') {
-          result.push(
-            <span 
-              key={wordIndex} 
-              className="inline bg-[#e1f5e8] text-[#2e7d32] px-1 rounded"
-            >
-              {currentSentence}
-            </span>
           );
         } else {
           result.push(<span key={wordIndex}>{currentSentence}</span>);
@@ -717,16 +697,9 @@ Only through careful planning and responsible policies can societies achieve pro
         </Tabs>
       </div>
 
-      {/* Essay Analysis & Highlights Section */}
+      {/* Grammar Checker Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
-        <h2 className="text-2xl font-bold mb-4">Essay Analysis & Highlights</h2>
-
-        {/* Legend for color coding */}
-        <div className="flex gap-2 mb-4">
-          <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">Good</Badge>
-          <Badge variant="outline" className="bg-red-100 text-red-800 border-red-300">Error</Badge>
-          <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-300">Suggestion</Badge>
-        </div>
+        <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
 
         {/* Essay with highlighted sections */}
         {highlightEssay(sampleEssay)}
