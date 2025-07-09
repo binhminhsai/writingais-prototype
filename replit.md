@@ -329,6 +329,13 @@ Changelog:
     - Phrases tab: Edit phrase pairs, translations, and example sentences
     - Synonyms/Antonyms tab: Edit word lists with add/remove functionality
     - Images tab: Edit/replace/delete images when in edit mode
+- July 9, 2025. Improved writing practice resource display with on-demand loading:
+  - Removed default vocabulary and collocations display from initial page load
+  - Added "See Vocabulary" and "See collocations" buttons with appropriate icons
+  - Implemented clean initial state with encouraging messages for both tabs
+  - Maintained existing "Load More Words" and "Load More Phrases" functionality
+  - Enhanced user experience with cleaner, less overwhelming interface design
+  - Resources now display only when explicitly requested by user interaction
 
 ## User Preferences
 

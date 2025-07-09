@@ -223,6 +223,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 function ResourcesSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
   const [activeTab, setActiveTab] = useState("vocabulary");
   const [showVocabulary, setShowVocabulary] = useState(false);
+  const [showPhrases, setShowPhrases] = useState(false);
   const allVocabulary = getVocabulary(testType, topic);
   const phrases = getPhrases(testType);
 
@@ -534,65 +535,85 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </TabsContent>
 
         <TabsContent value="phrases" className="p-0 min-h-[200px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-            {displayedPhraseWords.map((phrase, index) => (
-                <div 
-                  key={`phrase-${index}`}
-                  className="p-2.5 rounded-lg border border-primary/30 bg-primary/5 shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                    <span className="font-semibold text-sm text-primary">{phrase.word}</span>
-                    <div className="text-xs font-medium px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-full">
-                      Collocation
-                    </div>
-                    <div className="text-xs px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded-full">
-                      {phrase.difficulty}
-                    </div>
-                  </div>
-                  <p className="text-xs text-gray-700 mb-1">
-                    <span className="font-medium">Meaning:</span> {phrase.meaning}
-                  </p>
-                  <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
-                    <span className="font-medium not-italic">Example:</span> {phrase.example}
-                  </p>
-                </div>
-              )
-            )}
-
-            {/* Fill in empty cell if odd number of phrases */}
-            {displayedPhraseWords.length % 2 !== 0 && (
-              <div className="hidden md:block" />
-            )}
-          </div>
-
-          {/* Load more button for phrases */}
-          {hasMorePhrases && (
-            <div className="flex justify-center mt-4 mb-2">
-              <Button 
-                variant="outline" 
-                onClick={handleLoadMorePhrases}
-                className="text-primary border-primary/30 hover:border-primary text-xs px-6 py-1.5 h-auto shadow-sm"
+          {!showPhrases ? (
+            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
+              <Button
+                variant="outline"
                 size="sm"
-                disabled={isLoadingPhrases}
+                className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
+                onClick={() => setShowPhrases(true)}
               >
-                {isLoadingPhrases ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Loading...
-                  </>
-                ) : (
-                  <>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
-                      <path d="M12 8v8"></path><path d="M8 12h8"></path>
-                    </svg>
-                    Load More Phrases
-                  </>
-                )}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2 text-primary">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                See collocations
               </Button>
+              <p className="text-gray-700 font-medium text-base mb-2 text-center">Click to explore useful collocations!</p>
+              <p className="text-primary font-medium text-sm text-center">Master natural word combinations. 😉</p>
             </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                {displayedPhraseWords.map((phrase, index) => (
+                    <div 
+                      key={`phrase-${index}`}
+                      className="p-2.5 rounded-lg border border-primary/30 bg-primary/5 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                        <span className="font-semibold text-sm text-primary">{phrase.word}</span>
+                        <div className="text-xs font-medium px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded-full">
+                          Collocation
+                        </div>
+                        <div className="text-xs px-1.5 py-0.5 bg-gray-100 text-gray-600 rounded-full">
+                          {phrase.difficulty}
+                        </div>
+                      </div>
+                      <p className="text-xs text-gray-700 mb-1">
+                        <span className="font-medium">Meaning:</span> {phrase.meaning}
+                      </p>
+                      <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
+                        <span className="font-medium not-italic">Example:</span> {phrase.example}
+                      </p>
+                    </div>
+                  )
+                )}
+
+                {/* Fill in empty cell if odd number of phrases */}
+                {displayedPhraseWords.length % 2 !== 0 && (
+                  <div className="hidden md:block" />
+                )}
+              </div>
+
+              {/* Load more button for phrases */}
+              {hasMorePhrases && (
+                <div className="flex justify-center mt-4 mb-2">
+                  <Button 
+                    variant="outline" 
+                    onClick={handleLoadMorePhrases}
+                    className="text-primary border-primary/30 hover:border-primary text-xs px-6 py-1.5 h-auto shadow-sm"
+                    size="sm"
+                    disabled={isLoadingPhrases}
+                  >
+                    {isLoadingPhrases ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Loading...
+                      </>
+                    ) : (
+                      <>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
+                          <path d="M12 8v8"></path><path d="M8 12h8"></path>
+                        </svg>
+                        Load More Phrases
+                      </>
+                    )}
+                  </Button>
+                </div>
+              )}
+            </>
           )}
         </TabsContent>
       </Tabs>
