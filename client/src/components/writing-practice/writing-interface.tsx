@@ -63,7 +63,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
               >
                 <Smile className="h-4 w-4" />
-                Useful Expressions
+                Writing Guide
               </TabsTrigger>
             </TabsList>
           </div>
@@ -152,10 +152,10 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
                 <Smile className="h-4 w-4" />
-                Useful Expressions - Các cách diễn đạt hữu ích
+                Writing Guide - Hướng dẫn cách viết
               </h4>
               <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
-                Các cách diễn đạt hữu ích có thể dùng trong bài viết
+                Những hướng dẫn cụ thể giúp bạn viết bài hiệu quả hơn
               </p>
 
               <div className="overflow-y-auto" style={{ maxHeight: '430px' }}>
