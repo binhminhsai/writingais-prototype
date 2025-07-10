@@ -336,6 +336,13 @@ Changelog:
   - Maintained existing "Load More Words" and "Load More Phrases" functionality
   - Enhanced user experience with cleaner, less overwhelming interface design
   - Resources now display only when explicitly requested by user interaction
+- July 10, 2025. Redesigned Useful Expressions section with structured analysis framework:
+  - Replaced generic phrase categories with 5 specific analysis accordions
+  - Created comprehensive essay analysis framework: Highlight Keywords, Essay Type, Main Topic Aspects, Tasks To Do, and Suggested Viewpoint
+  - Added colorful categorized content sections with distinct color schemes for each type of information
+  - Implemented structured content for Problem-Solution essay type with Band 6.5 scoring criteria
+  - Enhanced visual hierarchy with colored backgrounds and clear section divisions
+  - Maintained existing accordion styling and interaction patterns while improving content organization
 
 ## User Preferences
 

@@ -160,42 +160,177 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
               <div className="overflow-y-auto" style={{ maxHeight: '430px' }}>
                 <Accordion type="single" collapsible className="w-full space-y-2">
-                  {phraseCategories.map((category, index) => {
-                    const structuredPhrases = getStructuredPhrases();
-                    const phrases = structuredPhrases[category.id as keyof typeof structuredPhrases] || [];
-                    return (
-                      <AccordionItem 
-                        key={category.id} 
-                        value={category.id}
-                        className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
-                      >
-                        <AccordionTrigger 
-                          className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
-                        >
-                          <span className="flex items-center gap-2">
-                            <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                              {index + 1}
-                            </span>
-                            {category.name}
-                          </span>
-                        </AccordionTrigger>
-                        <AccordionContent className="p-3 bg-white">
-                          <p className="text-xs text-gray-600 mb-3 italic bg-gray-50 p-2 rounded-md">{category.description}</p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {Array.isArray(phrases) && phrases.map((phrase: string, phraseIndex: number) => (
-                              <div 
-                                key={`${category.id}-${phraseIndex}`}
-                                className="text-xs p-2 bg-gray-50 border border-gray-100 rounded-md text-gray-700 whitespace-normal text-wrap my-0.5 hover:bg-gray-100 transition-colors cursor-pointer"
-                                title={`Nghĩa: Cụm từ: ${phrase}`}
-                              >
-                                {phrase}
-                              </div>
-                            ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    );
-                  })}
+                  {/* Accordion 1: Highlight Keywords */}
+                  <AccordionItem 
+                    value="highlight-keywords"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          1
+                        </span>
+                        Highlight Keywords
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="space-y-3">
+                        <div className="bg-blue-50 p-3 rounded-md border border-blue-100">
+                          <p className="text-xs font-medium text-blue-800 mb-2">Context & Reason:</p>
+                          <p className="text-xs text-blue-700">
+                            Nhiều thành phố trên thế giới đang trải qua sự gia tăng dân số nhanh chóng, dẫn đến các vấn đề như đông đúc, tắc nghẽn giao thông và thiếu hụt nhà ở.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 p-3 rounded-md border border-green-100">
+                          <p className="text-xs font-medium text-green-800 mb-2">Main Subject:</p>
+                          <p className="text-xs text-green-700">
+                            Sự gia tăng dân số tại các thành phố và những vấn đề liên quan.
+                          </p>
+                        </div>
+                        <div className="bg-purple-50 p-3 rounded-md border border-purple-100">
+                          <p className="text-xs font-medium text-purple-800 mb-2">Perspectives:</p>
+                          <ul className="text-xs text-purple-700 space-y-1 list-disc pl-4">
+                            <li>Quan điểm 1: Nguyên nhân của sự gia tăng dân số (tăng trưởng kinh tế, di cư từ nông thôn ra thành phố)</li>
+                            <li>Quan điểm 2: Các biện pháp chính phủ có thể thực hiện (xây dựng cơ sở hạ tầng, quy hoạch đô thị)</li>
+                          </ul>
+                        </div>
+                        <div className="bg-orange-50 p-3 rounded-md border border-orange-100">
+                          <p className="text-xs font-medium text-orange-800 mb-2">Main Task:</p>
+                          <p className="text-xs text-orange-700">
+                            Yêu cầu cụ thể: Phân tích nguyên nhân và biện pháp giải quyết các vấn đề do sự gia tăng dân số.
+                          </p>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 2: Identify Essay Type */}
+                  <AccordionItem 
+                    value="essay-type"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          2
+                        </span>
+                        Identify Essay Type
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="space-y-3">
+                        <div className="bg-red-50 p-3 rounded-md border border-red-100">
+                          <p className="text-xs font-medium text-red-800 mb-2">Essay Type: Problem-Solution</p>
+                        </div>
+                        <div className="bg-yellow-50 p-3 rounded-md border border-yellow-100">
+                          <p className="text-xs font-medium text-yellow-800 mb-2">Tips for Band 6.5:</p>
+                          <ul className="text-xs text-yellow-700 space-y-1 list-disc pl-4">
+                            <li><strong>Task Response:</strong> Trả lời đủ 2 phần: Phân tích nguyên nhân + Đề xuất biện pháp cụ thể. Ý tưởng phát triển khá đủ, có giải thích/ví dụ.</li>
+                            <li><strong>Coherence & Cohesion:</strong> Bố cục rõ ràng (4 đoạn). Dùng nhiều từ nối/liên kết. Bài viết dễ theo dõi.</li>
+                            <li><strong>Lexical Resource:</strong> Từ vựng đủ rộng cho chủ đề. Paraphrase tốt. Ít lỗi từ vựng/chính tả không gây khó hiểu.</li>
+                            <li><strong>Grammatical Range:</strong> Dùng đa dạng cấu trúc ngữ pháp. Mắc lỗi ngữ pháp nhưng không gây khó hiểu.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 3: Main Topic Aspects */}
+                  <AccordionItem 
+                    value="main-topic"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          3
+                        </span>
+                        Main Topic Aspects
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="space-y-3">
+                        <div className="bg-indigo-50 p-3 rounded-md border border-indigo-100">
+                          <p className="text-xs font-medium text-indigo-800 mb-2">Main Idea:</p>
+                          <p className="text-xs text-indigo-700">
+                            Sự gia tăng dân số tại các thành phố đang tạo ra nhiều vấn đề nghiêm trọng, bao gồm đông đúc, tắc nghẽn giao thông và thiếu nhà ở.
+                          </p>
+                        </div>
+                        <div className="bg-teal-50 p-3 rounded-md border border-teal-100">
+                          <p className="text-xs font-medium text-teal-800 mb-2">Supporting Sentences:</p>
+                          <ul className="text-xs text-teal-700 space-y-1 list-disc pl-4">
+                            <li>Một trong những nguyên nhân chính dẫn đến sự gia tăng dân số tại các thành phố là sự phát triển kinh tế mạnh mẽ, thu hút người dân từ các vùng nông thôn đến tìm kiếm cơ hội việc làm.</li>
+                            <li>Để giải quyết các vấn đề do sự gia tăng dân số gây ra, chính phủ cần thực hiện các biện pháp như đầu tư vào cơ sở hạ tầng và quy hoạch đô thị hợp lý.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 4: Tasks To Do */}
+                  <AccordionItem 
+                    value="tasks-todo"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          4
+                        </span>
+                        Tasks To Do
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="bg-pink-50 p-3 rounded-md border border-pink-100">
+                        <ul className="text-xs text-pink-700 space-y-2 list-disc pl-4">
+                          <li><strong>Task 1:</strong> Phân tích nguyên nhân của sự gia tăng dân số, bao gồm các yếu tố kinh tế và xã hội.</li>
+                          <li><strong>Task 2:</strong> Đề xuất các biện pháp mà chính phủ có thể thực hiện để giải quyết các vấn đề như đông đúc và thiếu nhà ở.</li>
+                          <li><strong>Task 3:</strong> Cung cấp ví dụ cụ thể về các thành phố đã thành công trong việc giải quyết vấn đề này.</li>
+                        </ul>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 5: Suggested Viewpoint */}
+                  <AccordionItem 
+                    value="suggested-viewpoint"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          5
+                        </span>
+                        Suggested Viewpoint
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="space-y-3">
+                        <div className="bg-emerald-50 p-3 rounded-md border border-emerald-100">
+                          <p className="text-xs font-medium text-emerald-800 mb-2">Suggested View:</p>
+                          <p className="text-xs text-emerald-700">
+                            Cần có sự can thiệp từ chính phủ để giải quyết vấn đề này một cách hiệu quả.
+                          </p>
+                        </div>
+                        <div className="bg-cyan-50 p-3 rounded-md border border-cyan-100">
+                          <p className="text-xs font-medium text-cyan-800 mb-2">Reason:</p>
+                          <p className="text-xs text-cyan-700">
+                            Chính phủ có vai trò quan trọng trong việc quản lý sự phát triển đô thị và có thể áp dụng các chính sách hợp lý để giảm thiểu các vấn đề do sự gia tăng dân số gây ra, như xây dựng nhà ở giá rẻ và cải thiện giao thông công cộng.
+                          </p>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 </Accordion>
               </div>
             </div>

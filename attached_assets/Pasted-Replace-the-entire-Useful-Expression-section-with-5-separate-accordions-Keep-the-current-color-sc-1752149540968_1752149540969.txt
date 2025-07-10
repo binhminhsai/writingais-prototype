@@ -1,0 +1,45 @@
+Replace the entire “Useful Expression” section with 5 separate accordions. Keep the current color scheme and style. Each accordion shows the following content:
+
+Accordion Title: Highlight Keywords
+Content:
+Context & Reason:
+Nhiều thành phố trên thế giới đang trải qua sự gia tăng dân số nhanh chóng, dẫn đến các vấn đề như đông đúc, tắc nghẽn giao thông và thiếu hụt nhà ở.
+Main Subject:
+Sự gia tăng dân số tại các thành phố và những vấn đề liên quan.
+
+Perspectives:
+
+Quan điểm 1: Nguyên nhân của sự gia tăng dân số (tăng trưởng kinh tế, di cư từ nông thôn ra thành phố) (tăng trưởng kinh tế và sự hấp dẫn của thành phố khiến người dân từ các khu vực khác đổ về).
+Quan điểm 2: Các biện pháp chính phủ có thể thực hiện (xây dựng cơ sở hạ tầng, quy hoạch đô thị) (cần có các chính sách hợp lý để giải quyết các vấn đề phát sinh).
+Main Task:
+Yêu cầu cụ thể: Phân tích nguyên nhân và biện pháp giải quyết các vấn đề do sự gia tăng dân số.
+
+Accordion Title: Identify Essay Type
+Content:
+Essay Type: Problem-Solution
+Tips for Band 6.5:
+
+Task Response: Trả lời đủ 2 phần: Phân tích nguyên nhân + Đề xuất biện pháp cụ thể. Ý tưởng phát triển khá đủ, có giải thích/ví dụ.
+Coherence & Cohesion: Bố cục rõ ràng (4 đoạn). Dùng nhiều từ nối/liên kết (tuy có thể sai sót nhỏ). Bài viết dễ theo dõi.
+Lexical Resource: Từ vựng đủ rộng cho chủ đề. Paraphrase tốt. Ít lỗi từ vựng/chính tả không gây khó hiểu.
+Grammatical Range: Dùng đa dạng cấu trúc ngữ pháp (câu phức, ghép...). Mắc lỗi ngữ pháp nhưng không gây khó hiểu thông điệp chính.
+Accordion Title: Main Topic Aspects
+Content:
+Main Idea:
+Sự gia tăng dân số tại các thành phố đang tạo ra nhiều vấn đề nghiêm trọng, bao gồm đông đúc, tắc nghẽn giao thông và thiếu nhà ở.
+Supporting Sentences:
+
+Một trong những nguyên nhân chính dẫn đến sự gia tăng dân số tại các thành phố là sự phát triển kinh tế mạnh mẽ, thu hút người dân từ các vùng nông thôn đến tìm kiếm cơ hội việc làm.
+Để giải quyết các vấn đề do sự gia tăng dân số gây ra, chính phủ cần thực hiện các biện pháp như đầu tư vào cơ sở hạ tầng và quy hoạch đô thị hợp lý.
+Accordion Title: Tasks To Do
+Content (bullet list):
+Task 1: Phân tích nguyên nhân của sự gia tăng dân số, bao gồm các yếu tố kinh tế và xã hội.
+Task 2: Đề xuất các biện pháp mà chính phủ có thể thực hiện để giải quyết các vấn đề như đông đúc và thiếu nhà ở.
+Task 3: Cung cấp ví dụ cụ thể về các thành phố đã thành công trong việc giải quyết vấn đề này.
+Accordion Title: Suggested Viewpoint
+Content:
+Suggested View:
+Cần có sự can thiệp từ chính phủ để giải quyết vấn đề này một cách hiệu quả.
+Reason:
+Chính phủ có vai trò quan trọng trong việc quản lý sự phát triển đô thị và có thể áp dụng các chính sách hợp lý để giảm thiểu các vấn đề do sự gia tăng dân số gây ra, như xây dựng nhà ở giá rẻ và cải thiện giao thông công cộng.
+
