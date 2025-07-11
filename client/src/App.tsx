@@ -11,6 +11,7 @@ import WordPressDemo from "@/pages/wordpress-demo";
 import Wordcraft from "@/pages/wordcraft";
 import WordcraftWords from "@/pages/wordcraft-words";
 import WordcraftWordDetail from "@/pages/wordcraft-word-detail";
+import ProgressTracking from "@/pages/progress-tracking";
 
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -29,6 +30,7 @@ function Router() {
           <Route path="/wordcraft" component={Wordcraft} />
           <Route path="/wordcraft/:cardId/words" component={WordcraftWords} />
           <Route path="/wordcraft/:cardId/words/:wordId/detail" component={WordcraftWordDetail} />
+          <Route path="/progress-tracking" component={ProgressTracking} />
           <Route path="/about" component={NotFound} />
           <Route path="/vocabulary" component={NotFound} />
           <Route path="/progress" component={NotFound} />

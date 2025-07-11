@@ -81,9 +81,11 @@ export default function Home() {
             </p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline" className="w-full" disabled>
-              Coming Soon
-            </Button>
+            <Link href="/progress-tracking">
+              <Button variant="outline" className="w-full">
+                My Progress →
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       </div>
