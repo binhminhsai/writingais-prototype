@@ -76,7 +76,7 @@ export default function ProgressTracking() {
   const [sortByScore, setSortByScore] = useState("score");
   const [sortByMark, setSortByMark] = useState("mark");
   const [essayType, setEssayType] = useState("all");
-  const [showChart, setShowChart] = useState("essay");
+  const [showChart, setShowChart] = useState("Essay");
   const [showBasicMistakes, setShowBasicMistakes] = useState(false);
 
   const overallScore = 7.5;
@@ -108,10 +108,10 @@ export default function ProgressTracking() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="essay">Essay</SelectItem>
-                        <SelectItem value="date">Date</SelectItem>
-                        <SelectItem value="week">Week</SelectItem>
-                        <SelectItem value="month">Month</SelectItem>
+                        <SelectItem value="Essay">Essay</SelectItem>
+                        <SelectItem value="Date">Date</SelectItem>
+                        <SelectItem value="Week">Week</SelectItem>
+                        <SelectItem value="Month">Month</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
