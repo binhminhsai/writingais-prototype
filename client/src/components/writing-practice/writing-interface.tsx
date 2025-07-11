@@ -84,7 +84,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
               <div className="overflow-y-auto" style={{ maxHeight: '430px' }}>
                 <Accordion type="single" collapsible className="w-full space-y-2">
-                  {outline.map((section, index) => (
+                  {outline.slice(0, 3).map((section, index) => (
                     <AccordionItem 
                       key={`outline-${index}`} 
                       value={`section-${index}`}
@@ -124,15 +124,36 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                             <p className="mb-2">Conversely, others contend that criminal behavior arises from an individual's innate bad nature. They argue that some people are predisposed to crime due to personality traits or moral shortcomings, irrespective of their financial situation. This is evident in cases where wealthy individuals commit crimes like fraud or embezzlement, driven not by need but by greed or a lack of ethical restraint.</p>
                           </div>
                         )}
-                        {index === 3 && (
-                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                            <p className="mb-2 font-medium text-primary">Sample Conclusion:</p>
-                            <p className="mb-2">In conclusion, crime stems from multiple causes, including socioeconomic conditions, individual traits, and the impact of education and upbringing. While poverty and personal nature significantly contribute, the effects of early life experiences and mental well-being are equally critical. Tackling crime requires a holistic strategy that not only addresses economic and personal factors but also enhances education and support systems to foster positive development and reduce criminal behavior effectively.</p>
-                          </div>
-                        )}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
+                  
+                  {/* Conclusion section as the 4th item */}
+                  <AccordionItem 
+                    value="conclusion"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          4
+                        </span>
+                        Conclusion
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <ul className="pl-4 space-y-2 list-disc">
+                        <li className="text-xs leading-relaxed text-gray-700">Present your personal viewpoint</li>
+                        <li className="text-xs leading-relaxed text-gray-700">Justify your opinion with reasons</li>
+                      </ul>
+                      <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                        <p className="mb-2 font-medium text-primary">Sample Conclusion:</p>
+                        <p className="mb-2">In conclusion, crime stems from multiple causes, including socioeconomic conditions, individual traits, and the impact of education and upbringing. While poverty and personal nature significantly contribute, the effects of early life experiences and mental well-being are equally critical. Tackling crime requires a holistic strategy that not only addresses economic and personal factors but also enhances education and support systems to foster positive development and reduce criminal behavior effectively.</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 </Accordion>
               </div>
             </div>
