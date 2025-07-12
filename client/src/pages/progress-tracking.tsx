@@ -103,8 +103,8 @@ export default function ProgressTracking() {
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
                   <Select value={showChart} onValueChange={setShowChart}>
-                    <SelectTrigger className="w-24">
-                      <SelectValue placeholder="Essay" />
+                    <SelectTrigger className="w-20">
+                      <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Essay">Essay</SelectItem>
