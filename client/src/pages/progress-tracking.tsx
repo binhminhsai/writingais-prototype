@@ -107,7 +107,7 @@ export default function ProgressTracking() {
           {/* Band Tracker Chart - Back to previous size */}
           <div className="lg:col-span-6">
             <Card className="h-full">
-              <CardHeader className="pb-2">
+              <CardHeader className="pb-1 pt-3">
                 <div className="flex items-center justify-between">
                   <div className="w-32">
                     <Select value={showChart} onValueChange={setShowChart}>
@@ -126,8 +126,8 @@ export default function ProgressTracking() {
                   <div className="w-32"></div> {/* Spacer to balance the layout */}
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="relative h-52 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-3">
+              <CardContent className="pt-2">
+                <div className="relative h-64 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-3">
                   {/* Chart Grid */}
                   <div className="absolute inset-3 grid grid-cols-10 grid-rows-8 gap-1">
                     {/* Y-axis labels */}
