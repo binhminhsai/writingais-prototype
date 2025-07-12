@@ -354,7 +354,6 @@ export default function ProgressTracking() {
                         <th className="text-left p-2 font-medium">Date</th>
                         <th className="text-left p-2 font-medium">Topic</th>
                         <th className="text-left p-2 font-medium">Score</th>
-                        <th className="text-left p-2 font-medium">Type</th>
                         <th className="text-left p-2 font-medium">Status</th>
                       </tr>
                     </thead>
@@ -373,7 +372,6 @@ export default function ProgressTracking() {
                               {essay.score}
                             </span>
                           </td>
-                          <td className="p-2 text-sm">{essay.essayType}</td>
                           <td className="p-2">
                             <span className={`px-2 py-1 rounded text-xs ${
                               essay.isMarked ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
