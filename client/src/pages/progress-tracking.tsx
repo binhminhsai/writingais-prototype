@@ -104,7 +104,7 @@ export default function ProgressTracking() {
                 <div className="flex items-center justify-between">
                   <Select value={showChart} onValueChange={setShowChart}>
                     <SelectTrigger className="w-24">
-                      <SelectValue />
+                      <SelectValue placeholder="Essay" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Essay">Essay</SelectItem>
@@ -441,11 +441,6 @@ export default function ProgressTracking() {
             </div>
           </div>
         </div>
-
-
-
-        
-
 
       </div>
     </div>
