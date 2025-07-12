@@ -407,23 +407,23 @@ export default function ProgressTracking() {
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="border-b">
-                        <th className="py-3 px-2 font-medium w-16 text-center">Week</th>
-                        <th className="py-3 px-2 font-medium w-20 text-center">Date</th>
-                        <th className="py-3 px-2 font-medium text-center">Topic</th>
-                        <th className="py-3 font-medium w-16 ml-[1px] mr-[1px] text-left pt-[8.4px] pb-[8.4px] pl-[0.6px] pr-[0.6px]">Score</th>
-                        <th className="text-left py-3 px-2 font-medium w-16">Status</th>
+                        <th className="py-3 px-4 font-medium w-20 text-left">Week</th>
+                        <th className="py-3 px-4 font-medium w-24 text-left">Date</th>
+                        <th className="py-3 px-4 font-medium text-left">Topic</th>
+                        <th className="py-3 px-4 font-medium w-16 text-center">Score</th>
+                        <th className="py-3 px-4 font-medium w-16 text-center">Status</th>
                       </tr>
                     </thead>
                     <tbody>
                       {essays.map((essay, index) => (
                         <tr key={index} className="border-b hover:bg-gray-50">
-                          <td className="py-4 px-2 text-center">{essay.week}</td>
-                          <td className="py-4 px-2 text-right pl-[6.6px] pr-[6.6px]">{essay.date}</td>
-                          <td className="py-4 px-2 text-sm truncate pl-[50px] pr-[50px]">{essay.topic}</td>
-                          <td className="py-4 text-left pl-[15.6px] pr-[15.6px]">
+                          <td className="py-4 px-4">{essay.week}</td>
+                          <td className="py-4 px-4">{essay.date}</td>
+                          <td className="py-4 px-4 text-sm truncate">{essay.topic}</td>
+                          <td className="py-4 px-4 text-center">
                             {essay.score}
                           </td>
-                          <td className="py-4 px-2">
+                          <td className="py-4 px-4 text-center">
                             <button
                               onClick={() => toggleEssayMarked(index)}
                               className="p-1 hover:bg-gray-100 rounded transition-colors"

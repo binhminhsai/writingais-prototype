@@ -1,0 +1,86 @@
+// Replit Setup: React + Tailwind CSS
+// Features: Pagination, Scrollable Card, Essay Table with 18 items (2 pages)
+
+import React, { useState } from "react";
+
+const essays = [
+  { week: "W1 (02/06/25)", topic: "The impact of technology on employment", score: 5.0, marked: false },
+  { week: "W1 (04/06/25)", topic: "The role of government in environmental protection", score: 5.0, marked: true },
+  { week: "W1 (04/06/25)", topic: "The influence of social media on human behavior", score: 5.5, marked: false },
+  { week: "W2 (10/06/25)", topic: "The importance of university education for career success", score: 5.5, marked: true },
+  { week: "W2 (12/06/25)", topic: "Should governments invest more in public transportation than roads?", score: 6.0, marked: true },
+  { week: "W2 (14/06/25)", topic: "Advantages and disadvantages of online education", score: 5.5, marked: true },
+  { week: "W3 (17/06/25)", topic: "The role of art in modern society", score: 5.0, marked: true },
+  { week: "W3 (18/06/25)", topic: "Job satisfaction or salary – which matters more?", score: 6.5, marked: true },
+  { week: "W3 (19/06/25)", topic: "Causes and solutions of urban air pollution", score: 6.0, marked: false },
+  { week: "W4 (21/06/25)", topic: "Is it better to study abroad or locally?", score: 5.5, marked: true },
+  { week: "W4 (23/06/25)", topic: "Governments should spend more on space exploration", score: 6.5, marked: true },
+  { week: "W4 (24/06/25)", topic: "Opinion: The benefits of working from home", score: 5.0, marked: false },
+  { week: "W5 (26/06/25)", topic: "The impact of tourism on cultural preservation", score: 6.0, marked: true },
+  { week: "W5 (28/06/25)", topic: "Problem/Solution: Childhood obesity", score: 6.5, marked: true },
+  { week: "W5 (30/06/25)", topic: "Pros and cons of single-sex schools", score: 5.5, marked: false },
+  { week: "W6 (02/07/25)", topic: "Some people think history is irrelevant to modern life", score: 7.0, marked: true },
+  { week: "W6 (04/07/25)", topic: "Advantages/Disadvantages of using AI in healthcare", score: 6.0, marked: true },
+  { week: "W6 (06/07/25)", topic: "Should governments limit car ownership to reduce traffic?", score: 6.5, marked: false },
+];
+
+const itemsPerPage = 10;
+
+export default function EssayTracker() {
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(essays.length / itemsPerPage);
+
+  const currentEssays = essays.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+
+  return (
+    <div className="max-w-4xl mx-auto mt-10 border rounded-lg shadow-lg p-4">
+      <h2 className="text-center text-xl font-bold mb-4">IELTS Writing Task 2 Progress Tracker</h2>
+      <div className="flex gap-4 justify-center mb-4">
+        <select className="border rounded px-2 py-1"> <option>Newest</option><option>Oldest</option> </select>
+        <select className="border rounded px-2 py-1"> <option>Sort by Score</option><option>Ascending Score</option><option>Descending Score</option> </select>
+        <select className="border rounded px-2 py-1"> <option>Essay Type</option><option>Opinion</option><option>Discussion</option><option>Advantage/Disadvantage</option><option>Problem/Solution</option><option>Two-part Question</option> </select>
+        <select className="border rounded px-2 py-1"> <option>Sort by Mark</option><option>Mixed</option><option>Marked</option><option>Unmarked</option> </select>
+      </div>
+
+      <div className="overflow-y-scroll max-h-96 border rounded">
+        <table className="w-full text-left">
+          <thead className="bg-gray-200 sticky top-0">
+            <tr>
+              <th className="px-4 py-2">Week</th>
+              <th className="px-4 py-2">Topic</th>
+              <th className="px-4 py-2 text-center">Score</th>
+              <th className="px-4 py-2 text-center">Mark</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentEssays.map((essay, index) => (
+              <tr key={index} className="border-t">
+                <td className="px-4 py-2">{essay.week}</td>
+                <td className="px-4 py-2 truncate">{essay.topic}</td>
+                <td className="px-4 py-2 text-center">{essay.score}</td>
+                <td className="px-4 py-2 text-center">
+                  {essay.marked ? "⭐️" : "☆"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="flex justify-between items-center mt-2 px-2">
+        <div className="text-sm italic">
+          {`${(page - 1) * itemsPerPage + 1}-${Math.min(page * itemsPerPage, essays.length)} of ${essays.length} essays`}
+        </div>
+        <div className="flex items-center gap-2">
+          <button onClick={() => setPage(p => Math.max(p - 1, 1))} disabled={page === 1} className="px-2 py-1 text-gray-500">
+            &lt;
+          </button>
+          <span className="text-sm">{page}/{totalPages}</span>
+          <button onClick={() => setPage(p => Math.min(p + 1, totalPages))} disabled={page === totalPages} className="px-2 py-1 text-gray-500">
+            &gt;
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
