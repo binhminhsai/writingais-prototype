@@ -381,7 +381,7 @@ export default function ProgressTracking() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
           {/* Progress Table */}
           <div className="lg:col-span-8">
-            <Card className="flex flex-col" style={{ height: 'calc(100vh - 400px)', minHeight: '460px' }}>
+            <Card className="flex flex-col h-full">
               <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-center">
                   <CardTitle className="text-lg text-center">IELTS Writing Task 2 Progress Tracker</CardTitle>
