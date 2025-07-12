@@ -410,7 +410,7 @@ export default function ProgressTracking() {
                         <th className="py-3 px-2 font-medium w-16 text-center">Week</th>
                         <th className="py-3 px-2 font-medium w-20 text-center">Date</th>
                         <th className="py-3 px-2 font-medium text-center">Topic</th>
-                        <th className="py-3 pl-1 pr-3 font-medium w-16 text-center">Score</th>
+                        <th className="py-3 font-medium w-16 ml-[1px] mr-[1px] text-left pt-[8.4px] pb-[8.4px] pl-[0.6px] pr-[0.6px]">Score</th>
                         <th className="text-left py-3 px-2 font-medium w-16">Status</th>
                       </tr>
                     </thead>
