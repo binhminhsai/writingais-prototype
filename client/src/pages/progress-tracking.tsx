@@ -80,6 +80,12 @@ export default function ProgressTracking() {
   const [showChart, setShowChart] = useState("Essay");
   const [showBasicMistakes, setShowBasicMistakes] = useState(false);
   const [essays, setEssays] = useState<EssayData[]>(sampleEssays);
+  
+  // New dropdown states
+  const [sortOrder, setSortOrder] = useState("Newest");
+  const [scoreSort, setScoreSort] = useState("Sort by Score");
+  const [essayTypeFilter, setEssayTypeFilter] = useState("Essay Type");
+  const [markFilter, setMarkFilter] = useState("Sort by Mark");
 
   const toggleEssayMarked = (index: number) => {
     setEssays(prev => prev.map((essay, i) => 
@@ -331,6 +337,68 @@ export default function ProgressTracking() {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">IELTS Writing Task 2 Progress Tracker</CardTitle>
+                </div>
+                
+                {/* 4 Dropdown Filters */}
+                <div className="grid grid-cols-4 gap-3 mt-4">
+                  {/* Dropdown 1: Sort Order */}
+                  <div>
+                    <Select value={sortOrder} onValueChange={setSortOrder}>
+                      <SelectTrigger className="w-full text-left">
+                        <span className="flex-1 text-left">{sortOrder}</span>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Newest">Newest</SelectItem>
+                        <SelectItem value="Oldest">Oldest</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Dropdown 2: Score Sort */}
+                  <div>
+                    <Select value={scoreSort} onValueChange={setScoreSort}>
+                      <SelectTrigger className="w-full text-left">
+                        <span className="flex-1 text-left">{scoreSort}</span>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Sort by Score">Sort by Score</SelectItem>
+                        <SelectItem value="Ascending Score">Ascending Score</SelectItem>
+                        <SelectItem value="Descending Score">Descending Score</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Dropdown 3: Essay Type */}
+                  <div>
+                    <Select value={essayTypeFilter} onValueChange={setEssayTypeFilter}>
+                      <SelectTrigger className="w-full text-left">
+                        <span className="flex-1 text-left">{essayTypeFilter}</span>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Essay Type">Essay Type</SelectItem>
+                        <SelectItem value="Opinion">Opinion</SelectItem>
+                        <SelectItem value="Discussion">Discussion</SelectItem>
+                        <SelectItem value="Advantage/Disadvantage">Advantage/Disadvantage</SelectItem>
+                        <SelectItem value="Problem/Solution">Problem/Solution</SelectItem>
+                        <SelectItem value="Two-part Question">Two-part Question</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Dropdown 4: Mark Filter */}
+                  <div>
+                    <Select value={markFilter} onValueChange={setMarkFilter}>
+                      <SelectTrigger className="w-full text-left">
+                        <span className="flex-1 text-left">{markFilter}</span>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Sort by Mark">Sort by Mark</SelectItem>
+                        <SelectItem value="Mixed">Mixed</SelectItem>
+                        <SelectItem value="Marked">Marked</SelectItem>
+                        <SelectItem value="Unmarked">Unmarked</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
                 
               </CardHeader>
