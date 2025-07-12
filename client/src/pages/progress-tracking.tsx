@@ -99,8 +99,8 @@ export default function ProgressTracking() {
           {/* Band Tracker Chart - 1.5x wider */}
           <div className="lg:col-span-3">
             <Card className="h-full">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between mb-2">
+              <CardHeader className="pb-2">
+                <div className="flex items-center justify-between">
                   <Select value={showChart} onValueChange={setShowChart}>
                     <SelectTrigger className="w-24">
                       <SelectValue />
@@ -112,13 +112,13 @@ export default function ProgressTracking() {
                       <SelectItem value="Month">Month</SelectItem>
                     </SelectContent>
                   </Select>
+                  <CardTitle className="text-lg text-center flex-1">IELTS Writing Task 2 Band Tracker</CardTitle>
                 </div>
-                <CardTitle className="text-lg">IELTS Writing Task 2 Band Tracker</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="relative h-64 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-4">
+                <div className="relative h-52 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-3">
                   {/* Chart Grid */}
-                  <div className="absolute inset-4 grid grid-cols-10 grid-rows-8 gap-1">
+                  <div className="absolute inset-3 grid grid-cols-10 grid-rows-8 gap-1">
                     {/* Y-axis labels */}
                     <div className="col-span-1 row-span-8 flex flex-col justify-between text-xs text-gray-600 pr-2">
                       <span>8</span>
@@ -142,7 +142,7 @@ export default function ProgressTracking() {
                       </div>
                       
                       {/* Line Chart */}
-                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 450 128">
+                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 450 102">
                         <defs>
                           <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
@@ -151,13 +151,13 @@ export default function ProgressTracking() {
                         </defs>
                         
                         <polyline
-                          points="0,96 45,96 90,96 135,96 180,80 225,64 270,64 315,64 360,48 405,32"
+                          points="0,77 45,77 90,77 135,77 180,64 225,51 270,51 315,51 360,38 405,26"
                           fill="none"
                           stroke="#3b82f6"
                           strokeWidth="2"
                         />
                         <polyline
-                          points="0,128 0,96 45,96 90,96 135,96 180,80 225,64 270,64 315,64 360,48 405,32 405,128"
+                          points="0,102 0,77 45,77 90,77 135,77 180,64 225,51 270,51 315,51 360,38 405,26 405,102"
                           fill="url(#gradient)"
                         />
                         
@@ -166,7 +166,7 @@ export default function ProgressTracking() {
                           <circle
                             key={i}
                             cx={i * 45}
-                            cy={128 - (score * 16)}
+                            cy={102 - (score * 13)}
                             r="3"
                             fill="#3b82f6"
                           />
@@ -175,7 +175,7 @@ export default function ProgressTracking() {
                     </div>
                     
                     {/* X-axis labels */}
-                    <div className="col-span-9 row-span-1 flex justify-between text-xs text-gray-600 pt-2">
+                    <div className="col-span-9 row-span-1 flex justify-between text-xs text-gray-600 pt-1">
                       <span>Es.1</span>
                       <span>Es.2</span>
                       <span>Es.3</span>
@@ -196,7 +196,7 @@ export default function ProgressTracking() {
           {/* Overall Band Score - Reduced width */}
           <div className="lg:col-span-2">
             <Card className="h-full">
-              <CardHeader>
+              <CardHeader className="pb-2">
                 <CardTitle className="text-base">Overall Band Score</CardTitle>
               </CardHeader>
               <CardContent>
@@ -212,55 +212,55 @@ export default function ProgressTracking() {
                   </div>
                   
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-600">Task Response:</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium text-gray-700 mb-1">Task Response:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                           <div 
-                            className="bg-gray-600 h-1.5 rounded-full"
+                            className="bg-gray-600 h-4 rounded-full"
                             style={{ width: `${(taskResponse / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs font-medium">{taskResponse}</span>
+                        <span className="text-sm font-medium">{taskResponse}</span>
                       </div>
                     </div>
                     
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-600">Lexical Resource:</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium text-gray-700 mb-1">Lexical Resource:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                           <div 
-                            className="bg-gray-600 h-1.5 rounded-full"
+                            className="bg-gray-600 h-4 rounded-full"
                             style={{ width: `${(lexicalResource / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs font-medium">{lexicalResource}</span>
+                        <span className="text-sm font-medium">{lexicalResource}</span>
                       </div>
                     </div>
                     
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-600">Coherence & Cohesion:</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium text-gray-700 mb-1">Coherence & Cohesion:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                           <div 
-                            className="bg-gray-600 h-1.5 rounded-full"
+                            className="bg-gray-600 h-4 rounded-full"
                             style={{ width: `${(coherenceCohesion / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs font-medium">{coherenceCohesion}</span>
+                        <span className="text-sm font-medium">{coherenceCohesion}</span>
                       </div>
                     </div>
                     
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-600">Grammatical Range & Accuracy:</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-16 bg-gray-200 rounded-full h-1.5">
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium text-gray-700 mb-1">Grammatical Range & Accuracy:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-full bg-gray-200 rounded-full h-4">
                           <div 
-                            className="bg-gray-600 h-1.5 rounded-full"
+                            className="bg-gray-600 h-4 rounded-full"
                             style={{ width: `${(grammaticalRange / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs font-medium">{grammaticalRange}</span>
+                        <span className="text-sm font-medium">{grammaticalRange}</span>
                       </div>
                     </div>
                   </div>
@@ -272,12 +272,12 @@ export default function ProgressTracking() {
           {/* Action Buttons */}
           <div className="lg:col-span-1">
             <div className="space-y-3 h-full flex flex-col justify-center">
-              <Button variant="outline" className="w-full h-32 text-sm">
+              <Button variant="outline" className="w-full h-24 text-sm">
                 Progress Report
               </Button>
               <Button 
                 variant="outline" 
-                className="w-full h-32 text-sm"
+                className="w-full h-24 text-sm"
                 onClick={() => setShowBasicMistakes(!showBasicMistakes)}
               >
                 {showBasicMistakes ? 'Hide' : 'Basic Mistakes'}
