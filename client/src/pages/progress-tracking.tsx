@@ -444,31 +444,7 @@ export default function ProgressTracking() {
 
 
 
-        {/* Basic Mistakes Section */}
-        {showBasicMistakes && (
-          <div className="mb-6">
-            <Card>
-              <CardContent className="p-4">
-                <div className="space-y-4">
-                  {basicMistakes.map((mistake) => (
-                    <div key={mistake.id} className="border rounded-lg p-4 bg-gray-50">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        {mistake.id}. {mistake.title}
-                      </h4>
-                      <p className="text-sm text-gray-700 mb-2">{mistake.description}</p>
-                      <div className="flex items-start gap-2">
-                        <span className="text-sm text-gray-600">→</span>
-                        <p className="text-sm text-gray-600">
-                          <span className="font-medium">Tip:</span> {mistake.tip}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+        
 
 
       </div>
