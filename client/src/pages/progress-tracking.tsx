@@ -47,6 +47,54 @@ const sampleEssays: EssayData[] = [
     score: 5.5,
     isMarked: true,
     essayType: "Cause & Solution"
+  },
+  {
+    week: "W2",
+    date: "12/06/25",
+    topic: "Should governments invest more in public transportation than roads?",
+    score: 6.0,
+    isMarked: false,
+    essayType: "Opinion"
+  },
+  {
+    week: "W2",
+    date: "14/06/25",
+    topic: "Advantages and disadvantages of online education",
+    score: 5.5,
+    isMarked: true,
+    essayType: "Advantage/Disadvantage"
+  },
+  {
+    week: "W3",
+    date: "17/06/25",
+    topic: "The role of art in modern society",
+    score: 6.5,
+    isMarked: false,
+    essayType: "Discussion"
+  },
+  {
+    week: "W3",
+    date: "18/06/25",
+    topic: "Job satisfaction or salary – which matters more?",
+    score: 7.0,
+    isMarked: true,
+    essayType: "Opinion"
+  },
+  {
+    week: "W3",
+    date: "19/06/25",
+    topic: "Causes and solutions of urban air pollution",
+    score: 6.0,
+    isMarked: false,
+    essayType: "Problem/Solution"
+  },
+  {
+    week: "W4",
+    date: "21/06/25",
+    topic: "Is it better to study abroad or locally?",
+    score: 7.5,
+    isMarked: true,
+    essayType: "Advantage/Disadvantage"
   }
 ];
 
@@ -403,13 +451,13 @@ export default function ProgressTracking() {
                 
               </CardHeader>
               <CardContent>
-                <div className="overflow-x-hidden">
+                <div className="overflow-y-auto max-h-[450px] overflow-x-hidden">
                   <table className="w-full border-collapse">
-                    <thead>
+                    <thead className="sticky top-0 bg-white z-10">
                       <tr className="border-b">
                         <th className="py-3 px-4 font-medium w-20 text-left">Week</th>
-                        <th className="py-3 px-4 font-medium w-24 text-center pl-[10.2px] pr-[10.2px] pt-[10.4px] pb-[10.4px]">Date</th>
-                        <th className="py-3 px-4 font-medium text-center">Topic</th>
+                        <th className="py-3 px-4 font-medium w-24 text-left">Date</th>
+                        <th className="py-3 px-4 font-medium text-left">Topic</th>
                         <th className="py-3 px-4 font-medium w-16 text-center">Score</th>
                         <th className="py-3 px-4 font-medium w-16 text-center">Status</th>
                       </tr>
