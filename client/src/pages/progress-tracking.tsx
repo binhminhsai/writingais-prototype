@@ -381,8 +381,8 @@ export default function ProgressTracking() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
           {/* Progress Table */}
           <div className="lg:col-span-8">
-            <Card className="h-full">
-              <CardHeader>
+            <Card className="flex flex-col" style={{ height: 'calc(100vh - 400px)', minHeight: '460px' }}>
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-center">
                   <CardTitle className="text-lg text-center">IELTS Writing Task 2 Progress Tracker</CardTitle>
                 </div>
@@ -450,45 +450,47 @@ export default function ProgressTracking() {
                 </div>
                 
               </CardHeader>
-              <CardContent>
-                <div className="overflow-y-auto max-h-[280px] overflow-x-hidden">
-                  <table className="w-full border-collapse">
-                    <thead className="sticky top-0 bg-white z-10">
-                      <tr className="border-b">
-                        <th className="py-3 px-4 font-medium w-20 text-left">Week</th>
-                        <th className="py-3 px-4 font-medium w-24 text-left">Date</th>
-                        <th className="py-3 px-4 font-medium text-left">Topic</th>
-                        <th className="py-3 px-4 font-medium w-16 text-center">Score</th>
-                        <th className="py-3 px-4 font-medium w-16 text-center">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {essays.map((essay, index) => (
-                        <tr key={index} className="border-b hover:bg-gray-50">
-                          <td className="py-4 px-4">{essay.week}</td>
-                          <td className="py-4 px-4">{essay.date}</td>
-                          <td className="py-4 px-4 text-sm truncate">{essay.topic}</td>
-                          <td className="py-4 px-4 text-center">
-                            {essay.score}
-                          </td>
-                          <td className="py-4 px-4 text-center">
-                            <button
-                              onClick={() => toggleEssayMarked(index)}
-                              className="p-1 hover:bg-gray-100 rounded transition-colors"
-                            >
-                              <Star
-                                className={`w-5 h-5 ${
-                                  essay.isMarked 
-                                    ? 'fill-yellow-400 text-yellow-400' 
-                                    : 'fill-none text-gray-400'
-                                }`}
-                              />
-                            </button>
-                          </td>
+              <CardContent className="flex-grow overflow-hidden p-0">
+                <div className="h-full overflow-y-auto progress-table-scroll pr-2">
+                  <div className="px-6 pb-6">
+                    <table className="w-full border-collapse table-fixed">
+                      <thead className="sticky top-0 bg-white z-10">
+                        <tr className="border-b">
+                          <th className="py-3 px-4 font-medium w-20 text-left">Week</th>
+                          <th className="py-3 px-4 font-medium w-24 text-left">Date</th>
+                          <th className="py-3 px-4 font-medium text-left">Topic</th>
+                          <th className="py-3 px-4 font-medium w-16 text-center">Score</th>
+                          <th className="py-3 px-4 font-medium w-20 text-center">Status</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {essays.map((essay, index) => (
+                          <tr key={index} className="border-b hover:bg-gray-50">
+                            <td className="py-4 px-4">{essay.week}</td>
+                            <td className="py-4 px-4">{essay.date}</td>
+                            <td className="py-4 px-4 text-sm truncate">{essay.topic}</td>
+                            <td className="py-4 px-4 text-center">
+                              {essay.score}
+                            </td>
+                            <td className="py-4 px-4 text-center">
+                              <button
+                                onClick={() => toggleEssayMarked(index)}
+                                className="p-1 hover:bg-gray-100 rounded transition-colors"
+                              >
+                                <Star
+                                  className={`w-5 h-5 ${
+                                    essay.isMarked 
+                                      ? 'fill-yellow-400 text-yellow-400' 
+                                      : 'fill-none text-gray-400'
+                                  }`}
+                                />
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </CardContent>
             </Card>
