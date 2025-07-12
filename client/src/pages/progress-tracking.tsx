@@ -79,6 +79,13 @@ export default function ProgressTracking() {
   const [essayType, setEssayType] = useState("all");
   const [showChart, setShowChart] = useState("Essay");
   const [showBasicMistakes, setShowBasicMistakes] = useState(false);
+  const [essays, setEssays] = useState<EssayData[]>(sampleEssays);
+
+  const toggleEssayMarked = (index: number) => {
+    setEssays(prev => prev.map((essay, i) => 
+      i === index ? { ...essay, isMarked: !essay.isMarked } : essay
+    ));
+  };
 
   const overallScore = 7.5;
   const taskResponse = 7.5;
@@ -317,7 +324,7 @@ export default function ProgressTracking() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
           {/* Progress Table */}
           <div className="lg:col-span-8">
-            <Card>
+            <Card className="h-full">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">IELTS Writing Task 2 Progress Tracker</CardTitle>
@@ -346,24 +353,24 @@ export default function ProgressTracking() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-hidden">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="border-b">
-                        <th className="text-left p-2 font-medium">Week</th>
-                        <th className="text-left p-2 font-medium">Date</th>
-                        <th className="text-left p-2 font-medium">Topic</th>
-                        <th className="text-left p-2 font-medium">Score</th>
-                        <th className="text-left p-2 font-medium">Status</th>
+                        <th className="text-left py-3 px-2 font-medium w-16">Week</th>
+                        <th className="text-left py-3 px-2 font-medium w-20">Date</th>
+                        <th className="text-left py-3 px-2 font-medium">Topic</th>
+                        <th className="text-left py-3 px-2 font-medium w-16">Score</th>
+                        <th className="text-left py-3 px-2 font-medium w-16">Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {sampleEssays.map((essay, index) => (
+                      {essays.map((essay, index) => (
                         <tr key={index} className="border-b hover:bg-gray-50">
-                          <td className="p-2">{essay.week}</td>
-                          <td className="p-2">{essay.date}</td>
-                          <td className="p-2 text-sm">{essay.topic}</td>
-                          <td className="p-2">
+                          <td className="py-4 px-2">{essay.week}</td>
+                          <td className="py-4 px-2">{essay.date}</td>
+                          <td className="py-4 px-2 text-sm truncate">{essay.topic}</td>
+                          <td className="py-4 px-2">
                             <span className={`px-2 py-1 rounded text-xs font-medium ${
                               essay.score >= 7 ? 'bg-green-100 text-green-800' :
                               essay.score >= 6 ? 'bg-yellow-100 text-yellow-800' :
@@ -372,12 +379,19 @@ export default function ProgressTracking() {
                               {essay.score}
                             </span>
                           </td>
-                          <td className="p-2">
-                            <span className={`px-2 py-1 rounded text-xs ${
-                              essay.isMarked ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
-                            }`}>
-                              {essay.isMarked ? 'Marked' : 'Unmarked'}
-                            </span>
+                          <td className="py-4 px-2">
+                            <button
+                              onClick={() => toggleEssayMarked(index)}
+                              className="p-1 hover:bg-gray-100 rounded transition-colors"
+                            >
+                              <Star
+                                className={`w-5 h-5 ${
+                                  essay.isMarked 
+                                    ? 'fill-yellow-400 text-yellow-400' 
+                                    : 'fill-none text-gray-400'
+                                }`}
+                              />
+                            </button>
                           </td>
                         </tr>
                       ))}
