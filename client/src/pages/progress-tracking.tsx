@@ -452,7 +452,7 @@ export default function ProgressTracking() {
               </CardHeader>
               <CardContent className="flex-grow overflow-hidden p-0">
                 <div className="relative">
-                  <div className="overflow-y-auto progress-table-scroll max-h-[320px] pr-2">
+                  <div className="overflow-y-auto progress-table-scroll max-h-[280px] pr-2">
                     <div className="px-6 pb-6">
                       <table className="w-full border-collapse table-fixed">
                         <thead className="sticky top-0 bg-white z-10">
