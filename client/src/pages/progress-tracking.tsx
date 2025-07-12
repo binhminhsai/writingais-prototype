@@ -419,7 +419,7 @@ export default function ProgressTracking() {
                         <tr key={index} className="border-b hover:bg-gray-50">
                           <td className="py-4 px-2 text-center">{essay.week}</td>
                           <td className="py-4 px-2">{essay.date}</td>
-                          <td className="py-4 px-2 text-sm truncate">{essay.topic}</td>
+                          <td className="py-4 px-2 text-sm truncate pl-[50px] pr-[50px]">{essay.topic}</td>
                           <td className="py-4 px-2">
                             <span className={`px-2 py-1 rounded text-xs font-medium ${
                               essay.score >= 7 ? 'bg-green-100 text-green-800' :
