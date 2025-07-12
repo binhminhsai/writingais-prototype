@@ -111,7 +111,7 @@ export default function ProgressTracking() {
                 <div className="flex items-center justify-between">
                   <Select value={showChart} onValueChange={setShowChart}>
                     <SelectTrigger className="w-20">
-                      <SelectValue />
+                      <SelectValue placeholder="Essay" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Essay">Essay</SelectItem>
@@ -332,7 +332,7 @@ export default function ProgressTracking() {
                 <div className="flex items-center gap-2 flex-wrap">
                   <Select value={sortBy} onValueChange={setSortBy}>
                     <SelectTrigger className="w-32">
-                      <SelectValue />
+                      <SelectValue placeholder="Date" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="date">Date</SelectItem>
@@ -342,7 +342,7 @@ export default function ProgressTracking() {
                   </Select>
                   <Select value={filterBy} onValueChange={setFilterBy}>
                     <SelectTrigger className="w-32">
-                      <SelectValue />
+                      <SelectValue placeholder="All" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All</SelectItem>
