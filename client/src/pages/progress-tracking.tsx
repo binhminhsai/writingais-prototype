@@ -108,20 +108,7 @@ export default function ProgressTracking() {
           <div className="lg:col-span-6">
             <Card className="h-full">
               <CardHeader className="pb-2">
-                <div className="flex items-center justify-between">
-                  <Select value={showChart} onValueChange={setShowChart}>
-                    <SelectTrigger className="w-20">
-                      <SelectValue placeholder="Essay" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Essay">Essay</SelectItem>
-                      <SelectItem value="Date">Date</SelectItem>
-                      <SelectItem value="Week">Week</SelectItem>
-                      <SelectItem value="Month">Month</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <CardTitle className="text-lg text-center flex-1">IELTS Writing Task 2 Band Tracker</CardTitle>
-                </div>
+                <CardTitle className="text-lg text-center">IELTS Writing Task 2 Band Tracker</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="relative h-52 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-3">
