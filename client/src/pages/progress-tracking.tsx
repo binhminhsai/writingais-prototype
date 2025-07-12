@@ -95,9 +95,9 @@ export default function ProgressTracking() {
         </div>
 
         {/* Horizontal Layout - Band Tracker, Overall Score, Action Buttons */}
-        <div className="grid grid-cols-1 lg:grid-cols-8 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
           {/* Band Tracker Chart - Back to previous size */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-6">
             <Card className="h-full">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
@@ -193,8 +193,8 @@ export default function ProgressTracking() {
             </Card>
           </div>
 
-          {/* Overall Band Score - Increased to 1.8x width */}
-          <div className="lg:col-span-3">
+          {/* Overall Band Score - Slightly reduced width */}
+          <div className="lg:col-span-4">
             <Card className="h-full">
               <CardHeader className="pb-2">
                 <CardTitle className="text-xl">Overall Band Score</CardTitle>
@@ -221,7 +221,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(taskResponse / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-2xl font-bold w-12 text-right">{taskResponse}</span>
+                        <span className="text-xl font-bold w-12 text-right">{taskResponse}</span>
                       </div>
                     </div>
                     
@@ -234,7 +234,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(lexicalResource / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-2xl font-bold w-12 text-right">{lexicalResource}</span>
+                        <span className="text-xl font-bold w-12 text-right">{lexicalResource}</span>
                       </div>
                     </div>
                     
@@ -247,7 +247,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(coherenceCohesion / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-2xl font-bold w-12 text-right">{coherenceCohesion}</span>
+                        <span className="text-xl font-bold w-12 text-right">{coherenceCohesion}</span>
                       </div>
                     </div>
                     
@@ -260,7 +260,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(grammaticalRange / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-2xl font-bold w-12 text-right">{grammaticalRange}</span>
+                        <span className="text-xl font-bold w-12 text-right">{grammaticalRange}</span>
                       </div>
                     </div>
                   </div>
@@ -269,8 +269,8 @@ export default function ProgressTracking() {
             </Card>
           </div>
 
-          {/* Action Buttons */}
-          <div className="lg:col-span-1">
+          {/* Action Buttons - Increased width */}
+          <div className="lg:col-span-2">
             <div className="space-y-3 h-full flex flex-col justify-center">
               <Button variant="outline" className="w-full h-24 text-sm">
                 Progress Report
