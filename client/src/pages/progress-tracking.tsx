@@ -451,7 +451,7 @@ export default function ProgressTracking() {
                 
               </CardHeader>
               <CardContent>
-                <div className="overflow-y-auto max-h-[450px] overflow-x-hidden">
+                <div className="overflow-y-auto max-h-[400px] overflow-x-hidden">
                   <table className="w-full border-collapse">
                     <thead className="sticky top-0 bg-white z-10">
                       <tr className="border-b">
