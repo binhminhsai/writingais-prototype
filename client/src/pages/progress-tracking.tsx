@@ -94,15 +94,15 @@ export default function ProgressTracking() {
           <p className="text-gray-600">You've written 18 essays. That's 18 steps closer to your goal!</p>
         </div>
 
-        {/* Horizontal Layout - Band Tracker, Overall Score, Action Buttons, Current Streak */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
-          {/* Band Tracker Chart */}
-          <div className="lg:col-span-1">
+        {/* Horizontal Layout - Band Tracker, Overall Score, Action Buttons */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-6">
+          {/* Band Tracker Chart - 2x wider */}
+          <div className="lg:col-span-2">
             <Card className="h-full">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between mb-2">
                   <Select value={showChart} onValueChange={setShowChart}>
-                    <SelectTrigger className="w-20">
+                    <SelectTrigger className="w-24">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -113,14 +113,14 @@ export default function ProgressTracking() {
                     </SelectContent>
                   </Select>
                 </div>
-                <CardTitle className="text-sm">IELTS Writing Task 2 Band Tracker</CardTitle>
+                <CardTitle className="text-lg">IELTS Writing Task 2 Band Tracker</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="relative h-48 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-3">
+                <div className="relative h-64 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-4">
                   {/* Chart Grid */}
-                  <div className="absolute inset-3 grid grid-cols-10 grid-rows-8 gap-1">
+                  <div className="absolute inset-4 grid grid-cols-10 grid-rows-8 gap-1">
                     {/* Y-axis labels */}
-                    <div className="col-span-1 row-span-8 flex flex-col justify-between text-xs text-gray-600 pr-1">
+                    <div className="col-span-1 row-span-8 flex flex-col justify-between text-xs text-gray-600 pr-2">
                       <span>8</span>
                       <span>7</span>
                       <span>6</span>
@@ -142,7 +142,7 @@ export default function ProgressTracking() {
                       </div>
                       
                       {/* Line Chart */}
-                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 128">
+                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 450 128">
                         <defs>
                           <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
@@ -151,13 +151,13 @@ export default function ProgressTracking() {
                         </defs>
                         
                         <polyline
-                          points="0,96 36,96 72,96 108,96 144,80 180,64 216,64 252,64 288,48 324,32"
+                          points="0,96 45,96 90,96 135,96 180,80 225,64 270,64 315,64 360,48 405,32"
                           fill="none"
                           stroke="#3b82f6"
                           strokeWidth="2"
                         />
                         <polyline
-                          points="0,128 0,96 36,96 72,96 108,96 144,80 180,64 216,64 252,64 288,48 324,32 324,128"
+                          points="0,128 0,96 45,96 90,96 135,96 180,80 225,64 270,64 315,64 360,48 405,32 405,128"
                           fill="url(#gradient)"
                         />
                         
@@ -165,9 +165,9 @@ export default function ProgressTracking() {
                         {[5.0, 5.0, 5.0, 5.0, 5.5, 6.0, 6.0, 6.0, 6.5, 7.0].map((score, i) => (
                           <circle
                             key={i}
-                            cx={i * 36}
+                            cx={i * 45}
                             cy={128 - (score * 16)}
-                            r="2"
+                            r="3"
                             fill="#3b82f6"
                           />
                         ))}
@@ -175,7 +175,7 @@ export default function ProgressTracking() {
                     </div>
                     
                     {/* X-axis labels */}
-                    <div className="col-span-9 row-span-1 flex justify-between text-xs text-gray-600 pt-1">
+                    <div className="col-span-9 row-span-1 flex justify-between text-xs text-gray-600 pt-2">
                       <span>Es.1</span>
                       <span>Es.2</span>
                       <span>Es.3</span>
@@ -194,73 +194,73 @@ export default function ProgressTracking() {
           </div>
 
           {/* Overall Band Score */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <Card className="h-full">
               <CardHeader>
-                <CardTitle className="text-sm">Overall Band Score</CardTitle>
+                <CardTitle className="text-lg">Overall Band Score</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-full bg-gray-200 rounded-full h-4 mr-3">
+                    <div className="w-full bg-gray-200 rounded-full h-6 mr-4">
                       <div 
-                        className="bg-black h-4 rounded-full transition-all duration-300"
+                        className="bg-black h-6 rounded-full transition-all duration-300"
                         style={{ width: `${(overallScore / 9) * 100}%` }}
                       ></div>
                     </div>
-                    <span className="text-lg font-bold">{overallScore}</span>
+                    <span className="text-2xl font-bold">{overallScore}</span>
                   </div>
                   
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-600">Task Response:</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                      <span className="text-sm text-gray-600">Task Response:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 bg-gray-200 rounded-full h-2">
                           <div 
-                            className="bg-gray-600 h-1.5 rounded-full"
+                            className="bg-gray-600 h-2 rounded-full"
                             style={{ width: `${(taskResponse / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs font-medium">{taskResponse}</span>
+                        <span className="text-sm font-medium">{taskResponse}</span>
                       </div>
                     </div>
                     
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-600">Lexical Resource:</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                      <span className="text-sm text-gray-600">Lexical Resource:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 bg-gray-200 rounded-full h-2">
                           <div 
-                            className="bg-gray-600 h-1.5 rounded-full"
+                            className="bg-gray-600 h-2 rounded-full"
                             style={{ width: `${(lexicalResource / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs font-medium">{lexicalResource}</span>
+                        <span className="text-sm font-medium">{lexicalResource}</span>
                       </div>
                     </div>
                     
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-600">Coherence & Cohesion:</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                      <span className="text-sm text-gray-600">Coherence & Cohesion:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 bg-gray-200 rounded-full h-2">
                           <div 
-                            className="bg-gray-600 h-1.5 rounded-full"
+                            className="bg-gray-600 h-2 rounded-full"
                             style={{ width: `${(coherenceCohesion / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs font-medium">{coherenceCohesion}</span>
+                        <span className="text-sm font-medium">{coherenceCohesion}</span>
                       </div>
                     </div>
                     
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-600">Grammatical Range & Accuracy:</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                      <span className="text-sm text-gray-600">Grammatical Range & Accuracy:</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-24 bg-gray-200 rounded-full h-2">
                           <div 
-                            className="bg-gray-600 h-1.5 rounded-full"
+                            className="bg-gray-600 h-2 rounded-full"
                             style={{ width: `${(grammaticalRange / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xs font-medium">{grammaticalRange}</span>
+                        <span className="text-sm font-medium">{grammaticalRange}</span>
                       </div>
                     </div>
                   </div>
@@ -271,53 +271,53 @@ export default function ProgressTracking() {
 
           {/* Action Buttons */}
           <div className="lg:col-span-1">
-            <div className="space-y-3 h-full flex flex-col justify-start">
-              <Button variant="outline" className="w-full py-6 text-sm">
+            <div className="space-y-3 h-full flex flex-col justify-center">
+              <Button variant="outline" className="w-full h-32 text-sm">
                 Progress Report
               </Button>
               <Button 
                 variant="outline" 
-                className="w-full py-6 text-sm"
+                className="w-full h-32 text-sm"
                 onClick={() => setShowBasicMistakes(!showBasicMistakes)}
               >
                 {showBasicMistakes ? 'Hide' : 'Basic Mistakes'}
               </Button>
             </div>
           </div>
-
-          {/* Current Streak */}
-          <div className="lg:col-span-1">
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle className="text-sm flex items-center gap-2">
-                  Current Streak
-                  <span className="text-lg font-bold ml-auto">13 Days</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-600">Highest Streak</span>
-                    <span className="font-medium text-sm">15 Days</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-600">Total Hours</span>
-                    <span className="font-medium text-sm">40 Hours</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
-        {/* Goals Section */}
-        <div className="mb-6">
+        {/* Current Streak and Goals Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          {/* Current Streak */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Trophy className="w-5 h-5" />
+                Current Streak
+                <span className="text-2xl font-bold ml-auto">13 Days</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">Highest Streak</span>
+                  <span className="font-medium">15 Days</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">Total Hours</span>
+                  <span className="font-medium">40 Hours</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Your Goals */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Your Goals</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">Target Score</span>
                   <span className="font-medium">8.0</span>
@@ -334,6 +334,8 @@ export default function ProgressTracking() {
             </CardContent>
           </Card>
         </div>
+
+
 
         {/* Basic Mistakes Section */}
         {showBasicMistakes && (
