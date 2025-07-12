@@ -339,8 +339,8 @@ export default function ProgressTracking() {
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="border-b">
-                        <th className="text-left py-3 px-2 font-medium w-16">Week</th>
-                        <th className="text-left py-3 px-2 font-medium w-20">Date</th>
+                        <th className="py-3 px-2 font-medium w-16 text-center">Week</th>
+                        <th className="py-3 px-2 font-medium w-20 text-center">Date</th>
                         <th className="text-left py-3 px-2 font-medium">Topic</th>
                         <th className="text-left py-3 px-2 font-medium w-16">Score</th>
                         <th className="text-left py-3 px-2 font-medium w-16">Status</th>
@@ -349,7 +349,7 @@ export default function ProgressTracking() {
                     <tbody>
                       {essays.map((essay, index) => (
                         <tr key={index} className="border-b hover:bg-gray-50">
-                          <td className="py-4 px-2">{essay.week}</td>
+                          <td className="py-4 px-2 text-center">{essay.week}</td>
                           <td className="py-4 px-2">{essay.date}</td>
                           <td className="py-4 px-2 text-sm truncate">{essay.topic}</td>
                           <td className="py-4 px-2">
