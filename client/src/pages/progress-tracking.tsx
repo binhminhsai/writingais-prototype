@@ -72,7 +72,8 @@ const basicMistakes = [
 ];
 
 export default function ProgressTracking() {
-  const [sortBy, setSortBy] = useState("newest");
+  const [sortBy, setSortBy] = useState("date");
+  const [filterBy, setFilterBy] = useState("all");
   const [sortByScore, setSortByScore] = useState("score");
   const [sortByMark, setSortByMark] = useState("mark");
   const [essayType, setEssayType] = useState("all");
@@ -286,53 +287,133 @@ export default function ProgressTracking() {
           </div>
         </div>
 
-        {/* Current Streak and Goals Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-          {/* Current Streak */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Trophy className="w-5 h-5" />
-                Current Streak
-                <span className="text-2xl font-bold ml-auto">13 Days</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
+        {/* Progress Tracker with Summary Boxes */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+          {/* Progress Table */}
+          <div className="lg:col-span-8">
+            <Card>
+              <CardHeader>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Highest Streak</span>
-                  <span className="font-medium">15 Days</span>
+                  <CardTitle className="text-lg">IELTS Writing Task 2 Progress Tracker</CardTitle>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Total Hours</span>
-                  <span className="font-medium">40 Hours</span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <Select value={sortBy} onValueChange={setSortBy}>
+                    <SelectTrigger className="w-32">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="date">Date</SelectItem>
+                      <SelectItem value="score">Score</SelectItem>
+                      <SelectItem value="type">Type</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Select value={filterBy} onValueChange={setFilterBy}>
+                    <SelectTrigger className="w-32">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All</SelectItem>
+                      <SelectItem value="marked">Marked</SelectItem>
+                      <SelectItem value="unmarked">Unmarked</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left p-2 font-medium">Week</th>
+                        <th className="text-left p-2 font-medium">Date</th>
+                        <th className="text-left p-2 font-medium">Topic</th>
+                        <th className="text-left p-2 font-medium">Score</th>
+                        <th className="text-left p-2 font-medium">Type</th>
+                        <th className="text-left p-2 font-medium">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sampleEssays.map((essay, index) => (
+                        <tr key={index} className="border-b hover:bg-gray-50">
+                          <td className="p-2">{essay.week}</td>
+                          <td className="p-2">{essay.date}</td>
+                          <td className="p-2 text-sm">{essay.topic}</td>
+                          <td className="p-2">
+                            <span className={`px-2 py-1 rounded text-xs font-medium ${
+                              essay.score >= 7 ? 'bg-green-100 text-green-800' :
+                              essay.score >= 6 ? 'bg-yellow-100 text-yellow-800' :
+                              'bg-red-100 text-red-800'
+                            }`}>
+                              {essay.score}
+                            </span>
+                          </td>
+                          <td className="p-2 text-sm">{essay.essayType}</td>
+                          <td className="p-2">
+                            <span className={`px-2 py-1 rounded text-xs ${
+                              essay.isMarked ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
+                            }`}>
+                              {essay.isMarked ? 'Marked' : 'Unmarked'}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-          {/* Your Goals */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Your Goals</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Target Score</span>
-                  <span className="font-medium">8.0</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Exam Date</span>
-                  <span className="font-medium text-blue-600">13/01/26</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Exam Countdown</span>
-                  <span className="font-medium">280 days</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Summary Boxes - Stacked Vertically */}
+          <div className="lg:col-span-4">
+            <div className="space-y-6">
+              {/* Current Streak */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Trophy className="w-5 h-5" />
+                    Current Streak
+                    <span className="text-2xl font-bold ml-auto">13 Days</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-600">Highest Streak</span>
+                      <span className="font-medium">15 Days</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-600">Total Hours</span>
+                      <span className="font-medium">40 Hours</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Your Goals */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Your Goals</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-600">Target Score</span>
+                      <span className="font-medium">8.0</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-600">Exam Date</span>
+                      <span className="font-medium text-blue-600">13/01/26</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-gray-600">Exam Countdown</span>
+                      <span className="font-medium">280 days</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
 
 
@@ -363,102 +444,7 @@ export default function ProgressTracking() {
           </div>
         )}
 
-        {/* Progress Table */}
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-lg">IELTS Writing Task 2 Progress Tracker</CardTitle>
-            </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-32">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="newest">Newest</SelectItem>
-                  <SelectItem value="oldest">Oldest</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={sortByScore} onValueChange={setSortByScore}>
-                <SelectTrigger className="w-40">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="score">Sort by Score</SelectItem>
-                  <SelectItem value="highest">Highest Score</SelectItem>
-                  <SelectItem value="lowest">Lowest Score</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={essayType} onValueChange={setEssayType}>
-                <SelectTrigger className="w-32">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Essay Type</SelectItem>
-                  <SelectItem value="opinion">Opinion</SelectItem>
-                  <SelectItem value="discussion">Discussion</SelectItem>
-                  <SelectItem value="advantage">Advantage/Disadvantage</SelectItem>
-                  <SelectItem value="cause">Cause & Solution</SelectItem>
-                  <SelectItem value="double">Double Question</SelectItem>
-                </SelectContent>
-              </Select>
-              <Select value={sortByMark} onValueChange={setSortByMark}>
-                <SelectTrigger className="w-32">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="mark">Sort by Mark</SelectItem>
-                  <SelectItem value="marked">Marked</SelectItem>
-                  <SelectItem value="notmarked">Not Marked</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-hidden border rounded-lg">
-              <table className="w-full">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="text-left p-3 font-medium text-gray-900">Week</th>
-                    <th className="text-left p-3 font-medium text-gray-900">Topic</th>
-                    <th className="text-left p-3 font-medium text-gray-900">Score</th>
-                    <th className="text-left p-3 font-medium text-gray-900">Mark</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sampleEssays.map((essay, index) => (
-                    <tr key={index} className="border-t hover:bg-gray-50">
-                      <td className="p-3">
-                        <div className="text-sm">
-                          <div className="font-medium">{essay.week}</div>
-                          <div className="text-gray-500">({essay.date})</div>
-                        </div>
-                      </td>
-                      <td className="p-3">
-                        <div className="text-sm text-gray-900">{essay.topic}</div>
-                      </td>
-                      <td className="p-3">
-                        <div className="font-medium text-sm">{essay.score}</div>
-                      </td>
-                      <td className="p-3">
-                        <Star 
-                          className={`w-5 h-5 ${essay.isMarked ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
-                        />
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
-              <span>1 / 5</span>
-              <div className="flex items-center gap-2">
-                <span>→</span>
-                <span>1-10 of 43 essays</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+
       </div>
     </div>
   );
