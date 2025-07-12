@@ -418,7 +418,7 @@ export default function ProgressTracking() {
                       {essays.map((essay, index) => (
                         <tr key={index} className="border-b hover:bg-gray-50">
                           <td className="py-4 px-2 text-center">{essay.week}</td>
-                          <td className="py-4 px-2">{essay.date}</td>
+                          <td className="py-4 px-2 text-right pl-[6.6px] pr-[6.6px]">{essay.date}</td>
                           <td className="py-4 px-2 text-sm truncate pl-[50px] pr-[50px]">{essay.topic}</td>
                           <td className="py-4 text-left pl-[15.6px] pr-[15.6px]">
                             {essay.score}
