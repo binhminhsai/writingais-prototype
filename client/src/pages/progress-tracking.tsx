@@ -95,9 +95,9 @@ export default function ProgressTracking() {
         </div>
 
         {/* Horizontal Layout - Band Tracker, Overall Score, Action Buttons */}
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 mb-6">
           {/* Band Tracker Chart - 1.5x wider */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-6">
             <Card className="h-full">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
@@ -193,16 +193,16 @@ export default function ProgressTracking() {
             </Card>
           </div>
 
-          {/* Overall Band Score - Reduced width */}
+          {/* Overall Band Score - Reduced to 0.8x width */}
           <div className="lg:col-span-2">
             <Card className="h-full">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base">Overall Band Score</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
+              <CardContent className="px-3">
+                <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <div className="w-full bg-gray-200 rounded-full h-5 mr-3">
+                    <div className="w-full bg-gray-200 rounded-full h-5 mr-2">
                       <div 
                         className="bg-black h-5 rounded-full transition-all duration-300"
                         style={{ width: `${(overallScore / 9) * 100}%` }}
@@ -211,56 +211,56 @@ export default function ProgressTracking() {
                     <span className="text-xl font-bold">{overallScore}</span>
                   </div>
                   
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-700 mb-1">Task Response:</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-full bg-gray-200 rounded-full h-4">
+                      <span className="text-sm font-medium text-gray-700 mb-0.5">Task Response:</span>
+                      <div className="flex items-center gap-1">
+                        <div className="bg-gray-200 rounded-full h-4" style={{ width: '80%' }}>
                           <div 
                             className="bg-gray-600 h-4 rounded-full"
                             style={{ width: `${(taskResponse / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-sm font-medium">{taskResponse}</span>
+                        <span className="text-xl font-bold">{taskResponse}</span>
                       </div>
                     </div>
                     
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-700 mb-1">Lexical Resource:</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-full bg-gray-200 rounded-full h-4">
+                      <span className="text-sm font-medium text-gray-700 mb-0.5">Lexical Resource:</span>
+                      <div className="flex items-center gap-1">
+                        <div className="bg-gray-200 rounded-full h-4" style={{ width: '80%' }}>
                           <div 
                             className="bg-gray-600 h-4 rounded-full"
                             style={{ width: `${(lexicalResource / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-sm font-medium">{lexicalResource}</span>
+                        <span className="text-xl font-bold">{lexicalResource}</span>
                       </div>
                     </div>
                     
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-700 mb-1">Coherence & Cohesion:</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-full bg-gray-200 rounded-full h-4">
+                      <span className="text-sm font-medium text-gray-700 mb-0.5">Coherence & Cohesion:</span>
+                      <div className="flex items-center gap-1">
+                        <div className="bg-gray-200 rounded-full h-4" style={{ width: '80%' }}>
                           <div 
                             className="bg-gray-600 h-4 rounded-full"
                             style={{ width: `${(coherenceCohesion / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-sm font-medium">{coherenceCohesion}</span>
+                        <span className="text-xl font-bold">{coherenceCohesion}</span>
                       </div>
                     </div>
                     
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium text-gray-700 mb-1">Grammatical Range & Accuracy:</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-full bg-gray-200 rounded-full h-4">
+                      <span className="text-sm font-medium text-gray-700 mb-0.5">Grammatical Range & Accuracy:</span>
+                      <div className="flex items-center gap-1">
+                        <div className="bg-gray-200 rounded-full h-4" style={{ width: '80%' }}>
                           <div 
                             className="bg-gray-600 h-4 rounded-full"
                             style={{ width: `${(grammaticalRange / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-sm font-medium">{grammaticalRange}</span>
+                        <span className="text-xl font-bold">{grammaticalRange}</span>
                       </div>
                     </div>
                   </div>
@@ -270,7 +270,7 @@ export default function ProgressTracking() {
           </div>
 
           {/* Action Buttons */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <div className="space-y-3 h-full flex flex-col justify-center">
               <Button variant="outline" className="w-full h-24 text-sm">
                 Progress Report
