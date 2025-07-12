@@ -410,7 +410,7 @@ export default function ProgressTracking() {
                         <th className="py-3 px-2 font-medium w-16 text-center">Week</th>
                         <th className="py-3 px-2 font-medium w-20 text-center">Date</th>
                         <th className="py-3 px-2 font-medium text-center">Topic</th>
-                        <th className="py-3 pl-0 pr-2 font-medium w-16 text-left">Score</th>
+                        <th className="py-3 px-2 font-medium w-16 text-center">Score</th>
                         <th className="text-left py-3 px-2 font-medium w-16">Status</th>
                       </tr>
                     </thead>
@@ -420,7 +420,7 @@ export default function ProgressTracking() {
                           <td className="py-4 px-2 text-center">{essay.week}</td>
                           <td className="py-4 px-2">{essay.date}</td>
                           <td className="py-4 px-2 text-sm truncate pl-[50px] pr-[50px]">{essay.topic}</td>
-                          <td className="py-4 pl-0 pr-2 text-left">
+                          <td className="py-4 px-2 text-center">
                             {essay.score}
                           </td>
                           <td className="py-4 px-2">
