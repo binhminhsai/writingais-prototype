@@ -94,36 +94,33 @@ export default function ProgressTracking() {
           <p className="text-gray-600">You've written 18 essays. That's 18 steps closer to your goal!</p>
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column - Chart and Table */}
-          <div className="lg:col-span-2 space-y-4">
-            {/* Chart Section */}
-            <Card>
+        {/* Horizontal Layout - Band Tracker, Overall Score, Action Buttons, Current Streak */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-6">
+          {/* Band Tracker Chart */}
+          <div className="lg:col-span-1">
+            <Card className="h-full">
               <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Select value={showChart} onValueChange={setShowChart}>
-                      <SelectTrigger className="w-24">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Essay">Essay</SelectItem>
-                        <SelectItem value="Date">Date</SelectItem>
-                        <SelectItem value="Week">Week</SelectItem>
-                        <SelectItem value="Month">Month</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <CardTitle className="text-lg">IELTS Writing Task 2 Band Tracker</CardTitle>
+                <div className="flex items-center justify-between mb-2">
+                  <Select value={showChart} onValueChange={setShowChart}>
+                    <SelectTrigger className="w-20">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Essay">Essay</SelectItem>
+                      <SelectItem value="Date">Date</SelectItem>
+                      <SelectItem value="Week">Week</SelectItem>
+                      <SelectItem value="Month">Month</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
+                <CardTitle className="text-sm">IELTS Writing Task 2 Band Tracker</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="relative h-64 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-4">
+                <div className="relative h-48 bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg p-3">
                   {/* Chart Grid */}
-                  <div className="absolute inset-4 grid grid-cols-10 grid-rows-8 gap-1">
+                  <div className="absolute inset-3 grid grid-cols-10 grid-rows-8 gap-1">
                     {/* Y-axis labels */}
-                    <div className="col-span-1 row-span-8 flex flex-col justify-between text-xs text-gray-600 pr-2">
+                    <div className="col-span-1 row-span-8 flex flex-col justify-between text-xs text-gray-600 pr-1">
                       <span>8</span>
                       <span>7</span>
                       <span>6</span>
@@ -145,18 +142,7 @@ export default function ProgressTracking() {
                       </div>
                       
                       {/* Line Chart */}
-                      <svg className="absolute inset-0 w-full h-full">
-                        <polyline
-                          points="0,96 45,96 90,96 135,96 180,80 225,64 270,64 315,64 360,48 405,32"
-                          fill="none"
-                          stroke="#3b82f6"
-                          strokeWidth="2"
-                        />
-                        <polyline
-                          points="0,96 45,96 90,96 135,96 180,80 225,64 270,64 315,64 360,48 405,32"
-                          fill="url(#gradient)"
-                          opacity="0.3"
-                        />
+                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 360 128">
                         <defs>
                           <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                             <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
@@ -164,13 +150,24 @@ export default function ProgressTracking() {
                           </linearGradient>
                         </defs>
                         
+                        <polyline
+                          points="0,96 36,96 72,96 108,96 144,80 180,64 216,64 252,64 288,48 324,32"
+                          fill="none"
+                          stroke="#3b82f6"
+                          strokeWidth="2"
+                        />
+                        <polyline
+                          points="0,128 0,96 36,96 72,96 108,96 144,80 180,64 216,64 252,64 288,48 324,32 324,128"
+                          fill="url(#gradient)"
+                        />
+                        
                         {/* Data points */}
                         {[5.0, 5.0, 5.0, 5.0, 5.5, 6.0, 6.0, 6.0, 6.5, 7.0].map((score, i) => (
                           <circle
                             key={i}
-                            cx={i * 45}
+                            cx={i * 36}
                             cy={128 - (score * 16)}
-                            r="3"
+                            r="2"
                             fill="#3b82f6"
                           />
                         ))}
@@ -178,7 +175,7 @@ export default function ProgressTracking() {
                     </div>
                     
                     {/* X-axis labels */}
-                    <div className="col-span-9 row-span-1 flex justify-between text-xs text-gray-600 pt-2">
+                    <div className="col-span-9 row-span-1 flex justify-between text-xs text-gray-600 pt-1">
                       <span>Es.1</span>
                       <span>Es.2</span>
                       <span>Es.3</span>
@@ -194,266 +191,272 @@ export default function ProgressTracking() {
                 </div>
               </CardContent>
             </Card>
+          </div>
 
-            {/* Basic Mistakes Section */}
-            {showBasicMistakes && (
-              <Card>
-                <CardContent className="p-4">
-                  <div className="space-y-4">
-                    {basicMistakes.map((mistake) => (
-                      <div key={mistake.id} className="border rounded-lg p-4 bg-gray-50">
-                        <h4 className="font-semibold text-gray-900 mb-2">
-                          {mistake.id}. {mistake.title}
-                        </h4>
-                        <p className="text-sm text-gray-700 mb-2">{mistake.description}</p>
-                        <div className="flex items-start gap-2">
-                          <span className="text-sm text-gray-600">→</span>
-                          <p className="text-sm text-gray-600">
-                            <span className="font-medium">Tip:</span> {mistake.tip}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Progress Table */}
-            <Card>
+          {/* Overall Band Score */}
+          <div className="lg:col-span-1">
+            <Card className="h-full">
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg">IELTS Writing Task 2 Progress Tracker</CardTitle>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="newest">Newest</SelectItem>
-                      <SelectItem value="oldest">Oldest</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select value={sortByScore} onValueChange={setSortByScore}>
-                    <SelectTrigger className="w-40">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="score">Sort by Score</SelectItem>
-                      <SelectItem value="highest">Highest Score</SelectItem>
-                      <SelectItem value="lowest">Lowest Score</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select value={essayType} onValueChange={setEssayType}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">Essay Type</SelectItem>
-                      <SelectItem value="opinion">Opinion</SelectItem>
-                      <SelectItem value="discussion">Discussion</SelectItem>
-                      <SelectItem value="advantage">Advantage/Disadvantage</SelectItem>
-                      <SelectItem value="cause">Cause & Solution</SelectItem>
-                      <SelectItem value="double">Double Question</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select value={sortByMark} onValueChange={setSortByMark}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="mark">Sort by Mark</SelectItem>
-                      <SelectItem value="marked">Marked</SelectItem>
-                      <SelectItem value="notmarked">Not Marked</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                <CardTitle className="text-sm">Overall Band Score</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="overflow-hidden border rounded-lg">
-                  <table className="w-full">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th className="text-left p-3 font-medium text-gray-900">Week</th>
-                        <th className="text-left p-3 font-medium text-gray-900">Topic</th>
-                        <th className="text-left p-3 font-medium text-gray-900">Score</th>
-                        <th className="text-left p-3 font-medium text-gray-900">Mark</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {sampleEssays.map((essay, index) => (
-                        <tr key={index} className="border-t hover:bg-gray-50">
-                          <td className="p-3">
-                            <div className="text-sm">
-                              <div className="font-medium">{essay.week}</div>
-                              <div className="text-gray-500">({essay.date})</div>
-                            </div>
-                          </td>
-                          <td className="p-3">
-                            <div className="text-sm text-gray-900">{essay.topic}</div>
-                          </td>
-                          <td className="p-3">
-                            <div className="font-medium text-sm">{essay.score}</div>
-                          </td>
-                          <td className="p-3">
-                            <Star 
-                              className={`w-5 h-5 ${essay.isMarked ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
-                            />
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
-                  <span>1 / 5</span>
-                  <div className="flex items-center gap-2">
-                    <span>→</span>
-                    <span>1-10 of 43 essays</span>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-full bg-gray-200 rounded-full h-4 mr-3">
+                      <div 
+                        className="bg-black h-4 rounded-full transition-all duration-300"
+                        style={{ width: `${(overallScore / 9) * 100}%` }}
+                      ></div>
+                    </div>
+                    <span className="text-lg font-bold">{overallScore}</span>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-600">Task Response:</span>
+                      <div className="flex items-center gap-1">
+                        <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                          <div 
+                            className="bg-gray-600 h-1.5 rounded-full"
+                            style={{ width: `${(taskResponse / 9) * 100}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-xs font-medium">{taskResponse}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-600">Lexical Resource:</span>
+                      <div className="flex items-center gap-1">
+                        <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                          <div 
+                            className="bg-gray-600 h-1.5 rounded-full"
+                            style={{ width: `${(lexicalResource / 9) * 100}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-xs font-medium">{lexicalResource}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-600">Coherence & Cohesion:</span>
+                      <div className="flex items-center gap-1">
+                        <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                          <div 
+                            className="bg-gray-600 h-1.5 rounded-full"
+                            style={{ width: `${(coherenceCohesion / 9) * 100}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-xs font-medium">{coherenceCohesion}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-600">Grammatical Range & Accuracy:</span>
+                      <div className="flex items-center gap-1">
+                        <div className="w-12 bg-gray-200 rounded-full h-1.5">
+                          <div 
+                            className="bg-gray-600 h-1.5 rounded-full"
+                            style={{ width: `${(grammaticalRange / 9) * 100}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-xs font-medium">{grammaticalRange}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Right Column - Scores and Stats */}
-          <div className="space-y-4">
-            {/* Overall Band Score */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Overall Band Score</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="w-full bg-gray-200 rounded-full h-6 mr-4">
-                      <div 
-                        className="bg-black h-6 rounded-full transition-all duration-300"
-                        style={{ width: `${(overallScore / 9) * 100}%` }}
-                      ></div>
-                    </div>
-                    <span className="text-2xl font-bold">{overallScore}</span>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Task Response:</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="bg-gray-600 h-2 rounded-full"
-                            style={{ width: `${(taskResponse / 9) * 100}%` }}
-                          ></div>
-                        </div>
-                        <span className="text-sm font-medium">{taskResponse}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Lexical Resource:</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="bg-gray-600 h-2 rounded-full"
-                            style={{ width: `${(lexicalResource / 9) * 100}%` }}
-                          ></div>
-                        </div>
-                        <span className="text-sm font-medium">{lexicalResource}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Coherence & Cohesion:</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="bg-gray-600 h-2 rounded-full"
-                            style={{ width: `${(coherenceCohesion / 9) * 100}%` }}
-                          ></div>
-                        </div>
-                        <span className="text-sm font-medium">{coherenceCohesion}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Grammatical Range & Accuracy:</span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-24 bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="bg-gray-600 h-2 rounded-full"
-                            style={{ width: `${(grammaticalRange / 9) * 100}%` }}
-                          ></div>
-                        </div>
-                        <span className="text-sm font-medium">{grammaticalRange}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Action Buttons */}
-            <div className="space-y-3">
-              <Button variant="outline" className="w-full">
+          {/* Action Buttons */}
+          <div className="lg:col-span-1">
+            <div className="space-y-3 h-full flex flex-col justify-start">
+              <Button variant="outline" className="w-full py-6 text-sm">
                 Progress Report
               </Button>
               <Button 
                 variant="outline" 
-                className="w-full"
+                className="w-full py-6 text-sm"
                 onClick={() => setShowBasicMistakes(!showBasicMistakes)}
               >
                 {showBasicMistakes ? 'Hide' : 'Basic Mistakes'}
               </Button>
             </div>
+          </div>
 
-            {/* Current Streak */}
-            <Card>
+          {/* Current Streak */}
+          <div className="lg:col-span-1">
+            <Card className="h-full">
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Trophy className="w-5 h-5" />
+                <CardTitle className="text-sm flex items-center gap-2">
                   Current Streak
-                  <span className="text-2xl font-bold ml-auto">13 Days</span>
+                  <span className="text-lg font-bold ml-auto">13 Days</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Highest Streak</span>
-                    <span className="font-medium">15 Days</span>
+                    <span className="text-xs text-gray-600">Highest Streak</span>
+                    <span className="font-medium text-sm">15 Days</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Total Hours</span>
-                    <span className="font-medium">40 Hours</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Your Goals */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Your Goals</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Target Score</span>
-                    <span className="font-medium">8.0</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Exam Date</span>
-                    <span className="font-medium text-blue-600">13/01/26</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">Exam Countdown</span>
-                    <span className="font-medium">280 days</span>
+                    <span className="text-xs text-gray-600">Total Hours</span>
+                    <span className="font-medium text-sm">40 Hours</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
         </div>
+
+        {/* Goals Section */}
+        <div className="mb-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Your Goals</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">Target Score</span>
+                  <span className="font-medium">8.0</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">Exam Date</span>
+                  <span className="font-medium text-blue-600">13/01/26</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-600">Exam Countdown</span>
+                  <span className="font-medium">280 days</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Basic Mistakes Section */}
+        {showBasicMistakes && (
+          <div className="mb-6">
+            <Card>
+              <CardContent className="p-4">
+                <div className="space-y-4">
+                  {basicMistakes.map((mistake) => (
+                    <div key={mistake.id} className="border rounded-lg p-4 bg-gray-50">
+                      <h4 className="font-semibold text-gray-900 mb-2">
+                        {mistake.id}. {mistake.title}
+                      </h4>
+                      <p className="text-sm text-gray-700 mb-2">{mistake.description}</p>
+                      <div className="flex items-start gap-2">
+                        <span className="text-sm text-gray-600">→</span>
+                        <p className="text-sm text-gray-600">
+                          <span className="font-medium">Tip:</span> {mistake.tip}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Progress Table */}
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-lg">IELTS Writing Task 2 Progress Tracker</CardTitle>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="newest">Newest</SelectItem>
+                  <SelectItem value="oldest">Oldest</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={sortByScore} onValueChange={setSortByScore}>
+                <SelectTrigger className="w-40">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="score">Sort by Score</SelectItem>
+                  <SelectItem value="highest">Highest Score</SelectItem>
+                  <SelectItem value="lowest">Lowest Score</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={essayType} onValueChange={setEssayType}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Essay Type</SelectItem>
+                  <SelectItem value="opinion">Opinion</SelectItem>
+                  <SelectItem value="discussion">Discussion</SelectItem>
+                  <SelectItem value="advantage">Advantage/Disadvantage</SelectItem>
+                  <SelectItem value="cause">Cause & Solution</SelectItem>
+                  <SelectItem value="double">Double Question</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={sortByMark} onValueChange={setSortByMark}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="mark">Sort by Mark</SelectItem>
+                  <SelectItem value="marked">Marked</SelectItem>
+                  <SelectItem value="notmarked">Not Marked</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-hidden border rounded-lg">
+              <table className="w-full">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="text-left p-3 font-medium text-gray-900">Week</th>
+                    <th className="text-left p-3 font-medium text-gray-900">Topic</th>
+                    <th className="text-left p-3 font-medium text-gray-900">Score</th>
+                    <th className="text-left p-3 font-medium text-gray-900">Mark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sampleEssays.map((essay, index) => (
+                    <tr key={index} className="border-t hover:bg-gray-50">
+                      <td className="p-3">
+                        <div className="text-sm">
+                          <div className="font-medium">{essay.week}</div>
+                          <div className="text-gray-500">({essay.date})</div>
+                        </div>
+                      </td>
+                      <td className="p-3">
+                        <div className="text-sm text-gray-900">{essay.topic}</div>
+                      </td>
+                      <td className="p-3">
+                        <div className="font-medium text-sm">{essay.score}</div>
+                      </td>
+                      <td className="p-3">
+                        <Star 
+                          className={`w-5 h-5 ${essay.isMarked ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
+              <span>1 / 5</span>
+              <div className="flex items-center gap-2">
+                <span>→</span>
+                <span>1-10 of 43 essays</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
