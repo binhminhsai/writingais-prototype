@@ -332,28 +332,7 @@ export default function ProgressTracking() {
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">IELTS Writing Task 2 Progress Tracker</CardTitle>
                 </div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue placeholder="Date" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="date">Date</SelectItem>
-                      <SelectItem value="score">Score</SelectItem>
-                      <SelectItem value="type">Type</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <Select value={filterBy} onValueChange={setFilterBy}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue placeholder="All" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All</SelectItem>
-                      <SelectItem value="marked">Marked</SelectItem>
-                      <SelectItem value="unmarked">Unmarked</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-hidden">
