@@ -111,8 +111,8 @@ export default function ProgressTracking() {
                 <div className="flex items-center justify-between">
                   <div className="w-32">
                     <Select value={showChart} onValueChange={setShowChart}>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Essay" />
+                      <SelectTrigger className="w-full text-left">
+                        <span className="flex-1 text-left">{showChart}</span>
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Essay">Essay</SelectItem>
