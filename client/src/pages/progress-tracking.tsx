@@ -112,7 +112,7 @@ export default function ProgressTracking() {
                   <div className="w-32">
                     <Select value={showChart} onValueChange={setShowChart}>
                       <SelectTrigger className="w-full">
-                        <SelectValue />
+                        <SelectValue placeholder="Essay" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Essay">Essay</SelectItem>
