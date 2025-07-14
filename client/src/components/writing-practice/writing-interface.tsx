@@ -158,9 +158,23 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                           ))}
                         </ul>
                         {index === 0 && (
-                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                            <p className="mb-2 font-medium text-primary">Sample Introduction:</p>
-                            <p className="mb-2">There is an ongoing debate about what drives individuals to commit crimes. Some argue that socioeconomic factors, such as poverty and social inequality, are the primary causes, while others attribute criminal behavior to an individual's inherent bad nature. This essay will examine both perspectives before offering my own viewpoint.</p>
+                          <div className="mt-3 space-y-3">
+                            <div className="p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
+                              <p className="mb-2 font-medium text-primary">Hướng dẫn:</p>
+                              <p className="mb-2">Mở bài 2 câu – paraphrase đề + thesis statement</p>
+                            </div>
+                            
+                            <div className="p-3 bg-blue-50 rounded-md border border-blue-100 text-xs text-blue-700">
+                              <p className="mb-2 font-medium text-blue-800">Câu 1 – Paraphrase đề bài</p>
+                              <p className="mb-2">• <strong>Mục đích:</strong> Paraphrase vấn đề chính trong câu hỏi</p>
+                              <p className="mb-2">• <strong>Ví dụ:</strong> "The financial remuneration of elite sports professionals often far surpasses that of individuals in crucial societal roles, such as healthcare providers and educators, a phenomenon that sparks considerable debate regarding its fairness."</p>
+                            </div>
+                            
+                            <div className="p-3 bg-green-50 rounded-md border border-green-100 text-xs text-green-700">
+                              <p className="mb-2 font-medium text-green-800">Câu 2 – Thesis Statement</p>
+                              <p className="mb-2">• <strong>Mục đích:</strong> Thesis statement phù hợp với Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).</p>
+                              <p className="mb-2">• <strong>Ví dụ:</strong> "While I acknowledge the market-driven forces that inflate athletes' incomes, I largely contend that this significant disparity is fundamentally inequitable when considering the indispensable societal contributions of other professions."</p>
+                            </div>
                           </div>
                         )}
                         {index === 1 && (
