@@ -180,7 +180,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                               <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide.</p>
                             </div>
                             
-                            <div className="p-3 bg-green-50 rounded-md border border-green-100 text-xs text-green-700">
+                            <div className="p-3 rounded-md border border-green-100 text-xs text-green-700 bg-[#f9fafb]">
                               <p className="mb-2 font-medium text-green-800">Supporting Idea 1</p>
                               <p className="mb-2">• <strong>Idea:</strong> Scarcity of exceptional talent and short career span</p>
                               <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Athletes like Lionel Messi or Serena Williams possess a rare combination of physical prowess, mental fortitude, and dedication, making them truly one in a million. Their peak performance window is often limited to a decade or so.</p>
