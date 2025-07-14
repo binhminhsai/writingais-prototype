@@ -244,7 +244,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                           <p className="mb-2">Kết bài 2 câu – summary + recommendation</p>
                         </div>
                         
-                        <div className="p-3 bg-blue-50 rounded-md border border-blue-100 text-xs text-blue-700">
+                        <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
                           <p className="mb-2 font-medium text-blue-800">Câu 1 – Summary</p>
                           <p className="mb-2">• <strong>Mục đích:</strong> Tóm tắt cả 2 phần body và main topic, không nêu quan điểm mới</p>
                           <p className="mb-2">• <strong>Ví dụ:</strong> In conclusion, while the immense earnings of top athletes can be attributed to their unique talent and the vast commercial machinery of global sports, it is equally compelling to argue that the remuneration for professions pivotal to societal welfare, such as nursing and teaching, is disproportionately low.</p>
