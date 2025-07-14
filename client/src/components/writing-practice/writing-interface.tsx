@@ -210,7 +210,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                               <p className="mb-2">• <strong>Development:</strong> Unlike the entertainment value offered by sports, these professions directly impact human health, safety, and intellectual growth. Their work is fundamental to the very fabric of society, yet their compensation often fails to reflect the profound positive externalities they create.</p>
                             </div>
                             
-                            <div className="p-3 bg-indigo-50 rounded-md border border-indigo-100 text-xs text-indigo-700">
+                            <div className="p-3 rounded-md border border-indigo-100 text-xs text-indigo-700 bg-[#f9fafb]">
                               <p className="mb-2 font-medium text-indigo-800">Supporting Idea 2</p>
                               <p className="mb-2">• <strong>Idea:</strong> Extensive training, high responsibility, and demanding working conditions</p>
                               <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Medical professionals undergo a decade or more of rigorous academic and practical training, accumulating significant debt, before assuming roles with immense responsibility for human lives. Similarly, teachers manage large classes, diverse learning needs, and administrative burdens, often sacrificing personal time for student development.</p>
