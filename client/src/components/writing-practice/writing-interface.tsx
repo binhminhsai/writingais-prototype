@@ -165,7 +165,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                               <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> "The financial remuneration of elite sports professionals often far surpasses that of individuals in crucial societal roles, such as healthcare providers and educators, a phenomenon that sparks considerable debate regarding its fairness."</p>
                             </div>
                             
-                            <div className="p-3 bg-green-50 rounded-md border border-green-100 text-xs text-green-700">
+                            <div className="p-3 rounded-md border border-green-100 text-xs text-green-700 bg-[#f9fafb]">
                               <p className="mb-2 font-medium text-green-800">Câu 2 – Thesis Statement</p>
                               <p className="mb-2">• <strong>Mục đích:</strong> Thesis statement phù hợp với Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).</p>
                               <p className="mb-2">• <strong>Ví dụ:</strong> "While I acknowledge the market-driven forces that inflate athletes' incomes, I largely contend that this significant disparity is fundamentally inequitable when considering the indispensable societal contributions of other professions."</p>
