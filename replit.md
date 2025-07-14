@@ -371,6 +371,12 @@ Changelog:
   - Included detailed guidance for Introduction (2 sentences), Body Paragraphs (viewpoints), and Conclusion structure
   - Added connecting word suggestions and specific writing tips for each section
   - Maintained existing sample content while integrating new overall structure guidance
+- July 14, 2025. Updated Introduction and Body Paragraph 1 accordions with detailed writing guidance:
+  - Enhanced Introduction accordion with structured 2-sentence approach (paraphrase + thesis statement)
+  - Added comprehensive examples about sports professionals' salaries vs. healthcare/education workers
+  - Updated Body Paragraph 1 with detailed structure: Topic Sentence + 2 Supporting Ideas
+  - Integrated real examples (Lionel Messi, Serena Williams, FIFA World Cup, Olympics)
+  - Applied color-coded sections for better visual organization and learning flow
 
 ## User Preferences
 

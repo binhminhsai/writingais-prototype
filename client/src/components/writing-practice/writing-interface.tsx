@@ -178,9 +178,26 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                           </div>
                         )}
                         {index === 1 && (
-                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                            <p className="mb-2 font-medium text-primary">Sample Body Paragraph:</p>
-                            <p className="mb-2">Advocates of the view that crime stems from poverty and social problems emphasize the significant influence of external circumstances. When people lack access to basic necessities like food, shelter, or healthcare, they may feel compelled to turn to illegal activities to survive. Moreover, social challenges such as unemployment, limited education, and systemic discrimination can foster an environment where crime appears to be the only option.</p>
+                          <div className="mt-3 space-y-3">
+                            <div className="p-3 bg-blue-50 rounded-md border border-blue-100 text-xs text-blue-700">
+                              <p className="mb-2 font-medium text-blue-800">Topic Sentence</p>
+                              <p className="mb-2">• <strong>Content:</strong> Dịch và cải tiến topic sentence này sang tiếng Anh: "On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide."</p>
+                              <p className="mb-2">• <strong>Ví dụ:</strong> On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide.</p>
+                            </div>
+                            
+                            <div className="p-3 bg-green-50 rounded-md border border-green-100 text-xs text-green-700">
+                              <p className="mb-2 font-medium text-green-800">Supporting Idea 1</p>
+                              <p className="mb-2">• <strong>Idea:</strong> Scarcity of exceptional talent and short career span</p>
+                              <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Athletes like Lionel Messi or Serena Williams possess a rare combination of physical prowess, mental fortitude, and dedication, making them truly one in a million. Their peak performance window is often limited to a decade or so.</p>
+                              <p className="mb-2">• <strong>Development:</strong> This extreme scarcity of top-tier talent, combined with a brief professional lifespan, means that their market value is inherently high. Consequently, they must earn a substantial amount during their active years to secure their financial future after retirement.</p>
+                            </div>
+                            
+                            <div className="p-3 bg-purple-50 rounded-md border border-purple-100 text-xs text-purple-700">
+                              <p className="mb-2 font-medium text-purple-800">Supporting Idea 2</p>
+                              <p className="mb-2">• <strong>Idea:</strong> Massive revenue generation and global entertainment appeal</p>
+                              <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Major sporting events, such as the FIFA World Cup or the Olympic Games, attract billions of viewers worldwide, leading to colossal revenues from broadcasting rights, sponsorships, merchandise sales, and ticket revenues. Top athletes are central to this multi-billion dollar industry.</p>
+                              <p className="mb-2">• <strong>Development:</strong> These professionals are not merely players; they are global brands and entertainers who drive immense commercial success for leagues, teams, and related businesses. Their salaries, while large, often represent a fraction of the total revenue they help generate for various stakeholders, justifying their earnings through their direct economic impact.</p>
+                            </div>
                           </div>
                         )}
                         {index === 2 && (
