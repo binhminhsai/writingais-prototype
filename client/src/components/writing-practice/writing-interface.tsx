@@ -201,9 +201,26 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                           </div>
                         )}
                         {index === 2 && (
-                          <div className="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                            <p className="mb-2 font-medium text-primary">Sample Body Paragraph:</p>
-                            <p className="mb-2">Conversely, others contend that criminal behavior arises from an individual's innate bad nature. They argue that some people are predisposed to crime due to personality traits or moral shortcomings, irrespective of their financial situation. This is evident in cases where wealthy individuals commit crimes like fraud or embezzlement, driven not by need but by greed or a lack of ethical restraint.</p>
+                          <div className="mt-3 space-y-3">
+                            <div className="p-3 bg-orange-50 rounded-md border border-orange-100 text-xs text-orange-700">
+                              <p className="mb-2 font-medium text-orange-800">Topic Sentence</p>
+                              <p className="mb-2">• <strong>Content:</strong> Dịch và cải tiến topic sentence này sang tiếng Anh: "However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society."</p>
+                              <p className="mb-2">• <strong>Ví dụ:</strong> However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society.</p>
+                            </div>
+                            
+                            <div className="p-3 bg-red-50 rounded-md border border-red-100 text-xs text-red-700">
+                              <p className="mb-2 font-medium text-red-800">Supporting Idea 1</p>
+                              <p className="mb-2">• <strong>Idea:</strong> Direct and indispensable impact on human welfare and societal progress</p>
+                              <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Nurses provide critical frontline care, often working long, gruelling shifts to save lives and alleviate suffering, as evidenced profoundly during the COVID-19 pandemic. Doctors diagnose and treat diseases, while teachers educate and shape the minds of future generations, fostering societal knowledge and innovation.</p>
+                              <p className="mb-2">• <strong>Development:</strong> Unlike the entertainment value offered by sports, these professions directly impact human health, safety, and intellectual growth. Their work is fundamental to the very fabric of society, yet their compensation often fails to reflect the profound positive externalities they create.</p>
+                            </div>
+                            
+                            <div className="p-3 bg-indigo-50 rounded-md border border-indigo-100 text-xs text-indigo-700">
+                              <p className="mb-2 font-medium text-indigo-800">Supporting Idea 2</p>
+                              <p className="mb-2">• <strong>Idea:</strong> Extensive training, high responsibility, and demanding working conditions</p>
+                              <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Medical professionals undergo a decade or more of rigorous academic and practical training, accumulating significant debt, before assuming roles with immense responsibility for human lives. Similarly, teachers manage large classes, diverse learning needs, and administrative burdens, often sacrificing personal time for student development.</p>
+                              <p className="mb-2">• <strong>Development:</strong> The substantial investment in education, coupled with the emotional and physical toll of dealing with life-and-death situations or challenging educational environments, contrasts sharply with the often lower financial rewards. This imbalance suggests a societal undervaluation of critical services over entertainment.</p>
+                            </div>
                           </div>
                         )}
                       </AccordionContent>
