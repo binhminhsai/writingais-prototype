@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sparkles, Shuffle, AlertTriangle } from "lucide-react";
+import { Sparkles, Shuffle, AlertTriangle, HelpCircle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { generateRandomTopic } from "@/data/topics";
 
 export type WritingTestType = 
@@ -107,8 +108,24 @@ export function TestSetup({ onStart }: TestSetupProps) {
         </div>
         
         <div>
-          <Label htmlFor="difficulty" className="mb-3 block">
-            Difficulty Level
+          <Label htmlFor="difficulty" className="mb-3 block flex items-center gap-2">
+            Band Level
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="h-4 w-4 text-gray-500 cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent 
+                  side="top"
+                  className="max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-lg text-sm text-gray-700"
+                >
+                  <div className="space-y-1">
+                    <div className="font-medium text-gray-900">Band Level Guide</div>
+                    <div>Choose the band level you aim for. We'll tailor vocabulary and writing guidance to match that level.</div>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </Label>
           <Select 
             value={difficulty} 
