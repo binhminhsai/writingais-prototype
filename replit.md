@@ -395,6 +395,12 @@ Changelog:
   - Added structured sections: Bối cảnh-Lý do, Chủ thể chính, Liệt kê quan điểm, Yêu cầu chính
   - Integrated "To what extent agree/disagree" essay type guidance with Vietnamese explanations
   - Aligned content with updated essay structure for cohesive learning experience
+- July 14, 2025. Enhanced Essay Type accordion with Band 7.0+ scoring criteria:
+  - Updated essay type identification to "Opinion essay – To what extent agree/disagree"
+  - Restructured content to focus on Band 7.0+ requirements instead of Band 6.5
+  - Added detailed criteria for all four IELTS assessment areas: Task Response, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy
+  - Applied consistent color scheme matching other accordions: #f9fafb background, #1fb2aa titles, #374151 content
+  - Integrated bilingual guidance with Vietnamese explanations and English terminology for better comprehension
 
 ## User Preferences
 

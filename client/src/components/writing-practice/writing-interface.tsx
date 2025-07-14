@@ -342,17 +342,38 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <div className="space-y-3">
-                        <div className="bg-red-50 p-3 rounded-md border border-red-100">
-                          <p className="text-xs font-medium text-red-800 mb-2">Essay Type: Problem-Solution</p>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Essay Type:</p>
+                          <p className="text-xs text-[#374151]">
+                            Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).
+                          </p>
                         </div>
-                        <div className="bg-yellow-50 p-3 rounded-md border border-yellow-100">
-                          <p className="text-xs font-medium text-yellow-800 mb-2">Tips for Band 6.5:</p>
-                          <ul className="text-xs text-yellow-700 space-y-1 list-disc pl-4">
-                            <li><strong>Task Response:</strong> Trả lời đủ 2 phần: Phân tích nguyên nhân + Đề xuất biện pháp cụ thể. Ý tưởng phát triển khá đủ, có giải thích/ví dụ.</li>
-                            <li><strong>Coherence & Cohesion:</strong> Bố cục rõ ràng (4 đoạn). Dùng nhiều từ nối/liên kết. Bài viết dễ theo dõi.</li>
-                            <li><strong>Lexical Resource:</strong> Từ vựng đủ rộng cho chủ đề. Paraphrase tốt. Ít lỗi từ vựng/chính tả không gây khó hiểu.</li>
-                            <li><strong>Grammatical Range:</strong> Dùng đa dạng cấu trúc ngữ pháp. Mắc lỗi ngữ pháp nhưng không gây khó hiểu.</li>
-                          </ul>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Tips for Band 7.0+ (dưới từng tiêu chí chấm điểm):</p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task Response:</p>
+                          <p className="text-xs text-[#374151]">
+                            Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên Fully addresses all parts of task (đáp ứng đầy đủ các phần của đề bài). Position (lập trường) phải clear throughout (rõ ràng xuyên suốt). Main ideas (các ý chính) phải được extended(phát triển) và supported (hỗ trợ) tốt bằng examples (ví dụ) và explanations (giải thích) cụ thể.
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Coherence & Cohesion:</p>
+                          <p className="text-xs text-[#374151]">
+                            Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên có Clear progression (sự phát triển mạch lạc). Wide range(phạm vi rộng) của cohesive devices (công cụ liên kết) được used appropriately (sử dụng phù hợp). Mỗi paragraph(đoạn văn) phải có clear central topic (chủ đề trung tâm rõ ràng).
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Lexical Resource:</p>
+                          <p className="text-xs text-[#374151]">
+                            Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên dùng Wide range vocabulary (phạm vi từ vựng rộng) với flexibility (linh hoạt) và precise usage (sử dụng chính xác). Good paraphrase skills (kỹ năng diễn đạt lại tốt). Occasional errors (lỗi thỉnh thoảng) trong word choice (lựa chọn từ) là chấp nhận được.
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Grammatical Range & Accuracy:</p>
+                          <p className="text-xs text-[#374151]">
+                            Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên dùng Wide range của structures (cấu trúc ngữ pháp đa dạng) với flexibility (linh hoạt). Majority of sentences (đa số câu) phải error-free (không lỗi) với good control (kiểm soát tốt).
+                          </p>
                         </div>
                       </div>
                     </AccordionContent>
