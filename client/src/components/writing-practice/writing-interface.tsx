@@ -174,7 +174,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         )}
                         {index === 1 && (
                           <div className="mt-3 space-y-3">
-                            <div className="p-3 bg-blue-50 rounded-md border border-blue-100 text-xs text-blue-700">
+                            <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
                               <p className="mb-2 font-medium text-blue-800">Topic Sentence</p>
                               <p className="mb-2">• <strong>Content:</strong> Dịch và cải tiến topic sentence này sang tiếng Anh: "On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide."</p>
                               <p className="mb-2">• <strong>Ví dụ:</strong> On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide.</p>
