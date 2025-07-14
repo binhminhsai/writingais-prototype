@@ -407,6 +407,13 @@ Changelog:
   - Integrated exact topic sentences for both body paragraphs showing contrasting viewpoints
   - Applied consistent color scheme: #f9fafb background, #1fb2aa titles, #374151 content text
   - Structured content to support the "To what extent agree/disagree" essay framework
+- July 14, 2025. Updated Jobs To Be Done accordion with opinion essay task requirements:
+  - Changed title from "Tasks To Do" to "Jobs To Be Done" for better clarity
+  - Restructured content to focus on opinion essay requirements instead of problem-solution tasks
+  - Added Task 1: establishing personal position on agreement/disagreement with clear stance
+  - Added Task 2: developing supporting arguments with detailed explanations and specific examples
+  - Added Task 3: addressing counter-arguments and maintaining position strength
+  - Applied consistent color scheme: #f9fafb background, #1fb2aa titles, #374151 content text
 
 ## User Preferences
 

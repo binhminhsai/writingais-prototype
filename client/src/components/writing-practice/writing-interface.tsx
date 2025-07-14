@@ -430,16 +430,29 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
                           4
                         </span>
-                        Tasks To Do
+                        Jobs To Be Done
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="bg-pink-50 p-3 rounded-md border border-pink-100">
-                        <ul className="text-xs text-pink-700 space-y-2 list-disc pl-4">
-                          <li><strong>Task 1:</strong> Phân tích nguyên nhân của sự gia tăng dân số, bao gồm các yếu tố kinh tế và xã hội.</li>
-                          <li><strong>Task 2:</strong> Đề xuất các biện pháp mà chính phủ có thể thực hiện để giải quyết các vấn đề như đông đúc và thiếu nhà ở.</li>
-                          <li><strong>Task 3:</strong> Cung cấp ví dụ cụ thể về các thành phố đã thành công trong việc giải quyết vấn đề này.</li>
-                        </ul>
+                      <div className="space-y-3">
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 1:</p>
+                          <p className="text-xs text-[#374151]">
+                            Nêu rõ lập trường cá nhân (position) về việc đồng ý hay không đồng ý với quan điểm trong đề bài, và mức độ đồng ý/không đồng ý.
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 2:</p>
+                          <p className="text-xs text-[#374151]">
+                            Phát triển các luận điểm (arguments) ủng hộ lập trường của mình, cung cấp giải thích chi tiết và ví dụ cụ thể (kèm dẫn chứng nếu có thể).
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 3:</p>
+                          <p className="text-xs text-[#374151]">
+                            Thảo luận hoặc công nhận quan điểm đối lập (counter-arguments) và giải thích tại sao lập trường của mình vẫn vững chắc hơn (đối với quan điểm partially agree), hoặc phản bác mạnh mẽ (đối với quan điểm fully agree/disagree)
+                          </p>
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
