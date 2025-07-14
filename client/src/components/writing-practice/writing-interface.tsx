@@ -63,7 +63,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
               >
                 <Smile className="h-4 w-4" />
-                Writing Guide
+                Analyze Topic
               </TabsTrigger>
             </TabsList>
           </div>
