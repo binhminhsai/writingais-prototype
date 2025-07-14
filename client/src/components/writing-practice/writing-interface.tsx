@@ -211,7 +211,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                             </div>
                             
                             <div className="p-3 rounded-md border border-indigo-100 text-xs text-indigo-700 bg-[#f9fafb]">
-                              <p className="mb-2 font-medium text-indigo-800">Supporting Idea 2</p>
+                              <p className="mb-2 font-medium text-[#1fb2aa]">Supporting Idea 2</p>
                               <p className="mb-2">• <strong>Idea:</strong> Extensive training, high responsibility, and demanding working conditions</p>
                               <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Medical professionals undergo a decade or more of rigorous academic and practical training, accumulating significant debt, before assuming roles with immense responsibility for human lives. Similarly, teachers manage large classes, diverse learning needs, and administrative burdens, often sacrificing personal time for student development.</p>
                               <p className="mb-2">• <strong>Development:</strong> The substantial investment in education, coupled with the emotional and physical toll of dealing with life-and-death situations or challenging educational environments, contrasts sharply with the often lower financial rewards. This imbalance suggests a societal undervaluation of critical services over entertainment.</p>
