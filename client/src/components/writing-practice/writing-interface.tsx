@@ -84,6 +84,57 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
               <div className="overflow-y-auto" style={{ maxHeight: '430px' }}>
                 <Accordion type="single" collapsible className="w-full space-y-2">
+                  {/* Overall Outline as the first item */}
+                  <AccordionItem 
+                    value="overall-outline"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          1
+                        </span>
+                        Overall Outline – Tổng quan cấu trúc bài viết
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="space-y-3">
+                        <div className="bg-blue-50 p-3 rounded-md border border-blue-100">
+                          <p className="text-xs font-medium text-blue-800 mb-2">📝 Introduction (2 câu)</p>
+                          <ul className="text-xs text-blue-700 space-y-1 list-disc pl-4">
+                            <li><strong>Câu 1:</strong> Giới thiệu vấn đề và paraphrase đề.</li>
+                            <li><strong>Câu 2:</strong> Thesis Statement – nêu 2 quan điểm và khẳng định lập trường.</li>
+                          </ul>
+                        </div>
+                        <div className="bg-green-50 p-3 rounded-md border border-green-100">
+                          <p className="text-xs font-medium text-green-800 mb-2">📖 Body Paragraph 1 – Quan điểm thứ nhất</p>
+                          <ul className="text-xs text-green-700 space-y-1 list-disc pl-4">
+                            <li><strong>Topic Sentence.</strong></li>
+                            <li><strong>Giải thích lý do, nêu lợi ích, ví dụ cụ thể.</strong></li>
+                            <li><strong>Gợi ý từ nối:</strong> Firstly, Moreover, For instance...</li>
+                          </ul>
+                        </div>
+                        <div className="bg-purple-50 p-3 rounded-md border border-purple-100">
+                          <p className="text-xs font-medium text-purple-800 mb-2">📖 Body Paragraph 2 – Quan điểm thứ hai</p>
+                          <ul className="text-xs text-purple-700 space-y-1 list-disc pl-4">
+                            <li><strong>Topic Sentence.</strong></li>
+                            <li><strong>Phân tích sâu, lợi ích dài hạn, ví dụ kỹ năng mềm.</strong></li>
+                            <li><strong>Gợi ý từ nối:</strong> Conversely, Primarily, Furthermore...</li>
+                          </ul>
+                        </div>
+                        <div className="bg-orange-50 p-3 rounded-md border border-orange-100">
+                          <p className="text-xs font-medium text-orange-800 mb-2">✅ Conclusion (2 câu)</p>
+                          <ul className="text-xs text-orange-700 space-y-1 list-disc pl-4">
+                            <li><strong>Tóm tắt lại 2 quan điểm đã nêu.</strong></li>
+                            <li><strong>Tái khẳng định quan điểm cá nhân, thêm 1 câu khuyến nghị nếu cần.</strong></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
                   {outline.slice(0, 3).map((section, index) => (
                     <AccordionItem 
                       key={`outline-${index}`} 
@@ -95,7 +146,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       >
                         <span className="flex items-center gap-2">
                           <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                            {index + 1}
+                            {index + 2}
                           </span>
                           {section.title}
                         </span>
@@ -128,7 +179,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionItem>
                   ))}
                   
-                  {/* Conclusion section as the 4th item */}
+                  {/* Conclusion section as the 5th item */}
                   <AccordionItem 
                     value="conclusion"
                     className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
@@ -138,7 +189,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     >
                       <span className="flex items-center gap-2">
                         <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                          4
+                          5
                         </span>
                         Conclusion
                       </span>

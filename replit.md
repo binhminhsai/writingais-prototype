@@ -364,6 +364,13 @@ Changelog:
   - Restructured progress bars to display below their corresponding labels instead of side-by-side
   - Updated button heights to match reduced section heights while maintaining proper visual balance
   - Moved Current Streak and Goals to separate two-column section for better space utilization
+- July 14, 2025. Enhanced Suggested Outline section with new Overall Outline accordion:
+  - Added new "Overall Outline – Tổng quan cấu trúc bài viết" accordion as first item in outline section
+  - Restructured accordion numbering: 1. Overall Outline, 2. Introduction, 3. Body 1, 4. Body 2, 5. Conclusion
+  - Created comprehensive Vietnamese-English structured breakdown with color-coded sections
+  - Included detailed guidance for Introduction (2 sentences), Body Paragraphs (viewpoints), and Conclusion structure
+  - Added connecting word suggestions and specific writing tips for each section
+  - Maintained existing sample content while integrating new overall structure guidance
 
 ## User Preferences
 
