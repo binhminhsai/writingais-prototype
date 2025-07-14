@@ -181,7 +181,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                             </div>
                             
                             <div className="p-3 rounded-md border border-green-100 text-xs text-green-700 bg-[#f9fafb]">
-                              <p className="mb-2 font-medium text-green-800">Supporting Idea 1</p>
+                              <p className="mb-2 text-[#1fb2aa] font-bold">Supporting Idea 1</p>
                               <p className="mb-2">• <strong>Idea:</strong> Scarcity of exceptional talent and short career span</p>
                               <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Athletes like Lionel Messi or Serena Williams possess a rare combination of physical prowess, mental fortitude, and dedication, making them truly one in a million. Their peak performance window is often limited to a decade or so.</p>
                               <p className="mb-2">• <strong>Development:</strong> This extreme scarcity of top-tier talent, combined with a brief professional lifespan, means that their market value is inherently high. Consequently, they must earn a substantial amount during their active years to secure their financial future after retirement.</p>
