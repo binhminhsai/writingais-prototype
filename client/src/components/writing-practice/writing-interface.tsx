@@ -203,8 +203,8 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                               <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society.</p>
                             </div>
                             
-                            <div className="p-3 rounded-md border border-red-100 text-xs text-red-700 bg-[#f9fafb]">
-                              <p className="mb-2 font-medium text-red-800">Supporting Idea 1</p>
+                            <div className="p-3 rounded-md border border-red-100 text-xs bg-[#f9fafb] text-[#374151]">
+                              <p className="mb-2 font-medium text-[#1fb2aa]">Supporting Idea 1</p>
                               <p className="mb-2">• <strong>Idea:</strong> Direct and indispensable impact on human welfare and societal progress</p>
                               <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Nurses provide critical frontline care, often working long, gruelling shifts to save lives and alleviate suffering, as evidenced profoundly during the COVID-19 pandemic. Doctors diagnose and treat diseases, while teachers educate and shape the minds of future generations, fostering societal knowledge and innovation.</p>
                               <p className="mb-2">• <strong>Development:</strong> Unlike the entertainment value offered by sports, these professions directly impact human health, safety, and intellectual growth. Their work is fundamental to the very fabric of society, yet their compensation often fails to reflect the profound positive externalities they create.</p>
