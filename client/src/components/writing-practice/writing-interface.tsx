@@ -271,7 +271,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
                 <Smile className="h-4 w-4" />
-                Writing Guide - Hướng dẫn cách viết
+                Analyze Topic - Phân tích đề bài
               </h4>
               <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
                 Những hướng dẫn cụ thể giúp bạn viết bài hiệu quả hơn
