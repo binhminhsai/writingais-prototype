@@ -96,7 +96,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
                           1
                         </span>
-                        Overall Outline – Tổng quan cấu trúc bài viết
+                        Overall Outline
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
