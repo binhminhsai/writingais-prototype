@@ -197,7 +197,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         )}
                         {index === 2 && (
                           <div className="mt-3 space-y-3">
-                            <div className="p-3 bg-orange-50 rounded-md border border-orange-100 text-xs text-orange-700">
+                            <div className="p-3 rounded-md border border-orange-100 text-xs text-orange-700 bg-[#f9fafb]">
                               <p className="mb-2 font-medium text-orange-800">Topic Sentence</p>
                               <p className="mb-2">• <strong>Content:</strong> Dịch và cải tiến topic sentence này sang tiếng Anh: "However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society."</p>
                               <p className="mb-2">• <strong>Ví dụ:</strong> However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society.</p>
