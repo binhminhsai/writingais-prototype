@@ -175,19 +175,19 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         {index === 1 && (
                           <div className="mt-3 space-y-3">
                             <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
-                              <p className="mb-2 font-bold text-[#1fb2aa]">Topic Sentence</p>
+                              <p className="mb-2 text-[#1fb2aa] font-medium">Topic Sentence</p>
                               <p className="mb-2 text-[#374151]">• <strong>Content:</strong> Dịch và cải tiến topic sentence này sang tiếng Anh: "On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide."</p>
                               <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide.</p>
                             </div>
                             
                             <div className="p-3 rounded-md border border-green-100 text-xs text-green-700 bg-[#f9fafb]">
-                              <p className="mb-2 text-[#1fb2aa] font-bold">Supporting Idea 1</p>
+                              <p className="mb-2 text-[#1fb2aa] font-medium">Supporting Idea 1</p>
                               <p className="mb-2 text-[#374151]">• <strong>Idea:</strong> Scarcity of exceptional talent and short career span</p>
                               <p className="mb-2 text-[#374151]">• <strong>Ví dụ cụ thể:</strong> Athletes like Lionel Messi or Serena Williams possess a rare combination of physical prowess, mental fortitude, and dedication, making them truly one in a million. Their peak performance window is often limited to a decade or so.</p>
                               <p className="mb-2 text-[#374151]">• <strong>Development:</strong> This extreme scarcity of top-tier talent, combined with a brief professional lifespan, means that their market value is inherently high. Consequently, they must earn a substantial amount during their active years to secure their financial future after retirement.</p>
                             </div>
                             
-                            <div className="p-3 bg-purple-50 rounded-md border border-purple-100 text-xs text-purple-700">
+                            <div className="p-3 rounded-md border border-purple-100 text-xs text-purple-700 bg-[#f9fafb]">
                               <p className="mb-2 font-medium text-purple-800">Supporting Idea 2</p>
                               <p className="mb-2">• <strong>Idea:</strong> Massive revenue generation and global entertainment appeal</p>
                               <p className="mb-2">• <strong>Ví dụ cụ thể:</strong> Major sporting events, such as the FIFA World Cup or the Olympic Games, attract billions of viewers worldwide, leading to colossal revenues from broadcasting rights, sponsorships, merchandise sales, and ticket revenues. Top athletes are central to this multi-billion dollar industry.</p>
