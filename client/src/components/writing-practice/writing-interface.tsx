@@ -101,17 +101,17 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <div className="space-y-3">
-                        <div className="bg-blue-50 p-3 rounded-md border border-blue-100">
-                          <p className="text-xs font-medium text-blue-800 mb-2">📝 Introduction (2 câu)</p>
-                          <ul className="text-xs text-blue-700 space-y-1 list-disc pl-4">
+                        <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                          <p className="mb-2 text-[#1fb2aa] font-bold text-[12px]">Introduction (2 câu)</p>
+                          <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151]">
                             <li><strong>Câu 1:</strong> Giới thiệu vấn đề và paraphrase đề.</li>
                             <li><strong>Câu 2:</strong> Thesis Statement – nêu 2 quan điểm và khẳng định lập trường.</li>
                           </ul>
                         </div>
-                        <div className="bg-green-50 p-3 rounded-md border border-green-100">
-                          <p className="text-xs font-medium text-green-800 mb-2">📖 Body Paragraph 1 – Quan điểm thứ nhất</p>
-                          <ul className="text-xs text-green-700 space-y-1 list-disc pl-4">
-                            <li><strong>Topic Sentence.</strong></li>
+                        <div className="p-3 rounded-md border border-green-100 bg-[#f9fafb]">
+                          <p className="text-xs mb-2 font-bold text-[#1fb2aa]">Body Paragraph 1 – Quan điểm thứ nhất</p>
+                          <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151] font-normal">
+                            <li className="font-normal"><strong>Topic Sentence.</strong></li>
                             <li><strong>Giải thích lý do, nêu lợi ích, ví dụ cụ thể.</strong></li>
                             <li><strong>Gợi ý từ nối:</strong> Firstly, Moreover, For instance...</li>
                           </ul>
