@@ -396,18 +396,23 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <div className="space-y-3">
-                        <div className="bg-indigo-50 p-3 rounded-md border border-indigo-100">
-                          <p className="text-xs font-medium text-indigo-800 mb-2">Main Idea:</p>
-                          <p className="text-xs text-indigo-700">
-                            Sự gia tăng dân số tại các thành phố đang tạo ra nhiều vấn đề nghiêm trọng, bao gồm đông đúc, tắc nghẽn giao thông và thiếu nhà ở.
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Main Topic:</p>
+                          <p className="text-xs text-[#374151]">
+                            Bài viết thảo luận về tính hợp lý hay không công bằng của mức thu nhập cao của các vận động viên thể thao chuyên nghiệp thành công so với các ngành nghề thiết yếu khác trong xã hội.
                           </p>
                         </div>
-                        <div className="bg-teal-50 p-3 rounded-md border border-teal-100">
-                          <p className="text-xs font-medium text-teal-800 mb-2">Supporting Sentences:</p>
-                          <ul className="text-xs text-teal-700 space-y-1 list-disc pl-4">
-                            <li>Một trong những nguyên nhân chính dẫn đến sự gia tăng dân số tại các thành phố là sự phát triển kinh tế mạnh mẽ, thu hút người dân từ các vùng nông thôn đến tìm kiếm cơ hội việc làm.</li>
-                            <li>Để giải quyết các vấn đề do sự gia tăng dân số gây ra, chính phủ cần thực hiện các biện pháp như đầu tư vào cơ sở hạ tầng và quy hoạch đô thị hợp lý.</li>
-                          </ul>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Topic Sentence 1:</p>
+                          <p className="text-xs text-[#374151]">
+                            On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide.
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Topic Sentence 2:</p>
+                          <p className="text-xs text-[#374151]">
+                            However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society.
+                          </p>
                         </div>
                       </div>
                     </AccordionContent>

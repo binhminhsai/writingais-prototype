@@ -401,6 +401,12 @@ Changelog:
   - Added detailed criteria for all four IELTS assessment areas: Task Response, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy
   - Applied consistent color scheme matching other accordions: #f9fafb background, #1fb2aa titles, #374151 content
   - Integrated bilingual guidance with Vietnamese explanations and English terminology for better comprehension
+- July 14, 2025. Updated Main Topic Aspects accordion with sports professionals content:
+  - Restructured content to focus on the sports professionals vs. healthcare workers salary debate
+  - Added Vietnamese main topic overview explaining the essay's focus on income fairness
+  - Integrated exact topic sentences for both body paragraphs showing contrasting viewpoints
+  - Applied consistent color scheme: #f9fafb background, #1fb2aa titles, #374151 content text
+  - Structured content to support the "To what extent agree/disagree" essay framework
 
 ## User Preferences
 
