@@ -162,7 +162,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                             <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
                               <p className="mb-2 font-medium text-[#1fb2aa]">Câu 1 – Paraphrase đề bài</p>
                               <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Paraphrase vấn đề chính trong câu hỏi</p>
-                              <p className="mb-2">• <strong>Ví dụ:</strong> "The financial remuneration of elite sports professionals often far surpasses that of individuals in crucial societal roles, such as healthcare providers and educators, a phenomenon that sparks considerable debate regarding its fairness."</p>
+                              <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> "The financial remuneration of elite sports professionals often far surpasses that of individuals in crucial societal roles, such as healthcare providers and educators, a phenomenon that sparks considerable debate regarding its fairness."</p>
                             </div>
                             
                             <div className="p-3 bg-green-50 rounded-md border border-green-100 text-xs text-green-700">
