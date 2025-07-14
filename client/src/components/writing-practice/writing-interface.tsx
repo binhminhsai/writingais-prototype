@@ -167,7 +167,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                             
                             <div className="p-3 rounded-md border border-green-100 text-xs text-green-700 bg-[#f9fafb]">
                               <p className="mb-2 font-medium text-[#1fb2aa]">Câu 2 – Thesis Statement</p>
-                              <p className="mb-2">• <strong>Mục đích:</strong> Thesis statement phù hợp với Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).</p>
+                              <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Thesis statement phù hợp với Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).</p>
                               <p className="mb-2">• <strong>Ví dụ:</strong> "While I acknowledge the market-driven forces that inflate athletes' incomes, I largely contend that this significant disparity is fundamentally inequitable when considering the indispensable societal contributions of other professions."</p>
                             </div>
                           </div>
