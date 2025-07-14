@@ -383,6 +383,12 @@ Changelog:
   - Integrated COVID-19 pandemic examples and medical training requirements
   - Added detailed development explanations about societal value and professional demands
   - Used orange, red, and indigo color schemes for visual distinction from Body Paragraph 1
+- July 14, 2025. Updated Conclusion accordion with structured 2-sentence framework:
+  - Enhanced conclusion guidance with Vietnamese instructions for summary + recommendation approach
+  - Added Câu 1 (blue) for summarizing both body paragraphs without introducing new viewpoints
+  - Added Câu 2 (emerald) for final recommendation addressing the essay question directly
+  - Integrated comprehensive examples about societal value imbalance and recommendation for fair compensation
+  - Completed full essay structure guidance from Introduction through Conclusion with consistent formatting
 
 ## User Preferences
 
