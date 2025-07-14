@@ -152,11 +152,6 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         </span>
                       </AccordionTrigger>
                       <AccordionContent className="p-3 bg-white">
-                        <ul className="pl-4 space-y-2 list-disc">
-                          {section.points.map((point, pointIndex) => (
-                            <li key={pointIndex} className="text-xs leading-relaxed text-gray-700">{point}</li>
-                          ))}
-                        </ul>
                         {index === 0 && (
                           <div className="mt-3 space-y-3">
                             <div className="p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
