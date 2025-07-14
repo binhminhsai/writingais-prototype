@@ -296,29 +296,29 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <div className="space-y-3">
-                        <div className="bg-blue-50 p-3 rounded-md border border-blue-100">
-                          <p className="text-xs font-medium text-blue-800 mb-2">Context & Reason:</p>
-                          <p className="text-xs text-blue-700">
-                            Nhiều thành phố trên thế giới đang trải qua sự gia tăng dân số nhanh chóng, dẫn đến các vấn đề như đông đúc, tắc nghẽn giao thông và thiếu hụt nhà ở.
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Bối cảnh – Lý do:</p>
+                          <p className="text-xs text-[#374151]">
+                            Các vận động viên thể thao chuyên nghiệp thành công có thể kiếm được nhiều tiền hơn đáng kể so với những người làm các ngành nghề quan trọng khác, như y tá, bác sĩ và giáo viên.
                           </p>
                         </div>
-                        <div className="bg-green-50 p-3 rounded-md border border-green-100">
-                          <p className="text-xs font-medium text-green-800 mb-2">Main Subject:</p>
-                          <p className="text-xs text-green-700">
-                            Sự gia tăng dân số tại các thành phố và những vấn đề liên quan.
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Chủ thể chính:</p>
+                          <p className="text-xs text-[#374151]">
+                            Successful sports professionals (vận động viên thể thao chuyên nghiệp thành công) và other important professions (các ngành nghề quan trọng khác như y tá, bác sĩ, giáo viên)
                           </p>
                         </div>
-                        <div className="bg-purple-50 p-3 rounded-md border border-purple-100">
-                          <p className="text-xs font-medium text-purple-800 mb-2">Perspectives:</p>
-                          <ul className="text-xs text-purple-700 space-y-1 list-disc pl-4">
-                            <li>Quan điểm 1: Nguyên nhân của sự gia tăng dân số (tăng trưởng kinh tế, di cư từ nông thôn ra thành phố)</li>
-                            <li>Quan điểm 2: Các biện pháp chính phủ có thể thực hiện (xây dựng cơ sở hạ tầng, quy hoạch đô thị)</li>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Liệt kê quan điểm:</p>
+                          <ul className="text-xs text-[#374151] space-y-1 list-disc pl-4">
+                            <li>Quan điểm 1: Việc này là fully justified (hoàn toàn hợp lý/đáng được hưởng)</li>
+                            <li>Quan điểm 2: Việc này là unfair (không công bằng)</li>
                           </ul>
                         </div>
-                        <div className="bg-orange-50 p-3 rounded-md border border-orange-100">
-                          <p className="text-xs font-medium text-orange-800 mb-2">Main Task:</p>
-                          <p className="text-xs text-orange-700">
-                            Yêu cầu cụ thể: Phân tích nguyên nhân và biện pháp giải quyết các vấn đề do sự gia tăng dân số.
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Yêu cầu chính của đề bài:</p>
+                          <p className="text-xs text-[#374151]">
+                            To what extent do you agree or disagree (Bạn đồng ý hay không đồng ý ở mức độ nào? Nêu rõ quan điểm và mức độ đồng tình/phản đối)
                           </p>
                         </div>
                       </div>

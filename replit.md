@@ -389,6 +389,12 @@ Changelog:
   - Added Câu 2 (emerald) for final recommendation addressing the essay question directly
   - Integrated comprehensive examples about societal value imbalance and recommendation for fair compensation
   - Completed full essay structure guidance from Introduction through Conclusion with consistent formatting
+- July 14, 2025. Updated Highlight Keywords accordion with sports professionals essay analysis:
+  - Restructured content to focus on sports professionals vs. healthcare/education workers salary debate
+  - Applied consistent color scheme: #f9fafb background, #1fb2aa titles, #374151 content text
+  - Added structured sections: Bối cảnh-Lý do, Chủ thể chính, Liệt kê quan điểm, Yêu cầu chính
+  - Integrated "To what extent agree/disagree" essay type guidance with Vietnamese explanations
+  - Aligned content with updated essay structure for cohesive learning experience
 
 ## User Preferences
 
