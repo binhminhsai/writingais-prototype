@@ -474,16 +474,16 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <div className="space-y-3">
-                        <div className="bg-emerald-50 p-3 rounded-md border border-emerald-100">
-                          <p className="text-xs font-medium text-emerald-800 mb-2">Suggested View:</p>
-                          <p className="text-xs text-emerald-700">
-                            Cần có sự can thiệp từ chính phủ để giải quyết vấn đề này một cách hiệu quả.
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Quan điểm gợi ý:</p>
+                          <p className="text-xs text-[#374151]">
+                            Partially agree (Đồng ý một phần) – Đồng ý rằng có lý do cho thu nhập cao của VĐV, nhưng cũng nhìn nhận sự bất công với các ngành nghề khác.
                           </p>
                         </div>
-                        <div className="bg-cyan-50 p-3 rounded-md border border-cyan-100">
-                          <p className="text-xs font-medium text-cyan-800 mb-2">Reason:</p>
-                          <p className="text-xs text-cyan-700">
-                            Chính phủ có vai trò quan trọng trong việc quản lý sự phát triển đô thị và có thể áp dụng các chính sách hợp lý để giảm thiểu các vấn đề do sự gia tăng dân số gây ra, như xây dựng nhà ở giá rẻ và cải thiện giao thông công cộng.
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Lý do cụ thể:</p>
+                          <p className="text-xs text-[#374151]">
+                            Lập trường này cho phép một bài luận balanced (cân bằng), thể hiện sự hiểu biết sâu sắc về cả hai mặt của vấn đề. Bạn có thể dễ dàng trình bày các lý do tại sao VĐV kiếm được nhiều tiền (như tài năng hiếm có, sự giải trí toàn cầu, sự nghiệp ngắn ngủi, rủi ro chấn thương) và đồng thời chỉ ra sự thiếu công bằng trong việc trả lương cho các ngành nghề thiết yếu (như sự hy sinh, tầm quan trọng xã hội, đào tạo chuyên sâu nhưng thu nhập thấp). Cách tiếp cận này giúp bài viết đạt band cao hơn vì nó thể hiện tư duy phản biện và khả năng phát triển nhiều ý khác nhau.
                           </p>
                         </div>
                       </div>
