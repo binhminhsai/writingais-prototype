@@ -199,8 +199,8 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                           <div className="mt-3 space-y-3">
                             <div className="p-3 rounded-md border border-orange-100 text-xs text-orange-700 bg-[#f9fafb]">
                               <p className="mb-2 text-[#1fb2aa] font-bold">Topic Sentence</p>
-                              <p className="mb-2">• <strong>Content:</strong> Dịch và cải tiến topic sentence này sang tiếng Anh: "However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society."</p>
-                              <p className="mb-2">• <strong>Ví dụ:</strong> However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society.</p>
+                              <p className="mb-2 text-[#374151]">• <strong>Content:</strong> Dịch và cải tiến topic sentence này sang tiếng Anh: "However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society."</p>
+                              <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society.</p>
                             </div>
                             
                             <div className="p-3 bg-red-50 rounded-md border border-red-100 text-xs text-red-700">
