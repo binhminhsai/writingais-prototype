@@ -133,17 +133,17 @@ export function TestSetup({ onStart }: TestSetupProps) {
           >
             <SelectTrigger id="difficulty">
               <SelectValue>
-                {difficulty === "easy" && "IELTS 5.0"}
-                {difficulty === "medium" && "IELTS 6.0"}
-                {difficulty === "hard" && "IELTS 7.0"}
-                {difficulty === "expert" && "IELTS 8.0"}
+                {difficulty === "easy" && "Band 5.0"}
+                {difficulty === "medium" && "Band 6.0"}
+                {difficulty === "hard" && "Band 7.0"}
+                {difficulty === "expert" && "Band 8.0"}
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="easy">IELTS 5.0</SelectItem>
-              <SelectItem value="medium">IELTS 6.0</SelectItem>
-              <SelectItem value="hard">IELTS 7.0</SelectItem>
-              <SelectItem value="expert">IELTS 8.0</SelectItem>
+              <SelectItem value="easy">Band 5.0</SelectItem>
+              <SelectItem value="medium">Band 6.0</SelectItem>
+              <SelectItem value="hard">Band 7.0</SelectItem>
+              <SelectItem value="expert">Band 8.0</SelectItem>
             </SelectContent>
           </Select>
         </div>
