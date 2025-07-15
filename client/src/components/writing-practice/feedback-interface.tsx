@@ -530,33 +530,33 @@ Only through careful planning and responsible policies can societies achieve pro
             <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4 h-auto">
               <h2 className="text-xl font-bold mt-0 mb-2">Overall Assessment:</h2>
               <div className="overflow-y-auto h-64 custom-scrollbar pr-1">
-                <Accordion type="single" collapsible defaultValue="summary" className="w-full space-y-1">
-                  <AccordionItem value="summary" className="border border-gray-200 rounded-lg shadow-sm bg-[#fafafa]">
-                    <AccordionTrigger className="text-sm font-semibold text-blue-600 hover:no-underline py-3 px-4 bg-gradient-to-r from-blue-50 to-transparent hover:from-blue-100 rounded-t-lg">
+                <Accordion type="single" collapsible defaultValue="summary" className="w-full space-y-2">
+                  <AccordionItem value="summary" className="border-none">
+                    <AccordionTrigger className="text-sm font-semibold text-white hover:no-underline py-1.5 px-3 bg-blue-600 hover:bg-blue-700 rounded-md transition-colors">
                       <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-blue-100 text-blue-600 text-xs">
+                        <span className="flex justify-center items-center w-5 h-5 rounded-full bg-white text-blue-600 text-xs font-bold">
                           1
                         </span>
                         Summary
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-0 pb-3 px-4 bg-white rounded-b-lg">
+                    <AccordionContent className="pt-2 pb-0 px-0">
                       <p className="text-gray-700 leading-relaxed text-sm">
                         This essay effectively addresses the prompt, presenting both views and a clear, well-supported opinion. The lexical resource and grammatical range and accuracy are strong, demonstrating good control over language. However, the most significant limitation is the complete lack of paragraphing. Presenting the entire essay as a single block of text severely impacts the Coherence and Cohesion score, making the logical progression harder for the reader to follow, despite the ideas being logically ordered.
                       </p>
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="specific-suggestions" className="border border-gray-200 rounded-lg shadow-sm bg-[#fafafa]">
-                    <AccordionTrigger className="text-sm font-semibold text-orange-600 hover:no-underline py-3 px-4 bg-gradient-to-r from-orange-50 to-transparent hover:from-orange-100 rounded-t-lg">
+                  <AccordionItem value="specific-suggestions" className="border-none">
+                    <AccordionTrigger className="text-sm font-semibold text-white hover:no-underline py-1.5 px-3 bg-orange-600 hover:bg-orange-700 rounded-md transition-colors">
                       <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-orange-100 text-orange-600 text-xs">
+                        <span className="flex justify-center items-center w-5 h-5 rounded-full bg-white text-orange-600 text-xs font-bold">
                           2
                         </span>
                         Specific Suggestions
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-0 pb-3 px-4 bg-white rounded-b-lg">
+                    <AccordionContent className="pt-2 pb-0 px-0">
                       <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
                         <li>• The absolute top priority for improvement is to format the essay into clear, distinct paragraphs. This is fundamental for IELTS writing.</li>
                         <li>• Practice paragraphing: write topic sentences for each body paragraph that clearly state its main idea.</li>
@@ -564,16 +564,16 @@ Only through careful planning and responsible policies can societies achieve pro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="vocabulary-enhancement" className="border border-gray-200 rounded-lg shadow-sm bg-[#fafafa]">
-                    <AccordionTrigger className="text-sm font-semibold text-purple-600 hover:no-underline py-3 px-4 bg-gradient-to-r from-purple-50 to-transparent hover:from-purple-100 rounded-t-lg">
+                  <AccordionItem value="vocabulary-enhancement" className="border-none">
+                    <AccordionTrigger className="text-sm font-semibold text-white hover:no-underline py-1.5 px-3 bg-purple-600 hover:bg-purple-700 rounded-md transition-colors">
                       <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-purple-100 text-purple-600 text-xs">
+                        <span className="flex justify-center items-center w-5 h-5 rounded-full bg-white text-purple-600 text-xs font-bold">
                           3
                         </span>
                         Vocabulary Enhancement
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-0 pb-3 px-4 bg-white rounded-b-lg">
+                    <AccordionContent className="pt-2 pb-0 px-0">
                       <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
                         <li>• For discussions on government spending, consider terms like fiscal policy, public funds, resource allocation, infrastructure development.</li>
                         <li>• When talking about balance, compromise, middle ground, optimal resource distribution could be useful.</li>
@@ -581,16 +581,16 @@ Only through careful planning and responsible policies can societies achieve pro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="grammar-focus" className="border border-gray-200 rounded-lg bg-white shadow-sm">
-                    <AccordionTrigger className="text-sm font-semibold text-indigo-600 hover:no-underline py-3 px-4 bg-gradient-to-r from-indigo-50 to-transparent hover:from-indigo-100 rounded-t-lg">
+                  <AccordionItem value="grammar-focus" className="border-none">
+                    <AccordionTrigger className="text-sm font-semibold text-white hover:no-underline py-1.5 px-3 bg-indigo-600 hover:bg-indigo-700 rounded-md transition-colors">
                       <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 text-xs">
+                        <span className="flex justify-center items-center w-5 h-5 rounded-full bg-white text-indigo-600 text-xs font-bold">
                           4
                         </span>
                         Grammar Focus
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-0 pb-3 px-4 bg-white rounded-b-lg">
+                    <AccordionContent className="pt-2 pb-0 px-0">
                       <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
                         <li>• No specific grammar errors were frequent; the focus should be on maintaining the current high level of accuracy.</li>
                         <li>• Continue to practice using a variety of complex sentence structures, ensuring each clause is correctly formed and linked.</li>
@@ -598,16 +598,16 @@ Only through careful planning and responsible policies can societies achieve pro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="next-steps" className="border border-gray-200 rounded-lg bg-white shadow-sm">
-                    <AccordionTrigger className="text-sm font-semibold text-green-600 hover:no-underline py-3 px-4 bg-gradient-to-r from-green-50 to-transparent hover:from-green-100 rounded-t-lg">
+                  <AccordionItem value="next-steps" className="border-none">
+                    <AccordionTrigger className="text-sm font-semibold text-white hover:no-underline py-1.5 px-3 bg-green-600 hover:bg-green-700 rounded-md transition-colors">
                       <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-green-100 text-green-600 text-xs">
+                        <span className="flex justify-center items-center w-5 h-5 rounded-full bg-white text-green-600 text-xs font-bold">
                           5
                         </span>
                         Next Steps
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-0 pb-3 px-4 bg-white rounded-b-lg">
+                    <AccordionContent className="pt-2 pb-0 px-0">
                       <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
                         <li>• Master Paragraphing: Practice writing essays where you consciously separate your introduction, each body paragraph, and conclusion.</li>
                         <li>• Essay Structure Drills: For future essays, outline your paragraph structure before writing (e.g., Paragraph 1: Intro. Paragraph 2: View 1. Paragraph 3: View 2. Paragraph 4: Opinion/Conclusion).</li>
