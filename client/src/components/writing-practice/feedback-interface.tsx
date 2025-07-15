@@ -528,14 +528,49 @@ Only through careful planning and responsible policies can societies achieve pro
             {/* Overall Feedback */}
             <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4">
               <h2 className="text-xl font-bold mt-0 mb-2">Overall Assessment:</h2>
-              <p className="mt-0">
-                Your essay effectively addresses the task and presents a clear position throughout.
-                The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
-                Paragraphing is logical, and your use of cohesive devices is appropriate, though occasionally repetitive.
-                Your vocabulary is varied and mostly accurate, with some effective word choices.
-                Grammar is handled well, with a good range of sentence structures and only a few minor errors that do not affect understanding.
-                To reach a higher band, focus on refining idea depth, enhancing lexical precision, and reducing small grammatical slips.
-              </p>
+              <div className="overflow-y-auto max-h-64 pr-2">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-blue-600 mb-2">Summary</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      This essay effectively addresses the prompt, presenting both views and a clear, well-supported opinion. The lexical resource and grammatical range and accuracy are strong, demonstrating good control over language. However, the most significant limitation is the complete lack of paragraphing. Presenting the entire essay as a single block of text severely impacts the Coherence and Cohesion score, making the logical progression harder for the reader to follow, despite the ideas being logically ordered.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-orange-600 mb-2">Specific Suggestions</h3>
+                    <ul className="text-gray-700 leading-relaxed space-y-1">
+                      <li>• The absolute top priority for improvement is to format the essay into clear, distinct paragraphs. This is fundamental for IELTS writing.</li>
+                      <li>• Practice paragraphing: write topic sentences for each body paragraph that clearly state its main idea.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-purple-600 mb-2">Vocabulary Enhancement</h3>
+                    <ul className="text-gray-700 leading-relaxed space-y-1">
+                      <li>• For discussions on government spending, consider terms like fiscal policy, public funds, resource allocation, infrastructure development.</li>
+                      <li>• When talking about balance, compromise, middle ground, optimal resource distribution could be useful.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-indigo-600 mb-2">Grammar Focus</h3>
+                    <ul className="text-gray-700 leading-relaxed space-y-1">
+                      <li>• No specific grammar errors were frequent; the focus should be on maintaining the current high level of accuracy.</li>
+                      <li>• Continue to practice using a variety of complex sentence structures, ensuring each clause is correctly formed and linked.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-green-600 mb-2">Next Steps</h3>
+                    <ul className="text-gray-700 leading-relaxed space-y-1">
+                      <li>• Master Paragraphing: Practice writing essays where you consciously separate your introduction, each body paragraph, and conclusion.</li>
+                      <li>• Essay Structure Drills: For future essays, outline your paragraph structure before writing (e.g., Paragraph 1: Intro. Paragraph 2: View 1. Paragraph 3: View 2. Paragraph 4: Opinion/Conclusion).</li>
+                      <li>• Review Band Descriptors: Pay close attention to the Coherence and Cohesion band descriptors, specifically how paragraphing impacts clarity and logical progression.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Writing Statistic */}
