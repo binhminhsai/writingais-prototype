@@ -544,12 +544,7 @@ Only through careful planning and responsible policies can societies achieve pro
 
                   <AccordionItem value="specific-suggestions" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-orange-50 to-transparent hover:from-orange-100">
-                      <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-4 h-4 rounded-full bg-orange-600 text-white text-xs">
-                          2
-                        </span>
-                        <span className="text-gray-800">Specific Suggestions</span>
-                      </span>
+                      <span className="text-gray-800">Specific Suggestions</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
@@ -561,12 +556,7 @@ Only through careful planning and responsible policies can societies achieve pro
 
                   <AccordionItem value="vocabulary-enhancement" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-purple-50 to-transparent hover:from-purple-100">
-                      <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-4 h-4 rounded-full bg-purple-600 text-white text-xs">
-                          3
-                        </span>
-                        <span className="text-gray-800">Vocabulary Enhancement</span>
-                      </span>
+                      <span className="text-gray-800">Vocabulary Enhancement</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
@@ -578,12 +568,7 @@ Only through careful planning and responsible policies can societies achieve pro
 
                   <AccordionItem value="grammar-focus" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-indigo-50 to-transparent hover:from-indigo-100">
-                      <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-4 h-4 rounded-full bg-indigo-600 text-white text-xs">
-                          4
-                        </span>
-                        <span className="text-gray-800">Grammar Focus</span>
-                      </span>
+                      <span className="text-gray-800">Grammar Focus</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
@@ -595,12 +580,7 @@ Only through careful planning and responsible policies can societies achieve pro
 
                   <AccordionItem value="next-steps" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-green-50 to-transparent hover:from-green-100">
-                      <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-4 h-4 rounded-full bg-green-600 text-white text-xs">
-                          5
-                        </span>
-                        <span className="text-gray-800">Next Steps</span>
-                      </span>
+                      <span className="text-gray-800">Next Steps</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
