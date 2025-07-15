@@ -531,7 +531,7 @@ Only through careful planning and responsible policies can societies achieve pro
               <h2 className="text-xl font-bold mt-0 mb-2">Overall Assessment:</h2>
               <div className="overflow-y-auto h-64 custom-scrollbar pr-1">
                 <Accordion type="single" collapsible defaultValue="summary" className="w-full space-y-1">
-                  <AccordionItem value="summary" className="border border-gray-200 rounded-lg bg-white shadow-sm">
+                  <AccordionItem value="summary" className="border border-gray-200 rounded-lg shadow-sm bg-[#fafafa]">
                     <AccordionTrigger className="text-sm font-semibold text-blue-600 hover:no-underline py-3 px-4 bg-gradient-to-r from-blue-50 to-transparent hover:from-blue-100 rounded-t-lg">
                       <span className="flex items-center gap-2">
                         <span className="flex justify-center items-center w-6 h-6 rounded-full bg-blue-100 text-blue-600 text-xs">
