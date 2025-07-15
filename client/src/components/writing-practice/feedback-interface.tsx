@@ -666,6 +666,17 @@ Only through careful planning and responsible policies can societies achieve pro
 
           <TabsContent value="coherence-cohesion" className="border border-gray-300 rounded-lg p-6 bg-white">
             <div className="space-y-4">
+              {/* Feedback Overview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The essay presents information and ideas logically to some extent, with a clear progression from discussing the first view, to the second, and then stating an opinion. A range of cohesive devices ('Some people argue that...', 'On the other hand,', 'For instance,', 'In my opinion,', 'Ultimately,') are used appropriately. However, the most significant weakness is the complete lack of paragraphing, as the entire essay is written as one continuous block of text. This severely impedes readability and makes it difficult for the reader to follow the logical flow and distinguish between separate ideas, thereby impacting the overall cohesion and clarity.
+                </p>
+              </div>
+
               {/* Strengths */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
@@ -675,11 +686,15 @@ Only through careful planning and responsible policies can societies achieve pro
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Clear logical progression with well-organized paragraphs that follow a coherent structure from introduction to conclusion.</span>
+                    <span>Uses appropriate cohesive devices such as 'On the other hand,' and 'In my opinion,' to connect ideas.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Effective use of linking words and phrases such as "however," "furthermore," and "in conclusion" to connect ideas.</span>
+                    <span>Ideas progress logically from one viewpoint to the next, then to the personal opinion.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Referencing like 'They believe' and 'These people argue' is used correctly.</span>
                   </li>
                 </ul>
               </div>
@@ -693,16 +708,32 @@ Only through careful planning and responsible policies can societies achieve pro
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Some cohesive devices are overused or repetitive, which can make the writing feel mechanical.</span>
+                    <span>The complete absence of clear paragraph breaks is a major weakness, making the essay appear as a single block of text.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Transitions between some ideas could be smoother to enhance the overall flow of the essay.</span>
+                    <span>Despite logical progression of ideas, the lack of physical separation creates a barrier to easy comprehension.</span>
                   </li>
                 </ul>
               </div>
 
-              
+              {/* Specific Suggestions */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-orange-600" />
+                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Crucially, separate your essay into at least four distinct paragraphs: Introduction, Body Paragraph 1 (for the first view), Body Paragraph 2 (for the second view), and Conclusion.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Introduce the topic and outline the essay in the first paragraph. Dedicate the second paragraph to the arguments for investing in faster public transportation. The third paragraph should focus on the arguments for other priorities. The final paragraph should present your opinion and a summary.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </TabsContent>
 
