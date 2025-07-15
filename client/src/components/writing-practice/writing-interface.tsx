@@ -117,7 +117,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                           </ul>
                         </div>
                         <div className="bg-purple-50 p-3 rounded-md border border-purple-100">
-                          <p className="text-xs font-medium text-purple-800 mb-2">📖 Body Paragraph 2 – Quan điểm thứ hai</p>
+                          <p className="text-xs font-medium mb-2 text-[#1f92aa]">Body Paragraph 2 – Quan điểm thứ hai</p>
                           <ul className="text-xs text-purple-700 space-y-1 list-disc pl-4">
                             <li><strong>Topic Sentence.</strong></li>
                             <li><strong>Phân tích sâu, lợi ích dài hạn, ví dụ kỹ năng mềm.</strong></li>
