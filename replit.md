@@ -432,6 +432,10 @@ Changelog:
   - Implemented red highlight tooltips for grammar errors with Category, Original, Corrected, Explanation, Rule, and Severity structure
   - Fixed HTML nesting validation warnings by replacing h4 and p tags with div elements in tooltip content
   - Added comprehensive tooltip support for all three highlight types with appropriate color coding and field labels
+  - Updated red highlight category from "Subject-Verb Agreement" to "Verb Tense OR Sentence Structure" for broader error coverage
+  - Applied consistent color scheme across all accordion content blocks: background #f9fafb, titles #1fb2aa, content text #374151
+  - Removed "Interactive Essay Analysis" header from feedback interface for cleaner presentation
+  - Standardized styling across all content blocks regardless of category (Context, Main Subject, Perspectives, Main Task)
 
 ## User Preferences
 

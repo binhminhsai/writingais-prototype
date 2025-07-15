@@ -154,9 +154,9 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       <AccordionContent className="p-3 bg-white">
                         {index === 0 && (
                           <div className="mt-3 space-y-3">
-                            <div className="p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                              <p className="mb-2 font-medium text-primary">Hướng dẫn:</p>
-                              <p className="mb-2">Mở bài 2 câu – paraphrase đề + thesis statement</p>
+                            <div className="p-3 bg-[#f9fafb] rounded-md border border-gray-100 text-xs">
+                              <p className="mb-2 font-medium text-[#1fb2aa]">Hướng dẫn:</p>
+                              <p className="mb-2 text-[#374151]">Mở bài 2 câu – paraphrase đề + thesis statement</p>
                             </div>
                             
                             <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
@@ -239,21 +239,21 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <div className="mt-3 space-y-3">
-                        <div className="p-3 bg-gray-50 rounded-md border border-gray-100 text-xs text-gray-700">
-                          <p className="mb-2 font-medium text-primary">Hướng dẫn</p>
-                          <p className="mb-2">Kết bài 2 câu – summary + recommendation</p>
+                        <div className="p-3 bg-[#f9fafb] rounded-md border border-gray-100 text-xs">
+                          <p className="mb-2 font-medium text-[#1fb2aa]">Hướng dẫn</p>
+                          <p className="mb-2 text-[#374151]">Kết bài 2 câu – summary + recommendation</p>
                         </div>
                         
-                        <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
-                          <p className="mb-2 font-medium text-blue-800">Câu 1 – Summary</p>
-                          <p className="mb-2">• <strong>Mục đích:</strong> Tóm tắt cả 2 phần body và main topic, không nêu quan điểm mới</p>
-                          <p className="mb-2">• <strong>Ví dụ:</strong> In conclusion, while the immense earnings of top athletes can be attributed to their unique talent and the vast commercial machinery of global sports, it is equally compelling to argue that the remuneration for professions pivotal to societal welfare, such as nursing and teaching, is disproportionately low.</p>
+                        <div className="p-3 rounded-md border border-blue-100 text-xs bg-[#f9fafb]">
+                          <p className="mb-2 font-medium text-[#1fb2aa]">Câu 1 – Summary</p>
+                          <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Tóm tắt cả 2 phần body và main topic, không nêu quan điểm mới</p>
+                          <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> In conclusion, while the immense earnings of top athletes can be attributed to their unique talent and the vast commercial machinery of global sports, it is equally compelling to argue that the remuneration for professions pivotal to societal welfare, such as nursing and teaching, is disproportionately low.</p>
                         </div>
                         
-                        <div className="p-3 bg-emerald-50 rounded-md border border-emerald-100 text-xs text-emerald-700">
-                          <p className="mb-2 font-medium text-emerald-800">Câu 2 – Final Recommendation</p>
-                          <p className="mb-2">• <strong>Mục đích:</strong> Final recommendation về giải pháp hoặc quan điểm bền vững liên quan đến: "Successful sports professionals can earn much more than those in other important professions, like nurses, doctors, and teachers. Some people think it is fully justified, while others believe it is unfair. To what extent do you agree or disagree?"</p>
-                          <p className="mb-2">• <strong>Ví dụ:</strong> Ultimately, I believe this disparity highlights a problematic imbalance in societal values, suggesting a greater need to acknowledge and justly reward those who contribute directly to the fundamental well-being and progress of humanity.</p>
+                        <div className="p-3 bg-[#f9fafb] rounded-md border border-emerald-100 text-xs">
+                          <p className="mb-2 font-medium text-[#1fb2aa]">Câu 2 – Final Recommendation</p>
+                          <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Final recommendation về giải pháp hoặc quan điểm bền vững liên quan đến: "Successful sports professionals can earn much more than those in other important professions, like nurses, doctors, and teachers. Some people think it is fully justified, while others believe it is unfair. To what extent do you agree or disagree?"</p>
+                          <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> Ultimately, I believe this disparity highlights a problematic imbalance in societal values, suggesting a greater need to acknowledge and justly reward those who contribute directly to the fundamental well-being and progress of humanity.</p>
                         </div>
                       </div>
                     </AccordionContent>
