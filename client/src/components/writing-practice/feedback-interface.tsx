@@ -193,7 +193,7 @@ Only through careful planning and responsible policies can societies achieve pro
     "They believe that industrial expansion create jobs and generate income, which allow people to meet their basic needs.": {
       type: 'red',
       tooltip: {
-        category: 'Subject-Verb Agreement',
+        category: 'Verb Tense OR Sentence Structure',
         original: 'industrial expansion create jobs and generate income',
         corrected: 'industrial expansion creates jobs and generates income',
         explanation: 'Singular subjects like "industrial expansion" require singular verbs. Use "creates" and "generates" instead of "create" and "generate".',
@@ -204,7 +204,7 @@ Only through careful planning and responsible policies can societies achieve pro
     "These nations has lifted millions of people out of poverty and improved infrastructure substantially.": {
       type: 'red',
       tooltip: {
-        category: 'Subject-Verb Agreement',
+        category: 'Verb Tense OR Sentence Structure',
         original: 'These nations has lifted',
         corrected: 'These nations have lifted',
         explanation: 'Plural subjects like "These nations" require plural auxiliary verbs. Use "have" instead of "has".',
