@@ -708,6 +708,18 @@ Only through careful planning and responsible policies can societies achieve pro
 
           <TabsContent value="lexical-resource" className="border border-gray-300 rounded-lg p-6 bg-white">
             <div className="space-y-4">
+              {/* Feedback Overview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The essay demonstrates a good range of vocabulary used flexibly and accurately. There is a sufficient range of less common lexical items, such as "significantly reduce commute times," "enhance productivity," "pressing issues," "underfunded hospitals," "overcrowded schools," "national development," "strike a balance," "allocating resources wisely," and "planning holistically for sustainable development."
+                  There are very few minor errors in word choice or form, which do not impede communication. The vocabulary is appropriate for the topic and helps convey the meaning precisely.
+                </p>
+              </div>
+
               {/* Strengths */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
@@ -717,11 +729,15 @@ Only through careful planning and responsible policies can societies achieve pro
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Good range of vocabulary with some sophisticated word choices like "undeniable advantages" and "infrastructure."</span>
+                    <span>Uses a good range of topic-specific vocabulary accurately (e.g., "traffic congestion", "air pollution", "commute times").</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Appropriate use of topic-specific vocabulary related to economics and social issues.</span>
+                    <span>Includes less common lexical items like "enhance productivity" and "strike a balance" effectively.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Vocabulary is precise and contributes to clear meaning.</span>
                   </li>
                 </ul>
               </div>
@@ -735,16 +751,28 @@ Only through careful planning and responsible policies can societies achieve pro
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Some word choices could be more precise and academic to enhance the overall lexical sophistication.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Occasional repetition of certain words and phrases that could be varied for better lexical diversity.</span>
+                    <span>While generally strong, consider incorporating a wider range of sophisticated synonyms to avoid minor repetitions, though this is not a significant issue here.</span>
                   </li>
                 </ul>
               </div>
 
-              
+              {/* Vocabulary Enhancement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-purple-600" />
+                  <h3 className="text-lg font-semibold text-purple-600">Vocabulary Enhancement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>"invest" could sometimes be varied with "allocate funds to" or "channel resources into".</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>"basic services" could occasionally be "essential amenities" or "fundamental provisions".</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </TabsContent>
 
