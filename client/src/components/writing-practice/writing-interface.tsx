@@ -116,7 +116,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                             <li><strong>Gợi ý từ nối:</strong> Firstly, Moreover, For instance...</li>
                           </ul>
                         </div>
-                        <div className="bg-purple-50 p-3 rounded-md border border-purple-100">
+                        <div className="p-3 rounded-md border border-purple-100 bg-[#f9fafb]">
                           <p className="text-xs font-medium mb-2 text-[#1f92aa]">Body Paragraph 2 – Quan điểm thứ hai</p>
                           <ul className="text-xs text-purple-700 space-y-1 list-disc pl-4">
                             <li><strong>Topic Sentence.</strong></li>
