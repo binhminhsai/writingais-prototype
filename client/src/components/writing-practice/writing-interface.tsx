@@ -70,7 +70,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
           <TabsContent 
             value="outline" 
-            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+            className="flex-1 overflow-y-auto custom-scrollbar mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
             style={{ height: '500px' }}
           >
             <div>
@@ -82,7 +82,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 Cấu trúc đề xuất giúp bạn tổ chức ý tưởng và viết bài tốt hơn
               </p>
 
-              <div className="overflow-y-auto" style={{ maxHeight: '430px' }}>
+              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
                 <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Overall Outline as the first item */}
                   <AccordionItem 
@@ -265,7 +265,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
           <TabsContent 
             value="expressions" 
-            className="flex-1 overflow-y-auto mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+            className="flex-1 overflow-y-auto custom-scrollbar mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
             style={{ height: '500px' }}
           >
             <div>
@@ -277,7 +277,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 Những hướng dẫn cụ thể giúp bạn viết bài hiệu quả hơn
               </p>
 
-              <div className="overflow-y-auto" style={{ maxHeight: '430px' }}>
+              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
                 <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Accordion 1: Highlight Keywords */}
                   <AccordionItem 

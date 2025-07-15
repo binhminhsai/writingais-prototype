@@ -528,7 +528,7 @@ Only through careful planning and responsible policies can societies achieve pro
             {/* Overall Feedback */}
             <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4">
               <h2 className="text-xl font-bold mt-0 mb-2">Overall Assessment:</h2>
-              <div className="overflow-y-auto max-h-64 pr-2">
+              <div className="overflow-y-auto max-h-64 custom-scrollbar pr-1">
                 <div className="space-y-4">
                   <div>
                     <h3 className="font-semibold text-blue-600 mb-2">Summary</h3>
