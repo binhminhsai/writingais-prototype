@@ -527,7 +527,7 @@ Only through careful planning and responsible policies can societies achieve pro
         <div className="column flex flex-col gap-4">
             {/* Overall Feedback */}
             <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4">
-              <h2 className="text-xl font-bold mt-0 mb-2">Overall Feedback:</h2>
+              <h2 className="text-xl font-bold mt-0 mb-2">Overall Assessment:</h2>
               <p className="mt-0">
                 Your essay effectively addresses the task and presents a clear position throughout.
                 The ideas are generally well-developed and supported, though some explanations could benefit from further elaboration.
