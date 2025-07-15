@@ -421,6 +421,13 @@ Changelog:
   - Added counter-perspective: essential professions (sacrifice, social importance, extensive training, low income)
   - Applied consistent color scheme: #f9fafb background, #1fb2aa titles, #374151 content text
   - Emphasized critical thinking and multi-perspective development for Band 7.0+ achievement
+- July 15, 2025. Enhanced feedback interface with multi-color highlighting and interactive tooltips:
+  - Implemented three-color highlighting system: red (#ffcdd2) for errors, yellow (#fef9c3) for vocabulary enhancement, green (#dcfce7) for good examples
+  - Added 2 sentences per color type for balanced feedback representation
+  - Created interactive tooltips for yellow highlights with vocabulary enhancement suggestions
+  - Tooltip format includes: Category, Original text, Improved version, Explanation, and Band Impact
+  - Added legend showing color meanings for better user understanding
+  - Enhanced user experience with hover interactions and detailed vocabulary improvement guidance
 
 ## User Preferences
 

@@ -34,6 +34,20 @@ interface SentenceIssue {
   issueDetail?: string;
 }
 
+// Enhanced highlighting types
+type HighlightType = 'red' | 'yellow' | 'green';
+
+interface HighlightData {
+  type: HighlightType;
+  tooltip?: {
+    category: string;
+    original: string;
+    improved: string;
+    explanation: string;
+    bandImpact: string;
+  };
+}
+
 // Mock feedback data
 interface FeedbackData {
   scores: {
@@ -170,78 +184,171 @@ Only through careful planning and responsible policies can societies achieve pro
 
 
 
-  // Helper function to highlight sentences based on their analysis
+  // Enhanced highlighting data - 2 sentences per color type
+  const highlightMapping: Record<string, HighlightData> = {
+    // Red highlights (errors)
+    "They believe that industrial expansion create jobs and generate income, which allow people to meet their basic needs.": {
+      type: 'red'
+    },
+    "These nations has lifted millions of people out of poverty and improved infrastructure substantially.": {
+      type: 'red'
+    },
+    
+    // Yellow highlights (vocabulary enhancement with tooltips)
+    "For example, developing countries like China and India have achieved significant economic progress through manufacturing and industrialization.": {
+      type: 'yellow',
+      tooltip: {
+        category: 'Vocabulary Enhancement',
+        original: 'achieved significant economic progress',
+        improved: 'attained substantial economic advancement',
+        explanation: 'Using more sophisticated vocabulary improves the academic tone of the writing.',
+        bandImpact: 'Improves Lexical Resource to Band 7+'
+      }
+    },
+    "Many scientists warn that without immediate action, the environmental damage will be irreversible and affect future generations severely.": {
+      type: 'yellow',
+      tooltip: {
+        category: 'Vocabulary Enhancement',
+        original: 'environmental damage will be irreversible',
+        improved: 'ecological deterioration will be irremediable',
+        explanation: 'Academic synonyms enhance the sophistication and precision of environmental vocabulary.',
+        bandImpact: 'Improves Lexical Resource to Band 7+'
+      }
+    },
+    
+    // Green highlights (good examples)
+    "In recent years, sustainable development has become one of the most critical issues facing governments worldwide.": {
+      type: 'green'
+    },
+    "Only through careful planning and responsible policies can societies achieve prosperity without destroying the natural world that supports all life.": {
+      type: 'green'
+    }
+  };
+
+  // Helper function to highlight sentences with multi-color system
   const highlightEssay = (text: string) => {
     if (!text) return null;
 
-    // Split text into words and punctuation to reconstruct as paragraph
-    const words = text.split(/(\s+)/);
-    let result: JSX.Element[] = [];
-    let currentSentence = "";
-    let wordIndex = 0;
+    // Split text into sentences
+    const sentences = text.split(/(?<=[.!?])\s+/);
+    const result: JSX.Element[] = [];
 
-    // Regex to detect sentence endings
-    const sentenceEndRegex = /[.!?]+$/;
-
-    words.forEach((word, index) => {
-      currentSentence += word;
+    sentences.forEach((sentence, index) => {
+      const trimmedSentence = sentence.trim();
+      const highlightData = highlightMapping[trimmedSentence];
       
-      // Check if this word ends a sentence
-      if (word.trim() && sentenceEndRegex.test(word.trim())) {
-        const trimmedSentence = currentSentence.trim();
-        const issue = feedbackData.analysis?.sentences[trimmedSentence];
+      if (highlightData) {
+        let className = "";
+        let bgColor = "";
         
-        if (issue && issue.type === 'error') {
-          let className = "inline cursor-pointer hover:opacity-80 transition-opacity px-1 rounded bg-[#ffcdd2] text-[#c62828]";
+        // Apply color based on highlight type
+        switch (highlightData.type) {
+          case 'red':
+            className = "inline cursor-pointer hover:opacity-80 transition-opacity px-1 rounded";
+            bgColor = "bg-[#ffcdd2] text-[#c62828]";
+            break;
+          case 'yellow':
+            className = "inline cursor-pointer hover:opacity-80 transition-opacity px-1 rounded";
+            bgColor = "bg-[#fef9c3] text-[#92400e]";
+            break;
+          case 'green':
+            className = "inline cursor-pointer hover:opacity-80 transition-opacity px-1 rounded";
+            bgColor = "bg-[#dcfce7] text-[#166534]";
+            break;
+        }
 
-          // Create tooltip content
+        // Add tooltip for yellow highlights
+        if (highlightData.type === 'yellow' && highlightData.tooltip) {
           const tooltipContent = (
-            <div className="max-w-sm space-y-2">
+            <div className="max-w-sm space-y-3">
               <div>
-                <h4 className="font-semibold text-sm mb-1">Lỗi:</h4>
+                <h4 className="font-semibold text-sm mb-1 text-yellow-400">Category:</h4>
                 <p className="text-xs text-gray-200">
-                  {issue.issueDetail}
+                  {highlightData.tooltip.category}
                 </p>
               </div>
-              {issue.correction && (
-                <div>
-                  <h4 className="font-semibold text-sm mb-1">Cải thiện:</h4>
-                  <p className="text-xs text-gray-200">
-                    {issue.correction}
-                  </p>
-                </div>
-              )}
+              <div>
+                <h4 className="font-semibold text-sm mb-1 text-red-400">Original:</h4>
+                <p className="text-xs text-gray-200">
+                  {highlightData.tooltip.original}
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-sm mb-1 text-green-400">Improved:</h4>
+                <p className="text-xs text-gray-200">
+                  {highlightData.tooltip.improved}
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-sm mb-1 text-blue-400">Explanation:</h4>
+                <p className="text-xs text-gray-200">
+                  {highlightData.tooltip.explanation}
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-sm mb-1 text-purple-400">Band Impact:</h4>
+                <p className="text-xs text-gray-200">
+                  {highlightData.tooltip.bandImpact}
+                </p>
+              </div>
             </div>
           );
 
           result.push(
-            <Tooltip key={wordIndex}>
+            <Tooltip key={index}>
               <TooltipTrigger asChild>
-                <span className={className}>
-                  {currentSentence}
+                <span className={`${className} ${bgColor}`}>
+                  {sentence}
                 </span>
               </TooltipTrigger>
-              <TooltipContent side="bottom" className="bg-gray-800 text-white p-3">
+              <TooltipContent side="bottom" className="bg-gray-800 text-white p-4 max-w-md">
                 {tooltipContent}
               </TooltipContent>
             </Tooltip>
           );
         } else {
-          result.push(<span key={wordIndex}>{currentSentence}</span>);
+          // Non-yellow highlights (no tooltip)
+          result.push(
+            <span key={index} className={`${className} ${bgColor}`}>
+              {sentence}
+            </span>
+          );
         }
         
-        currentSentence = "";
-        wordIndex++;
+        // Add space after sentence if not last
+        if (index < sentences.length - 1) {
+          result.push(<span key={`space-${index}`}> </span>);
+        }
+      } else {
+        // No highlight
+        result.push(<span key={index}>{sentence}</span>);
+        
+        // Add space after sentence if not last
+        if (index < sentences.length - 1) {
+          result.push(<span key={`space-${index}`}> </span>);
+        }
       }
     });
 
-    // Add any remaining text
-    if (currentSentence.trim()) {
-      result.push(<span key={wordIndex}>{currentSentence}</span>);
-    }
-
     return (
       <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold mb-2">Interactive Essay Analysis</h3>
+          <div className="flex flex-wrap gap-4 text-sm">
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
+              <span>Grammar Issues</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
+              <span>Vocabulary Enhancement (hover for suggestions)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
+              <span>Good Examples</span>
+            </div>
+          </div>
+        </div>
         <p className="text-base leading-relaxed">
           {result}
         </p>
