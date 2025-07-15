@@ -124,7 +124,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                             <li><strong>Gợi ý từ nối:</strong> Conversely, Primarily, Furthermore...</li>
                           </ul>
                         </div>
-                        <div className="bg-orange-50 p-3 rounded-md border border-orange-100">
+                        <div className="p-3 rounded-md border border-orange-100 bg-[#f9fafb]">
                           <p className="text-xs font-medium mb-2 text-[#1f92aa]">Conclusion (2 câu)</p>
                           <ul className="text-xs text-orange-700 space-y-1 list-disc pl-4">
                             <li><strong>Tóm tắt lại 2 quan điểm đã nêu.</strong></li>
