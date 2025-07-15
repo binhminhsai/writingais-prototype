@@ -533,12 +533,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 <Accordion type="single" collapsible className="w-full space-y-1">
                   <AccordionItem value="summary" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-blue-50 to-transparent hover:from-blue-100">
-                      <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-4 h-4 rounded-full bg-blue-600 text-white text-xs">
-                          1
-                        </span>
-                        <span className="text-gray-800">Summary</span>
-                      </span>
+                      <span className="text-gray-800">Summary</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <p className="text-gray-700 leading-relaxed text-sm">
