@@ -415,7 +415,6 @@ Only through careful planning and responsible policies can societies achieve pro
     return (
       <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
         <div className="mb-4">
-          <h3 className="text-lg font-semibold mb-2">Interactive Essay Analysis</h3>
           <div className="flex flex-wrap gap-4 text-sm">
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
