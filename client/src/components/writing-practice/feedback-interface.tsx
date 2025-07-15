@@ -593,6 +593,17 @@ Only through careful planning and responsible policies can societies achieve pro
 
           <TabsContent value="task-response" className="border border-gray-300 rounded-lg p-6 bg-white">
             <div className="space-y-4">
+              {/* Feedback Overview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The essay addresses all parts of the prompt, discussing both views and providing a clear opinion. The arguments for both sides are relevant and supported with valid points and examples (e.g., "reduce commute times, encourage more people to use public transit, and ultimately reduce traffic congestion and air pollution" for public transport, and "underfunded hospitals and overcrowded schools" for other priorities). The opinion, "governments should strike a balance," is clear and logically supported. However, the essay's presentation as a single continuous paragraph impacts how effectively the position is presented throughout, making it less clear to the reader where one argument ends and another begins.
+                </p>
+              </div>
+
               {/* Strengths */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
@@ -602,11 +613,15 @@ Only through careful planning and responsible policies can societies achieve pro
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>The essay addresses the prompt by discussing both the advantages and disadvantages of economic growth, stating that 'economic development brings undeniable advantages, such as higher employment rates and better infrastructure.'</span>
+                    <span>Clearly addresses all parts of the prompt: discusses both views and states an opinion.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>The writer presents a clear position, concluding that 'although economic growth improves overall prosperity, its benefits are not equally distributed.'</span>
+                    <span>Develops relevant and supported arguments for both perspectives, such as "efficient transportation can enhance productivity and improve quality of life for millions."</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Provides a nuanced and well-reasoned opinion: "governments should strike a balance."</span>
                   </li>
                 </ul>
               </div>
@@ -620,16 +635,32 @@ Only through careful planning and responsible policies can societies achieve pro
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Some ideas are not fully developed, such as the mention of 'social problems' without specific examples or elaboration.</span>
+                    <span>While content is present, the lack of distinct paragraphs hinders the clear presentation and development of each idea.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>The essay could benefit from a more explicit discussion of the extent to which the writer agrees or disagrees with the statement, as it remains somewhat vague.</span>
+                    <span>The overall structure, being one long paragraph, makes it less effective in demonstrating full task achievement regarding organization.</span>
                   </li>
                 </ul>
               </div>
 
-              
+              {/* Specific Suggestions */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-orange-600" />
+                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Break the essay into clear, distinct paragraphs: an introduction, a body paragraph for the first view, a body paragraph for the second view, and a conclusion that restates your opinion.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>For example, separate the discussion of "Some people argue..." into one paragraph and "On the other hand, others think..." into another.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </TabsContent>
 
