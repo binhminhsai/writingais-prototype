@@ -564,7 +564,7 @@ Only through careful planning and responsible policies can societies achieve pro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="vocabulary-enhancement" className="border border-gray-200 rounded-lg bg-white shadow-sm">
+                  <AccordionItem value="vocabulary-enhancement" className="border border-gray-200 rounded-lg shadow-sm bg-[#fafafa]">
                     <AccordionTrigger className="text-sm font-semibold text-purple-600 hover:no-underline py-3 px-4 bg-gradient-to-r from-purple-50 to-transparent hover:from-purple-100 rounded-t-lg">
                       <span className="flex items-center gap-2">
                         <span className="flex justify-center items-center w-6 h-6 rounded-full bg-purple-100 text-purple-600 text-xs">
