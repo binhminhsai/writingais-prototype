@@ -126,7 +126,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         </div>
                         <div className="p-3 rounded-md border border-orange-100 bg-[#f9fafb]">
                           <p className="text-xs font-medium mb-2 text-[#1f92aa]">Conclusion (2 câu)</p>
-                          <ul className="text-xs text-orange-700 space-y-1 list-disc pl-4">
+                          <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151] font-medium">
                             <li><strong>Tóm tắt lại 2 quan điểm đã nêu.</strong></li>
                             <li><strong>Tái khẳng định quan điểm cá nhân, thêm 1 câu khuyến nghị nếu cần.</strong></li>
                           </ul>
