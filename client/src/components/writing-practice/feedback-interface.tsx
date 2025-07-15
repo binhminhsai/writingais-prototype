@@ -809,6 +809,17 @@ Only through careful planning and responsible policies can societies achieve pro
 
           <TabsContent value="grammar-accuracy" className="border border-gray-300 rounded-lg p-6 bg-white">
             <div className="space-y-4">
+              {/* Feedback Overview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The essay uses a good range of complex sentence structures with a high level of accuracy. Examples include conditional sentences ("In large cities where daily commuting takes hours, efficient transportation can enhance productivity...") and sentences with multiple clauses ("They believe that improving transport speed can significantly reduce commute times, encourage more people to use public transit, and ultimately reduce traffic congestion and air pollution."). There are very few grammatical errors, and punctuation is generally correct. Errors are minor and do not prevent communication.
+                </p>
+              </div>
+
               {/* Strengths */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
@@ -818,11 +829,15 @@ Only through careful planning and responsible policies can societies achieve pro
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Good range of sentence structures including complex sentences with subordinate clauses.</span>
+                    <span>Demonstrates consistent control over complex sentence structures.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Generally accurate grammar with only minor errors that do not impede understanding.</span>
+                    <span>High level of grammatical accuracy with very few errors (e.g., correct use of apostrophe in "government's limited budget").</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Punctuation is largely correct and supports clarity.</span>
                   </li>
                 </ul>
               </div>
@@ -836,16 +851,28 @@ Only through careful planning and responsible policies can societies achieve pro
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Some minor grammatical errors in complex sentence constructions that could be refined.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Occasional issues with article usage and preposition selection in advanced structures.</span>
+                    <span>No significant grammatical errors to highlight for improvement; maintaining this high level of accuracy is key.</span>
                   </li>
                 </ul>
               </div>
 
-              
+              {/* Grammar Focus */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-indigo-600" />
+                  <h3 className="text-lg font-semibold text-indigo-600">Grammar Focus</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Continue practicing constructing varied complex and compound sentences to further enhance grammatical range.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Ensure consistent use of parallel structures when listing items (e.g., "reduce commute times, encourage more people to use public transit, and ultimately reduce traffic congestion and air pollution" – this is already well done).</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
