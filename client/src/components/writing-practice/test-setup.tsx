@@ -80,7 +80,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
   return (
     <div className="p-6 border-b border-gray-200 bg-white">
       <h2 className="text-2xl font-semibold mb-6">English Writing Practice</h2>
-      
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <Label htmlFor="writing-type" className="mb-3 block">
@@ -148,7 +147,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
           </Select>
         </div>
       </div>
-      
       <div className="mt-6">
         <Label htmlFor="topic" className="mb-3 block">
           Topic/Question
@@ -192,7 +190,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
               setTopic(textareaValue);
             }}
           >
-            <span className="text-sm">Using my question</span>
+            <span className="text-sm">Use my question</span>
           </Button>
           <Button 
             variant="secondary"
@@ -227,7 +225,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
           </div>
         )}
       </div>
-      
       <div className="mt-6 flex items-center justify-between">
         <div>
           <Label htmlFor="time-limit" className="mb-3 block">
