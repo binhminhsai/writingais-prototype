@@ -337,15 +337,15 @@ Only through careful planning and responsible policies can societies achieve pro
           <div className="flex flex-wrap gap-4 text-sm">
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
-              <span>Grammar Issues</span>
+              <span>Error</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
-              <span>Vocabulary Enhancement (hover for suggestions)</span>
+              <span>Improvement</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
-              <span>Good Examples</span>
+              <span>Suggestion</span>
             </div>
           </div>
         </div>
