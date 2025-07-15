@@ -216,12 +216,26 @@ Only through careful planning and responsible policies can societies achieve pro
       }
     },
     
-    // Green highlights (good examples)
+    // Green highlights (good examples with suggestions)
     "In recent years, sustainable development has become one of the most critical issues facing governments worldwide.": {
-      type: 'green'
+      type: 'green',
+      tooltip: {
+        category: 'Introduction Phrasing',
+        original: 'In recent years, sustainable development has become',
+        improved: 'Over the past decade, sustainable development has emerged as OR In contemporary society, sustainable development represents',
+        explanation: 'This opening effectively establishes the topic\'s relevance and timeliness, creating a strong foundation for the essay.',
+        bandImpact: 'Improves Task Response and Coherence/Cohesion'
+      }
     },
     "Only through careful planning and responsible policies can societies achieve prosperity without destroying the natural world that supports all life.": {
-      type: 'green'
+      type: 'green',
+      tooltip: {
+        category: 'Conclusion Phrasing',
+        original: 'Only through careful planning and responsible policies',
+        improved: 'Through strategic planning and accountable governance OR Via comprehensive planning and sustainable policies',
+        explanation: 'This conclusion effectively synthesizes the main arguments while providing a clear recommendation for future action.',
+        bandImpact: 'Improves Task Response and Coherence/Cohesion'
+      }
     }
   };
 
@@ -257,8 +271,8 @@ Only through careful planning and responsible policies can societies achieve pro
             break;
         }
 
-        // Add tooltip for yellow highlights
-        if (highlightData.type === 'yellow' && highlightData.tooltip) {
+        // Add tooltip for yellow and green highlights
+        if ((highlightData.type === 'yellow' || highlightData.type === 'green') && highlightData.tooltip) {
           const tooltipContent = (
             <div className="max-w-sm space-y-3">
               <div>
@@ -274,7 +288,9 @@ Only through careful planning and responsible policies can societies achieve pro
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold text-sm mb-1 text-green-400">Improved:</h4>
+                <h4 className="font-semibold text-sm mb-1 text-green-400">
+                  {highlightData.type === 'green' ? 'Suggested:' : 'Improved:'}
+                </h4>
                 <p className="text-xs text-gray-200">
                   {highlightData.tooltip.improved}
                 </p>
@@ -307,7 +323,7 @@ Only through careful planning and responsible policies can societies achieve pro
             </Tooltip>
           );
         } else {
-          // Non-yellow highlights (no tooltip)
+          // Non-tooltip highlights (red highlights or highlights without tooltip data)
           result.push(
             <span key={index} className={`${className} ${bgColor}`}>
               {sentence}
