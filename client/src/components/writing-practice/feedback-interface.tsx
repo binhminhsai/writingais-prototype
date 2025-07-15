@@ -42,9 +42,12 @@ interface HighlightData {
   tooltip?: {
     category: string;
     original: string;
-    improved: string;
+    improved?: string;
+    corrected?: string;
     explanation: string;
-    bandImpact: string;
+    bandImpact?: string;
+    rule?: string;
+    severity?: string;
   };
 }
 
@@ -186,12 +189,28 @@ Only through careful planning and responsible policies can societies achieve pro
 
   // Enhanced highlighting data - 2 sentences per color type
   const highlightMapping: Record<string, HighlightData> = {
-    // Red highlights (errors)
+    // Red highlights (errors with tooltips)
     "They believe that industrial expansion create jobs and generate income, which allow people to meet their basic needs.": {
-      type: 'red'
+      type: 'red',
+      tooltip: {
+        category: 'Subject-Verb Agreement',
+        original: 'industrial expansion create jobs and generate income',
+        corrected: 'industrial expansion creates jobs and generates income',
+        explanation: 'Singular subjects like "industrial expansion" require singular verbs. Use "creates" and "generates" instead of "create" and "generate".',
+        rule: 'Singular subjects take singular verbs',
+        severity: 'High'
+      }
     },
     "These nations has lifted millions of people out of poverty and improved infrastructure substantially.": {
-      type: 'red'
+      type: 'red',
+      tooltip: {
+        category: 'Subject-Verb Agreement',
+        original: 'These nations has lifted',
+        corrected: 'These nations have lifted',
+        explanation: 'Plural subjects like "These nations" require plural auxiliary verbs. Use "have" instead of "has".',
+        rule: 'Plural subjects take plural verbs',
+        severity: 'High'
+      }
     },
     
     // Yellow highlights (vocabulary enhancement with tooltips)
@@ -271,44 +290,91 @@ Only through careful planning and responsible policies can societies achieve pro
             break;
         }
 
-        // Add tooltip for yellow and green highlights
-        if ((highlightData.type === 'yellow' || highlightData.type === 'green') && highlightData.tooltip) {
-          const tooltipContent = (
-            <div className="max-w-sm space-y-3">
-              <div>
-                <h4 className="font-semibold text-sm mb-1 text-yellow-400">Category:</h4>
-                <p className="text-xs text-gray-200">
-                  {highlightData.tooltip.category}
-                </p>
+        // Add tooltip for all highlight types
+        if (highlightData.tooltip) {
+          let tooltipContent;
+          
+          if (highlightData.type === 'red') {
+            // Red highlight tooltip structure
+            tooltipContent = (
+              <div className="max-w-sm space-y-3">
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-red-400">Category:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.category}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-yellow-400">Original:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.original}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-green-400">Corrected:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.corrected}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-blue-400">Explanation:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.explanation}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-purple-400">Rule:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.rule}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-orange-400">Severity:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.severity}
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-sm mb-1 text-red-400">Original:</h4>
-                <p className="text-xs text-gray-200">
-                  {highlightData.tooltip.original}
-                </p>
+            );
+          } else {
+            // Yellow and green highlight tooltip structure
+            tooltipContent = (
+              <div className="max-w-sm space-y-3">
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-yellow-400">Category:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.category}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-red-400">Original:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.original}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-green-400">
+                    {highlightData.type === 'green' ? 'Suggested:' : 'Improved:'}
+                  </div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.improved}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-blue-400">Explanation:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.explanation}
+                  </div>
+                </div>
+                <div>
+                  <div className="font-semibold text-sm mb-1 text-purple-400">Band Impact:</div>
+                  <div className="text-xs text-gray-200">
+                    {highlightData.tooltip.bandImpact}
+                  </div>
+                </div>
               </div>
-              <div>
-                <h4 className="font-semibold text-sm mb-1 text-green-400">
-                  {highlightData.type === 'green' ? 'Suggested:' : 'Improved:'}
-                </h4>
-                <p className="text-xs text-gray-200">
-                  {highlightData.tooltip.improved}
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm mb-1 text-blue-400">Explanation:</h4>
-                <p className="text-xs text-gray-200">
-                  {highlightData.tooltip.explanation}
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm mb-1 text-purple-400">Band Impact:</h4>
-                <p className="text-xs text-gray-200">
-                  {highlightData.tooltip.bandImpact}
-                </p>
-              </div>
-            </div>
-          );
+            );
+          }
 
           result.push(
             <Tooltip key={index}>

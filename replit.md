@@ -428,6 +428,10 @@ Changelog:
   - Tooltip format includes: Category, Original text, Improved version, Explanation, and Band Impact
   - Added legend showing color meanings for better user understanding
   - Enhanced user experience with hover interactions and detailed vocabulary improvement guidance
+  - Extended tooltip functionality to support green highlights (suggestions) with Category, Original, Suggested, Explanation, and Band Impact structure
+  - Implemented red highlight tooltips for grammar errors with Category, Original, Corrected, Explanation, Rule, and Severity structure
+  - Fixed HTML nesting validation warnings by replacing h4 and p tags with div elements in tooltip content
+  - Added comprehensive tooltip support for all three highlight types with appropriate color coding and field labels
 
 ## User Preferences
 
