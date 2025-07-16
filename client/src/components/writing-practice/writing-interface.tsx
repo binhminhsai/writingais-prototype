@@ -44,18 +44,9 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
   return (
     <div className="h-full flex flex-col">
       {showOutline ? (
-        <Tabs defaultValue="outline" className="w-full h-full flex flex-col">
+        <Tabs defaultValue="expressions" className="w-full h-full flex flex-col">
           <div className="mb-4 relative">
             <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
-              <TabsTrigger 
-                value="outline" 
-                className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
-                        hover:bg-gray-50
-                        data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
-              >
-                <Layers className="h-4 w-4" />
-                Suggested Outline
-              </TabsTrigger>
               <TabsTrigger 
                 value="expressions" 
                 className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
@@ -64,6 +55,15 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
               >
                 <Smile className="h-4 w-4" />
                 Analyze Topic
+              </TabsTrigger>
+              <TabsTrigger 
+                value="outline" 
+                className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
+                        hover:bg-gray-50
+                        data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
+              >
+                <Layers className="h-4 w-4" />
+                Suggested Outline
               </TabsTrigger>
             </TabsList>
           </div>
