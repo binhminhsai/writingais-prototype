@@ -54,7 +54,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
               >
                 <Smile className="h-4 w-4" />
-                Analyze Topic
+                Topic Analysis
               </TabsTrigger>
               <TabsTrigger 
                 value="outline" 
@@ -271,7 +271,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
                 <Smile className="h-4 w-4" />
-                Analyze Topic - Phân tích đề bài
+                Topic Analysis - Phân tích đề bài
               </h4>
               <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
                 Những hướng dẫn cụ thể giúp bạn viết bài hiệu quả hơn
