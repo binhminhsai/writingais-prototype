@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileEdit, BookOpen, History, Medal } from "lucide-react";
+import { ArrowRight, FileEdit, BookOpen, History, Medal, BarChart3 } from "lucide-react";
 
 export default function Home() {
   return (
@@ -36,6 +36,30 @@ export default function Home() {
             <Link href="/writing-practice">
               <Button className="w-full">
                 Start Practice <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </CardFooter>
+        </Card>
+
+        <Card className="flex flex-col">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <BarChart3 className="h-5 w-5 text-blue-600" /> Writing Task 1
+            </CardTitle>
+            <CardDescription>
+              Practice academic writing based on visuals like charts and tables.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex-grow">
+            <p className="text-gray-600">
+              Write essays from IELTS-style prompts that include bar charts, pie graphs, or tables.
+              Choose your band level and receive structured feedback to improve your writing.
+            </p>
+          </CardContent>
+          <CardFooter>
+            <Link href="/writing-task-1">
+              <Button className="w-full">
+                Start Now <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </CardFooter>
