@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, Info } from "lucide-react";
+import { Upload, Info, Sparkles, Shuffle } from "lucide-react";
 
 export default function WritingTask1() {
   const [questionType, setQuestionType] = useState("");
@@ -128,14 +128,31 @@ export default function WritingTask1() {
 
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 mb-6">
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-          ✨ Generate question
+        <Button 
+          className="text-white"
+          style={{ backgroundColor: '#4338ca' }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3730a3'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
+        >
+          <Sparkles className="w-4 h-4 mr-2" />
+          Generate question
         </Button>
-        <Button className="bg-teal-600 hover:bg-teal-700 text-white">
+        <Button 
+          className="text-white"
+          style={{ backgroundColor: '#1ca19a' }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d9488'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1ca19a'}
+        >
           Use my question
         </Button>
-        <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-          🎲 Random question
+        <Button 
+          className="text-white"
+          style={{ backgroundColor: '#ea580c' }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#c2410c'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ea580c'}
+        >
+          <Shuffle className="w-4 h-4 mr-2" />
+          Random question
         </Button>
       </div>
 
