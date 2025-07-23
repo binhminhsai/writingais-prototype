@@ -12,6 +12,9 @@ export default function WritingTask1() {
   const [question, setQuestion] = useState("");
   const [dragActive, setDragActive] = useState(false);
 
+  // Debug logging
+  console.log("Current states:", { questionType, bandLevel, timeLimit });
+
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -52,7 +55,16 @@ export default function WritingTask1() {
           </label>
           <Select value={questionType} onValueChange={setQuestionType}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Bar charts" />
+              <SelectValue placeholder="Select question type">
+                {questionType === "bar-charts" && "Bar Charts"}
+                {questionType === "line-charts" && "Line Charts"}
+                {questionType === "tables" && "Tables"}
+                {questionType === "pie-charts" && "Pie Charts"}
+                {questionType === "process-diagrams" && "Process Diagrams"}
+                {questionType === "maps" && "Maps"}
+                {questionType === "combinations" && "Combinations"}
+                {!questionType && "Select question type"}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="bar-charts">Bar Charts</SelectItem>
@@ -74,7 +86,13 @@ export default function WritingTask1() {
           </label>
           <Select value={bandLevel} onValueChange={setBandLevel}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select band level" />
+              <SelectValue placeholder="Select band level">
+                {bandLevel === "5.0" && "Band 5.0"}
+                {bandLevel === "6.0" && "Band 6.0"}
+                {bandLevel === "7.0" && "Band 7.0"}
+                {bandLevel === "8.0" && "Band 8.0"}
+                {!bandLevel && "Select band level"}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="5.0">Band 5.0</SelectItem>
@@ -164,7 +182,14 @@ export default function WritingTask1() {
           </label>
           <Select value={timeLimit} onValueChange={setTimeLimit}>
             <SelectTrigger>
-              <SelectValue />
+              <SelectValue placeholder="Select time limit">
+                {timeLimit === "15 minutes" && "15 minutes"}
+                {timeLimit === "20 minutes" && "20 minutes"}
+                {timeLimit === "25 minutes" && "25 minutes"}
+                {timeLimit === "30 minutes" && "30 minutes"}
+                {timeLimit === "no-limit" && "No limit"}
+                {!timeLimit && "Select time limit"}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="15 minutes">15 minutes</SelectItem>
