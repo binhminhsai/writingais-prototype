@@ -11,9 +11,48 @@ export default function WritingTask1() {
   const [timeLimit, setTimeLimit] = useState("20 minutes");
   const [question, setQuestion] = useState("");
   const [dragActive, setDragActive] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewQuestion, setPreviewQuestion] = useState("");
 
-  // Debug logging
-  console.log("Current states:", { questionType, bandLevel, timeLimit });
+
+
+  // Button handler functions
+  const handleGenerateQuestion = () => {
+    if (!questionType) return;
+    
+    const sampleQuestions = {
+      "bar-charts": "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "line-charts": "The line graph below shows the consumption of fish and some different kinds of meat in a European country between 1979 and 2004. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "tables": "The table below shows the percentage of mobile phone owners using various mobile phone features. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "pie-charts": "The pie charts below show the comparison of different kinds of energy production of France in two years. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "process-diagrams": "The diagram below shows the process of making soft cheese. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "maps": "The maps below show the changes in the town of Denham from 1986 to the present day. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "combinations": "The charts below show the proportions of British students at one university in England who were able to speak other languages in addition to English, in 2000 and 2010. Summarise the information by selecting and reporting the main features and make comparisons where relevant."
+    };
+    
+    setPreviewQuestion(`**IELTS Writing Task 1:** ${sampleQuestions[questionType as keyof typeof sampleQuestions]}`);
+    setShowPreview(true);
+  };
+
+  const handleUseMyQuestion = () => {
+    if (!question.trim()) return;
+    setPreviewQuestion(`**IELTS Writing Task 1:** ${question.trim()}`);
+    setShowPreview(true);
+  };
+
+  const handleRandomQuestion = () => {
+    const randomQuestions = [
+      "The diagram below shows the process of making soft cheese. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The line graph below shows the consumption of fish and some different kinds of meat in a European country between 1979 and 2004. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The table below shows the percentage of mobile phone owners using various mobile phone features. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The pie charts below show the comparison of different kinds of energy production of France in two years. Summarise the information by selecting and reporting the main features and make comparisons where relevant."
+    ];
+    
+    const randomIndex = Math.floor(Math.random() * randomQuestions.length);
+    setPreviewQuestion(`**IELTS Writing Task 1:** ${randomQuestions[randomIndex]}`);
+    setShowPreview(true);
+  };
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -110,8 +149,7 @@ export default function WritingTask1() {
           Topic/Question
         </label>
         <Textarea
-          placeholder="- Enter any relevant information related to the topic, question type,... and then use the Generate question button to create a question.
-- Enter your own question and select the Using my question button to use your question."
+          placeholder="Enter your Task 1 question here. Once you've added content, the 'Use my question' button will become available."
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           className="min-h-[80px] text-sm text-gray-600"
@@ -148,18 +186,22 @@ export default function WritingTask1() {
       <div className="flex flex-wrap gap-3 mb-6">
         <Button 
           className="text-white"
-          style={{ backgroundColor: '#4338ca' }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3730a3'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
+          style={{ backgroundColor: questionType ? '#4338ca' : '#9ca3af' }}
+          onMouseEnter={(e) => questionType && (e.currentTarget.style.backgroundColor = '#3730a3')}
+          onMouseLeave={(e) => questionType && (e.currentTarget.style.backgroundColor = '#4338ca')}
+          disabled={!questionType}
+          onClick={handleGenerateQuestion}
         >
           <Sparkles className="w-4 h-4 mr-2" />
           Generate question
         </Button>
         <Button 
           className="text-white"
-          style={{ backgroundColor: '#1ca19a' }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d9488'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1ca19a'}
+          style={{ backgroundColor: question.trim() ? '#1ca19a' : '#9ca3af' }}
+          onMouseEnter={(e) => question.trim() && (e.currentTarget.style.backgroundColor = '#0d9488')}
+          onMouseLeave={(e) => question.trim() && (e.currentTarget.style.backgroundColor = '#1ca19a')}
+          disabled={!question.trim()}
+          onClick={handleUseMyQuestion}
         >
           Use my question
         </Button>
@@ -168,11 +210,36 @@ export default function WritingTask1() {
           style={{ backgroundColor: '#ea580c' }}
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#c2410c'}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ea580c'}
+          onClick={handleRandomQuestion}
         >
           <Shuffle className="w-4 h-4 mr-2" />
           Random question
         </Button>
       </div>
+
+      {/* Question Preview */}
+      {showPreview && (
+        <div className="mb-6">
+          <div className="border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
+            {/* Question Text */}
+            <div className="mb-4 p-4 border border-gray-200 rounded-lg bg-gray-50">
+              <p className="text-gray-800 leading-relaxed">
+                {previewQuestion.split('**').map((part, index) => 
+                  index % 2 === 1 ? <strong key={index}>{part}</strong> : part
+                )}
+              </p>
+            </div>
+            
+            {/* Diagram Placeholder */}
+            <div className="border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 flex items-center justify-center" style={{ height: '300px' }}>
+              <div className="text-center">
+                <div className="text-6xl text-gray-400 mb-2">✕</div>
+                <p className="text-gray-500 text-sm">Diagram/Chart/Table will appear here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Time Limit and Start Writing */}
       <div className="flex items-center justify-between">
