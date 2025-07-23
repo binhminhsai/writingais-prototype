@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Upload, Info, Sparkles, Shuffle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export default function WritingTask1() {
   const [questionType, setQuestionType] = useState("");
@@ -13,12 +14,22 @@ export default function WritingTask1() {
   const [dragActive, setDragActive] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [previewQuestion, setPreviewQuestion] = useState("");
+  const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  
+  const { toast } = useToast();
 
 
 
   // Button handler functions
   const handleGenerateQuestion = () => {
-    if (!questionType) return;
+    if (!questionType) {
+      toast({
+        title: "Question Type Required",
+        description: "Please select a question type first.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     const sampleQuestions = {
       "bar-charts": "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
@@ -35,7 +46,16 @@ export default function WritingTask1() {
   };
 
   const handleUseMyQuestion = () => {
-    if (!question.trim()) return;
+    // Check if both question text and image are provided
+    if (!question.trim() || !uploadedImage) {
+      toast({
+        title: "Missing Requirements",
+        description: "Please enter your question and upload an image.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setPreviewQuestion(`**IELTS Writing Task 1:** ${question.trim()}`);
     setShowPreview(true);
   };
@@ -70,15 +90,39 @@ export default function WritingTask1() {
     setDragActive(false);
     
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      // Handle file upload logic here
-      console.log("File dropped:", e.dataTransfer.files[0]);
+      const file = e.dataTransfer.files[0];
+      if (file.type.startsWith('image/')) {
+        setUploadedImage(file);
+        toast({
+          title: "Image uploaded successfully",
+          description: `${file.name} has been uploaded.`,
+        });
+      } else {
+        toast({
+          title: "Invalid file type",
+          description: "Please upload an image file (JPG, PNG, etc.)",
+          variant: "destructive",
+        });
+      }
     }
   };
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      // Handle file upload logic here
-      console.log("File selected:", e.target.files[0]);
+      const file = e.target.files[0];
+      if (file.type.startsWith('image/')) {
+        setUploadedImage(file);
+        toast({
+          title: "Image uploaded successfully",
+          description: `${file.name} has been uploaded.`,
+        });
+      } else {
+        toast({
+          title: "Invalid file type",
+          description: "Please upload an image file (JPG, PNG, etc.)",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -160,7 +204,7 @@ export default function WritingTask1() {
       <div className="mb-6">
         <div
           className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-            dragActive ? "border-blue-400 bg-blue-50" : "border-gray-300"
+            dragActive ? "border-blue-400 bg-blue-50" : uploadedImage ? "border-green-400 bg-green-50" : "border-gray-300"
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -175,9 +219,21 @@ export default function WritingTask1() {
             id="file-upload"
           />
           <label htmlFor="file-upload" className="cursor-pointer">
-            <Upload className="mx-auto h-8 w-8 text-gray-400 mb-3" />
-            <p className="text-gray-600 mb-1">Chọn ảnh biểu đồ hoặc kéo và thả hình ảnh vào đây</p>
-            <p className="text-sm text-gray-500">Accepted file types: image. Max file size: 5 MB</p>
+            {uploadedImage ? (
+              <>
+                <div className="mx-auto h-8 w-8 bg-green-500 rounded-full flex items-center justify-center mb-3">
+                  <span className="text-white text-sm">✓</span>
+                </div>
+                <p className="text-green-700 mb-1 font-medium">Image uploaded: {uploadedImage.name}</p>
+                <p className="text-sm text-green-600">Click to change or drag another image</p>
+              </>
+            ) : (
+              <>
+                <Upload className="mx-auto h-8 w-8 text-gray-400 mb-3" />
+                <p className="text-gray-600 mb-1">Chọn ảnh biểu đồ hoặc kéo và thả hình ảnh vào đây</p>
+                <p className="text-sm text-gray-500">Accepted file types: image. Max file size: 5 MB</p>
+              </>
+            )}
           </label>
         </div>
       </div>
@@ -186,10 +242,9 @@ export default function WritingTask1() {
       <div className="flex flex-wrap gap-3 mb-6">
         <Button 
           className="text-white"
-          style={{ backgroundColor: questionType ? '#4338ca' : '#9ca3af' }}
-          onMouseEnter={(e) => questionType && (e.currentTarget.style.backgroundColor = '#3730a3')}
-          onMouseLeave={(e) => questionType && (e.currentTarget.style.backgroundColor = '#4338ca')}
-          disabled={!questionType}
+          style={{ backgroundColor: '#4338ca' }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3730a3'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
           onClick={handleGenerateQuestion}
         >
           <Sparkles className="w-4 h-4 mr-2" />
@@ -197,10 +252,9 @@ export default function WritingTask1() {
         </Button>
         <Button 
           className="text-white"
-          style={{ backgroundColor: question.trim() ? '#1ca19a' : '#9ca3af' }}
-          onMouseEnter={(e) => question.trim() && (e.currentTarget.style.backgroundColor = '#0d9488')}
-          onMouseLeave={(e) => question.trim() && (e.currentTarget.style.backgroundColor = '#1ca19a')}
-          disabled={!question.trim()}
+          style={{ backgroundColor: '#1ca19a' }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d9488'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1ca19a'}
           onClick={handleUseMyQuestion}
         >
           Use my question
