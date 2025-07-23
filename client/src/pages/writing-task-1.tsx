@@ -74,13 +74,13 @@ export default function WritingTask1() {
           </label>
           <Select value={bandLevel} onValueChange={setBandLevel}>
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Band 6.0" />
+              <SelectValue placeholder="Select band level" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="band-5.0">Band 5.0</SelectItem>
-              <SelectItem value="band-6.0">Band 6.0</SelectItem>
-              <SelectItem value="band-7.0">Band 7.0</SelectItem>
-              <SelectItem value="band-8.0">Band 8.0</SelectItem>
+              <SelectItem value="5.0">Band 5.0</SelectItem>
+              <SelectItem value="6.0">Band 6.0</SelectItem>
+              <SelectItem value="7.0">Band 7.0</SelectItem>
+              <SelectItem value="8.0">Band 8.0</SelectItem>
             </SelectContent>
           </Select>
         </div>
