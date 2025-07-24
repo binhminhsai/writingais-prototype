@@ -260,10 +260,7 @@ export default function WritingTask1() {
           Use my question
         </Button>
         <Button 
-          className="text-white"
-          style={{ backgroundColor: '#ea580c' }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#c2410c'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ea580c'}
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-primary/90 h-10 px-4 py-2 text-white bg-[#ea580c]"
           onClick={handleRandomQuestion}
         >
           <Shuffle className="w-4 h-4 mr-2" />
