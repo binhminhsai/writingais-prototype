@@ -128,8 +128,7 @@ export default function WritingTask1() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-2xl font-semibold text-gray-900 mb-8">English Writing Practice</h1>
-      
+      <h1 className="text-2xl font-semibold text-gray-900 mb-8">Writing Practice Task 1</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Select Question Type */}
         <div>
@@ -186,7 +185,6 @@ export default function WritingTask1() {
           </Select>
         </div>
       </div>
-
       {/* Topic/Question */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -199,7 +197,6 @@ export default function WritingTask1() {
           className="min-h-[80px] text-sm text-gray-600"
         />
       </div>
-
       {/* Image Upload Area */}
       <div className="mb-6">
         <div
@@ -237,7 +234,6 @@ export default function WritingTask1() {
           </label>
         </div>
       </div>
-
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 mb-6">
         <Button 
@@ -267,7 +263,6 @@ export default function WritingTask1() {
           Random question
         </Button>
       </div>
-
       {/* Question Preview */}
       {showPreview && (
         <div className="mb-6">
@@ -291,7 +286,6 @@ export default function WritingTask1() {
           </div>
         </div>
       )}
-
       {/* Time Limit and Start Writing */}
       <div className="flex items-center justify-between">
         <div className="w-48">
