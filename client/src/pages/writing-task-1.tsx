@@ -271,7 +271,7 @@ export default function WritingTask1() {
             <div className="mb-4 p-4 border border-gray-200 rounded-lg bg-[#F0fdfa]">
               <p className="text-gray-800 leading-relaxed">
                 {previewQuestion.split('**').map((part, index) => 
-                  index % 2 === 1 ? <strong key={index}>{part}</strong> : part
+                  index % 2 === 1 ? <strong key={index} className="bg-[0f766a]">{part}</strong> : part
                 )}
               </p>
             </div>
