@@ -456,7 +456,10 @@ export default function WritingTask1() {
         </div>
 
         <Button 
-          className="bg-teal-600 hover:bg-teal-700 text-white px-8"
+          className="text-white px-8"
+          style={{ backgroundColor: '#1fb2aa' }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d9488'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1fb2aa'}
           onClick={handleStartWriting}
         >
           Start Writing
