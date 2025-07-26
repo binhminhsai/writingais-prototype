@@ -262,9 +262,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
               className="flex-1 text-xs py-2 px-3 font-medium transition-all
                       hover:bg-gray-100
                       data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary"
-            >
-              General Vocabulary
-            </TabsTrigger>
+            >Structure Vocabulary</TabsTrigger>
             <TabsTrigger 
               value="topic" 
               className="flex-1 text-xs py-2 px-3 font-medium transition-all
