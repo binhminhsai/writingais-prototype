@@ -681,24 +681,24 @@ However, renewable energy sources is projected to experience substantial growth,
                 </ul>
               </div>
 
-              {/* Specific Suggestions */}
+              {/* Vocabulary Enhancement */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <AlertTriangle className="h-5 w-5 text-orange-600" />
-                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
+                  <h3 className="text-lg font-semibold text-orange-600">Vocabulary Enhancement</h3>
                 </div>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Use more varied trend vocabulary: "fluctuated," "peaked," "plateaued," "surged," "plummeted."</span>
+                    <span>'Usage' → 'engagement' or 'participation'</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Replace simple words with more academic alternatives: "considerable," "marginal," "pronounced," "negligible."</span>
+                    <span>'High' → 'significant', 'substantial'</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Incorporate more precise comparative language: "in contrast," "conversely," "whereas," "likewise."</span>
+                    <span>Use synonyms for 'popular' and 'across' to avoid repetition.</span>
                   </li>
                 </ul>
               </div>
