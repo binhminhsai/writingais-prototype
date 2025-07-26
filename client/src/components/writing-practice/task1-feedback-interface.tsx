@@ -205,27 +205,56 @@ However, renewable energy sources is projected to experience substantial growth,
                        'bg-[#dcfce7]';
 
         if (data.tooltip) {
-          const tooltipContent = (
-            <div className="space-y-2 text-left">
-              <div className="font-semibold text-sm">{data.tooltip.category}</div>
-              <div className="space-y-1">
-                <div><span className="font-medium">Original:</span> {data.tooltip.original}</div>
-                {data.tooltip.corrected && (
-                  <div><span className="font-medium">Corrected:</span> {data.tooltip.corrected}</div>
-                )}
-                {data.tooltip.improved && (
-                  <div><span className="font-medium">Improved:</span> {data.tooltip.improved}</div>
-                )}
-                <div><span className="font-medium">Explanation:</span> {data.tooltip.explanation}</div>
-                {data.tooltip.rule && (
-                  <div><span className="font-medium">Rule:</span> {data.tooltip.rule}</div>
-                )}
-                {data.tooltip.severity && (
-                  <div><span className="font-medium">Severity:</span> {data.tooltip.severity}</div>
-                )}
-                {data.tooltip.bandImpact && (
-                  <div><span className="font-medium">Band Impact:</span> {data.tooltip.bandImpact}</div>
-                )}
+          const tooltipContent = data.type === 'red' ? (
+            // Red highlight tooltip - Error type
+            <div className="space-y-2 text-left text-sm">
+              <div>
+                <span className="font-bold text-red-400">Category: </span>
+                <span className="text-gray-200">{data.tooltip.category}</span>
+              </div>
+              <div>
+                <span className="font-bold text-yellow-400">Original: </span>
+                <span className="text-gray-200">{data.tooltip.original}</span>
+              </div>
+              <div>
+                <span className="font-bold text-green-400">Corrected: </span>
+                <span className="text-gray-200">{data.tooltip.corrected}</span>
+              </div>
+              <div>
+                <span className="font-bold text-blue-400">Explanation: </span>
+                <span className="text-gray-200">{data.tooltip.explanation}</span>
+              </div>
+              <div>
+                <span className="font-bold text-purple-400">Rule: </span>
+                <span className="text-gray-200">{data.tooltip.rule}</span>
+              </div>
+              <div>
+                <span className="font-bold text-orange-400">Severity: </span>
+                <span className="text-gray-200">{data.tooltip.severity}</span>
+              </div>
+            </div>
+          ) : (
+            // Yellow/Green highlight tooltip - Improvement/Suggestion type
+            <div className="space-y-2 text-left text-sm">
+              <div>
+                <span className="font-bold text-yellow-400">Category: </span>
+                <span className="text-gray-200">{data.tooltip.category}</span>
+              </div>
+              <div>
+                <span className="font-bold text-red-400">Original: </span>
+                <span className="text-gray-200">{data.tooltip.original}</span>
+              </div>
+              <div>
+                <span className="font-bold text-green-400">Improved: </span>
+                <span className="text-gray-200">{data.tooltip.improved}</span>
+              </div>
+              <div>
+                <span className="font-bold text-blue-400">Explanation: </span>
+                <span className="text-gray-200">{data.tooltip.explanation}</span>
+              </div>
+              <div>
+                <span className="font-bold text-purple-400">Band Impact: </span>
+                <span className="text-gray-200">{data.tooltip.bandImpact}</span>
               </div>
             </div>
           );
@@ -237,7 +266,7 @@ However, renewable energy sources is projected to experience substantial growth,
                   {sentence}
                 </span>
               </TooltipTrigger>
-              <TooltipContent side="bottom" className="bg-gray-800 text-white p-4 max-w-md">
+              <TooltipContent side="bottom" className="bg-[#1a1d26] text-white p-4 max-w-md border border-gray-600 shadow-lg">
                 {tooltipContent}
               </TooltipContent>
             </Tooltip>
