@@ -419,7 +419,7 @@ However, renewable energy sources is projected to experience substantial growth,
               <div className="stat-row flex justify-around mt-2">
                 <div className="text-center">
                   <div className="stat-label font-bold">Word Count</div>
-                  <div className={`stat-value font-bold text-2xl mt-1 ${feedbackData.stats.totalWords < 150 ? 'text-red-500' : ''}`}>
+                  <div className={`stat-value font-bold text-2xl mt-1 ${feedbackData.stats.totalWords < 50 ? 'text-red-500' : ''}`}>
                     {feedbackData.stats.totalWords}
                   </div>
                 </div>

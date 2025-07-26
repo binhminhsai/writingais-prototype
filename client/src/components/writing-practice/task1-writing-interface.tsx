@@ -1012,7 +1012,7 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
               count={wordCount}
               maxWords={400}
               isValid={isWordCountValid}
-              minWords={150}
+              minWords={50}
             />
           </div>
 
@@ -1020,7 +1020,7 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
             value={essayContent}
             onChange={setEssayContent}
             onWordCountChange={handleWordCountChange}
-            minWords={150}
+            minWords={50}
             maxWords={400}
             placeholder="Start writing your Task 1 response here..."
           />
@@ -1100,9 +1100,9 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
       <AlertDialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Word Count Error</AlertDialogTitle>
+            <AlertDialogTitle>Word Count Warning</AlertDialogTitle>
             <AlertDialogDescription>
-              Word limit requirement not met. Your Task 1 essay should be between 150 and 400 words.
+              Your response must be at least 50 words. Please add more content before submitting for feedback.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
