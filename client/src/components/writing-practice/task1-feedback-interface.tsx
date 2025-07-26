@@ -383,47 +383,30 @@ However, renewable energy sources is projected to experience substantial growth,
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <p className="text-gray-700 leading-relaxed text-sm">
-                        This Task 1 response effectively addresses the prompt requirements with a clear overview and detailed analysis. The essay demonstrates good understanding of data interpretation and includes relevant supporting figures. The coherence is strong with logical progression, though minor grammatical errors occasionally impact clarity.
+                        The essay fulfills the requirements of the task and provides a reasonably comprehensive summary of the data. It shows a good understanding of the task, demonstrating the ability to identify and report key features and make relevant comparisons. While the essay is well-organized and coherent, there are areas for improvement in terms of lexical resource and the depth of analysis. The grammar and punctuation are generally well-controlled, with only minor errors. The candidate has demonstrated a clear understanding of the prompt and has presented the information in an organized and coherent manner.
                       </p>
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="specific-suggestions" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                  <AccordionItem value="critical-feedback" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-orange-50 to-transparent hover:from-orange-100">
-                      <span className="text-gray-800">Specific Suggestions</span>
+                      <span className="text-gray-800">Critical Feedback</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
-                        <li>• Include more detailed comparisons between different energy sources to enhance analysis</li>
-                        <li>• Use a wider range of vocabulary for describing trends and changes in the data</li>
-                        <li>• Improve paragraph transitions to create smoother flow between ideas</li>
-                      </ul>
+                      <p className="text-gray-700 leading-relaxed text-sm">
+                        To improve, focus on enhancing the depth of analysis by including more specific data points to support the trends identified and expanding the overview to include a broader summary of all categories. Also, work on diversifying the vocabulary and refining grammatical accuracy to elevate the overall quality of the writing.
+                      </p>
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="vocabulary-enhancement" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                    <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-purple-50 to-transparent hover:from-purple-100">
-                      <span className="text-gray-800">Vocabulary Enhancement</span>
+                  <AccordionItem value="next-steps" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                    <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-green-50 to-transparent hover:from-green-100">
+                      <span className="text-gray-800">Next Steps</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
-                        <li>• For describing trends: fluctuated, peaked, plateaued, surged, plummeted</li>
-                        <li>• Replace simple words: substantial, marginal, considerable, negligible, pronounced</li>
-                        <li>• Comparison phrases: in contrast, conversely, whereas, similarly, likewise</li>
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="grammar-focus" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                    <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-indigo-50 to-transparent hover:from-indigo-100">
-                      <span className="text-gray-800">Grammar Focus</span>
-                    </AccordionTrigger>
-                    <AccordionContent className="p-3 bg-white">
-                      <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
-                        <li>• Subject-verb agreement: check singular/plural forms carefully</li>
-                        <li>• Past tense consistency when describing historical data trends</li>
-                        <li>• Complex sentence structures for sophisticated data comparisons</li>
-                      </ul>
+                      <p className="text-gray-700 leading-relaxed text-sm">
+                        Practice analyzing a variety of tables and charts, focusing on identifying key trends and supporting them with precise data. Work on expanding your vocabulary and refining your grammar through targeted exercises. Review and correct grammatical errors in your writing to improve accuracy.
+                      </p>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
