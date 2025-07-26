@@ -250,27 +250,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                     </AccordionContent>
                   </AccordionItem>
 
-                  {/* Accordion 5: Writing Strategy */}
-                  <AccordionItem 
-                    value="writing-strategy"
-                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
-                  >
-                    <AccordionTrigger 
-                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
-                    >
-                      <span className="flex items-center gap-2">
-                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                          5
-                        </span>
-                        Writing Strategy
-                      </span>
-                    </AccordionTrigger>
-                    <AccordionContent className="p-3 bg-white">
-                      <div className="text-xs text-gray-600 italic">
-                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
+                  
                 </Accordion>
               </div>
             </div>
