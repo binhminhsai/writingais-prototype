@@ -156,31 +156,122 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                 <Smile className="h-4 w-4" />
                 Analyze Question - Phân tích câu hỏi
               </h4>
-              <div className="p-3 rounded-md border border-gray-200 bg-gray-50 mb-4">
-                <h5 className="font-medium text-sm mb-2">Question Analysis:</h5>
-                <p className="text-xs text-gray-700 leading-relaxed">
-                  {question}
-                </p>
-              </div>
-              <div className="space-y-3">
-                <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb]">
-                  <p className="text-xs font-medium text-[#1fb2aa] mb-2">Key Task Requirements:</p>
-                  <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151]">
-                    <li>Summarise the information by selecting and reporting the main features</li>
-                    <li>Make comparisons where relevant</li>
-                    <li>Write at least 150 words</li>
-                    <li>Use your own words (paraphrase the question)</li>
-                  </ul>
-                </div>
-                <div className="p-3 rounded-md border border-green-100 bg-[#f9fafb]">
-                  <p className="text-xs font-medium text-[#1fb2aa] mb-2">Writing Strategy:</p>
-                  <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151]">
-                    <li>Start with a clear introduction that paraphrases the question</li>
-                    <li>Include an overview paragraph highlighting main trends</li>
-                    <li>Use specific data and figures to support your descriptions</li>
-                    <li>Focus on the most significant features and comparisons</li>
-                  </ul>
-                </div>
+              <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
+                Detailed analysis of the Task 1 question and visual data
+              </p>
+
+              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+                <Accordion type="single" collapsible defaultValue="image-description" className="w-full space-y-2">
+                  {/* Accordion 1: Image Description */}
+                  <AccordionItem 
+                    value="image-description"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          1
+                        </span>
+                        Image Description
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="text-xs text-gray-600 italic">
+                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 2: Analyze Question */}
+                  <AccordionItem 
+                    value="analyze-question"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          2
+                        </span>
+                        Analyze Question
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="text-xs text-gray-600 italic">
+                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 3: Identify Main Features */}
+                  <AccordionItem 
+                    value="identify-features"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          3
+                        </span>
+                        Identify Main Features
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="text-xs text-gray-600 italic">
+                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 4: Jobs To Be Done */}
+                  <AccordionItem 
+                    value="jobs-to-be-done"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          4
+                        </span>
+                        Jobs To Be Done
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="text-xs text-gray-600 italic">
+                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 5: Writing Strategy */}
+                  <AccordionItem 
+                    value="writing-strategy"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          5
+                        </span>
+                        Writing Strategy
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="text-xs text-gray-600 italic">
+                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
             </div>
           </TabsContent>
