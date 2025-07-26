@@ -291,8 +291,36 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="text-xs text-gray-600 italic">
-                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      <div className="space-y-3">
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Question Requirement:</p>
+                          <p className="text-xs text-[#374151]">
+                            Summarise the information by selecting and reporting the main features, and make comparisons where relevant
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Key Tasks:</p>
+                          <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Summarize information about the energy consumption of each energy source.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Compare the changes in energy consumption between different energy sources.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Highlight key trends and projections for the future.</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Band Guidance:</p>
+                          <p className="text-xs text-[#374151]">
+                            With a target of Band 6.0: Adequate overview with main trends identified. Cover key features but details may be incomplete. Clear purpose.
+                          </p>
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
