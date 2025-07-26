@@ -20,7 +20,7 @@ export default function Home() {
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <FileEdit className="h-5 w-5 text-primary" /> Writing Practice
+              <FileEdit className="h-5 w-5 text-primary" /> Writing Task 2
             </CardTitle>
             <CardDescription>
               Practice writing for different tests and scenarios
