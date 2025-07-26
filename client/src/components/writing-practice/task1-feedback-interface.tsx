@@ -451,6 +451,344 @@ However, renewable energy sources is projected to experience substantial growth,
         </div>
       </div>
 
+      {/* Detailed Feedback Section */}
+      <div className="container max-w-[1100px] mx-auto mb-6">
+        <h2 className="text-2xl font-bold mb-4">Detailed Feedback</h2>
+        
+        <Tabs defaultValue="task-achievement" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 mb-4 bg-white border border-gray-300 rounded-lg h-12 p-1">
+            <TabsTrigger 
+              value="task-achievement" 
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+            >
+              Task Achievement
+            </TabsTrigger>
+            <TabsTrigger 
+              value="coherence-cohesion" 
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+            >
+              Coherence & Cohesion
+            </TabsTrigger>
+            <TabsTrigger 
+              value="lexical-resource" 
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+            >
+              Lexical Resource
+            </TabsTrigger>
+            <TabsTrigger 
+              value="grammar-accuracy" 
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+            >
+              Grammar & Accuracy
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="task-achievement" className="border border-gray-300 rounded-lg p-6 bg-white">
+            <div className="space-y-4">
+              {/* Feedback Overview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The response effectively addresses the Task 1 requirements by providing a clear overview of the main trends and supporting details with specific data from the chart. The essay demonstrates good understanding of the visual information and presents key features logically. However, some comparisons could be more detailed and precise to enhance the analysis further.
+                </p>
+              </div>
+
+              {/* Strengths */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <h3 className="text-lg font-semibold text-green-600">Strengths</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Provides a clear overview paragraph that effectively summarizes the main trends in energy consumption.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Includes specific data points and figures that accurately reflect the information in the chart.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Covers all major energy sources mentioned in the chart with relevant details.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Demonstrates appropriate Task 1 language for describing trends and changes over time.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                  <h3 className="text-lg font-semibold text-yellow-600">Areas for Improvement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Could include more detailed comparisons between different energy sources at specific time points.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Some trends could be described with more precision and analytical depth.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Specific Suggestions */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-orange-600" />
+                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Add more comparative analysis between energy sources, highlighting which increased/decreased most significantly.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Use more varied vocabulary for describing trends (e.g., "fluctuated," "surged," "plummeted").</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="coherence-cohesion" className="border border-gray-300 rounded-lg p-6 bg-white">
+            <div className="space-y-4">
+              {/* Feedback Overview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The essay demonstrates strong coherence with logical organization from overview to detailed analysis. Information flows well with appropriate sequencing of ideas. Cohesive devices are used effectively to connect sentences and paragraphs. The structure is clear and easy to follow, making the trends and data relationships accessible to the reader.
+                </p>
+              </div>
+
+              {/* Strengths */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <h3 className="text-lg font-semibold text-green-600">Strengths</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Clear paragraph structure with distinct overview and body paragraphs.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Effective use of linking words and phrases to connect ideas smoothly.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Logical progression from general trends to specific details.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                  <h3 className="text-lg font-semibold text-yellow-600">Areas for Improvement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Some transitions between different energy sources could be smoother.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Consider grouping related information more effectively for better flow.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Specific Suggestions */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-orange-600" />
+                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Use more transitional phrases like "In contrast," "Similarly," "Meanwhile" between energy source discussions.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Consider organizing information by grouping increasing vs. decreasing trends for clearer comparisons.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="lexical-resource" className="border border-gray-300 rounded-lg p-6 bg-white">
+            <div className="space-y-4">
+              {/* Feedback Overview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The vocabulary demonstrates good range with appropriate use of trend-describing language typical of Task 1 writing. Technical terms related to energy consumption are used accurately. Some variety in vocabulary choices is evident, though there is room for more sophisticated and varied expressions to enhance the overall lexical range.
+                </p>
+              </div>
+
+              {/* Strengths */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <h3 className="text-lg font-semibold text-green-600">Strengths</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Appropriate use of Task 1 vocabulary for describing trends and data.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Accurate technical terminology related to energy sources and consumption.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Good use of phrases like "demonstrates," "projected," and "substantial growth."</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                  <h3 className="text-lg font-semibold text-yellow-600">Areas for Improvement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Limited variety in vocabulary for describing trends and changes.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Some repetition of basic terms that could be replaced with more sophisticated alternatives.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Specific Suggestions */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-orange-600" />
+                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Use more varied trend vocabulary: "fluctuated," "peaked," "plateaued," "surged," "plummeted."</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Replace simple words with more academic alternatives: "considerable," "marginal," "pronounced," "negligible."</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Incorporate more precise comparative language: "in contrast," "conversely," "whereas," "likewise."</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="grammar-accuracy" className="border border-gray-300 rounded-lg p-6 bg-white">
+            <div className="space-y-4">
+              {/* Feedback Overview */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-blue-600" />
+                  <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  The essay demonstrates generally good grammatical control with mostly accurate sentence structures. A variety of sentence types is evident, from simple to complex constructions. However, there are some noticeable errors in subject-verb agreement that affect clarity and may impact the overall band score. The range of grammatical structures shows competence but could be more sophisticated.
+                </p>
+              </div>
+
+              {/* Strengths */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle className="h-5 w-5 text-green-600" />
+                  <h3 className="text-lg font-semibold text-green-600">Strengths</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Good use of complex sentence structures for data comparison and description.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Appropriate use of past tense forms when describing historical data trends.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Correct use of passive voice in appropriate contexts.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-yellow-600" />
+                  <h3 className="text-lg font-semibold text-yellow-600">Areas for Improvement</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Subject-verb agreement errors: "change occur" should be "change occurs."</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Plural subject errors: "renewable energy sources is" should be "renewable energy sources are."</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Specific Suggestions */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertTriangle className="h-5 w-5 text-orange-600" />
+                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
+                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Carefully check subject-verb agreement, especially with singular/plural forms.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Practice using more sophisticated grammatical structures for complex data relationships.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Review pronoun agreement when referring back to plural subjects like "energy sources."</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+
       {/* Interactive Essay Analysis Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
         {createHighlightedEssay()}
