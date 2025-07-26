@@ -436,6 +436,11 @@ Changelog:
   - Applied consistent color scheme across all accordion content blocks: background #f9fafb, titles #1fb2aa, content text #374151
   - Removed "Interactive Essay Analysis" header from feedback interface for cleaner presentation
   - Standardized styling across all content blocks regardless of category (Context, Main Subject, Perspectives, Main Task)
+- July 26, 2025. Enhanced tooltip interface styling and question card design:
+  - Updated tooltip background to dark navy (#1a1d26) matching design specifications
+  - Implemented color-coded tooltip content: red highlights show Category/Original/Corrected/Explanation/Rule/Severity, improvement highlights show Category/Original/Improved/Explanation/Band Impact
+  - Enhanced question card with gradient background (cyan to teal), larger text, and improved spacing
+  - Applied consistent IELTS styling with rounded corners and professional appearance
 
 ## User Preferences
 
