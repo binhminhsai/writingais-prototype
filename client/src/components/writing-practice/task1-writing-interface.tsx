@@ -106,9 +106,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                 <Layers className="h-4 w-4" />
                 Sample - Bài mẫu
               </h4>
-              <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
-                Sample Task 1 essay structure with detailed paragraph breakdown
-              </p>
+              <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">Sample answer with paragraph-by-paragraph breakdown</p>
 
               <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
                 <Accordion type="single" collapsible className="w-full space-y-2">
