@@ -143,6 +143,7 @@ export default function WritingTask1() {
   const [showPreview, setShowPreview] = useState(false);
   const [previewQuestion, setPreviewQuestion] = useState("");
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const [hasGeneratedChart, setHasGeneratedChart] = useState(false);
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
@@ -163,25 +164,28 @@ export default function WritingTask1() {
     
     setPreviewQuestion(`**IELTS Writing Task 1:** ${question.trim()}`);
     setShowPreview(true);
+    setHasGeneratedChart(false); // This is from user input, not generated
   };
 
   const handleRandomQuestion = () => {
     const randomQuestions = [
       "The diagram below shows the process of making soft cheese. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
-      "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2015. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
       "The line graph below shows the consumption of fish and some different kinds of meat in a European country between 1979 and 2004. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
       "The table below shows the percentage of mobile phone owners using various mobile phone features. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
       "The pie charts below show the comparison of different kinds of energy production of France in two years. Summarise the information by selecting and reporting the main features and make comparisons where relevant."
     ];
     
     const randomIndex = Math.floor(Math.random() * randomQuestions.length);
-    setPreviewQuestion(`**IELTS Writing Task 1:** ${randomQuestions[randomIndex]}`);
-    setShowPreview(true);
+    const selectedQuestion = randomQuestions[randomIndex];
     
-    // Create a simulated image file to satisfy validation requirements
-    const simulatedImageBlob = new Blob(['simulated chart data'], { type: 'image/png' });
-    const simulatedFile = new File([simulatedImageBlob], 'generated-chart.png', { type: 'image/png' });
-    setUploadedImage(simulatedFile);
+    // Fill the question into the input area
+    setQuestion(selectedQuestion);
+    setPreviewQuestion(`**IELTS Writing Task 1:** ${selectedQuestion}`);
+    setShowPreview(true);
+    setHasGeneratedChart(true);
+    
+    // DO NOT set uploadedImage - keep upload box in default state
     
     toast({
       title: "Question and chart generated",
@@ -242,11 +246,11 @@ export default function WritingTask1() {
   };
 
   const handleStartWriting = () => {
-    // Check if we have a valid preview (both question and image are required)
-    if (!showPreview || !previewQuestion.trim() || !uploadedImage) {
+    // Check if we have a valid preview with either uploaded image or generated chart
+    if (!showPreview || !previewQuestion.trim() || (!uploadedImage && !hasGeneratedChart)) {
       toast({
         title: "Required fields missing",
-        description: "Please enter your Task 1 question and upload an image to proceed.",
+        description: "Please enter your Task 1 question and either upload an image or generate a random question with chart.",
         variant: "destructive",
       });
       return;
@@ -257,7 +261,8 @@ export default function WritingTask1() {
       question: previewQuestion,
       questionType: questionType || "general",
       bandLevel: bandLevel || "6.0",
-      timeLimit: timeLimit
+      timeLimit: timeLimit,
+      hasGeneratedChart: hasGeneratedChart
     };
     
     sessionStorage.setItem('task1WritingConfig', JSON.stringify(config));
@@ -341,7 +346,14 @@ export default function WritingTask1() {
         <Textarea
           placeholder="Enter your Task 1 question here. Once you've added content, the 'Use my question' button will become available."
           value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          onChange={(e) => {
+            setQuestion(e.target.value);
+            // If user manually edits the question, reset generated chart state
+            if (hasGeneratedChart && e.target.value !== question) {
+              setHasGeneratedChart(false);
+              setShowPreview(false);
+            }
+          }}
           className="min-h-[80px] text-sm text-gray-600"
         />
       </div>
@@ -414,8 +426,8 @@ export default function WritingTask1() {
               </p>
             </div>
             
-            {/* Chart Preview */}
-            <Task1PreviewChart />
+            {/* Chart Preview - Only show for generated charts */}
+            {hasGeneratedChart && <Task1PreviewChart />}
           </div>
         </div>
       )}
