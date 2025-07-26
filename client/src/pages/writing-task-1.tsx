@@ -179,8 +179,8 @@ export default function WritingTask1() {
     const randomIndex = Math.floor(Math.random() * randomQuestions.length);
     const selectedQuestion = randomQuestions[randomIndex];
     
-    // Fill the question into the input area
-    setQuestion(selectedQuestion);
+    // DO NOT fill the question into the textarea - keep it empty for user input
+    // Only set the preview question and display the chart
     setPreviewQuestion(`**IELTS Writing Task 1:** ${selectedQuestion}`);
     setShowPreview(true);
     setHasGeneratedChart(true);
