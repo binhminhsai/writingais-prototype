@@ -299,17 +299,25 @@ export default function WritingTask1() {
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select band level">
                 {bandLevel === "5.0" && "Band 5.0"}
+                {bandLevel === "5.5" && "Band 5.5"}
                 {bandLevel === "6.0" && "Band 6.0"}
+                {bandLevel === "6.5" && "Band 6.5"}
                 {bandLevel === "7.0" && "Band 7.0"}
+                {bandLevel === "7.5" && "Band 7.5"}
                 {bandLevel === "8.0" && "Band 8.0"}
+                {bandLevel === "8.5" && "Band 8.5"}
                 {!bandLevel && "Select band level"}
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="5.0">Band 5.0</SelectItem>
+              <SelectItem value="5.5">Band 5.5</SelectItem>
               <SelectItem value="6.0">Band 6.0</SelectItem>
+              <SelectItem value="6.5">Band 6.5</SelectItem>
               <SelectItem value="7.0">Band 7.0</SelectItem>
+              <SelectItem value="7.5">Band 7.5</SelectItem>
               <SelectItem value="8.0">Band 8.0</SelectItem>
+              <SelectItem value="8.5">Band 8.5</SelectItem>
             </SelectContent>
           </Select>
         </div>
