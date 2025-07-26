@@ -44,7 +44,7 @@ export default function Home() {
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <BarChart3 className="h-5 w-5 text-blue-600" /> Writing Task 1
+              <BarChart3 className="h-5 w-5 text-blue-600" /> Writing Task 2
             </CardTitle>
             <CardDescription>
               Practice academic writing based on visuals like charts and tables.
