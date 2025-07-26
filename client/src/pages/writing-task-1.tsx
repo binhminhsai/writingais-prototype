@@ -232,10 +232,10 @@ export default function WritingTask1() {
   };
 
   const handleStartWriting = () => {
-    if (!showPreview) {
+    if (!showPreview || !previewQuestion.trim()) {
       toast({
-        title: "No question selected",
-        description: "Please select a question first before starting to write.",
+        title: "Required fields missing",
+        description: "Please enter your Task 1 question and upload an image to proceed.",
         variant: "destructive",
       });
       return;
@@ -430,7 +430,6 @@ export default function WritingTask1() {
         <Button 
           className="bg-teal-600 hover:bg-teal-700 text-white px-8"
           onClick={handleStartWriting}
-          disabled={!showPreview}
         >
           Start Writing
         </Button>
