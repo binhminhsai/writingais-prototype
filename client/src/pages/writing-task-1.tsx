@@ -273,7 +273,7 @@ export default function WritingTask1() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-2xl font-semibold text-gray-900 mb-8">Writing Practice Task 1</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 mb-8">IELTS Writing Task 1 Practice</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Select Question Type */}
         <div>
