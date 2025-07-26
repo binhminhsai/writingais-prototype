@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -34,6 +34,27 @@ import { getTask1Outline } from "@/data/task1-outlines";
 import { getTask1Vocabulary } from "@/data/task1-vocabulary";
 import { getTask1Phrases, task1PhraseCategories } from "@/data/task1-phrases";
 import { Link } from "wouter";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip as ChartTooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  ChartTooltip,
+  Legend
+);
 
 interface Task1WritingInterfaceProps {
   question: string;
@@ -401,6 +422,112 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   );
 }
 
+// Chart component for Task 1 data visualization
+function Task1Chart() {
+  const chartData = {
+    labels: ['2010', '2011', '2012', '2013', '2014', '2015'],
+    datasets: [
+      {
+        label: 'Mathematics (Male)',
+        data: [65, 68, 72, 75, 78, 82],
+        borderColor: 'rgb(59, 130, 246)',
+        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        tension: 0.1,
+      },
+      {
+        label: 'Mathematics (Female)',
+        data: [62, 66, 70, 74, 77, 80],
+        borderColor: 'rgb(236, 72, 153)',
+        backgroundColor: 'rgba(236, 72, 153, 0.1)',
+        tension: 0.1,
+      },
+      {
+        label: 'Science (Male)',
+        data: [58, 61, 65, 68, 71, 75],
+        borderColor: 'rgb(34, 197, 94)',
+        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+        tension: 0.1,
+      },
+      {
+        label: 'Science (Female)',
+        data: [55, 59, 63, 66, 69, 73],
+        borderColor: 'rgb(168, 85, 247)',
+        backgroundColor: 'rgba(168, 85, 247, 0.1)',
+        tension: 0.1,
+      },
+      {
+        label: 'English (Male)',
+        data: [72, 74, 76, 78, 80, 83],
+        borderColor: 'rgb(245, 158, 11)',
+        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+        tension: 0.1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+        labels: {
+          font: {
+            size: 11
+          }
+        }
+      },
+      title: {
+        display: true,
+        text: 'High School Competency Exam Pass Rates by Subject and Gender (2010-2015)',
+        font: {
+          size: 12
+        }
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: {
+          font: {
+            size: 10
+          }
+        },
+        title: {
+          display: true,
+          text: 'Pass Rate (%)',
+          font: {
+            size: 11
+          }
+        }
+      },
+      x: {
+        ticks: {
+          font: {
+            size: 10
+          }
+        },
+        title: {
+          display: true,
+          text: 'Year',
+          font: {
+            size: 11
+          }
+        }
+      }
+    },
+  };
+
+  return (
+    <div className="bg-white rounded-md p-4 mb-3 border-2 border-gray-200 shadow-sm">
+      <div style={{ height: '300px' }}>
+        <Line data={chartData} options={options} />
+      </div>
+    </div>
+  );
+}
+
 export default function Task1WritingInterface({ question, questionType, bandLevel, timeLimit }: Task1WritingInterfaceProps) {
   const [essayContent, setEssayContent] = useState("");
   const [wordCount, setWordCount] = useState(0);
@@ -467,8 +594,10 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
         <div className="lg:w-3/5">
           <div className="bg-cyan-50 rounded-md p-4 mb-3 border-2 border-cyan-200 shadow-sm">
             <div className="text-cyan-700 font-medium mb-1">Task 1 Question:</div>
-            <div className="text-gray-700 text-sm">{question}</div>
+            <div className="text-gray-700 text-sm">The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.</div>
           </div>
+
+          <Task1Chart />
 
           <div className="flex items-center justify-between mb-2 h-8">
             <Timer 
