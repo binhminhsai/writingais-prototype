@@ -283,24 +283,24 @@ export default function WritingTask1() {
           <Select value={questionType} onValueChange={setQuestionType}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select question type">
-                {questionType === "bar-charts" && "Bar Charts"}
-                {questionType === "line-charts" && "Line Charts"}
-                {questionType === "tables" && "Tables"}
-                {questionType === "pie-charts" && "Pie Charts"}
-                {questionType === "process-diagrams" && "Process Diagrams"}
-                {questionType === "maps" && "Maps"}
-                {questionType === "combinations" && "Combinations"}
+                {questionType === "line-graph" && "Line Graph"}
+                {questionType === "bar-chart" && "Bar Chart"}
+                {questionType === "pie-chart" && "Pie Chart"}
+                {questionType === "process-diagram" && "Process Diagram"}
+                {questionType === "table" && "Table"}
+                {questionType === "map" && "Map"}
+                {questionType === "multiple-graphs" && "Multiple Graphs"}
                 {!questionType && "Select question type"}
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="bar-charts">Bar Charts</SelectItem>
-              <SelectItem value="line-charts">Line Charts</SelectItem>
-              <SelectItem value="tables">Tables</SelectItem>
-              <SelectItem value="pie-charts">Pie Charts</SelectItem>
-              <SelectItem value="process-diagrams">Process Diagrams</SelectItem>
-              <SelectItem value="maps">Maps</SelectItem>
-              <SelectItem value="combinations">Combinations</SelectItem>
+              <SelectItem value="line-graph">Line Graph</SelectItem>
+              <SelectItem value="bar-chart">Bar Chart</SelectItem>
+              <SelectItem value="pie-chart">Pie Chart</SelectItem>
+              <SelectItem value="process-diagram">Process Diagram</SelectItem>
+              <SelectItem value="table">Table</SelectItem>
+              <SelectItem value="map">Map</SelectItem>
+              <SelectItem value="multiple-graphs">Multiple Graphs</SelectItem>
             </SelectContent>
           </Select>
         </div>
