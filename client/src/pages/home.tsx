@@ -20,30 +20,6 @@ export default function Home() {
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <FileEdit className="h-5 w-5 text-primary" /> Writing Task 2
-            </CardTitle>
-            <CardDescription>
-              Practice writing for different tests and scenarios
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <p className="text-gray-600">
-              Choose from IELTS, TOEFL, general essays, or business writing. Select
-              your difficulty level and get personalized feedback.
-            </p>
-          </CardContent>
-          <CardFooter>
-            <Link href="/writing-practice">
-              <Button className="w-full">
-                Start Practice <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-
-        <Card className="flex flex-col">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-blue-600" /> Writing Task 1
             </CardTitle>
             <CardDescription>
@@ -60,6 +36,30 @@ export default function Home() {
             <Link href="/writing-task-1">
               <Button className="w-full">
                 Start Now <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </CardFooter>
+        </Card>
+
+        <Card className="flex flex-col">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <FileEdit className="h-5 w-5 text-primary" /> Writing Task 2
+            </CardTitle>
+            <CardDescription>
+              Practice writing for different tests and scenarios
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex-grow">
+            <p className="text-gray-600">
+              Choose from IELTS, TOEFL, general essays, or business writing. Select
+              your difficulty level and get personalized feedback.
+            </p>
+          </CardContent>
+          <CardFooter>
+            <Link href="/writing-practice">
+              <Button className="w-full">
+                Start Practice <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </CardFooter>
