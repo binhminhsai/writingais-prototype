@@ -232,10 +232,21 @@ export default function WritingTask1() {
   };
 
   const handleStartWriting = () => {
-    if (!showPreview || !previewQuestion.trim()) {
+    // Check if question is provided
+    if (!previewQuestion.trim()) {
       toast({
-        title: "Required fields missing",
-        description: "Please enter your Task 1 question and upload an image to proceed.",
+        title: "Question required",
+        description: "Please enter your Task 1 question to proceed.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Check if image is uploaded
+    if (!uploadedImage) {
+      toast({
+        title: "Image required", 
+        description: "Please upload an image (chart/diagram/table) to proceed.",
         variant: "destructive",
       });
       return;
