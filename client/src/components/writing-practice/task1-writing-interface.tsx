@@ -421,14 +421,14 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
               className="flex-1 text-xs py-2 px-3 font-medium transition-all rounded-md
                       text-gray-600 hover:text-gray-800
                       data-[state=active]:bg-teal-500 data-[state=active]:text-white data-[state=active]:shadow-sm"
-            >Vocabulary</TabsTrigger>
+            >Chart-specific Vocabulary</TabsTrigger>
             <TabsTrigger 
               value="topic" 
               className="flex-1 text-xs py-2 px-3 font-medium transition-all rounded-md
                       text-gray-600 hover:text-gray-800
                       data-[state=active]:bg-gray-100 data-[state=active]:text-gray-700"
             >
-              Useful collocations
+              Trend collocations
             </TabsTrigger>
           </TabsList>
           
