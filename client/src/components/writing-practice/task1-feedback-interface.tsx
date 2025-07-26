@@ -475,7 +475,7 @@ However, renewable energy sources is projected to experience substantial growth,
                   <h3 className="text-lg font-semibold text-blue-600">Feedback</h3>
                 </div>
                 <p className="text-gray-700 leading-relaxed">
-                  The response effectively addresses the Task 1 requirements by providing a clear overview of the main trends and supporting details with specific data from the chart. The essay demonstrates good understanding of the visual information and presents key features logically. However, some comparisons could be more detailed and precise to enhance the analysis further.
+                  The response covers the requirements of the task and provides a relevant overview. Key features are adequately highlighted, such as email and online purchases. However, the response could be more fully illustrated with data. While an overview is present and relevant, the analysis lacks depth in terms of comparing and contrasting the trends across different age groups, particularly with respect to the 'Information Gathering' and 'Social Networking' categories. Some information is missing, and further extension is needed to achieve a higher band. While the main trends are identified, the support is not always precise and comprehensive.
                 </p>
               </div>
 
@@ -488,19 +488,15 @@ However, renewable energy sources is projected to experience substantial growth,
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Provides a clear overview paragraph that effectively summarizes the main trends in energy consumption.</span>
+                    <span>The overview appropriately identifies variations in internet use across age groups.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Includes specific data points and figures that accurately reflect the information in the chart.</span>
+                    <span>The essay accurately notes the high usage of email across all age groups.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Covers all major energy sources mentioned in the chart with relevant details.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Demonstrates appropriate Task 1 language for describing trends and changes over time.</span>
+                    <span>Key trends, like the decline of online gaming with age, are identified.</span>
                   </li>
                 </ul>
               </div>
@@ -514,11 +510,19 @@ However, renewable energy sources is projected to experience substantial growth,
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Could include more detailed comparisons between different energy sources at specific time points.</span>
+                    <span>Lacks comprehensive coverage of all key features in the table.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Some trends could be described with more precision and analytical depth.</span>
+                    <span>Could be more fully illustrated with specific data points.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>The overview could provide a more nuanced summary of the main trends and relationships.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Missing specific discussion about 'Information Gathering' and 'Social Networking' categories.</span>
                   </li>
                 </ul>
               </div>
@@ -532,11 +536,19 @@ However, renewable energy sources is projected to experience substantial growth,
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Add more comparative analysis between energy sources, highlighting which increased/decreased most significantly.</span>
+                    <span>Include specific data points to support each trend identified to enhance the analysis. For example, provide percentages for the 'Social Networking' and 'Information Gathering' categories across different age groups.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Use more varied vocabulary for describing trends (e.g., "fluctuated," "surged," "plummeted").</span>
+                    <span>Expand the overview to include a broader summary of all categories.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Make direct comparisons between age groups for all internet activities.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-sm">•</span>
+                    <span>Include all key features: Information Gathering and Social Networking trends need attention.</span>
                   </li>
                 </ul>
               </div>
