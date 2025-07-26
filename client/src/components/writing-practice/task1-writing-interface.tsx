@@ -218,7 +218,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
               </p>
 
               <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
-                <Accordion type="single" collapsible defaultValue="image-description" className="w-full space-y-2">
+                <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Accordion 1: Image Description */}
                   <AccordionItem 
                     value="image-description"
