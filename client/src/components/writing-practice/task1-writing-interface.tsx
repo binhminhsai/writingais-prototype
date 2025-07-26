@@ -90,7 +90,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                         data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
               >
                 <Layers className="h-4 w-4" />
-                Suggested Outline
+                Sample
               </TabsTrigger>
             </TabsList>
           </div>
