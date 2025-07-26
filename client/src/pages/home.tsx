@@ -52,8 +52,7 @@ export default function Home() {
           </CardHeader>
           <CardContent className="flex-grow">
             <p className="text-gray-600">
-              Choose from IELTS, TOEFL, general essays, or business writing. Select
-              your difficulty level and get personalized feedback.
+              Write IELTS Task 2 essays on various topics and get personalized band scores and feedback instantly.
             </p>
           </CardContent>
           <CardFooter>
