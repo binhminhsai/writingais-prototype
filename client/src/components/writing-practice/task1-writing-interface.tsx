@@ -33,6 +33,7 @@ import {
 import { getTask1Outline } from "@/data/task1-outlines";
 import { getTask1Vocabulary } from "@/data/task1-vocabulary";
 import { getTask1Phrases, task1PhraseCategories } from "@/data/task1-phrases";
+import { Task1FeedbackInterface } from "./task1-feedback-interface";
 import { Link } from "wouter";
 import {
   Chart as ChartJS,
@@ -922,6 +923,7 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
   const [showTimeUpDialog, setShowTimeUpDialog] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [showExitDialog, setShowExitDialog] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
 
   const { formattedTime, isRunning, startTimer, updateTimer } = useTimer({
     initialMinutes: timeLimit === "no-limit" ? 0 : parseInt(timeLimit),
@@ -953,8 +955,8 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
       setShowErrorDialog(true);
       return;
     }
-    // Handle submit logic for Task 1
-    console.log("Submitting Task 1 essay:", essayContent);
+    // Show feedback interface
+    setShowFeedback(true);
   };
 
   const handleSaveDraft = () => {
@@ -963,6 +965,20 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
     localStorage.setItem('task1Question', question);
     alert('Task 1 draft saved successfully');
   };
+
+  // Show feedback interface after submission
+  if (showFeedback) {
+    return (
+      <Task1FeedbackInterface
+        essayContent={essayContent}
+        onTryAgain={() => setShowFeedback(false)}
+        onNextPractice={() => {
+          // Handle next practice logic
+          console.log("Next practice");
+        }}
+      />
+    );
+  }
 
   return (
     <div className="p-4">
