@@ -412,7 +412,6 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   return (
     <Card className="border border-gray-200 shadow-sm">
       <CardHeader className="py-2 px-3 bg-gray-50 border-b border-gray-200">
-        <h3 className="font-medium text-xs">Vocabulary & Phrases</h3>
       </CardHeader>
       <CardContent className="p-0">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
