@@ -758,24 +758,24 @@ However, renewable energy sources is projected to experience substantial growth,
                 </ul>
               </div>
 
-              {/* Specific Suggestions */}
+              {/* Grammar Focus */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <AlertTriangle className="h-5 w-5 text-orange-600" />
-                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
+                  <h3 className="text-lg font-semibold text-orange-600">Grammar Focus</h3>
                 </div>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Carefully check subject-verb agreement, especially with singular/plural forms.</span>
+                    <span>Check for subject-verb agreement errors.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Practice using more sophisticated grammatical structures for complex data relationships.</span>
+                    <span>Review the correct use of articles (a, an, the).</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-sm">•</span>
-                    <span>Review pronoun agreement when referring back to plural subjects like "energy sources."</span>
+                    <span>Pay attention to proper tense usage, especially when describing trends.</span>
                   </li>
                 </ul>
               </div>
