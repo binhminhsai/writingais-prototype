@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Upload, Info, Shuffle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
 
 export default function WritingTask1() {
   const [questionType, setQuestionType] = useState("");
@@ -17,6 +18,7 @@ export default function WritingTask1() {
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
 
 
 
@@ -100,6 +102,30 @@ export default function WritingTask1() {
         });
       }
     }
+  };
+
+  const handleStartWriting = () => {
+    if (!showPreview) {
+      toast({
+        title: "No question selected",
+        description: "Please select a question first before starting to write.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Save configuration to sessionStorage
+    const config = {
+      question: previewQuestion,
+      questionType: questionType || "general",
+      bandLevel: bandLevel || "6.0",
+      timeLimit: timeLimit
+    };
+    
+    sessionStorage.setItem('task1WritingConfig', JSON.stringify(config));
+    
+    // Navigate to writing interface
+    setLocation('/writing-task-1/practice');
   };
 
   return (
@@ -279,7 +305,11 @@ export default function WritingTask1() {
           </Select>
         </div>
 
-        <Button className="bg-teal-600 hover:bg-teal-700 text-white px-8">
+        <Button 
+          className="bg-teal-600 hover:bg-teal-700 text-white px-8"
+          onClick={handleStartWriting}
+          disabled={!showPreview}
+        >
           Start Writing
         </Button>
       </div>
