@@ -20,10 +20,14 @@ export type WritingTestType =
   | "business";
 
 export type DifficultyLevel = 
-  | "easy" 
-  | "medium" 
-  | "hard" 
-  | "expert";
+  | "band-5.0"
+  | "band-5.5" 
+  | "band-6.0"
+  | "band-6.5" 
+  | "band-7.0"
+  | "band-7.5"
+  | "band-8.0"
+  | "band-8.5";
 
 interface TestSetupProps {
   onStart: (config: {
@@ -36,7 +40,7 @@ interface TestSetupProps {
 
 export function TestSetup({ onStart }: TestSetupProps) {
   const [testType, setTestType] = useState<WritingTestType>("ielts-task2");
-  const [difficulty, setDifficulty] = useState<DifficultyLevel>("medium");
+  const [difficulty, setDifficulty] = useState<DifficultyLevel>("band-6.0");
   const [topic, setTopic] = useState("");
   const [fixedTestType, setFixedTestType] = useState<WritingTestType | null>(null);
   const [timeLimit, setTimeLimit] = useState(30);
@@ -132,17 +136,25 @@ export function TestSetup({ onStart }: TestSetupProps) {
           >
             <SelectTrigger id="difficulty">
               <SelectValue>
-                {difficulty === "easy" && "Band 5.0"}
-                {difficulty === "medium" && "Band 6.0"}
-                {difficulty === "hard" && "Band 7.0"}
-                {difficulty === "expert" && "Band 8.0"}
+                {difficulty === "band-5.0" && "Band 5.0"}
+                {difficulty === "band-5.5" && "Band 5.5"}
+                {difficulty === "band-6.0" && "Band 6.0"}
+                {difficulty === "band-6.5" && "Band 6.5"}
+                {difficulty === "band-7.0" && "Band 7.0"}
+                {difficulty === "band-7.5" && "Band 7.5"}
+                {difficulty === "band-8.0" && "Band 8.0"}
+                {difficulty === "band-8.5" && "Band 8.5"}
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="easy">Band 5.0</SelectItem>
-              <SelectItem value="medium">Band 6.0</SelectItem>
-              <SelectItem value="hard">Band 7.0</SelectItem>
-              <SelectItem value="expert">Band 8.0</SelectItem>
+              <SelectItem value="band-5.0">Band 5.0</SelectItem>
+              <SelectItem value="band-5.5">Band 5.5</SelectItem>
+              <SelectItem value="band-6.0">Band 6.0</SelectItem>
+              <SelectItem value="band-6.5">Band 6.5</SelectItem>
+              <SelectItem value="band-7.0">Band 7.0</SelectItem>
+              <SelectItem value="band-7.5">Band 7.5</SelectItem>
+              <SelectItem value="band-8.0">Band 8.0</SelectItem>
+              <SelectItem value="band-8.5">Band 8.5</SelectItem>
             </SelectContent>
           </Select>
         </div>
