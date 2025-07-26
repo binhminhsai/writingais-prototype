@@ -416,20 +416,20 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       </CardHeader>
       <CardContent className="p-0">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="w-full flex gap-0 bg-gray-50 rounded-none p-0 border-b border-gray-200">
+          <TabsList className="w-full flex gap-1 bg-white rounded-lg p-1 border-none">
             <TabsTrigger 
               value="vocabulary" 
-              className="flex-1 text-xs py-2 px-3 font-medium transition-all
-                      hover:bg-gray-100
-                      data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary"
-            >Structure Vocabulary</TabsTrigger>
+              className="flex-1 text-xs py-2 px-3 font-medium transition-all rounded-md
+                      text-gray-600 hover:text-gray-800
+                      data-[state=active]:bg-teal-500 data-[state=active]:text-white data-[state=active]:shadow-sm"
+            >Vocabulary</TabsTrigger>
             <TabsTrigger 
               value="topic" 
-              className="flex-1 text-xs py-2 px-3 font-medium transition-all
-                      hover:bg-gray-100
-                      data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary"
+              className="flex-1 text-xs py-2 px-3 font-medium transition-all rounded-md
+                      text-gray-600 hover:text-gray-800
+                      data-[state=active]:bg-gray-100 data-[state=active]:text-gray-700"
             >
-              Topic-specific Vocabulary
+              Useful collocations
             </TabsTrigger>
           </TabsList>
           
