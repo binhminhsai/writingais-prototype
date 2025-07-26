@@ -491,6 +491,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       partOfSpeech: "Adj",
       difficulty: "B2",
       meaning: "Có thể duy trì được lâu dài, bền vững",
+      chartFunction: "Mô tả sự phát triển lâu dài",
       example: "Companies are trying to develop more sustainable business practices.",
       type: "positive"
     },
@@ -499,6 +500,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       partOfSpeech: "V",
       difficulty: "B2",
       meaning: "Thực hiện, triển khai",
+      chartFunction: "Mô tả việc thực hiện các biện pháp",
       example: "The government plans to implement new environmental regulations next year.",
       type: "neutral"
     },
@@ -507,6 +509,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       partOfSpeech: "Adj",
       difficulty: "C1",
       meaning: "Chưa từng có trước đây, chưa từng thấy",
+      chartFunction: "Mô tả mức độ cao bất thường",
       example: "The pandemic caused unprecedented disruption to global supply chains.",
       type: "neutral"
     },
@@ -515,6 +518,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       partOfSpeech: "V",
       difficulty: "C1",
       meaning: "Làm giảm, làm dịu bớt",
+      chartFunction: "Mô tả sự giảm thiểu tác động tiêu cực",
       example: "Companies are taking steps to mitigate their environmental impact.",
       type: "positive"
     }
@@ -537,6 +541,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       partOfSpeech: "Collocations",
       difficulty: "B2",
       meaning: "Thể hiện xu hướng tăng",
+      chartFunction: "Mô tả xu hướng tăng trưởng",
       example: "The graph shows an upward trend in online shopping.",
       type: "positive"
     },
@@ -545,6 +550,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       partOfSpeech: "Collocations",
       difficulty: "B1",
       meaning: "Duy trì ổn định",
+      chartFunction: "Mô tả sự ổn định không thay đổi",
       example: "House prices remained stable throughout the year.",
       type: "neutral"
     },
@@ -553,6 +559,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       partOfSpeech: "Collocations",
       difficulty: "B2",
       meaning: "Trải qua sự suy giảm",
+      chartFunction: "Mô tả xu hướng giảm sút",
       example: "The industry experienced a decline in profits.",
       type: "negative"
     },
@@ -561,6 +568,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       partOfSpeech: "Collocations",
       difficulty: "B2",
       meaning: "Đạt đỉnh cao nhất",
+      chartFunction: "Mô tả điểm cao nhất trên biểu đồ",
       example: "Sales reached their peak during the holiday season.",
       type: "positive"
     }
@@ -679,6 +687,9 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
                         <p className="text-xs text-gray-700 mb-1">
                           <span className="font-medium">Meaning:</span> {word.meaning}
                         </p>
+                        <p className="text-xs text-orange-700 mb-1">
+                          <span className="font-medium">Chart Function:</span> {word.chartFunction}
+                        </p>
                         <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
                           <span className="font-medium not-italic">Example:</span> {word.example}
                         </p>
@@ -757,6 +768,9 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
                       </div>
                       <p className="text-xs text-gray-700 mb-1">
                         <span className="font-medium">Meaning:</span> {phrase.meaning}
+                      </p>
+                      <p className="text-xs text-orange-700 mb-1">
+                        <span className="font-medium">Chart Function:</span> {phrase.chartFunction}
                       </p>
                       <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
                         <span className="font-medium not-italic">Example:</span> {phrase.example}

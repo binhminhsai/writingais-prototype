@@ -3,6 +3,7 @@ export interface Task1VocabularyWord {
   partOfSpeech: "N" | "V" | "Adj" | "Adv" | "Phrase";
   difficulty: "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
   meaning: string;
+  chartFunction: string;
   example: string;
 }
 
@@ -23,6 +24,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "V",
         difficulty: "B2",
         meaning: "Dao động, biến động",
+        chartFunction: "Mô tả xu hướng thay đổi không ổn định",
         example: "The data shows that prices fluctuated significantly throughout the period."
       },
       {
@@ -30,6 +32,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "N",
         difficulty: "B1",
         meaning: "Đỉnh cao, mức cao nhất",
+        chartFunction: "Mô tả điểm cao nhất trong biểu đồ",
         example: "The graph reached its peak in December 2023."
       },
       {
@@ -37,6 +40,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "V",
         difficulty: "B1",
         meaning: "Giảm, suy giảm",
+        chartFunction: "Mô tả xu hướng giảm",
         example: "Sales declined steadily from March to August."
       },
       {
@@ -44,6 +48,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "V",
         difficulty: "B2",
         meaning: "Tăng vọt, tăng mạnh",
+        chartFunction: "Mô tả sự tăng đột ngột và mạnh mẽ",
         example: "The number of applications surged dramatically in the final quarter."
       },
       {
@@ -51,6 +56,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "V",
         difficulty: "C1",
         meaning: "Đạt mức ổn định, không thay đổi",
+        chartFunction: "Mô tả trạng thái ổn định sau thay đổi",
         example: "After a period of growth, the figures plateaued at around 500."
       }
     ]
@@ -64,6 +70,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B2",
         meaning: "Xu hướng tăng",
+        chartFunction: "Mô tả xu hướng tăng tổng thể",
         example: "The chart illustrates a clear upward trend in renewable energy consumption."
       },
       {
@@ -71,6 +78,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B2",
         meaning: "Xu hướng giảm",
+        chartFunction: "Mô tả xu hướng giảm tổng thể",
         example: "There was a notable downward trend in traditional media usage."
       },
       {
@@ -78,6 +86,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B2",
         meaning: "Mô hình nhất quán",
+        chartFunction: "Mô tả sự lặp lại đều đặn của dữ liệu",
         example: "The data reveals a consistent pattern of growth during summer months."
       },
       {
@@ -85,6 +94,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B1",
         meaning: "Tăng dần",
+        chartFunction: "Mô tả sự tăng từ từ và liên tục",
         example: "The graph shows a gradual increase in online shopping from 2020 to 2023."
       },
       {
@@ -92,6 +102,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B2",
         meaning: "Tăng mạnh",
+        chartFunction: "Mô tả sự tăng nhanh và dốc",
         example: "The chart depicts a steep rise in unemployment during the economic crisis."
       }
     ]
@@ -105,6 +116,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "V",
         difficulty: "B2",
         meaning: "Vượt quá",
+        chartFunction: "So sánh giá trị cao hơn mức chuẩn",
         example: "Online sales exceeded traditional retail sales by 30% in 2023."
       },
       {
@@ -112,6 +124,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B2",
         meaning: "Tụt lại phía sau",
+        chartFunction: "So sánh giá trị thấp hơn trong đối chiếu",
         example: "Rural areas lagged behind urban centers in internet adoption."
       },
       {
@@ -119,6 +132,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "C1",
         meaning: "Cao hơn một chút",
+        chartFunction: "So sánh sự chênh lệch nhỏ về mặt tích cực",
         example: "The results were marginally higher than the previous year's figures."
       },
       {
@@ -126,6 +140,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B2",
         meaning: "Thấp hơn đáng kể",
+        chartFunction: "So sánh sự chênh lệch lớn về mặt tiêu cực",
         example: "Production costs were substantially lower in developing countries."
       },
       {
@@ -133,6 +148,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B2",
         meaning: "Tương đương",
+        chartFunction: "So sánh sự tương đồng giữa các giá trị",
         example: "The two regions showed roughly equivalent growth rates."
       }
     ]
@@ -146,6 +162,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Adv",
         difficulty: "C1",
         meaning: "Sau đó",
+        chartFunction: "Mô tả thứ tự thời gian sau sự kiện",
         example: "The market crashed in 2008 and subsequently recovered by 2012."
       },
       {
@@ -153,6 +170,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Adv",
         difficulty: "C1",
         meaning: "Đồng thời",
+        chartFunction: "Mô tả sự đồng thời của hai xu hướng",
         example: "Concurrently, both unemployment and inflation rates increased."
       },
       {
@@ -160,6 +178,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B2",
         meaning: "Trước khi",
+        chartFunction: "Mô tả thời điểm trước một mốc quan trọng",
         example: "Prior to 2020, the trend was relatively stable."
       },
       {
@@ -167,6 +186,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "B1",
         meaning: "Trong suốt thời kỳ",
+        chartFunction: "Mô tả tính liên tục trong khoảng thời gian",
         example: "Sales remained stable throughout the period from 2018 to 2021."
       },
       {
@@ -174,6 +194,7 @@ const task1VocabularyCategories: Task1VocabularyCategory[] = [
         partOfSpeech: "Phrase",
         difficulty: "C1",
         meaning: "Trong thời gian tạm thời",
+        chartFunction: "Mô tả giai đoạn trung gian giữa hai sự kiện",
         example: "The company launched new products, and in the interim, profits doubled."
       }
     ]
@@ -192,6 +213,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "N",
           difficulty: "B1",
           meaning: "Hạng mục, danh mục",
+          chartFunction: "Mô tả phần phân loại trong biểu đồ",
           example: "The bar chart compares data across five different categories."
         },
         {
@@ -199,6 +221,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "Phrase",
           difficulty: "B2",
           meaning: "Trục dọc",
+          chartFunction: "Mô tả trục Y trong biểu đồ",
           example: "The vertical axis represents the number of participants."
         },
         {
@@ -206,6 +229,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "Phrase",
           difficulty: "B2",
           meaning: "Trục ngang",
+          chartFunction: "Mô tả trục X trong biểu đồ",
           example: "The horizontal axis shows the different time periods."
         }
       ]
@@ -221,6 +245,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "Phrase",
           difficulty: "B2",
           meaning: "Điểm dữ liệu",
+          chartFunction: "Mô tả các điểm trên đường biểu đồ",
           example: "Each data point on the line represents monthly sales figures."
         },
         {
@@ -228,6 +253,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "N",
           difficulty: "B2",
           meaning: "Điểm giao nhau",
+          chartFunction: "Mô tả nơi hai đường gặp nhau",
           example: "The two lines show an intersection at the 50% mark."
         },
         {
@@ -235,6 +261,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "N",
           difficulty: "C1",
           meaning: "Quỹ đạo, đường đi",
+          chartFunction: "Mô tả hướng di chuyển của đường biểu đồ",
           example: "The trajectory of the line indicates continued growth."
         }
       ]
@@ -250,6 +277,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "N",
           difficulty: "B1",
           meaning: "Phần, đoạn",
+          chartFunction: "Mô tả phần trăm hoặc số lượng",
           example: "The largest segment of the pie chart represents online sales."
         },
         {
@@ -257,6 +285,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "N",
           difficulty: "B2",
           meaning: "Tỷ lệ",
+          chartFunction: "Mô tả tỷ lệ phần trăm trong biểu đồ",
           example: "The proportion of renewable energy increased to 40%."
         },
         {
@@ -264,6 +293,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "V",
           difficulty: "B2",
           meaning: "Tạo thành, chiếm",
+          chartFunction: "Mô tả sự cấu thành của toàn bộ",
           example: "Manufacturing constitutes the largest portion of the economy."
         }
       ]
@@ -279,6 +309,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "N",
           difficulty: "B1",
           meaning: "Cột",
+          chartFunction: "Mô tả cột dữ liệu trong bảng",
           example: "The first column shows the countries, while the second shows population data."
         },
         {
@@ -286,6 +317,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "N",
           difficulty: "B1",
           meaning: "Hàng",
+          chartFunction: "Mô tả hàng dữ liệu trong bảng",
           example: "Each row represents data for a different year."
         },
         {
@@ -293,6 +325,7 @@ const topicSpecificVocabulary: Record<string, Task1VocabularyCategory[]> = {
           partOfSpeech: "N",
           difficulty: "B2",
           meaning: "Ô",
+          chartFunction: "Mô tả ô chứa dữ liệu cụ thể",
           example: "The highlighted cell contains the most significant figure."
         }
       ]
