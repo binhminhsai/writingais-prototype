@@ -235,8 +235,15 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="text-xs text-gray-600 italic">
-                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                        <ul className="text-xs space-y-2 list-none">
+                          <li><span className="text-[#1fb2aa] font-bold">• Chart Type:</span> Line Graph</li>
+                          <li><span className="text-[#1fb2aa] font-bold">• Main Subject:</span> Energy consumption in the USA by different sources (petroleum, natural gas, coal, nuclear, renewables)</li>
+                          <li><span className="text-[#1fb2aa] font-bold">• Unit of Measurement:</span> Quadrillion BTU (British Thermal Units)</li>
+                          <li><span className="text-[#1fb2aa] font-bold">• Time Period:</span> From 1980 to 2030 (projected)</li>
+                          <li><span className="text-[#1fb2aa] font-bold">• Verb Tense Used:</span> Combination of Past tense for the period 1980–2008 and Future tense for the projected period 2008–2030</li>
+                          <li><span className="text-[#1fb2aa] font-bold">• Chart Summary:</span> The line graph shows the changes in energy consumption in the USA over time, categorized by different energy sources, including projections for the future.</li>
+                        </ul>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
