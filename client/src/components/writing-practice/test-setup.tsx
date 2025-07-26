@@ -87,7 +87,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <Label htmlFor="writing-type" className="mb-3 block">
-            Select Writing Test Type
+            Select Question Type
           </Label>
           <Select 
             value={testType} 
