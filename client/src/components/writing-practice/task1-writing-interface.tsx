@@ -154,7 +154,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
                 <Smile className="h-4 w-4" />
-                Topic Analysis - Phân tích đề bài
+                Analyze Question - Phân tích câu hỏi
               </h4>
               <div className="p-3 rounded-md border border-gray-200 bg-gray-50 mb-4">
                 <h5 className="font-medium text-sm mb-2">Question Analysis:</h5>
