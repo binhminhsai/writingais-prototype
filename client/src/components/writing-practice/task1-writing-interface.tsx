@@ -187,9 +187,8 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const [activeTab, setActiveTab] = useState("vocabulary");
   const [showVocabulary, setShowVocabulary] = useState(false);
   const [showPhrases, setShowPhrases] = useState(false);
-  const [showWordBank, setShowWordBank] = useState(false);
-  const [loadedPhrases, setLoadedPhrases] = useState<{[key: string]: string[]}>({});
   const [isLoadingPhrases, setIsLoadingPhrases] = useState(false);
+  const [phrasesLoaded, setPhrasesLoaded] = useState(false);
   
   const allVocabulary = getTask1Vocabulary(questionType);
   const phrases = getTask1Phrases();
@@ -208,320 +207,376 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       .map(word => ({ ...word, type: category.type }))
   );
 
-  const handleLoadMorePhrases = async (categoryId: string) => {
-    if (loadedPhrases[categoryId]) return;
+  // Get phrase words from vocabulary data
+  const phraseWords = allVocabulary.flatMap(category => 
+    category.words
+      .filter(word => word.partOfSpeech === "Phrase")
+      .map(word => ({ ...word, type: category.type }))
+  );
+
+  const handleLoadMorePhrases = async () => {
+    if (phrasesLoaded) return;
     
     setIsLoadingPhrases(true);
     
     // Simulate loading delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    const category = phrases.find(cat => 
-      cat.name.toLowerCase().replace(' ', '') === categoryId.toLowerCase()
-    );
-    
-    if (category) {
-      setLoadedPhrases(prev => ({
-        ...prev,
-        [categoryId]: category.phrases
-      }));
-    }
-    
+    setPhrasesLoaded(true);
     setIsLoadingPhrases(false);
   };
 
-  return (
-    <div className="h-full">
-      <Accordion type="single" collapsible className="w-full space-y-1">
-        {/* Vocabulary Section */}
-        <AccordionItem value="vocabulary" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-          <AccordionTrigger 
-            className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
-            onClick={() => setShowVocabulary(!showVocabulary)}
-          >
-            <span className="flex items-center gap-2">
-              <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                V
-              </span>
-              Vocabulary
-            </span>
-          </AccordionTrigger>
-          <AccordionContent className="p-0">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="w-full flex gap-0 bg-gray-50 rounded-none p-0 border-b border-gray-200">
-                <TabsTrigger 
-                  value="vocabulary" 
-                  className="flex-1 text-xs py-2 px-3 font-medium transition-all
-                          hover:bg-gray-100
-                          data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary"
-                >
-                  General Vocabulary
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="topic" 
-                  className="flex-1 text-xs py-2 px-3 font-medium transition-all
-                          hover:bg-gray-100
-                          data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary"
-                >
-                  Topic-specific Vocabulary
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="vocabulary" className="p-3 space-y-2 max-h-64 overflow-y-auto">
-                {vocabularyWords.map((word, index) => (
-                  <div key={index} className="flex flex-wrap items-center gap-2 p-2 border border-gray-100 rounded-lg bg-gray-50">
-                    <div className="flex items-center gap-2">
-                      <Badge 
-                        variant="outline" 
-                        className={`text-xs px-2 py-0.5 ${
-                          word.type === 'positive' ? 'border-green-300 text-green-700' :
-                          word.type === 'negative' ? 'border-red-300 text-red-700' :
-                          word.type === 'academic' ? 'border-blue-300 text-blue-700' :
-                          'border-gray-300 text-gray-700'
-                        }`}
-                      >
-                        {word.partOfSpeech}
-                      </Badge>
-                      <Badge variant="secondary" className="text-xs px-2 py-0.5">
-                        {word.difficulty}
-                      </Badge>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-medium text-gray-900">{word.word}</div>
-                      <div className="text-xs text-gray-600">{word.meaning}</div>
-                      <div className="text-xs text-gray-500 italic mt-1">{word.example}</div>
-                    </div>
-                  </div>
-                ))}
-              </TabsContent>
-              
-              <TabsContent value="topic" className="p-3 space-y-2 max-h-64 overflow-y-auto">
-                {topicSpecificWords.length > 0 ? (
-                  topicSpecificWords.map((word, index) => (
-                    <div key={index} className="flex flex-wrap items-center gap-2 p-2 border border-gray-100 rounded-lg bg-gray-50">
-                      <div className="flex items-center gap-2">
-                        <Badge 
-                          variant="outline" 
-                          className={`text-xs px-2 py-0.5 ${
-                            word.type === 'positive' ? 'border-green-300 text-green-700' :
-                            word.type === 'negative' ? 'border-red-300 text-red-700' :
-                            word.type === 'academic' ? 'border-blue-300 text-blue-700' :
-                            'border-gray-300 text-gray-700'
-                          }`}
-                        >
-                          {word.partOfSpeech}
-                        </Badge>
-                        <Badge variant="secondary" className="text-xs px-2 py-0.5">
-                          {word.difficulty}
-                        </Badge>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium text-gray-900">{word.word}</div>
-                        <div className="text-xs text-gray-600">{word.meaning}</div>
-                        <div className="text-xs text-gray-500 italic mt-1">{word.example}</div>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-sm text-gray-500 text-center py-4">
-                    No topic-specific vocabulary available for {questionType}
-                  </div>
-                )}
-              </TabsContent>
-            </Tabs>
-          </AccordionContent>
-        </AccordionItem>
+  const hasMorePhrases = !phrasesLoaded && phraseWords.length > 0;
 
-        {/* Useful Expressions */}
-        {task1PhraseCategories.map((category, index) => (
-          <AccordionItem 
-            key={category.id} 
-            value={category.id} 
-            className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
-          >
-            <AccordionTrigger 
-              className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+  return (
+    <Card className="border border-gray-200 shadow-sm">
+      <CardHeader className="py-2 px-3 bg-gray-50 border-b border-gray-200">
+        <h3 className="font-medium text-xs">Vocabulary & Phrases</h3>
+      </CardHeader>
+      <CardContent className="p-0">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="w-full flex gap-0 bg-gray-50 rounded-none p-0 border-b border-gray-200">
+            <TabsTrigger 
+              value="vocabulary" 
+              className="flex-1 text-xs py-2 px-3 font-medium transition-all
+                      hover:bg-gray-100
+                      data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary"
             >
-              <span className="flex items-center gap-2">
-                <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                  {index + 1}
-                </span>
-                {category.name}
-              </span>
-            </AccordionTrigger>
-            <AccordionContent className="p-3">
-              {loadedPhrases[category.id] ? (
-                <div className="space-y-2">
-                  {loadedPhrases[category.id].map((phrase, phraseIndex) => (
-                    <div 
-                      key={phraseIndex} 
-                      className="p-2 bg-gray-50 rounded-md border border-gray-100 text-sm text-gray-700"
-                    >
-                      {phrase}
+              General Vocabulary
+            </TabsTrigger>
+            <TabsTrigger 
+              value="topic" 
+              className="flex-1 text-xs py-2 px-3 font-medium transition-all
+                      hover:bg-gray-100
+                      data-[state=active]:bg-white data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary"
+            >
+              Topic-specific Vocabulary
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="vocabulary" className="p-3">
+            {/* General Vocabulary Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+              {vocabularyWords.map((word, index) => (
+                <div key={index} className="p-2 border border-gray-100 rounded-lg bg-gray-50">
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="text-sm font-medium text-gray-900">{word.word}</div>
+                    <div className="flex gap-1">
+                      <div className={`text-xs px-1.5 py-0.5 rounded ${
+                        word.type === 'positive' ? 'bg-green-100 text-green-700' :
+                        word.type === 'negative' ? 'bg-red-100 text-red-700' :
+                        word.type === 'academic' ? 'bg-blue-100 text-blue-700' :
+                        'bg-gray-100 text-gray-700'
+                      }`}>
+                        {word.partOfSpeech}
+                      </div>
+                      <div className="text-xs px-1.5 py-0.5 rounded bg-gray-200 text-gray-700">
+                        {word.difficulty}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-700 mb-1">
+                    <span className="font-medium">Meaning:</span> {word.meaning}
+                  </p>
+                  <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
+                    <span className="font-medium not-italic">Example:</span> {word.example}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Phrases Section */}
+            {phrasesLoaded && (
+              <>
+                <div className="border-t border-gray-200 pt-3 mb-2">
+                  <h4 className="text-xs font-medium text-gray-700 mb-2">Task 1 Phrases</h4>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {phraseWords.map((phrase, index) => (
+                    <div key={index} className="p-2 border border-gray-100 rounded-lg bg-gray-50">
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="text-sm font-medium text-gray-900">{phrase.word}</div>
+                        <div className="flex gap-1">
+                          <div className={`text-xs px-1.5 py-0.5 rounded ${
+                            phrase.type === 'positive' ? 'bg-green-100 text-green-700' :
+                            phrase.type === 'negative' ? 'bg-red-100 text-red-700' :
+                            phrase.type === 'academic' ? 'bg-blue-100 text-blue-700' :
+                            'bg-gray-100 text-gray-700'
+                          }`}>
+                            {phrase.partOfSpeech}
+                          </div>
+                          <div className="text-xs px-1.5 py-0.5 rounded bg-gray-200 text-gray-700">
+                            {phrase.difficulty}
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-xs text-gray-700 mb-1">
+                        <span className="font-medium">Meaning:</span> {phrase.meaning}
+                      </p>
+                      <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
+                        <span className="font-medium not-italic">Example:</span> {phrase.example}
+                      </p>
                     </div>
                   ))}
+
+                  {/* Fill in empty cell if odd number of phrases */}
+                  {phraseWords.length % 2 !== 0 && (
+                    <div className="hidden md:block" />
+                  )}
                 </div>
+              </>
+            )}
+
+            {/* Load more button for phrases */}
+            {hasMorePhrases && (
+              <div className="flex justify-center mt-4 mb-2">
+                <Button 
+                  variant="outline" 
+                  onClick={handleLoadMorePhrases}
+                  className="text-primary border-primary/30 hover:border-primary text-xs px-6 py-1.5 h-auto shadow-sm"
+                  size="sm"
+                  disabled={isLoadingPhrases}
+                >
+                  {isLoadingPhrases ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Loading...
+                    </>
+                  ) : (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
+                        <path d="M12 8v8"></path><path d="M8 12h8"></path>
+                      </svg>
+                      Load More Phrases
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+          </TabsContent>
+          
+          <TabsContent value="topic" className="p-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {topicSpecificWords.length > 0 ? (
+                topicSpecificWords.map((word, index) => (
+                  <div key={index} className="p-2 border border-gray-100 rounded-lg bg-gray-50">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="text-sm font-medium text-gray-900">{word.word}</div>
+                      <div className="flex gap-1">
+                        <div className={`text-xs px-1.5 py-0.5 rounded ${
+                          word.type === 'positive' ? 'bg-green-100 text-green-700' :
+                          word.type === 'negative' ? 'bg-red-100 text-red-700' :
+                          word.type === 'academic' ? 'bg-blue-100 text-blue-700' :
+                          'bg-gray-100 text-gray-700'
+                        }`}>
+                          {word.partOfSpeech}
+                        </div>
+                        <div className="text-xs px-1.5 py-0.5 rounded bg-gray-200 text-gray-700">
+                          {word.difficulty}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-700 mb-1">
+                      <span className="font-medium">Meaning:</span> {word.meaning}
+                    </p>
+                    <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
+                      <span className="font-medium not-italic">Example:</span> {word.example}
+                    </p>
+                  </div>
+                ))
               ) : (
-                <div className="text-center py-4">
-                  <Button
-                    variant="outline"
-                    onClick={() => handleLoadMorePhrases(category.id)}
-                    className="text-primary border-primary/30 hover:border-primary text-xs px-6 py-1.5 h-auto shadow-sm"
-                    size="sm"
-                    disabled={isLoadingPhrases}
-                  >
-                    {isLoadingPhrases ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Loading...
-                      </>
-                    ) : (
-                      <>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2">
-                          <path d="M12 8v8"></path><path d="M8 12h8"></path>
-                        </svg>
-                        Load Phrases
-                      </>
-                    )}
-                  </Button>
+                <div className="col-span-2 text-sm text-gray-500 text-center py-4">
+                  No topic-specific vocabulary available for {questionType}
                 </div>
               )}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+      </CardContent>
+    </Card>
   );
 }
 
 export default function Task1WritingInterface({ question, questionType, bandLevel, timeLimit }: Task1WritingInterfaceProps) {
-  const [content, setContent] = useState("");
-  const [showSaveDialog, setShowSaveDialog] = useState(false);
-  const { timeRemaining, formattedTime, isRunning, startTimer, pauseTimer, resetTimer } = useTimer({
+  const [essayContent, setEssayContent] = useState("");
+  const [wordCount, setWordCount] = useState(0);
+  const [isWordCountValid, setIsWordCountValid] = useState(true);
+  const [showTimeUpDialog, setShowTimeUpDialog] = useState(false);
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
+  const [showExitDialog, setShowExitDialog] = useState(false);
+
+  const { formattedTime, isRunning, startTimer, updateTimer } = useTimer({
     initialMinutes: timeLimit === "no-limit" ? 0 : parseInt(timeLimit),
-    autoStart: timeLimit !== "no-limit"
+    onTimeUp: () => setShowTimeUpDialog(true),
+    autoStart: timeLimit !== "no-limit" && parseInt(timeLimit) > 0,
   });
 
+  // Start timer when component mounts if time limit is set
   useEffect(() => {
-    // Auto-start timer when component mounts
-    if (timeLimit !== "no-limit") {
+    if (timeLimit !== "no-limit" && parseInt(timeLimit) > 0) {
       startTimer();
     }
   }, [timeLimit, startTimer]);
 
-  const handleSave = () => {
-    setShowSaveDialog(true);
+  const handleTimeSelect = (minutes: number) => {
+    updateTimer(minutes);
+    if (minutes > 0) {
+      startTimer();
+    }
   };
 
-  const handleConfirmSave = () => {
-    // Handle save logic here
-    console.log("Saving Task 1 content:", content);
-    setShowSaveDialog(false);
+  const handleWordCountChange = (count: number, isValid: boolean) => {
+    setWordCount(count);
+    setIsWordCountValid(isValid);
   };
 
-  const wordCount = content.trim() ? content.trim().split(/\s+/).length : 0;
+  const handleSubmit = () => {
+    if (!isWordCountValid) {
+      setShowErrorDialog(true);
+      return;
+    }
+    // Handle submit logic for Task 1
+    console.log("Submitting Task 1 essay:", essayContent);
+  };
+
+  const handleSaveDraft = () => {
+    // Save to localStorage
+    localStorage.setItem('task1EssayDraft', essayContent);
+    localStorage.setItem('task1Question', question);
+    alert('Task 1 draft saved successfully');
+  };
 
   return (
-    <div className="h-screen flex flex-col">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 p-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <Link href="/writing-task-1">
-              <Button variant="outline" size="sm" className="gap-2">
-                <ArrowLeft className="h-4 w-4" />
-                Back to Setup
-              </Button>
-            </Link>
-            <h1 className="text-xl font-semibold">Writing Task 1 Practice</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <Timer time={formattedTime()} isRunning={isRunning} />
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={isRunning ? pauseTimer : startTimer}
-                disabled={timeLimit === "no-limit"}
-              >
-                {isRunning ? "Pause" : "Start"}
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => resetTimer()}
-                disabled={timeLimit === "no-limit"}
-              >
-                Reset
-              </Button>
-            </div>
-          </div>
-        </div>
+    <div className="p-4">
+      <div className="flex mb-2">
+        <Button 
+          variant="outline" 
+          size="sm"
+          className="h-7 text-xs"
+          onClick={() => setShowExitDialog(true)}
+        >
+          <ArrowLeft className="h-3 w-3 mr-1" /> Back
+        </Button>
       </div>
 
-      {/* Question Display */}
-      <div className="bg-teal-50 border-b border-gray-200 p-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-lg font-medium text-gray-900 mb-2">Writing Question:</h2>
-          <p className="text-gray-700 leading-relaxed">{question}</p>
-        </div>
-      </div>
+      <div className="flex flex-col lg:flex-row lg:space-x-4">
+        <div className="lg:w-3/5">
+          <div className="bg-cyan-50 rounded-md p-4 mb-3 border-2 border-cyan-200 shadow-sm">
+            <div className="text-cyan-700 font-medium mb-1">Task 1 Question:</div>
+            <div className="text-gray-700 text-sm">{question}</div>
+          </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Writing Area */}
-        <div className="flex-1 flex flex-col p-4">
-          <div className="flex justify-between items-center mb-4">
-            <WordCounter count={wordCount} minWords={150} maxWords={400} />
-            <Button onClick={handleSave} className="gap-2">
-              <Save className="h-4 w-4" />
-              Save Draft
+          <div className="flex items-center justify-between mb-2 h-8">
+            <Timer 
+              time={formattedTime()} 
+              onTimeSelect={handleTimeSelect}
+              isRunning={isRunning}
+            />
+            <WordCounter
+              count={wordCount}
+              maxWords={400}
+              isValid={isWordCountValid}
+              minWords={150}
+            />
+          </div>
+
+          <Editor
+            value={essayContent}
+            onChange={setEssayContent}
+            onWordCountChange={handleWordCountChange}
+            minWords={150}
+            maxWords={400}
+            placeholder="Start writing your Task 1 response here..."
+          />
+
+          <div className="flex justify-end mt-3">
+            <Button
+              onClick={handleSubmit}
+              className="bg-primary hover:opacity-90 h-8 text-xs"
+            >
+              Submit Essay <Layers className="ml-1 h-3 w-3" />
             </Button>
           </div>
-          <div className="flex-1 border border-gray-200 rounded-lg overflow-hidden">
-            <div className="h-full">
-              <Editor
-                value={content}
-                onChange={setContent}
-                placeholder="Start writing your Task 1 response here..."
-                minWords={150}
-                maxWords={400}
-              />
-            </div>
-          </div>
         </div>
 
-        {/* Sidebar */}
-        <div className="w-96 border-l border-gray-200 bg-gray-50 overflow-hidden">
-          <div className="h-full flex flex-col">
-            {/* Outline Section */}
-            <div className="flex-1 p-4">
-              <Task1OutlineSection questionType={questionType} question={question} />
-            </div>
-            
-            {/* Resources Section */}
-            <div className="h-96 border-t border-gray-200 p-4 bg-white">
-              <Task1ResourcesSection questionType={questionType} />
-            </div>
-          </div>
+        <div className="hidden lg:block lg:w-2/5 lg:pl-3 lg:flex lg:flex-col" style={{ minHeight: '500px' }}>
+          <Task1OutlineSection 
+            questionType={questionType} 
+            question={question} 
+          />
         </div>
       </div>
 
-      {/* Save Dialog */}
-      <AlertDialog open={showSaveDialog} onOpenChange={setShowSaveDialog}>
+      <div className="mt-4 lg:hidden">
+        <Task1OutlineSection 
+          questionType={questionType} 
+          question={question} 
+        />
+      </div>
+
+      {/* Resources Section Below */}
+      <Task1ResourcesSection 
+        questionType={questionType} 
+      />
+
+      {/* Exit Confirmation Dialog */}
+      <AlertDialog open={showExitDialog} onOpenChange={setShowExitDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Save Your Task 1 Writing</AlertDialogTitle>
+            <AlertDialogTitle>Exit Task 1 Practice?</AlertDialogTitle>
             <AlertDialogDescription>
-              Do you want to save your current Task 1 writing progress? You can continue editing later.
+              Are you sure you want to exit the Task 1 writing practice? Your progress will not be saved.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleConfirmSave}>Save</AlertDialogAction>
+            <AlertDialogCancel>Continue Writing</AlertDialogCancel>
+            <Link href="/writing-task-1">
+              <AlertDialogAction>
+                Exit
+              </AlertDialogAction>
+            </Link>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Time's Up Dialog */}
+      <AlertDialog open={showTimeUpDialog} onOpenChange={setShowTimeUpDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Time's Up!</AlertDialogTitle>
+            <AlertDialogDescription>
+              Your allocated time for this Task 1 essay has ended. Would you like to submit your work now or continue writing?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Continue Writing</AlertDialogCancel>
+            <AlertDialogAction onClick={() => {
+              setShowTimeUpDialog(false);
+              handleSubmit();
+            }}>
+              Submit Now
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Word Count Error Dialog */}
+      <AlertDialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Word Count Error</AlertDialogTitle>
+            <AlertDialogDescription>
+              Word limit requirement not met. Your Task 1 essay should be between 150 and 400 words.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setShowErrorDialog(false)}>
+              OK
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
