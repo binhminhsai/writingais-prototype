@@ -397,10 +397,7 @@ export default function WritingTask1() {
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 mb-6">
         <Button 
-          className="text-white"
-          style={{ backgroundColor: '#1ca19a' }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d9488'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1ca19a'}
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-primary/90 h-10 px-4 py-2 text-white bg-[#1fb2aa]"
           onClick={handleUseMyQuestion}
         >
           Use my question
