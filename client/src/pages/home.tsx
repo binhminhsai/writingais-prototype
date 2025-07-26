@@ -35,7 +35,7 @@ export default function Home() {
           <CardFooter>
             <Link href="/writing-task-1">
               <Button className="w-full">
-                Start Now <ArrowRight className="ml-2 h-4 w-4" />
+                Start Practice <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </CardFooter>
