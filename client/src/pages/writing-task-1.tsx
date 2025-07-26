@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, Info, Sparkles, Shuffle } from "lucide-react";
+import { Upload, Info, Shuffle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function WritingTask1() {
@@ -21,30 +21,6 @@ export default function WritingTask1() {
 
 
   // Button handler functions
-  const handleGenerateQuestion = () => {
-    if (!questionType) {
-      toast({
-        title: "Question Type Required",
-        description: "Please select a question type first.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    const sampleQuestions = {
-      "bar-charts": "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
-      "line-charts": "The line graph below shows the consumption of fish and some different kinds of meat in a European country between 1979 and 2004. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
-      "tables": "The table below shows the percentage of mobile phone owners using various mobile phone features. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
-      "pie-charts": "The pie charts below show the comparison of different kinds of energy production of France in two years. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
-      "process-diagrams": "The diagram below shows the process of making soft cheese. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
-      "maps": "The maps below show the changes in the town of Denham from 1986 to the present day. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
-      "combinations": "The charts below show the proportions of British students at one university in England who were able to speak other languages in addition to English, in 2000 and 2010. Summarise the information by selecting and reporting the main features and make comparisons where relevant."
-    };
-    
-    setPreviewQuestion(`**IELTS Writing Task 1:** ${sampleQuestions[questionType as keyof typeof sampleQuestions]}`);
-    setShowPreview(true);
-  };
-
   const handleUseMyQuestion = () => {
     // Check if both question text and image are provided
     if (!question.trim() || !uploadedImage) {
@@ -236,16 +212,6 @@ export default function WritingTask1() {
       </div>
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 mb-6">
-        <Button 
-          className="text-white"
-          style={{ backgroundColor: '#4338ca' }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3730a3'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4338ca'}
-          onClick={handleGenerateQuestion}
-        >
-          <Sparkles className="w-4 h-4 mr-2" />
-          Generate question
-        </Button>
         <Button 
           className="text-white"
           style={{ backgroundColor: '#1ca19a' }}
