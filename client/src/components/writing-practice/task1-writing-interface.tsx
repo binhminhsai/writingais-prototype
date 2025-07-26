@@ -106,14 +106,14 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                 Sample - Bài mẫu
               </h4>
               <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
-                Cấu trúc đề xuất giúp bạn tổ chức ý tưởng và viết bài Task 1 tốt hơn
+                Sample Task 1 essay structure with detailed paragraph breakdown
               </p>
 
               <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
                 <Accordion type="single" collapsible className="w-full space-y-2">
-                  {/* Overall Outline as the first item */}
+                  {/* Accordion 1: Paragraph 1: Introduction */}
                   <AccordionItem 
-                    value="overall-outline"
+                    value="paragraph-1"
                     className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
                   >
                     <AccordionTrigger 
@@ -123,21 +123,78 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                         <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
                           1
                         </span>
-                        Overall Outline
+                        Paragraph 1: Introduction
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="space-y-3">
-                        {outline.map((section, index) => (
-                          <div key={index} className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
-                            <p className="mb-2 text-[#1fb2aa] font-bold text-[12px]">{section.title}</p>
-                            <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151]">
-                              {section.points.map((point, pointIndex) => (
-                                <li key={pointIndex}>{point}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
+                      <div className="text-xs text-gray-700 leading-relaxed">
+                        The line graph illustrates the consumption of energy in the United States from 1980, with projections extending to 2030, categorized by different fuel types.
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 2: Paragraph 2: Overview */}
+                  <AccordionItem 
+                    value="paragraph-2"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          2
+                        </span>
+                        Paragraph 2: Overview
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="text-xs text-gray-700 leading-relaxed">
+                        Overall, the graph indicates a general increase in energy consumption across most sources over the period. While petroleum consistently remained the dominant energy source, natural gas experienced the most substantial growth. Conversely, nuclear energy exhibited relative stability, and renewables, although starting from a low base, showed a gradual upward trend.
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 3: Paragraph 3: First Main Feature */}
+                  <AccordionItem 
+                    value="paragraph-3"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          3
+                        </span>
+                        Paragraph 3: First Main Feature
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="text-xs text-gray-700 leading-relaxed">
+                        Petroleum held the largest share of energy consumption, starting at approximately 35 quadrillion BTU in 1980. It rose slightly to around 37 quadrillion BTU by 2008 and is projected to remain at this level until 2030. Natural gas consumption, however, saw a significant increase, rising from about 20 quadrillion BTU in 1980 to roughly 24 quadrillion BTU in 2008.
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 4: Paragraph 4: Second Main Feature */}
+                  <AccordionItem 
+                    value="paragraph-4"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          4
+                        </span>
+                        Paragraph 4: Second Main Feature
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      <div className="text-xs text-gray-700 leading-relaxed">
+                        Coal consumption increased steadily from 15 quadrillion BTU in 1980 to approximately 22 quadrillion BTU in 2008 and is expected to remain stable until 2030. In contrast, nuclear energy remained relatively constant at around 8 quadrillion BTU throughout the period. Renewables, starting from a low base of 3 quadrillion BTU in 1980, increased to about 7 quadrillion BTU by 2008 and are projected to reach 12 quadrillion BTU by 2030.
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -249,8 +306,6 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                       </div>
                     </AccordionContent>
                   </AccordionItem>
-
-                  
                 </Accordion>
               </div>
             </div>

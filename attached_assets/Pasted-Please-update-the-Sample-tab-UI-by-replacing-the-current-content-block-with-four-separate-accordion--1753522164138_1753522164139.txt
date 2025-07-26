@@ -1,0 +1,15 @@
+Please update the Sample tab UI by replacing the current content block with four separate accordion sections. Each accordion must match the exact styling, font, and color used in the Suggested Outline accordion from Task 2.
+Each accordion should display the following structure and placeholder content (keep them closed by default for now):
+
+1. Accordion Title: Paragraph 1: Introduction Content: The line graph illustrates the consumption of energy in the United States from 1980, with projections extending to 2030, categorized by different fuel types.
+
+2. Accordion Title: Paragraph 2: Overview Content: Overall, the graph indicates a general increase in energy consumption across most sources over the period. While petroleum consistently remained the dominant energy source, natural gas experienced the most substantial growth. Conversely, nuclear energy exhibited relative stability, and renewables, although starting from a low base, showed a gradual upward trend.
+
+3. Accordion Title: Paragraph 3: First Main Feature Content: Petroleum held the largest share of energy consumption, starting at approximately 35 quadrillion BTU in 1980. It rose slightly to around 37 quadrillion BTU by 2008 and is projected to remain at this level until 2030. Natural gas consumption, however, saw a significant increase, rising from about 20 quadrillion BTU in 1980 to roughly 24 quadrillion BTU in 2008.
+
+4. Accordion Title: Paragraph 4: Second Main Feature Content:
+* Coal consumption increased steadily from 15 quadrillion BTU in 1980 to approximately 22 quadrillion BTU in 2008 and is expected to remain stable until 2030. In contrast, nuclear energy remained relatively constant at around 8 quadrillion BTU throughout the period. Renewables, starting from a low base of 3 quadrillion BTU in 1980, increased to about 7 quadrillion BTU by 2008 and are projected to reach 12 quadrillion BTU by 2030.
+
+Make sure:
+* All four accordions follow the exact design and interactivity style of the accordion in the Suggested Outline section of Task 2.
+* Content inside each accordion is scrollable if needed, and visually consistent with the rest of the page.
