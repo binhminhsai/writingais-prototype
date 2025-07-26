@@ -64,93 +64,12 @@ export function Editor({
 
   return (
     <div className="w-full">
-      <div className="flex items-center space-x-1 border border-gray-300 rounded-t-md p-2 bg-gray-50">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-8 w-8 p-0"
-          onClick={() => handleFormat("bold")}
-          title="Bold"
-        >
-          <Bold className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-8 w-8 p-0"
-          onClick={() => handleFormat("italic")}
-          title="Italic"
-        >
-          <Italic className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-8 w-8 p-0"
-          onClick={() => handleFormat("underline")}
-          title="Underline"
-        >
-          <Underline className="h-4 w-4" />
-        </Button>
-        
-        <Separator orientation="vertical" className="h-6 mx-1" />
-        
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-8 w-8 p-0"
-          onClick={() => handleFormat("align-left")}
-          title="Align Left"
-        >
-          <AlignLeft className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-8 w-8 p-0"
-          onClick={() => handleFormat("align-center")}
-          title="Align Center"
-        >
-          <AlignCenter className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-8 w-8 p-0"
-          onClick={() => handleFormat("align-right")}
-          title="Align Right"
-        >
-          <AlignRight className="h-4 w-4" />
-        </Button>
-        
-        <Separator orientation="vertical" className="h-6 mx-1" />
-        
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-8 w-8 p-0"
-          onClick={() => handleFormat("bullet-list")}
-          title="Bullet List"
-        >
-          <List className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-8 w-8 p-0"
-          onClick={() => handleFormat("numbered-list")}
-          title="Numbered List"
-        >
-          <ListOrdered className="h-4 w-4" />
-        </Button>
-      </div>
-      
       <Textarea
         ref={textareaRef}
         value={text}
         onChange={handleChange}
         placeholder={placeholder}
-        className="min-h-[400px] rounded-t-none focus:ring-1 focus:ring-primary"
+        className="min-h-[400px] focus:ring-1 focus:ring-primary"
       />
     </div>
   );
