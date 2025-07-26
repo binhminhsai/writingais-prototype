@@ -166,6 +166,16 @@ export default function WritingTask1() {
   };
 
   const handleRandomQuestion = () => {
+    // Check if image is uploaded first
+    if (!uploadedImage) {
+      toast({
+        title: "Image required",
+        description: "Please upload an image before generating a random question.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     const randomQuestions = [
       "The diagram below shows the process of making soft cheese. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
       "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
@@ -232,8 +242,8 @@ export default function WritingTask1() {
   };
 
   const handleStartWriting = () => {
-    // Check if both question and image are provided
-    if (!previewQuestion.trim() || !uploadedImage) {
+    // Check if we have a valid preview (both question and image are required)
+    if (!showPreview || !previewQuestion.trim() || !uploadedImage) {
       toast({
         title: "Required fields missing",
         description: "Please enter your Task 1 question and upload an image to proceed.",
