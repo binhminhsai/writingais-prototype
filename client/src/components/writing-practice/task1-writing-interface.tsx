@@ -103,7 +103,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
                 <Layers className="h-4 w-4" />
-                Suggested Outline - Đề xuất cấu trúc bài viết Task 1
+                Sample - Bài mẫu
               </h4>
               <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
                 Cấu trúc đề xuất giúp bạn tổ chức ý tưởng và viết bài Task 1 tốt hơn
