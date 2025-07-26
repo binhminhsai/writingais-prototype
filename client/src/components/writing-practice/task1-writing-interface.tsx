@@ -341,8 +341,66 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="text-xs text-gray-600 italic">
-                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      <div className="space-y-3">
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Overall Trends:</p>
+                          <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Petroleum remains the largest energy source consumed, with a slight upward trend from about 35 quadrillion BTU in 1980 to around 37 quadrillion BTU by 2030.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Natural Gas shows significant growth, from about 20 quadrillion BTU in 1980 to around 32 quadrillion BTU by 2030.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Coal has a slow and steady upward trend, from about 15 quadrillion BTU in 1980 to around 22 quadrillion BTU by 2030.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Nuclear energy remains relatively stable, fluctuating around 8 quadrillion BTU throughout the period.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Renewables show growth, especially in the projected period, from about 3 quadrillion BTU in 1980 to around 12 quadrillion BTU by 2030.</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Key Data Points:</p>
+                          <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>In 2008, petroleum accounted for about 37 quadrillion BTU, natural gas about 24 quadrillion BTU, coal about 22 quadrillion BTU, nuclear about 8 quadrillion BTU, and renewables about 7 quadrillion BTU.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Projected for 2030, petroleum is expected to account for about 37 quadrillion BTU, natural gas about 32 quadrillion BTU, coal about 22 quadrillion BTU, nuclear about 8 quadrillion BTU, and renewables about 12 quadrillion BTU.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Petroleum has always been the largest energy source consumed throughout the period.</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Significant Changes:</p>
+                          <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Significant growth of natural gas, especially from 2000 onwards.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Growth of renewables in the projected period 2008-2030.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <span className="text-xs mt-0.5">•</span>
+                              <span>Relative stability of nuclear energy.</span>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -363,8 +421,25 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="text-xs text-gray-600 italic">
-                        (Leave this empty for now. This section will contain key trends, data points, and significant changes parsed from the visual input.)
+                      <div className="space-y-3">
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Task 1:</p>
+                          <p className="text-xs text-[#374151]">
+                            Introduction paragraph - paraphrase the question and introduce the line graph showing energy consumption in the USA from 1980 to 2030, categorized by source.
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Task 2:</p>
+                          <p className="text-xs text-[#374151]">
+                            Overview paragraph - summarize 2-3 main trends: petroleum remains the largest source, natural gas shows significant growth, renewables increase in the future.
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                          <p className="text-xs font-bold text-[#1fb2aa] mb-2">Task 3:</p>
+                          <p className="text-xs text-[#374151]">
+                            Body paragraphs - Body 1 describes petroleum and natural gas (specific data), Body 2 describes coal, nuclear, and renewables (data and comparisons)
+                          </p>
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>

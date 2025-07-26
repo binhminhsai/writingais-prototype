@@ -1,0 +1,23 @@
+Please display the content using the following structure and labels in the accordion “Identify Main Features”
+Overall Trends:
+* Petroleum remains the largest energy source consumed, with a slight upward trend from about 35 quadrillion BTU in 1980 to around 37 quadrillion BTU by 2030.
+* Natural Gas shows significant growth, from about 20 quadrillion BTU in 1980 to around 32 quadrillion BTU by 2030.
+* Coal has a slow and steady upward trend, from about 15 quadrillion BTU in 1980 to around 22 quadrillion BTU by 2030.
+* Nuclear energy remains relatively stable, fluctuating around 8 quadrillion BTU throughout the period.
+* Renewables show growth, especially in the projected period, from about 3 quadrillion BTU in 1980 to around 12 quadrillion BTU by 2030.
+
+Key Data Points:
+* In 2008, petroleum accounted for about 37 quadrillion BTU, natural gas about 24 quadrillion BTU, coal about 22 quadrillion BTU, nuclear about 8 quadrillion BTU, and renewables about 7 quadrillion BTU.
+* Projected for 2030, petroleum is expected to account for about 37 quadrillion BTU, natural gas about 32 quadrillion BTU, coal about 22 quadrillion BTU, nuclear about 8 quadrillion BTU, and renewables about 12 quadrillion BTU.
+* Petroleum has always been the largest energy source consumed throughout the period.
+
+Significant Changes:
+* Significant growth of natural gas, especially from 2000 onwards.
+* Growth of renewables in the projected period 2008-2030.
+* Relative stability of nuclear energy.
+
+
+Please display the content using the following structure and labels in the accordion Jobs To Done
+* Task 1: Introduction paragraph - paraphrase the question and introduce the line graph showing energy consumption in the USA from 1980 to 2030, categorized by source.
+* Task 2: Overview paragraph - summarize 2-3 main trends: petroleum remains the largest source, natural gas shows significant growth, renewables increase in the future.
+* Task 3: Body paragraphs - Body 1 describes petroleum and natural gas (specific data), Body 2 describes coal, nuclear, and renewables (data and comparisons)
