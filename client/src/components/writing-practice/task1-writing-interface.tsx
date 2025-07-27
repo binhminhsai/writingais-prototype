@@ -35,6 +35,7 @@ import { getTask1Vocabulary } from "@/data/task1-vocabulary";
 import { getTask1Phrases, task1PhraseCategories } from "@/data/task1-phrases";
 import { Task1FeedbackInterface } from "./task1-feedback-interface";
 import { Link } from "wouter";
+import { InteractiveLoadingPage } from "@/components/ui/interactive-loading-page";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -936,6 +937,7 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [showExitDialog, setShowExitDialog] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [showLoadingPage, setShowLoadingPage] = useState(false);
 
   const { formattedTime, isRunning, startTimer, updateTimer } = useTimer({
     initialMinutes: timeLimit === "no-limit" ? 0 : parseInt(timeLimit),
@@ -967,7 +969,11 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
       setShowErrorDialog(true);
       return;
     }
-    // Show feedback interface
+    setShowLoadingPage(true);
+  };
+
+  const handleLoadingComplete = () => {
+    setShowLoadingPage(false);
     setShowFeedback(true);
   };
 
@@ -1124,6 +1130,12 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Interactive Loading Page */}
+      <InteractiveLoadingPage 
+        isVisible={showLoadingPage}
+        onComplete={handleLoadingComplete}
+      />
     </div>
   );
 }

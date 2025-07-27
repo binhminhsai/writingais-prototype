@@ -35,6 +35,7 @@ import { getVocabulary } from "@/data/vocabulary";
 import { getPhrases, getStructuredPhrases, phraseCategories } from "@/data/phrases";
 import { WritingTestType, DifficultyLevel } from "./test-setup";
 import { Link } from "wouter";
+import { InteractiveLoadingPage } from "@/components/ui/interactive-loading-page";
 
 // Outline component with tabs for outline and useful expressions
 function OutlineSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
@@ -979,6 +980,11 @@ export function WritingInterface({
       setShowErrorDialog(true);
       return;
     }
+    setShowLoadingPage(true);
+  };
+
+  const handleLoadingComplete = () => {
+    setShowLoadingPage(false);
     onSubmit(essayContent);
   };
 
@@ -990,6 +996,7 @@ export function WritingInterface({
   };
 
   const [showExitDialog, setShowExitDialog] = useState(false);
+  const [showLoadingPage, setShowLoadingPage] = useState(false);
 
   return (
     <div className="p-4">
@@ -1118,6 +1125,12 @@ export function WritingInterface({
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Interactive Loading Page */}
+      <InteractiveLoadingPage 
+        isVisible={showLoadingPage}
+        onComplete={handleLoadingComplete}
+      />
     </div>
   );
 }

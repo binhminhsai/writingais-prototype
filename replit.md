@@ -441,6 +441,15 @@ Changelog:
   - Implemented color-coded tooltip content: red highlights show Category/Original/Corrected/Explanation/Rule/Severity, improvement highlights show Category/Original/Improved/Explanation/Band Impact
   - Enhanced question card with gradient background (cyan to teal), larger text, and improved spacing
   - Applied consistent IELTS styling with rounded corners and professional appearance
+- July 27, 2025. Created interactive loading page with canvas drawing functionality:
+  - Built comprehensive InteractiveLoadingPage component with full-screen overlay and 8-second loading duration
+  - Integrated flask-style loader (same as question generation) with cyan glow, liquid filling animation, and rotating messages
+  - Added free-form canvas drawing capability using mouse/touch with smooth strokes in teal color (#1ca19a)
+  - Implemented responsive drawing canvas covering full screen with proper touch event handling
+  - Added instructional message "While we analyze your writing, feel free to sketch or jot down ideas here"
+  - Integrated loading page into both main writing interface and Task 1 writing interface Submit button flows
+  - Created smooth fade-out transition after completion to reveal feedback interface
+  - Positioned flask loader and messages as non-interactive overlay above drawing canvas
 
 ## User Preferences
 
