@@ -447,9 +447,7 @@ export default function WritingTask1() {
             <div className="mb-4 p-6 border-2 border-teal-200 rounded-lg bg-gradient-to-r from-teal-50 to-cyan-50">
               <div className="text-teal-800 font-bold text-lg mb-3">IELTS Writing Task 1:</div>
               <p className="text-gray-800 text-base leading-relaxed">
-                {previewQuestion.split('**').map((part, index) => 
-                  index % 2 === 1 ? part : part
-                )}
+                {previewQuestion.replace(/^\*\*IELTS Writing Task 1:\*\*\s*/, '').trim()}
               </p>
             </div>
             
