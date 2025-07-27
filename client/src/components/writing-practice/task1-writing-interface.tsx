@@ -760,7 +760,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
                         <p className="text-xs text-gray-700 mb-1">
                           <span className="font-medium">Meaning:</span> {word.meaning}
                         </p>
-                        <p className="text-xs text-orange-700 mb-1">
+                        <p className="text-xs mb-1" style={{ color: '#374151' }}>
                           <span className="font-medium">Chart Function:</span> {word.chartFunction}
                         </p>
                         <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
@@ -846,7 +846,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
                       <p className="text-xs text-gray-700 mb-1">
                         <span className="font-medium">Meaning:</span> {phrase.meaning}
                       </p>
-                      <p className="text-xs text-orange-700 mb-1">
+                      <p className="text-xs mb-1" style={{ color: '#374151' }}>
                         <span className="font-medium">Chart Function:</span> {phrase.chartFunction}
                       </p>
                       <p className="text-xs text-gray-600 italic border-t border-gray-200 pt-1 mt-1">
