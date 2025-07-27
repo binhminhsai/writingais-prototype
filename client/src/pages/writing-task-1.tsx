@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Upload, Info, Shuffle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
+import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -144,6 +145,8 @@ export default function WritingTask1() {
   const [previewQuestion, setPreviewQuestion] = useState("");
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [hasGeneratedChart, setHasGeneratedChart] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingAction, setLoadingAction] = useState<'use-my-question' | 'random-question' | null>(null);
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
@@ -162,12 +165,23 @@ export default function WritingTask1() {
       return;
     }
     
+    setLoadingAction('use-my-question');
+    setIsLoading(true);
+  };
+
+  const handleCompleteUseMyQuestion = () => {
     setPreviewQuestion(`**IELTS Writing Task 1:** ${question.trim()}`);
     setShowPreview(true);
     setHasGeneratedChart(false); // This is from user input, not generated
+    setIsLoading(false);
   };
 
   const handleRandomQuestion = () => {
+    setLoadingAction('random-question');
+    setIsLoading(true);
+  };
+
+  const handleCompleteRandomQuestion = () => {
     const randomQuestions = [
       "The diagram below shows the process of making soft cheese. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
       "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2015. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
@@ -184,6 +198,7 @@ export default function WritingTask1() {
     setPreviewQuestion(`**IELTS Writing Task 1:** ${selectedQuestion}`);
     setShowPreview(true);
     setHasGeneratedChart(true);
+    setIsLoading(false);
     
     // DO NOT set uploadedImage - keep upload box in default state
     
@@ -465,6 +480,19 @@ export default function WritingTask1() {
           Start Writing
         </Button>
       </div>
+
+      {/* Chemical Flask Loader */}
+      <ChemicalFlaskLoader 
+        isVisible={isLoading} 
+        onComplete={() => {
+          if (loadingAction === 'use-my-question') {
+            handleCompleteUseMyQuestion();
+          } else if (loadingAction === 'random-question') {
+            handleCompleteRandomQuestion();
+          }
+          setLoadingAction(null);
+        }}
+      />
     </div>
   );
 }

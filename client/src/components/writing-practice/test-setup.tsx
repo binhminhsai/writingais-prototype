@@ -12,6 +12,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { generateRandomTopic } from "@/data/topics";
+import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 
 export type WritingTestType = 
   | "ielts-task2" 
@@ -45,6 +46,8 @@ export function TestSetup({ onStart }: TestSetupProps) {
   const [fixedTestType, setFixedTestType] = useState<WritingTestType | null>(null);
   const [timeLimit, setTimeLimit] = useState(30);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingAction, setLoadingAction] = useState<'generate' | 'use-my-question' | 'random-question' | null>(null);
 
   const handleGenerateTopic = () => {
     const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
@@ -53,18 +56,55 @@ export function TestSetup({ onStart }: TestSetupProps) {
       return;
     }
     setErrorMessage("");
+    setLoadingAction('generate');
+    setIsLoading(true);
+  };
+
+  const handleCompleteGenerateTopic = () => {
     // Sử dụng với 2 tham số vì hàm generateRandomTopic chỉ nhận 2 tham số
     const randomTopic = generateRandomTopic(testType, difficulty);
     setTopic(randomTopic);
     setFixedTestType(testType);
+    setIsLoading(false);
   };
 
   const handleRandomQuestion = () => {
     // Tạo câu hỏi random hoàn toàn không cần input từ user
     setErrorMessage("");
+    setLoadingAction('random-question');
+    setIsLoading(true);
+  };
+
+  const handleCompleteRandomQuestion = () => {
     const randomTopic = generateRandomTopic(testType, difficulty);
     setTopic(randomTopic);
     setFixedTestType(testType);
+    setIsLoading(false);
+  };
+
+  const handleUseMyQuestion = () => {
+    const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
+    const wordCount = textareaValue.trim().split(/\s+/).filter(word => word.length > 0).length;
+    
+    if (!textareaValue.trim()) {
+      setErrorMessage("Vui lòng nhập câu hỏi của bạn trước khi nhấn nút Use my question");
+      return;
+    }
+    
+    if (wordCount < 15) {
+      setErrorMessage("Vui lòng nhập câu hỏi của bạn trước khi nhấn nút Use my question");
+      return;
+    }
+    
+    setErrorMessage("");
+    setLoadingAction('use-my-question');
+    setIsLoading(true);
+  };
+
+  const handleCompleteUseMyQuestion = () => {
+    const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
+    setTopic(textareaValue);
+    setIsLoading(false);
   };
 
   const handleStartWriting = () => {
@@ -184,23 +224,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
             variant="secondary"
             size="sm" 
             className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-6"
-            onClick={() => {
-              const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
-              const wordCount = textareaValue.trim().split(/\s+/).filter(word => word.length > 0).length;
-              
-              if (!textareaValue.trim()) {
-                setErrorMessage("Vui lòng nhập câu hỏi của bạn trước khi nhấn nút Use my question");
-                return;
-              }
-              
-              if (wordCount < 15) {
-                setErrorMessage("Vui lòng nhập câu hỏi của bạn trước khi nhấn nút Use my question");
-                return;
-              }
-              
-              setErrorMessage("");
-              setTopic(textareaValue);
-            }}
+            onClick={handleUseMyQuestion}
           >
             <span className="text-sm">Use my question</span>
           </Button>
@@ -273,6 +297,21 @@ export function TestSetup({ onStart }: TestSetupProps) {
           Start Writing
         </Button>
       </div>
+
+      {/* Chemical Flask Loader */}
+      <ChemicalFlaskLoader 
+        isVisible={isLoading} 
+        onComplete={() => {
+          if (loadingAction === 'generate') {
+            handleCompleteGenerateTopic();
+          } else if (loadingAction === 'use-my-question') {
+            handleCompleteUseMyQuestion();
+          } else if (loadingAction === 'random-question') {
+            handleCompleteRandomQuestion();
+          }
+          setLoadingAction(null);
+        }}
+      />
     </div>
   );
 }
