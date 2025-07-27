@@ -425,7 +425,6 @@ export default function WritingTask1() {
           Random question
         </Button>
       </div>
-      
       {/* Chemical Flask Loader */}
       <ChemicalFlaskLoader 
         isVisible={isLoading} 
@@ -438,14 +437,13 @@ export default function WritingTask1() {
           setLoadingAction(null);
         }}
       />
-      
       {/* Question Preview */}
       {showPreview && (
         <div className="mb-6">
           <div className="border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
             {/* Question Text */}
             <div className="mb-4 p-6 border-2 border-teal-200 rounded-lg bg-gradient-to-r from-teal-50 to-cyan-50">
-              <div className="text-teal-800 font-bold text-sm mb-3">IELTS Writing Task 1:</div>
+              <div className="font-bold text-sm mb-3 text-[#0f766e]">IELTS Writing Task 1:</div>
               <p className="text-gray-800 text-sm leading-relaxed">
                 {previewQuestion.replace(/^\*\*IELTS Writing Task 1:\*\*\s*/, '').trim()}
               </p>
