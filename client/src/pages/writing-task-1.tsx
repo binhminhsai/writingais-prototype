@@ -444,10 +444,11 @@ export default function WritingTask1() {
         <div className="mb-6">
           <div className="border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
             {/* Question Text */}
-            <div className="mb-4 p-4 border border-gray-200 rounded-lg bg-[#F0fdfa]">
-              <p className="text-gray-800 leading-relaxed">
+            <div className="mb-4 p-6 border-2 border-teal-200 rounded-lg bg-gradient-to-r from-teal-50 to-cyan-50">
+              <div className="text-teal-800 font-bold text-lg mb-3">IELTS Writing Task 1:</div>
+              <p className="text-gray-800 text-base leading-relaxed">
                 {previewQuestion.split('**').map((part, index) => 
-                  index % 2 === 1 ? <strong key={index} className="bg-[0f766a]">{part}</strong> : part
+                  index % 2 === 1 ? <strong key={index} className="font-semibold">{part}</strong> : part
                 )}
               </p>
             </div>
