@@ -973,9 +973,13 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
   };
 
   const handleLoadingComplete = () => {
-    console.log('Task 1 loading complete - showing feedback');
+
+    // First hide the loading page
     setShowLoadingPage(false);
-    setShowFeedback(true);
+    // Then show feedback after a brief delay to ensure state update
+    setTimeout(() => {
+      setShowFeedback(true);
+    }, 100);
   };
 
   const handleSaveDraft = () => {

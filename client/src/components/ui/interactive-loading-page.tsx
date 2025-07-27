@@ -16,6 +16,12 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isDrawingRef = useRef(false);
   const lastPointRef = useRef<Point | null>(null);
+  const onCompleteRef = useRef(onComplete);
+
+  // Update the ref when onComplete changes
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     if (!isVisible) {
@@ -37,19 +43,20 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
 
     // Complete animation after 8 seconds
     const completionTimer = setTimeout(() => {
-      console.log('8-second timer complete - starting fade out');
+
       setIsCompleting(true);
+      // Call onComplete after a brief fade out
       setTimeout(() => {
-        console.log('Fade out complete - calling onComplete');
-        onComplete();
-      }, 500); // Allow fade out animation
+
+        onCompleteRef.current();
+      }, 300);
     }, 8000);
 
     return () => {
       clearInterval(liquidTimer);
       clearTimeout(completionTimer);
     };
-  }, [isVisible, onComplete]);
+  }, [isVisible]);
 
   // Canvas drawing functionality
   useEffect(() => {

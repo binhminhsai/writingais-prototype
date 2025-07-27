@@ -984,9 +984,13 @@ export function WritingInterface({
   };
 
   const handleLoadingComplete = () => {
-    console.log('Loading complete - hiding loading page and submitting essay');
+
+    // First hide the loading page
     setShowLoadingPage(false);
-    onSubmit(essayContent);
+    // Then trigger the essay submission after a brief delay to ensure state update
+    setTimeout(() => {
+      onSubmit(essayContent);
+    }, 100);
   };
 
   const handleSaveDraft = () => {
