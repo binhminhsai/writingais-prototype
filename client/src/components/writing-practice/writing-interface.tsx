@@ -36,11 +36,22 @@ import { getPhrases, getStructuredPhrases, phraseCategories } from "@/data/phras
 import { WritingTestType, DifficultyLevel } from "./test-setup";
 import { Link } from "wouter";
 import { InteractiveLoadingPage } from "@/components/ui/interactive-loading-page";
+import { ShimmerLoader, ShimmerCard, ShimmerList, ShimmerText } from "@/components/ui/shimmer-loader";
 
 // Outline component with tabs for outline and useful expressions
 function OutlineSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
   const [showOutline, setShowOutline] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const outline = getOutline(testType, topic);
+
+  useEffect(() => {
+    // Show loading for 6 seconds when component mounts
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 6000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="h-full flex flex-col">
@@ -101,38 +112,47 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
-                          <p className="mb-2 text-[#1fb2aa] font-bold text-[12px]">Introduction (2 câu)</p>
-                          <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151]">
-                            <li><strong>Câu 1:</strong> Giới thiệu vấn đề và paraphrase đề.</li>
-                            <li><strong>Câu 2:</strong> Thesis Statement – nêu 2 quan điểm và khẳng định lập trường.</li>
-                          </ul>
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-blue-100" />
+                          <ShimmerCard className="border-green-100" />
+                          <ShimmerCard className="border-purple-100" />
+                          <ShimmerCard className="border-orange-100" />
                         </div>
-                        <div className="p-3 rounded-md border border-green-100 bg-[#f9fafb]">
-                          <p className="text-xs mb-2 font-bold text-[#1fb2aa]">Body Paragraph 1 – Quan điểm thứ nhất</p>
-                          <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151] font-normal">
-                            <li className="font-normal"><strong>Topic Sentence.</strong></li>
-                            <li><strong>Giải thích lý do, nêu lợi ích, ví dụ cụ thể.</strong></li>
-                            <li><strong>Gợi ý từ nối:</strong> Firstly, Moreover, For instance...</li>
-                          </ul>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                            <p className="mb-2 text-[#1fb2aa] font-bold text-[12px]">Introduction (2 câu)</p>
+                            <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151]">
+                              <li><strong>Câu 1:</strong> Giới thiệu vấn đề và paraphrase đề.</li>
+                              <li><strong>Câu 2:</strong> Thesis Statement – nêu 2 quan điểm và khẳng định lập trường.</li>
+                            </ul>
+                          </div>
+                          <div className="p-3 rounded-md border border-green-100 bg-[#f9fafb]">
+                            <p className="text-xs mb-2 font-bold text-[#1fb2aa]">Body Paragraph 1 – Quan điểm thứ nhất</p>
+                            <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151] font-normal">
+                              <li className="font-normal"><strong>Topic Sentence.</strong></li>
+                              <li><strong>Giải thích lý do, nêu lợi ích, ví dụ cụ thể.</strong></li>
+                              <li><strong>Gợi ý từ nối:</strong> Firstly, Moreover, For instance...</li>
+                            </ul>
+                          </div>
+                          <div className="p-3 rounded-md border border-purple-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium mb-2 text-[#1fb2aa]">Body Paragraph 2 – Quan điểm thứ hai</p>
+                            <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151]">
+                              <li><strong>Topic Sentence.</strong></li>
+                              <li><strong>Phân tích sâu, lợi ích dài hạn, ví dụ kỹ năng mềm.</strong></li>
+                              <li><strong>Gợi ý từ nối:</strong> Conversely, Primarily, Furthermore...</li>
+                            </ul>
+                          </div>
+                          <div className="p-3 rounded-md border border-orange-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium mb-2 text-[#1fb2aa]">Conclusion (2 câu)</p>
+                            <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151] font-medium">
+                              <li><strong>Tóm tắt lại 2 quan điểm đã nêu.</strong></li>
+                              <li><strong>Tái khẳng định quan điểm cá nhân, thêm 1 câu khuyến nghị nếu cần.</strong></li>
+                            </ul>
+                          </div>
                         </div>
-                        <div className="p-3 rounded-md border border-purple-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium mb-2 text-[#1fb2aa]">Body Paragraph 2 – Quan điểm thứ hai</p>
-                          <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151]">
-                            <li><strong>Topic Sentence.</strong></li>
-                            <li><strong>Phân tích sâu, lợi ích dài hạn, ví dụ kỹ năng mềm.</strong></li>
-                            <li><strong>Gợi ý từ nối:</strong> Conversely, Primarily, Furthermore...</li>
-                          </ul>
-                        </div>
-                        <div className="p-3 rounded-md border border-orange-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium mb-2 text-[#1fb2aa]">Conclusion (2 câu)</p>
-                          <ul className="text-xs space-y-1 list-disc pl-4 text-[#374151] font-medium">
-                            <li><strong>Tóm tắt lại 2 quan điểm đã nêu.</strong></li>
-                            <li><strong>Tái khẳng định quan điểm cá nhân, thêm 1 câu khuyến nghị nếu cần.</strong></li>
-                          </ul>
-                        </div>
-                      </div>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
 
@@ -153,27 +173,53 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                         </span>
                       </AccordionTrigger>
                       <AccordionContent className="p-3 bg-white">
-                        {index === 0 && (
+                        {isLoading ? (
                           <div className="mt-3 space-y-3">
-                            <div className="p-3 bg-[#f9fafb] rounded-md border border-gray-100 text-xs">
-                              <p className="mb-2 font-medium text-[#1fb2aa]">Hướng dẫn:</p>
-                              <p className="mb-2 text-[#374151]">Mở bài 2 câu – paraphrase đề + thesis statement</p>
-                            </div>
-                            
-                            <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
-                              <p className="mb-2 font-medium text-[#1fb2aa]">Câu 1 – Paraphrase đề bài</p>
-                              <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Paraphrase vấn đề chính trong câu hỏi</p>
-                              <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> "The financial remuneration of elite sports professionals often far surpasses that of individuals in crucial societal roles, such as healthcare providers and educators, a phenomenon that sparks considerable debate regarding its fairness."</p>
-                            </div>
-                            
-                            <div className="p-3 rounded-md border border-green-100 text-xs text-green-700 bg-[#f9fafb]">
-                              <p className="mb-2 font-medium text-[#1fb2aa]">Câu 2 – Thesis Statement</p>
-                              <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Thesis statement phù hợp với Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).</p>
-                              <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> "While I acknowledge the market-driven forces that inflate athletes' incomes, I largely contend that this significant disparity is fundamentally inequitable when considering the indispensable societal contributions of other professions."</p>
-                            </div>
+                            {index === 0 && (
+                              <>
+                                <ShimmerCard className="border-gray-100" />
+                                <ShimmerCard className="border-blue-100" />
+                                <ShimmerCard className="border-green-100" />
+                              </>
+                            )}
+                            {index === 1 && (
+                              <>
+                                <ShimmerCard className="border-blue-100" />
+                                <ShimmerCard className="border-green-100" />
+                                <ShimmerCard className="border-purple-100" />
+                              </>
+                            )}
+                            {index === 2 && (
+                              <>
+                                <ShimmerCard className="border-orange-100" />
+                                <ShimmerCard className="border-red-100" />
+                                <ShimmerCard className="border-indigo-100" />
+                              </>
+                            )}
                           </div>
-                        )}
-                        {index === 1 && (
+                        ) : (
+                          <>
+                            {index === 0 && (
+                              <div className="mt-3 space-y-3">
+                                <div className="p-3 bg-[#f9fafb] rounded-md border border-gray-100 text-xs">
+                                  <p className="mb-2 font-medium text-[#1fb2aa]">Hướng dẫn:</p>
+                                  <p className="mb-2 text-[#374151]">Mở bài 2 câu – paraphrase đề + thesis statement</p>
+                                </div>
+                                
+                                <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
+                                  <p className="mb-2 font-medium text-[#1fb2aa]">Câu 1 – Paraphrase đề bài</p>
+                                  <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Paraphrase vấn đề chính trong câu hỏi</p>
+                                  <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> "The financial remuneration of elite sports professionals often far surpasses that of individuals in crucial societal roles, such as healthcare providers and educators, a phenomenon that sparks considerable debate regarding its fairness."</p>
+                                </div>
+                                
+                                <div className="p-3 rounded-md border border-green-100 text-xs text-green-700 bg-[#f9fafb]">
+                                  <p className="mb-2 font-medium text-[#1fb2aa]">Câu 2 – Thesis Statement</p>
+                                  <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Thesis statement phù hợp với Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).</p>
+                                  <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> "While I acknowledge the market-driven forces that inflate athletes' incomes, I largely contend that this significant disparity is fundamentally inequitable when considering the indispensable societal contributions of other professions."</p>
+                                </div>
+                              </div>
+                            )}
+                            {index === 1 && (
                           <div className="mt-3 space-y-3">
                             <div className="p-3 rounded-md border border-blue-100 text-xs text-blue-700 bg-[#f9fafb]">
                               <p className="mb-2 text-[#1fb2aa] font-medium">Topic Sentence</p>
@@ -219,6 +265,8 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                             </div>
                           </div>
                         )}
+                          </>
+                        )}
                       </AccordionContent>
                     </AccordionItem>
                   ))}
@@ -239,24 +287,32 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="mt-3 space-y-3">
-                        <div className="p-3 bg-[#f9fafb] rounded-md border border-gray-100 text-xs">
-                          <p className="mb-2 font-medium text-[#1fb2aa]">Hướng dẫn</p>
-                          <p className="mb-2 text-[#374151]">Kết bài 2 câu – summary + recommendation</p>
+                      {isLoading ? (
+                        <div className="mt-3 space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-blue-100" />
+                          <ShimmerCard className="border-emerald-100" />
                         </div>
-                        
-                        <div className="p-3 rounded-md border border-blue-100 text-xs bg-[#f9fafb]">
-                          <p className="mb-2 font-medium text-[#1fb2aa]">Câu 1 – Summary</p>
-                          <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Tóm tắt cả 2 phần body và main topic, không nêu quan điểm mới</p>
-                          <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> In conclusion, while the immense earnings of top athletes can be attributed to their unique talent and the vast commercial machinery of global sports, it is equally compelling to argue that the remuneration for professions pivotal to societal welfare, such as nursing and teaching, is disproportionately low.</p>
+                      ) : (
+                        <div className="mt-3 space-y-3">
+                          <div className="p-3 bg-[#f9fafb] rounded-md border border-gray-100 text-xs">
+                            <p className="mb-2 font-medium text-[#1fb2aa]">Hướng dẫn</p>
+                            <p className="mb-2 text-[#374151]">Kết bài 2 câu – summary + recommendation</p>
+                          </div>
+                          
+                          <div className="p-3 rounded-md border border-blue-100 text-xs bg-[#f9fafb]">
+                            <p className="mb-2 font-medium text-[#1fb2aa]">Câu 1 – Summary</p>
+                            <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Tóm tắt cả 2 phần body và main topic, không nêu quan điểm mới</p>
+                            <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> In conclusion, while the immense earnings of top athletes can be attributed to their unique talent and the vast commercial machinery of global sports, it is equally compelling to argue that the remuneration for professions pivotal to societal welfare, such as nursing and teaching, is disproportionately low.</p>
+                          </div>
+                          
+                          <div className="p-3 bg-[#f9fafb] rounded-md border border-emerald-100 text-xs">
+                            <p className="mb-2 font-medium text-[#1fb2aa]">Câu 2 – Final Recommendation</p>
+                            <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Final recommendation về giải pháp hoặc quan điểm bền vững liên quan đến: "Successful sports professionals can earn much more than those in other important professions, like nurses, doctors, and teachers. Some people think it is fully justified, while others believe it is unfair. To what extent do you agree or disagree?"</p>
+                            <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> Ultimately, I believe this disparity highlights a problematic imbalance in societal values, suggesting a greater need to acknowledge and justly reward those who contribute directly to the fundamental well-being and progress of humanity.</p>
+                          </div>
                         </div>
-                        
-                        <div className="p-3 bg-[#f9fafb] rounded-md border border-emerald-100 text-xs">
-                          <p className="mb-2 font-medium text-[#1fb2aa]">Câu 2 – Final Recommendation</p>
-                          <p className="mb-2 text-[#374151]">• <strong>Mục đích:</strong> Final recommendation về giải pháp hoặc quan điểm bền vững liên quan đến: "Successful sports professionals can earn much more than those in other important professions, like nurses, doctors, and teachers. Some people think it is fully justified, while others believe it is unfair. To what extent do you agree or disagree?"</p>
-                          <p className="mb-2 text-[#374151]">• <strong>Ví dụ:</strong> Ultimately, I believe this disparity highlights a problematic imbalance in societal values, suggesting a greater need to acknowledge and justly reward those who contribute directly to the fundamental well-being and progress of humanity.</p>
-                        </div>
-                      </div>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
