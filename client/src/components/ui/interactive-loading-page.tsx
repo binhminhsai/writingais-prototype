@@ -275,14 +275,6 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
             While we analyze your writing, feel free to sketch or jot down ideas here.
           </p>
         </div>
-
-        {/* Progress indicator using liquid level */}
-        <div className="w-64 bg-gray-200 rounded-full h-1.5">
-          <div 
-            className="bg-[#1fb2aa] h-1.5 rounded-full transition-all duration-100 ease-out"
-            style={{ width: `${liquidLevel}%` }}
-          />
-        </div>
       </div>
     </div>
   );
