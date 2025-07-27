@@ -40,18 +40,18 @@ export function BookLoader({
         {/* Animated Flipping Pages */}
         <div className="absolute inset-0">
           {/* First Flipping Page */}
-          <div className="absolute right-1 top-1 w-10 h-14 bg-white rounded-r-sm shadow-lg open-book-flip-1 transform-gpu">
+          <div className="absolute right-1 top-1 w-10 h-14 bg-[#f5f5f5] rounded-r-sm shadow-xl border border-gray-300 open-book-flip-1 transform-gpu">
             {/* Subtle page lines */}
-            <div className="absolute top-2 left-1 right-1 h-px bg-gray-200"></div>
-            <div className="absolute top-3.5 left-1 right-1 h-px bg-gray-200"></div>
-            <div className="absolute top-5 left-1 right-1 h-px bg-gray-200"></div>
+            <div className="absolute top-2 left-1 right-1 h-px bg-gray-300"></div>
+            <div className="absolute top-3.5 left-1 right-1 h-px bg-gray-300"></div>
+            <div className="absolute top-5 left-1 right-1 h-px bg-gray-300"></div>
           </div>
           
           {/* Second Flipping Page */}
-          <div className="absolute right-1 top-1 w-10 h-14 bg-white rounded-r-sm shadow-md open-book-flip-2 transform-gpu">
+          <div className="absolute right-1 top-1 w-10 h-14 bg-white rounded-r-sm shadow-lg border border-gray-200 open-book-flip-2 transform-gpu">
             {/* Subtle page lines */}
-            <div className="absolute top-2 left-1 right-1 h-px bg-gray-200"></div>
-            <div className="absolute top-3.5 left-1 right-1 h-px bg-gray-200"></div>
+            <div className="absolute top-2 left-1 right-1 h-px bg-gray-300"></div>
+            <div className="absolute top-3.5 left-1 right-1 h-px bg-gray-300"></div>
           </div>
         </div>
         
