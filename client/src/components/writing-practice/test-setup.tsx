@@ -239,6 +239,21 @@ export function TestSetup({ onStart }: TestSetupProps) {
           </Button>
         </div>
         
+        {/* Chemical Flask Loader */}
+        <ChemicalFlaskLoader 
+          isVisible={isLoading} 
+          onComplete={() => {
+            if (loadingAction === 'generate') {
+              handleCompleteGenerateTopic();
+            } else if (loadingAction === 'use-my-question') {
+              handleCompleteUseMyQuestion();
+            } else if (loadingAction === 'random-question') {
+              handleCompleteRandomQuestion();
+            }
+            setLoadingAction(null);
+          }}
+        />
+        
         {/* Error Message */}
         {errorMessage && (
           <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
@@ -297,21 +312,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
           Start Writing
         </Button>
       </div>
-
-      {/* Chemical Flask Loader */}
-      <ChemicalFlaskLoader 
-        isVisible={isLoading} 
-        onComplete={() => {
-          if (loadingAction === 'generate') {
-            handleCompleteGenerateTopic();
-          } else if (loadingAction === 'use-my-question') {
-            handleCompleteUseMyQuestion();
-          } else if (loadingAction === 'random-question') {
-            handleCompleteRandomQuestion();
-          }
-          setLoadingAction(null);
-        }}
-      />
     </div>
   );
 }

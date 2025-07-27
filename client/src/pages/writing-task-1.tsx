@@ -425,6 +425,20 @@ export default function WritingTask1() {
           Random question
         </Button>
       </div>
+      
+      {/* Chemical Flask Loader */}
+      <ChemicalFlaskLoader 
+        isVisible={isLoading} 
+        onComplete={() => {
+          if (loadingAction === 'use-my-question') {
+            handleCompleteUseMyQuestion();
+          } else if (loadingAction === 'random-question') {
+            handleCompleteRandomQuestion();
+          }
+          setLoadingAction(null);
+        }}
+      />
+      
       {/* Question Preview */}
       {showPreview && (
         <div className="mb-6">
@@ -480,19 +494,6 @@ export default function WritingTask1() {
           Start Writing
         </Button>
       </div>
-
-      {/* Chemical Flask Loader */}
-      <ChemicalFlaskLoader 
-        isVisible={isLoading} 
-        onComplete={() => {
-          if (loadingAction === 'use-my-question') {
-            handleCompleteUseMyQuestion();
-          } else if (loadingAction === 'random-question') {
-            handleCompleteRandomQuestion();
-          }
-          setLoadingAction(null);
-        }}
-      />
     </div>
   );
 }

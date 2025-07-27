@@ -59,14 +59,14 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
   if (!isVisible) return null;
 
   return (
-    <div className={`flex flex-col items-center py-6 transition-all duration-500 ${
+    <div className={`flex flex-col items-center py-4 my-6 transition-all duration-500 ${
       isCompleting ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
     }`}>
       {/* Chemical Flask SVG */}
-      <div className="relative mb-6">
+      <div className="relative mb-4">
         <svg
-          width="120"
-          height="140"
+          width="60"
+          height="70"
           viewBox="0 0 120 140"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +177,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
       </div>
 
       {/* Loading Text */}
-      <p className="text-[#111827] text-center text-lg font-medium leading-relaxed transition-all duration-300">
+      <p className="text-[#111827] text-center text-sm font-medium leading-relaxed transition-all duration-300">
         {messages[messageIndex]}
       </p>
     </div>
