@@ -352,33 +352,42 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Bối cảnh – Lý do:</p>
-                          <p className="text-xs text-[#374151]">
-                            Các vận động viên thể thao chuyên nghiệp thành công có thể kiếm được nhiều tiền hơn đáng kể so với những người làm các ngành nghề quan trọng khác, như y tá, bác sĩ và giáo viên.
-                          </p>
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Chủ thể chính:</p>
-                          <p className="text-xs text-[#374151]">
-                            Successful sports professionals (vận động viên thể thao chuyên nghiệp thành công) và other important professions (các ngành nghề quan trọng khác như y tá, bác sĩ, giáo viên)
-                          </p>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Bối cảnh – Lý do:</p>
+                            <p className="text-xs text-[#374151]">
+                              Các vận động viên thể thao chuyên nghiệp thành công có thể kiếm được nhiều tiền hơn đáng kể so với những người làm các ngành nghề quan trọng khác, như y tá, bác sĩ và giáo viên.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Chủ thể chính:</p>
+                            <p className="text-xs text-[#374151]">
+                              Successful sports professionals (vận động viên thể thao chuyên nghiệp thành công) và other important professions (các ngành nghề quan trọng khác như y tá, bác sĩ, giáo viên)
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Liệt kê quan điểm:</p>
+                            <ul className="text-xs text-[#374151] space-y-1 list-disc pl-4">
+                              <li>Quan điểm 1: Việc này là fully justified (hoàn toàn hợp lý/đáng được hưởng)</li>
+                              <li>Quan điểm 2: Việc này là unfair (không công bằng)</li>
+                            </ul>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Yêu cầu chính của đề bài:</p>
+                            <p className="text-xs text-[#374151]">
+                              To what extent do you agree or disagree (Bạn đồng ý hay không đồng ý ở mức độ nào? Nêu rõ quan điểm và mức độ đồng tình/phản đối)
+                            </p>
+                          </div>
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Liệt kê quan điểm:</p>
-                          <ul className="text-xs text-[#374151] space-y-1 list-disc pl-4">
-                            <li>Quan điểm 1: Việc này là fully justified (hoàn toàn hợp lý/đáng được hưởng)</li>
-                            <li>Quan điểm 2: Việc này là unfair (không công bằng)</li>
-                          </ul>
-                        </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Yêu cầu chính của đề bài:</p>
-                          <p className="text-xs text-[#374151]">
-                            To what extent do you agree or disagree (Bạn đồng ý hay không đồng ý ở mức độ nào? Nêu rõ quan điểm và mức độ đồng tình/phản đối)
-                          </p>
-                        </div>
-                      </div>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
 
@@ -398,41 +407,52 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Essay Type:</p>
-                          <p className="text-xs text-[#374151]">
-                            Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).
-                          </p>
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Tips for Band 7.0+ (dưới từng tiêu chí chấm điểm):</p>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Essay Type:</p>
+                            <p className="text-xs text-[#374151]">
+                              Opinion essay – To what extent agree/disagree (Bài luận nêu quan điểm cá nhân về mức độ đồng ý/không đồng ý).
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Tips for Band 7.0+ (dưới từng tiêu chí chấm điểm):</p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task Response:</p>
+                            <p className="text-xs text-[#374151]">
+                              Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên Fully addresses all parts of task (đáp ứng đầy đủ các phần của đề bài). Position (lập trường) phải clear throughout (rõ ràng xuyên suốt). Main ideas (các ý chính) phải được extended(phát triển) và supported (hỗ trợ) tốt bằng examples (ví dụ) và explanations (giải thích) cụ thể.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Coherence & Cohesion:</p>
+                            <p className="text-xs text-[#374151]">
+                              Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên có Clear progression (sự phát triển mạch lạc). Wide range(phạm vi rộng) của cohesive devices (công cụ liên kết) được used appropriately (sử dụng phù hợp). Mỗi paragraph(đoạn văn) phải có clear central topic (chủ đề trung tâm rõ ràng).
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Lexical Resource:</p>
+                            <p className="text-xs text-[#374151]">
+                              Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên dùng Wide range vocabulary (phạm vi từ vựng rộng) với flexibility (linh hoạt) và precise usage (sử dụng chính xác). Good paraphrase skills (kỹ năng diễn đạt lại tốt). Occasional errors (lỗi thỉnh thoảng) trong word choice (lựa chọn từ) là chấp nhận được.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Grammatical Range & Accuracy:</p>
+                            <p className="text-xs text-[#374151]">
+                              Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên dùng Wide range của structures (cấu trúc ngữ pháp đa dạng) với flexibility (linh hoạt). Majority of sentences (đa số câu) phải error-free (không lỗi) với good control (kiểm soát tốt).
+                            </p>
+                          </div>
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task Response:</p>
-                          <p className="text-xs text-[#374151]">
-                            Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên Fully addresses all parts of task (đáp ứng đầy đủ các phần của đề bài). Position (lập trường) phải clear throughout (rõ ràng xuyên suốt). Main ideas (các ý chính) phải được extended(phát triển) và supported (hỗ trợ) tốt bằng examples (ví dụ) và explanations (giải thích) cụ thể.
-                          </p>
-                        </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Coherence & Cohesion:</p>
-                          <p className="text-xs text-[#374151]">
-                            Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên có Clear progression (sự phát triển mạch lạc). Wide range(phạm vi rộng) của cohesive devices (công cụ liên kết) được used appropriately (sử dụng phù hợp). Mỗi paragraph(đoạn văn) phải có clear central topic (chủ đề trung tâm rõ ràng).
-                          </p>
-                        </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Lexical Resource:</p>
-                          <p className="text-xs text-[#374151]">
-                            Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên dùng Wide range vocabulary (phạm vi từ vựng rộng) với flexibility (linh hoạt) và precise usage (sử dụng chính xác). Good paraphrase skills (kỹ năng diễn đạt lại tốt). Occasional errors (lỗi thỉnh thoảng) trong word choice (lựa chọn từ) là chấp nhận được.
-                          </p>
-                        </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Grammatical Range & Accuracy:</p>
-                          <p className="text-xs text-[#374151]">
-                            Với mục tiêu Band 7.0 trở lên cho bài viết này bạn nên dùng Wide range của structures (cấu trúc ngữ pháp đa dạng) với flexibility (linh hoạt). Majority of sentences (đa số câu) phải error-free (không lỗi) với good control (kiểm soát tốt).
-                          </p>
-                        </div>
-                      </div>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
 
@@ -452,26 +472,34 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Main Topic:</p>
-                          <p className="text-xs text-[#374151]">
-                            Bài viết thảo luận về tính hợp lý hay không công bằng của mức thu nhập cao của các vận động viên thể thao chuyên nghiệp thành công so với các ngành nghề thiết yếu khác trong xã hội.
-                          </p>
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Topic Sentence 1:</p>
-                          <p className="text-xs text-[#374151]">
-                            On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide.
-                          </p>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Main Topic:</p>
+                            <p className="text-xs text-[#374151]">
+                              Bài viết thảo luận về tính hợp lý hay không công bằng của mức thu nhập cao của các vận động viên thể thao chuyên nghiệp thành công so với các ngành nghề thiết yếu khác trong xã hội.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Topic Sentence 1:</p>
+                            <p className="text-xs text-[#374151]">
+                              On the one hand, there are compelling arguments to suggest that the exorbitant salaries of top athletes are indeed justified, primarily due to the unique nature of their profession and the entertainment value they provide.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Topic Sentence 2:</p>
+                            <p className="text-xs text-[#374151]">
+                              However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society.
+                            </p>
+                          </div>
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Topic Sentence 2:</p>
-                          <p className="text-xs text-[#374151]">
-                            However, it is equally understandable why many people perceive this disparity as unfair, given the vital contributions of professions such as nursing, medicine, and teaching to the fundamental well-being and development of society.
-                          </p>
-                        </div>
-                      </div>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
 
@@ -491,26 +519,34 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 1:</p>
-                          <p className="text-xs text-[#374151]">
-                            Nêu rõ lập trường cá nhân (position) về việc đồng ý hay không đồng ý với quan điểm trong đề bài, và mức độ đồng ý/không đồng ý.
-                          </p>
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 2:</p>
-                          <p className="text-xs text-[#374151]">
-                            Phát triển các luận điểm (arguments) ủng hộ lập trường của mình, cung cấp giải thích chi tiết và ví dụ cụ thể (kèm dẫn chứng nếu có thể).
-                          </p>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 1:</p>
+                            <p className="text-xs text-[#374151]">
+                              Nêu rõ lập trường cá nhân (position) về việc đồng ý hay không đồng ý với quan điểm trong đề bài, và mức độ đồng ý/không đồng ý.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 2:</p>
+                            <p className="text-xs text-[#374151]">
+                              Phát triển các luận điểm (arguments) ủng hộ lập trường của mình, cung cấp giải thích chi tiết và ví dụ cụ thể (kèm dẫn chứng nếu có thể).
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 3:</p>
+                            <p className="text-xs text-[#374151]">
+                              Thảo luận hoặc công nhận quan điểm đối lập (counter-arguments) và giải thích tại sao lập trường của mình vẫn vững chắc hơn (đối với quan điểm partially agree), hoặc phản bác mạnh mẽ (đối với quan điểm fully agree/disagree)
+                            </p>
+                          </div>
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Task 3:</p>
-                          <p className="text-xs text-[#374151]">
-                            Thảo luận hoặc công nhận quan điểm đối lập (counter-arguments) và giải thích tại sao lập trường của mình vẫn vững chắc hơn (đối với quan điểm partially agree), hoặc phản bác mạnh mẽ (đối với quan điểm fully agree/disagree)
-                          </p>
-                        </div>
-                      </div>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
 
@@ -530,20 +566,27 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Quan điểm gợi ý:</p>
-                          <p className="text-xs text-[#374151]">
-                            Partially agree (Đồng ý một phần) – Đồng ý rằng có lý do cho thu nhập cao của VĐV, nhưng cũng nhìn nhận sự bất công với các ngành nghề khác.
-                          </p>
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
                         </div>
-                        <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                          <p className="text-xs font-medium text-[#1fb2aa] mb-2">Lý do cụ thể:</p>
-                          <p className="text-xs text-[#374151]">
-                            Lập trường này cho phép một bài luận balanced (cân bằng), thể hiện sự hiểu biết sâu sắc về cả hai mặt của vấn đề. Bạn có thể dễ dàng trình bày các lý do tại sao VĐV kiếm được nhiều tiền (như tài năng hiếm có, sự giải trí toàn cầu, sự nghiệp ngắn ngủi, rủi ro chấn thương) và đồng thời chỉ ra sự thiếu công bằng trong việc trả lương cho các ngành nghề thiết yếu (như sự hy sinh, tầm quan trọng xã hội, đào tạo chuyên sâu nhưng thu nhập thấp). Cách tiếp cận này giúp bài viết đạt band cao hơn vì nó thể hiện tư duy phản biện và khả năng phát triển nhiều ý khác nhau.
-                          </p>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Quan điểm gợi ý:</p>
+                            <p className="text-xs text-[#374151]">
+                              Partially agree (Đồng ý một phần) – Đồng ý rằng có lý do cho thu nhập cao của VĐV, nhưng cũng nhìn nhận sự bất công với các ngành nghề khác.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-medium text-[#1fb2aa] mb-2">Lý do cụ thể:</p>
+                            <p className="text-xs text-[#374151]">
+                              Lập trường này cho phép một bài luận balanced (cân bằng), thể hiện sự hiểu biết sâu sắc về cả hai mặt của vấn đề. Bạn có thể dễ dàng trình bày các lý do tại sao VĐV kiếm được nhiều tiền (như tài năng hiếm có, sự giải trí toàn cầu, sự nghiệp ngắn ngủi, rủi ro chấn thương) và đồng thời chỉ ra sự thiếu công bằng trong việc trả lương cho các ngành nghề thiết yếu (như sự hy sinh, tầm quan trọng xã hội, đào tạo chuyên sâu nhưng thu nhập thấp). Cách tiếp cận này giúp bài viết đạt band cao hơn vì nó thể hiện tư duy phản biện và khả năng phát triển nhiều ý khác nhau.
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
