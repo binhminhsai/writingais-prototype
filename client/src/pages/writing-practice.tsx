@@ -25,8 +25,10 @@ export default function WritingPractice() {
   };
 
   const handleSubmitEssay = (content: string) => {
+    console.log('handleSubmitEssay called with content length:', content.length);
     setEssayContent(content);
     setCurrentStage("feedback");
+    console.log('Stage changed to feedback');
   };
 
   const handleTryAgain = () => {

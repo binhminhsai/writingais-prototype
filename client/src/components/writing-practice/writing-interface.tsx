@@ -984,6 +984,7 @@ export function WritingInterface({
   };
 
   const handleLoadingComplete = () => {
+    console.log('Loading complete - hiding loading page and submitting essay');
     setShowLoadingPage(false);
     onSubmit(essayContent);
   };

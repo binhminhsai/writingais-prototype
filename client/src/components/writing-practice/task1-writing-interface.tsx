@@ -973,6 +973,7 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
   };
 
   const handleLoadingComplete = () => {
+    console.log('Task 1 loading complete - showing feedback');
     setShowLoadingPage(false);
     setShowFeedback(true);
   };

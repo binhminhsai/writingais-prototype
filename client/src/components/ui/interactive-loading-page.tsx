@@ -37,8 +37,10 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
 
     // Complete animation after 8 seconds
     const completionTimer = setTimeout(() => {
+      console.log('8-second timer complete - starting fade out');
       setIsCompleting(true);
       setTimeout(() => {
+        console.log('Fade out complete - calling onComplete');
         onComplete();
       }, 500); // Allow fade out animation
     }, 8000);
