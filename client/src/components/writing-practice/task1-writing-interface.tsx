@@ -37,6 +37,7 @@ import { Task1FeedbackInterface } from "./task1-feedback-interface";
 import { Link } from "wouter";
 import { InteractiveLoadingPage } from "@/components/ui/interactive-loading-page";
 import { ShimmerLoader, ShimmerCard, ShimmerList, ShimmerText } from "@/components/ui/shimmer-loader";
+import { BookLoader } from "@/components/ui/book-loader";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -536,6 +537,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const [phraseDisplayCount, setPhraseDisplayCount] = useState(8);
   const [isLoadingVocab, setIsLoadingVocab] = useState(false);
   const [isLoadingPhrases, setIsLoadingPhrases] = useState(false);
+  const [isLoadingWordBank, setIsLoadingWordBank] = useState(false);
   
   const allVocabulary = getTask1Vocabulary(questionType);
   const phrases = getTask1Phrases();
@@ -657,9 +659,13 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
     }, 600);
   };
 
-  // Handle unified word bank button
+  // Handle unified word bank button with 5-second loading animation
   const handleExploreWordBank = () => {
-    setShowWordBank(true);
+    setIsLoadingWordBank(true);
+    setTimeout(() => {
+      setIsLoadingWordBank(false);
+      setShowWordBank(true);
+    }, 5000);
   };
 
   // Words to display based on current count limits
@@ -706,7 +712,11 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
         </div>
 
         <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
-          {!showWordBank ? (
+          {isLoadingWordBank ? (
+            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
+              <BookLoader message="Flipping through our vocabulary archive..." />
+            </div>
+          ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
               <Button
                 variant="outline"
@@ -796,7 +806,11 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
         </TabsContent>
 
         <TabsContent value="phrases" className="p-0 min-h-[200px]">
-          {!showWordBank ? (
+          {isLoadingWordBank ? (
+            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
+              <BookLoader message="Flipping through our vocabulary archive..." />
+            </div>
+          ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
               <Button
                 variant="outline"

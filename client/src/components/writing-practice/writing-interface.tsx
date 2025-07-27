@@ -37,6 +37,7 @@ import { WritingTestType, DifficultyLevel } from "./test-setup";
 import { Link } from "wouter";
 import { InteractiveLoadingPage } from "@/components/ui/interactive-loading-page";
 import { ShimmerLoader, ShimmerCard, ShimmerList, ShimmerText } from "@/components/ui/shimmer-loader";
+import { BookLoader } from "@/components/ui/book-loader";
 
 // Outline component with tabs for outline and useful expressions
 function OutlineSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
@@ -618,6 +619,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const [showVocabulary, setShowVocabulary] = useState(false);
   const [showPhrases, setShowPhrases] = useState(false);
   const [showWordBank, setShowWordBank] = useState(false);
+  const [isLoadingWordBank, setIsLoadingWordBank] = useState(false);
   const allVocabulary = getVocabulary(testType, topic);
   const phrases = getPhrases(testType);
 
@@ -802,11 +804,15 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
     }, 600);
   };
 
-  // Handle unified word bank button
+  // Handle unified word bank button with 5-second loading animation
   const handleExploreWordBank = () => {
-    setShowWordBank(true);
-    setShowVocabulary(true);
-    setShowPhrases(true);
+    setIsLoadingWordBank(true);
+    setTimeout(() => {
+      setIsLoadingWordBank(false);
+      setShowWordBank(true);
+      setShowVocabulary(true);
+      setShowPhrases(true);
+    }, 5000);
   };
 
   // Words to display based on current count limits
@@ -853,7 +859,11 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </div>
 
         <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
-          {!showWordBank ? (
+          {isLoadingWordBank ? (
+            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
+              <BookLoader message="Flipping through our vocabulary archive..." />
+            </div>
+          ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
               <Button
                 variant="outline"
@@ -942,7 +952,11 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </TabsContent>
 
         <TabsContent value="phrases" className="p-0 min-h-[200px]">
-          {!showWordBank ? (
+          {isLoadingWordBank ? (
+            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
+              <BookLoader message="Flipping through our vocabulary archive..." />
+            </div>
+          ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
               <Button
                 variant="outline"

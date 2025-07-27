@@ -450,6 +450,13 @@ Changelog:
   - Integrated loading page into both main writing interface and Task 1 writing interface Submit button flows
   - Created smooth fade-out transition after completion to reveal feedback interface
   - Positioned flask loader and messages as non-interactive overlay above drawing canvas
+- July 27, 2025. Enhanced Explore Word Bank with animated book loading interface:
+  - Created custom BookLoader component with flipping book animation and teal color scheme (#1ca19a)
+  - Added CSS keyframe animations for book glow effects and page flipping with 3D perspective transforms
+  - Implemented 5-second loading duration for "Explore Word Bank" button across both Task 1 and Task 2 interfaces
+  - Integrated BookLoader into vocabulary and phrases tabs with "Flipping through our vocabulary archive..." message
+  - Applied consistent loading state management with setTimeout functionality for realistic user experience
+  - Enhanced both writing interfaces with smooth loading transitions before revealing word bank content
 
 ## User Preferences
 
