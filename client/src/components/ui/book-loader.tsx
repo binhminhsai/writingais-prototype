@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 interface BookLoaderProps {
   message?: string;
   className?: string;
 }
 
-const vocabularyKeywords = [
-  'fluency', 'coherence', 'grammar', 'lexical', 'accuracy', 
-  'complexity', 'clarity', 'structure', 'cohesion', 'range'
-];
-
 export function BookLoader({ 
   message = "Flipping through our vocabulary archive...", 
   className = "" 
 }: BookLoaderProps) {
-  const [currentKeyword, setCurrentKeyword] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentKeyword((prev) => (prev + 1) % vocabularyKeywords.length);
-    }, 800); // Change keyword every 800ms for smooth rotation
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className={`flex flex-col items-center justify-center space-y-4 ${className}`}>
@@ -51,22 +37,10 @@ export function BookLoader({
             
             {/* Page 2 - Flipping animation */}
             <div className="absolute inset-0 flipping-page-1 bg-white/95 rounded-sm shadow-md">
-              <div className="p-1.5 h-full flex flex-col justify-center items-center">
-                <div className="keyword-text text-[#1ca19a] font-bold text-[8px] animate-fade-in">
-                  {vocabularyKeywords[currentKeyword]}
-                </div>
-                <div className="w-5 h-0.5 bg-[#1ca19a]/30 rounded-full mt-1"></div>
-              </div>
             </div>
             
             {/* Page 3 - Second flipping animation */}
             <div className="absolute inset-0 flipping-page-2 bg-white/90 rounded-sm shadow-lg">
-              <div className="p-1.5 h-full flex flex-col justify-center items-center">
-                <div className="keyword-text text-[#16a085] font-bold text-[8px] animate-fade-in">
-                  {vocabularyKeywords[(currentKeyword + 1) % vocabularyKeywords.length]}
-                </div>
-                <div className="w-4 h-0.5 bg-[#16a085]/30 rounded-full mt-1"></div>
-              </div>
             </div>
           </div>
           
