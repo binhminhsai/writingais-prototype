@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Chart Function Color Styling */
+.chart-function-text {
+  color: #111872;
+}
+
+.chart-function-content {
+  color: #111872;
+}
+
 @layer base {
   * {
     @apply border-border;
