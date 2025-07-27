@@ -448,7 +448,7 @@ export default function WritingTask1() {
               <div className="text-teal-800 font-bold text-lg mb-3">IELTS Writing Task 1:</div>
               <p className="text-gray-800 text-base leading-relaxed">
                 {previewQuestion.split('**').map((part, index) => 
-                  index % 2 === 1 ? <strong key={index} className="font-semibold">{part}</strong> : part
+                  index % 2 === 1 ? part : part
                 )}
               </p>
             </div>
