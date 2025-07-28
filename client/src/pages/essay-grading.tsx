@@ -194,107 +194,109 @@ export default function EssayGrading() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 xl:place-items-start place-items-center">
+      <div className="flex flex-col xl:flex-row gap-4 sm:gap-6 lg:gap-8 items-center xl:items-start justify-center">
         {/* Essay Submission Form */}
-        <Card className="h-fit w-full max-w-2xl xl:max-w-none">
-          <CardHeader className="pb-4">
-            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-              <FileText className="h-5 w-5 text-primary" />
-              Gửi bài luận
-            </CardTitle>
-            <CardDescription className="text-sm">
-              Nhập câu hỏi và bài luận của bạn để được chấm điểm
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4 sm:space-y-6">
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="question" className="text-sm font-medium">
-                  Câu hỏi đề bài
-                </Label>
-                <Textarea
-                  id="question"
-                  placeholder="Nhập câu hỏi IELTS Writing Task 2..."
-                  className="min-h-[80px] sm:min-h-[100px] text-sm"
-                  {...form.register("question")}
-                />
-                {form.formState.errors.question && (
-                  <p className="text-xs sm:text-sm text-red-600">
-                    {form.formState.errors.question.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="essay" className="text-sm font-medium">
-                  Bài luận
-                </Label>
-                <Textarea
-                  id="essay"
-                  placeholder="Nhập bài luận của bạn (tối thiểu 250 từ)..."
-                  className="min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] text-sm"
-                  {...form.register("essay")}
-                />
-                {form.formState.errors.essay && (
-                  <p className="text-xs sm:text-sm text-red-600">
-                    {form.formState.errors.essay.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="file" className="text-sm font-medium">
-                  Hoặc tải file Word/PDF
-                </Label>
+        <div className="w-full max-w-2xl xl:max-w-none xl:flex-1">
+          <Card className="h-fit">
+            <CardHeader className="pb-4">
+              <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                <FileText className="h-5 w-5 text-primary" />
+                Gửi bài luận
+              </CardTitle>
+              <CardDescription className="text-sm">
+                Nhập câu hỏi và bài luận của bạn để được chấm điểm
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4 sm:space-y-6">
+              <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
                 <div className="space-y-2">
-                  <Input
-                    id="file"
-                    type="file"
-                    accept=".pdf,.docx,.doc"
-                    onChange={handleFileUpload}
-                    className="hidden"
+                  <Label htmlFor="question" className="text-sm font-medium">
+                    Câu hỏi đề bài
+                  </Label>
+                  <Textarea
+                    id="question"
+                    placeholder="Nhập câu hỏi IELTS Writing Task 2..."
+                    className="min-h-[80px] sm:min-h-[100px] text-sm"
+                    {...form.register("question")}
                   />
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full text-sm"
-                    onClick={() => document.getElementById("file")?.click()}
-                  >
-                    <Upload className="h-4 w-4 mr-2" />
-                    Gửi file Word/PDF
-                  </Button>
-                  {form.watch("fileName") && (
-                    <p className="text-xs sm:text-sm text-green-600 p-2 bg-green-50 rounded">
-                      File đã chọn: {form.watch("fileName")}
+                  {form.formState.errors.question && (
+                    <p className="text-xs sm:text-sm text-red-600">
+                      {form.formState.errors.question.message}
                     </p>
                   )}
                 </div>
-              </div>
 
-              <Button
-                type="submit"
-                className="w-full mt-6 text-sm sm:text-base"
-                disabled={createEssayMutation.isPending || isGrading}
-                size="lg"
-              >
-                {isGrading ? (
-                  <>
-                    <Clock className="h-4 w-4 mr-2 animate-spin" />
-                    Đang chấm bài...
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle className="h-4 w-4 mr-2" />
-                    Bắt đầu chấm bài
-                  </>
-                )}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+                <div className="space-y-2">
+                  <Label htmlFor="essay" className="text-sm font-medium">
+                    Bài luận
+                  </Label>
+                  <Textarea
+                    id="essay"
+                    placeholder="Nhập bài luận của bạn (tối thiểu 250 từ)..."
+                    className="min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] text-sm"
+                    {...form.register("essay")}
+                  />
+                  {form.formState.errors.essay && (
+                    <p className="text-xs sm:text-sm text-red-600">
+                      {form.formState.errors.essay.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="file" className="text-sm font-medium">
+                    Hoặc tải file Word/PDF
+                  </Label>
+                  <div className="space-y-2">
+                    <Input
+                      id="file"
+                      type="file"
+                      accept=".pdf,.docx,.doc"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full text-sm"
+                      onClick={() => document.getElementById("file")?.click()}
+                    >
+                      <Upload className="h-4 w-4 mr-2" />
+                      Gửi file Word/PDF
+                    </Button>
+                    {form.watch("fileName") && (
+                      <p className="text-xs sm:text-sm text-green-600 p-2 bg-green-50 rounded">
+                        File đã chọn: {form.watch("fileName")}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full mt-6 text-sm sm:text-base"
+                  disabled={createEssayMutation.isPending || isGrading}
+                  size="lg"
+                >
+                  {isGrading ? (
+                    <>
+                      <Clock className="h-4 w-4 mr-2 animate-spin" />
+                      Đang chấm bài...
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Bắt đầu chấm bài
+                    </>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Grading Results */}
-        <div className="space-y-4 sm:space-y-6 w-full max-w-2xl xl:max-w-none">
+        <div className="space-y-4 sm:space-y-6 w-full max-w-2xl xl:max-w-none xl:flex-1">
           {isGrading && (
             <Card>
               <CardContent className="pt-4 sm:pt-6">
