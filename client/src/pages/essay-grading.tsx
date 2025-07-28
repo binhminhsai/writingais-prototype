@@ -184,63 +184,69 @@ export default function EssayGrading() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 lg:py-8 max-w-7xl">
+      <div className="mb-6 sm:mb-8 text-center lg:text-left">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
           Chấm điểm IELTS Writing Task 2
         </h1>
-        <p className="text-gray-600">
+        <p className="text-sm sm:text-base text-gray-600 max-w-4xl mx-auto lg:mx-0">
           Gửi bài luận Task 2 đã hoàn thành của bạn để nhận điểm Band Score chi tiết theo 4 tiêu chí IELTS cùng với nhận xét cải thiện từ AI
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
         {/* Essay Submission Form */}
         <Card className="h-fit">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
               <FileText className="h-5 w-5 text-primary" />
               Gửi bài luận
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-sm">
               Nhập câu hỏi và bài luận của bạn để được chấm điểm
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4 sm:space-y-6">
             <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
-              <div>
-                <Label htmlFor="question">Câu hỏi đề bài *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="question" className="text-sm font-medium">
+                  Câu hỏi đề bài
+                </Label>
                 <Textarea
                   id="question"
                   placeholder="Nhập câu hỏi IELTS Writing Task 2..."
-                  className="min-h-[100px] mt-1"
+                  className="min-h-[80px] sm:min-h-[100px] text-sm"
                   {...form.register("question")}
                 />
                 {form.formState.errors.question && (
-                  <p className="text-sm text-red-600 mt-1">
+                  <p className="text-xs sm:text-sm text-red-600">
                     {form.formState.errors.question.message}
                   </p>
                 )}
               </div>
 
-              <div>
-                <Label htmlFor="essay">Bài luận *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="essay" className="text-sm font-medium">
+                  Bài luận
+                </Label>
                 <Textarea
                   id="essay"
                   placeholder="Nhập bài luận của bạn (tối thiểu 250 từ)..."
-                  className="min-h-[300px] mt-1"
+                  className="min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] text-sm"
                   {...form.register("essay")}
                 />
                 {form.formState.errors.essay && (
-                  <p className="text-sm text-red-600 mt-1">
+                  <p className="text-xs sm:text-sm text-red-600">
                     {form.formState.errors.essay.message}
                   </p>
                 )}
               </div>
 
-              <div>
-                <Label htmlFor="file">Hoặc tải file Word/PDF</Label>
-                <div className="mt-1">
+              <div className="space-y-2">
+                <Label htmlFor="file" className="text-sm font-medium">
+                  Hoặc tải file Word/PDF
+                </Label>
+                <div className="space-y-2">
                   <Input
                     id="file"
                     type="file"
@@ -251,14 +257,14 @@ export default function EssayGrading() {
                   <Button
                     type="button"
                     variant="outline"
-                    className="w-full"
+                    className="w-full text-sm"
                     onClick={() => document.getElementById("file")?.click()}
                   >
                     <Upload className="h-4 w-4 mr-2" />
                     Gửi file Word/PDF
                   </Button>
                   {form.watch("fileName") && (
-                    <p className="text-sm text-green-600 mt-2">
+                    <p className="text-xs sm:text-sm text-green-600 p-2 bg-green-50 rounded">
                       File đã chọn: {form.watch("fileName")}
                     </p>
                   )}
@@ -267,8 +273,9 @@ export default function EssayGrading() {
 
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full mt-6 text-sm sm:text-base"
                 disabled={createEssayMutation.isPending || isGrading}
+                size="lg"
               >
                 {isGrading ? (
                   <>
@@ -287,19 +294,19 @@ export default function EssayGrading() {
         </Card>
 
         {/* Grading Results */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {isGrading && (
             <Card>
-              <CardContent className="pt-6">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-                    <BarChart3 className="h-8 w-8 text-primary animate-pulse" />
+              <CardContent className="pt-4 sm:pt-6">
+                <div className="text-center space-y-3 sm:space-y-4">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
+                    <BarChart3 className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-pulse" />
                   </div>
-                  <h3 className="text-lg font-semibold">Đang phân tích bài luận...</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-base sm:text-lg font-semibold">Đang phân tích bài luận...</h3>
+                  <p className="text-sm text-gray-600">
                     Hệ thống AI đang đánh giá bài viết của bạn theo tiêu chuẩn IELTS
                   </p>
-                  <Progress value={66} className="w-full" />
+                  <Progress value={66} className="w-full max-w-md mx-auto" />
                 </div>
               </CardContent>
             </Card>
@@ -307,19 +314,19 @@ export default function EssayGrading() {
 
           {gradedEssay && (
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
                   <Star className="h-5 w-5 text-yellow-500" />
                   Kết quả chấm điểm
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4 sm:space-y-6">
                 {/* Overall Score */}
-                <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
-                  <div className="text-3xl font-bold text-blue-600 mb-1">
+                <div className="text-center p-4 sm:p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg">
+                  <div className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">
                     Band {gradedEssay.overallScore?.toFixed(1)}
                   </div>
-                  <Badge className={getBandColor(gradedEssay.overallScore || 0)}>
+                  <Badge className={`${getBandColor(gradedEssay.overallScore || 0)} text-white`}>
                     {getBandDescription(gradedEssay.overallScore || 0)}
                   </Badge>
                 </div>
@@ -327,34 +334,34 @@ export default function EssayGrading() {
                 <Separator />
 
                 {/* Detailed Scores */}
-                <div className="space-y-4">
-                  <h4 className="font-semibold text-gray-900">Chi tiết điểm số:</h4>
+                <div className="space-y-3 sm:space-y-4">
+                  <h4 className="text-sm sm:text-base font-semibold text-gray-900">Chi tiết điểm số:</h4>
                   
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">Task Achievement</span>
-                      <Badge variant="secondary">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span className="text-xs sm:text-sm font-medium">Task Achievement</span>
+                      <Badge variant="secondary" className="text-xs">
                         {gradedEssay.taskAchievement?.toFixed(1)}
                       </Badge>
                     </div>
                     
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">Coherence & Cohesion</span>
-                      <Badge variant="secondary">
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span className="text-xs sm:text-sm font-medium">Coherence & Cohesion</span>
+                      <Badge variant="secondary" className="text-xs">
                         {gradedEssay.coherenceCohesion?.toFixed(1)}
                       </Badge>
                     </div>
                     
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">Lexical Resource</span>
-                      <Badge variant="secondary">
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span className="text-xs sm:text-sm font-medium">Lexical Resource</span>
+                      <Badge variant="secondary" className="text-xs">
                         {gradedEssay.lexicalResource?.toFixed(1)}
                       </Badge>
                     </div>
                     
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">Grammar Range & Accuracy</span>
-                      <Badge variant="secondary">
+                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <span className="text-xs sm:text-sm font-medium">Grammar Range & Accuracy</span>
+                      <Badge variant="secondary" className="text-xs">
                         {gradedEssay.grammaticalRange?.toFixed(1)}
                       </Badge>
                     </div>
@@ -365,12 +372,12 @@ export default function EssayGrading() {
 
                 {/* Feedback */}
                 <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-900 flex items-center gap-2">
+                  <h4 className="text-sm sm:text-base font-semibold text-gray-900 flex items-center gap-2">
                     <MessageSquare className="h-4 w-4" />
                     Nhận xét chi tiết:
                   </h4>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <p className="text-sm text-gray-700 leading-relaxed">
+                  <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
                       {gradedEssay.feedback}
                     </p>
                   </div>
@@ -382,26 +389,26 @@ export default function EssayGrading() {
           {/* History */}
           {essayHistory && Array.isArray(essayHistory) && essayHistory.length > 0 && (
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
                   <BookOpen className="h-5 w-5 text-indigo-600" />
                   Lịch sử chấm bài
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   {essayHistory.slice(0, 5).map((essay: EssayGrading) => (
-                    <div key={essay.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 truncate">
-                          {essay.question.substring(0, 50)}...
+                    <div key={essay.id} className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 bg-gray-50 rounded-lg gap-2">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs sm:text-sm font-medium text-gray-900 truncate">
+                          {essay.question.substring(0, 60)}...
                         </p>
                         <p className="text-xs text-gray-500">
                           {new Date(essay.createdAt).toLocaleDateString('vi-VN')}
                         </p>
                       </div>
                       {essay.overallScore && (
-                        <Badge variant="outline">
+                        <Badge variant="outline" className="text-xs w-fit">
                           Band {essay.overallScore.toFixed(1)}
                         </Badge>
                       )}
