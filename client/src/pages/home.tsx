@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileEdit, BookOpen, History, Medal, BarChart3 } from "lucide-react";
+import { ArrowRight, FileEdit, BookOpen, History, Medal, BarChart3, CheckCircle } from "lucide-react";
 
 export default function Home() {
   return (
@@ -51,16 +51,25 @@ export default function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
-            <p className="text-gray-600">
-              Write IELTS Task 2 essays on various topics and get personalized band scores and feedback instantly.
+            <p className="text-gray-600 mb-4">
+              Complete IELTS Writing Task 2 system with practice and scoring
             </p>
+            <div className="space-y-2">
+              <Link href="/writing-practice">
+                <Button className="w-full" variant="default" size="sm">
+                  <FileEdit className="mr-2 h-4 w-4" />
+                  Practice Writing
+                </Button>
+              </Link>
+              <Link href="/essay-grading">
+                <Button className="w-full" variant="outline" size="sm">
+                  <CheckCircle className="mr-2 h-4 w-4" />
+                  Grade My Essay
+                </Button>
+              </Link>
+            </div>
           </CardContent>
-          <CardFooter>
-            <Link href="/essay-grading">
-              <Button className="w-full">
-                Start Practice <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+          <CardFooter className="pt-0">
           </CardFooter>
         </Card>
 

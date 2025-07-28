@@ -190,7 +190,7 @@ export default function EssayGrading() {
           Chấm điểm IELTS Writing Task 2
         </h1>
         <p className="text-gray-600">
-          Gửi bài luận của bạn và nhận điểm số chi tiết cùng nhận xét từ hệ thống AI chuyên nghiệp
+          Gửi bài luận Task 2 đã hoàn thành của bạn để nhận điểm Band Score chi tiết theo 4 tiêu chí IELTS cùng với nhận xét cải thiện từ AI
         </p>
       </div>
 

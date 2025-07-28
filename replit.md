@@ -223,6 +223,17 @@ Changelog:
   - Enhanced UX with hover effects, smooth transitions, and multiple expandable cards simultaneously
   - Maintained responsive design and consistent styling across mobile and desktop breakpoints
   - Enhanced card info section with vocabulary count (bottom-left) and study frequency statistics (bottom-right)
+- July 28, 2025. Added IELTS Writing Task 2 Essay Grading system as complementary feature:
+  - Created new `/essay-grading` route for grading completed essays (separate from practice writing)
+  - Implemented form with question input and essay textarea with file upload support (Word/PDF)
+  - Built AI-powered scoring system with 4 IELTS criteria: Task Achievement, Coherence & Cohesion, Lexical Resource, Grammar Range & Accuracy
+  - Added realistic band score generation (6.0-8.5 range) with detailed Vietnamese feedback
+  - Created comprehensive results display with overall band score, individual criteria scores, and improvement suggestions
+  - Implemented essay grading history tracking with submission dates and scores
+  - Updated navigation to include both "Writing Practice" and "Essay Grading" options
+  - Enhanced home page Writing Task 2 card with dual buttons for practice vs grading modes
+  - Added complete backend API routes for essay CRUD operations and scoring updates
+  - Extended database schema with essayGrading table and related types
   - Fixed validation warnings by replacing nested button elements with interactive spans
   - Added statistics row with border separator and icon indicators for better visual hierarchy
   - Redesigned search bar layout with integrated search button and moved action buttons to the right
