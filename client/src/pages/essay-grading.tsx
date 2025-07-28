@@ -32,8 +32,14 @@ import { apiRequest } from "@/lib/queryClient";
 import type { EssayGrading, InsertEssayGrading } from "@shared/schema";
 
 const essayFormSchema = z.object({
-  question: z.string().min(10, "Câu hỏi phải có ít nhất 10 ký tự"),
-  essay: z.string().min(100, "Bài luận phải có ít nhất 100 ký tự"),
+  question: z.string().refine(
+    (val) => val.trim().length >= 10,
+    "Vui lòng nhập câu hỏi IELTS Task 2"
+  ),
+  essay: z.string().refine(
+    (val) => val.trim().length > 0,
+    "Vui lòng nhập bài luận cần chấm"
+  ),
   fileName: z.string().optional(),
 });
 
