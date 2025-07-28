@@ -80,12 +80,14 @@ interface FeedbackInterfaceProps {
   essayContent: string;
   onTryAgain: () => void;
   onNextPractice: () => void;
+  context?: "writing-practice" | "essay-grading";
 }
 
 export function FeedbackInterface({
   essayContent,
   onTryAgain,
   onNextPractice,
+  context = "writing-practice",
 }: FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
 
@@ -955,14 +957,16 @@ Only through careful planning and responsible policies can societies achieve pro
           className="bg-primary hover:bg-primary/90 text-white"
           onClick={onTryAgain}
         >
-          <Pen className="mr-2 h-4 w-4" /> Try Again
+          <Pen className="mr-2 h-4 w-4" /> 
+          {context === "essay-grading" ? "Chấm bài khác" : "Try Again"}
         </Button>
 
         <Button 
           className="bg-primary hover:bg-primary/90 text-white"
           onClick={onNextPractice}
         >
-          <ArrowRight className="mr-2 h-4 w-4" /> Next Practice
+          <ArrowRight className="mr-2 h-4 w-4" /> 
+          {context === "essay-grading" ? "Bài mới" : "Next Practice"}
         </Button>
       </div>
 
@@ -977,7 +981,7 @@ Only through careful planning and responsible policies can societies achieve pro
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Tiếp tục xem đánh giá</AlertDialogCancel>
-            <Link href="/writing-practice">
+            <Link href={context === "essay-grading" ? "/essay-grading" : "/writing-practice"}>
               <AlertDialogAction>
                 Thoát
               </AlertDialogAction>

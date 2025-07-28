@@ -224,6 +224,7 @@ export default function EssayGrading() {
           essayContent={submittedEssay.essay}
           onTryAgain={handleTryAgain}
           onNextPractice={handleNextPractice}
+          context="essay-grading"
         />
       )}
     </main>

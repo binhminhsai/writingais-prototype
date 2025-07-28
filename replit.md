@@ -479,6 +479,14 @@ Changelog:
   - Integrated BookLoader into vocabulary and phrases tabs with "Flipping through our vocabulary archive..." message
   - Applied consistent loading state management with setTimeout functionality for realistic user experience
   - Enhanced both writing interfaces with smooth loading transitions before revealing word bank content
+- July 28, 2025. Integrated Essay Grading with Writing Practice feedback interface:
+  - Removed standalone results and history sections from essay grading page
+  - Connected essay grading directly to FeedbackInterface component from writing practice
+  - Added context prop to FeedbackInterface to handle different navigation flows
+  - Updated button text and exit dialog links based on context (essay-grading vs writing-practice)
+  - Implemented proper navigation flow: essay grading form → loading state → feedback interface → back to essay grading form
+  - Ensured "Try Again" and "Next Practice" buttons return to essay grading form, not writing practice setup
+  - Added Vietnamese button labels for essay grading context: "Chấm bài khác" and "Bài mới"
 
 ## User Preferences
 
