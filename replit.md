@@ -32,6 +32,8 @@ This is a full-stack English writing practice application built with React, Expr
 1. **Core Pages**:
    - Home: Landing page with feature overview
    - Writing Practice: Main writing interface with timer and word counter
+   - Essay Grading: IELTS Writing Task 2 grading system with AI feedback
+   - Wordcraft: Vocabulary building with curated word lists
    - Blog: Content section with writing tips and guides
    - Login: User authentication interface
 
@@ -39,6 +41,13 @@ This is a full-stack English writing practice application built with React, Expr
    - Test Setup: Configure test type, difficulty, and topic
    - Writing Interface: Rich text editor with supporting resources
    - Feedback Interface: AI-powered analysis and scoring
+
+3. **Essay Grading System**:
+   - Question Input: IELTS Writing Task 2 prompts
+   - Essay Submission: Text input or file upload (Word/PDF)
+   - AI Grading: Band scores for all four IELTS criteria
+   - Detailed Feedback: Comprehensive analysis and improvement suggestions
+   - History Tracking: Past submissions and scores
 
 3. **UI Components**:
    - Comprehensive component library using Shadcn/ui
@@ -54,6 +63,8 @@ This is a full-stack English writing practice application built with React, Expr
 2. **API Routes**:
    - User management endpoints
    - Writing practice and feedback endpoints
+   - Essay grading endpoints (CRUD operations for essays and scoring)
+   - Vocabulary management endpoints
    - Structured route registration system
 
 3. **Middleware**:

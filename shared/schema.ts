@@ -33,6 +33,20 @@ export const vocabularyWords = pgTable("vocabulary_words", {
   tags: text("tags").array().default([]),
 });
 
+export const essayGrading = pgTable("essay_grading", {
+  id: serial("id").primaryKey(),
+  question: text("question").notNull(),
+  essay: text("essay").notNull(),
+  fileName: text("file_name"),
+  overallScore: integer("overall_score"),
+  taskAchievement: integer("task_achievement"),
+  coherenceCohesion: integer("coherence_cohesion"),
+  lexicalResource: integer("lexical_resource"),
+  grammaticalRange: integer("grammatical_range"),
+  feedback: text("feedback"),
+  createdAt: text("created_at").notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -46,9 +60,21 @@ export const insertVocabularyWordSchema = createInsertSchema(vocabularyWords).om
   id: true,
 });
 
+export const insertEssayGradingSchema = createInsertSchema(essayGrading).omit({
+  id: true,
+  overallScore: true,
+  taskAchievement: true,
+  coherenceCohesion: true,
+  lexicalResource: true,
+  grammaticalRange: true,
+  feedback: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type VocabularyCard = typeof vocabularyCards.$inferSelect;
 export type VocabularyWord = typeof vocabularyWords.$inferSelect;
 export type InsertVocabularyCard = z.infer<typeof insertVocabularyCardSchema>;
 export type InsertVocabularyWord = z.infer<typeof insertVocabularyWordSchema>;
+export type EssayGrading = typeof essayGrading.$inferSelect;
+export type InsertEssayGrading = z.infer<typeof insertEssayGradingSchema>;

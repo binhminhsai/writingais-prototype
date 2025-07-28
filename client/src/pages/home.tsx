@@ -56,7 +56,7 @@ export default function Home() {
             </p>
           </CardContent>
           <CardFooter>
-            <Link href="/writing-practice">
+            <Link href="/essay-grading">
               <Button className="w-full">
                 Start Practice <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

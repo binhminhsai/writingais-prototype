@@ -5,7 +5,9 @@ import {
   type VocabularyCard,
   type VocabularyWord,
   type InsertVocabularyCard,
-  type InsertVocabularyWord
+  type InsertVocabularyWord,
+  type EssayGrading,
+  type InsertEssayGrading
 } from "@shared/schema";
 
 // modify the interface with any CRUD methods
@@ -26,23 +28,40 @@ export interface IStorage {
   getVocabularyWordsByCardId(cardId: number): Promise<VocabularyWord[]>;
   getVocabularyWord(id: number): Promise<VocabularyWord | undefined>;
   createVocabularyWord(word: InsertVocabularyWord): Promise<VocabularyWord>;
+  
+  // Essay Grading
+  createEssayGrading(essay: InsertEssayGrading): Promise<EssayGrading>;
+  updateEssayGradingScores(id: number, scores: {
+    overallScore: number;
+    taskAchievement: number;
+    coherenceCohesion: number;
+    lexicalResource: number;
+    grammaticalRange: number;
+    feedback: string;
+  }): Promise<EssayGrading | undefined>;
+  getAllEssayGradings(): Promise<EssayGrading[]>;
+  getEssayGrading(id: number): Promise<EssayGrading | undefined>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private vocabularyCards: Map<number, VocabularyCard>;
   private vocabularyWords: Map<number, VocabularyWord>;
+  private essayGradings: Map<number, EssayGrading>;
   private currentUserId: number;
   private currentCardId: number;
   private currentWordId: number;
+  private currentEssayId: number;
 
   constructor() {
     this.users = new Map();
     this.vocabularyCards = new Map();
     this.vocabularyWords = new Map();
+    this.essayGradings = new Map();
     this.currentUserId = 1;
     this.currentCardId = 1;
     this.currentWordId = 1;
+    this.currentEssayId = 1;
     
     // Initialize with sample data
     this.initializeSampleData();
@@ -527,6 +546,53 @@ export class MemStorage implements IStorage {
     };
     this.vocabularyWords.set(id, word);
     return word;
+  }
+
+  // Essay Grading Methods
+  async createEssayGrading(essay: InsertEssayGrading): Promise<EssayGrading> {
+    const id = this.currentEssayId++;
+    const essayGrading: EssayGrading = {
+      ...essay,
+      id,
+      fileName: essay.fileName || null,
+      overallScore: null,
+      taskAchievement: null,
+      coherenceCohesion: null,
+      lexicalResource: null,
+      grammaticalRange: null,
+      feedback: null
+    };
+    this.essayGradings.set(id, essayGrading);
+    return essayGrading;
+  }
+
+  async updateEssayGradingScores(id: number, scores: {
+    overallScore: number;
+    taskAchievement: number;
+    coherenceCohesion: number;
+    lexicalResource: number;
+    grammaticalRange: number;
+    feedback: string;
+  }): Promise<EssayGrading | undefined> {
+    const essay = this.essayGradings.get(id);
+    if (!essay) return undefined;
+
+    const updatedEssay: EssayGrading = {
+      ...essay,
+      ...scores
+    };
+    this.essayGradings.set(id, updatedEssay);
+    return updatedEssay;
+  }
+
+  async getAllEssayGradings(): Promise<EssayGrading[]> {
+    return Array.from(this.essayGradings.values()).sort((a, b) => 
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }
+
+  async getEssayGrading(id: number): Promise<EssayGrading | undefined> {
+    return this.essayGradings.get(id);
   }
 }
 
