@@ -194,9 +194,9 @@ export default function EssayGrading() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 xl:place-items-start place-items-center">
         {/* Essay Submission Form */}
-        <Card className="h-fit">
+        <Card className="h-fit w-full max-w-2xl xl:max-w-none">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
               <FileText className="h-5 w-5 text-primary" />
@@ -294,7 +294,7 @@ export default function EssayGrading() {
         </Card>
 
         {/* Grading Results */}
-        <div className="space-y-4 sm:space-y-6">
+        <div className="space-y-4 sm:space-y-6 w-full max-w-2xl xl:max-w-none">
           {isGrading && (
             <Card>
               <CardContent className="pt-4 sm:pt-6">
