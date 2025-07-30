@@ -487,6 +487,13 @@ Changelog:
   - Implemented proper navigation flow: essay grading form → loading state → feedback interface → back to essay grading form
   - Ensured "Try Again" and "Next Practice" buttons return to essay grading form, not writing practice setup
   - Added Vietnamese button labels for essay grading context: "Chấm bài khác" and "Bài mới"
+- July 30, 2025. Enhanced home page and essay grading interface:
+  - Replaced gradient colors with website primary color (#20B2AA) throughout essay grading page
+  - Added dual button layout to Writing Task 1 card matching Writing Task 2 structure
+  - Created "Practice Writing Task 1" and "Grade My Writing Task 1" buttons
+  - Implemented URL parameter handling to auto-select Task 1 when accessed from home page button
+  - Updated essay grading page to read ?task=task1 parameter and set appropriate form defaults
+  - Applied consistent primary color theming to all form elements, loading states, and buttons
 
 ## User Preferences
 

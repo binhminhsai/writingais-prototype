@@ -32,12 +32,21 @@ export default function Home() {
               Choose your band level and receive structured feedback to improve your writing.
             </p>
           </CardContent>
-          <CardFooter>
-            <Link href="/writing-task-1">
-              <Button className="w-full">
-                Start Practice <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+          <CardFooter className="pt-0">
+            <div className="space-y-2 w-full">
+              <Link href="/writing-task-1">
+                <Button className="w-full" variant="default" size="sm">
+                  <FileEdit className="mr-2 h-4 w-4" />
+                  Practice Writing Task 1
+                </Button>
+              </Link>
+              <Link href="/essay-grading?task=task1">
+                <Button className="w-full" variant="outline" size="sm">
+                  <CheckCircle className="mr-2 h-4 w-4" />
+                  Grade My Writing Task 1
+                </Button>
+              </Link>
+            </div>
           </CardFooter>
         </Card>
 

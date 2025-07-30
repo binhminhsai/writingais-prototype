@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useLocation } from "wouter";
 import { 
   Card, 
   CardContent, 
@@ -44,6 +45,7 @@ const essayFormSchema = z.object({
 type EssayForm = z.infer<typeof essayFormSchema>;
 
 export default function EssayGrading() {
+  const [location] = useLocation();
   const [currentView, setCurrentView] = useState<"form" | "feedback">("form");
   const [submittedEssay, setSubmittedEssay] = useState<{ question: string; essay: string; taskType: string } | null>(null);
   const [isGrading, setIsGrading] = useState(false);
@@ -62,6 +64,16 @@ export default function EssayGrading() {
       fileName: "",
     },
   });
+
+  // Check URL parameters to set initial task type
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const taskParam = urlParams.get('task');
+    if (taskParam === 'task1') {
+      setTaskType('task1');
+      form.setValue('taskType', 'task1');
+    }
+  }, [location, form]);
 
   // Simplified submit handler - just go to feedback
   const handleSubmitEssay = async (data: EssayForm) => {
