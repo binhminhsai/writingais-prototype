@@ -69,13 +69,13 @@ export default function Home() {
               <Link href="/writing-practice">
                 <Button className="w-full" variant="default" size="sm">
                   <FileEdit className="mr-2 h-4 w-4" />
-                  Practice Writing
+                  Practice Writing Task 2
                 </Button>
               </Link>
               <Link href="/essay-grading">
                 <Button className="w-full" variant="outline" size="sm">
                   <CheckCircle className="mr-2 h-4 w-4" />
-                  Grade My Essay
+                  Grade My Writing Task 2
                 </Button>
               </Link>
             </div>
