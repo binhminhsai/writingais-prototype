@@ -201,12 +201,12 @@ export default function EssayGrading() {
     <main className="container mx-auto px-4 py-8">
       {currentView === "form" && (
         <>
-          <div className="text-center mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-6">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
               Chấm bài Writing IELTS Task 1 & Task 2
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Nhận đánh giá chi tiết và điểm số chính xác cho bài viết IELTS của bạn từ hệ thống AI chuyên nghiệp
+            <p className="text-base text-gray-600">
+              Nhận đánh giá chi tiết và điểm số chính xác từ hệ thống AI chuyên nghiệp
             </p>
           </div>
           
