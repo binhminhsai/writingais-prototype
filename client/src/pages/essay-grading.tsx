@@ -209,18 +209,7 @@ export default function EssayGrading() {
                 </Select>
               </div>
               
-              <div>
-                <CardTitle className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-                  <FileText className="h-6 w-6 text-primary" />
-                  {taskType === "task1" ? "Chấm điểm IELTS Writing Task 1" : "Chấm điểm IELTS Writing Task 2"}
-                </CardTitle>
-                <CardDescription className="text-sm sm:text-base text-gray-600">
-                  {taskType === "task1" 
-                    ? "Gửi bài luận Task 1 đã hoàn thành của bạn cùng với biểu đồ để nhận điểm Band Score chi tiết theo 4 tiêu chí IELTS"
-                    : "Gửi bài luận Task 2 đã hoàn thành của bạn để nhận điểm Band Score chi tiết theo 4 tiêu chí IELTS cùng với nhận xét cải thiện từ AI"
-                  }
-                </CardDescription>
-              </div>
+
             </div>
           </CardHeader>
           <CardContent className="space-y-4 sm:space-y-6">
