@@ -188,15 +188,15 @@ export default function EssayGrading() {
   return (
     <main className="container mx-auto px-4 py-8">
       {currentView === "form" && (
-        <Card className="bg-gradient-to-br from-white to-blue-50/30 rounded-xl shadow-lg border border-blue-100/50 backdrop-blur-sm">
-          <CardHeader className="pb-4 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-t-xl border-b border-indigo-100">
+        <Card className="bg-white rounded-xl shadow-lg border border-primary/20">
+          <CardHeader className="pb-4 bg-primary/5 rounded-t-xl border-b border-primary/10">
             <div className="space-y-4">
               <div>
-                <Label htmlFor="task-type" className="text-sm font-semibold mb-2 block text-indigo-700">
+                <Label htmlFor="task-type" className="text-sm font-semibold mb-2 block text-primary">
                   Chọn loại bài thi
                 </Label>
                 <Select value={taskType} onValueChange={handleTaskTypeChange}>
-                  <SelectTrigger className="border-indigo-200 focus:border-indigo-400 focus:ring-indigo-200 bg-white/80 backdrop-blur-sm">
+                  <SelectTrigger className="border-primary/20 focus:border-primary focus:ring-primary/20 bg-white">
                     <SelectValue>
                       {taskType === "task1" && "Chấm điểm IELTS Writing Task 1"}
                       {taskType === "task2" && "Chấm điểm IELTS Writing Task 2"}
@@ -221,7 +221,7 @@ export default function EssayGrading() {
                 <Textarea
                   id="question"
                   placeholder={taskType === "task1" ? "Nhập câu hỏi IELTS Writing Task 1..." : "Nhập câu hỏi IELTS Writing Task 2..."}
-                  className="min-h-[80px] sm:min-h-[100px] text-sm border-slate-200 focus:border-indigo-400 focus:ring-indigo-200 bg-white/90 backdrop-blur-sm"
+                  className="min-h-[80px] sm:min-h-[100px] text-sm border-slate-200 focus:border-primary focus:ring-primary/20 bg-white"
                   {...form.register("question")}
                 />
                 {form.formState.errors.question && (
@@ -238,7 +238,7 @@ export default function EssayGrading() {
                       Loại biểu đồ
                     </Label>
                     <Select onValueChange={(value) => form.setValue("chartType", value)}>
-                      <SelectTrigger className="border-slate-200 focus:border-indigo-400 focus:ring-indigo-200 bg-white/90 backdrop-blur-sm">
+                      <SelectTrigger className="border-slate-200 focus:border-primary focus:ring-primary/20 bg-white">
                         <SelectValue placeholder="Chọn loại biểu đồ" />
                       </SelectTrigger>
                       <SelectContent>
@@ -260,10 +260,10 @@ export default function EssayGrading() {
                     <div
                       className={`relative border-2 border-dashed rounded-xl p-6 text-center transition-all duration-300 ${
                         dragActive
-                          ? "border-indigo-400 bg-indigo-50/50 scale-[1.02]"
+                          ? "border-primary bg-primary/10 scale-[1.02]"
                           : chartImage
                           ? "border-emerald-300 bg-emerald-50/50 shadow-sm"
-                          : "border-slate-300 hover:border-indigo-300 hover:bg-indigo-50/30"
+                          : "border-slate-300 hover:border-primary hover:bg-primary/5"
                       }`}
                       onDragEnter={handleDrag}
                       onDragLeave={handleDrag}
@@ -313,7 +313,7 @@ export default function EssayGrading() {
                     ? "Nhập bài luận của bạn (tối thiểu 150 từ)..." 
                     : "Nhập bài luận của bạn (tối thiểu 250 từ)..."
                   }
-                  className="min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] text-sm border-slate-200 focus:border-indigo-400 focus:ring-indigo-200 bg-white/90 backdrop-blur-sm"
+                  className="min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] text-sm border-slate-200 focus:border-primary focus:ring-primary/20 bg-white"
                   {...form.register("essay")}
                 />
                 {form.formState.errors.essay && (
@@ -338,14 +338,14 @@ export default function EssayGrading() {
                   <Button
                     type="button"
                     variant="outline"
-                    className="w-full text-sm border-indigo-200 hover:border-indigo-300 hover:bg-indigo-50/50 text-indigo-700 transition-all duration-200"
+                    className="w-full text-sm border-primary/30 hover:border-primary hover:bg-primary/5 text-primary transition-all duration-200"
                     onClick={() => document.getElementById("file")?.click()}
                   >
                     <Upload className="h-4 w-4 mr-2" />
                     Gửi file Word/PDF
                   </Button>
                   {form.watch("fileName") && (
-                    <p className="text-xs sm:text-sm text-emerald-700 p-3 bg-gradient-to-r from-emerald-50 to-green-50 rounded-lg border border-emerald-200">
+                    <p className="text-xs sm:text-sm text-emerald-700 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
                       File đã chọn: {form.watch("fileName")}
                     </p>
                   )}
@@ -353,14 +353,14 @@ export default function EssayGrading() {
               </div>
 
               {isGrading && (
-                <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-indigo-200 shadow-sm">
+                <Card className="bg-primary/5 border-primary/20 shadow-sm">
                   <CardContent className="pt-4 sm:pt-6">
                     <div className="text-center space-y-3 sm:space-y-4">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center shadow-sm">
-                        <BarChart3 className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-600 animate-pulse" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-primary/20 rounded-full flex items-center justify-center shadow-sm">
+                        <BarChart3 className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-pulse" />
                       </div>
-                      <h3 className="text-base sm:text-lg font-semibold text-indigo-900">Đang phân tích bài luận...</h3>
-                      <p className="text-sm text-indigo-700">
+                      <h3 className="text-base sm:text-lg font-semibold text-primary">Đang phân tích bài luận...</h3>
+                      <p className="text-sm text-primary/80">
                         Hệ thống AI đang đánh giá bài viết của bạn theo tiêu chuẩn IELTS
                       </p>
                       <Progress value={66} className="w-full max-w-md mx-auto" />
@@ -371,7 +371,7 @@ export default function EssayGrading() {
 
               <Button
                 type="submit"
-                className="w-full mt-6 text-sm sm:text-base bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+                className="w-full mt-6 text-sm sm:text-base bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
                 disabled={isGrading}
                 size="lg"
               >
