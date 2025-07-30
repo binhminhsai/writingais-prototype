@@ -200,7 +200,17 @@ export default function EssayGrading() {
   return (
     <main className="container mx-auto px-4 py-8">
       {currentView === "form" && (
-        <Card className="bg-white rounded-xl shadow-lg border border-primary/20">
+        <>
+          <div className="text-center mb-8">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Chấm bài Writing IELTS Task 1 & Task 2
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Nhận đánh giá chi tiết và điểm số chính xác cho bài viết IELTS của bạn từ hệ thống AI chuyên nghiệp
+            </p>
+          </div>
+          
+          <Card className="bg-white rounded-xl shadow-lg border border-primary/20">
           <CardHeader className="pb-4 bg-primary/5 rounded-t-xl border-b border-primary/10">
             <div className="space-y-4">
               <div>
@@ -402,6 +412,7 @@ export default function EssayGrading() {
             </form>
           </CardContent>
         </Card>
+        </>
       )}
 
       {currentView === "feedback" && submittedEssay && (
