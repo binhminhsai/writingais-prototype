@@ -51,10 +51,12 @@ export default function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600">
               Complete IELTS Writing Task 2 system with practice and scoring
             </p>
-            <div className="space-y-2">
+          </CardContent>
+          <CardFooter className="pt-0">
+            <div className="space-y-2 w-full">
               <Link href="/writing-practice">
                 <Button className="w-full" variant="default" size="sm">
                   <FileEdit className="mr-2 h-4 w-4" />
@@ -68,8 +70,6 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
-          </CardContent>
-          <CardFooter className="pt-0">
           </CardFooter>
         </Card>
 
