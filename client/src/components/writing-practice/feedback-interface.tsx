@@ -981,7 +981,7 @@ Only through careful planning and responsible policies can societies achieve pro
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Tiếp tục xem đánh giá</AlertDialogCancel>
-            <Link href={context === "essay-grading" ? "/essay-grading" : "/writing-practice"}>
+            <Link href="/essay-grading">
               <AlertDialogAction>
                 Thoát
               </AlertDialogAction>
