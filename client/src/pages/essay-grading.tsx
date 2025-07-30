@@ -186,220 +186,227 @@ export default function EssayGrading() {
   };
 
   return (
-    <main className="container mx-auto px-4 py-8">
-      {currentView === "form" && (
-        <Card className="bg-white rounded-lg shadow-md">
-          <CardHeader className="pb-4">
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="task-type" className="text-sm font-medium mb-2 block">
-                  Chọn loại bài thi
-                </Label>
-                <Select value={taskType} onValueChange={handleTaskTypeChange}>
-                  <SelectTrigger>
-                    <SelectValue>
-                      {taskType === "task1" && "Chấm điểm IELTS Writing Task 1"}
-                      {taskType === "task2" && "Chấm điểm IELTS Writing Task 2"}
-                    </SelectValue>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="task1">Chấm điểm IELTS Writing Task 1</SelectItem>
-                    <SelectItem value="task2">Chấm điểm IELTS Writing Task 2</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-
-            </div>
-          </CardHeader>
-          <CardContent className="space-y-4 sm:space-y-6">
-            <form onSubmit={form.handleSubmit(handleSubmitEssay)} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="question" className="text-sm font-medium">
-                  Câu hỏi đề bài
-                </Label>
-                <Textarea
-                  id="question"
-                  placeholder={taskType === "task1" ? "Nhập câu hỏi IELTS Writing Task 1..." : "Nhập câu hỏi IELTS Writing Task 2..."}
-                  className="min-h-[80px] sm:min-h-[100px] text-sm"
-                  {...form.register("question")}
-                />
-                {form.formState.errors.question && (
-                  <p className="text-xs sm:text-sm text-red-600">
-                    {form.formState.errors.question.message}
-                  </p>
-                )}
-              </div>
-
-              {taskType === "task1" && (
-                <>
-                  <div className="space-y-2">
-                    <Label htmlFor="chart-type" className="text-sm font-medium">
-                      Loại biểu đồ
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="container mx-auto px-4 py-8">
+        {currentView === "form" && (
+          <div className="max-w-4xl mx-auto">
+            <Card className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border-0 overflow-hidden">
+              <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white pb-6">
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="task-type" className="text-white/90 font-medium mb-3 block text-base">
+                      📝 Chọn loại bài thi IELTS Writing
                     </Label>
-                    <Select onValueChange={(value) => form.setValue("chartType", value)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Chọn loại biểu đồ" />
+                    <Select value={taskType} onValueChange={handleTaskTypeChange}>
+                      <SelectTrigger className="bg-white/95 border-white/20 text-gray-800 font-medium shadow-lg">
+                        <SelectValue>
+                          {taskType === "task1" && "📊 Chấm điểm IELTS Writing Task 1"}
+                          {taskType === "task2" && "✍️ Chấm điểm IELTS Writing Task 2"}
+                        </SelectValue>
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="line-graph">Line Graph</SelectItem>
-                        <SelectItem value="bar-chart">Bar Chart</SelectItem>
-                        <SelectItem value="pie-chart">Pie Chart</SelectItem>
-                        <SelectItem value="process-diagram">Process Diagram</SelectItem>
-                        <SelectItem value="table">Table</SelectItem>
-                        <SelectItem value="map">Map</SelectItem>
-                        <SelectItem value="multiple-graphs">Multiple Graphs</SelectItem>
+                        <SelectItem value="task1">📊 Chấm điểm IELTS Writing Task 1</SelectItem>
+                        <SelectItem value="task2">✍️ Chấm điểm IELTS Writing Task 2</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-
-                  <div className="space-y-2">
-                    <Label className="text-sm font-medium">
-                      Tải ảnh biểu đồ
+                </div>
+              </CardHeader>
+              <CardContent className="p-6 space-y-6">
+                <form onSubmit={form.handleSubmit(handleSubmitEssay)} className="space-y-8">
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-100 shadow-sm">
+                    <Label htmlFor="question" className="text-gray-700 font-semibold mb-3 block text-base flex items-center gap-2">
+                      ❓ Câu hỏi đề bài
                     </Label>
-                    <div
-                      className={`relative border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-                        dragActive
-                          ? "border-primary bg-primary/5"
-                          : chartImage
-                          ? "border-green-300 bg-green-50"
-                          : "border-gray-300 hover:border-gray-400"
-                      }`}
-                      onDragEnter={handleDrag}
-                      onDragLeave={handleDrag}
-                      onDragOver={handleDrag}
-                      onDrop={handleDrop}
-                    >
-                      <Input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                      />
-                      <div className="space-y-2">
-                        <Image className="mx-auto h-12 w-12 text-gray-400" />
-                        {chartImage ? (
-                          <div>
-                            <p className="text-sm text-green-600 font-medium">
-                              ✓ {chartImage.name}
-                            </p>
-                            <p className="text-xs text-gray-500">
-                              Click để thay đổi hoặc kéo ảnh mới vào đây
-                            </p>
-                          </div>
-                        ) : (
-                          <div>
-                            <p className="text-sm text-gray-600">
-                              Chọn ảnh biểu đồ hoặc kéo vào đây
-                            </p>
-                            <p className="text-xs text-gray-500">
-                              Accepted file types: image. Max file size: 5 MB
-                            </p>
-                          </div>
-                        )}
+                    <Textarea
+                      id="question"
+                      placeholder={taskType === "task1" ? "Nhập câu hỏi IELTS Writing Task 1..." : "Nhập câu hỏi IELTS Writing Task 2..."}
+                      className="min-h-[100px] text-sm border-0 bg-white/80 backdrop-blur-sm shadow-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent rounded-lg resize-none"
+                      {...form.register("question")}
+                    />
+                    {form.formState.errors.question && (
+                      <p className="text-sm text-red-600 mt-2 flex items-center gap-1">
+                        ⚠️ {form.formState.errors.question.message}
+                      </p>
+                    )}
+                  </div>
+
+                  {taskType === "task1" && (
+                    <>
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100 shadow-sm">
+                        <Label htmlFor="chart-type" className="text-gray-700 font-semibold mb-3 block text-base flex items-center gap-2">
+                          📊 Loại biểu đồ
+                        </Label>
+                        <Select onValueChange={(value) => form.setValue("chartType", value)}>
+                          <SelectTrigger className="border-0 bg-white/80 backdrop-blur-sm shadow-lg focus:ring-2 focus:ring-green-500 focus:border-transparent rounded-lg">
+                            <SelectValue placeholder="Chọn loại biểu đồ..." />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="line-graph">📈 Line Graph</SelectItem>
+                            <SelectItem value="bar-chart">📊 Bar Chart</SelectItem>
+                            <SelectItem value="pie-chart">🥧 Pie Chart</SelectItem>
+                            <SelectItem value="process-diagram">🔄 Process Diagram</SelectItem>
+                            <SelectItem value="table">📋 Table</SelectItem>
+                            <SelectItem value="map">🗺️ Map</SelectItem>
+                            <SelectItem value="multiple-graphs">📈📊 Multiple Graphs</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
+
+                      <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-6 rounded-xl border border-amber-100 shadow-sm">
+                        <Label className="text-gray-700 font-semibold mb-3 block text-base flex items-center gap-2">
+                          🖼️ Tải ảnh biểu đồ
+                        </Label>
+                        <div
+                          className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 ${
+                            dragActive
+                              ? "border-amber-400 bg-amber-100/50 scale-105"
+                              : chartImage
+                              ? "border-green-400 bg-green-100/50"
+                              : "border-amber-300 hover:border-amber-400 hover:bg-amber-50/50"
+                          }`}
+                          onDragEnter={handleDrag}
+                          onDragLeave={handleDrag}
+                          onDragOver={handleDrag}
+                          onDrop={handleDrop}
+                        >
+                          <Input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                          />
+                          <div className="space-y-3">
+                            <div className="w-16 h-16 mx-auto bg-white/70 rounded-full flex items-center justify-center shadow-lg">
+                              <Image className="h-8 w-8 text-amber-600" />
+                            </div>
+                            {chartImage ? (
+                              <div>
+                                <p className="text-green-700 font-semibold text-base">
+                                  ✅ {chartImage.name}
+                                </p>
+                                <p className="text-gray-600 text-sm">
+                                  Click để thay đổi hoặc kéo ảnh mới vào đây
+                                </p>
+                              </div>
+                            ) : (
+                              <div>
+                                <p className="text-gray-700 font-medium">
+                                  Chọn ảnh biểu đồ hoặc kéo vào đây
+                                </p>
+                                <p className="text-gray-500 text-sm">
+                                  Hỗ trợ: JPG, PNG, GIF • Tối đa 5 MB
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-100 shadow-sm">
+                    <Label htmlFor="essay" className="text-gray-700 font-semibold mb-3 block text-base flex items-center gap-2">
+                      ✍️ Bài luận
+                    </Label>
+                    <Textarea
+                      id="essay"
+                      placeholder={taskType === "task1" 
+                        ? "Nhập bài luận của bạn (tối thiểu 150 từ)..." 
+                        : "Nhập bài luận của bạn (tối thiểu 250 từ)..."
+                      }
+                      className="min-h-[250px] text-sm border-0 bg-white/80 backdrop-blur-sm shadow-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent rounded-lg resize-none"
+                      {...form.register("essay")}
+                    />
+                    {form.formState.errors.essay && (
+                      <p className="text-sm text-red-600 mt-2 flex items-center gap-1">
+                        ⚠️ {form.formState.errors.essay.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-xl border border-indigo-100 shadow-sm">
+                    <Label htmlFor="file" className="text-gray-700 font-semibold mb-3 block text-base flex items-center gap-2">
+                      📎 Hoặc tải file Word/PDF
+                    </Label>
+                    <div className="space-y-3">
+                      <Input
+                        id="file"
+                        type="file"
+                        accept=".pdf,.docx,.doc"
+                        onChange={handleFileUpload}
+                        className="hidden"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="w-full text-sm bg-white/80 backdrop-blur-sm shadow-lg border-0 hover:bg-white hover:shadow-xl transition-all duration-300 rounded-lg py-3"
+                        onClick={() => document.getElementById("file")?.click()}
+                      >
+                        <Upload className="h-5 w-5 mr-2 text-indigo-600" />
+                        <span className="font-medium">Gửi file Word/PDF</span>
+                      </Button>
+                      {form.watch("fileName") && (
+                        <div className="p-3 bg-green-100/80 backdrop-blur-sm rounded-lg border border-green-200">
+                          <p className="text-green-700 font-medium flex items-center gap-2">
+                            ✅ File đã chọn: {form.watch("fileName")}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </>
-              )}
 
-              <div className="space-y-2">
-                <Label htmlFor="essay" className="text-sm font-medium">
-                  Bài luận
-                </Label>
-                <Textarea
-                  id="essay"
-                  placeholder={taskType === "task1" 
-                    ? "Nhập bài luận của bạn (tối thiểu 150 từ)..." 
-                    : "Nhập bài luận của bạn (tối thiểu 250 từ)..."
-                  }
-                  className="min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] text-sm"
-                  {...form.register("essay")}
-                />
-                {form.formState.errors.essay && (
-                  <p className="text-xs sm:text-sm text-red-600">
-                    {form.formState.errors.essay.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="file" className="text-sm font-medium">
-                  Hoặc tải file Word/PDF
-                </Label>
-                <div className="space-y-2">
-                  <Input
-                    id="file"
-                    type="file"
-                    accept=".pdf,.docx,.doc"
-                    onChange={handleFileUpload}
-                    className="hidden"
-                  />
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full text-sm"
-                    onClick={() => document.getElementById("file")?.click()}
-                  >
-                    <Upload className="h-4 w-4 mr-2" />
-                    Gửi file Word/PDF
-                  </Button>
-                  {form.watch("fileName") && (
-                    <p className="text-xs sm:text-sm text-green-600 p-2 bg-green-50 rounded">
-                      File đã chọn: {form.watch("fileName")}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {isGrading && (
-                <Card>
-                  <CardContent className="pt-4 sm:pt-6">
-                    <div className="text-center space-y-3 sm:space-y-4">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-                        <BarChart3 className="h-6 w-6 sm:h-8 sm:w-8 text-primary animate-pulse" />
+                  {isGrading && (
+                    <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-8 rounded-2xl border border-yellow-200 shadow-lg">
+                      <div className="text-center space-y-4">
+                        <div className="w-20 h-20 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+                          <BarChart3 className="h-10 w-10 text-white animate-pulse" />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-800">🔍 Đang phân tích bài luận...</h3>
+                        <p className="text-gray-600 max-w-md mx-auto">
+                          Hệ thống AI đang đánh giá bài viết của bạn theo tiêu chuẩn IELTS với 4 tiêu chí chính
+                        </p>
+                        <Progress value={66} className="w-full max-w-sm mx-auto h-3 bg-white/50" />
+                        <p className="text-sm text-gray-500">Ước tính thời gian: 2-3 phút</p>
                       </div>
-                      <h3 className="text-base sm:text-lg font-semibold">Đang phân tích bài luận...</h3>
-                      <p className="text-sm text-gray-600">
-                        Hệ thống AI đang đánh giá bài viết của bạn theo tiêu chuẩn IELTS
-                      </p>
-                      <Progress value={66} className="w-full max-w-md mx-auto" />
                     </div>
-                  </CardContent>
-                </Card>
-              )}
+                  )}
 
-              <Button
-                type="submit"
-                className="w-full mt-6 text-sm sm:text-base"
-                disabled={isGrading}
-                size="lg"
-              >
-                {isGrading ? (
-                  <>
-                    <Clock className="h-4 w-4 mr-2 animate-spin" />
-                    Đang chấm bài...
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle className="h-4 w-4 mr-2" />
-                    Bắt đầu chấm bài
-                  </>
-                )}
-              </Button>
+                  <div className="pt-4">
+                    <Button
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 rounded-xl text-base shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:transform-none"
+                      disabled={isGrading}
+                      size="lg"
+                    >
+                      {isGrading ? (
+                        <>
+                          <Clock className="h-5 w-5 mr-3 animate-spin" />
+                          Đang chấm bài...
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle className="h-5 w-5 mr-3" />
+                          🚀 Bắt đầu chấm bài
+                        </>
+                      )}
+                    </Button>
+                  </div>
             </form>
-          </CardContent>
-        </Card>
-      )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
-      {currentView === "feedback" && submittedEssay && (
-        <FeedbackInterface
-          essayContent={submittedEssay.essay}
-          onTryAgain={handleTryAgain}
-          onNextPractice={handleNextPractice}
-          context="essay-grading"
-        />
-      )}
+        {currentView === "feedback" && submittedEssay && (
+          <FeedbackInterface
+            essayContent={submittedEssay.essay}
+            onTryAgain={handleTryAgain}
+            onNextPractice={handleNextPractice}
+            context="essay-grading"
+          />
+        )}
+      </div>
     </main>
   );
 }
