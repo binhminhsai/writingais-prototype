@@ -49,17 +49,13 @@ export default function Header() {
               onMouseLeave={() => setVirtualPracticeOpen(false)}
             >
               <button 
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-1 ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   location === "/writing-practice" || location === "/writing-task-1" 
                     ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" 
                     : "text-teal-100 hover:text-white hover:bg-teal-600/50"
                 }`}
               >
                 Virtual Practice
-                <ChevronDown 
-                  size={14} 
-                  className={`transition-transform duration-200 ${virtualPracticeOpen ? 'rotate-180' : ''}`} 
-                />
               </button>
               
               {/* Tooltip-style Dropdown */}
