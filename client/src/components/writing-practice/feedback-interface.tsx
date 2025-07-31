@@ -468,7 +468,7 @@ Only through careful planning and responsible policies can societies achieve pro
 
 
             {/* Score Breakdown */}
-            <div className="box rounded-lg shadow-sm bg-white p-3 h-full flex flex-col">
+            <div className="box border border-gray-300 rounded-lg p-3 h-full flex flex-col bg-white">
               <h2 className="text-lg font-bold mb-3">Score Breakdown</h2>
 
               <div className="flex flex-col justify-between flex-1 gap-3">
