@@ -31,15 +31,29 @@ const essayFormSchema = z.object({
   taskType: z.enum(["task1", "task2"]),
   question: z.string().refine(
     (val) => val.trim().length >= 10,
-    "Vui lòng nhập câu hỏi"
+    "Vui lòng nhập câu hỏi đề bài"
   ),
   chartType: z.string().optional(),
   chartImage: z.any().optional(),
-  essay: z.string().refine(
-    (val) => val.trim().length > 0,
-    "Vui lòng nhập bài luận cần chấm"
-  ),
+  essay: z.string().optional(),
   fileName: z.string().optional(),
+}).refine((data) => {
+  // For Task 1: require chartType and chartImage
+  if (data.taskType === "task1") {
+    if (!data.chartType) {
+      return false;
+    }
+  }
+  
+  // Essay content required unless file is uploaded
+  if (!data.fileName && (!data.essay || data.essay.trim().length === 0)) {
+    return false;
+  }
+  
+  return true;
+}, {
+  message: "Vui lòng điền đầy đủ thông tin bắt buộc",
+  path: ["essay"], // This will show error on essay field
 });
 
 type EssayForm = z.infer<typeof essayFormSchema>;
@@ -75,10 +89,54 @@ export default function EssayGrading() {
     }
   }, [location, form]);
 
+  // Custom validation function
+  const validateForm = (data: EssayForm): string[] => {
+    const errors: string[] = [];
+    
+    // Question validation
+    if (!data.question || data.question.trim().length < 10) {
+      errors.push("Vui lòng nhập câu hỏi đề bài");
+    }
+    
+    // Task 1 specific validations
+    if (data.taskType === "task1") {
+      if (!data.chartType) {
+        errors.push("Vui lòng chọn loại biểu đồ");
+      }
+      if (!chartImage) {
+        errors.push("Vui lòng tải ảnh lên");
+      }
+    }
+    
+    // Essay content validation (either essay text or file required)
+    if (!data.fileName && (!data.essay || data.essay.trim().length === 0)) {
+      errors.push("Vui lòng nhập bài luận hoặc tải file Word/PDF");
+    }
+    
+    return errors;
+  };
+
   // Simplified submit handler - just go to feedback
   const handleSubmitEssay = async (data: EssayForm) => {
+    // Custom validation
+    const validationErrors = validateForm(data);
+    if (validationErrors.length > 0) {
+      validationErrors.forEach(error => {
+        toast({
+          title: "Thiếu thông tin",
+          description: error,
+          variant: "destructive"
+        });
+      });
+      return;
+    }
+
     setIsGrading(true);
-    setSubmittedEssay({ question: data.question, essay: data.essay, taskType: data.taskType });
+    setSubmittedEssay({ 
+      question: data.question, 
+      essay: data.essay || "File đã tải lên", 
+      taskType: data.taskType 
+    });
     
     // Simulate grading time
     setTimeout(() => {
@@ -273,6 +331,11 @@ export default function EssayGrading() {
                         <SelectItem value="multiple-graphs">Multiple Graphs</SelectItem>
                       </SelectContent>
                     </Select>
+                    {taskType === "task1" && !form.watch("chartType") && (
+                      <p className="text-xs sm:text-sm text-red-600">
+                        Vui lòng chọn loại biểu đồ
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -321,6 +384,11 @@ export default function EssayGrading() {
                         )}
                       </div>
                     </div>
+                    {taskType === "task1" && !chartImage && (
+                      <p className="text-xs sm:text-sm text-red-600">
+                        Vui lòng tải ảnh lên
+                      </p>
+                    )}
                   </div>
                 </>
               )}
@@ -338,6 +406,11 @@ export default function EssayGrading() {
                   className="min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] text-sm border-slate-200 focus:border-primary focus:ring-primary/20 bg-white"
                   {...form.register("essay")}
                 />
+                {(!form.watch("fileName") && (!form.watch("essay") || form.watch("essay")?.trim().length === 0)) && (
+                  <p className="text-xs sm:text-sm text-red-600">
+                    Vui lòng nhập bài luận hoặc tải file Word/PDF
+                  </p>
+                )}
                 {form.formState.errors.essay && (
                   <p className="text-xs sm:text-sm text-red-600">
                     {form.formState.errors.essay.message}
@@ -357,19 +430,35 @@ export default function EssayGrading() {
                     onChange={handleFileUpload}
                     className="hidden"
                   />
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full text-sm border-primary/30 hover:border-primary hover:bg-primary/5 text-primary transition-all duration-200"
-                    onClick={() => document.getElementById("file")?.click()}
-                  >
-                    <Upload className="h-4 w-4 mr-2" />
-                    Gửi file Word/PDF
-                  </Button>
-                  {form.watch("fileName") && (
-                    <p className="text-xs sm:text-sm text-emerald-700 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
-                      File đã chọn: {form.watch("fileName")}
-                    </p>
+                  
+                  {form.watch("fileName") ? (
+                    <div className="p-3 bg-emerald-50 rounded-lg border border-emerald-200 flex items-center justify-between">
+                      <div className="flex items-center">
+                        <FileText className="h-4 w-4 text-emerald-600 mr-2" />
+                        <span className="text-xs sm:text-sm text-emerald-700 font-medium">
+                          {form.watch("fileName")}
+                        </span>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="text-emerald-600 hover:text-emerald-700 hover:bg-emerald-100"
+                        onClick={() => document.getElementById("file")?.click()}
+                      >
+                        Thay đổi
+                      </Button>
+                    </div>
+                  ) : (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full text-sm border-primary/30 hover:border-primary hover:bg-primary/5 text-primary transition-all duration-200"
+                      onClick={() => document.getElementById("file")?.click()}
+                    >
+                      <Upload className="h-4 w-4 mr-2" />
+                      Gửi file Word/PDF
+                    </Button>
                   )}
                 </div>
               </div>
