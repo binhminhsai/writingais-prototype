@@ -577,7 +577,7 @@ Only through careful planning and responsible policies can societies achieve pro
             </div>
 
             {/* Writing Statistic */}
-            <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4">
+            <div className="box border border-black rounded-lg p-4 bg-[#fafafa00]">
               <h2 className="text-xl font-bold mt-0 mb-2 text-center">Writing Statistic</h2>
               <div className="stat-row flex justify-around mt-2">
                 <div className="text-center">
