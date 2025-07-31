@@ -101,12 +101,12 @@ export default function Header() {
             </Link>
             <Link href="/wordcraft">
               <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location === "/wordcraft" ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}>
-                Vocabulary
+                Virtual Exam
               </button>
             </Link>
-            <Link href="/progress">
-              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location === "/progress" ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}>
-                Progress
+            <Link href="/progress-tracking">
+              <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location === "/progress-tracking" ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}>
+                Progress Tracking
               </button>
             </Link>
             <Link href="/wordpress-demo">
@@ -186,15 +186,15 @@ export default function Header() {
                 className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-300 ${location === "/wordcraft" ? "bg-white text-teal-700 shadow-lg font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Vocabulary
+                Virtual Exam
               </button>
             </Link>
-            <Link href="/progress">
+            <Link href="/progress-tracking">
               <button 
-                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-300 ${location === "/progress" ? "bg-white text-teal-700 shadow-lg font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}
+                className={`w-full text-left py-2.5 px-3 rounded-lg transition-all duration-300 ${location === "/progress-tracking" ? "bg-white text-teal-700 shadow-lg font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Progress
+                Progress Tracking
               </button>
             </Link>
             <Link href="/wordpress-demo">
