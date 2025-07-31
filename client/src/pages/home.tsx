@@ -85,30 +85,6 @@ export default function Home() {
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-green-600" /> Wordcraft
-            </CardTitle>
-            <CardDescription>
-              Expand your vocabulary with targeted word lists
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <p className="text-gray-600">
-              Access curated vocabulary lists for different topics and writing types.
-              Learn words that will improve your writing score.
-            </p>
-          </CardContent>
-          <CardFooter>
-            <Link href="/wordcraft">
-              <Button className="w-full">
-                Explore Wordcraft <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-
-        <Card className="flex flex-col">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
               <History className="h-5 w-5 text-indigo-600" /> Progress Tracking
             </CardTitle>
             <CardDescription>
