@@ -313,30 +313,7 @@ export default function EssayGrading() {
 
               {taskType === "task1" && (
                 <>
-                  <div className="space-y-2">
-                    <Label htmlFor="chart-type" className="text-sm font-semibold text-slate-700">
-                      Loại biểu đồ
-                    </Label>
-                    <Select onValueChange={(value) => form.setValue("chartType", value)}>
-                      <SelectTrigger className="border-slate-200 focus:border-primary focus:ring-primary/20 bg-white">
-                        <SelectValue placeholder="Chọn loại biểu đồ" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="line-graph">Line Graph</SelectItem>
-                        <SelectItem value="bar-chart">Bar Chart</SelectItem>
-                        <SelectItem value="pie-chart">Pie Chart</SelectItem>
-                        <SelectItem value="process-diagram">Process Diagram</SelectItem>
-                        <SelectItem value="table">Table</SelectItem>
-                        <SelectItem value="map">Map</SelectItem>
-                        <SelectItem value="multiple-graphs">Multiple Graphs</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {taskType === "task1" && !form.watch("chartType") && (
-                      <p className="text-xs sm:text-sm text-red-600">
-                        Vui lòng chọn loại biểu đồ
-                      </p>
-                    )}
-                  </div>
+                  
 
                   <div className="space-y-2">
                     <Label className="text-sm font-semibold text-slate-700">
