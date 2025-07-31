@@ -529,7 +529,7 @@ Only through careful planning and responsible policies can societies achieve pro
         {/* Right Column */}
         <div className="column flex flex-col gap-4">
             {/* Overall Feedback */}
-            <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4 h-auto">
+            <div className="box border border-black rounded-lg p-4 h-auto bg-[#fafafa00]">
               <h2 className="text-xl font-bold mt-0 mb-2">Overall Assessment:</h2>
               <div className="overflow-y-auto h-64 custom-scrollbar pr-1">
                 <Accordion type="single" collapsible className="w-full space-y-1">
