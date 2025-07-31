@@ -64,29 +64,33 @@ export default function Header() {
               
               {/* Tooltip-style Dropdown */}
               {virtualPracticeOpen && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50">
-                  {/* Arrow pointing up */}
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                    <div className="w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45"></div>
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 pt-1 z-50">
+                  {/* Invisible bridge to prevent hover gap */}
+                  <div className="w-48 h-1 bg-transparent"></div>
+                  <div className="w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2">
+                    {/* Arrow pointing up */}
+                    <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                      <div className="w-4 h-4 bg-white border-l border-t border-gray-100 rotate-45"></div>
+                    </div>
+                    
+                    <Link href="/writing-task-1">
+                      <button 
+                        className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-colors duration-150"
+                        onClick={() => setVirtualPracticeOpen(false)}
+                      >
+                        Writing Task 1
+                      </button>
+                    </Link>
+                    
+                    <Link href="/writing-practice">
+                      <button 
+                        className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-colors duration-150"
+                        onClick={() => setVirtualPracticeOpen(false)}
+                      >
+                        Writing Task 2
+                      </button>
+                    </Link>
                   </div>
-                  
-                  <Link href="/writing-task-1">
-                    <button 
-                      className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-colors duration-150"
-                      onClick={() => setVirtualPracticeOpen(false)}
-                    >
-                      Writing Task 1
-                    </button>
-                  </Link>
-                  
-                  <Link href="/writing-practice">
-                    <button 
-                      className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-teal-50 hover:text-teal-700 transition-colors duration-150"
-                      onClick={() => setVirtualPracticeOpen(false)}
-                    >
-                      Writing Task 2
-                    </button>
-                  </Link>
                 </div>
               )}
             </div>
