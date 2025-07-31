@@ -96,7 +96,7 @@ export default function Home() {
           </CardContent>
           <CardFooter>
             <Link href="/progress-tracking">
-              <Button className="w-full">
+              <Button className="w-full pt-[7.6px] pb-[7.6px] mt-[17px] mb-[17px]">
                 My Progress <span className="ml-4">→</span>
               </Button>
             </Link>
