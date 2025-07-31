@@ -341,7 +341,7 @@ However, renewable energy sources is projected to experience substantial growth,
         {/* Left Column */}
         <div className="column flex flex-col gap-4">
             {/* Score Breakdown */}
-            <div className="box bg-[#FAFAFA] rounded-lg border border-black p-3 h-full flex flex-col">
+            <div className="box bg-[#FAFAFA] rounded-lg border border-gray-200 p-3 h-full flex flex-col">
               <h2 className="text-lg font-bold mb-3">Score Breakdown</h2>
 
               <div className="flex flex-col justify-between flex-1 gap-3">
@@ -402,7 +402,7 @@ However, renewable energy sources is projected to experience substantial growth,
         {/* Right Column */}
         <div className="column flex flex-col gap-4">
             {/* Overall Feedback */}
-            <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4 h-auto">
+            <div className="box bg-[#FAFAFA] border border-gray-200 rounded-lg p-4 h-auto">
               <h2 className="text-xl font-bold mt-0 mb-2">Overall Assessment:</h2>
               <div className="overflow-y-auto h-64 custom-scrollbar pr-1">
                 <Accordion type="single" collapsible className="w-full space-y-1">
@@ -443,7 +443,7 @@ However, renewable energy sources is projected to experience substantial growth,
             </div>
 
             {/* Writing Statistic */}
-            <div className="box bg-[#FAFAFA] border border-black rounded-lg p-4">
+            <div className="box bg-[#FAFAFA] border border-gray-200 rounded-lg p-4">
               <h2 className="text-xl font-bold mt-0 mb-2 text-center">Writing Statistic</h2>
               <div className="stat-row flex justify-around mt-2">
                 <div className="text-center">
