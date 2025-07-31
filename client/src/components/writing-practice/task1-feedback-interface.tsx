@@ -207,7 +207,7 @@ However, renewable energy sources is projected to experience substantial growth,
         if (data.tooltip) {
           const tooltipContent = data.type === 'red' ? (
             // Red highlight tooltip - Error type
-            <div className="space-y-2 text-left text-sm">
+            (<div className="space-y-2 text-left text-sm">
               <div>
                 <span className="font-bold text-red-400">Category: </span>
                 <span className="text-gray-200">{data.tooltip.category}</span>
@@ -232,10 +232,10 @@ However, renewable energy sources is projected to experience substantial growth,
                 <span className="font-bold text-orange-400">Severity: </span>
                 <span className="text-gray-200">{data.tooltip.severity}</span>
               </div>
-            </div>
+            </div>)
           ) : (
             // Yellow/Green highlight tooltip - Improvement/Suggestion type
-            <div className="space-y-2 text-left text-sm">
+            (<div className="space-y-2 text-left text-sm">
               <div>
                 <span className="font-bold text-yellow-400">Category: </span>
                 <span className="text-gray-200">{data.tooltip.category}</span>
@@ -256,7 +256,7 @@ However, renewable energy sources is projected to experience substantial growth,
                 <span className="font-bold text-purple-400">Band Impact: </span>
                 <span className="text-gray-200">{data.tooltip.bandImpact}</span>
               </div>
-            </div>
+            </div>)
           );
 
           result.push(
@@ -341,7 +341,7 @@ However, renewable energy sources is projected to experience substantial growth,
         {/* Left Column */}
         <div className="column flex flex-col gap-4">
             {/* Score Breakdown */}
-            <div className="box bg-[#FAFAFA] rounded-lg border border-gray-200 p-3 h-full flex flex-col">
+            <div className="box rounded-lg border border-gray-200 p-3 h-full flex flex-col bg-[#ffffff]">
               <h2 className="text-lg font-bold mb-3">Score Breakdown</h2>
 
               <div className="flex flex-col justify-between flex-1 gap-3">
