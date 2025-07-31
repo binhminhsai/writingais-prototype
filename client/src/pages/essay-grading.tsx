@@ -313,8 +313,6 @@ export default function EssayGrading() {
 
               {taskType === "task1" && (
                 <>
-                  
-
                   <div className="space-y-2">
                     <Label className="text-sm font-semibold text-slate-700">
                       Tải ảnh biểu đồ
