@@ -94,7 +94,7 @@ export default function Header() {
                 </div>
               )}
             </div>
-            <Link href="/essay-grading">
+            <Link href="/essay-grading?task=task1">
               <button className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${location === "/essay-grading" ? "bg-white text-teal-700 shadow-lg transform scale-105 font-semibold" : "text-teal-100 hover:text-white hover:bg-teal-600/50"}`}>
                 Essay Grading
               </button>
