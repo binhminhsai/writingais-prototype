@@ -494,6 +494,13 @@ Changelog:
   - Implemented URL parameter handling to auto-select Task 1 when accessed from home page button
   - Updated essay grading page to read ?task=task1 parameter and set appropriate form defaults
   - Applied consistent primary color theming to all form elements, loading states, and buttons
+- July 31, 2025. Removed Wordcraft and implemented Virtual Exam placeholder:
+  - Completely removed Wordcraft card component from home page
+  - Created Virtual Exam placeholder page with "coming soon" message and construction icon
+  - Updated routing to replace /wordcraft route with VirtualExam component
+  - Removed all Wordcraft-related imports and components from App.tsx
+  - Added informative placeholder with upcoming features list and navigation to existing practice tools
+  - Maintained "Virtual Exam" menu item in header navigation as requested
 
 ## User Preferences
 

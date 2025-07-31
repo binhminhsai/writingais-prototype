@@ -10,9 +10,7 @@ import WritingTask1Practice from "@/pages/writing-task-1-practice";
 import Login from "@/pages/login";
 import Blog from "@/pages/blog";
 import WordPressDemo from "@/pages/wordpress-demo";
-import Wordcraft from "@/pages/wordcraft";
-import WordcraftWords from "@/pages/wordcraft-words";
-import WordcraftWordDetail from "@/pages/wordcraft-word-detail";
+import VirtualExam from "@/pages/virtual-exam";
 import ProgressTracking from "@/pages/progress-tracking";
 import EssayGrading from "@/pages/essay-grading";
 
@@ -32,9 +30,7 @@ function Router() {
           <Route path="/blog" component={Blog} />
           <Route path="/wordpress-demo" component={WordPressDemo} />
           <Route path="/login" component={Login} />
-          <Route path="/wordcraft" component={Wordcraft} />
-          <Route path="/wordcraft/:cardId/words" component={WordcraftWords} />
-          <Route path="/wordcraft/:cardId/words/:wordId/detail" component={WordcraftWordDetail} />
+          <Route path="/wordcraft" component={VirtualExam} />
           <Route path="/progress-tracking" component={ProgressTracking} />
           <Route path="/essay-grading" component={EssayGrading} />
           <Route path="/about" component={NotFound} />
