@@ -15,7 +15,6 @@ export default function Home() {
           with our comprehensive writing tools.
         </p>
       </div>
-
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
         <Card className="flex flex-col">
           <CardHeader>
@@ -60,9 +59,7 @@ export default function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex-grow">
-            <p className="text-gray-600">
-              Complete IELTS Writing Task 2 system with practice and scoring
-            </p>
+            <p className="text-gray-600">Write essays from IELTS-style prompts that explore opinions, discussions, and real-life scenarios. Get personalized feedback tailored to your target band score</p>
           </CardContent>
           <CardFooter className="pt-0">
             <div className="space-y-2 w-full">
@@ -106,7 +103,6 @@ export default function Home() {
           </CardFooter>
         </Card>
       </div>
-
       <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-8 text-center border border-purple-100 shadow-lg hover:shadow-xl transition-all duration-300">
         <div className="flex items-center justify-center mb-4">
           <div className="p-3 bg-yellow-100 rounded-full mr-3 transform group-hover:rotate-12 transition-transform duration-300">
