@@ -558,17 +558,7 @@ Only through careful planning and responsible policies can societies achieve pro
 
                   
 
-                  <AccordionItem value="grammar-focus" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                    <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-indigo-50 to-transparent hover:from-indigo-100">
-                      <span className="text-gray-800">Grammar Focus</span>
-                    </AccordionTrigger>
-                    <AccordionContent className="p-3 bg-white">
-                      <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
-                        <li>• No specific grammar errors were frequent; the focus should be on maintaining the current high level of accuracy.</li>
-                        <li>• Continue to practice using a variety of complex sentence structures, ensuring each clause is correctly formed and linked.</li>
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
+                  
 
                   <AccordionItem value="next-steps" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-green-50 to-transparent hover:from-green-100">
