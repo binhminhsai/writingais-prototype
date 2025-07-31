@@ -443,7 +443,7 @@ However, renewable energy sources is projected to experience substantial growth,
             </div>
 
             {/* Writing Statistic */}
-            <div className="box bg-[#FAFAFA] border border-gray-200 rounded-lg p-4">
+            <div className="box border border-gray-200 rounded-lg p-4 bg-[#ffffff]">
               <h2 className="text-xl font-bold mt-0 mb-2 text-center">Writing Statistic</h2>
               <div className="stat-row flex justify-around mt-2">
                 <div className="text-center">
