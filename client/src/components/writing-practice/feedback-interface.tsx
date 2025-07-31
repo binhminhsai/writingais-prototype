@@ -556,17 +556,7 @@ Only through careful planning and responsible policies can societies achieve pro
                     </AccordionContent>
                   </AccordionItem>
 
-                  <AccordionItem value="vocabulary-enhancement" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                    <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-purple-50 to-transparent hover:from-purple-100">
-                      <span className="text-gray-800">Vocabulary Enhancement</span>
-                    </AccordionTrigger>
-                    <AccordionContent className="p-3 bg-white">
-                      <ul className="text-gray-700 leading-relaxed space-y-1 text-sm">
-                        <li>• For discussions on government spending, consider terms like fiscal policy, public funds, resource allocation, infrastructure development.</li>
-                        <li>• When talking about balance, compromise, middle ground, optimal resource distribution could be useful.</li>
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
+                  
 
                   <AccordionItem value="grammar-focus" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-indigo-50 to-transparent hover:from-indigo-100">
