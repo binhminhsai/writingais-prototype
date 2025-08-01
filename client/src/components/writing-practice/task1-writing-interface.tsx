@@ -71,6 +71,8 @@ interface Task1WritingInterfaceProps {
 function Task1OutlineSection({ questionType, question }: { questionType: string, question: string }) {
   const [showOutline, setShowOutline] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [showAnalysisContent, setShowAnalysisContent] = useState(false);
+  const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
   const outline = getTask1Outline(questionType);
 
   useEffect(() => {
@@ -82,32 +84,59 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
     return () => clearTimeout(timer);
   }, []);
 
+  // Handle reveal analysis content with 5-second loading animation
+  const handleRevealAnalysis = () => {
+    setIsLoadingAnalysis(true);
+    setTimeout(() => {
+      setIsLoadingAnalysis(false);
+      setShowAnalysisContent(true);
+    }, 5000);
+  };
+
   return (
     <div className="h-full flex flex-col">
       {showOutline ? (
-        <Tabs defaultValue="expressions" className="w-full h-full flex flex-col">
-          <div className="mb-4 relative">
-            <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
-              <TabsTrigger 
-                value="expressions" 
-                className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
-                        hover:bg-gray-50
-                        data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
-              >
-                <Smile className="h-4 w-4" />
-                Analyze Question
-              </TabsTrigger>
-              <TabsTrigger 
-                value="outline" 
-                className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
-                        hover:bg-gray-50
-                        data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
-              >
-                <Layers className="h-4 w-4" />
-                Sample
-              </TabsTrigger>
-            </TabsList>
+        isLoadingAnalysis ? (
+          <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
+            <BookLoader message="Analyzing your question and preparing samples..." />
           </div>
+        ) : !showAnalysisContent ? (
+          <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
+            <Button
+              variant="outline"
+              size="sm"
+              className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
+              onClick={handleRevealAnalysis}
+            >
+              <Eye className="h-3.5 w-3.5 mr-2 text-primary" /> Reveal Task Analysis & Sample
+            </Button>
+            <p className="text-gray-700 font-medium text-base mb-2 text-center">Ready to unlock insights?</p>
+            <p className="text-primary font-medium text-sm text-center">Expert analysis awaits! 🔍</p>
+          </div>
+        ) : (
+          <Tabs defaultValue="expressions" className="w-full h-full flex flex-col">
+            <div className="mb-4 relative">
+              <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
+                <TabsTrigger 
+                  value="expressions" 
+                  className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
+                          hover:bg-gray-50
+                          data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
+                >
+                  <Smile className="h-4 w-4" />
+                  Analyze Question
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="outline" 
+                  className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
+                          hover:bg-gray-50
+                          data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
+                >
+                  <Layers className="h-4 w-4" />
+                  Sample
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
           <TabsContent 
             value="outline" 
@@ -511,6 +540,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
             </div>
           </TabsContent>
         </Tabs>
+        )
       ) : (
         <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
           <Button
