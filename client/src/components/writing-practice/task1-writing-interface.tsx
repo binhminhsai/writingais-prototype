@@ -96,47 +96,29 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
   return (
     <div className="h-full flex flex-col">
       {showOutline ? (
-        isLoadingAnalysis ? (
-          <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-            <BookLoader message="Analyzing your question and preparing samples..." />
+        <Tabs defaultValue="expressions" className="w-full h-full flex flex-col">
+          <div className="mb-4 relative">
+            <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
+              <TabsTrigger 
+                value="expressions" 
+                className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
+                        hover:bg-gray-50
+                        data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
+              >
+                <Smile className="h-4 w-4" />
+                Analyze Question
+              </TabsTrigger>
+              <TabsTrigger 
+                value="outline" 
+                className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
+                        hover:bg-gray-50
+                        data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
+              >
+                <Layers className="h-4 w-4" />
+                Sample
+              </TabsTrigger>
+            </TabsList>
           </div>
-        ) : !showAnalysisContent ? (
-          <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
-            <Button
-              variant="outline"
-              size="sm"
-              className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
-              onClick={handleRevealAnalysis}
-            >
-              <Eye className="h-3.5 w-3.5 mr-2 text-primary" /> Reveal Task Analysis & Sample
-            </Button>
-            <p className="text-gray-700 font-medium text-base mb-2 text-center">Ready to unlock insights?</p>
-            <p className="text-primary font-medium text-sm text-center">Expert analysis awaits! 🔍</p>
-          </div>
-        ) : (
-          <Tabs defaultValue="expressions" className="w-full h-full flex flex-col">
-            <div className="mb-4 relative">
-              <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
-                <TabsTrigger 
-                  value="expressions" 
-                  className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
-                          hover:bg-gray-50
-                          data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
-                >
-                  <Smile className="h-4 w-4" />
-                  Analyze Question
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="outline" 
-                  className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
-                          hover:bg-gray-50
-                          data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
-                >
-                  <Layers className="h-4 w-4" />
-                  Sample
-                </TabsTrigger>
-              </TabsList>
-            </div>
 
           <TabsContent 
             value="outline" 
@@ -539,8 +521,237 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
               </div>
             </div>
           </TabsContent>
+
+          <TabsContent 
+            value="expressions" 
+            className="flex-1 overflow-y-auto custom-scrollbar mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+            style={{ height: '500px' }}
+          >
+            {isLoadingAnalysis ? (
+              <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
+                <BookLoader message="Analyzing your question and preparing samples..." />
+              </div>
+            ) : !showAnalysisContent ? (
+              <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
+                  onClick={handleRevealAnalysis}
+                >
+                  <Eye className="h-3.5 w-3.5 mr-2 text-primary" /> Reveal Task Analysis & Sample
+                </Button>
+                <p className="text-gray-700 font-medium text-base mb-2 text-center">Ready to unlock insights?</p>
+                <p className="text-primary font-medium text-sm text-center">Expert analysis awaits! 🔍</p>
+              </div>
+            ) : (
+              <div>
+                <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
+                  <Smile className="h-4 w-4" />
+                  Analyze Question - Phân tích câu hỏi
+                </h4>
+                <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
+                  Detailed analysis of the Task 1 question and visual data
+                </p>
+
+                <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+                  <Accordion type="single" collapsible className="w-full space-y-2">
+                    {/* Accordion 1: Image Description */}
+                    <AccordionItem 
+                      value="image-description"
+                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                    >
+                      <AccordionTrigger 
+                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                      >
+                        <span className="flex items-center gap-2">
+                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                            1
+                          </span>
+                          Image Description
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="p-3 bg-white">
+                        {isLoading ? (
+                          <div className="space-y-3">
+                            <ShimmerCard className="border-blue-100" />
+                            <ShimmerCard className="border-blue-100" />
+                            <ShimmerCard className="border-blue-100" />
+                            <ShimmerCard className="border-blue-100" />
+                            <ShimmerCard className="border-blue-100" />
+                            <ShimmerCard className="border-blue-100" />
+                          </div>
+                        ) : (
+                          <div className="space-y-3">
+                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                              <p className="text-xs">
+                                <span className="text-[#1fb2aa] font-bold">Chart Type:</span> Line Graph
+                              </p>
+                            </div>
+                            
+                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                              <p className="text-xs">
+                                <span className="text-[#1fb2aa] font-bold">Main Subject:</span> Energy consumption in the USA by different sources (petroleum, natural gas, coal, nuclear, renewables)
+                              </p>
+                            </div>
+                            
+                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                              <p className="text-xs">
+                                <span className="text-[#1fb2aa] font-bold">Unit of Measurement:</span> Quadrillion BTU (British Thermal Units)
+                              </p>
+                            </div>
+                            
+                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                              <p className="text-xs">
+                                <span className="text-[#1fb2aa] font-bold">Time Period:</span> From 1980 to 2030 (projected)
+                              </p>
+                            </div>
+                            
+                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                              <p className="text-xs">
+                                <span className="text-[#1fb2aa] font-bold">Verb Tense Used:</span> Combination of Past tense for the period 1980–2008 and Future tense for the projected period 2008–2030
+                              </p>
+                            </div>
+                            
+                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                              <p className="text-xs">
+                                <span className="text-[#1fb2aa] font-bold">Chart Summary:</span> The line graph shows the changes in energy consumption in the USA over time, categorized by different energy sources, including projections for the future.
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Continue with the remaining accordion items */}
+                    {/* Accordion 2: Analyze Question */}
+                    <AccordionItem 
+                      value="analyze-question"
+                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                    >
+                      <AccordionTrigger 
+                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                      >
+                        <span className="flex items-center gap-2">
+                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                            2
+                          </span>
+                          Analyze Question
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="p-3 bg-white">
+                        {isLoading ? (
+                          <div className="space-y-3">
+                            <ShimmerCard className="border-gray-100" />
+                            <ShimmerCard className="border-gray-100" />
+                            <ShimmerCard className="border-gray-100" />
+                          </div>
+                        ) : (
+                          <div className="space-y-3">
+                            <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                              <p className="text-xs font-bold text-[#1fb2aa] mb-2">Question Requirement:</p>
+                              <p className="text-xs text-[#374151]">
+                                Summarise the information by selecting and reporting the main features, and make comparisons where relevant
+                              </p>
+                            </div>
+                            <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                              <p className="text-xs font-bold text-[#1fb2aa] mb-2">Key Tasks:</p>
+                              <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                                <li className="flex items-start gap-2">
+                                  <span className="text-xs mt-0.5">•</span>
+                                  <span>Summarize information about the energy consumption of each energy source.</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                  <span className="text-xs mt-0.5">•</span>
+                                  <span>Compare the changes in energy consumption between different energy sources.</span>
+                                </li>
+                                <li className="flex items-start gap-2">
+                                  <span className="text-xs mt-0.5">•</span>
+                                  <span>Highlight key trends and projections for the future.</span>
+                                </li>
+                              </ul>
+                            </div>
+                            <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                              <p className="text-xs font-bold text-[#1fb2aa] mb-2">Band Guidance:</p>
+                              <p className="text-xs text-[#374151]">
+                                With a target of Band 6.0: Adequate overview with main trends identified. Cover key features but details may be incomplete. Clear purpose.
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+
+                    {/* Continue with remaining accordion items... */}
+                  </Accordion>
+                </div>
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent 
+            value="outline" 
+            className="flex-1 overflow-y-auto custom-scrollbar mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
+            style={{ height: '500px' }}
+          >
+            {isLoadingAnalysis ? (
+              <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
+                <BookLoader message="Analyzing your question and preparing samples..." />
+              </div>
+            ) : !showAnalysisContent ? (
+              <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
+                  onClick={handleRevealAnalysis}
+                >
+                  <Eye className="h-3.5 w-3.5 mr-2 text-primary" /> Reveal Task Analysis & Sample
+                </Button>
+                <p className="text-gray-700 font-medium text-base mb-2 text-center">Ready to unlock insights?</p>
+                <p className="text-primary font-medium text-sm text-center">Expert analysis awaits! 🔍</p>
+              </div>
+            ) : (
+              <div>
+                <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
+                  <Layers className="h-4 w-4" />
+                  Sample - Bài mẫu
+                </h4>
+                <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">Sample answer with paragraph-by-paragraph breakdown</p>
+
+                <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+                  <Accordion type="single" collapsible className="w-full space-y-2">
+                    {/* Sample content accordion items */}
+                    <AccordionItem 
+                      value="paragraph-1"
+                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                    >
+                      <AccordionTrigger 
+                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                      >
+                        <span className="flex items-center gap-2">
+                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                            1
+                          </span>
+                          Paragraph 1: Introduction
+                        </span>
+                      </AccordionTrigger>
+                      <AccordionContent className="p-3 bg-white">
+                        {isLoading ? (
+                          <ShimmerText lines={2} className="text-xs" />
+                        ) : (
+                          <div className="text-xs text-gray-700 leading-relaxed">
+                            The line graph illustrates the consumption of energy in the United States from 1980, with projections extending to 2030, categorized by different fuel types.
+                          </div>
+                        )}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </div>
+            )}
+          </TabsContent>
         </Tabs>
-        )
       ) : (
         <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
           <Button
