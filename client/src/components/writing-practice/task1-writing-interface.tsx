@@ -71,8 +71,6 @@ interface Task1WritingInterfaceProps {
 function Task1OutlineSection({ questionType, question }: { questionType: string, question: string }) {
   const [showOutline, setShowOutline] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const [showAnalysisContent, setShowAnalysisContent] = useState(false);
-  const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
   const outline = getTask1Outline(questionType);
 
   useEffect(() => {
@@ -83,15 +81,6 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Handle reveal analysis content with 5-second loading animation
-  const handleRevealAnalysis = () => {
-    setIsLoadingAnalysis(true);
-    setTimeout(() => {
-      setIsLoadingAnalysis(false);
-      setShowAnalysisContent(true);
-    }, 5000);
-  };
 
   return (
     <div className="h-full flex flex-col">
@@ -242,236 +231,284 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
             </div>
           </TabsContent>
 
-          
-
           <TabsContent 
             value="expressions" 
             className="flex-1 overflow-y-auto custom-scrollbar mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
             style={{ height: '500px' }}
           >
-            {isLoadingAnalysis ? (
-              <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-                <BookLoader message="Analyzing your question and preparing samples..." />
-              </div>
-            ) : !showAnalysisContent ? (
-              <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
-                  onClick={handleRevealAnalysis}
-                >
-                  <Eye className="h-3.5 w-3.5 mr-2 text-primary" /> Reveal Task Analysis & Sample
-                </Button>
-                <p className="text-gray-700 font-medium text-base mb-2 text-center">Ready to unlock insights?</p>
-                <p className="text-primary font-medium text-sm text-center">Expert analysis awaits! 🔍</p>
-              </div>
-            ) : (
-              <div>
-                <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
-                  <Smile className="h-4 w-4" />
-                  Analyze Question - Phân tích câu hỏi
-                </h4>
-                <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
-                  Detailed analysis of the Task 1 question and visual data
-                </p>
+            <div>
+              <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
+                <Smile className="h-4 w-4" />
+                Analyze Question - Phân tích câu hỏi
+              </h4>
+              <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
+                Detailed analysis of the Task 1 question and visual data
+              </p>
 
-                <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
-                  <Accordion type="single" collapsible className="w-full space-y-2">
-                    {/* Accordion 1: Image Description */}
-                    <AccordionItem 
-                      value="image-description"
-                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+                <Accordion type="single" collapsible className="w-full space-y-2">
+                  {/* Accordion 1: Image Description */}
+                  <AccordionItem 
+                    value="image-description"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
                     >
-                      <AccordionTrigger 
-                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
-                      >
-                        <span className="flex items-center gap-2">
-                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                            1
-                          </span>
-                          Image Description
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          1
                         </span>
-                      </AccordionTrigger>
-                      <AccordionContent className="p-3 bg-white">
-                        {isLoading ? (
-                          <div className="space-y-3">
-                            <ShimmerCard className="border-blue-100" />
-                            <ShimmerCard className="border-blue-100" />
-                            <ShimmerCard className="border-blue-100" />
-                            <ShimmerCard className="border-blue-100" />
-                            <ShimmerCard className="border-blue-100" />
-                            <ShimmerCard className="border-blue-100" />
+                        Image Description
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-blue-100" />
+                          <ShimmerCard className="border-blue-100" />
+                          <ShimmerCard className="border-blue-100" />
+                          <ShimmerCard className="border-blue-100" />
+                          <ShimmerCard className="border-blue-100" />
+                          <ShimmerCard className="border-blue-100" />
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                            <p className="text-xs">
+                              <span className="text-[#1fb2aa] font-bold">Chart Type:</span> Line Graph
+                            </p>
                           </div>
-                        ) : (
-                          <div className="space-y-3">
-                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
-                              <p className="text-xs">
-                                <span className="text-[#1fb2aa] font-bold">Chart Type:</span> Line Graph
-                              </p>
-                            </div>
-                            
-                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
-                              <p className="text-xs">
-                                <span className="text-[#1fb2aa] font-bold">Main Subject:</span> Energy consumption in the USA by different sources (petroleum, natural gas, coal, nuclear, renewables)
-                              </p>
-                            </div>
-                            
-                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
-                              <p className="text-xs">
-                                <span className="text-[#1fb2aa] font-bold">Unit of Measurement:</span> Quadrillion BTU (British Thermal Units)
-                              </p>
-                            </div>
-                            
-                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
-                              <p className="text-xs">
-                                <span className="text-[#1fb2aa] font-bold">Time Period:</span> From 1980 to 2030 (projected)
-                              </p>
-                            </div>
-                            
-                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
-                              <p className="text-xs">
-                                <span className="text-[#1fb2aa] font-bold">Verb Tense Used:</span> Combination of Past tense for the period 1980–2008 and Future tense for the projected period 2008–2030
-                              </p>
-                            </div>
-                            
-                            <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
-                              <p className="text-xs">
-                                <span className="text-[#1fb2aa] font-bold">Chart Summary:</span> The line graph shows the changes in energy consumption in the USA over time, categorized by different energy sources, including projections for the future.
-                              </p>
-                            </div>
+                          
+                          <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                            <p className="text-xs">
+                              <span className="text-[#1fb2aa] font-bold">Main Subject:</span> Energy consumption in the USA by different sources (petroleum, natural gas, coal, nuclear, renewables)
+                            </p>
                           </div>
-                        )}
-                      </AccordionContent>
-                    </AccordionItem>
+                          
+                          <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                            <p className="text-xs">
+                              <span className="text-[#1fb2aa] font-bold">Unit of Measurement:</span> Quadrillion BTU (British Thermal Units)
+                            </p>
+                          </div>
+                          
+                          <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                            <p className="text-xs">
+                              <span className="text-[#1fb2aa] font-bold">Time Period:</span> From 1980 to 2030 (projected)
+                            </p>
+                          </div>
+                          
+                          <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                            <p className="text-xs">
+                              <span className="text-[#1fb2aa] font-bold">Verb Tense Used:</span> Combination of Past tense for the period 1980–2008 and Future tense for the projected period 2008–2030
+                            </p>
+                          </div>
+                          
+                          <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
+                            <p className="text-xs">
+                              <span className="text-[#1fb2aa] font-bold">Chart Summary:</span> The line graph shows the changes in energy consumption in the USA over time, categorized by different energy sources, including projections for the future.
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </AccordionContent>
+                  </AccordionItem>
 
-                    {/* Continue with the remaining accordion items */}
-                    {/* Accordion 2: Analyze Question */}
-                    <AccordionItem 
-                      value="analyze-question"
-                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  {/* Accordion 2: Analyze Question */}
+                  <AccordionItem 
+                    value="analyze-question"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
                     >
-                      <AccordionTrigger 
-                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
-                      >
-                        <span className="flex items-center gap-2">
-                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                            2
-                          </span>
-                          Analyze Question
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          2
                         </span>
-                      </AccordionTrigger>
-                      <AccordionContent className="p-3 bg-white">
-                        {isLoading ? (
-                          <div className="space-y-3">
-                            <ShimmerCard className="border-gray-100" />
-                            <ShimmerCard className="border-gray-100" />
-                            <ShimmerCard className="border-gray-100" />
+                        Analyze Question
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Question Requirement:</p>
+                            <p className="text-xs text-[#374151]">
+                              Summarise the information by selecting and reporting the main features, and make comparisons where relevant
+                            </p>
                           </div>
-                        ) : (
-                          <div className="space-y-3">
-                            <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                              <p className="text-xs font-bold text-[#1fb2aa] mb-2">Question Requirement:</p>
-                              <p className="text-xs text-[#374151]">
-                                Summarise the information by selecting and reporting the main features, and make comparisons where relevant
-                              </p>
-                            </div>
-                            <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                              <p className="text-xs font-bold text-[#1fb2aa] mb-2">Key Tasks:</p>
-                              <ul className="text-xs text-[#374151] space-y-1 ml-3">
-                                <li className="flex items-start gap-2">
-                                  <span className="text-xs mt-0.5">•</span>
-                                  <span>Summarize information about the energy consumption of each energy source.</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                  <span className="text-xs mt-0.5">•</span>
-                                  <span>Compare the changes in energy consumption between different energy sources.</span>
-                                </li>
-                                <li className="flex items-start gap-2">
-                                  <span className="text-xs mt-0.5">•</span>
-                                  <span>Highlight key trends and projections for the future.</span>
-                                </li>
-                              </ul>
-                            </div>
-                            <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
-                              <p className="text-xs font-bold text-[#1fb2aa] mb-2">Band Guidance:</p>
-                              <p className="text-xs text-[#374151]">
-                                With a target of Band 6.0: Adequate overview with main trends identified. Cover key features but details may be incomplete. Clear purpose.
-                              </p>
-                            </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Key Tasks:</p>
+                            <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Summarize information about the energy consumption of each energy source.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Compare the changes in energy consumption between different energy sources.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Highlight key trends and projections for the future.</span>
+                              </li>
+                            </ul>
                           </div>
-                        )}
-                      </AccordionContent>
-                    </AccordionItem>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Band Guidance:</p>
+                            <p className="text-xs text-[#374151]">
+                              With a target of Band 6.0: Adequate overview with main trends identified. Cover key features but details may be incomplete. Clear purpose.
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </AccordionContent>
+                  </AccordionItem>
 
-                    {/* Continue with remaining accordion items... */}
-                  </Accordion>
-                </div>
-              </div>
-            )}
-          </TabsContent>
-
-          <TabsContent 
-            value="outline" 
-            className="flex-1 overflow-y-auto custom-scrollbar mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
-            style={{ height: '500px' }}
-          >
-            {isLoadingAnalysis ? (
-              <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-                <BookLoader message="Analyzing your question and preparing samples..." />
-              </div>
-            ) : !showAnalysisContent ? (
-              <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
-                  onClick={handleRevealAnalysis}
-                >
-                  <Eye className="h-3.5 w-3.5 mr-2 text-primary" /> Reveal Task Analysis & Sample
-                </Button>
-                <p className="text-gray-700 font-medium text-base mb-2 text-center">Ready to unlock insights?</p>
-                <p className="text-primary font-medium text-sm text-center">Expert analysis awaits! 🔍</p>
-              </div>
-            ) : (
-              <div>
-                <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
-                  <Layers className="h-4 w-4" />
-                  Sample - Bài mẫu
-                </h4>
-                <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">Sample answer with paragraph-by-paragraph breakdown</p>
-
-                <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
-                  <Accordion type="single" collapsible className="w-full space-y-2">
-                    {/* Sample content accordion items */}
-                    <AccordionItem 
-                      value="paragraph-1"
-                      className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  {/* Accordion 3: Identify Main Features */}
+                  <AccordionItem 
+                    value="identify-features"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
                     >
-                      <AccordionTrigger 
-                        className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
-                      >
-                        <span className="flex items-center gap-2">
-                          <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
-                            1
-                          </span>
-                          Paragraph 1: Introduction
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          3
                         </span>
-                      </AccordionTrigger>
-                      <AccordionContent className="p-3 bg-white">
-                        {isLoading ? (
-                          <ShimmerText lines={2} className="text-xs" />
-                        ) : (
-                          <div className="text-xs text-gray-700 leading-relaxed">
-                            The line graph illustrates the consumption of energy in the United States from 1980, with projections extending to 2030, categorized by different fuel types.
+                        Identify Main Features
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Overall Trends:</p>
+                            <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Petroleum remains the largest energy source consumed, with a slight upward trend from about 35 quadrillion BTU in 1980 to around 37 quadrillion BTU by 2030.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Natural Gas shows significant growth, from about 20 quadrillion BTU in 1980 to around 32 quadrillion BTU by 2030.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Coal has a slow and steady upward trend, from about 15 quadrillion BTU in 1980 to around 22 quadrillion BTU by 2030.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Nuclear energy remains relatively stable, fluctuating around 8 quadrillion BTU throughout the period.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Renewables show growth, especially in the projected period, from about 3 quadrillion BTU in 1980 to around 12 quadrillion BTU by 2030.</span>
+                              </li>
+                            </ul>
                           </div>
-                        )}
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
-                </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Key Data Points:</p>
+                            <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>In 2008, petroleum accounted for about 37 quadrillion BTU, natural gas about 24 quadrillion BTU, coal about 22 quadrillion BTU, nuclear about 8 quadrillion BTU, and renewables about 7 quadrillion BTU.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Projected for 2030, petroleum is expected to account for about 37 quadrillion BTU, natural gas about 32 quadrillion BTU, coal about 22 quadrillion BTU, nuclear about 8 quadrillion BTU, and renewables about 12 quadrillion BTU.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Petroleum has always been the largest energy source consumed throughout the period.</span>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Significant Changes:</p>
+                            <ul className="text-xs text-[#374151] space-y-1 ml-3">
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Significant growth of natural gas, especially from 2000 onwards.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Growth of renewables in the projected period 2008-2030.</span>
+                              </li>
+                              <li className="flex items-start gap-2">
+                                <span className="text-xs mt-0.5">•</span>
+                                <span>Relative stability of nuclear energy.</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Accordion 4: Jobs To Be Done */}
+                  <AccordionItem 
+                    value="jobs-to-be-done"
+                    className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
+                  >
+                    <AccordionTrigger 
+                      className="text-sm font-medium py-3 px-4 hover:no-underline bg-gradient-to-r from-primary/5 to-transparent hover:from-primary/10"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
+                          4
+                        </span>
+                        Jobs To Be Done
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="p-3 bg-white">
+                      {isLoading ? (
+                        <div className="space-y-3">
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                          <ShimmerCard className="border-gray-100" />
+                        </div>
+                      ) : (
+                        <div className="space-y-3">
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Task 1:</p>
+                            <p className="text-xs text-[#374151]">
+                              Introduction paragraph - paraphrase the question and introduce the line graph showing energy consumption in the USA from 1980 to 2030, categorized by source.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Task 2:</p>
+                            <p className="text-xs text-[#374151]">
+                              Overview paragraph - summarize 2-3 main trends: petroleum remains the largest source, natural gas shows significant growth, renewables increase in the future.
+                            </p>
+                          </div>
+                          <div className="p-3 rounded-md border border-gray-100 bg-[#f9fafb]">
+                            <p className="text-xs font-bold text-[#1fb2aa] mb-2">Task 3:</p>
+                            <p className="text-xs text-[#374151]">
+                              Body paragraphs - Body 1 describes petroleum and natural gas (specific data), Body 2 describes coal, nuclear, and renewables (data and comparisons)
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
-            )}
+            </div>
           </TabsContent>
         </Tabs>
       ) : (
