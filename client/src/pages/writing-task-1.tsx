@@ -457,7 +457,7 @@ export default function WritingTask1() {
           onClick={handleRandomButton}
         >
           <Shuffle className="w-4 h-4 mr-2" />
-          Random
+          Random question
         </Button>
       </div>
       {/* Chemical Flask Loader */}
