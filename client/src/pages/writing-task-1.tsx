@@ -146,7 +146,7 @@ export default function WritingTask1() {
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [hasGeneratedChart, setHasGeneratedChart] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [loadingAction, setLoadingAction] = useState<'use-my-question' | 'random-question' | null>(null);
+  const [loadingAction, setLoadingAction] = useState<'use-my-question' | 'random-question' | 'random-button' | null>(null);
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
@@ -181,6 +181,11 @@ export default function WritingTask1() {
     setIsLoading(true);
   };
 
+  const handleRandomButton = () => {
+    setLoadingAction('random-button');
+    setIsLoading(true);
+  };
+
   const handleCompleteRandomQuestion = () => {
     const randomQuestions = [
       "The diagram below shows the process of making soft cheese. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
@@ -204,6 +209,29 @@ export default function WritingTask1() {
     
     toast({
       title: "Question and chart generated",
+      description: "Random Task 1 question with corresponding chart is ready for practice.",
+    });
+  };
+
+  const handleCompleteRandomButton = () => {
+    const randomQuestions = [
+      "The diagram below shows the process of making soft cheese. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2015. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The line graph below shows the consumption of fish and some different kinds of meat in a European country between 1979 and 2004. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The table below shows the percentage of mobile phone owners using various mobile phone features. Summarise the information by selecting and reporting the main features and make comparisons where relevant.",
+      "The pie charts below show the comparison of different kinds of energy production of France in two years. Summarise the information by selecting and reporting the main features and make comparisons where relevant."
+    ];
+    
+    const randomIndex = Math.floor(Math.random() * randomQuestions.length);
+    const selectedQuestion = randomQuestions[randomIndex];
+    
+    setPreviewQuestion(`**IELTS Writing Task 1:** ${selectedQuestion}`);
+    setShowPreview(true);
+    setHasGeneratedChart(true);
+    setIsLoading(false);
+    
+    toast({
+      title: "Random question generated",
       description: "Random Task 1 question with corresponding chart is ready for practice.",
     });
   };
@@ -424,6 +452,13 @@ export default function WritingTask1() {
           <Database className="w-4 h-4 mr-2" />
           Get question
         </Button>
+        <Button 
+          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 text-white hover:bg-[#c2401c] bg-[#ea580c]"
+          onClick={handleRandomButton}
+        >
+          <Shuffle className="w-4 h-4 mr-2" />
+          Random
+        </Button>
       </div>
       {/* Chemical Flask Loader */}
       <ChemicalFlaskLoader 
@@ -433,6 +468,8 @@ export default function WritingTask1() {
             handleCompleteUseMyQuestion();
           } else if (loadingAction === 'random-question') {
             handleCompleteRandomQuestion();
+          } else if (loadingAction === 'random-button') {
+            handleCompleteRandomButton();
           }
           setLoadingAction(null);
         }}
