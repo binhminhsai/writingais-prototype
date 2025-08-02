@@ -70,7 +70,9 @@ interface Task1WritingInterfaceProps {
 // Task 1 Outline component with tabs for outline and useful expressions
 function Task1OutlineSection({ questionType, question }: { questionType: string, question: string }) {
   const [showOutline, setShowOutline] = useState(true);
+  const [showTaskAnalysis, setShowTaskAnalysis] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingTaskAnalysis, setIsLoadingTaskAnalysis] = useState(false);
   const outline = getTask1Outline(questionType);
 
   useEffect(() => {
@@ -81,6 +83,15 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Handle revealing task analysis with loading animation
+  const handleRevealTaskAnalysis = () => {
+    setIsLoadingTaskAnalysis(true);
+    setTimeout(() => {
+      setIsLoadingTaskAnalysis(false);
+      setShowTaskAnalysis(true);
+    }, 5000);
+  };
 
   return (
     <div className="h-full flex flex-col">
@@ -121,8 +132,27 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
               </h4>
               <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">Sample answer with paragraph-by-paragraph breakdown</p>
 
-              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
-                <Accordion type="single" collapsible className="w-full space-y-2">
+              {isLoadingTaskAnalysis ? (
+                <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
+                  <BookLoader message="Preparing sample analysis..." />
+                </div>
+              ) : !showTaskAnalysis ? (
+                <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
+                    onClick={handleRevealTaskAnalysis}
+                  >
+                    <Eye className="h-3.5 w-3.5 mr-2 text-primary" />
+                    Reveal Task Analysis and Sample
+                  </Button>
+                  <p className="text-gray-700 font-medium text-base mb-2 text-center">Click to explore detailed analysis and sample!</p>
+                  <p className="text-primary font-medium text-sm text-center">Build your understanding step by step.</p>
+                </div>
+              ) : (
+                <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+                  <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Accordion 1: Paragraph 1: Introduction */}
                   <AccordionItem 
                     value="paragraph-1"
@@ -226,8 +256,9 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                       )}
                     </AccordionContent>
                   </AccordionItem>
-                </Accordion>
-              </div>
+                  </Accordion>
+                </div>
+              )}
             </div>
           </TabsContent>
 
@@ -245,8 +276,27 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                 Detailed analysis of the Task 1 question and visual data
               </p>
 
-              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
-                <Accordion type="single" collapsible className="w-full space-y-2">
+              {isLoadingTaskAnalysis ? (
+                <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
+                  <BookLoader message="Preparing task analysis..." />
+                </div>
+              ) : !showTaskAnalysis ? (
+                <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
+                    onClick={handleRevealTaskAnalysis}
+                  >
+                    <Eye className="h-3.5 w-3.5 mr-2 text-primary" />
+                    Reveal Task Analysis and Sample
+                  </Button>
+                  <p className="text-gray-700 font-medium text-base mb-2 text-center">Click to explore detailed analysis and sample!</p>
+                  <p className="text-primary font-medium text-sm text-center">Build your understanding step by step.</p>
+                </div>
+              ) : (
+                <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+                  <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Accordion 1: Image Description */}
                   <AccordionItem 
                     value="image-description"
@@ -506,8 +556,9 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                       )}
                     </AccordionContent>
                   </AccordionItem>
-                </Accordion>
-              </div>
+                  </Accordion>
+                </div>
+              )}
             </div>
           </TabsContent>
         </Tabs>
