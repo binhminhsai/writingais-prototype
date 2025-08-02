@@ -107,7 +107,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                         data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
               >
                 <Smile className="h-4 w-4" />
-                Analyze Question
+                Question Analysis
               </TabsTrigger>
               <TabsTrigger 
                 value="outline" 
@@ -332,31 +332,31 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                               <span className="text-[#1fb2aa] font-bold">Chart Type:</span> Line Graph
                             </p>
                           </div>
-                          
+
                           <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
                             <p className="text-xs">
                               <span className="text-[#1fb2aa] font-bold">Main Subject:</span> Energy consumption in the USA by different sources (petroleum, natural gas, coal, nuclear, renewables)
                             </p>
                           </div>
-                          
+
                           <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
                             <p className="text-xs">
                               <span className="text-[#1fb2aa] font-bold">Unit of Measurement:</span> Quadrillion BTU (British Thermal Units)
                             </p>
                           </div>
-                          
+
                           <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
                             <p className="text-xs">
                               <span className="text-[#1fb2aa] font-bold">Time Period:</span> From 1980 to 2030 (projected)
                             </p>
                           </div>
-                          
+
                           <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
                             <p className="text-xs">
                               <span className="text-[#1fb2aa] font-bold">Verb Tense Used:</span> Combination of Past tense for the period 1980–2008 and Future tense for the projected period 2008–2030
                             </p>
                           </div>
-                          
+
                           <div className="p-3 rounded-md border border-blue-100 bg-[#f9fafb] text-[#374151]">
                             <p className="text-xs">
                               <span className="text-[#1fb2aa] font-bold">Chart Summary:</span> The line graph shows the changes in energy consumption in the USA over time, categorized by different energy sources, including projections for the future.
@@ -592,7 +592,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const [isLoadingVocab, setIsLoadingVocab] = useState(false);
   const [isLoadingPhrases, setIsLoadingPhrases] = useState(false);
   const [isLoadingWordBank, setIsLoadingWordBank] = useState(false);
-  
+
   const allVocabulary = getTask1Vocabulary(questionType);
   const phrases = getTask1Phrases();
 
@@ -634,7 +634,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
     },
     {
       word: "Mitigate",
-      partOfSpeech: "V",
+      partOfSpeech: "V,
       difficulty: "C1",
       meaning: "Làm giảm, làm dịu bớt",
       chartFunction: "Mô tả sự giảm thiểu tác động tiêu cực",
