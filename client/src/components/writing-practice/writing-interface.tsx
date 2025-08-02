@@ -37,12 +37,14 @@ import { WritingTestType, DifficultyLevel } from "./test-setup";
 import { Link } from "wouter";
 import { InteractiveLoadingPage } from "@/components/ui/interactive-loading-page";
 import { ShimmerLoader, ShimmerCard, ShimmerList, ShimmerText } from "@/components/ui/shimmer-loader";
-import { BookLoader } from "@/components/ui/book-loader";
+import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 
 // Outline component with tabs for outline and useful expressions
 function OutlineSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
   const [showOutline, setShowOutline] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [showTopicAnalysis, setShowTopicAnalysis] = useState(false);
+  const [isLoadingTopicAnalysis, setIsLoadingTopicAnalysis] = useState(false);
   const outline = getOutline(testType, topic);
 
   useEffect(() => {
@@ -53,6 +55,15 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Handle reveal button click with 5-second loading animation
+  const handleRevealTopicAnalysis = () => {
+    setIsLoadingTopicAnalysis(true);
+    setTimeout(() => {
+      setIsLoadingTopicAnalysis(false);
+      setShowTopicAnalysis(true);
+    }, 5000);
+  };
 
   return (
     <div className="h-full flex flex-col">
@@ -95,7 +106,27 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 Cấu trúc đề xuất giúp bạn tổ chức ý tưởng và viết bài tốt hơn
               </p>
 
-              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+              {isLoadingTopicAnalysis ? (
+                <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
+                  <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
+                  <p className="text-sm font-medium text-gray-600 mt-4">Preparing detailed insights for you...</p>
+                </div>
+              ) : !showTopicAnalysis ? (
+                <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
+                    onClick={handleRevealTopicAnalysis}
+                  >
+                    <Eye className="h-3.5 w-3.5 mr-2 text-primary" />
+                    Reveal Task Analysis and Outline
+                  </Button>
+                  <p className="text-gray-700 font-medium text-base mb-2 text-center">Click to explore detailed analysis and outline!</p>
+                  <p className="text-primary font-medium text-sm text-center">Build your understanding step by step.</p>
+                </div>
+              ) : (
+                <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
                 <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Overall Outline as the first item */}
                   <AccordionItem 
@@ -317,7 +348,8 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
-              </div>
+                </div>
+              )}
             </div>
           </TabsContent>
 
@@ -335,8 +367,28 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                 Những hướng dẫn cụ thể giúp bạn viết bài hiệu quả hơn
               </p>
 
-              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
-                <Accordion type="single" collapsible className="w-full space-y-2">
+              {isLoadingTopicAnalysis ? (
+                <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
+                  <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
+                  <p className="text-sm font-medium text-gray-600 mt-4">Preparing detailed insights for you...</p>
+                </div>
+              ) : !showTopicAnalysis ? (
+                <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
+                    onClick={handleRevealTopicAnalysis}
+                  >
+                    <Eye className="h-3.5 w-3.5 mr-2 text-primary" />
+                    Reveal Task Analysis and Outline
+                  </Button>
+                  <p className="text-gray-700 font-medium text-base mb-2 text-center">Click to explore detailed analysis and outline!</p>
+                  <p className="text-primary font-medium text-sm text-center">Build your understanding step by step.</p>
+                </div>
+              ) : (
+                <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+                  <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Accordion 1: Highlight Keywords */}
                   <AccordionItem 
                     value="highlight-keywords"
@@ -590,8 +642,9 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                       )}
                     </AccordionContent>
                   </AccordionItem>
-                </Accordion>
-              </div>
+                  </Accordion>
+                </div>
+              )}
             </div>
           </TabsContent>
         </Tabs>
@@ -861,7 +914,8 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
           {isLoadingWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <BookLoader message="Flipping through our vocabulary archive..." />
+              <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
+              <p className="text-sm font-medium text-gray-600 mt-4">Preparing detailed insights for you...</p>
             </div>
           ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
@@ -954,7 +1008,8 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         <TabsContent value="phrases" className="p-0 min-h-[200px]">
           {isLoadingWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <BookLoader message="Flipping through our vocabulary archive..." />
+              <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
+              <p className="text-sm font-medium text-gray-600 mt-4">Preparing detailed insights for you...</p>
             </div>
           ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
