@@ -11,7 +11,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
   const [isCompleting, setIsCompleting] = useState(false);
 
   const messages = [
-    "Almost there! We're finalizing your question...",
+    "Preparing detailed insights for you...",
     "Analyzing your writing level...",
     "Generating a personalized Task 1 prompt...",
     "Calibrating chart details and band level..."
