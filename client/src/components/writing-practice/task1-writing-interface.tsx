@@ -107,7 +107,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                         data-[state=active]:border-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:font-bold"
               >
                 <Smile className="h-4 w-4" />
-                Analyze Question
+                Question Analysis
               </TabsTrigger>
               <TabsTrigger 
                 value="outline" 
@@ -272,7 +272,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
                 <Smile className="h-4 w-4" />
-                Analyze Question - Phân tích câu hỏi
+                Question Analysis - Phân tích câu hỏi
               </h4>
               <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">
                 Detailed analysis of the Task 1 question and visual data
@@ -379,7 +379,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                         <span className="flex justify-center items-center w-6 h-6 rounded-full bg-primary/10 text-primary text-xs">
                           2
                         </span>
-                        Analyze Question
+                        Question Analysis
                       </span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
