@@ -38,6 +38,7 @@ import { Link } from "wouter";
 import { InteractiveLoadingPage } from "@/components/ui/interactive-loading-page";
 import { ShimmerLoader, ShimmerCard, ShimmerList, ShimmerText } from "@/components/ui/shimmer-loader";
 import { BookLoader } from "@/components/ui/book-loader";
+import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -134,7 +135,8 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
 
               {isLoadingTaskAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
-                  <BookLoader message="Preparing sample analysis..." />
+                  <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
+                  <p className="text-sm font-medium text-gray-600 mt-4">Preparing sample analysis...</p>
                 </div>
               ) : !showTaskAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
@@ -278,7 +280,8 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
 
               {isLoadingTaskAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
-                  <BookLoader message="Preparing task analysis..." />
+                  <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
+                  <p className="text-sm font-medium text-gray-600 mt-4">Preparing task analysis...</p>
                 </div>
               ) : !showTaskAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
