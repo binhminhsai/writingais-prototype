@@ -815,6 +815,7 @@ However, renewable energy sources is projected to experience substantial growth,
 
       {/* Interactive Essay Analysis Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
+        <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
         {createHighlightedEssay()}
       </div>
 
