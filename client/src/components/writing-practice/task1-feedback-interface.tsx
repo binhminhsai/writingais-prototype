@@ -819,7 +819,25 @@ However, renewable energy sources is projected to experience substantial growth,
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
         {!showGrammarChecker ? (
           <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
-            <div className="flex flex-col items-center justify-center h-full min-h-[200px] text-center">
+            {/* Legend section to match actual content structure */}
+            <div className="mb-4">
+              <div className="flex flex-wrap gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
+                  <span>Error</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
+                  <span>Improvement</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
+                  <span>Suggestion</span>
+                </div>
+              </div>
+            </div>
+            {/* Content area with same height as actual essay */}
+            <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: '400px' }}>
               <Button 
                 onClick={() => setShowGrammarChecker(true)}
                 className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4"
