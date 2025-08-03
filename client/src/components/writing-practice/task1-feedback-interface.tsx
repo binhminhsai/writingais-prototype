@@ -74,6 +74,7 @@ export function Task1FeedbackInterface({
   onNextPractice,
 }: Task1FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
+  const [showGrammarChecker, setShowGrammarChecker] = useState(false);
 
   // Sample Task 1 essay about energy consumption
   const sampleEssay = `The line graph illustrates the consumption of energy by source in the USA from 1980 to 2030, with projections for the future period.
@@ -815,8 +816,18 @@ However, renewable energy sources is projected to experience substantial growth,
 
       {/* Interactive Essay Analysis Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
-        <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
-        {createHighlightedEssay()}
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-2xl font-bold">Grammar Checker</h2>
+          {!showGrammarChecker && (
+            <Button 
+              onClick={() => setShowGrammarChecker(true)}
+              className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white"
+            >
+              Review My Essay
+            </Button>
+          )}
+        </div>
+        {showGrammarChecker && createHighlightedEssay()}
       </div>
 
       {/* Action Buttons */}
