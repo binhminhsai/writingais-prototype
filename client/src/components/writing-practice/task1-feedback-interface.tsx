@@ -818,15 +818,17 @@ However, renewable energy sources is projected to experience substantial growth,
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
         {!showGrammarChecker ? (
-          <div className="bg-[#fdfdfd] border border-gray-300 rounded-lg p-12 text-center">
-            <Button 
-              onClick={() => setShowGrammarChecker(true)}
-              className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4"
-            >
-              ✨ Review My Essay
-            </Button>
-            <p className="text-gray-600 mb-2">Click to explore detailed grammar analysis!</p>
-            <p className="text-[#44b9b0] text-sm">Improve your writing skills with personalized feedback. 📝</p>
+          <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
+            <div className="flex flex-col items-center justify-center h-full min-h-[200px] text-center">
+              <Button 
+                onClick={() => setShowGrammarChecker(true)}
+                className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4"
+              >
+                ✨ Review My Essay
+              </Button>
+              <p className="text-gray-600 mb-2">Click to explore detailed grammar analysis!</p>
+              <p className="text-[#44b9b0] text-sm">Improve your writing skills with personalized feedback. 📝</p>
+            </div>
           </div>
         ) : (
           createHighlightedEssay()
