@@ -90,6 +90,7 @@ export function FeedbackInterface({
   context = "writing-practice",
 }: FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
+  const [showGrammarChecker, setShowGrammarChecker] = useState(false);
 
   // Example sustainable development essay - 300 words
   const sampleEssay = `In recent years, sustainable development has become one of the most critical issues facing governments worldwide.
@@ -920,8 +921,41 @@ Only through careful planning and responsible policies can societies achieve pro
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
 
-        {/* Essay with highlighted sections */}
-        {highlightEssay(sampleEssay)}
+        {!showGrammarChecker ? (
+          <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
+            {/* Legend section to match actual content structure */}
+            <div className="mb-4">
+              <div className="flex flex-wrap gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
+                  <span>Error</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
+                  <span>Improvement</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
+                  <span>Suggestion</span>
+                </div>
+              </div>
+            </div>
+            {/* Content area with same height as actual essay */}
+            <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: '450px' }}>
+              <Button 
+                onClick={() => setShowGrammarChecker(true)}
+                className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4"
+              >
+                ✨ Check My Essay
+              </Button>
+              <p className="text-gray-600 mb-2">Click to explore detailed grammar analysis!</p>
+              <p className="text-[#44b9b0] text-sm">Improve your writing skills with personalized feedback. 📝</p>
+            </div>
+          </div>
+        ) : (
+          /* Essay with highlighted sections */
+          highlightEssay(sampleEssay)
+        )}
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center">
