@@ -342,7 +342,7 @@ However, renewable energy sources is projected to experience substantial growth,
         <div className="column flex flex-col gap-4">
             {/* Score Breakdown */}
             <div className="box rounded-lg border border-gray-200 p-3 h-full flex flex-col bg-[#ffffff]">
-              <h2 className="text-lg font-bold mb-3">Score Breakdown</h2>
+              <h2 className="font-bold mb-3 text-[19px]">Score Breakdown</h2>
 
               <div className="flex flex-col justify-between flex-1 gap-3">
                 {/* Task Achievement */}
