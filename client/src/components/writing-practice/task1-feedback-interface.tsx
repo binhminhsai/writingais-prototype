@@ -816,18 +816,21 @@ However, renewable energy sources is projected to experience substantial growth,
 
       {/* Interactive Essay Analysis Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-bold">Grammar Checker</h2>
-          {!showGrammarChecker && (
+        <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
+        {!showGrammarChecker ? (
+          <div className="bg-[#fdfdfd] border border-gray-300 rounded-lg p-12 text-center">
             <Button 
               onClick={() => setShowGrammarChecker(true)}
-              className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white"
+              className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4"
             >
-              Review My Essay
+              ✨ Review My Essay
             </Button>
-          )}
-        </div>
-        {showGrammarChecker && createHighlightedEssay()}
+            <p className="text-gray-600 mb-2">Click to explore detailed grammar analysis!</p>
+            <p className="text-[#44b9b0] text-sm">Improve your writing skills with personalized feedback. 📝</p>
+          </div>
+        ) : (
+          createHighlightedEssay()
+        )}
       </div>
 
       {/* Action Buttons */}
