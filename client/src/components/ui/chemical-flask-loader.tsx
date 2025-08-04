@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react';
 interface ChemicalFlaskLoaderProps {
   isVisible: boolean;
   onComplete: () => void;
+  duration?: number; // Duration in seconds, defaults to 15
 }
 
-export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoaderProps) {
+export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: ChemicalFlaskLoaderProps) {
   const [liquidLevel, setLiquidLevel] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
   const [isCompleting, setIsCompleting] = useState(false);
-  const [countdown, setCountdown] = useState(15);
+  const [countdown, setCountdown] = useState(duration);
 
   const messages = [
     "Preparing detailed insights for you...",
@@ -23,18 +24,18 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
       setLiquidLevel(0);
       setMessageIndex(0);
       setIsCompleting(false);
-      setCountdown(15);
+      setCountdown(duration);
       return;
     }
 
-    // Start the liquid filling animation immediately - spread over 15 seconds
+    // Start the liquid filling animation immediately - spread over duration seconds
     const liquidTimer = setInterval(() => {
       setLiquidLevel(prev => {
         if (prev >= 100) {
           clearInterval(liquidTimer);
           return 100;
         }
-        return prev + 0.67; // Fill in 15 seconds (0.67% every 100ms)
+        return prev + (100 / (duration * 10)); // Fill over duration seconds (1% per duration/10 * 100ms)
       });
     }, 100);
 
@@ -49,18 +50,19 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
       });
     }, 1000);
 
-    // Change messages every 3.75 seconds (15 seconds / 4 messages)
+    // Change messages every (duration / 4) seconds to cycle through all messages
+    const messageInterval = (duration / messages.length) * 1000;
     const messageTimer = setInterval(() => {
       setMessageIndex(prev => (prev + 1) % messages.length);
-    }, 3750);
+    }, messageInterval);
 
-    // Complete animation after 15 seconds
+    // Complete animation after duration seconds
     const completionTimer = setTimeout(() => {
       setIsCompleting(true);
       setTimeout(() => {
         onComplete();
       }, 500); // Allow fade out animation
-    }, 15000);
+    }, duration * 1000);
 
     return () => {
       clearInterval(liquidTimer);
@@ -68,7 +70,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
       clearInterval(messageTimer);
       clearTimeout(completionTimer);
     };
-  }, [isVisible, onComplete]);
+  }, [isVisible, onComplete, duration, messages.length]);
 
   if (!isVisible) return null;
 

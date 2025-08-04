@@ -88,10 +88,11 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
   // Handle revealing task analysis with loading animation
   const handleRevealTaskAnalysis = () => {
     setIsLoadingTaskAnalysis(true);
-    setTimeout(() => {
-      setIsLoadingTaskAnalysis(false);
-      setShowTaskAnalysis(true);
-    }, 5000);
+  };
+
+  const handleCompleteTaskAnalysis = () => {
+    setIsLoadingTaskAnalysis(false);
+    setShowTaskAnalysis(true);
   };
 
   return (
@@ -135,8 +136,11 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
 
               {isLoadingTaskAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
-                  <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
-                  <p className="text-sm font-medium text-gray-600 mt-4">Preparing sample analysis...</p>
+                  <ChemicalFlaskLoader 
+                    isVisible={true} 
+                    onComplete={handleCompleteTaskAnalysis}
+                    duration={50}
+                  />
                 </div>
               ) : !showTaskAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
@@ -280,8 +284,11 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
 
               {isLoadingTaskAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
-                  <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
-                  <p className="text-sm font-medium text-gray-600 mt-4">Preparing task analysis...</p>
+                  <ChemicalFlaskLoader 
+                    isVisible={true} 
+                    onComplete={handleCompleteTaskAnalysis}
+                    duration={50}
+                  />
                 </div>
               ) : !showTaskAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
