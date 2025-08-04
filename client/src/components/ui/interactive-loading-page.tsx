@@ -12,6 +12,7 @@ interface Point {
 
 export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoadingPageProps) {
   const [liquidLevel, setLiquidLevel] = useState(0);
+  const [countdown, setCountdown] = useState(50);
   const [isCompleting, setIsCompleting] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isDrawingRef = useRef(false);
@@ -26,34 +27,45 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
   useEffect(() => {
     if (!isVisible) {
       setLiquidLevel(0);
+      setCountdown(50);
       setIsCompleting(false);
       return;
     }
 
-    // Start the liquid filling animation
+    // Start the liquid filling animation - spread over 50 seconds
     const liquidTimer = setInterval(() => {
       setLiquidLevel(prev => {
         if (prev >= 100) {
           clearInterval(liquidTimer);
           return 100;
         }
-        return prev + 1.25; // Fill in 8 seconds (1.25% every 100ms)
+        return prev + (100 / (50 * 10)); // Fill over 50 seconds (0.2% per 100ms)
       });
     }, 100);
 
-    // Complete animation after 8 seconds
-    const completionTimer = setTimeout(() => {
+    // Countdown timer - decrease every second
+    const countdownTimer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownTimer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
+    // Complete animation after 50 seconds
+    const completionTimer = setTimeout(() => {
       setIsCompleting(true);
       // Call onComplete after a brief fade out
       setTimeout(() => {
-
         onCompleteRef.current();
       }, 300);
-    }, 8000);
+    }, 50000);
 
     return () => {
       clearInterval(liquidTimer);
+      clearInterval(countdownTimer);
       clearTimeout(completionTimer);
     };
   }, [isVisible]);
@@ -160,7 +172,7 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
         isCompleting ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
       }`}>
         {/* Chemical Flask SVG */}
-        <div className="relative mb-8">
+        <div className="relative mb-4">
           <svg
             width="100"
             height="120"
@@ -272,6 +284,13 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
             </g>
           </svg>
         </div>
+
+        {/* Countdown Timer */}
+        {countdown > 0 && (
+          <div className="text-[#1fb2aa] text-center text-lg font-semibold mb-4">
+            {countdown}
+          </div>
+        )}
 
         {/* Main Loading Message */}
         <div className="text-center mb-6">
