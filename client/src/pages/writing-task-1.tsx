@@ -356,7 +356,7 @@ export default function WritingTask1() {
             Band Level
             <Tooltip>
               <TooltipTrigger asChild>
-                <Info className="inline-block ml-1 h-4 w-4 text-gray-400 cursor-help" />
+                <HelpCircle className="inline-block ml-1 h-4 w-4 text-gray-400 cursor-help" />
               </TooltipTrigger>
               <TooltipContent className="max-w-sm p-4 bg-white border border-gray-200 shadow-lg rounded-lg">
                 <div className="space-y-2">
