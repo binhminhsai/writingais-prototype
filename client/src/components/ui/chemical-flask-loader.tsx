@@ -10,7 +10,6 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
   const [liquidLevel, setLiquidLevel] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
   const [countdown, setCountdown] = useState(duration);
-  const [startTime, setStartTime] = useState<number | null>(null);
 
   const messages = [
     "Preparing detailed insights for you...",
@@ -24,13 +23,8 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       setLiquidLevel(0);
       setMessageIndex(0);
       setCountdown(duration);
-      setStartTime(null);
       return;
     }
-
-    // Record the exact start time when animation begins
-    const animationStartTime = Date.now();
-    setStartTime(animationStartTime);
 
     // Start the liquid filling animation immediately - spread over duration seconds
     const liquidTimer = setInterval(() => {
@@ -43,22 +37,18 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       });
     }, 100);
 
-    // Precise countdown timer using elapsed time calculation
-    const updateTimer = setInterval(() => {
-      const elapsedTime = Date.now() - animationStartTime;
-      const elapsedSeconds = Math.floor(elapsedTime / 1000);
-      const remainingSeconds = Math.max(0, duration - elapsedSeconds);
-      
-      setCountdown(remainingSeconds);
-      
-      // Check if we've reached exactly the duration (60 seconds = 60,000ms)
-      if (elapsedTime >= duration * 1000) {
-        clearInterval(updateTimer);
-        setCountdown(0);
-        // Call onComplete exactly at duration * 1000 milliseconds
-        onComplete();
-      }
-    }, 100); // Update every 100ms for smooth countdown, but only change display every second
+    // Countdown timer - decrease every second, starting immediately
+    const countdownTimer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownTimer);
+          // Call onComplete immediately when countdown reaches 0
+          setTimeout(() => onComplete(), 0);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
     // Change messages every (duration / 4) seconds to cycle through all messages
     const messageInterval = (duration / messages.length) * 1000;
@@ -68,7 +58,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
 
     return () => {
       clearInterval(liquidTimer);
-      clearInterval(updateTimer);
+      clearInterval(countdownTimer);
       clearInterval(messageTimer);
     };
   }, [isVisible, onComplete, duration, messages.length]);
