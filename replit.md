@@ -8,12 +8,13 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 **Date: 2025-01-04**
-- **Loading System Updates**: Implemented precise 50-second countdown timers for essay analysis
+- **Loading System Updates**: Implemented precise countdown timers for essay analysis
   - Updated InteractiveLoadingPage (Submit button) with performance.now() timing and requestAnimationFrame
   - Added ChemicalFlaskLoader with 50-second countdown to Task 1 and Task 2 "Review My Essay" buttons
+  - Updated "Reveal Task Analysis and Outline" in Task 2 with 60-second ChemicalFlaskLoader
   - All loading animations now use synchronized timing to prevent drift on slower devices
   - Countdown displays smoothly without flickering using tabular-nums font
-  - Content displays exactly after 50,000ms completion
+  - Content displays exactly after countdown completion with no delays
 
 ## System Architecture
 

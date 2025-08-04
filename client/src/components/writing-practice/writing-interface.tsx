@@ -57,13 +57,15 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle reveal button click with 5-second loading animation
+  // Handle reveal button click with 60-second loading animation
   const handleRevealTopicAnalysis = () => {
     setIsLoadingTopicAnalysis(true);
-    setTimeout(() => {
-      setIsLoadingTopicAnalysis(false);
-      setShowTopicAnalysis(true);
-    }, 5000);
+  };
+
+  // Handle completion of topic analysis loading
+  const handleTopicAnalysisComplete = () => {
+    setIsLoadingTopicAnalysis(false);
+    setShowTopicAnalysis(true);
   };
 
   return (
@@ -109,8 +111,11 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
               {isLoadingTopicAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
-                  <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
-                  <p className="text-sm font-medium text-gray-600 mt-4">Preparing detailed insights for you...</p>
+                  <ChemicalFlaskLoader 
+                    isVisible={true} 
+                    onComplete={handleTopicAnalysisComplete}
+                    duration={60}
+                  />
                 </div>
               ) : !showTopicAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
@@ -370,8 +375,11 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
 
               {isLoadingTopicAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
-                  <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
-                  <p className="text-sm font-medium text-gray-600 mt-4">Preparing detailed insights for you...</p>
+                  <ChemicalFlaskLoader 
+                    isVisible={true} 
+                    onComplete={handleTopicAnalysisComplete}
+                    duration={60}
+                  />
                 </div>
               ) : !showTopicAnalysis ? (
                 <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[350px]">
