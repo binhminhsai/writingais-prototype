@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Upload, Info, Shuffle, HelpCircle, Database } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
@@ -315,7 +316,8 @@ export default function WritingTask1() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <TooltipProvider>
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
       <h1 className="text-2xl font-semibold text-gray-900 mb-8">IELTS Writing Task 1 Practice</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Select Question Type */}
@@ -352,7 +354,19 @@ export default function WritingTask1() {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Band Level
-            <Info className="inline-block ml-1 h-4 w-4 text-gray-400" />
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Info className="inline-block ml-1 h-4 w-4 text-gray-400 cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-sm p-4 bg-white border border-gray-200 shadow-lg rounded-lg">
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-gray-900">Band Level Guide</h4>
+                  <p className="text-sm text-gray-600">
+                    Choose the band level you aim for. We'll tailor vocabulary and writing guidance to match that level.
+                  </p>
+                </div>
+              </TooltipContent>
+            </Tooltip>
           </label>
           <Select value={bandLevel} onValueChange={setBandLevel}>
             <SelectTrigger className="w-full">
@@ -528,6 +542,7 @@ export default function WritingTask1() {
           Start Writing
         </Button>
       </div>
-    </div>
+      </div>
+    </TooltipProvider>
   );
 }
