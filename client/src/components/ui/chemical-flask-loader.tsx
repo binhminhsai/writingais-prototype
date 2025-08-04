@@ -59,9 +59,8 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
     // Complete animation after duration seconds
     const completionTimer = setTimeout(() => {
       setIsCompleting(true);
-      setTimeout(() => {
-        onComplete();
-      }, 500); // Allow fade out animation
+      // Call onComplete immediately when countdown reaches 0
+      onComplete();
     }, duration * 1000);
 
     return () => {

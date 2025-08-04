@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -90,10 +90,10 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
     setIsLoadingTaskAnalysis(true);
   };
 
-  const handleCompleteTaskAnalysis = () => {
+  const handleCompleteTaskAnalysis = useCallback(() => {
     setIsLoadingTaskAnalysis(false);
     setShowTaskAnalysis(true);
-  };
+  }, []);
 
   return (
     <div className="h-full flex flex-col">
