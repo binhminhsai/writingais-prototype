@@ -26,46 +26,40 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       return;
     }
 
-    // Start the liquid filling animation immediately - spread over duration seconds
-    const liquidTimer = setInterval(() => {
-      setLiquidLevel(prev => {
-        if (prev >= 100) {
-          clearInterval(liquidTimer);
-          return 100;
-        }
-        return prev + (100 / (duration * 10)); // Fill over duration seconds (1% per duration/10 * 100ms)
-      });
-    }, 100);
+    // Use performance.now() for precise timing
+    const startTime = performance.now();
+    const totalDurationMs = duration * 1000;
 
-    // Countdown timer - decrease every second, starting after 1 second
-    const countdownTimer = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(countdownTimer);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    // Animation frame for precise timing updates
+    const updateAnimation = () => {
+      const elapsed = performance.now() - startTime;
+      const progress = Math.min(elapsed / totalDurationMs, 1);
 
-    // Change messages every (duration / 4) seconds to cycle through all messages
-    const messageInterval = (duration / messages.length) * 1000;
-    const messageTimer = setInterval(() => {
-      setMessageIndex(prev => (prev + 1) % messages.length);
-    }, messageInterval);
+      // Update liquid level based on progress
+      setLiquidLevel(progress * 100);
 
-    // Complete animation after duration seconds - call onComplete immediately
-    const completionTimer = setTimeout(() => {
-      // Call onComplete immediately when countdown reaches 0, no delay
-      onComplete();
-    }, duration * 1000);
+      // Update countdown - show remaining seconds
+      const remainingSeconds = Math.max(0, Math.ceil((totalDurationMs - elapsed) / 1000));
+      setCountdown(remainingSeconds);
 
-    return () => {
-      clearInterval(liquidTimer);
-      clearInterval(countdownTimer);
-      clearInterval(messageTimer);
-      clearTimeout(completionTimer);
+      // Update message index based on progress
+      const messageProgress = Math.floor(progress * messages.length);
+      setMessageIndex(Math.min(messageProgress, messages.length - 1));
+
+      // Continue animation or complete
+      if (progress < 1) {
+        requestAnimationFrame(updateAnimation);
+      } else {
+        // Countdown reached 0, call onComplete immediately
+        onComplete();
+      }
     };
+
+    // Start the animation
+    requestAnimationFrame(updateAnimation);
+
+    // No cleanup needed since we're using requestAnimationFrame
+    return () => {};
   }, [isVisible, onComplete, duration, messages.length]);
 
   if (!isVisible) return null;
@@ -188,7 +182,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
 
       {/* Countdown Timer */}
       {countdown > 0 && (
-        <div className="text-[#1fb2aa] text-center text-sm font-medium mb-2">
+        <div className="text-[#1fb2aa] text-center text-sm font-medium mb-2 tabular-nums">
           {countdown}
         </div>
       )}
