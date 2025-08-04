@@ -18,6 +18,11 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
   const isDrawingRef = useRef(false);
   const lastPointRef = useRef<Point | null>(null);
   const onCompleteRef = useRef(onComplete);
+  const startTimeRef = useRef<number | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+
+  // Duration in milliseconds - exactly 50 seconds
+  const TOTAL_DURATION = 50000;
 
   // Update the ref when onComplete changes
   useEffect(() => {
@@ -29,46 +34,60 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
       setLiquidLevel(0);
       setCountdown(50);
       setIsCompleting(false);
+      startTimeRef.current = null;
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
       return;
     }
 
-    // Start the liquid filling animation - spread over 50 seconds
-    const liquidTimer = setInterval(() => {
-      setLiquidLevel(prev => {
-        if (prev >= 100) {
-          clearInterval(liquidTimer);
-          return 100;
-        }
-        return prev + (100 / (50 * 10)); // Fill over 50 seconds (0.2% per 100ms)
-      });
-    }, 100);
+    // Record the exact start time
+    startTimeRef.current = performance.now();
 
-    // Countdown timer - decrease every second
-    const countdownTimer = setInterval(() => {
+    // Master animation loop using requestAnimationFrame for precise timing
+    const updateAnimation = (currentTime: number) => {
+      if (!startTimeRef.current || !isVisible) return;
+
+      const elapsed = currentTime - startTimeRef.current;
+      const progress = Math.min(elapsed / TOTAL_DURATION, 1);
+
+      // Update liquid level (0 to 100%) smoothly
+      const newLiquidLevel = progress * 100;
+      setLiquidLevel(newLiquidLevel);
+
+      // Update countdown (50 to 0) - only update when the second changes to prevent unnecessary re-renders
+      const remainingSeconds = Math.max(0, Math.ceil((TOTAL_DURATION - elapsed) / 1000));
       setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(countdownTimer);
-          return 0;
-        }
-        return prev - 1;
+        // Only update if the countdown value has actually changed
+        return remainingSeconds !== prev ? remainingSeconds : prev;
       });
-    }, 1000);
 
-    // Complete animation after 50 seconds
-    const completionTimer = setTimeout(() => {
-      setIsCompleting(true);
-      // Call onComplete after a brief fade out
-      setTimeout(() => {
-        onCompleteRef.current();
-      }, 300);
-    }, 50000);
+      if (elapsed >= TOTAL_DURATION) {
+        // Exactly 50,000 milliseconds have passed - trigger completion
+        console.log(`Loading completed after exactly ${elapsed}ms`);
+        setIsCompleting(true);
+        
+        // Trigger completion after brief fade out
+        setTimeout(() => {
+          onCompleteRef.current();
+        }, 300);
+      } else {
+        // Continue the animation
+        animationFrameRef.current = requestAnimationFrame(updateAnimation);
+      }
+    };
+
+    // Start the master animation loop
+    animationFrameRef.current = requestAnimationFrame(updateAnimation);
 
     return () => {
-      clearInterval(liquidTimer);
-      clearInterval(countdownTimer);
-      clearTimeout(completionTimer);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
     };
-  }, [isVisible]);
+  }, [isVisible, TOTAL_DURATION]);
 
   // Canvas drawing functionality
   useEffect(() => {
@@ -287,7 +306,7 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
 
         {/* Countdown Timer */}
         {countdown > 0 && (
-          <div className="text-[#1fb2aa] text-center text-lg font-semibold mb-4">
+          <div className="text-[#1fb2aa] text-center text-2xl font-bold mb-6 tabular-nums">
             {countdown}
           </div>
         )}
