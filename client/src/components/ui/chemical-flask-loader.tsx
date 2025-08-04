@@ -9,6 +9,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
   const [liquidLevel, setLiquidLevel] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
   const [isCompleting, setIsCompleting] = useState(false);
+  const [countdown, setCountdown] = useState(15);
 
   const messages = [
     "Preparing detailed insights for you...",
@@ -22,35 +23,48 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
       setLiquidLevel(0);
       setMessageIndex(0);
       setIsCompleting(false);
+      setCountdown(15);
       return;
     }
 
-    // Start the liquid filling animation immediately
+    // Start the liquid filling animation immediately - spread over 15 seconds
     const liquidTimer = setInterval(() => {
       setLiquidLevel(prev => {
         if (prev >= 100) {
           clearInterval(liquidTimer);
           return 100;
         }
-        return prev + 2; // Fill in 5 seconds (2% every 100ms)
+        return prev + 0.67; // Fill in 15 seconds (0.67% every 100ms)
       });
     }, 100);
 
-    // Change messages every 2 seconds
+    // Countdown timer - decrease every second
+    const countdownTimer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownTimer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Change messages every 3.75 seconds (15 seconds / 4 messages)
     const messageTimer = setInterval(() => {
       setMessageIndex(prev => (prev + 1) % messages.length);
-    }, 2000);
+    }, 3750);
 
-    // Complete animation after 5 seconds
+    // Complete animation after 15 seconds
     const completionTimer = setTimeout(() => {
       setIsCompleting(true);
       setTimeout(() => {
         onComplete();
       }, 500); // Allow fade out animation
-    }, 5000);
+    }, 15000);
 
     return () => {
       clearInterval(liquidTimer);
+      clearInterval(countdownTimer);
       clearInterval(messageTimer);
       clearTimeout(completionTimer);
     };
@@ -175,6 +189,13 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
           </g>
         </svg>
       </div>
+
+      {/* Countdown Timer */}
+      {countdown > 0 && (
+        <div className="text-[#1fb2aa] text-center text-lg font-bold mb-2 transition-all duration-300 animate-pulse">
+          {countdown}
+        </div>
+      )}
 
       {/* Loading Text */}
       <p className="text-[#111827] text-center text-sm font-medium leading-relaxed transition-all duration-300">
