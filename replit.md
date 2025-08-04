@@ -12,9 +12,11 @@ Preferred communication style: Simple, everyday language.
   - Updated InteractiveLoadingPage (Submit button) with performance.now() timing and requestAnimationFrame
   - Added ChemicalFlaskLoader with 50-second countdown to Task 1 and Task 2 "Review My Essay" buttons
   - Updated "Reveal Task Analysis and Outline" in Task 2 with 60-second ChemicalFlaskLoader
-  - All loading animations now use synchronized timing to prevent drift on slower devices
-  - Countdown displays smoothly without flickering using tabular-nums font
-  - Content displays exactly after countdown completion with no delays
+  - **Fixed ChemicalFlaskLoader timing precision**: Replaced interval-based countdown with Date.now() elapsed time calculation
+  - Countdown now takes exactly 60,000 milliseconds (1 minute) from start to finish
+  - Display decreases by 1 every real second, perfectly synchronized with actual time
+  - Content displays immediately when countdown reaches 0 with no delays
+  - All loading animations use synchronized timing to prevent drift on slower devices
 
 ## System Architecture
 
