@@ -37,11 +37,13 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       });
     }, 100);
 
-    // Countdown timer - decrease every second, starting after 1 second
+    // Countdown timer - decrease every second, starting immediately
     const countdownTimer = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
           clearInterval(countdownTimer);
+          // Call onComplete immediately when countdown reaches 0
+          setTimeout(() => onComplete(), 0);
           return 0;
         }
         return prev - 1;
@@ -54,17 +56,10 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       setMessageIndex(prev => (prev + 1) % messages.length);
     }, messageInterval);
 
-    // Complete animation after duration seconds - call onComplete immediately
-    const completionTimer = setTimeout(() => {
-      // Call onComplete immediately when countdown reaches 0, no delay
-      onComplete();
-    }, duration * 1000);
-
     return () => {
       clearInterval(liquidTimer);
       clearInterval(countdownTimer);
       clearInterval(messageTimer);
-      clearTimeout(completionTimer);
     };
   }, [isVisible, onComplete, duration, messages.length]);
 
