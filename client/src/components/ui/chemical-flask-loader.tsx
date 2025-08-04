@@ -9,7 +9,6 @@ interface ChemicalFlaskLoaderProps {
 export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: ChemicalFlaskLoaderProps) {
   const [liquidLevel, setLiquidLevel] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
-  const [isCompleting, setIsCompleting] = useState(false);
   const [countdown, setCountdown] = useState(duration);
 
   const messages = [
@@ -23,7 +22,6 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
     if (!isVisible) {
       setLiquidLevel(0);
       setMessageIndex(0);
-      setIsCompleting(false);
       setCountdown(duration);
       return;
     }
@@ -56,10 +54,9 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       setMessageIndex(prev => (prev + 1) % messages.length);
     }, messageInterval);
 
-    // Complete animation after duration seconds
+    // Complete animation after duration seconds - call onComplete immediately
     const completionTimer = setTimeout(() => {
-      setIsCompleting(true);
-      // Call onComplete immediately when countdown reaches 0
+      // Call onComplete immediately when countdown reaches 0, no delay
       onComplete();
     }, duration * 1000);
 
@@ -74,9 +71,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
   if (!isVisible) return null;
 
   return (
-    <div className={`flex flex-col items-center py-4 my-6 transition-all duration-500 ${
-      isCompleting ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
-    }`}>
+    <div className="flex flex-col items-center py-4 my-6">
       {/* Chemical Flask SVG */}
       <div className="relative mb-4">
         <svg
