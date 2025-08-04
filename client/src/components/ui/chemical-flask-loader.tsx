@@ -192,7 +192,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete }: ChemicalFlaskLoad
 
       {/* Countdown Timer */}
       {countdown > 0 && (
-        <div className="text-[#1fb2aa] text-center text-lg font-bold mb-2 transition-all duration-300 animate-pulse">
+        <div className="text-[#111827] text-center text-sm font-medium mb-2">
           {countdown}
         </div>
       )}
