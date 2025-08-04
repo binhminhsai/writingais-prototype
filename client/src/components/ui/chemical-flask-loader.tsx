@@ -39,7 +39,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       });
     }, 100);
 
-    // Countdown timer - decrease every second
+    // Countdown timer - decrease every second, starting after 1 second
     const countdownTimer = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
