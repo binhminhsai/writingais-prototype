@@ -23,6 +23,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useState } from "react";
 import { Link } from "wouter";
+import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 
 // Possible issues in essay
 type IssueType = 'error' | 'suggestion' | 'good';
@@ -91,6 +92,7 @@ export function FeedbackInterface({
 }: FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
   const [showGrammarChecker, setShowGrammarChecker] = useState(false);
+  const [isLoadingGrammarChecker, setIsLoadingGrammarChecker] = useState(false);
 
   // Example sustainable development essay - 300 words
   const sampleEssay = `In recent years, sustainable development has become one of the most critical issues facing governments worldwide.
@@ -189,7 +191,15 @@ Only through careful planning and responsible policies can societies achieve pro
     }
   };
 
+  // Handler functions for loading state
+  const handleReviewEssay = () => {
+    setIsLoadingGrammarChecker(true);
+  };
 
+  const handleLoadingComplete = () => {
+    setIsLoadingGrammarChecker(false);
+    setShowGrammarChecker(true);
+  };
 
   // Enhanced highlighting data - 2 sentences per color type
   const highlightMapping: Record<string, HighlightData> = {
@@ -921,7 +931,15 @@ Only through careful planning and responsible policies can societies achieve pro
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
 
-        {!showGrammarChecker ? (
+        {isLoadingGrammarChecker ? (
+          <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[450px]">
+            <ChemicalFlaskLoader 
+              isVisible={true} 
+              onComplete={handleLoadingComplete}
+              duration={50}
+            />
+          </div>
+        ) : !showGrammarChecker ? (
           <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
             {/* Legend section to match actual content structure */}
             <div className="mb-4">
@@ -943,7 +961,7 @@ Only through careful planning and responsible policies can societies achieve pro
             {/* Content area with same height as actual essay */}
             <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: '450px' }}>
               <Button 
-                onClick={() => setShowGrammarChecker(true)}
+                onClick={handleReviewEssay}
                 className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4"
               >
                 ✨ Check My Essay

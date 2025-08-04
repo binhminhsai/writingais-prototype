@@ -23,6 +23,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useState } from "react";
 import { Link } from "wouter";
+import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 
 // Enhanced highlighting types
 type HighlightType = 'red' | 'yellow' | 'green';
@@ -75,6 +76,7 @@ export function Task1FeedbackInterface({
 }: Task1FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
   const [showGrammarChecker, setShowGrammarChecker] = useState(false);
+  const [isLoadingGrammarChecker, setIsLoadingGrammarChecker] = useState(false);
 
   // Sample Task 1 essay about energy consumption
   const sampleEssay = `The line graph illustrates the consumption of energy by source in the USA from 1980 to 2030, with projections for the future period.
@@ -118,6 +120,16 @@ However, renewable energy sources is projected to experience substantial growth,
         "Some sentences are repetitive and could be more varied",
       ],
     }
+  };
+
+  // Handler functions for loading state
+  const handleReviewEssay = () => {
+    setIsLoadingGrammarChecker(true);
+  };
+
+  const handleLoadingComplete = () => {
+    setIsLoadingGrammarChecker(false);
+    setShowGrammarChecker(true);
   };
 
   // Task 1 specific highlighting data
@@ -817,7 +829,15 @@ However, renewable energy sources is projected to experience substantial growth,
       {/* Interactive Essay Analysis Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
-        {!showGrammarChecker ? (
+        {isLoadingGrammarChecker ? (
+          <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[450px]">
+            <ChemicalFlaskLoader 
+              isVisible={true} 
+              onComplete={handleLoadingComplete}
+              duration={50}
+            />
+          </div>
+        ) : !showGrammarChecker ? (
           <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
             {/* Legend section to match actual content structure */}
             <div className="mb-4">
@@ -839,7 +859,7 @@ However, renewable energy sources is projected to experience substantial growth,
             {/* Content area with same height as actual essay */}
             <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: '400px' }}>
               <Button 
-                onClick={() => setShowGrammarChecker(true)}
+                onClick={handleReviewEssay}
                 className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4"
               >
                 ✨ Review My Essay
