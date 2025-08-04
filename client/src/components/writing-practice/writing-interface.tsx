@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -38,6 +38,7 @@ import { Link } from "wouter";
 import { InteractiveLoadingPage } from "@/components/ui/interactive-loading-page";
 import { ShimmerLoader, ShimmerCard, ShimmerList, ShimmerText } from "@/components/ui/shimmer-loader";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
+import { BookLoader } from "@/components/ui/book-loader";
 
 // Outline component with tabs for outline and useful expressions
 function OutlineSection({ testType, topic }: { testType: WritingTestType, topic: string }) {
@@ -860,13 +861,14 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   // Handle unified word bank button with 5-second loading animation
   const handleExploreWordBank = () => {
     setIsLoadingWordBank(true);
-    setTimeout(() => {
-      setIsLoadingWordBank(false);
-      setShowWordBank(true);
-      setShowVocabulary(true);
-      setShowPhrases(true);
-    }, 5000);
   };
+
+  const handleCompleteWordBank = useCallback(() => {
+    setIsLoadingWordBank(false);
+    setShowWordBank(true);
+    setShowVocabulary(true);
+    setShowPhrases(true);
+  }, []);
 
   // Words to display based on current count limits
   const displayedVocabWords = allVocabularyWords.slice(0, vocabDisplayCount);
@@ -914,8 +916,12 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
           {isLoadingWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
-              <p className="text-sm font-medium text-gray-600 mt-4">Preparing detailed insights for you...</p>
+              <BookLoader 
+                message="Flipping through our vocabulary archive..." 
+                duration={60}
+                onComplete={handleCompleteWordBank}
+                isVisible={true}
+              />
             </div>
           ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
@@ -1008,8 +1014,12 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         <TabsContent value="phrases" className="p-0 min-h-[200px]">
           {isLoadingWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <ChemicalFlaskLoader isVisible={true} onComplete={() => {}} />
-              <p className="text-sm font-medium text-gray-600 mt-4">Preparing detailed insights for you...</p>
+              <BookLoader 
+                message="Flipping through our vocabulary archive..." 
+                duration={60}
+                onComplete={handleCompleteWordBank}
+                isVisible={true}
+              />
             </div>
           ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">

@@ -1,17 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface BookLoaderProps {
   message?: string;
   className?: string;
+  duration?: number;
+  onComplete?: () => void;
+  isVisible?: boolean;
 }
 
 export function BookLoader({ 
   message = "Flipping through our vocabulary archive...", 
-  className = "" 
+  className = "",
+  duration = 5,
+  onComplete = () => {},
+  isVisible = true
 }: BookLoaderProps) {
+  const [countdown, setCountdown] = useState(duration);
+  const [isCompleting, setIsCompleting] = useState(false);
+
+  useEffect(() => {
+    if (!isVisible) {
+      setCountdown(duration);
+      setIsCompleting(false);
+      return;
+    }
+
+    // Countdown timer - decrease every second
+    const countdownTimer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownTimer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Complete animation after duration seconds
+    const completionTimer = setTimeout(() => {
+      setIsCompleting(true);
+      // Call onComplete immediately when countdown reaches 0
+      onComplete();
+    }, duration * 1000);
+
+    return () => {
+      clearInterval(countdownTimer);
+      clearTimeout(completionTimer);
+    };
+  }, [isVisible, onComplete, duration]);
+
+  if (!isVisible) return null;
 
   return (
-    <div className={`flex flex-col items-center justify-center space-y-4 ${className}`}>
+    <div className={`flex flex-col items-center justify-center space-y-4 transition-all duration-500 ${
+      isCompleting ? 'scale-95 opacity-0' : 'scale-100 opacity-100'
+    } ${className}`}>
       {/* Open Book Animation */}
       <div className="relative w-24 h-16">
         {/* Left Page */}
@@ -58,6 +101,13 @@ export function BookLoader({
         {/* Book Glow Effect */}
         <div className="absolute inset-0 rounded-lg book-glow-open"></div>
       </div>
+
+      {/* Countdown Timer - positioned between book and message */}
+      {duration > 5 && (
+        <div className="text-xl font-bold text-[#1ca19a] select-none">
+          {countdown}s
+        </div>
+      )}
 
       {/* Loading Message */}
       <p className="text-sm font-medium text-gray-600 animate-pulse">

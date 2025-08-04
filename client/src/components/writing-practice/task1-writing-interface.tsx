@@ -720,14 +720,15 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
     }, 600);
   };
 
-  // Handle unified word bank button with 5-second loading animation
+  // Handle unified word bank button with 60-second loading animation
   const handleExploreWordBank = () => {
     setIsLoadingWordBank(true);
-    setTimeout(() => {
-      setIsLoadingWordBank(false);
-      setShowWordBank(true);
-    }, 5000);
   };
+
+  const handleCompleteWordBank = useCallback(() => {
+    setIsLoadingWordBank(false);
+    setShowWordBank(true);
+  }, []);
 
   // Words to display based on current count limits
   const displayedVocabWords = allVocabularyWords.slice(0, vocabDisplayCount);
@@ -775,7 +776,12 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
         <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
           {isLoadingWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <BookLoader message="Flipping through our vocabulary archive..." />
+              <BookLoader 
+                message="Flipping through our vocabulary archive..." 
+                duration={60}
+                onComplete={handleCompleteWordBank}
+                isVisible={true}
+              />
             </div>
           ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
@@ -869,7 +875,12 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
         <TabsContent value="phrases" className="p-0 min-h-[200px]">
           {isLoadingWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <BookLoader message="Flipping through our vocabulary archive..." />
+              <BookLoader 
+                message="Flipping through our vocabulary archive..." 
+                duration={60}
+                onComplete={handleCompleteWordBank}
+                isVisible={true}
+              />
             </div>
           ) : !showWordBank ? (
             <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
