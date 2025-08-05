@@ -852,7 +852,11 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
     setIsLoadingVocab(true);
     // Simulate loading delay
     setTimeout(() => {
-      setVocabDisplayCount(prevCount => prevCount + 10);
+      setVocabDisplayCount(prevCount => {
+        const newCount = prevCount + 10;
+        // Ensure we don't exceed the total number of words available
+        return Math.min(newCount, allVocabularyWords.length);
+      });
       setIsLoadingVocab(false);
     }, 600);
   };
@@ -861,7 +865,11 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
     setIsLoadingPhrases(true);
     // Simulate loading delay
     setTimeout(() => {
-      setPhraseDisplayCount(prevCount => prevCount + 10);
+      setPhraseDisplayCount(prevCount => {
+        const newCount = prevCount + 10;
+        // Ensure we don't exceed the total number of phrases available
+        return Math.min(newCount, allPhraseWords.length);
+      });
       setIsLoadingPhrases(false);
     }, 600);
   };

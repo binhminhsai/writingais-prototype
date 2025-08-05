@@ -707,7 +707,11 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const handleLoadMoreVocab = () => {
     setIsLoadingVocab(true);
     setTimeout(() => {
-      setVocabDisplayCount(prevCount => prevCount + 10);
+      setVocabDisplayCount(prevCount => {
+        const newCount = prevCount + 10;
+        // Ensure we don't exceed the total number of words available
+        return Math.min(newCount, allVocabularyWords.length);
+      });
       setIsLoadingVocab(false);
     }, 600);
   };
@@ -715,7 +719,11 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const handleLoadMorePhrases = () => {
     setIsLoadingPhrases(true);
     setTimeout(() => {
-      setPhraseDisplayCount(prevCount => prevCount + 10);
+      setPhraseDisplayCount(prevCount => {
+        const newCount = prevCount + 10;
+        // Ensure we don't exceed the total number of phrases available
+        return Math.min(newCount, allPhraseWords.length);
+      });
       setIsLoadingPhrases(false);
     }, 600);
   };
