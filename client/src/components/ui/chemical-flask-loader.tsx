@@ -26,8 +26,8 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       return;
     }
 
-    // Record the start time using performance.now() for precise timing
-    const startTime = performance.now();
+    // Initialize countdown display
+    setCountdown(duration);
     
     // Start the liquid filling animation immediately - spread over duration seconds
     const liquidTimer = setInterval(() => {
@@ -40,26 +40,19 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       });
     }, 100);
 
-    // Use requestAnimationFrame for precise countdown timing
-    let countdownRAF: number;
-    const updateCountdown = () => {
-      const elapsed = (performance.now() - startTime) / 1000; // Convert to seconds
-      const remaining = Math.max(0, Math.ceil(duration - elapsed));
+    // Simple countdown timer - decrease by 1 every second
+    let currentCount = duration;
+    const countdownTimer = setInterval(() => {
+      currentCount -= 1;
+      console.log(`Countdown: ${currentCount}`); // Debug log
+      setCountdown(currentCount);
       
-      console.log(`Countdown: ${remaining} (elapsed: ${elapsed.toFixed(1)}s)`); // Debug log
-      setCountdown(remaining);
-      
-      if (remaining > 0) {
-        countdownRAF = requestAnimationFrame(updateCountdown);
-      } else {
+      if (currentCount <= 0) {
+        clearInterval(countdownTimer);
         console.log('Countdown complete, calling onComplete'); // Debug log
-        // Call onComplete immediately when countdown reaches 0
         onComplete();
       }
-    };
-    
-    // Start the countdown immediately
-    countdownRAF = requestAnimationFrame(updateCountdown);
+    }, 1000);
 
     // Change messages every (duration / 4) seconds to cycle through all messages
     const messageInterval = (duration / messages.length) * 1000;
@@ -69,10 +62,8 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
 
     return () => {
       clearInterval(liquidTimer);
+      clearInterval(countdownTimer);
       clearInterval(messageTimer);
-      if (countdownRAF) {
-        cancelAnimationFrame(countdownRAF);
-      }
     };
   }, [isVisible, onComplete, duration, messages.length]);
 
