@@ -401,7 +401,8 @@ export default function WritingTask1() {
           Topic/Question
         </label>
         <Textarea
-          placeholder="Enter your Task 1 question here. Once you've added content, the 'Use my question' button will become available."
+          placeholder="- Select a question type and band level, then click the 'Get question' button to get your question.
+- Enter your own question and upload an image of the task (chart, graph, table, etc.), then click the 'Use my question' button to continue."
           value={question}
           onChange={(e) => {
             setQuestion(e.target.value);
