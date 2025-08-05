@@ -667,7 +667,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       const template = templates[i % templates.length];
       placeholderWords.push({
         ...template,
-        word: `${template.word} ${Math.floor(Math.random() * 100) + 1}`
+        word: template.word
       });
     }
     return placeholderWords;
@@ -688,7 +688,7 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
       const template = templates[i % templates.length];
       placeholderPhrases.push({
         ...template,
-        word: `${template.word} (${i + 1})`
+        word: template.word
       });
     }
     return placeholderPhrases;

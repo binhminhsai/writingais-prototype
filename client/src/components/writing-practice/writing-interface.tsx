@@ -778,7 +778,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
       const template = templates[i % templates.length];
       placeholderWords.push({
         ...template,
-        word: `${template.word} ${Math.floor(Math.random() * 100) + 1}`
+        word: template.word
       });
     }
     return placeholderWords;
@@ -801,7 +801,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
       const template = templates[i % templates.length];
       placeholderPhrases.push({
         ...template,
-        word: `${template.word} (${i + 1})`
+        word: template.word
       });
     }
     return placeholderPhrases;
