@@ -15,10 +15,11 @@ import { generateRandomTopic } from "@/data/topics";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 
 export type WritingTestType = 
-  | "ielts-task2" 
-  | "toefl" 
-  | "general" 
-  | "business";
+  | "opinion" 
+  | "discussion" 
+  | "problem-solution" 
+  | "advantage-disadvantage"
+  | "two-part-question";
 
 export type DifficultyLevel = 
   | "band-5.0"
@@ -40,7 +41,7 @@ interface TestSetupProps {
 }
 
 export function TestSetup({ onStart }: TestSetupProps) {
-  const [testType, setTestType] = useState<WritingTestType>("ielts-task2");
+  const [testType, setTestType] = useState<WritingTestType>("opinion");
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("band-6.0");
   const [topic, setTopic] = useState("");
   const [fixedTestType, setFixedTestType] = useState<WritingTestType | null>(null);
@@ -135,17 +136,19 @@ export function TestSetup({ onStart }: TestSetupProps) {
           >
             <SelectTrigger id="writing-type">
               <SelectValue>
-                {testType === "ielts-task2" && "IELTS Writing Task 2"}
-                {testType === "toefl" && "TOEFL Independent Writing"}
-                {testType === "general" && "General Essay"}
-                {testType === "business" && "Business Writing"}
+                {testType === "opinion" && "Opinion"}
+                {testType === "discussion" && "Discussion"}
+                {testType === "problem-solution" && "Problem – Solution"}
+                {testType === "advantage-disadvantage" && "Advantage – Disadvantage"}
+                {testType === "two-part-question" && "Two-part question"}
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ielts-task2">IELTS Writing Task 2</SelectItem>
-              <SelectItem value="toefl">TOEFL Independent Writing</SelectItem>
-              <SelectItem value="general">General Essay</SelectItem>
-              <SelectItem value="business">Business Writing</SelectItem>
+              <SelectItem value="opinion">Opinion</SelectItem>
+              <SelectItem value="discussion">Discussion</SelectItem>
+              <SelectItem value="problem-solution">Problem – Solution</SelectItem>
+              <SelectItem value="advantage-disadvantage">Advantage – Disadvantage</SelectItem>
+              <SelectItem value="two-part-question">Two-part question</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -267,10 +270,11 @@ export function TestSetup({ onStart }: TestSetupProps) {
         {topic && (
           <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
             <Label className="text-teal-700 font-medium">
-              {testType === "ielts-task2" ? "IELTS Writing Task 2:" : 
-               testType === "toefl" ? "TOEFL Independent Writing:" :
-               testType === "general" ? "General Essay:" : 
-               "Business Writing:"}
+              {testType === "opinion" ? "Opinion:" : 
+               testType === "discussion" ? "Discussion:" :
+               testType === "problem-solution" ? "Problem – Solution:" :
+               testType === "advantage-disadvantage" ? "Advantage – Disadvantage:" :
+               "Two-part question:"}
             </Label>
             <p className="mt-2 text-sm text-gray-800">{topic}</p>
           </div>
