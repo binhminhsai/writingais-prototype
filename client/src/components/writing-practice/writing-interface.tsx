@@ -760,8 +760,55 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
     }
   ];
 
+  // Generate placeholder vocabulary words
+  const generatePlaceholderVocab = (count: number) => {
+    const placeholderWords = [];
+    const templates = [
+      { word: "Analysis", partOfSpeech: "N", difficulty: "B2", meaning: "Phân tích chi tiết", example: "The analysis shows clear trends in the data.", type: "neutral" },
+      { word: "Significant", partOfSpeech: "Adj", difficulty: "B2", meaning: "Đáng kể, quan trọng", example: "There was a significant increase in sales.", type: "positive" },
+      { word: "Fluctuate", partOfSpeech: "V", difficulty: "C1", meaning: "Dao động, thay đổi", example: "Prices fluctuated throughout the year.", type: "neutral" },
+      { word: "Substantial", partOfSpeech: "Adj", difficulty: "C1", meaning: "Đáng kể, lớn", example: "There was a substantial improvement in performance.", type: "positive" },
+      { word: "Moderate", partOfSpeech: "Adj", difficulty: "B2", meaning: "Vừa phải, không quá mức", example: "There was moderate growth in the sector.", type: "neutral" },
+      { word: "Comprehensive", partOfSpeech: "Adj", difficulty: "C1", meaning: "Toàn diện, đầy đủ", example: "The report provides a comprehensive overview.", type: "positive" },
+      { word: "Demonstrate", partOfSpeech: "V", difficulty: "B2", meaning: "Chứng minh, thể hiện", example: "The data demonstrates a clear pattern.", type: "neutral" },
+      { word: "Consistent", partOfSpeech: "Adj", difficulty: "B2", meaning: "Nhất quán, ổn định", example: "The results show consistent improvement.", type: "positive" }
+    ];
+    
+    for (let i = 0; i < count; i++) {
+      const template = templates[i % templates.length];
+      placeholderWords.push({
+        ...template,
+        word: `${template.word} ${Math.floor(Math.random() * 100) + 1}`
+      });
+    }
+    return placeholderWords;
+  };
+
+  // Generate placeholder phrase words
+  const generatePlaceholderPhrases = (count: number) => {
+    const placeholderPhrases = [];
+    const templates = [
+      { word: "Show remarkable progress", partOfSpeech: "Collocations", difficulty: "B2", meaning: "Thể hiện tiến bộ đáng kể", example: "Students show remarkable progress in their studies.", type: "positive" },
+      { word: "Experience significant changes", partOfSpeech: "Collocations", difficulty: "B2", meaning: "Trải qua những thay đổi đáng kể", example: "The industry experienced significant changes.", type: "neutral" },
+      { word: "Maintain steady development", partOfSpeech: "Collocations", difficulty: "C1", meaning: "Duy trì phát triển ổn định", example: "The country maintains steady development.", type: "positive" },
+      { word: "Achieve notable success", partOfSpeech: "Collocations", difficulty: "B2", meaning: "Đạt được thành công đáng chú ý", example: "The project achieved notable success.", type: "positive" },
+      { word: "Demonstrate clear evidence", partOfSpeech: "Collocations", difficulty: "C1", meaning: "Chứng minh bằng chứng rõ ràng", example: "Research demonstrates clear evidence.", type: "neutral" },
+      { word: "Implement effective strategies", partOfSpeech: "Collocations", difficulty: "C1", meaning: "Thực hiện chiến lược hiệu quả", example: "Companies implement effective strategies.", type: "positive" },
+      { word: "Address major challenges", partOfSpeech: "Collocations", difficulty: "B2", meaning: "Giải quyết thách thức lớn", example: "Governments address major challenges.", type: "neutral" }
+    ];
+    
+    for (let i = 0; i < count; i++) {
+      const template = templates[i % templates.length];
+      placeholderPhrases.push({
+        ...template,
+        word: `${template.word} (${i + 1})`
+      });
+    }
+    return placeholderPhrases;
+  };
+
   // Combine vocabulary words
-  const allVocabularyWords = [...vocabularyWords, ...additionalVocabulary];
+  const baseVocabularyWords = [...vocabularyWords, ...additionalVocabulary];
 
   // Get phrase words from vocabulary data
   const phraseWords = allVocabulary.flatMap(category => 
@@ -839,24 +886,27 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   ];
 
   // Combine phrase words with additional collocations
-  const allPhraseWords = [...phraseWords, ...additionalCollocations];
+  const basePhraseWords = [...phraseWords, ...additionalCollocations];
+
+  // Create extended lists with placeholders to ensure we always have enough items
+  const allVocabularyWords = [...baseVocabularyWords, ...generatePlaceholderVocab(50)];
+  const allPhraseWords = [...basePhraseWords, ...generatePlaceholderPhrases(50)];
 
   // State for displayed word counts and loading states
   const [vocabDisplayCount, setVocabDisplayCount] = useState(10);
   const [phraseDisplayCount, setPhraseDisplayCount] = useState(8);
   const [isLoadingVocab, setIsLoadingVocab] = useState(false);
   const [isLoadingPhrases, setIsLoadingPhrases] = useState(false);
+  const [vocabLoadMoreClicked, setVocabLoadMoreClicked] = useState(false);
+  const [phrasesLoadMoreClicked, setPhrasesLoadMoreClicked] = useState(false);
 
-  // Handle loading more words
+  // Handle loading more words - always loads exactly 10 new items and hides button
   const handleLoadMoreVocab = () => {
     setIsLoadingVocab(true);
     // Simulate loading delay
     setTimeout(() => {
-      setVocabDisplayCount(prevCount => {
-        const newCount = prevCount + 10;
-        // Ensure we don't exceed the total number of words available
-        return Math.min(newCount, allVocabularyWords.length);
-      });
+      setVocabDisplayCount(prevCount => prevCount + 10);
+      setVocabLoadMoreClicked(true);
       setIsLoadingVocab(false);
     }, 600);
   };
@@ -865,11 +915,8 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
     setIsLoadingPhrases(true);
     // Simulate loading delay
     setTimeout(() => {
-      setPhraseDisplayCount(prevCount => {
-        const newCount = prevCount + 10;
-        // Ensure we don't exceed the total number of phrases available
-        return Math.min(newCount, allPhraseWords.length);
-      });
+      setPhraseDisplayCount(prevCount => prevCount + 10);
+      setPhrasesLoadMoreClicked(true);
       setIsLoadingPhrases(false);
     }, 600);
   };
@@ -890,9 +937,9 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const displayedVocabWords = allVocabularyWords.slice(0, vocabDisplayCount);
   const displayedPhraseWords = allPhraseWords.slice(0, phraseDisplayCount);
 
-  // Check if there are more words to load
-  const hasMoreVocab = vocabDisplayCount < allVocabularyWords.length;
-  const hasMorePhrases = phraseDisplayCount < allPhraseWords.length;
+  // Check if Load More buttons should be shown (hide after first click)
+  const hasMoreVocab = !vocabLoadMoreClicked;
+  const hasMorePhrases = !phrasesLoadMoreClicked;
 
   return (
     <Card className="mt-6 p-0 border-0 bg-transparent shadow-none">

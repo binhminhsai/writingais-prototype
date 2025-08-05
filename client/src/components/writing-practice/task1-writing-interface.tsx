@@ -599,6 +599,8 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const [isLoadingVocab, setIsLoadingVocab] = useState(false);
   const [isLoadingPhrases, setIsLoadingPhrases] = useState(false);
   const [isLoadingWordBank, setIsLoadingWordBank] = useState(false);
+  const [vocabLoadMoreClicked, setVocabLoadMoreClicked] = useState(false);
+  const [phrasesLoadMoreClicked, setPhrasesLoadMoreClicked] = useState(false);
   
   const allVocabulary = getTask1Vocabulary(questionType);
   const phrases = getTask1Phrases();
@@ -650,9 +652,51 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
     }
   ];
 
-  // Combine vocabulary words
-  const allVocabularyWords = [...vocabularyWords, ...additionalVocabulary];
+  // Generate placeholder vocabulary words
+  const generatePlaceholderVocab = (count: number) => {
+    const placeholderWords = [];
+    const templates = [
+      { word: "Analysis", partOfSpeech: "N", difficulty: "B2", meaning: "Phân tích chi tiết", chartFunction: "Mô tả quá trình phân tích dữ liệu", example: "The analysis shows clear trends in the data.", type: "neutral" },
+      { word: "Significant", partOfSpeech: "Adj", difficulty: "B2", meaning: "Đáng kể, quan trọng", chartFunction: "Mô tả mức độ quan trọng", example: "There was a significant increase in sales.", type: "positive" },
+      { word: "Fluctuate", partOfSpeech: "V", difficulty: "C1", meaning: "Dao động, thay đổi", chartFunction: "Mô tả sự thay đổi không ổn định", example: "Prices fluctuated throughout the year.", type: "neutral" },
+      { word: "Substantial", partOfSpeech: "Adj", difficulty: "C1", meaning: "Đáng kể, lớn", chartFunction: "Mô tả số lượng lớn", example: "There was a substantial improvement in performance.", type: "positive" },
+      { word: "Moderate", partOfSpeech: "Adj", difficulty: "B2", meaning: "Vừa phải, không quá mức", chartFunction: "Mô tả mức độ trung bình", example: "There was moderate growth in the sector.", type: "neutral" }
+    ];
+    
+    for (let i = 0; i < count; i++) {
+      const template = templates[i % templates.length];
+      placeholderWords.push({
+        ...template,
+        word: `${template.word} ${Math.floor(Math.random() * 100) + 1}`
+      });
+    }
+    return placeholderWords;
+  };
 
+  // Generate placeholder phrase words
+  const generatePlaceholderPhrases = (count: number) => {
+    const placeholderPhrases = [];
+    const templates = [
+      { word: "Show a marked increase", partOfSpeech: "Collocations", difficulty: "B2", meaning: "Thể hiện sự tăng rõ rệt", chartFunction: "Mô tả xu hướng tăng mạnh", example: "The data shows a marked increase in user engagement.", type: "positive" },
+      { word: "Experience steady growth", partOfSpeech: "Collocations", difficulty: "B2", meaning: "Trải qua tăng trưởng ổn định", chartFunction: "Mô tả tăng trưởng đều đặn", example: "The company experienced steady growth over five years.", type: "positive" },
+      { word: "Reach a plateau", partOfSpeech: "Collocations", difficulty: "C1", meaning: "Đạt đến mức ổn định", chartFunction: "Mô tả trạng thái không đổi", example: "Sales reached a plateau after the initial surge.", type: "neutral" },
+      { word: "Undergo rapid expansion", partOfSpeech: "Collocations", difficulty: "C1", meaning: "Trải qua sự mở rộng nhanh chóng", chartFunction: "Mô tả sự phát triển nhanh", example: "The market underwent rapid expansion in the digital age.", type: "positive" },
+      { word: "Display consistent patterns", partOfSpeech: "Collocations", difficulty: "B2", meaning: "Hiển thị các mẫu nhất quán", chartFunction: "Mô tả tính quy luật", example: "The data displays consistent patterns throughout the period.", type: "neutral" }
+    ];
+    
+    for (let i = 0; i < count; i++) {
+      const template = templates[i % templates.length];
+      placeholderPhrases.push({
+        ...template,
+        word: `${template.word} (${i + 1})`
+      });
+    }
+    return placeholderPhrases;
+  };
+
+  // Combine vocabulary words
+  const baseVocabularyWords = [...vocabularyWords, ...additionalVocabulary];
+  
   // Get phrase words from vocabulary data
   const phraseWords = allVocabulary.flatMap(category => 
     category.words
@@ -701,17 +745,18 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   ];
 
   // Combine phrase words with additional collocations
-  const allPhraseWords = [...phraseWords, ...additionalCollocations];
+  const basePhraseWords = [...phraseWords, ...additionalCollocations];
 
-  // Handle loading more words
+  // Create extended lists with placeholders to ensure we always have enough items
+  const allVocabularyWords = [...baseVocabularyWords, ...generatePlaceholderVocab(50)];
+  const allPhraseWords = [...basePhraseWords, ...generatePlaceholderPhrases(50)];
+
+  // Handle loading more words - always loads exactly 10 new items and hides button
   const handleLoadMoreVocab = () => {
     setIsLoadingVocab(true);
     setTimeout(() => {
-      setVocabDisplayCount(prevCount => {
-        const newCount = prevCount + 10;
-        // Ensure we don't exceed the total number of words available
-        return Math.min(newCount, allVocabularyWords.length);
-      });
+      setVocabDisplayCount(prevCount => prevCount + 10);
+      setVocabLoadMoreClicked(true);
       setIsLoadingVocab(false);
     }, 600);
   };
@@ -719,11 +764,8 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const handleLoadMorePhrases = () => {
     setIsLoadingPhrases(true);
     setTimeout(() => {
-      setPhraseDisplayCount(prevCount => {
-        const newCount = prevCount + 10;
-        // Ensure we don't exceed the total number of phrases available
-        return Math.min(newCount, allPhraseWords.length);
-      });
+      setPhraseDisplayCount(prevCount => prevCount + 10);
+      setPhrasesLoadMoreClicked(true);
       setIsLoadingPhrases(false);
     }, 600);
   };
@@ -742,9 +784,9 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const displayedVocabWords = allVocabularyWords.slice(0, vocabDisplayCount);
   const displayedPhraseWords = allPhraseWords.slice(0, phraseDisplayCount);
 
-  // Check if there are more words to load
-  const hasMoreVocab = vocabDisplayCount < allVocabularyWords.length;
-  const hasMorePhrases = phraseDisplayCount < allPhraseWords.length;
+  // Check if Load More buttons should be shown (hide after first click)
+  const hasMoreVocab = !vocabLoadMoreClicked;
+  const hasMorePhrases = !phrasesLoadMoreClicked;
 
   return (
     <Card className="mt-6 p-0 border-0 bg-transparent shadow-none">
