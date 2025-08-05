@@ -26,37 +26,31 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       return;
     }
 
-    // Record the start time for precise timing
-    const startTime = Date.now();
-    const endTime = startTime + (duration * 1000);
-
-    // Precise countdown timer - update every 100ms for smooth display
-    const countdownTimer = setInterval(() => {
-      const now = Date.now();
-      const remaining = Math.max(0, Math.ceil((endTime - now) / 1000));
-      
-      setCountdown(remaining);
-      
-      // If countdown reaches 0, call onComplete and clear timer
-      if (remaining <= 0) {
-        clearInterval(countdownTimer);
-        onComplete();
-      }
+    // Start the liquid filling animation immediately - spread over duration seconds
+    const liquidTimer = setInterval(() => {
+      setLiquidLevel(prev => {
+        if (prev >= 100) {
+          clearInterval(liquidTimer);
+          return 100;
+        }
+        return prev + (100 / (duration * 10)); // Fill over duration seconds (1% per duration/10 * 100ms)
+      });
     }, 100);
 
-    // Liquid filling animation - synchronized with countdown
-    const liquidTimer = setInterval(() => {
-      const now = Date.now();
-      const elapsed = now - startTime;
-      const progress = Math.min(100, (elapsed / (duration * 1000)) * 100);
-      setLiquidLevel(progress);
-      
-      if (progress >= 100) {
-        clearInterval(liquidTimer);
-      }
-    }, 50);
+    // Countdown timer - decrease every second, starting immediately
+    const countdownTimer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownTimer);
+          // Call onComplete immediately when countdown reaches 0
+          setTimeout(() => onComplete(), 0);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
-    // Change messages every (duration / messages.length) seconds
+    // Change messages every (duration / 4) seconds to cycle through all messages
     const messageInterval = (duration / messages.length) * 1000;
     const messageTimer = setInterval(() => {
       setMessageIndex(prev => (prev + 1) % messages.length);
