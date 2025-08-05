@@ -412,7 +412,7 @@ export default function WritingTask1() {
               setShowPreview(false);
             }
           }}
-          className="min-h-[80px] text-sm text-gray-600"
+          className="h-[110px] text-sm text-gray-600 resize-none overflow-hidden"
         />
       </div>
       {/* Image Upload Area */}
