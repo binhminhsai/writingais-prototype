@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Upload, Info, Shuffle, HelpCircle, Database } from "lucide-react";
+import { Upload, Info, Shuffle, HelpCircle, Database, AlertTriangle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
@@ -148,6 +148,7 @@ export default function WritingTask1() {
   const [hasGeneratedChart, setHasGeneratedChart] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingAction, setLoadingAction] = useState<'use-my-question' | 'random-question' | 'random-button' | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
@@ -158,14 +159,11 @@ export default function WritingTask1() {
   const handleUseMyQuestion = () => {
     // Check if both question text and image are provided
     if (!question.trim() || !uploadedImage) {
-      toast({
-        title: "Missing Requirements",
-        description: "Please enter your question and upload an image.",
-        variant: "destructive",
-      });
+      setErrorMessage('Please enter your question and upload an image of the task before clicking the "Use my question" button.');
       return;
     }
     
+    setErrorMessage("");
     setLoadingAction('use-my-question');
     setIsLoading(true);
   };
@@ -178,11 +176,13 @@ export default function WritingTask1() {
   };
 
   const handleRandomQuestion = () => {
+    setErrorMessage("");
     setLoadingAction('random-question');
     setIsLoading(true);
   };
 
   const handleRandomButton = () => {
+    setErrorMessage("");
     setLoadingAction('random-button');
     setIsLoading(true);
   };
@@ -487,6 +487,17 @@ export default function WritingTask1() {
           setLoadingAction(null);
         }}
       />
+      
+      {/* Error Message */}
+      {errorMessage && (
+        <div className="mb-6 p-3 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-red-700 text-sm font-medium flex items-center">
+            <AlertTriangle className="h-4 w-4 mr-2" />
+            {errorMessage}
+          </p>
+        </div>
+      )}
+      
       {/* Question Preview */}
       {showPreview && (
         <div className="mb-6">
