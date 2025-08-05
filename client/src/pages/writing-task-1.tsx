@@ -137,8 +137,8 @@ function Task1PreviewChart() {
 }
 
 export default function WritingTask1() {
-  const [questionType, setQuestionType] = useState("");
-  const [bandLevel, setBandLevel] = useState("");
+  const [questionType, setQuestionType] = useState("line-graph");
+  const [bandLevel, setBandLevel] = useState("6.0");
   const [timeLimit, setTimeLimit] = useState("20 minutes");
   const [question, setQuestion] = useState("");
   const [dragActive, setDragActive] = useState(false);
