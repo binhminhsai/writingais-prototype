@@ -16,7 +16,7 @@ export interface VocabularyCategory {
 
 // Vocabulary categories and words based on test type and topic
 const vocabularyByTestType: Record<WritingTestType, VocabularyCategory[]> = {
-  "ielts-task2": [
+  "opinion": [
     {
       name: "Technology Impact",
       type: "neutral",
@@ -491,6 +491,94 @@ const vocabularyByTestType: Record<WritingTestType, VocabularyCategory[]> = {
       ],
     },
   ],
+  "discussion": [
+    {
+      name: "Discussion Topics",
+      type: "neutral",
+      words: [
+        {
+          word: "Perspective",
+          partOfSpeech: "N",
+          difficulty: "B2",
+          meaning: "Góc nhìn, quan điểm",
+          example: "Different people have different perspectives on this issue."
+        },
+        {
+          word: "Debate",
+          partOfSpeech: "V",
+          difficulty: "B1",
+          meaning: "Tranh luận, thảo luận",
+          example: "Experts continue to debate the best solution to this problem."
+        }
+      ]
+    }
+  ],
+  "problem-solution": [
+    {
+      name: "Problem Solutions",
+      type: "neutral",
+      words: [
+        {
+          word: "Challenge",
+          partOfSpeech: "N",
+          difficulty: "B1",
+          meaning: "Thách thức",
+          example: "Climate change is one of the biggest challenges facing humanity."
+        },
+        {
+          word: "Solution",
+          partOfSpeech: "N",
+          difficulty: "A2",
+          meaning: "Giải pháp",
+          example: "We need to find practical solutions to reduce pollution."
+        }
+      ]
+    }
+  ],
+  "advantage-disadvantage": [
+    {
+      name: "Advantages & Disadvantages",
+      type: "neutral",
+      words: [
+        {
+          word: "Benefit",
+          partOfSpeech: "N",
+          difficulty: "B1",
+          meaning: "Lợi ích",
+          example: "The main benefit of online learning is flexibility."
+        },
+        {
+          word: "Drawback",
+          partOfSpeech: "N",
+          difficulty: "B2",
+          meaning: "Nhược điểm",
+          example: "A major drawback is the lack of face-to-face interaction."
+        }
+      ]
+    }
+  ],
+  "two-part-question": [
+    {
+      name: "Two-Part Questions",
+      type: "neutral",
+      words: [
+        {
+          word: "Factor",
+          partOfSpeech: "N",
+          difficulty: "B2",
+          meaning: "Yếu tố",
+          example: "Several factors contribute to this phenomenon."
+        },
+        {
+          word: "Measure",
+          partOfSpeech: "N",
+          difficulty: "B2",
+          meaning: "Biện pháp",
+          example: "What measures can be taken to address this issue?"
+        }
+      ]
+    }
+  ]
 };
 
 // Function to get vocabulary based on test type and topic
@@ -500,5 +588,5 @@ export function getVocabulary(
 ): VocabularyCategory[] {
   // In a real implementation, we would analyze the topic and provide relevant vocabulary
   // For now, we'll just return vocabulary based on test type
-  return vocabularyByTestType[testType];
+  return vocabularyByTestType[testType] || [];
 }
