@@ -7,14 +7,6 @@ This platform is a full-stack English writing practice application designed to e
 Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
-**Date: 2025-08-05**
-- **Fixed Countdown Timing Precision**: Updated ChemicalFlaskLoader with accurate real-time countdown
-  - Implemented performance.now() for precise timing measurement
-  - Used requestAnimationFrame for smooth countdown updates
-  - Countdown now starts at 60 and decreases by exactly 1 every real second
-  - Added tabular-nums class to prevent number display flickering
-  - onComplete callback triggers exactly when countdown reaches 0
-
 **Date: 2025-01-04**
 - **Loading System Updates**: Implemented precise countdown timers for essay analysis
   - Updated InteractiveLoadingPage (Submit button) with performance.now() timing and requestAnimationFrame

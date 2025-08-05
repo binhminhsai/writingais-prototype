@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ChemicalFlaskLoaderProps {
   isVisible: boolean;
@@ -10,8 +10,6 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
   const [liquidLevel, setLiquidLevel] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
   const [countdown, setCountdown] = useState(duration);
-  const startTimeRef = useRef<number | null>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const messages = [
     "Preparing detailed insights for you...",
@@ -25,23 +23,9 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       setLiquidLevel(0);
       setMessageIndex(0);
       setCountdown(duration);
-      startTimeRef.current = null;
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
       return;
     }
 
-    // Only start if not already started
-    if (startTimeRef.current !== null) {
-      return;
-    }
-
-    // Record start time
-    startTimeRef.current = Date.now();
-    setCountdown(duration);
-    
     // Start the liquid filling animation immediately - spread over duration seconds
     const liquidTimer = setInterval(() => {
       setLiquidLevel(prev => {
@@ -53,23 +37,18 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       });
     }, 100);
 
-    // Countdown timer using elapsed time
-    timerRef.current = setInterval(() => {
-      if (startTimeRef.current === null) return;
-      
-      const elapsed = (Date.now() - startTimeRef.current) / 1000;
-      const remaining = Math.max(0, Math.ceil(duration - elapsed));
-      
-      setCountdown(remaining);
-      
-      if (remaining <= 0) {
-        if (timerRef.current) {
-          clearInterval(timerRef.current);
-          timerRef.current = null;
+    // Countdown timer - decrease every second, starting immediately
+    const countdownTimer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(countdownTimer);
+          // Call onComplete immediately when countdown reaches 0
+          setTimeout(() => onComplete(), 0);
+          return 0;
         }
-        onComplete();
-      }
-    }, 100); // Update more frequently for smoother countdown
+        return prev - 1;
+      });
+    }, 1000);
 
     // Change messages every (duration / 4) seconds to cycle through all messages
     const messageInterval = (duration / messages.length) * 1000;
@@ -79,11 +58,8 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
 
     return () => {
       clearInterval(liquidTimer);
+      clearInterval(countdownTimer);
       clearInterval(messageTimer);
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
     };
   }, [isVisible, onComplete, duration, messages.length]);
 
@@ -207,7 +183,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
 
       {/* Countdown Timer */}
       {countdown > 0 && (
-        <div className="text-[#1fb2aa] text-center text-sm font-medium mb-2 tabular-nums">
+        <div className="text-[#1fb2aa] text-center text-sm font-medium mb-2">
           {countdown}
         </div>
       )}
