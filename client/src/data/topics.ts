@@ -25,144 +25,229 @@ const expertTopics = [
   "Some people believe that there should be fixed punishments for each type of crime. Others, however, argue that circumstances of an individual crime, and the motivation for committing it, should always be taken into account when deciding on the punishment. Discuss both these views and give your own opinion."
 ];
 
+// Create question-type specific topics
+const opinionTopics = {
+  "band-5.0": [
+    "Some people think that technology makes life easier. Do you agree or disagree?",
+    "Do you think students should wear uniforms at school? Give your opinion.",
+    "Some people believe that money is the most important thing in life. Do you agree or disagree?"
+  ],
+  "band-5.5": [
+    "Some people think that technology makes life easier. Do you agree or disagree?",
+    "Do you think students should wear uniforms at school? Give your opinion.",
+    "Some people believe that money is the most important thing in life. Do you agree or disagree?"
+  ],
+  "band-6.0": [
+    "Some people think that parents should teach children how to be good members of society. Others believe that school is the place to learn this. Discuss both views and give your opinion.",
+    "Do you agree or disagree with the statement that the internet has had a positive impact on education?",
+    "Some people believe that unpaid community service should be a compulsory part of high school programs. To what extent do you agree or disagree?"
+  ],
+  "band-6.5": [
+    "Some people think that parents should teach children how to be good members of society. Others believe that school is the place to learn this. Discuss both views and give your opinion.",
+    "Do you agree or disagree with the statement that the internet has had a positive impact on education?",
+    "Some people believe that unpaid community service should be a compulsory part of high school programs. To what extent do you agree or disagree?"
+  ],
+  "band-7.0": [
+    "Some people believe that there should be fixed punishments for each type of crime. Others argue that the circumstances of an individual crime should always be taken into account. Discuss both these views and give your own opinion.",
+    "To what extent do you agree that modern technology has made the world a better place to live?",
+    "Some people think that strict punishments for driving offences are the key to reducing traffic accidents. Others believe that other measures would be more effective. Discuss both views and give your opinion."
+  ],
+  "band-7.5": [
+    "Some people believe that there should be fixed punishments for each type of crime. Others argue that the circumstances of an individual crime should always be taken into account. Discuss both these views and give your own opinion.",
+    "To what extent do you agree that modern technology has made the world a better place to live?",
+    "Some people think that strict punishments for driving offences are the key to reducing traffic accidents. Others believe that other measures would be more effective. Discuss both views and give your opinion."
+  ],
+  "band-8.0": [
+    "Some people think that governments should spend money on faster means of public transport. Others think that there are other more important priorities for public spending. Discuss both views and give your opinion.",
+    "To what extent do you agree that the benefits of tourism outweigh its drawbacks?",
+    "Some argue that cultural diversity strengthens society, while others believe it creates division. Discuss both views and give your opinion."
+  ],
+  "band-8.5": [
+    "Some people think that governments should spend money on faster means of public transport. Others think that there are other more important priorities for public spending. Discuss both views and give your opinion.",
+    "To what extent do you agree that the benefits of tourism outweigh its drawbacks?",
+    "Some argue that cultural diversity strengthens society, while others believe it creates division. Discuss both views and give your opinion."
+  ]
+};
+
+const discussionTopics = {
+  "band-5.0": [
+    "Some people prefer to work alone, while others like to work in teams. Discuss both views.",
+    "Some students like online learning, others prefer classroom learning. Discuss both sides.",
+    "Some people think cities are better places to live, others prefer the countryside. Discuss both views."
+  ],
+  "band-5.5": [
+    "Some people prefer to work alone, while others like to work in teams. Discuss both views.",
+    "Some students like online learning, others prefer classroom learning. Discuss both sides.",
+    "Some people think cities are better places to live, others prefer the countryside. Discuss both views."
+  ],
+  "band-6.0": [
+    "Some people believe that children should start learning a foreign language at primary school. Others think they should begin at secondary school. Discuss both views and give your opinion.",
+    "Some people think that museums should be enjoyable places to entertain people. Others believe that museums should only serve educational purposes. Discuss both views.",
+    "Some people prefer to buy food in supermarkets. Others prefer to buy in traditional markets. Discuss both views."
+  ],
+  "band-6.5": [
+    "Some people believe that children should start learning a foreign language at primary school. Others think they should begin at secondary school. Discuss both views and give your opinion.",
+    "Some people think that museums should be enjoyable places to entertain people. Others believe that museums should only serve educational purposes. Discuss both views.",
+    "Some people prefer to buy food in supermarkets. Others prefer to buy in traditional markets. Discuss both views."
+  ],
+  "band-7.0": [
+    "Some people think that the government should provide assistance to all kinds of artists including painters, musicians and poets. Others think that it is a waste of money. Discuss both views and give your opinion.",
+    "Some people believe that international trade and communication with other countries is a positive trend, while others think it is harmful to nations. Discuss both views.",
+    "Some people think that zoos are cruel and should be closed down. Others believe that zoos are useful for protecting rare animals. Discuss both views."
+  ],
+  "band-7.5": [
+    "Some people think that the government should provide assistance to all kinds of artists including painters, musicians and poets. Others think that it is a waste of money. Discuss both views and give your opinion.",
+    "Some people believe that international trade and communication with other countries is a positive trend, while others think it is harmful to nations. Discuss both views.",
+    "Some people think that zoos are cruel and should be closed down. Others believe that zoos are useful for protecting rare animals. Discuss both views."
+  ],
+  "band-8.0": [
+    "Some people believe that the government should take care of old people and provide free healthcare. Others think that individuals should save money for their own care. Discuss both views.",
+    "Some people think that scientific research should be carried out by governments rather than private companies. Others believe that private companies can do it more efficiently. Discuss both views.",
+    "Some people argue that space exploration is a waste of money and resources. Others believe it is essential for human advancement. Discuss both perspectives."
+  ],
+  "band-8.5": [
+    "Some people believe that the government should take care of old people and provide free healthcare. Others think that individuals should save money for their own care. Discuss both views.",
+    "Some people think that scientific research should be carried out by governments rather than private companies. Others believe that private companies can do it more efficiently. Discuss both views.",
+    "Some people argue that space exploration is a waste of money and resources. Others believe it is essential for human advancement. Discuss both perspectives."
+  ]
+};
+
+const problemSolutionTopics = {
+  "band-5.0": [
+    "Many people have trouble sleeping at night. What are the causes of this problem and what solutions can you suggest?",
+    "Traffic jams are a common problem in big cities. What causes this problem and how can it be solved?",
+    "Many students find it difficult to concentrate in class. What are the reasons for this and what can be done?"
+  ],
+  "band-5.5": [
+    "Many people have trouble sleeping at night. What are the causes of this problem and what solutions can you suggest?",
+    "Traffic jams are a common problem in big cities. What causes this problem and how can it be solved?",
+    "Many students find it difficult to concentrate in class. What are the reasons for this and what can be done?"
+  ],
+  "band-6.0": [
+    "Many cities around the world are facing serious air pollution problems. What are the main causes of this issue and what measures can be taken to solve it?",
+    "Increasing numbers of people are living alone. What problems might this trend cause and what solutions can you suggest?",
+    "Many young people today are not physically fit. What are the causes of this problem and what solutions can you suggest?"
+  ],
+  "band-6.5": [
+    "Many cities around the world are facing serious air pollution problems. What are the main causes of this issue and what measures can be taken to solve it?",
+    "Increasing numbers of people are living alone. What problems might this trend cause and what solutions can you suggest?",
+    "Many young people today are not physically fit. What are the causes of this problem and what solutions can you suggest?"
+  ],
+  "band-7.0": [
+    "In many countries, the gap between rich and poor is increasing. What problems might this cause and what solutions can you suggest?",
+    "Many languages are disappearing due to globalization. What problems does this cause and how can this issue be addressed?",
+    "Urban sprawl is becoming a serious problem in many cities. What are the causes of this trend and what solutions can be implemented?"
+  ],
+  "band-7.5": [
+    "In many countries, the gap between rich and poor is increasing. What problems might this cause and what solutions can you suggest?",
+    "Many languages are disappearing due to globalization. What problems does this cause and how can this issue be addressed?",
+    "Urban sprawl is becoming a serious problem in many cities. What are the causes of this trend and what solutions can be implemented?"
+  ],
+  "band-8.0": [
+    "Mental health issues among young people are increasing globally. What are the contributing factors to this problem and what comprehensive solutions can be implemented?",
+    "Climate change is accelerating due to human activities. What are the primary causes and what urgent measures should be taken to address this crisis?",
+    "The digital divide is creating inequality in education access. What factors contribute to this problem and how can it be effectively resolved?"
+  ],
+  "band-8.5": [
+    "Mental health issues among young people are increasing globally. What are the contributing factors to this problem and what comprehensive solutions can be implemented?",
+    "Climate change is accelerating due to human activities. What are the primary causes and what urgent measures should be taken to address this crisis?",
+    "The digital divide is creating inequality in education access. What factors contribute to this problem and how can it be effectively resolved?"
+  ]
+};
+
+const advantageDisadvantageTopics = {
+  "band-5.0": [
+    "What are the advantages and disadvantages of using social media?",
+    "What are the advantages and disadvantages of studying abroad?",
+    "What are the advantages and disadvantages of owning a car?"
+  ],
+  "band-5.5": [
+    "What are the advantages and disadvantages of using social media?",
+    "What are the advantages and disadvantages of studying abroad?",
+    "What are the advantages and disadvantages of owning a car?"
+  ],
+  "band-6.0": [
+    "What are the advantages and disadvantages of working from home?",
+    "What are the advantages and disadvantages of living in a big city compared to a small town?",
+    "What are the advantages and disadvantages of online shopping?"
+  ],
+  "band-6.5": [
+    "What are the advantages and disadvantages of working from home?",
+    "What are the advantages and disadvantages of living in a big city compared to a small town?",
+    "What are the advantages and disadvantages of online shopping?"
+  ],
+  "band-7.0": [
+    "What are the advantages and disadvantages of renewable energy sources?",
+    "What are the advantages and disadvantages of artificial intelligence in healthcare?",
+    "What are the advantages and disadvantages of globalization for developing countries?"
+  ],
+  "band-7.5": [
+    "What are the advantages and disadvantages of renewable energy sources?",
+    "What are the advantages and disadvantages of artificial intelligence in healthcare?",
+    "What are the advantages and disadvantages of globalization for developing countries?"
+  ],
+  "band-8.0": [
+    "What are the advantages and disadvantages of genetic engineering in agriculture?",
+    "What are the advantages and disadvantages of space exploration for humanity?",
+    "What are the advantages and disadvantages of implementing universal basic income?"
+  ],
+  "band-8.5": [
+    "What are the advantages and disadvantages of genetic engineering in agriculture?",
+    "What are the advantages and disadvantages of space exploration for humanity?",
+    "What are the advantages and disadvantages of implementing universal basic income?"
+  ]
+};
+
+const twoPartQuestionTopics = {
+  "band-5.0": [
+    "Many people prefer to watch movies at home rather than in cinemas. Why might this be? Is this a positive or negative development?",
+    "More children are spending time playing video games. What are the reasons for this? Do you think this is a good thing?",
+    "People are buying more things online nowadays. Why is this happening? What effects does this have on local shops?"
+  ],
+  "band-5.5": [
+    "Many people prefer to watch movies at home rather than in cinemas. Why might this be? Is this a positive or negative development?",
+    "More children are spending time playing video games. What are the reasons for this? Do you think this is a good thing?",
+    "People are buying more things online nowadays. Why is this happening? What effects does this have on local shops?"
+  ],
+  "band-6.0": [
+    "In many countries, people are moving from rural areas to cities. Why does this happen? What problems can this cause?",
+    "More people are choosing to have fewer children or none at all. What might be the reasons for this? What are the effects on society?",
+    "Many traditional festivals and celebrations are losing their popularity. Why is this happening? What can be done to preserve them?"
+  ],
+  "band-6.5": [
+    "In many countries, people are moving from rural areas to cities. Why does this happen? What problems can this cause?",
+    "More people are choosing to have fewer children or none at all. What might be the reasons for this? What are the effects on society?",
+    "Many traditional festivals and celebrations are losing their popularity. Why is this happening? What can be done to preserve them?"
+  ],
+  "band-7.0": [
+    "In many developed countries, birth rates are declining. What factors contribute to this trend? What are the potential long-term consequences for these societies?",
+    "Traditional newspapers and magazines are becoming less popular. What factors are causing this decline? How might this affect the quality of journalism?",
+    "Many young people are leaving their home countries to work abroad. What drives this migration? What impact does this have on both origin and destination countries?"
+  ],
+  "band-7.5": [
+    "In many developed countries, birth rates are declining. What factors contribute to this trend? What are the potential long-term consequences for these societies?",
+    "Traditional newspapers and magazines are becoming less popular. What factors are causing this decline? How might this affect the quality of journalism?",
+    "Many young people are leaving their home countries to work abroad. What drives this migration? What impact does this have on both origin and destination countries?"
+  ],
+  "band-8.0": [
+    "The phenomenon of 'brain drain' is affecting many developing countries. What complex factors contribute to this trend? How might this impact global economic and social development?",
+    "Artificial intelligence is increasingly being used in decision-making processes. What drives this technological adoption? What are the potential implications for human autonomy and employment?",
+    "Traditional cultural practices are disappearing in many societies. What underlying forces are causing this cultural erosion? How might this transformation affect future generations?"
+  ],
+  "band-8.5": [
+    "The phenomenon of 'brain drain' is affecting many developing countries. What complex factors contribute to this trend? How might this impact global economic and social development?",
+    "Artificial intelligence is increasingly being used in decision-making processes. What drives this technological adoption? What are the potential implications for human autonomy and employment?",
+    "Traditional cultural practices are disappearing in many societies. What underlying forces are causing this cultural erosion? How might this transformation affect future generations?"
+  ]
+};
+
 // Sample topics for each test type and band level
 const topicsByTypeAndDifficulty: Record<WritingTestType, Record<DifficultyLevel, string[]>> = {
-  "ielts-task2": {
-    "band-5.0": basicTopics,
-    "band-5.5": basicTopics,
-    "band-6.0": intermediateTopics,
-    "band-6.5": intermediateTopics,
-    "band-7.0": advancedTopics,
-    "band-7.5": advancedTopics,
-    "band-8.0": expertTopics,
-    "band-8.5": expertTopics
-  },
-  "toefl": {
-    "band-5.0": [
-      "Some students prefer to attend a small university. Others prefer to attend a big university. Which type of university do you prefer? Use specific reasons and examples to support your answer.",
-      "Do you agree or disagree with the following statement? Parents are the best teachers. Use specific reasons and examples to support your answer.",
-      "Some people think that family is the most important influence on young adults. Others believe that friends are the most important influence on young adults. Which view do you agree with?"
-    ],
-    "band-5.5": [
-      "Some students prefer to attend a small university. Others prefer to attend a big university. Which type of university do you prefer? Use specific reasons and examples to support your answer.",
-      "Do you agree or disagree with the following statement? Parents are the best teachers. Use specific reasons and examples to support your answer.",
-      "Some people think that family is the most important influence on young adults. Others believe that friends are the most important influence on young adults. Which view do you agree with?"
-    ],
-    "band-6.0": [
-      "It has been said, 'Not all learning takes place in the classroom.' Compare and contrast knowledge gained from personal experience with knowledge gained from classroom instruction. Which source is more important? Why?",
-      "Do you agree or disagree with the following statement? Television has destroyed communication among friends and family. Use specific reasons and examples to support your opinion.",
-      "Do you agree or disagree with the following statement? Universities should require every student to take a variety of courses outside the student's field of study. Use specific reasons and examples to support your answer."
-    ],
-    "band-6.5": [
-      "It has been said, 'Not all learning takes place in the classroom.' Compare and contrast knowledge gained from personal experience with knowledge gained from classroom instruction. Which source is more important? Why?",
-      "Do you agree or disagree with the following statement? Television has destroyed communication among friends and family. Use specific reasons and examples to support your opinion.",
-      "Do you agree or disagree with the following statement? Universities should require every student to take a variety of courses outside the student's field of study. Use specific reasons and examples to support your answer."
-    ],
-    "band-7.0": [
-      "Do you agree or disagree with the following statement? People should sometimes do things that they do not enjoy doing. Use specific reasons and examples to support your answer.",
-      "Some people prefer to live in a small town. Others prefer to live in a big city. Which place would you prefer to live in? Use specific reasons and details to support your answer.",
-      "Do you agree or disagree with the following statement? Modern technology is creating a single world culture. Use specific reasons and examples to support your opinion."
-    ],
-    "band-7.5": [
-      "Do you agree or disagree with the following statement? People should sometimes do things that they do not enjoy doing. Use specific reasons and examples to support your answer.",
-      "Some people prefer to live in a small town. Others prefer to live in a big city. Which place would you prefer to live in? Use specific reasons and details to support your answer.",
-      "Do you agree or disagree with the following statement? Modern technology is creating a single world culture. Use specific reasons and examples to support your opinion."
-    ],
-    "band-8.0": [
-      "If you could make one important change in a school that you attended, what change would you make? Use reasons and specific examples to support your answer.",
-      "Do you agree or disagree with the following statement? Face-to-face communication is better than other types of communication, such as letters, email, or telephone calls. Use specific reasons and details to support your answer.",
-      "Some people believe that the Earth is being harmed (damaged) by human activity. Others feel that human activity makes the Earth a better place to live. What is your opinion? Use specific reasons and examples to support your answer."
-    ],
-    "band-8.5": [
-      "If you could make one important change in a school that you attended, what change would you make? Use reasons and specific examples to support your answer.",
-      "Do you agree or disagree with the following statement? Face-to-face communication is better than other types of communication, such as letters, email, or telephone calls. Use specific reasons and details to support your answer.",
-      "Some people believe that the Earth is being harmed (damaged) by human activity. Others feel that human activity makes the Earth a better place to live. What is your opinion? Use specific reasons and examples to support your answer."
-    ]
-  },
-  "general": {
-    "band-5.0": [
-      "What are the advantages and disadvantages of living in a big city compared to living in the countryside?",
-      "Some people prefer to travel alone, while others prefer to travel with a companion. Compare the advantages of both approaches.",
-      "Should high school students be required to wear uniforms? Give reasons for your answer."
-    ],
-    "band-5.5": [
-      "What are the advantages and disadvantages of living in a big city compared to living in the countryside?",
-      "Some people prefer to travel alone, while others prefer to travel with a companion. Compare the advantages of both approaches.",
-      "Should high school students be required to wear uniforms? Give reasons for your answer."
-    ],
-    "band-6.0": [
-      "What role should technology play in education? Discuss with reference to specific examples.",
-      "Is it better to pursue higher education or to start working immediately after high school? Give reasons for your answer.",
-      "How important is it to maintain a balance between work and leisure time? Discuss."
-    ],
-    "band-6.5": [
-      "What role should technology play in education? Discuss with reference to specific examples.",
-      "Is it better to pursue higher education or to start working immediately after high school? Give reasons for your answer.",
-      "How important is it to maintain a balance between work and leisure time? Discuss."
-    ],
-    "band-7.0": [
-      "To what extent should governments be responsible for the welfare of their citizens?",
-      "In your opinion, what defines success? Is it wealth, fame, happiness, or something else?",
-      "Should artistic freedom be absolute or are there limits to what artists should be allowed to express?"
-    ],
-    "band-7.5": [
-      "To what extent should governments be responsible for the welfare of their citizens?",
-      "In your opinion, what defines success? Is it wealth, fame, happiness, or something else?",
-      "Should artistic freedom be absolute or are there limits to what artists should be allowed to express?"
-    ],
-    "band-8.0": [
-      "Discuss the role of civil disobedience in bringing about political or social change.",
-      "In some countries, declining birth rates are a cause for concern. What policies could governments introduce to encourage people to have more children?",
-      "To what extent is individual freedom limited by the responsibility we have towards society as a whole?"
-    ],
-    "band-8.5": [
-      "Discuss the role of civil disobedience in bringing about political or social change.",
-      "In some countries, declining birth rates are a cause for concern. What policies could governments introduce to encourage people to have more children?",
-      "To what extent is individual freedom limited by the responsibility we have towards society as a whole?"
-    ]
-  },
-  "business": {
-    "band-5.0": [
-      "What are the main qualities of a good team leader? Use examples to support your answer.",
-      "Discuss the advantages and disadvantages of working from home versus working in an office.",
-      "How important is customer service for a business? Give examples to support your answer."
-    ],
-    "band-5.5": [
-      "What are the main qualities of a good team leader? Use examples to support your answer.",
-      "Discuss the advantages and disadvantages of working from home versus working in an office.",
-      "How important is customer service for a business? Give examples to support your answer."
-    ],
-    "band-6.0": [
-      "Some businesses prefer to promote employees from within the organization, while others prefer to hire from outside. Discuss the advantages and disadvantages of both approaches.",
-      "In what ways can businesses reduce their environmental impact? Discuss with reference to specific examples.",
-      "How can businesses effectively motivate their employees? Discuss various strategies."
-    ],
-    "band-6.5": [
-      "Some businesses prefer to promote employees from within the organization, while others prefer to hire from outside. Discuss the advantages and disadvantages of both approaches.",
-      "In what ways can businesses reduce their environmental impact? Discuss with reference to specific examples.",
-      "How can businesses effectively motivate their employees? Discuss various strategies."
-    ],
-    "band-7.0": [
-      "To what extent should businesses prioritize profit over social responsibility?",
-      "Analyze the impact of globalization on small local businesses.",
-      "What ethical considerations should businesses make when using AI and automation technologies that may replace human workers?"
-    ],
-    "band-7.5": [
-      "To what extent should businesses prioritize profit over social responsibility?",
-      "Analyze the impact of globalization on small local businesses.",
-      "What ethical considerations should businesses make when using AI and automation technologies that may replace human workers?"
-    ],
-    "band-8.0": [
-      "Evaluate the effectiveness of different leadership styles in managing organizational change.",
-      "Analyze the role of corporate governance in preventing financial scandals and corporate misconduct.",
-      "In an increasingly digital world, assess the future of physical retail businesses and what strategies they might employ to remain competitive."
-    ],
-    "band-8.5": [
-      "Evaluate the effectiveness of different leadership styles in managing organizational change.",
-      "Analyze the role of corporate governance in preventing financial scandals and corporate misconduct.",
-      "In an increasingly digital world, assess the future of physical retail businesses and what strategies they might employ to remain competitive."
-    ]
-  }
+  "opinion": opinionTopics,
+  "discussion": discussionTopics,
+  "problem-solution": problemSolutionTopics,
+  "advantage-disadvantage": advantageDisadvantageTopics,
+  "two-part-question": twoPartQuestionTopics
 };
 
 export function generateRandomTopic(testType: WritingTestType, difficulty: DifficultyLevel): string {
