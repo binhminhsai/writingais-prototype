@@ -194,7 +194,7 @@ function OutlineSection({ testType, topic }: { testType: WritingTestType, topic:
                     </AccordionContent>
                   </AccordionItem>
 
-                  {outline.slice(0, 3).map((section, index) => (
+                  {outline && outline.slice(0, 3).map((section, index) => (
                     <AccordionItem 
                       key={`outline-${index}`} 
                       value={`section-${index}`}

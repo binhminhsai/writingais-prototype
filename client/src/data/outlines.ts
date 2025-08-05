@@ -7,7 +7,7 @@ export interface OutlineSection {
 
 // Generic outlines based on test type and adjusted for specific topics
 const outlinesByTestType: Record<WritingTestType, OutlineSection[]> = {
-  "ielts-task2": [
+  "opinion": [
     {
       title: "Introduction",
       points: [
@@ -44,7 +44,7 @@ const outlinesByTestType: Record<WritingTestType, OutlineSection[]> = {
       ],
     },
   ],
-  "toefl": [
+  "discussion": [
     {
       title: "Introduction",
       points: [
@@ -81,7 +81,7 @@ const outlinesByTestType: Record<WritingTestType, OutlineSection[]> = {
       ],
     },
   ],
-  "general": [
+  "problem-solution": [
     {
       title: "Introduction",
       points: [
@@ -113,43 +113,63 @@ const outlinesByTestType: Record<WritingTestType, OutlineSection[]> = {
       ],
     },
   ],
-  "business": [
+  "advantage-disadvantage": [
     {
-      title: "Executive Summary",
+      title: "Introduction",
       points: [
-        "Briefly state the business issue or challenge",
-        "Highlight key recommendations or findings",
+        "Present the topic and its importance",
+        "State your position clearly",
       ],
     },
     {
-      title: "Situation Analysis",
+      title: "Advantages",
       points: [
-        "Describe the current business situation",
-        "Identify key stakeholders and their interests",
-        "Outline relevant market or industry factors",
+        "Present the main advantages",
+        "Examples and supporting evidence",
       ],
     },
     {
-      title: "Options and Recommendations",
+      title: "Disadvantages", 
       points: [
-        "Present possible approaches or solutions",
-        "Evaluate advantages and disadvantages of each option",
-        "Make clear recommendations with justification",
-      ],
-    },
-    {
-      title: "Implementation",
-      points: [
-        "Outline key steps for implementation",
-        "Address potential challenges and mitigation strategies",
-        "Suggest timeline and resource requirements",
+        "Present the main disadvantages",
+        "Examples and supporting evidence",
       ],
     },
     {
       title: "Conclusion",
       points: [
-        "Summarize key points and recommendations",
-        "Emphasize expected benefits and outcomes",
+        "Summarize main points",
+        "Restate your opinion",
+      ],
+    },
+  ],
+  "two-part-question": [
+    {
+      title: "Introduction",
+      points: [
+        "Present the topic and its importance",
+        "Outline the two questions to be addressed",
+      ],
+    },
+    {
+      title: "Answer to Question 1",
+      points: [
+        "Address the first question directly",
+        "Examples and supporting evidence",
+      ],
+    },
+    {
+      title: "Answer to Question 2",
+      points: [
+        "Address the second question directly", 
+        "Examples and supporting evidence",
+      ],
+    },
+    {
+      title: "Conclusion",
+      points: [
+        "Summarize answers to both questions",
+        "Provide final thoughts",
       ],
     },
   ],
@@ -163,7 +183,7 @@ function customizeOutlineForTopic(
 ): OutlineSection[] {
   // For technology-related topics
   if (topic.toLowerCase().includes("technology") || topic.toLowerCase().includes("digital")) {
-    if (testType === "ielts-task2") {
+    if (testType === "opinion") {
       return [
         {
           title: "Introduction",
@@ -199,7 +219,7 @@ function customizeOutlineForTopic(
   
   // For education-related topics
   if (topic.toLowerCase().includes("education") || topic.toLowerCase().includes("school") || topic.toLowerCase().includes("student")) {
-    if (testType === "ielts-task2" || testType === "toefl") {
+    if (testType === "opinion" || testType === "discussion") {
       return [
         {
           title: "Introduction",
@@ -249,5 +269,9 @@ export function getOutline(
   topic: string
 ): OutlineSection[] {
   const baseOutline = outlinesByTestType[testType];
+  if (!baseOutline) {
+    // Return a default outline structure if testType is not found
+    return outlinesByTestType["opinion"] || [];
+  }
   return customizeOutlineForTopic(baseOutline, testType, topic);
 }
