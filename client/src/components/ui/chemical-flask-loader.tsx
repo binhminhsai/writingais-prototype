@@ -46,11 +46,13 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       const elapsed = (performance.now() - startTime) / 1000; // Convert to seconds
       const remaining = Math.max(0, Math.ceil(duration - elapsed));
       
+      console.log(`Countdown: ${remaining} (elapsed: ${elapsed.toFixed(1)}s)`); // Debug log
       setCountdown(remaining);
       
       if (remaining > 0) {
         countdownRAF = requestAnimationFrame(updateCountdown);
       } else {
+        console.log('Countdown complete, calling onComplete'); // Debug log
         // Call onComplete immediately when countdown reaches 0
         onComplete();
       }
