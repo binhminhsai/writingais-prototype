@@ -397,9 +397,7 @@ export default function WritingTask1() {
       </div>
       {/* Topic/Question */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Topic/Question
-        </label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">Enter question</label>
         <Textarea
           placeholder="- Select a question type and band level, then click the 'Get question' button to get your question.
 - Enter your own question and upload an image of the task (chart, graph, table, etc.), then click the 'Use my question' button to continue."
