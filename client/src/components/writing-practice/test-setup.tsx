@@ -53,7 +53,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
   const handleGenerateTopic = () => {
     const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
     if (!textareaValue.trim()) {
-      setErrorMessage("Vui lòng nhập Topic/Question trước khi nhấn nút Generate question");
+      setErrorMessage('Please enter your topic or question before clicking the "Generate question" button.');
       return;
     }
     setErrorMessage("");
