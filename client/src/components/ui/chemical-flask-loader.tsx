@@ -26,6 +26,9 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       return;
     }
 
+    // Record the start time using performance.now() for precise timing
+    const startTime = performance.now();
+    
     // Start the liquid filling animation immediately - spread over duration seconds
     const liquidTimer = setInterval(() => {
       setLiquidLevel(prev => {
@@ -37,18 +40,24 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       });
     }, 100);
 
-    // Countdown timer - decrease every second, starting immediately
-    const countdownTimer = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(countdownTimer);
-          // Call onComplete immediately when countdown reaches 0
-          setTimeout(() => onComplete(), 0);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    // Use requestAnimationFrame for precise countdown timing
+    let countdownRAF: number;
+    const updateCountdown = () => {
+      const elapsed = (performance.now() - startTime) / 1000; // Convert to seconds
+      const remaining = Math.max(0, Math.ceil(duration - elapsed));
+      
+      setCountdown(remaining);
+      
+      if (remaining > 0) {
+        countdownRAF = requestAnimationFrame(updateCountdown);
+      } else {
+        // Call onComplete immediately when countdown reaches 0
+        onComplete();
+      }
+    };
+    
+    // Start the countdown immediately
+    countdownRAF = requestAnimationFrame(updateCountdown);
 
     // Change messages every (duration / 4) seconds to cycle through all messages
     const messageInterval = (duration / messages.length) * 1000;
@@ -58,8 +67,10 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
 
     return () => {
       clearInterval(liquidTimer);
-      clearInterval(countdownTimer);
       clearInterval(messageTimer);
+      if (countdownRAF) {
+        cancelAnimationFrame(countdownRAF);
+      }
     };
   }, [isVisible, onComplete, duration, messages.length]);
 
@@ -183,7 +194,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
 
       {/* Countdown Timer */}
       {countdown > 0 && (
-        <div className="text-[#1fb2aa] text-center text-sm font-medium mb-2">
+        <div className="text-[#1fb2aa] text-center text-sm font-medium mb-2 tabular-nums">
           {countdown}
         </div>
       )}
