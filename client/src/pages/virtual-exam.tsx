@@ -134,8 +134,8 @@ export default function VirtualExam() {
           </div>
 
           {/* Main exam content */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6 min-h-[600px]">
-            <TabsContent value="part1" className="mt-0">
+          <div className="bg-white border border-gray-200 rounded-lg p-6 h-[600px] lg:h-[650px]">
+            <TabsContent value="part1" className="mt-0 h-full">
               <ExamContent
                 task={TASK_DATA.part1}
                 text={part1Text}
@@ -144,7 +144,7 @@ export default function VirtualExam() {
               />
             </TabsContent>
             
-            <TabsContent value="part2" className="mt-0">
+            <TabsContent value="part2" className="mt-0 h-full">
               <ExamContent
                 task={TASK_DATA.part2}
                 text={part2Text}
@@ -191,9 +191,9 @@ interface ExamContentProps {
 
 function ExamContent({ task, text, onTextChange, wordCount }: ExamContentProps) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+    <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 h-full">
       {/* Left side - Task prompt */}
-      <div className="space-y-4">
+      <div className="space-y-4 mb-6 lg:mb-0">
         <div className="prose prose-sm max-w-none">
           <div className="whitespace-pre-line text-gray-800 leading-relaxed">
             {task.prompt.text}
@@ -218,17 +218,18 @@ function ExamContent({ task, text, onTextChange, wordCount }: ExamContentProps) 
       </div>
 
       {/* Right side - Writing area */}
-      <div className="space-y-4">
+      <div className="relative flex-1 flex flex-col lg:h-full">
         <Textarea
           value={text}
           onChange={(e) => onTextChange(e.target.value)}
           placeholder="Type your essay here"
-          className="min-h-96 resize-none text-base leading-relaxed border-gray-300 focus:border-gray-400 focus:ring-1 focus:ring-gray-400"
+          className="flex-1 resize-none text-base leading-relaxed border-gray-300 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 pb-10 min-h-[300px] lg:min-h-0"
+          style={{ paddingBottom: '40px' }}
         />
         
-        {/* Word count */}
-        <div className="text-right">
-          <span className="text-sm text-gray-600">
+        {/* Word count - positioned at bottom-left with responsive positioning */}
+        <div className="absolute bottom-2 left-3 z-10">
+          <span className="text-sm text-gray-600 bg-white/90 px-1 rounded">
             Word count: {wordCount}
           </span>
         </div>
