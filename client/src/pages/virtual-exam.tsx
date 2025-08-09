@@ -219,19 +219,20 @@ function ExamContent({ task, text, onTextChange, wordCount }: ExamContentProps) 
 
       {/* Right side - Writing area */}
       <div className="relative flex-1 flex flex-col lg:h-full">
-        <Textarea
-          value={text}
-          onChange={(e) => onTextChange(e.target.value)}
-          placeholder="Type your essay here"
-          className="flex-1 resize-none text-base leading-relaxed border-gray-300 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 pb-10 min-h-[300px] lg:min-h-0"
-          style={{ paddingBottom: '40px' }}
-        />
-        
-        {/* Word count - positioned at bottom-left with responsive positioning */}
-        <div className="absolute bottom-2 left-3 z-10">
-          <span className="text-sm text-gray-600 bg-white/90 px-1 rounded">
-            Word count: {wordCount}
-          </span>
+        <div className="relative flex-1">
+          <Textarea
+            value={text}
+            onChange={(e) => onTextChange(e.target.value)}
+            placeholder="Type your essay here"
+            className="w-full h-full resize-none text-base leading-relaxed border-gray-300 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 pb-8 min-h-[300px] lg:min-h-0"
+          />
+          
+          {/* Word count - positioned inside textarea at bottom-left */}
+          <div className="absolute bottom-3 left-3 pointer-events-none">
+            <span className="text-sm text-gray-500 bg-white/80 px-2 py-1 rounded shadow-sm">
+              Word count: {wordCount}
+            </span>
+          </div>
         </div>
       </div>
     </div>
