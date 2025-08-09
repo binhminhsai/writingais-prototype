@@ -111,7 +111,7 @@ export default function VirtualExam() {
           <TabsList className="grid w-full grid-cols-2 mb-6 bg-white border border-gray-200 rounded-lg p-1">
             <TabsTrigger 
               value="part1" 
-              className="flex-1 py-3 text-base font-medium rounded-md data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900"
+              className="flex-1 py-3 text-base font-medium rounded-md data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900 bg-[#1fb2aae6] text-[#ffffffff] pt-[3.8px] pb-[3.8px] mt-[0px] mb-[0px] ml-[0px] mr-[0px]"
             >
               PART 1
             </TabsTrigger>
