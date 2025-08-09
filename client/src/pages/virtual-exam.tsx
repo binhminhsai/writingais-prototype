@@ -191,7 +191,7 @@ interface ExamContentProps {
 
 function ExamContent({ task, text, onTextChange, wordCount }: ExamContentProps) {
   return (
-    <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 h-full">
+    <div className="relative flex flex-col lg:grid lg:grid-cols-2 lg:gap-6 h-full">
       {/* Left side - Task prompt */}
       <div className="space-y-4 mb-6 lg:mb-0">
         <div className="prose prose-sm max-w-none">
@@ -218,22 +218,20 @@ function ExamContent({ task, text, onTextChange, wordCount }: ExamContentProps) 
       </div>
 
       {/* Right side - Writing area */}
-      <div className="relative flex-1 flex flex-col lg:h-full">
-        <div className="relative flex-1">
-          <Textarea
-            value={text}
-            onChange={(e) => onTextChange(e.target.value)}
-            placeholder="Type your essay here"
-            className="w-full h-full resize-none text-base leading-relaxed border-gray-300 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 pb-8 min-h-[300px] lg:min-h-0"
-          />
-          
-          {/* Word count - positioned inside textarea at bottom-left */}
-          <div className="absolute bottom-3 left-3 pointer-events-none">
-            <span className="text-sm text-gray-500 bg-white/80 px-2 py-1 rounded shadow-sm">
-              Word count: {wordCount}
-            </span>
-          </div>
-        </div>
+      <div className="flex-1 flex flex-col lg:h-full">
+        <Textarea
+          value={text}
+          onChange={(e) => onTextChange(e.target.value)}
+          placeholder="Type your essay here"
+          className="flex-1 resize-none text-base leading-relaxed border-gray-300 focus:border-gray-400 focus:ring-1 focus:ring-gray-400 min-h-[300px] lg:min-h-0 mb-10"
+        />
+      </div>
+
+      {/* Word count - positioned at bottom-left of container, aligned with textarea */}
+      <div className="absolute bottom-3 left-0 lg:left-1/2 lg:ml-3">
+        <span className="text-sm text-gray-600">
+          Word count: {wordCount}
+        </span>
       </div>
     </div>
   );
