@@ -1,73 +1,238 @@
-import { Construction } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Calendar, ChevronLeft, ChevronRight, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+
+// Mock data for tasks
+const TASK_DATA = {
+  part1: {
+    title: "Part 1",
+    instruction: "You should spend about 20 minutes on this task. Write at least 150 words.",
+    prompt: {
+      text: "The table below shows the percentage of students attending four different types of schools in 2000, 2005, and 2010.\n\nSummarize the information by selecting and reporting the main features, and make comparisons where relevant.",
+      hasChart: true,
+      chartDescription: "A table showing school attendance percentages across three years"
+    }
+  },
+  part2: {
+    title: "Part 2", 
+    instruction: "You should spend about 40 minutes on this task. Write at least 250 words.",
+    prompt: {
+      text: "Some people believe that governments should invest more in public transportation to reduce traffic congestion and pollution. Others argue that individuals should take responsibility for their own transportation choices (e.g., using bicycles or electric cars).\n\nDiscuss both views and give your own opinion.",
+      hasChart: false,
+      chartDescription: ""
+    }
+  }
+};
 
 export default function VirtualExam() {
+  const [activeTab, setActiveTab] = useState("part1");
+  const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutes in seconds
+  const [part1Text, setPart1Text] = useState("");
+  const [part2Text, setPart2Text] = useState("");
+  
+  // Simple word count function
+  const countWords = (text: string): number => {
+    const trimmedText = text.trim();
+    return trimmedText ? trimmedText.split(/\s+/).length : 0;
+  };
+  
+  // Current text and word count based on active tab
+  const currentText = activeTab === "part1" ? part1Text : part2Text;
+  const currentWordCount = activeTab === "part1" ? countWords(part1Text) : countWords(part2Text);
+  const currentTask = activeTab === "part1" ? TASK_DATA.part1 : TASK_DATA.part2;
+  
+  // Timer effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 0) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Format time display
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes} minutes left`;
+  };
+
+  const handleTextChange = (value: string) => {
+    if (activeTab === "part1") {
+      setPart1Text(value);
+    } else {
+      setPart2Text(value);
+    }
+  };
+
+  const handleSubmit = () => {
+    // Handle exam submission
+    console.log("Exam submitted", { part1Text, part2Text });
+  };
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-4">
-      <div className="max-w-2xl mx-auto text-center space-y-8">
-        {/* Icon */}
-        <div className="flex justify-center">
-          <div className="p-6 bg-gradient-to-r from-teal-100 to-teal-50 rounded-full shadow-lg">
-            <Construction className="h-16 w-16 text-teal-600" />
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="space-y-4">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            📘 Virtual Exam is coming soon!
-          </h1>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header with timer and submit button */}
+      <div className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex-1"></div>
           
-          <p className="text-lg text-gray-600 leading-relaxed max-w-xl mx-auto">
-            We're working on a comprehensive exam simulation feature to enhance your writing practice. Stay tuned!
-          </p>
-        </div>
+          {/* Timer - centered */}
+          <div className="flex items-center justify-center">
+            <h1 className="text-2xl font-bold text-gray-900">
+              {formatTime(timeLeft)}
+            </h1>
+          </div>
 
-        {/* Additional Information */}
-        <div className="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-xl p-6 border border-teal-100 shadow-sm">
-          <h2 className="text-xl font-semibold text-teal-800 mb-3">
-            What's Coming
-          </h2>
-          <ul className="text-sm text-teal-700 space-y-2 text-left max-w-md mx-auto">
-            <li className="flex items-start gap-2">
-              <span className="text-teal-500 mt-1">•</span>
-              <span>Full IELTS exam simulation with timing</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-teal-500 mt-1">•</span>
-              <span>Real exam conditions and interface</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-teal-500 mt-1">•</span>
-              <span>Comprehensive scoring and feedback</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-teal-500 mt-1">•</span>
-              <span>Performance analytics and improvement tips</span>
-            </li>
-          </ul>
-        </div>
-
-        {/* Back to Practice */}
-        <div className="pt-4">
-          <p className="text-sm text-gray-500 mb-4">
-            In the meantime, continue practicing with our available tools:
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a 
-              href="/writing-practice" 
-              className="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+          {/* Submit button - right aligned */}
+          <div className="flex-1 flex justify-end">
+            <Button 
+              onClick={handleSubmit}
+              className="bg-white hover:bg-gray-50 text-gray-900 border border-gray-300 shadow-sm px-6 py-2 rounded-lg"
             >
-              Writing Practice
-            </a>
-            <a 
-              href="/essay-grading" 
-              className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
-            >
-              Essay Grading
-            </a>
+              <Calendar className="h-4 w-4 mr-2" />
+              Submit
+            </Button>
           </div>
         </div>
       </div>
-    </main>
+
+      {/* Main content */}
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        {/* Tab navigation */}
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-6 bg-white border border-gray-200 rounded-lg p-1">
+            <TabsTrigger 
+              value="part1" 
+              className="flex-1 py-3 text-base font-medium rounded-md data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900"
+            >
+              PART 1
+            </TabsTrigger>
+            <TabsTrigger 
+              value="part2" 
+              className="flex-1 py-3 text-base font-medium rounded-md data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900"
+            >
+              PART 2
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Task instruction bar */}
+          <div className="mb-4 bg-gray-100 border border-gray-200 rounded-lg p-4">
+            <h2 className="text-lg font-semibold text-gray-900 mb-1">
+              {currentTask.title}
+            </h2>
+            <p className="text-gray-700">
+              {currentTask.instruction}
+            </p>
+          </div>
+
+          {/* Main exam content */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6 min-h-[600px]">
+            <TabsContent value="part1" className="mt-0">
+              <ExamContent
+                task={TASK_DATA.part1}
+                text={part1Text}
+                onTextChange={setPart1Text}
+                wordCount={countWords(part1Text)}
+              />
+            </TabsContent>
+            
+            <TabsContent value="part2" className="mt-0">
+              <ExamContent
+                task={TASK_DATA.part2}
+                text={part2Text}
+                onTextChange={setPart2Text}
+                wordCount={countWords(part2Text)}
+              />
+            </TabsContent>
+          </div>
+
+          {/* Navigation arrows */}
+          <div className="flex justify-end mt-4 space-x-2">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setActiveTab("part1")}
+              disabled={activeTab === "part1"}
+              className="rounded-full p-2"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setActiveTab("part2")}
+              disabled={activeTab === "part2"}
+              className="rounded-full p-2"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </Tabs>
+      </div>
+    </div>
+  );
+}
+
+// Individual exam content component
+interface ExamContentProps {
+  task: typeof TASK_DATA.part1;
+  text: string;
+  onTextChange: (value: string) => void;
+  wordCount: number;
+}
+
+function ExamContent({ task, text, onTextChange, wordCount }: ExamContentProps) {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+      {/* Left side - Task prompt */}
+      <div className="space-y-4">
+        <div className="prose prose-sm max-w-none">
+          <div className="whitespace-pre-line text-gray-800 leading-relaxed">
+            {task.prompt.text}
+          </div>
+        </div>
+        
+        {/* Chart placeholder for Part 1 */}
+        {task.prompt.hasChart && (
+          <div className="border-2 border-gray-300 rounded-lg p-8 bg-gray-50 flex items-center justify-center h-64">
+            <div className="text-center text-gray-500">
+              <FileText className="h-12 w-12 mx-auto mb-2" />
+              <p className="text-sm">{task.prompt.chartDescription}</p>
+              <div className="mt-4 grid grid-cols-2 gap-4 max-w-sm mx-auto">
+                <div className="h-16 bg-gray-200 rounded"></div>
+                <div className="h-16 bg-gray-200 rounded"></div>
+                <div className="h-16 bg-gray-200 rounded"></div>
+                <div className="h-16 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Right side - Writing area */}
+      <div className="space-y-4">
+        <Textarea
+          value={text}
+          onChange={(e) => onTextChange(e.target.value)}
+          placeholder="Type your essay here"
+          className="min-h-96 resize-none text-base leading-relaxed border-gray-300 focus:border-gray-400 focus:ring-1 focus:ring-gray-400"
+        />
+        
+        {/* Word count */}
+        <div className="text-right">
+          <span className="text-sm text-gray-600">
+            Word count: {wordCount}
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }

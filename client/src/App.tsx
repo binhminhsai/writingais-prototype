@@ -30,7 +30,7 @@ function Router() {
           <Route path="/blog" component={Blog} />
           <Route path="/wordpress-demo" component={WordPressDemo} />
           <Route path="/login" component={Login} />
-          <Route path="/wordcraft" component={VirtualExam} />
+          <Route path="/virtual-exam" component={VirtualExam} />
           <Route path="/progress-tracking" component={ProgressTracking} />
           <Route path="/essay-grading" component={EssayGrading} />
           <Route path="/about" component={NotFound} />
