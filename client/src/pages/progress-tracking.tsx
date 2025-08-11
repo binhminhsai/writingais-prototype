@@ -2,99 +2,111 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ChevronDown, ChevronUp, Star, Target, Trophy, Calendar, Clock } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown, ChevronUp, Star, Target, Trophy, Calendar, Clock, Search, Filter } from "lucide-react";
+import { useState, useMemo } from "react";
 
 interface EssayData {
-  week: string;
+  time: string;
   date: string;
   topic: string;
   score: number;
   isMarked: boolean;
   essayType: string;
+  taskType: "Task 1" | "Task 2";
 }
 
 const sampleEssays: EssayData[] = [
   {
-    week: "W1",
+    time: "45 min",
     date: "02/06/25",
     topic: "The impact of technology on employment",
     score: 5.0,
     isMarked: true,
-    essayType: "Opinion"
+    essayType: "Opinion",
+    taskType: "Task 2"
   },
   {
-    week: "W1",
+    time: "40 min",
     date: "04/06/25",
     topic: "The role of government in environmental protection",
     score: 5.0,
     isMarked: true,
-    essayType: "Discussion"
+    essayType: "Discussion",
+    taskType: "Task 2"
   },
   {
-    week: "W1",
+    time: "20 min",
     date: "04/06/25",
-    topic: "The influence of social media on human behavior",
+    topic: "The chart shows the percentage of households with different types of technology",
     score: 5.5,
     isMarked: false,
-    essayType: "Advantage/Disadvantage"
+    essayType: "Bar Chart",
+    taskType: "Task 1"
   },
   {
-    week: "W2",
+    time: "42 min",
     date: "10/06/25",
     topic: "The importance of university education for career success",
     score: 5.5,
     isMarked: true,
-    essayType: "Cause & Solution"
+    essayType: "Cause & Solution",
+    taskType: "Task 2"
   },
   {
-    week: "W2",
+    time: "18 min",
     date: "12/06/25",
-    topic: "Should governments invest more in public transportation than roads?",
+    topic: "The process of making chocolate from cocoa beans",
     score: 6.0,
     isMarked: false,
-    essayType: "Opinion"
+    essayType: "Process Diagram",
+    taskType: "Task 1"
   },
   {
-    week: "W2",
+    time: "38 min",
     date: "14/06/25",
     topic: "Advantages and disadvantages of online education",
     score: 5.5,
     isMarked: true,
-    essayType: "Advantage/Disadvantage"
+    essayType: "Advantage/Disadvantage",
+    taskType: "Task 2"
   },
   {
-    week: "W3",
+    time: "22 min",
     date: "17/06/25",
-    topic: "The role of art in modern society",
+    topic: "The line graph shows population growth in three cities",
     score: 6.5,
     isMarked: false,
-    essayType: "Discussion"
+    essayType: "Line Graph",
+    taskType: "Task 1"
   },
   {
-    week: "W3",
+    time: "44 min",
     date: "18/06/25",
     topic: "Job satisfaction or salary – which matters more?",
     score: 7.0,
     isMarked: true,
-    essayType: "Opinion"
+    essayType: "Opinion",
+    taskType: "Task 2"
   },
   {
-    week: "W3",
+    time: "19 min",
     date: "19/06/25",
-    topic: "Causes and solutions of urban air pollution",
+    topic: "The table compares energy consumption in different countries",
     score: 6.0,
     isMarked: false,
-    essayType: "Problem/Solution"
+    essayType: "Table",
+    taskType: "Task 1"
   },
   {
-    week: "W4",
+    time: "46 min",
     date: "21/06/25",
     topic: "Is it better to study abroad or locally?",
     score: 7.5,
     isMarked: true,
-    essayType: "Advantage/Disadvantage"
+    essayType: "Advantage/Disadvantage",
+    taskType: "Task 2"
   }
 ];
 
@@ -129,17 +141,52 @@ export default function ProgressTracking() {
   const [showBasicMistakes, setShowBasicMistakes] = useState(false);
   const [essays, setEssays] = useState<EssayData[]>(sampleEssays);
   
-  // New dropdown states
-  const [sortOrder, setSortOrder] = useState("Newest");
-  const [scoreSort, setScoreSort] = useState("Sort by Score");
-  const [essayTypeFilter, setEssayTypeFilter] = useState("Essay Type");
-  const [markFilter, setMarkFilter] = useState("Sort by Mark");
+  // Filter states
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("Mới nhất");
+  const [scoreSort, setScoreSort] = useState("Điểm số");
+  const [essayTypeFilter, setEssayTypeFilter] = useState("Dạng bài viết");
+  const [showStarredOnly, setShowStarredOnly] = useState(false);
 
   const toggleEssayMarked = (index: number) => {
     setEssays(prev => prev.map((essay, i) => 
       i === index ? { ...essay, isMarked: !essay.isMarked } : essay
     ));
   };
+
+  // Filtered and sorted essays
+  const filteredEssays = useMemo(() => {
+    let filtered = essays.filter(essay => {
+      // Search filter
+      const matchesSearch = essay.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           essay.essayType.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      // Essay type filter
+      const matchesType = essayTypeFilter === "Dạng bài viết" || 
+                         essay.essayType === essayTypeFilter ||
+                         essay.taskType === essayTypeFilter;
+      
+      // Starred filter
+      const matchesStarred = !showStarredOnly || essay.isMarked;
+      
+      return matchesSearch && matchesType && matchesStarred;
+    });
+
+    // Sort the filtered essays
+    if (sortOrder === "Cũ nhất") {
+      filtered.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    } else {
+      filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }
+
+    if (scoreSort === "Điểm cao đến thấp") {
+      filtered.sort((a, b) => b.score - a.score);
+    } else if (scoreSort === "Điểm thấp đến cao") {
+      filtered.sort((a, b) => a.score - b.score);
+    }
+
+    return filtered;
+  }, [essays, searchTerm, sortOrder, scoreSort, essayTypeFilter, showStarredOnly]);
 
   const overallScore = 7.5;
   const taskResponse = 7.5;
@@ -384,69 +431,78 @@ export default function ProgressTracking() {
             <Card className="flex flex-col h-full">
               <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-center">
-                  <CardTitle className="text-lg text-center">IELTS Writing Task 2 Progress Tracker</CardTitle>
+                  <CardTitle className="text-lg text-center">Lịch sử bài viết IELTS Writing</CardTitle>
                 </div>
                 
-                {/* 4 Dropdown Filters */}
-                <div className="grid grid-cols-4 gap-3 mt-4">
-                  {/* Dropdown 1: Sort Order */}
-                  <div>
-                    <Select value={sortOrder} onValueChange={setSortOrder}>
-                      <SelectTrigger className="w-full text-left">
-                        <span className="flex-1 text-left">{sortOrder}</span>
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Newest">Newest</SelectItem>
-                        <SelectItem value="Oldest">Oldest</SelectItem>
-                      </SelectContent>
-                    </Select>
+                {/* Search Bar */}
+                <div className="mt-4">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      placeholder="Tìm kiếm theo chủ đề hoặc dạng bài viết..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10"
+                    />
                   </div>
+                </div>
 
-                  {/* Dropdown 2: Score Sort */}
-                  <div>
-                    <Select value={scoreSort} onValueChange={setScoreSort}>
-                      <SelectTrigger className="w-full text-left">
-                        <span className="flex-1 text-left">{scoreSort}</span>
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Sort by Score">Sort by Score</SelectItem>
-                        <SelectItem value="Ascending Score">Ascending Score</SelectItem>
-                        <SelectItem value="Descending Score">Descending Score</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                {/* Filter Section */}
+                <div className="flex flex-wrap gap-3 mt-4">
+                  {/* Sort Order */}
+                  <Select value={sortOrder} onValueChange={setSortOrder}>
+                    <SelectTrigger className="w-auto min-w-[120px]">
+                      <span className="flex-1 text-left">{sortOrder}</span>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Mới nhất">Mới nhất</SelectItem>
+                      <SelectItem value="Cũ nhất">Cũ nhất</SelectItem>
+                    </SelectContent>
+                  </Select>
 
-                  {/* Dropdown 3: Essay Type */}
-                  <div>
-                    <Select value={essayTypeFilter} onValueChange={setEssayTypeFilter}>
-                      <SelectTrigger className="w-full text-left">
-                        <span className="flex-1 text-left">{essayTypeFilter}</span>
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Essay Type">Essay Type</SelectItem>
-                        <SelectItem value="Opinion">Opinion</SelectItem>
-                        <SelectItem value="Discussion">Discussion</SelectItem>
-                        <SelectItem value="Advantage/Disadvantage">Advantage/Disadvantage</SelectItem>
-                        <SelectItem value="Problem/Solution">Problem/Solution</SelectItem>
-                        <SelectItem value="Two-part Question">Two-part Question</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  {/* Score Sort */}
+                  <Select value={scoreSort} onValueChange={setScoreSort}>
+                    <SelectTrigger className="w-auto min-w-[140px]">
+                      <span className="flex-1 text-left">{scoreSort}</span>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Điểm số">Điểm số</SelectItem>
+                      <SelectItem value="Điểm cao đến thấp">Điểm cao đến thấp</SelectItem>
+                      <SelectItem value="Điểm thấp đến cao">Điểm thấp đến cao</SelectItem>
+                    </SelectContent>
+                  </Select>
 
-                  {/* Dropdown 4: Mark Filter */}
-                  <div>
-                    <Select value={markFilter} onValueChange={setMarkFilter}>
-                      <SelectTrigger className="w-full text-left">
-                        <span className="flex-1 text-left">{markFilter}</span>
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Sort by Mark">Sort by Mark</SelectItem>
-                        <SelectItem value="Mixed">Mixed</SelectItem>
-                        <SelectItem value="Marked">Marked</SelectItem>
-                        <SelectItem value="Unmarked">Unmarked</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  {/* Essay Type Filter */}
+                  <Select value={essayTypeFilter} onValueChange={setEssayTypeFilter}>
+                    <SelectTrigger className="w-auto min-w-[140px]">
+                      <span className="flex-1 text-left">{essayTypeFilter}</span>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Dạng bài viết">Dạng bài viết</SelectItem>
+                      <SelectItem value="Task 1">Task 1</SelectItem>
+                      <SelectItem value="Task 2">Task 2</SelectItem>
+                      <SelectItem value="Line Graph">Line Graph</SelectItem>
+                      <SelectItem value="Bar Chart">Bar Chart</SelectItem>
+                      <SelectItem value="Table">Table</SelectItem>
+                      <SelectItem value="Process Diagram">Process Diagram</SelectItem>
+                      <SelectItem value="Opinion">Opinion</SelectItem>
+                      <SelectItem value="Discussion">Discussion</SelectItem>
+                      <SelectItem value="Advantage/Disadvantage">Advantage/Disadvantage</SelectItem>
+                      <SelectItem value="Problem/Solution">Problem/Solution</SelectItem>
+                      <SelectItem value="Cause & Solution">Cause & Solution</SelectItem>
+                    </SelectContent>
+                  </Select>
+
+                  {/* Starred Filter Button */}
+                  <Button
+                    variant={showStarredOnly ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setShowStarredOnly(!showStarredOnly)}
+                    className="flex items-center gap-2"
+                  >
+                    <Star className={`w-4 h-4 ${showStarredOnly ? 'fill-current' : ''}`} />
+                    Đã đánh dấu
+                  </Button>
                 </div>
                 
               </CardHeader>
@@ -457,25 +513,39 @@ export default function ProgressTracking() {
                       <table className="w-full border-collapse table-fixed">
                         <thead className="sticky top-0 bg-white z-10">
                           <tr className="border-b">
-                            <th className="py-3 px-4 font-medium w-20 text-left">Week</th>
                             <th className="py-3 px-4 font-medium w-24 text-left">Date</th>
                             <th className="py-3 px-4 font-medium text-left">Topic</th>
+                            <th className="py-3 px-4 font-medium w-20 text-center">Time</th>
                             <th className="py-3 px-4 font-medium w-16 text-center">Score</th>
-                            <th className="py-3 px-4 font-medium w-20 text-center">Status</th>
+                            <th className="py-3 px-4 font-medium w-16 text-center">
+                              <Star className="w-4 h-4 mx-auto" />
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
-                          {essays.map((essay, index) => (
+                          {filteredEssays.map((essay, index) => (
                             <tr key={index} className="border-b hover:bg-gray-50">
-                              <td className="py-4 px-4">{essay.week}</td>
                               <td className="py-4 px-4">{essay.date}</td>
-                              <td className="py-4 px-4 text-sm truncate">{essay.topic}</td>
+                              <td className="py-4 px-4">
+                                <div>
+                                  <div className="text-sm truncate">{essay.topic}</div>
+                                  <div className="text-xs text-gray-500 mt-1">
+                                    {essay.taskType} - {essay.essayType}
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="py-4 px-4 text-center text-sm">{essay.time}</td>
                               <td className="py-4 px-4 text-center">
-                                {essay.score}
+                                <Badge 
+                                  variant={essay.score >= 7 ? "default" : essay.score >= 6 ? "secondary" : "destructive"}
+                                  className="font-medium"
+                                >
+                                  {essay.score}
+                                </Badge>
                               </td>
                               <td className="py-4 px-4 text-center">
                                 <button
-                                  onClick={() => toggleEssayMarked(index)}
+                                  onClick={() => toggleEssayMarked(essays.findIndex(e => e === essay))}
                                   className="p-1 hover:bg-gray-100 rounded transition-colors"
                                 >
                                   <Star
@@ -491,6 +561,12 @@ export default function ProgressTracking() {
                           ))}
                         </tbody>
                       </table>
+                      
+                      {filteredEssays.length === 0 && (
+                        <div className="text-center text-gray-500 py-8">
+                          Không tìm thấy bài viết nào phù hợp với bộ lọc
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
