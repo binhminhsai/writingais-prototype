@@ -338,12 +338,25 @@ export default function ProgressTracking() {
       const matchesSearch = essay.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            essay.essayType.toLowerCase().includes(searchTerm.toLowerCase());
       
-      // Task type filter
+      // Task type filter logic
       let matchesType = true;
-      if (task1TypeFilter !== "Task 1" && essay.taskType === "Task 1") {
-        matchesType = essay.essayType === task1TypeFilter;
-      } else if (task2TypeFilter !== "Task 2" && essay.taskType === "Task 2") {
-        matchesType = essay.essayType === task2TypeFilter;
+      
+      // If both are default values, show all essays
+      if (task1TypeFilter === "Task 1" && task2TypeFilter === "Task 2") {
+        matchesType = true;
+      }
+      // If Task 1 is selected (default) but Task 2 has specific filter
+      else if (task1TypeFilter === "Task 1" && task2TypeFilter !== "Task 2") {
+        matchesType = essay.taskType === "Task 2" && essay.essayType === task2TypeFilter;
+      }
+      // If Task 2 is selected (default) but Task 1 has specific filter  
+      else if (task2TypeFilter === "Task 2" && task1TypeFilter !== "Task 1") {
+        matchesType = essay.taskType === "Task 1" && essay.essayType === task1TypeFilter;
+      }
+      // If both have specific filters, match either one
+      else if (task1TypeFilter !== "Task 1" && task2TypeFilter !== "Task 2") {
+        matchesType = (essay.taskType === "Task 1" && essay.essayType === task1TypeFilter) ||
+                     (essay.taskType === "Task 2" && essay.essayType === task2TypeFilter);
       }
       
       // Starred filter
