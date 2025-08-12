@@ -717,7 +717,7 @@ export default function ProgressTracking() {
                     onValueChange={setSelectedEssayType}
                     disabled={selectedTask === "Tất cả"}
                   >
-                    <SelectTrigger className={`w-auto min-w-[140px] ${selectedTask === "Tất cả" ? "opacity-50 cursor-not-allowed" : ""}`}>
+                    <SelectTrigger className={`w-auto min-w-[180px] ${selectedTask === "Tất cả" ? "opacity-50 cursor-not-allowed" : ""}`}>
                       <span className="flex-1 text-left">{selectedEssayType}</span>
                     </SelectTrigger>
                     <SelectContent>
