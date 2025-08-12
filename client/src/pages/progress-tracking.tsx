@@ -950,31 +950,23 @@ export default function ProgressTracking() {
                             </Label>
                             <div className="col-span-3 flex items-center gap-2">
                               <Input
-                                id="exam-date"
                                 type="text"
                                 placeholder="DD/MM/YY"
                                 value={examDate}
-                                onChange={(e) => setExamDate(e.target.value)}
                                 className="flex-1"
                                 readOnly
                               />
-                              <input
-                                type="date"
-                                min={new Date().toISOString().split('T')[0]}
-                                value={formatDateForInput(examDate)}
-                                onChange={(e) => handleDateChange(e.target.value)}
-                                className="absolute opacity-0 w-0 h-0"
-                                id="hidden-date-picker"
-                              />
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                className="h-auto p-1"
-                                onClick={() => document.getElementById('hidden-date-picker')?.click()}
-                              >
-                                <Calendar className="w-4 h-4 text-gray-400 hover:text-gray-600" />
-                              </Button>
+                              <div className="relative">
+                                <input
+                                  type="date"
+                                  min={new Date().toISOString().split('T')[0]}
+                                  value={formatDateForInput(examDate)}
+                                  onChange={(e) => handleDateChange(e.target.value)}
+                                  className="absolute inset-0 opacity-0 cursor-pointer"
+                                  style={{ width: '24px', height: '24px' }}
+                                />
+                                <Calendar className="w-6 h-6 text-gray-400 hover:text-gray-600 cursor-pointer" />
+                              </div>
                             </div>
                           </div>
                         </div>
