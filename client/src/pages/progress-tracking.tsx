@@ -951,13 +951,25 @@ export default function ProgressTracking() {
                             <div className="col-span-3 flex items-center gap-2">
                               <Input
                                 id="exam-date"
+                                type="text"
+                                placeholder="DD/MM/YY"
+                                value={examDate}
+                                onChange={(e) => setExamDate(e.target.value)}
+                                className="flex-1"
+                                readOnly
+                              />
+                              <input
                                 type="date"
                                 min={new Date().toISOString().split('T')[0]}
                                 value={formatDateForInput(examDate)}
                                 onChange={(e) => handleDateChange(e.target.value)}
-                                className="flex-1"
+                                className="hidden"
+                                id="hidden-date-picker"
                               />
-                              <Calendar className="w-4 h-4 text-gray-400" />
+                              <Calendar 
+                                className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600" 
+                                onClick={() => document.getElementById('hidden-date-picker')?.click()}
+                              />
                             </div>
                           </div>
                         </div>
