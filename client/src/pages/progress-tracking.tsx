@@ -948,17 +948,14 @@ export default function ProgressTracking() {
                             <Label htmlFor="exam-date" className="text-right">
                               Ngày thi
                             </Label>
-                            <div className="col-span-3 relative">
-                              <Input
-                                id="exam-date"
-                                type="date"
-                                min={new Date().toISOString().split('T')[0]}
-                                value={formatDateForInput(examDate)}
-                                onChange={(e) => handleDateChange(e.target.value)}
-                                className="w-full"
-                              />
-                              <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-                            </div>
+                            <Input
+                              id="exam-date"
+                              type="date"
+                              min={new Date().toISOString().split('T')[0]}
+                              value={formatDateForInput(examDate)}
+                              onChange={(e) => handleDateChange(e.target.value)}
+                              className="col-span-3"
+                            />
                           </div>
                         </div>
                         <DialogFooter>
