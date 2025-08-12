@@ -4,7 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ChevronDown, ChevronUp, Star, Target, Trophy, Calendar, Clock, Search, Filter } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { ChevronDown, ChevronUp, Star, Target, Trophy, Calendar, Clock, Search, Filter, Settings } from "lucide-react";
 import { useState, useMemo } from "react";
 
 interface EssayData {
@@ -324,6 +326,27 @@ export default function ProgressTracking() {
   const [selectedTask, setSelectedTask] = useState("Tất cả");
   const [selectedEssayType, setSelectedEssayType] = useState("Loại bài viết");
   const [showStarredOnly, setShowStarredOnly] = useState(false);
+  
+  // Goals popup states
+  const [showGoalsDialog, setShowGoalsDialog] = useState(false);
+  const [targetScore, setTargetScore] = useState("8.0");
+  const [examDate, setExamDate] = useState("13/01/26");
+  
+  // Save goals function
+  const handleSaveGoals = () => {
+    setShowGoalsDialog(false);
+    // Goals are automatically saved in state
+  };
+  
+  // Calculate exam countdown
+  const calculateCountdown = (examDateStr: string) => {
+    const [day, month, year] = examDateStr.split('/');
+    const examDate = new Date(2000 + parseInt(year), parseInt(month) - 1, parseInt(day));
+    const today = new Date();
+    const diffTime = examDate.getTime() - today.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays > 0 ? `${diffDays} days` : 'Đã qua ngày thi';
+  };
 
   // Get essay types based on selected task
   const getEssayTypesForTask = (taskType: string) => {
@@ -839,21 +862,79 @@ export default function ProgressTracking() {
               {/* Your Goals */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Your Goals</CardTitle>
+                  <CardTitle className="text-lg flex items-center justify-between">
+                    Your Goals
+                    <Dialog open={showGoalsDialog} onOpenChange={setShowGoalsDialog}>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" size="sm" className="flex items-center gap-2">
+                          <Settings className="w-4 h-4" />
+                          Chỉnh sửa
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                          <DialogTitle>Chỉnh sửa mục tiêu của bạn</DialogTitle>
+                          <DialogDescription>
+                            Cập nhật điểm mục tiêu và ngày thi IELTS của bạn.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="target-score" className="text-right">
+                              Điểm mục tiêu
+                            </Label>
+                            <Select value={targetScore} onValueChange={setTargetScore}>
+                              <SelectTrigger className="col-span-3">
+                                <SelectValue placeholder="Chọn điểm mục tiêu" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="5.0">5.0</SelectItem>
+                                <SelectItem value="5.5">5.5</SelectItem>
+                                <SelectItem value="6.0">6.0</SelectItem>
+                                <SelectItem value="6.5">6.5</SelectItem>
+                                <SelectItem value="7.0">7.0</SelectItem>
+                                <SelectItem value="7.5">7.5</SelectItem>
+                                <SelectItem value="8.0">8.0</SelectItem>
+                                <SelectItem value="8.5">8.5</SelectItem>
+                                <SelectItem value="9.0">9.0</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="exam-date" className="text-right">
+                              Ngày thi
+                            </Label>
+                            <Input
+                              id="exam-date"
+                              placeholder="DD/MM/YY"
+                              value={examDate}
+                              onChange={(e) => setExamDate(e.target.value)}
+                              className="col-span-3"
+                            />
+                          </div>
+                        </div>
+                        <DialogFooter>
+                          <Button type="submit" onClick={handleSaveGoals}>
+                            Lưu thay đổi
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Target Score</span>
-                      <span className="font-medium">8.0</span>
+                      <span className="font-medium">{targetScore}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Exam Date</span>
-                      <span className="font-medium text-blue-600">13/01/26</span>
+                      <span className="font-medium text-blue-600">{examDate}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Exam Countdown</span>
-                      <span className="font-medium">280 days</span>
+                      <span className="font-medium">{calculateCountdown(examDate)}</span>
                     </div>
                   </div>
                 </CardContent>
