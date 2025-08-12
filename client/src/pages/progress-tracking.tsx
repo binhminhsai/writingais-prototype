@@ -18,42 +18,67 @@ interface EssayData {
 }
 
 const sampleEssays: EssayData[] = [
+  // Task 1 Essays - Line Graph
   {
-    time: "45 min",
-    date: "02/06/25",
-    topic: "The impact of technology on employment",
-    score: 5.0,
-    isMarked: true,
-    essayType: "Opinion",
-    taskType: "Task 2"
+    time: "22 min",
+    date: "17/06/25",
+    topic: "The line graph shows population growth in three cities over a 20-year period",
+    score: 6.5,
+    isMarked: false,
+    essayType: "Line Graph",
+    taskType: "Task 1"
   },
   {
-    time: "40 min",
-    date: "04/06/25",
-    topic: "The role of government in environmental protection",
-    score: 5.0,
+    time: "18 min",
+    date: "23/06/25",
+    topic: "The line graph illustrates changes in air quality in major cities from 2000 to 2020",
+    score: 7.0,
     isMarked: true,
-    essayType: "Discussion",
-    taskType: "Task 2"
+    essayType: "Line Graph",
+    taskType: "Task 1"
   },
+
+  // Task 1 Essays - Bar Chart
   {
     time: "20 min",
     date: "04/06/25",
-    topic: "The chart shows the percentage of households with different types of technology",
+    topic: "The bar chart shows the percentage of households with different types of technology",
     score: 5.5,
     isMarked: false,
     essayType: "Bar Chart",
     taskType: "Task 1"
   },
   {
-    time: "42 min",
-    date: "10/06/25",
-    topic: "The importance of university education for career success",
-    score: 5.5,
+    time: "21 min",
+    date: "15/06/25",
+    topic: "The bar chart compares energy consumption by different sectors in 2023",
+    score: 6.0,
     isMarked: true,
-    essayType: "Cause & Solution",
-    taskType: "Task 2"
+    essayType: "Bar Chart",
+    taskType: "Task 1"
   },
+
+  // Task 1 Essays - Table
+  {
+    time: "19 min",
+    date: "19/06/25",
+    topic: "The table compares energy consumption in different countries",
+    score: 6.0,
+    isMarked: false,
+    essayType: "Table",
+    taskType: "Task 1"
+  },
+  {
+    time: "20 min",
+    date: "26/06/25",
+    topic: "The table shows information about the underground railway systems in six cities",
+    score: 6.5,
+    isMarked: true,
+    essayType: "Table",
+    taskType: "Task 1"
+  },
+
+  // Task 1 Essays - Process Diagram
   {
     time: "18 min",
     date: "12/06/25",
@@ -64,22 +89,64 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 1"
   },
   {
-    time: "38 min",
-    date: "14/06/25",
-    topic: "Advantages and disadvantages of online education",
-    score: 5.5,
+    time: "19 min",
+    date: "28/06/25",
+    topic: "The diagram shows the process of recycling plastic bottles",
+    score: 6.8,
+    isMarked: false,
+    essayType: "Process Diagram",
+    taskType: "Task 1"
+  },
+
+  // Task 1 Essays - Pie Chart
+  {
+    time: "17 min",
+    date: "08/06/25",
+    topic: "The pie charts show the proportion of carbohydrates, protein and fat in three different diets",
+    score: 5.8,
     isMarked: true,
-    essayType: "Advantage/Disadvantage",
-    taskType: "Task 2"
+    essayType: "Pie Chart",
+    taskType: "Task 1"
   },
   {
-    time: "22 min",
-    date: "17/06/25",
-    topic: "The line graph shows population growth in three cities",
-    score: 6.5,
+    time: "20 min",
+    date: "30/06/25",
+    topic: "The pie charts compare the reasons why people travel to work by bicycle in two cities",
+    score: 7.2,
     isMarked: false,
-    essayType: "Line Graph",
+    essayType: "Pie Chart",
     taskType: "Task 1"
+  },
+
+  // Task 1 Essays - Map
+  {
+    time: "21 min",
+    date: "11/06/25",
+    topic: "The maps show changes to a town center between 1990 and 2010",
+    score: 6.3,
+    isMarked: false,
+    essayType: "Map",
+    taskType: "Task 1"
+  },
+  {
+    time: "19 min",
+    date: "29/06/25",
+    topic: "The maps show the development of a college campus from 1975 to present day",
+    score: 6.9,
+    isMarked: true,
+    essayType: "Map",
+    taskType: "Task 1"
+  },
+
+  // Task 2 Essays - Opinion
+  {
+    time: "45 min",
+    date: "02/06/25",
+    topic: "The impact of technology on employment",
+    score: 5.0,
+    isMarked: true,
+    essayType: "Opinion",
+    taskType: "Task 2"
   },
   {
     time: "44 min",
@@ -91,13 +158,53 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
-    time: "19 min",
-    date: "19/06/25",
-    topic: "The table compares energy consumption in different countries",
-    score: 6.0,
+    time: "43 min",
+    date: "25/06/25",
+    topic: "Some people believe that students should be taught how to manage money at school",
+    score: 7.8,
     isMarked: false,
-    essayType: "Table",
-    taskType: "Task 1"
+    essayType: "Opinion",
+    taskType: "Task 2"
+  },
+
+  // Task 2 Essays - Discussion
+  {
+    time: "40 min",
+    date: "04/06/25",
+    topic: "The role of government in environmental protection",
+    score: 5.0,
+    isMarked: true,
+    essayType: "Discussion",
+    taskType: "Task 2"
+  },
+  {
+    time: "42 min",
+    date: "20/06/25",
+    topic: "Some people think that university education should be free for all students",
+    score: 6.7,
+    isMarked: false,
+    essayType: "Discussion",
+    taskType: "Task 2"
+  },
+  {
+    time: "41 min",
+    date: "27/06/25",
+    topic: "The debate about whether celebrities have a responsibility to be role models",
+    score: 7.3,
+    isMarked: true,
+    essayType: "Discussion",
+    taskType: "Task 2"
+  },
+
+  // Task 2 Essays - Advantage/Disadvantage
+  {
+    time: "38 min",
+    date: "14/06/25",
+    topic: "Advantages and disadvantages of online education",
+    score: 5.5,
+    isMarked: true,
+    essayType: "Advantage/Disadvantage",
+    taskType: "Task 2"
   },
   {
     time: "46 min",
@@ -106,6 +213,75 @@ const sampleEssays: EssayData[] = [
     score: 7.5,
     isMarked: true,
     essayType: "Advantage/Disadvantage",
+    taskType: "Task 2"
+  },
+  {
+    time: "39 min",
+    date: "24/06/25",
+    topic: "The advantages and disadvantages of living in a large city",
+    score: 6.2,
+    isMarked: false,
+    essayType: "Advantage/Disadvantage",
+    taskType: "Task 2"
+  },
+
+  // Task 2 Essays - Problem/Solution
+  {
+    time: "44 min",
+    date: "09/06/25",
+    topic: "Traffic congestion in cities and potential solutions",
+    score: 6.4,
+    isMarked: false,
+    essayType: "Problem/Solution",
+    taskType: "Task 2"
+  },
+  {
+    time: "45 min",
+    date: "22/06/25",
+    topic: "The problem of plastic pollution and how to address it",
+    score: 7.1,
+    isMarked: true,
+    essayType: "Problem/Solution",
+    taskType: "Task 2"
+  },
+
+  // Task 2 Essays - Cause & Solution
+  {
+    time: "42 min",
+    date: "10/06/25",
+    topic: "The importance of university education for career success",
+    score: 5.5,
+    isMarked: true,
+    essayType: "Cause & Solution",
+    taskType: "Task 2"
+  },
+  {
+    time: "41 min",
+    date: "16/06/25",
+    topic: "Causes of youth unemployment and possible solutions",
+    score: 6.6,
+    isMarked: false,
+    essayType: "Cause & Solution",
+    taskType: "Task 2"
+  },
+
+  // Task 2 Essays - Two-part Question
+  {
+    time: "43 min",
+    date: "07/06/25",
+    topic: "Why do people choose to live in cities? What problems might this cause?",
+    score: 6.1,
+    isMarked: false,
+    essayType: "Two-part Question",
+    taskType: "Task 2"
+  },
+  {
+    time: "44 min",
+    date: "13/06/25",
+    topic: "What are the benefits of reading books? How can we encourage more people to read?",
+    score: 7.4,
+    isMarked: true,
+    essayType: "Two-part Question",
     taskType: "Task 2"
   }
 ];
@@ -145,7 +321,8 @@ export default function ProgressTracking() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("Mới nhất");
   const [scoreSort, setScoreSort] = useState("Điểm số");
-  const [essayTypeFilter, setEssayTypeFilter] = useState("Dạng bài viết");
+  const [task1TypeFilter, setTask1TypeFilter] = useState("Task 1");
+  const [task2TypeFilter, setTask2TypeFilter] = useState("Task 2");
   const [showStarredOnly, setShowStarredOnly] = useState(false);
 
   const toggleEssayMarked = (index: number) => {
@@ -161,10 +338,13 @@ export default function ProgressTracking() {
       const matchesSearch = essay.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            essay.essayType.toLowerCase().includes(searchTerm.toLowerCase());
       
-      // Essay type filter
-      const matchesType = essayTypeFilter === "Dạng bài viết" || 
-                         essay.essayType === essayTypeFilter ||
-                         essay.taskType === essayTypeFilter;
+      // Task type filter
+      let matchesType = true;
+      if (task1TypeFilter !== "Task 1" && essay.taskType === "Task 1") {
+        matchesType = essay.essayType === task1TypeFilter;
+      } else if (task2TypeFilter !== "Task 2" && essay.taskType === "Task 2") {
+        matchesType = essay.essayType === task2TypeFilter;
+      }
       
       // Starred filter
       const matchesStarred = !showStarredOnly || essay.isMarked;
@@ -186,7 +366,7 @@ export default function ProgressTracking() {
     }
 
     return filtered;
-  }, [essays, searchTerm, sortOrder, scoreSort, essayTypeFilter, showStarredOnly]);
+  }, [essays, searchTerm, sortOrder, scoreSort, task1TypeFilter, task2TypeFilter, showStarredOnly]);
 
   const overallScore = 7.5;
   const taskResponse = 7.5;
@@ -436,14 +616,23 @@ export default function ProgressTracking() {
                 
                 {/* Search Bar */}
                 <div className="mt-4">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                    <Input
-                      placeholder="Tìm kiếm theo chủ đề hoặc dạng bài viết..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
-                    />
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                      <Input
+                        placeholder="Tìm kiếm theo chủ đề hoặc dạng bài viết..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                    <Button
+                      variant="default"
+                      className="flex items-center gap-2"
+                    >
+                      <Search className="w-4 h-4" />
+                      Tìm kiếm
+                    </Button>
                   </div>
                 </div>
 
@@ -472,24 +661,35 @@ export default function ProgressTracking() {
                     </SelectContent>
                   </Select>
 
-                  {/* Essay Type Filter */}
-                  <Select value={essayTypeFilter} onValueChange={setEssayTypeFilter}>
-                    <SelectTrigger className="w-auto min-w-[140px]">
-                      <span className="flex-1 text-left">{essayTypeFilter}</span>
+                  {/* Task 1 Filter */}
+                  <Select value={task1TypeFilter} onValueChange={setTask1TypeFilter}>
+                    <SelectTrigger className="w-auto min-w-[120px]">
+                      <span className="flex-1 text-left">{task1TypeFilter}</span>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Dạng bài viết">Dạng bài viết</SelectItem>
                       <SelectItem value="Task 1">Task 1</SelectItem>
-                      <SelectItem value="Task 2">Task 2</SelectItem>
                       <SelectItem value="Line Graph">Line Graph</SelectItem>
                       <SelectItem value="Bar Chart">Bar Chart</SelectItem>
                       <SelectItem value="Table">Table</SelectItem>
                       <SelectItem value="Process Diagram">Process Diagram</SelectItem>
+                      <SelectItem value="Pie Chart">Pie Chart</SelectItem>
+                      <SelectItem value="Map">Map</SelectItem>
+                    </SelectContent>
+                  </Select>
+
+                  {/* Task 2 Filter */}
+                  <Select value={task2TypeFilter} onValueChange={setTask2TypeFilter}>
+                    <SelectTrigger className="w-auto min-w-[120px]">
+                      <span className="flex-1 text-left">{task2TypeFilter}</span>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Task 2">Task 2</SelectItem>
                       <SelectItem value="Opinion">Opinion</SelectItem>
                       <SelectItem value="Discussion">Discussion</SelectItem>
                       <SelectItem value="Advantage/Disadvantage">Advantage/Disadvantage</SelectItem>
                       <SelectItem value="Problem/Solution">Problem/Solution</SelectItem>
                       <SelectItem value="Cause & Solution">Cause & Solution</SelectItem>
+                      <SelectItem value="Two-part Question">Two-part Question</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -508,7 +708,7 @@ export default function ProgressTracking() {
               </CardHeader>
               <CardContent className="flex-grow overflow-hidden p-0">
                 <div className="relative">
-                  <div className="overflow-y-auto progress-table-scroll max-h-[280px] pr-2">
+                  <div className="overflow-y-auto progress-table-scroll max-h-[450px] pr-2">
                     <div className="px-6 pb-6">
                       <table className="w-full border-collapse table-fixed">
                         <thead className="sticky top-0 bg-white z-10">
