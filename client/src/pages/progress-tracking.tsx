@@ -930,7 +930,7 @@ export default function ProgressTracking() {
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="target-score" className="text-right">
-                              Điểm mục tiêu
+                              Mục tiêu
                             </Label>
                             <Input
                               id="target-score"
@@ -963,13 +963,18 @@ export default function ProgressTracking() {
                                 min={new Date().toISOString().split('T')[0]}
                                 value={formatDateForInput(examDate)}
                                 onChange={(e) => handleDateChange(e.target.value)}
-                                className="hidden"
+                                className="absolute opacity-0 w-0 h-0"
                                 id="hidden-date-picker"
                               />
-                              <Calendar 
-                                className="w-4 h-4 text-gray-400 cursor-pointer hover:text-gray-600" 
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                className="h-auto p-1"
                                 onClick={() => document.getElementById('hidden-date-picker')?.click()}
-                              />
+                              >
+                                <Calendar className="w-4 h-4 text-gray-400 hover:text-gray-600" />
+                              </Button>
                             </div>
                           </div>
                         </div>
