@@ -338,14 +338,64 @@ export default function ProgressTracking() {
     // Goals are automatically saved in state
   };
   
+  // Handle target score change with validation
+  const handleTargetScoreChange = (value: string) => {
+    // Only allow numbers and decimal point
+    if (!/^\d*\.?\d*$/.test(value)) return;
+    
+    // Limit to 2 digits
+    if (value.length > 3) return;
+    
+    const numValue = parseFloat(value);
+    if (isNaN(numValue)) {
+      setTargetScore(value);
+      return;
+    }
+    
+    // Round to nearest 0.5
+    const rounded = Math.round(numValue * 2) / 2;
+    
+    // Clamp between 0 and 9
+    const clamped = Math.max(0, Math.min(9, rounded));
+    
+    setTargetScore(clamped.toString());
+  };
+  
   // Calculate exam countdown
   const calculateCountdown = (examDateStr: string) => {
-    const [day, month, year] = examDateStr.split('/');
-    const examDate = new Date(2000 + parseInt(year), parseInt(month) - 1, parseInt(day));
-    const today = new Date();
-    const diffTime = examDate.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays > 0 ? `${diffDays} days` : 'Đã qua ngày thi';
+    try {
+      const [day, month, year] = examDateStr.split('/');
+      const examDate = new Date(2000 + parseInt(year), parseInt(month) - 1, parseInt(day));
+      const today = new Date();
+      const diffTime = examDate.getTime() - today.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays > 0 ? `${diffDays} days` : 'Đã qua ngày thi';
+    } catch {
+      return 'Ngày không hợp lệ';
+    }
+  };
+  
+  // Format date for input (YYYY-MM-DD to DD/MM/YY)
+  const formatDateForDisplay = (dateStr: string) => {
+    if (dateStr.includes('/')) return dateStr;
+    const date = new Date(dateStr);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString().slice(-2);
+    return `${day}/${month}/${year}`;
+  };
+  
+  // Format date for input (DD/MM/YY to YYYY-MM-DD)
+  const formatDateForInput = (dateStr: string) => {
+    if (dateStr.includes('-')) return dateStr;
+    const [day, month, year] = dateStr.split('/');
+    return `20${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  };
+  
+  // Handle date change
+  const handleDateChange = (value: string) => {
+    const formattedDate = formatDateForDisplay(value);
+    setExamDate(formattedDate);
   };
 
   // Get essay types based on selected task
@@ -866,9 +916,8 @@ export default function ProgressTracking() {
                     Your Goals
                     <Dialog open={showGoalsDialog} onOpenChange={setShowGoalsDialog}>
                       <DialogTrigger asChild>
-                        <Button variant="outline" size="sm" className="flex items-center gap-2">
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
                           <Settings className="w-4 h-4" />
-                          Chỉnh sửa
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="sm:max-w-[425px]">
@@ -883,34 +932,33 @@ export default function ProgressTracking() {
                             <Label htmlFor="target-score" className="text-right">
                               Điểm mục tiêu
                             </Label>
-                            <Select value={targetScore} onValueChange={setTargetScore}>
-                              <SelectTrigger className="col-span-3">
-                                <SelectValue placeholder="Chọn điểm mục tiêu" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="5.0">5.0</SelectItem>
-                                <SelectItem value="5.5">5.5</SelectItem>
-                                <SelectItem value="6.0">6.0</SelectItem>
-                                <SelectItem value="6.5">6.5</SelectItem>
-                                <SelectItem value="7.0">7.0</SelectItem>
-                                <SelectItem value="7.5">7.5</SelectItem>
-                                <SelectItem value="8.0">8.0</SelectItem>
-                                <SelectItem value="8.5">8.5</SelectItem>
-                                <SelectItem value="9.0">9.0</SelectItem>
-                              </SelectContent>
-                            </Select>
+                            <Input
+                              id="target-score"
+                              type="number"
+                              step="0.5"
+                              min="0"
+                              max="9"
+                              placeholder="8.0"
+                              value={targetScore}
+                              onChange={(e) => handleTargetScoreChange(e.target.value)}
+                              className="col-span-3"
+                            />
                           </div>
                           <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="exam-date" className="text-right">
                               Ngày thi
                             </Label>
-                            <Input
-                              id="exam-date"
-                              placeholder="DD/MM/YY"
-                              value={examDate}
-                              onChange={(e) => setExamDate(e.target.value)}
-                              className="col-span-3"
-                            />
+                            <div className="col-span-3 relative">
+                              <Input
+                                id="exam-date"
+                                type="date"
+                                min={new Date().toISOString().split('T')[0]}
+                                value={formatDateForInput(examDate)}
+                                onChange={(e) => handleDateChange(e.target.value)}
+                                className="w-full"
+                              />
+                              <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                            </div>
                           </div>
                         </div>
                         <DialogFooter>
