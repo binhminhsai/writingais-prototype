@@ -379,27 +379,28 @@ export default function ProgressTracking() {
       return matchesSearch && matchesType && matchesStarred;
     });
 
-    // Sort the filtered essays by date
-    if (sortOrder === "Cũ nhất") {
-      // Old first: ascending order (earliest dates first)
-      filtered.sort((a, b) => {
-        const dateA = new Date(a.date.split('/').reverse().join('-')); // Convert DD/MM/YY to YYYY-MM-DD
-        const dateB = new Date(b.date.split('/').reverse().join('-'));
-        return dateA.getTime() - dateB.getTime();
-      });
-    } else {
-      // New first: descending order (latest dates first) 
-      filtered.sort((a, b) => {
-        const dateA = new Date(a.date.split('/').reverse().join('-')); // Convert DD/MM/YY to YYYY-MM-DD
-        const dateB = new Date(b.date.split('/').reverse().join('-'));
-        return dateB.getTime() - dateA.getTime();
-      });
-    }
-
+    // Sort the filtered essays - prioritize score sort over date sort
     if (scoreSort === "Điểm cao đến thấp") {
       filtered.sort((a, b) => b.score - a.score);
     } else if (scoreSort === "Điểm thấp đến cao") {
       filtered.sort((a, b) => a.score - b.score);
+    } else {
+      // Only sort by date if no score sorting is selected
+      if (sortOrder === "Cũ nhất") {
+        // Old first: ascending order (earliest dates first)
+        filtered.sort((a, b) => {
+          const dateA = new Date('20' + a.date.split('/').reverse().join('-')); // Convert DD/MM/YY to YYYY-MM-DD
+          const dateB = new Date('20' + b.date.split('/').reverse().join('-'));
+          return dateA.getTime() - dateB.getTime();
+        });
+      } else {
+        // New first: descending order (latest dates first) 
+        filtered.sort((a, b) => {
+          const dateA = new Date('20' + a.date.split('/').reverse().join('-')); // Convert DD/MM/YY to YYYY-MM-DD
+          const dateB = new Date('20' + b.date.split('/').reverse().join('-'));
+          return dateB.getTime() - dateA.getTime();
+        });
+      }
     }
 
     return filtered;
