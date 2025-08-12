@@ -321,9 +321,25 @@ export default function ProgressTracking() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("Mới nhất");
   const [scoreSort, setScoreSort] = useState("Điểm số");
-  const [task1TypeFilter, setTask1TypeFilter] = useState("Task 1");
-  const [task2TypeFilter, setTask2TypeFilter] = useState("Task 2");
+  const [selectedTask, setSelectedTask] = useState("Tất cả");
+  const [selectedEssayType, setSelectedEssayType] = useState("Loại bài viết");
   const [showStarredOnly, setShowStarredOnly] = useState(false);
+
+  // Get essay types based on selected task
+  const getEssayTypesForTask = (taskType: string) => {
+    if (taskType === "Task 1") {
+      return ["Loại bài viết", "Line Graph", "Bar Chart", "Table", "Process Diagram", "Pie Chart", "Map"];
+    } else if (taskType === "Task 2") {
+      return ["Loại bài viết", "Opinion", "Discussion", "Advantage/Disadvantage", "Problem/Solution", "Cause & Solution", "Two-part Question"];
+    }
+    return ["Loại bài viết"];
+  };
+
+  // Handle task selection change
+  const handleTaskChange = (newTask: string) => {
+    setSelectedTask(newTask);
+    setSelectedEssayType("Loại bài viết"); // Reset essay type when task changes
+  };
 
   const toggleEssayMarked = (index: number) => {
     setEssays(prev => prev.map((essay, i) => 
@@ -341,22 +357,20 @@ export default function ProgressTracking() {
       // Task type filter logic
       let matchesType = true;
       
-      // If both are default values, show all essays
-      if (task1TypeFilter === "Task 1" && task2TypeFilter === "Task 2") {
+      // If no task is selected or "Tất cả" is selected, show all essays
+      if (selectedTask === "Tất cả") {
         matchesType = true;
       }
-      // If Task 1 is selected (default) but Task 2 has specific filter
-      else if (task1TypeFilter === "Task 1" && task2TypeFilter !== "Task 2") {
-        matchesType = essay.taskType === "Task 2" && essay.essayType === task2TypeFilter;
-      }
-      // If Task 2 is selected (default) but Task 1 has specific filter  
-      else if (task2TypeFilter === "Task 2" && task1TypeFilter !== "Task 1") {
-        matchesType = essay.taskType === "Task 1" && essay.essayType === task1TypeFilter;
-      }
-      // If both have specific filters, match either one
-      else if (task1TypeFilter !== "Task 1" && task2TypeFilter !== "Task 2") {
-        matchesType = (essay.taskType === "Task 1" && essay.essayType === task1TypeFilter) ||
-                     (essay.taskType === "Task 2" && essay.essayType === task2TypeFilter);
+      // If a specific task is selected
+      else if (selectedTask === "Task 1" || selectedTask === "Task 2") {
+        // First filter by task type
+        if (essay.taskType !== selectedTask) {
+          matchesType = false;
+        }
+        // Then filter by essay type if a specific type is selected
+        else if (selectedEssayType !== "Loại bài viết") {
+          matchesType = essay.essayType === selectedEssayType;
+        }
       }
       
       // Starred filter
@@ -379,7 +393,7 @@ export default function ProgressTracking() {
     }
 
     return filtered;
-  }, [essays, searchTerm, sortOrder, scoreSort, task1TypeFilter, task2TypeFilter, showStarredOnly]);
+  }, [essays, searchTerm, sortOrder, scoreSort, selectedTask, selectedEssayType, showStarredOnly]);
 
   const overallScore = 7.5;
   const taskResponse = 7.5;
@@ -674,35 +688,33 @@ export default function ProgressTracking() {
                     </SelectContent>
                   </Select>
 
-                  {/* Task 1 Filter */}
-                  <Select value={task1TypeFilter} onValueChange={setTask1TypeFilter}>
+                  {/* Task Filter */}
+                  <Select value={selectedTask} onValueChange={handleTaskChange}>
                     <SelectTrigger className="w-auto min-w-[120px]">
-                      <span className="flex-1 text-left">{task1TypeFilter}</span>
+                      <span className="flex-1 text-left">{selectedTask}</span>
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="Tất cả">Tất cả</SelectItem>
                       <SelectItem value="Task 1">Task 1</SelectItem>
-                      <SelectItem value="Line Graph">Line Graph</SelectItem>
-                      <SelectItem value="Bar Chart">Bar Chart</SelectItem>
-                      <SelectItem value="Table">Table</SelectItem>
-                      <SelectItem value="Process Diagram">Process Diagram</SelectItem>
-                      <SelectItem value="Pie Chart">Pie Chart</SelectItem>
-                      <SelectItem value="Map">Map</SelectItem>
+                      <SelectItem value="Task 2">Task 2</SelectItem>
                     </SelectContent>
                   </Select>
 
-                  {/* Task 2 Filter */}
-                  <Select value={task2TypeFilter} onValueChange={setTask2TypeFilter}>
-                    <SelectTrigger className="w-auto min-w-[120px]">
-                      <span className="flex-1 text-left">{task2TypeFilter}</span>
+                  {/* Essay Type Filter - Disabled if no task selected */}
+                  <Select 
+                    value={selectedEssayType} 
+                    onValueChange={setSelectedEssayType}
+                    disabled={selectedTask === "Tất cả"}
+                  >
+                    <SelectTrigger className={`w-auto min-w-[140px] ${selectedTask === "Tất cả" ? "opacity-50 cursor-not-allowed" : ""}`}>
+                      <span className="flex-1 text-left">{selectedEssayType}</span>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Task 2">Task 2</SelectItem>
-                      <SelectItem value="Opinion">Opinion</SelectItem>
-                      <SelectItem value="Discussion">Discussion</SelectItem>
-                      <SelectItem value="Advantage/Disadvantage">Advantage/Disadvantage</SelectItem>
-                      <SelectItem value="Problem/Solution">Problem/Solution</SelectItem>
-                      <SelectItem value="Cause & Solution">Cause & Solution</SelectItem>
-                      <SelectItem value="Two-part Question">Two-part Question</SelectItem>
+                      {getEssayTypesForTask(selectedTask).map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
 
