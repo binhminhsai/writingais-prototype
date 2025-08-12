@@ -379,11 +379,21 @@ export default function ProgressTracking() {
       return matchesSearch && matchesType && matchesStarred;
     });
 
-    // Sort the filtered essays
+    // Sort the filtered essays by date
     if (sortOrder === "Cũ nhất") {
-      filtered.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      // Old first: ascending order (earliest dates first)
+      filtered.sort((a, b) => {
+        const dateA = new Date(a.date.split('/').reverse().join('-')); // Convert DD/MM/YY to YYYY-MM-DD
+        const dateB = new Date(b.date.split('/').reverse().join('-'));
+        return dateA.getTime() - dateB.getTime();
+      });
     } else {
-      filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      // New first: descending order (latest dates first) 
+      filtered.sort((a, b) => {
+        const dateA = new Date(a.date.split('/').reverse().join('-')); // Convert DD/MM/YY to YYYY-MM-DD
+        const dateB = new Date(b.date.split('/').reverse().join('-'));
+        return dateB.getTime() - dateA.getTime();
+      });
     }
 
     if (scoreSort === "Điểm cao đến thấp") {
