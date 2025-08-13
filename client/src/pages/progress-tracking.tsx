@@ -360,7 +360,8 @@ export default function ProgressTracking() {
   const [essays, setEssays] = useState<EssayData[]>(sampleEssays);
   
   // Filter states
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchInput, setSearchInput] = useState(""); // What user types in search box
+  const [searchTerm, setSearchTerm] = useState(""); // Actual search term used for filtering
   const [sortOrder, setSortOrder] = useState("Mới nhất");
   const [scoreSort, setScoreSort] = useState("Điểm số");
   const [selectedTask, setSelectedTask] = useState("Tất cả");
@@ -614,6 +615,24 @@ export default function ProgressTracking() {
     setEssays(prev => prev.map((essay, i) => 
       i === index ? { ...essay, isMarked: !essay.isMarked } : essay
     ));
+  };
+
+  // Handle search button click
+  const handleSearch = () => {
+    setSearchTerm(searchInput);
+  };
+
+  // Handle Enter key in search input
+  const handleSearchKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  // Handle clear search
+  const handleClearSearch = () => {
+    setSearchInput("");
+    setSearchTerm("");
   };
 
   // Filtered and sorted essays
@@ -928,18 +947,29 @@ export default function ProgressTracking() {
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                       <Input
                         placeholder="Tìm kiếm theo chủ đề hoặc dạng bài viết..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        value={searchInput}
+                        onChange={(e) => setSearchInput(e.target.value)}
+                        onKeyPress={handleSearchKeyPress}
                         className="pl-10"
                       />
                     </div>
                     <Button
                       variant="default"
                       className="flex items-center gap-2"
+                      onClick={handleSearch}
                     >
                       <Search className="w-4 h-4" />
                       Tìm kiếm
                     </Button>
+                    {searchTerm && (
+                      <Button
+                        variant="outline"
+                        className="flex items-center gap-2"
+                        onClick={handleClearSearch}
+                      >
+                        Xóa
+                      </Button>
+                    )}
                   </div>
                 </div>
 
