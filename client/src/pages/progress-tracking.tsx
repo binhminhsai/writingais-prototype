@@ -1080,7 +1080,7 @@ export default function ProgressTracking() {
                                 <td className="py-4 px-4 text-center text-sm">{essay.time}</td>
                                 <td className="py-4 px-4 text-center">
                                   <Badge 
-                                    variant={essay.score >= 7 ? "default" : essay.score >= 6 ? "secondary" : "destructive"}
+                                    variant="default"
                                     className="font-medium"
                                   >
                                     {formatIELTSScore(essay.score)}
