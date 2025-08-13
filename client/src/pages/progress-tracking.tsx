@@ -336,9 +336,48 @@ export default function ProgressTracking() {
   const [originalTargetScore, setOriginalTargetScore] = useState("8.0");
   const [originalExamDate, setOriginalExamDate] = useState("13/01/2026");
   
-  // Check if data has changed
+  // Date validation state
+  const [dateError, setDateError] = useState("");
+  
+  // Check if data has changed and is valid
   const hasDataChanged = () => {
-    return targetScore !== originalTargetScore || examDate !== originalExamDate;
+    return (targetScore !== originalTargetScore || examDate !== originalExamDate) && !dateError;
+  };
+
+  // Validate if date is in the future
+  const validateDate = (dateStr: string) => {
+    if (!dateStr) {
+      setDateError("");
+      return;
+    }
+
+    const parts = dateStr.split('/');
+    if (parts.length !== 3) {
+      setDateError("Định dạng ngày không hợp lệ");
+      return;
+    }
+
+    const [day, month, year] = parts;
+    if (!day || !month || !year || day.length !== 2 || month.length !== 2 || year.length !== 4) {
+      setDateError("Định dạng ngày không hợp lệ");
+      return;
+    }
+
+    const examDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    if (isNaN(examDate.getTime())) {
+      setDateError("Ngày không hợp lệ");
+      return;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to compare dates only
+    
+    if (examDate < today) {
+      setDateError("Ngày thi phải là ngày trong tương lai");
+      return;
+    }
+
+    setDateError("");
   };
 
   // Open dialog and set original values
@@ -438,10 +477,32 @@ export default function ProgressTracking() {
     return `${fullYear}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
   };
   
-  // Handle date change
+  // Handle date input with format preservation
+  const handleDateInputChange = (value: string) => {
+    // Remove all non-digits
+    const digitsOnly = value.replace(/\D/g, '');
+    
+    // Format with slashes: DD/MM/YYYY
+    let formattedDate = '';
+    if (digitsOnly.length >= 1) {
+      formattedDate = digitsOnly.slice(0, 2);
+    }
+    if (digitsOnly.length >= 3) {
+      formattedDate += '/' + digitsOnly.slice(2, 4);
+    }
+    if (digitsOnly.length >= 5) {
+      formattedDate += '/' + digitsOnly.slice(4, 8);
+    }
+    
+    setExamDate(formattedDate);
+    validateDate(formattedDate);
+  };
+
+  // Handle date change from calendar picker
   const handleDateChange = (value: string) => {
     const formattedDate = formatDateForDisplay(value);
     setExamDate(formattedDate);
+    validateDate(formattedDate);
   };
 
   // Get essay types based on selected task
@@ -969,9 +1030,6 @@ export default function ProgressTracking() {
                       <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
                           <DialogTitle>Chỉnh sửa mục tiêu của bạn</DialogTitle>
-                          <DialogDescription>
-                            Cập nhật điểm mục tiêu và ngày thi IELTS của bạn.
-                          </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
@@ -992,24 +1050,30 @@ export default function ProgressTracking() {
                             <Label htmlFor="exam-date" className="text-right">
                               Ngày thi
                             </Label>
-                            <div className="col-span-3 flex items-center gap-2">
-                              <Input
-                                type="text"
-                                placeholder="DD/MM/YYYY"
-                                value={examDate}
-                                onChange={(e) => setExamDate(e.target.value)}
-                                className="flex-1"
-                              />
-                              <div className="relative">
-                                <input
-                                  type="date"
-                                  min={new Date().toISOString().split('T')[0]}
-                                  value={formatDateForInput(examDate)}
-                                  onChange={(e) => handleDateChange(e.target.value)}
-                                  className="absolute inset-0 w-6 h-6 opacity-0 cursor-pointer"
+                            <div className="col-span-3">
+                              <div className="flex items-center gap-2">
+                                <Input
+                                  type="text"
+                                  placeholder="DD/MM/YYYY"
+                                  value={examDate}
+                                  onChange={(e) => handleDateInputChange(e.target.value)}
+                                  maxLength={10}
+                                  className={`flex-1 ${dateError ? 'border-red-500' : ''}`}
                                 />
-                                <Calendar className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer transition-colors" />
+                                <div className="relative">
+                                  <input
+                                    type="date"
+                                    min={new Date().toISOString().split('T')[0]}
+                                    value={formatDateForInput(examDate)}
+                                    onChange={(e) => handleDateChange(e.target.value)}
+                                    className="absolute inset-0 w-6 h-6 opacity-0 cursor-pointer"
+                                  />
+                                  <Calendar className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer transition-colors" />
+                                </div>
                               </div>
+                              {dateError && (
+                                <p className="text-red-500 text-sm mt-1">{dateError}</p>
+                              )}
                             </div>
                           </div>
                         </div>
