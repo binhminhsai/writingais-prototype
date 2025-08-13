@@ -8,8 +8,10 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Label } from "@/components/ui/label";
 import { ChevronDown, ChevronUp, Star, Target, Trophy, Calendar, Clock, Search, Filter, Settings } from "lucide-react";
 import { useState, useMemo } from "react";
+import { useLocation } from "wouter";
 
 interface EssayData {
+  id: string;
   time: string;
   date: string;
   topic: string;
@@ -22,6 +24,7 @@ interface EssayData {
 const sampleEssays: EssayData[] = [
   // Task 1 Essays - Line Graph
   {
+    id: "essay-1",
     time: "22 min",
     date: "17/06/25",
     topic: "The line graph shows population growth in three cities over a 20-year period",
@@ -31,6 +34,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 1"
   },
   {
+    id: "essay-2",
     time: "18 min",
     date: "23/06/25",
     topic: "The line graph illustrates changes in air quality in major cities from 2000 to 2020",
@@ -42,6 +46,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 1 Essays - Bar Chart
   {
+    id: "essay-3",
     time: "20 min",
     date: "04/06/25",
     topic: "The bar chart shows the percentage of households with different types of technology",
@@ -51,6 +56,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 1"
   },
   {
+    id: "essay-4",
     time: "21 min",
     date: "15/06/25",
     topic: "The bar chart compares energy consumption by different sectors in 2023",
@@ -62,6 +68,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 1 Essays - Table
   {
+    id: "essay-5",
     time: "19 min",
     date: "19/06/25",
     topic: "The table compares energy consumption in different countries",
@@ -71,6 +78,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 1"
   },
   {
+    id: "essay-6",
     time: "20 min",
     date: "26/06/25",
     topic: "The table shows information about the underground railway systems in six cities",
@@ -82,6 +90,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 1 Essays - Process Diagram
   {
+    id: "essay-7",
     time: "18 min",
     date: "12/06/25",
     topic: "The process of making chocolate from cocoa beans",
@@ -91,6 +100,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 1"
   },
   {
+    id: "essay-8",
     time: "19 min",
     date: "28/06/25",
     topic: "The diagram shows the process of recycling plastic bottles",
@@ -102,6 +112,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 1 Essays - Pie Chart
   {
+    id: "essay-9",
     time: "17 min",
     date: "08/06/25",
     topic: "The pie charts show the proportion of carbohydrates, protein and fat in three different diets",
@@ -111,6 +122,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 1"
   },
   {
+    id: "essay-10",
     time: "20 min",
     date: "30/06/25",
     topic: "The pie charts compare the reasons why people travel to work by bicycle in two cities",
@@ -122,6 +134,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 1 Essays - Map
   {
+    id: "essay-11",
     time: "21 min",
     date: "11/06/25",
     topic: "The maps show changes to a town center between 1990 and 2010",
@@ -131,6 +144,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 1"
   },
   {
+    id: "essay-12",
     time: "19 min",
     date: "29/06/25",
     topic: "The maps show the development of a college campus from 1975 to present day",
@@ -142,6 +156,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 2 Essays - Opinion
   {
+    id: "essay-13",
     time: "45 min",
     date: "02/06/25",
     topic: "The impact of technology on employment",
@@ -151,6 +166,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "essay-14",
     time: "44 min",
     date: "18/06/25",
     topic: "Job satisfaction or salary – which matters more?",
@@ -160,6 +176,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "money-management-essay",
     time: "43 min",
     date: "25/06/25",
     topic: "Some people believe that students should be taught how to manage money at school",
@@ -171,6 +188,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 2 Essays - Discussion
   {
+    id: "essay-15",
     time: "40 min",
     date: "04/06/25",
     topic: "The role of government in environmental protection",
@@ -180,6 +198,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "essay-16",
     time: "42 min",
     date: "20/06/25",
     topic: "Some people think that university education should be free for all students",
@@ -189,6 +208,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "essay-17",
     time: "41 min",
     date: "27/06/25",
     topic: "The debate about whether celebrities have a responsibility to be role models",
@@ -200,6 +220,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 2 Essays - Advantage/Disadvantage
   {
+    id: "essay-18",
     time: "38 min",
     date: "14/06/25",
     topic: "Advantages and disadvantages of online education",
@@ -209,6 +230,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "essay-19",
     time: "46 min",
     date: "21/06/25",
     topic: "Is it better to study abroad or locally?",
@@ -218,6 +240,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "essay-20",
     time: "39 min",
     date: "24/06/25",
     topic: "The advantages and disadvantages of living in a large city",
@@ -229,6 +252,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 2 Essays - Problem/Solution
   {
+    id: "essay-21",
     time: "44 min",
     date: "09/06/25",
     topic: "Traffic congestion in cities and potential solutions",
@@ -238,6 +262,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "essay-22",
     time: "45 min",
     date: "22/06/25",
     topic: "The problem of plastic pollution and how to address it",
@@ -249,6 +274,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 2 Essays - Cause & Solution
   {
+    id: "essay-23",
     time: "42 min",
     date: "10/06/25",
     topic: "The importance of university education for career success",
@@ -258,6 +284,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "essay-24",
     time: "41 min",
     date: "16/06/25",
     topic: "Causes of youth unemployment and possible solutions",
@@ -269,6 +296,7 @@ const sampleEssays: EssayData[] = [
 
   // Task 2 Essays - Two-part Question
   {
+    id: "essay-25",
     time: "43 min",
     date: "07/06/25",
     topic: "Why do people choose to live in cities? What problems might this cause?",
@@ -278,6 +306,7 @@ const sampleEssays: EssayData[] = [
     taskType: "Task 2"
   },
   {
+    id: "essay-26",
     time: "44 min",
     date: "13/06/25",
     topic: "What are the benefits of reading books? How can we encourage more people to read?",
@@ -320,6 +349,7 @@ const formatIELTSScore = (score: number): string => {
 };
 
 export default function ProgressTracking() {
+  const [location, navigate] = useLocation();
   const [sortBy, setSortBy] = useState("date");
   const [filterBy, setFilterBy] = useState("all");
   const [sortByScore, setSortByScore] = useState("score");
@@ -1007,7 +1037,7 @@ export default function ProgressTracking() {
                             );
                             
                             return (
-                              <tr key={filteredIndex} className="border-b hover:bg-gray-50">
+                              <tr key={filteredIndex} className="border-b hover:bg-gray-50 cursor-pointer" onClick={() => navigate(`/essay/${essay.id}`)}>
                                 <td className="py-4 px-4">{essay.date}</td>
                                 <td className="py-4 px-4">
                                   <div>

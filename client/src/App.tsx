@@ -13,6 +13,7 @@ import WordPressDemo from "@/pages/wordpress-demo";
 import VirtualExam from "@/pages/virtual-exam";
 import ProgressTracking from "@/pages/progress-tracking";
 import EssayGrading from "@/pages/essay-grading";
+import EssayDetail from "@/pages/essay-detail";
 
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -33,6 +34,7 @@ function Router() {
           <Route path="/virtual-exam" component={VirtualExam} />
           <Route path="/progress-tracking" component={ProgressTracking} />
           <Route path="/essay-grading" component={EssayGrading} />
+          <Route path="/essay/:id" component={EssayDetail} />
           <Route path="/about" component={NotFound} />
           <Route path="/vocabulary" component={NotFound} />
           <Route path="/progress" component={NotFound} />
