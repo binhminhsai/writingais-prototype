@@ -330,11 +330,11 @@ export default function ProgressTracking() {
   // Goals popup states
   const [showGoalsDialog, setShowGoalsDialog] = useState(false);
   const [targetScore, setTargetScore] = useState("8.0");
-  const [examDate, setExamDate] = useState("DD/MM/YYYY");
+  const [examDate, setExamDate] = useState("");
   
   // Track original values to detect changes
   const [originalTargetScore, setOriginalTargetScore] = useState("8.0");
-  const [originalExamDate, setOriginalExamDate] = useState("DD/MM/YYYY");
+  const [originalExamDate, setOriginalExamDate] = useState("");
   
   // Date validation state
   const [dateError, setDateError] = useState("");
@@ -503,48 +503,37 @@ export default function ProgressTracking() {
     return `${fullYear}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
   };
   
-  // Handle date input with format preservation
+  // Handle date input with seamless typing like credit card expiry
   const handleDateInputChange = (value: string) => {
-    // Handle special keys like backspace/delete
-    if (value === '' || value === 'DD/MM/YYYY') {
-      setExamDate('DD/MM/YYYY');
+    // Extract only digits from the input
+    const digitsOnly = value.replace(/\D/g, '');
+    
+    // If empty, show placeholder
+    if (digitsOnly.length === 0) {
+      setExamDate('');
       setDateError("");
       return;
     }
     
-    // Remove all non-digits
-    const digitsOnly = value.replace(/\D/g, '');
+    // Format as DD/MM/YYYY with automatic slash insertion
+    let formatted = '';
     
-    // Always maintain DD/MM/YYYY structure
-    let formattedDate = 'DD/MM/YYYY';
-    
-    if (digitsOnly.length === 0) {
-      formattedDate = 'DD/MM/YYYY';
+    if (digitsOnly.length <= 2) {
+      // Just day: "01" or "1"
+      formatted = digitsOnly;
+    } else if (digitsOnly.length <= 4) {
+      // Day + month: "01/02" or "01/2"
+      formatted = digitsOnly.slice(0, 2) + '/' + digitsOnly.slice(2);
     } else {
-      // Replace placeholders with actual digits
-      let day = 'DD';
-      let month = 'MM';
-      let year = 'YYYY';
-      
-      if (digitsOnly.length >= 1) {
-        day = digitsOnly.slice(0, 2).padEnd(2, 'D');
-      }
-      if (digitsOnly.length >= 3) {
-        month = digitsOnly.slice(2, 4).padEnd(2, 'M');
-      }
-      if (digitsOnly.length >= 5) {
-        year = digitsOnly.slice(4, 8).padEnd(4, 'Y');
-      }
-      
-      formattedDate = `${day}/${month}/${year}`;
+      // Day + month + year: "01/02/2025"
+      formatted = digitsOnly.slice(0, 2) + '/' + digitsOnly.slice(2, 4) + '/' + digitsOnly.slice(4, 8);
     }
     
-    setExamDate(formattedDate);
+    setExamDate(formatted);
     
     // Only validate if we have a complete date (8 digits)
     if (digitsOnly.length === 8) {
-      const completeDate = `${digitsOnly.slice(0, 2)}/${digitsOnly.slice(2, 4)}/${digitsOnly.slice(4, 8)}`;
-      validateDate(completeDate);
+      validateDate(formatted);
     } else {
       setDateError(""); // Clear errors for incomplete dates
     }
@@ -1120,13 +1109,6 @@ export default function ProgressTracking() {
                                   placeholder="DD/MM/YYYY"
                                   value={examDate}
                                   onChange={(e) => handleDateInputChange(e.target.value)}
-                                  onKeyDown={(e) => {
-                                    if (e.key === 'Backspace' || e.key === 'Delete') {
-                                      e.preventDefault();
-                                      setExamDate('DD/MM/YYYY');
-                                      setDateError("");
-                                    }
-                                  }}
                                   maxLength={10}
                                   className={`flex-1 ${dateError ? 'border-red-500' : ''}`}
                                 />
@@ -1172,13 +1154,13 @@ export default function ProgressTracking() {
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Exam Date</span>
                       <span className="font-medium text-blue-600">
-                        {examDate === "DD/MM/YYYY" ? "Chưa thiết lập" : examDate}
+                        {!examDate ? "Chưa thiết lập" : examDate}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Exam Countdown</span>
                       <span className="font-medium">
-                        {examDate === "DD/MM/YYYY" ? "Chưa có ngày thi" : calculateCountdown(examDate)}
+                        {!examDate ? "Chưa có ngày thi" : calculateCountdown(examDate)}
                       </span>
                     </div>
                   </div>
