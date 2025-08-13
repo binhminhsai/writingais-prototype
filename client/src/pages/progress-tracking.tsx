@@ -1037,7 +1037,7 @@ export default function ProgressTracking() {
                             );
                             
                             return (
-                              <tr key={filteredIndex} className="border-b hover:bg-gray-50 cursor-pointer" onClick={() => navigate(`/essay/${essay.id}`)}>
+                              <tr key={filteredIndex} className="border-b hover:bg-gray-50 cursor-pointer" onClick={() => navigate(`/essay/${essay.id}/feedback`)}>
                                 <td className="py-4 px-4">{essay.date}</td>
                                 <td className="py-4 px-4">
                                   <div>

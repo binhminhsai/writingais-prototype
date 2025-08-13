@@ -984,22 +984,34 @@ Only through careful planning and responsible policies can societies achieve pro
           <Download className="mr-2 h-4 w-4" /> Download Feedback
         </Button>
 
-        <Button 
-          variant="secondary"
-          className="bg-primary hover:bg-primary/90 text-white"
-          onClick={onTryAgain}
-        >
-          <Pen className="mr-2 h-4 w-4" /> 
-          {context === "essay-grading" ? "Chấm bài khác" : "Try Again"}
-        </Button>
+        {context === "essay-grading" ? (
+          <Button 
+            className="bg-primary hover:bg-primary/90 text-white"
+            onClick={onNextPractice}
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" /> 
+            Quay lại Progress Tracking
+          </Button>
+        ) : (
+          <>
+            <Button 
+              variant="secondary"
+              className="bg-primary hover:bg-primary/90 text-white"
+              onClick={onTryAgain}
+            >
+              <Pen className="mr-2 h-4 w-4" /> 
+              Try Again
+            </Button>
 
-        <Button 
-          className="bg-primary hover:bg-primary/90 text-white"
-          onClick={onNextPractice}
-        >
-          <ArrowRight className="mr-2 h-4 w-4" /> 
-          {context === "essay-grading" ? "Bài mới" : "Next Practice"}
-        </Button>
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-white"
+              onClick={onNextPractice}
+            >
+              <ArrowRight className="mr-2 h-4 w-4" /> 
+              Next Practice
+            </Button>
+          </>
+        )}
       </div>
 
       {/* Exit Confirmation Dialog */}
