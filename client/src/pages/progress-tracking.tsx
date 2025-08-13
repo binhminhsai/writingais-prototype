@@ -390,10 +390,21 @@ export default function ProgressTracking() {
   // Calculate exam countdown
   const calculateCountdown = (examDateStr: string) => {
     try {
-      const [day, month, year] = examDateStr.split('/');
+      if (!examDateStr) return 'Chưa có ngày thi';
+      
+      const parts = examDateStr.split('/');
+      if (parts.length !== 3) return 'Ngày không hợp lệ';
+      
+      const [day, month, year] = parts;
+      if (!day || !month || !year) return 'Ngày không hợp lệ';
+      
       // Handle both 2-digit and 4-digit years
       const fullYear = year.length === 2 ? 2000 + parseInt(year) : parseInt(year);
       const examDate = new Date(fullYear, parseInt(month) - 1, parseInt(day));
+      
+      // Check if date is valid
+      if (isNaN(examDate.getTime())) return 'Ngày không hợp lệ';
+      
       const today = new Date();
       const diffTime = examDate.getTime() - today.getTime();
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -415,8 +426,13 @@ export default function ProgressTracking() {
   
   // Format date for input (DD/MM/YYYY to YYYY-MM-DD)
   const formatDateForInput = (dateStr: string) => {
-    if (dateStr.includes('-')) return dateStr;
-    const [day, month, year] = dateStr.split('/');
+    if (!dateStr || dateStr.includes('-')) return dateStr;
+    const parts = dateStr.split('/');
+    if (parts.length !== 3) return '';
+    
+    const [day, month, year] = parts;
+    if (!day || !month || !year) return '';
+    
     // Handle both 2-digit and 4-digit years
     const fullYear = year.length === 2 ? `20${year}` : year;
     return `${fullYear}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
