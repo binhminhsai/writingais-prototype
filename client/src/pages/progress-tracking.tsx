@@ -94,7 +94,7 @@ const sampleEssays: EssayData[] = [
     time: "19 min",
     date: "28/06/25",
     topic: "The diagram shows the process of recycling plastic bottles",
-    score: 6.8,
+    score: 7.0,
     isMarked: false,
     essayType: "Process Diagram",
     taskType: "Task 1"
@@ -105,7 +105,7 @@ const sampleEssays: EssayData[] = [
     time: "17 min",
     date: "08/06/25",
     topic: "The pie charts show the proportion of carbohydrates, protein and fat in three different diets",
-    score: 5.8,
+    score: 6.0,
     isMarked: true,
     essayType: "Pie Chart",
     taskType: "Task 1"
@@ -114,7 +114,7 @@ const sampleEssays: EssayData[] = [
     time: "20 min",
     date: "30/06/25",
     topic: "The pie charts compare the reasons why people travel to work by bicycle in two cities",
-    score: 7.2,
+    score: 7.5,
     isMarked: false,
     essayType: "Pie Chart",
     taskType: "Task 1"
@@ -125,7 +125,7 @@ const sampleEssays: EssayData[] = [
     time: "21 min",
     date: "11/06/25",
     topic: "The maps show changes to a town center between 1990 and 2010",
-    score: 6.3,
+    score: 6.5,
     isMarked: false,
     essayType: "Map",
     taskType: "Task 1"
@@ -134,7 +134,7 @@ const sampleEssays: EssayData[] = [
     time: "19 min",
     date: "29/06/25",
     topic: "The maps show the development of a college campus from 1975 to present day",
-    score: 6.9,
+    score: 7.0,
     isMarked: true,
     essayType: "Map",
     taskType: "Task 1"
@@ -163,7 +163,7 @@ const sampleEssays: EssayData[] = [
     time: "43 min",
     date: "25/06/25",
     topic: "Some people believe that students should be taught how to manage money at school",
-    score: 7.8,
+    score: 8.0,
     isMarked: false,
     essayType: "Opinion",
     taskType: "Task 2"
@@ -183,7 +183,7 @@ const sampleEssays: EssayData[] = [
     time: "42 min",
     date: "20/06/25",
     topic: "Some people think that university education should be free for all students",
-    score: 6.7,
+    score: 6.5,
     isMarked: false,
     essayType: "Discussion",
     taskType: "Task 2"
@@ -192,7 +192,7 @@ const sampleEssays: EssayData[] = [
     time: "41 min",
     date: "27/06/25",
     topic: "The debate about whether celebrities have a responsibility to be role models",
-    score: 7.3,
+    score: 7.5,
     isMarked: true,
     essayType: "Discussion",
     taskType: "Task 2"
@@ -308,6 +308,16 @@ const basicMistakes = [
     tip: "Replace them with more precise, academic alternatives to show range and control."
   }
 ];
+
+// Format IELTS score to proper display format
+const formatIELTSScore = (score: number): string => {
+  // Round to nearest 0.5
+  const rounded = Math.round(score * 2) / 2;
+  
+  // For whole numbers, show one decimal place (6.0)
+  // For half numbers, show one decimal place (6.5)
+  return rounded.toFixed(1);
+};
 
 export default function ProgressTracking() {
   const [sortBy, setSortBy] = useState("date");
@@ -767,7 +777,7 @@ export default function ProgressTracking() {
                         style={{ width: `${(overallScore / 9) * 100}%` }}
                       ></div>
                     </div>
-                    <span className="text-2xl font-bold w-12 text-right">{overallScore.toFixed(1)}</span>
+                    <span className="text-2xl font-bold w-12 text-right">{formatIELTSScore(overallScore)}</span>
                   </div>
                   
                   <div className="space-y-2">
@@ -780,7 +790,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(taskResponse / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xl font-bold w-12 text-right">{taskResponse.toFixed(1)}</span>
+                        <span className="text-xl font-bold w-12 text-right">{formatIELTSScore(taskResponse)}</span>
                       </div>
                     </div>
                     
@@ -793,7 +803,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(lexicalResource / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xl font-bold w-12 text-right">{lexicalResource.toFixed(1)}</span>
+                        <span className="text-xl font-bold w-12 text-right">{formatIELTSScore(lexicalResource)}</span>
                       </div>
                     </div>
                     
@@ -806,7 +816,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(coherenceCohesion / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xl font-bold w-12 text-right">{coherenceCohesion.toFixed(1)}</span>
+                        <span className="text-xl font-bold w-12 text-right">{formatIELTSScore(coherenceCohesion)}</span>
                       </div>
                     </div>
                     
@@ -819,7 +829,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(grammaticalRange / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xl font-bold w-12 text-right">{grammaticalRange.toFixed(1)}</span>
+                        <span className="text-xl font-bold w-12 text-right">{formatIELTSScore(grammaticalRange)}</span>
                       </div>
                     </div>
                   </div>
@@ -1013,7 +1023,7 @@ export default function ProgressTracking() {
                                     variant={essay.score >= 7 ? "default" : essay.score >= 6 ? "secondary" : "destructive"}
                                     className="font-medium"
                                   >
-                                    {essay.score.toFixed(1)}
+                                    {formatIELTSScore(essay.score)}
                                   </Badge>
                                 </td>
                                 <td className="py-4 px-4 text-center">
