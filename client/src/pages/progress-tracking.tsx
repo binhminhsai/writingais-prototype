@@ -344,7 +344,7 @@ export default function ProgressTracking() {
     return (targetScore !== originalTargetScore || examDate !== originalExamDate) && !dateError;
   };
 
-  // Validate if date is in the future
+  // Validate if date is in the future and is a valid calendar date
   const validateDate = (dateStr: string) => {
     if (!dateStr) {
       setDateError("");
@@ -363,9 +363,34 @@ export default function ProgressTracking() {
       return;
     }
 
-    const examDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-    if (isNaN(examDate.getTime())) {
-      setDateError("Ngày không hợp lệ");
+    const dayNum = parseInt(day);
+    const monthNum = parseInt(month);
+    const yearNum = parseInt(year);
+
+    // Check basic ranges
+    if (dayNum < 1 || dayNum > 31) {
+      setDateError("Ngày không hợp lệ (01-31)");
+      return;
+    }
+    
+    if (monthNum < 1 || monthNum > 12) {
+      setDateError("Tháng không hợp lệ (01-12)");
+      return;
+    }
+
+    if (yearNum < 1900 || yearNum > 2100) {
+      setDateError("Năm không hợp lệ");
+      return;
+    }
+
+    // Create date and check if it's valid (handles leap years and month-specific day limits)
+    const examDate = new Date(yearNum, monthNum - 1, dayNum);
+    
+    // Check if the date created matches what we input (prevents invalid dates like 31/02)
+    if (examDate.getDate() !== dayNum || 
+        examDate.getMonth() !== monthNum - 1 || 
+        examDate.getFullYear() !== yearNum) {
+      setDateError("Ngày không tồn tại trong lịch");
       return;
     }
 
@@ -1027,9 +1052,12 @@ export default function ProgressTracking() {
                           <Settings className="w-4 h-4" />
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-[425px]">
+                      <DialogContent className="sm:max-w-[425px]" aria-describedby="goal-dialog-description">
                         <DialogHeader>
                           <DialogTitle>Chỉnh sửa mục tiêu của bạn</DialogTitle>
+                          <div id="goal-dialog-description" className="sr-only">
+                            Cập nhật điểm mục tiêu và ngày thi IELTS của bạn
+                          </div>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
                           <div className="grid grid-cols-4 items-center gap-4">
