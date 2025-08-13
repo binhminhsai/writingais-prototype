@@ -988,42 +988,52 @@ export default function ProgressTracking() {
                           </tr>
                         </thead>
                         <tbody>
-                          {filteredEssays.map((essay, index) => (
-                            <tr key={index} className="border-b hover:bg-gray-50">
-                              <td className="py-4 px-4">{essay.date}</td>
-                              <td className="py-4 px-4">
-                                <div>
-                                  <div className="text-sm truncate">{essay.topic}</div>
-                                  <div className="text-xs text-gray-500 mt-1">
-                                    {essay.taskType} - {essay.essayType}
+                          {filteredEssays.map((essay, filteredIndex) => {
+                            const originalIndex = essays.findIndex(e => 
+                              e.date === essay.date && 
+                              e.topic === essay.topic && 
+                              e.score === essay.score &&
+                              e.time === essay.time
+                            );
+                            
+                            return (
+                              <tr key={filteredIndex} className="border-b hover:bg-gray-50">
+                                <td className="py-4 px-4">{essay.date}</td>
+                                <td className="py-4 px-4">
+                                  <div>
+                                    <div className="text-sm truncate">{essay.topic}</div>
+                                    <div className="text-xs text-gray-500 mt-1">
+                                      {essay.taskType} - {essay.essayType}
+                                    </div>
                                   </div>
-                                </div>
-                              </td>
-                              <td className="py-4 px-4 text-center text-sm">{essay.time}</td>
-                              <td className="py-4 px-4 text-center">
-                                <Badge 
-                                  variant={essay.score >= 7 ? "default" : essay.score >= 6 ? "secondary" : "destructive"}
-                                  className="font-medium"
-                                >
-                                  {essay.score.toFixed(1)}
-                                </Badge>
-                              </td>
-                              <td className="py-4 px-4 text-center">
-                                <button
-                                  onClick={() => toggleEssayMarked(essays.findIndex(e => e === essay))}
-                                  className="p-1 hover:bg-gray-100 rounded transition-colors"
-                                >
-                                  <Star
-                                    className={`w-5 h-5 ${
-                                      essay.isMarked 
-                                        ? 'fill-yellow-400 text-yellow-400' 
-                                        : 'fill-none text-gray-400'
-                                    }`}
-                                  />
-                                </button>
-                              </td>
-                            </tr>
-                          ))}
+                                </td>
+                                <td className="py-4 px-4 text-center text-sm">{essay.time}</td>
+                                <td className="py-4 px-4 text-center">
+                                  <Badge 
+                                    variant={essay.score >= 7 ? "default" : essay.score >= 6 ? "secondary" : "destructive"}
+                                    className="font-medium"
+                                  >
+                                    {essay.score.toFixed(1)}
+                                  </Badge>
+                                </td>
+                                <td className="py-4 px-4 text-center">
+                                  <button
+                                    onClick={() => originalIndex >= 0 && toggleEssayMarked(originalIndex)}
+                                    className="p-1 hover:bg-gray-100 rounded transition-colors"
+                                    disabled={originalIndex < 0}
+                                  >
+                                    <Star
+                                      className={`w-5 h-5 ${
+                                        essay.isMarked 
+                                          ? 'fill-yellow-400 text-yellow-400' 
+                                          : 'fill-none text-gray-400'
+                                      }`}
+                                    />
+                                  </button>
+                                </td>
+                              </tr>
+                            );
+                          })}
                         </tbody>
                       </table>
                       
