@@ -981,8 +981,8 @@ export default function ProgressTracking() {
                                 type="text"
                                 placeholder="DD/MM/YYYY"
                                 value={examDate}
+                                onChange={(e) => setExamDate(e.target.value)}
                                 className="flex-1"
-                                readOnly
                               />
                               <div className="relative">
                                 <input
