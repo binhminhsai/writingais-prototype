@@ -358,7 +358,8 @@ export default function ProgressTracking() {
     // Clamp between 0 and 9
     const clamped = Math.max(0, Math.min(9, rounded));
     
-    setTargetScore(clamped.toString());
+    // Format to always show 1 decimal place
+    setTargetScore(clamped.toFixed(1));
   };
   
   // Calculate exam countdown
@@ -611,7 +612,7 @@ export default function ProgressTracking() {
                         style={{ width: `${(overallScore / 9) * 100}%` }}
                       ></div>
                     </div>
-                    <span className="text-2xl font-bold w-12 text-right">{overallScore}</span>
+                    <span className="text-2xl font-bold w-12 text-right">{overallScore.toFixed(1)}</span>
                   </div>
                   
                   <div className="space-y-2">
@@ -624,7 +625,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(taskResponse / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xl font-bold w-12 text-right">{taskResponse}</span>
+                        <span className="text-xl font-bold w-12 text-right">{taskResponse.toFixed(1)}</span>
                       </div>
                     </div>
                     
@@ -637,7 +638,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(lexicalResource / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xl font-bold w-12 text-right">{lexicalResource}</span>
+                        <span className="text-xl font-bold w-12 text-right">{lexicalResource.toFixed(1)}</span>
                       </div>
                     </div>
                     
@@ -650,7 +651,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(coherenceCohesion / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xl font-bold w-12 text-right">{coherenceCohesion}</span>
+                        <span className="text-xl font-bold w-12 text-right">{coherenceCohesion.toFixed(1)}</span>
                       </div>
                     </div>
                     
@@ -663,7 +664,7 @@ export default function ProgressTracking() {
                             style={{ width: `${(grammaticalRange / 9) * 100}%` }}
                           ></div>
                         </div>
-                        <span className="text-xl font-bold w-12 text-right">{grammaticalRange}</span>
+                        <span className="text-xl font-bold w-12 text-right">{grammaticalRange.toFixed(1)}</span>
                       </div>
                     </div>
                   </div>
@@ -849,7 +850,7 @@ export default function ProgressTracking() {
                                   variant={essay.score >= 7 ? "default" : essay.score >= 6 ? "secondary" : "destructive"}
                                   className="font-medium"
                                 >
-                                  {essay.score}
+                                  {essay.score.toFixed(1)}
                                 </Badge>
                               </td>
                               <td className="py-4 px-4 text-center">
@@ -962,10 +963,9 @@ export default function ProgressTracking() {
                                   min={new Date().toISOString().split('T')[0]}
                                   value={formatDateForInput(examDate)}
                                   onChange={(e) => handleDateChange(e.target.value)}
-                                  className="absolute inset-0 opacity-0 cursor-pointer"
-                                  style={{ width: '24px', height: '24px' }}
+                                  className="absolute inset-0 w-6 h-6 opacity-0 cursor-pointer"
                                 />
-                                <Calendar className="w-6 h-6 text-gray-400 hover:text-gray-600 cursor-pointer" />
+                                <Calendar className="w-6 h-6 text-gray-700 hover:text-gray-900 cursor-pointer transition-colors" />
                               </div>
                             </div>
                           </div>
