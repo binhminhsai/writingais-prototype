@@ -330,25 +330,50 @@ export default function ProgressTracking() {
   // Goals popup states
   const [showGoalsDialog, setShowGoalsDialog] = useState(false);
   const [targetScore, setTargetScore] = useState("8.0");
-  const [examDate, setExamDate] = useState("13/01/26");
+  const [examDate, setExamDate] = useState("13/01/2026");
   
+  // Track original values to detect changes
+  const [originalTargetScore, setOriginalTargetScore] = useState("8.0");
+  const [originalExamDate, setOriginalExamDate] = useState("13/01/2026");
+  
+  // Check if data has changed
+  const hasDataChanged = () => {
+    return targetScore !== originalTargetScore || examDate !== originalExamDate;
+  };
+
+  // Open dialog and set original values
+  const handleOpenDialog = () => {
+    setOriginalTargetScore(targetScore);
+    setOriginalExamDate(examDate);
+    setShowGoalsDialog(true);
+  };
+
   // Save goals function
   const handleSaveGoals = () => {
+    // Update original values to current values
+    setOriginalTargetScore(targetScore);
+    setOriginalExamDate(examDate);
     setShowGoalsDialog(false);
-    // Goals are automatically saved in state
+  };
+
+  // Cancel changes function
+  const handleCancelGoals = () => {
+    // Revert to original values
+    setTargetScore(originalTargetScore);
+    setExamDate(originalExamDate);
+    setShowGoalsDialog(false);
   };
   
-  // Handle target score change with validation
+  // Handle target score change - allow free input but format on blur
   const handleTargetScoreChange = (value: string) => {
-    // Only allow numbers and decimal point
-    if (!/^\d*\.?\d*$/.test(value)) return;
-    
-    // Limit to 2 digits
-    if (value.length > 3) return;
-    
-    const numValue = parseFloat(value);
+    setTargetScore(value);
+  };
+
+  // Format target score on blur
+  const handleTargetScoreBlur = () => {
+    const numValue = parseFloat(targetScore);
     if (isNaN(numValue)) {
-      setTargetScore(value);
+      setTargetScore("");
       return;
     }
     
@@ -366,7 +391,9 @@ export default function ProgressTracking() {
   const calculateCountdown = (examDateStr: string) => {
     try {
       const [day, month, year] = examDateStr.split('/');
-      const examDate = new Date(2000 + parseInt(year), parseInt(month) - 1, parseInt(day));
+      // Handle both 2-digit and 4-digit years
+      const fullYear = year.length === 2 ? 2000 + parseInt(year) : parseInt(year);
+      const examDate = new Date(fullYear, parseInt(month) - 1, parseInt(day));
       const today = new Date();
       const diffTime = examDate.getTime() - today.getTime();
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -376,21 +403,23 @@ export default function ProgressTracking() {
     }
   };
   
-  // Format date for input (YYYY-MM-DD to DD/MM/YY)
+  // Format date for display (YYYY-MM-DD to DD/MM/YYYY)
   const formatDateForDisplay = (dateStr: string) => {
     if (dateStr.includes('/')) return dateStr;
     const date = new Date(dateStr);
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear().toString().slice(-2);
+    const year = date.getFullYear().toString();
     return `${day}/${month}/${year}`;
   };
   
-  // Format date for input (DD/MM/YY to YYYY-MM-DD)
+  // Format date for input (DD/MM/YYYY to YYYY-MM-DD)
   const formatDateForInput = (dateStr: string) => {
     if (dateStr.includes('-')) return dateStr;
     const [day, month, year] = dateStr.split('/');
-    return `20${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    // Handle both 2-digit and 4-digit years
+    const fullYear = year.length === 2 ? `20${year}` : year;
+    return `${fullYear}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
   };
   
   // Handle date change
@@ -917,7 +946,7 @@ export default function ProgressTracking() {
                     Your Goals
                     <Dialog open={showGoalsDialog} onOpenChange={setShowGoalsDialog}>
                       <DialogTrigger asChild>
-                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                        <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={handleOpenDialog}>
                           <Settings className="w-4 h-4" />
                         </Button>
                       </DialogTrigger>
@@ -935,13 +964,11 @@ export default function ProgressTracking() {
                             </Label>
                             <Input
                               id="target-score"
-                              type="number"
-                              step="0.5"
-                              min="0"
-                              max="9"
+                              type="text"
                               placeholder="8.0"
                               value={targetScore}
                               onChange={(e) => handleTargetScoreChange(e.target.value)}
+                              onBlur={handleTargetScoreBlur}
                               className="col-span-3"
                             />
                           </div>
@@ -952,7 +979,7 @@ export default function ProgressTracking() {
                             <div className="col-span-3 flex items-center gap-2">
                               <Input
                                 type="text"
-                                placeholder="DD/MM/YY"
+                                placeholder="DD/MM/YYYY"
                                 value={examDate}
                                 className="flex-1"
                                 readOnly
@@ -971,7 +998,14 @@ export default function ProgressTracking() {
                           </div>
                         </div>
                         <DialogFooter>
-                          <Button type="submit" onClick={handleSaveGoals}>
+                          <Button variant="outline" onClick={handleCancelGoals}>
+                            Huỷ
+                          </Button>
+                          <Button 
+                            type="submit" 
+                            onClick={handleSaveGoals}
+                            disabled={!hasDataChanged()}
+                          >
                             Lưu thay đổi
                           </Button>
                         </DialogFooter>
