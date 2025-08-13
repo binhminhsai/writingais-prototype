@@ -462,7 +462,7 @@ Only through careful planning and responsible policies can societies achieve pro
         <Button 
           variant="outline" 
           size="sm"
-          onClick={() => setShowExitDialog(true)}
+          onClick={() => context === "essay-grading" ? onNextPractice() : setShowExitDialog(true)}
         >
           <ArrowLeft className="h-4 w-4 mr-2" /> Back
         </Button>
