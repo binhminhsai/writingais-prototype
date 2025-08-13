@@ -505,6 +505,13 @@ export default function ProgressTracking() {
   
   // Handle date input with format preservation
   const handleDateInputChange = (value: string) => {
+    // Handle special keys like backspace/delete
+    if (value === '' || value === 'DD/MM/YYYY') {
+      setExamDate('DD/MM/YYYY');
+      setDateError("");
+      return;
+    }
+    
     // Remove all non-digits
     const digitsOnly = value.replace(/\D/g, '');
     
@@ -515,9 +522,19 @@ export default function ProgressTracking() {
       formattedDate = 'DD/MM/YYYY';
     } else {
       // Replace placeholders with actual digits
-      const day = (digitsOnly.slice(0, 2) || 'DD').padEnd(2, 'D');
-      const month = (digitsOnly.slice(2, 4) || 'MM').padEnd(2, 'M');
-      const year = (digitsOnly.slice(4, 8) || 'YYYY').padEnd(4, 'Y');
+      let day = 'DD';
+      let month = 'MM';
+      let year = 'YYYY';
+      
+      if (digitsOnly.length >= 1) {
+        day = digitsOnly.slice(0, 2).padEnd(2, 'D');
+      }
+      if (digitsOnly.length >= 3) {
+        month = digitsOnly.slice(2, 4).padEnd(2, 'M');
+      }
+      if (digitsOnly.length >= 5) {
+        year = digitsOnly.slice(4, 8).padEnd(4, 'Y');
+      }
       
       formattedDate = `${day}/${month}/${year}`;
     }
@@ -1103,6 +1120,13 @@ export default function ProgressTracking() {
                                   placeholder="DD/MM/YYYY"
                                   value={examDate}
                                   onChange={(e) => handleDateInputChange(e.target.value)}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Backspace' || e.key === 'Delete') {
+                                      e.preventDefault();
+                                      setExamDate('DD/MM/YYYY');
+                                      setDateError("");
+                                    }
+                                  }}
                                   maxLength={10}
                                   className={`flex-1 ${dateError ? 'border-red-500' : ''}`}
                                 />
