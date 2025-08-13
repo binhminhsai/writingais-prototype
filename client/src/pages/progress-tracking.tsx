@@ -330,11 +330,11 @@ export default function ProgressTracking() {
   // Goals popup states
   const [showGoalsDialog, setShowGoalsDialog] = useState(false);
   const [targetScore, setTargetScore] = useState("8.0");
-  const [examDate, setExamDate] = useState("13/01/2026");
+  const [examDate, setExamDate] = useState("DD/MM/YYYY");
   
   // Track original values to detect changes
   const [originalTargetScore, setOriginalTargetScore] = useState("8.0");
-  const [originalExamDate, setOriginalExamDate] = useState("13/01/2026");
+  const [originalExamDate, setOriginalExamDate] = useState("DD/MM/YYYY");
   
   // Date validation state
   const [dateError, setDateError] = useState("");
@@ -409,6 +409,7 @@ export default function ProgressTracking() {
   const handleOpenDialog = () => {
     setOriginalTargetScore(targetScore);
     setOriginalExamDate(examDate);
+    setDateError(""); // Clear any existing errors
     setShowGoalsDialog(true);
   };
 
@@ -507,20 +508,29 @@ export default function ProgressTracking() {
     // Remove all non-digits
     const digitsOnly = value.replace(/\D/g, '');
     
-    // Format with slashes: DD/MM/YYYY
-    let formattedDate = '';
-    if (digitsOnly.length >= 1) {
-      formattedDate = digitsOnly.slice(0, 2);
-    }
-    if (digitsOnly.length >= 3) {
-      formattedDate += '/' + digitsOnly.slice(2, 4);
-    }
-    if (digitsOnly.length >= 5) {
-      formattedDate += '/' + digitsOnly.slice(4, 8);
+    // Always maintain DD/MM/YYYY structure
+    let formattedDate = 'DD/MM/YYYY';
+    
+    if (digitsOnly.length === 0) {
+      formattedDate = 'DD/MM/YYYY';
+    } else {
+      // Replace placeholders with actual digits
+      const day = (digitsOnly.slice(0, 2) || 'DD').padEnd(2, 'D');
+      const month = (digitsOnly.slice(2, 4) || 'MM').padEnd(2, 'M');
+      const year = (digitsOnly.slice(4, 8) || 'YYYY').padEnd(4, 'Y');
+      
+      formattedDate = `${day}/${month}/${year}`;
     }
     
     setExamDate(formattedDate);
-    validateDate(formattedDate);
+    
+    // Only validate if we have a complete date (8 digits)
+    if (digitsOnly.length === 8) {
+      const completeDate = `${digitsOnly.slice(0, 2)}/${digitsOnly.slice(2, 4)}/${digitsOnly.slice(4, 8)}`;
+      validateDate(completeDate);
+    } else {
+      setDateError(""); // Clear errors for incomplete dates
+    }
   };
 
   // Handle date change from calendar picker
@@ -528,6 +538,14 @@ export default function ProgressTracking() {
     const formattedDate = formatDateForDisplay(value);
     setExamDate(formattedDate);
     validateDate(formattedDate);
+  };
+
+  // Get display value for the exam date (show actual date or placeholder)
+  const getDisplayDate = () => {
+    if (examDate === "DD/MM/YYYY" || !examDate || examDate.includes('D') || examDate.includes('M') || examDate.includes('Y')) {
+      return examDate;
+    }
+    return examDate;
   };
 
   // Get essay types based on selected task
@@ -1129,11 +1147,15 @@ export default function ProgressTracking() {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Exam Date</span>
-                      <span className="font-medium text-blue-600">{examDate}</span>
+                      <span className="font-medium text-blue-600">
+                        {examDate === "DD/MM/YYYY" ? "Chưa thiết lập" : examDate}
+                      </span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600">Exam Countdown</span>
-                      <span className="font-medium">{calculateCountdown(examDate)}</span>
+                      <span className="font-medium">
+                        {examDate === "DD/MM/YYYY" ? "Chưa có ngày thi" : calculateCountdown(examDate)}
+                      </span>
                     </div>
                   </div>
                 </CardContent>
