@@ -127,8 +127,27 @@ export function TestSetup({ onStart }: TestSetupProps) {
     <div className="p-6 border-b border-gray-200 bg-white">
       <h2 className="text-2xl font-semibold mb-6">IELTS Writing Task 2 Practice</h2>
       
+      {/* Tabs for different question modes - moved to top */}
+      <Tabs defaultValue="use-my-question" className="mb-6">
+        <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200 rounded-lg p-1 h-12">
+          <TabsTrigger 
+            value="use-my-question" 
+            data-testid="tab-use-my-question"
+            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 rounded-md font-medium text-sm hover:bg-white/70"
+          >
+            Use my question
+          </TabsTrigger>
+          <TabsTrigger 
+            value="random-question" 
+            data-testid="tab-random-question"
+            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-red-500 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 rounded-md font-medium text-sm hover:bg-white/70"
+          >
+            Random question
+          </TabsTrigger>
+        </TabsList>
+
       {/* Common Settings */}
-      <div className="grid md:grid-cols-2 gap-6 mb-6">
+      <div className="grid md:grid-cols-2 gap-6 mt-6">
         <div>
           <Label htmlFor="writing-type" className="mb-3 block">
             Select Question Type
@@ -205,9 +224,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
           </Select>
         </div>
       </div>
-
-      {/* Tabs for different question modes */}
-      <Tabs defaultValue="use-my-question" className="mt-6">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="use-my-question" data-testid="tab-use-my-question">Use my question</TabsTrigger>
           <TabsTrigger value="random-question" data-testid="tab-random-question">Random question</TabsTrigger>
