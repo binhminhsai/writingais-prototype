@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Sparkles, Shuffle, AlertTriangle, HelpCircle } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
@@ -126,28 +125,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
   return (
     <div className="p-6 border-b border-gray-200 bg-white">
       <h2 className="text-2xl font-semibold mb-6">IELTS Writing Task 2 Practice</h2>
-      
-      {/* Tabs for different question modes - moved to top */}
-      <Tabs defaultValue="use-my-question" className="mb-6">
-        <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200 rounded-lg p-1 h-12">
-          <TabsTrigger 
-            value="use-my-question" 
-            data-testid="tab-use-my-question"
-            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 rounded-md font-medium text-sm hover:bg-white/70"
-          >
-            Use my question
-          </TabsTrigger>
-          <TabsTrigger 
-            value="random-question" 
-            data-testid="tab-random-question"
-            className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-red-500 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 rounded-md font-medium text-sm hover:bg-white/70"
-          >
-            Random question
-          </TabsTrigger>
-        </TabsList>
-
-      {/* Common Settings */}
-      <div className="grid md:grid-cols-2 gap-6 mt-6">
+      <div className="grid md:grid-cols-2 gap-6">
         <div>
           <Label htmlFor="writing-type" className="mb-3 block">
             Select Question Type
@@ -224,104 +202,84 @@ export function TestSetup({ onStart }: TestSetupProps) {
           </Select>
         </div>
       </div>
+      <div className="mt-6">
+        <Label htmlFor="topic" className="mb-3 block">
+          Topic/Question
+        </Label>
+        <Textarea
+          id="topic"
+          onChange={(e) => e.target.value = e.target.value}
+          placeholder="- Enter any relevant information related to the topic, question type,...and then use the 'Generate question' button to create a question.
+- Enter your own question and select the 'Use my question' button to use your question."
+          className="h-24"
+        />
+        <div className="flex gap-2 flex-wrap">
+          <Button 
+            variant="secondary" 
+            size="sm"
+            className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white w-[180px] h-9 flex items-center justify-center gap-2 px-6"
+            onClick={handleGenerateTopic}
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            <span className="text-sm">Generate question</span>
+          </Button>
+          <Button 
+            variant="secondary"
+            size="sm" 
+            className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-6"
+            onClick={handleUseMyQuestion}
+          >
+            <span className="text-sm">Use my question</span>
+          </Button>
+          <Button 
+            variant="secondary"
+            size="sm" 
+            className="mt-2 w-[180px] h-9 bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center gap-2 px-6"
+            onClick={handleRandomQuestion}
+          >
+            <Shuffle className="h-3.5 w-3.5" />
+            <span className="text-sm">Random question</span>
+          </Button>
+        </div>
         
-        <TabsContent value="use-my-question" className="mt-6">
-          <div>
-            <Label htmlFor="topic" className="mb-3 block">
-              Topic/Question
-            </Label>
-            <Textarea
-              id="topic"
-              onChange={(e) => e.target.value = e.target.value}
-              placeholder="Enter your own question and select the 'Use my question' button to use your question."
-              className="h-24"
-            />
-            <div className="flex gap-2 flex-wrap">
-              <Button 
-                variant="secondary" 
-                size="sm"
-                className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white w-[180px] h-9 flex items-center justify-center gap-2 px-6"
-                onClick={handleGenerateTopic}
-                data-testid="button-generate-question"
-              >
-                <Sparkles className="h-3.5 w-3.5" />
-                <span className="text-sm">Generate question</span>
-              </Button>
-              <Button 
-                variant="secondary"
-                size="sm" 
-                className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-6"
-                onClick={handleUseMyQuestion}
-                data-testid="button-use-my-question"
-              >
-                <span className="text-sm">Use my question</span>
-              </Button>
-            </div>
-          </div>
-        </TabsContent>
+        {/* Chemical Flask Loader */}
+        <ChemicalFlaskLoader 
+          isVisible={isLoading} 
+          onComplete={() => {
+            if (loadingAction === 'generate') {
+              handleCompleteGenerateTopic();
+            } else if (loadingAction === 'use-my-question') {
+              handleCompleteUseMyQuestion();
+            } else if (loadingAction === 'random-question') {
+              handleCompleteRandomQuestion();
+            }
+            setLoadingAction(null);
+          }}
+        />
         
-        <TabsContent value="random-question" className="mt-6">
-          <div>
-            <Label className="mb-3 block">
-              Random Question Generation
-            </Label>
-            <p className="text-sm text-gray-600 mb-4">
-              Click the button below to generate a random question based on your selected question type and band level.
+        {/* Error Message */}
+        {errorMessage && (
+          <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-700 text-sm font-medium flex items-center">
+              <AlertTriangle className="h-4 w-4 mr-2" />
+              {errorMessage}
             </p>
-            <Button 
-              variant="secondary"
-              size="sm" 
-              className="w-[180px] h-9 bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center gap-2 px-6"
-              onClick={handleRandomQuestion}
-              data-testid="button-random-question"
-            >
-              <Shuffle className="h-3.5 w-3.5" />
-              <span className="text-sm">Random question</span>
-            </Button>
           </div>
-        </TabsContent>
-      </Tabs>
-
-      {/* Chemical Flask Loader */}
-      <ChemicalFlaskLoader 
-        isVisible={isLoading} 
-        onComplete={() => {
-          if (loadingAction === 'generate') {
-            handleCompleteGenerateTopic();
-          } else if (loadingAction === 'use-my-question') {
-            handleCompleteUseMyQuestion();
-          } else if (loadingAction === 'random-question') {
-            handleCompleteRandomQuestion();
-          }
-          setLoadingAction(null);
-        }}
-      />
-      
-      {/* Error Message */}
-      {errorMessage && (
-        <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-700 text-sm font-medium flex items-center">
-            <AlertTriangle className="h-4 w-4 mr-2" />
-            {errorMessage}
-          </p>
-        </div>
-      )}
-      
-      {/* Generated Topic Display */}
-      {topic && (
-        <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
-          <Label className="text-teal-700 font-medium">
-            {testType === "opinion" ? "Opinion:" : 
-             testType === "discussion" ? "Discussion:" :
-             testType === "problem-solution" ? "Problem – Solution:" :
-             testType === "advantage-disadvantage" ? "Advantage – Disadvantage:" :
-             "Two-part question:"}
-          </Label>
-          <p className="mt-2 text-sm text-gray-800">{topic}</p>
-        </div>
-      )}
-
-      {/* Time Limit and Start Button */}
+        )}
+        
+        {topic && (
+          <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
+            <Label className="text-teal-700 font-medium">
+              {testType === "opinion" ? "Opinion:" : 
+               testType === "discussion" ? "Discussion:" :
+               testType === "problem-solution" ? "Problem – Solution:" :
+               testType === "advantage-disadvantage" ? "Advantage – Disadvantage:" :
+               "Two-part question:"}
+            </Label>
+            <p className="mt-2 text-sm text-gray-800">{topic}</p>
+          </div>
+        )}
+      </div>
       <div className="mt-6 flex items-center justify-between">
         <div>
           <Label htmlFor="time-limit" className="mb-3 block">
@@ -354,7 +312,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
           size="lg" 
           onClick={handleStartWriting}
           className="bg-primary hover:opacity-90 text-white"
-          data-testid="button-start-writing"
         >
           Start Writing
         </Button>
