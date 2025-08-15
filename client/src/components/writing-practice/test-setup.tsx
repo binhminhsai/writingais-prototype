@@ -224,10 +224,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
           </Select>
         </div>
       </div>
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="use-my-question" data-testid="tab-use-my-question">Use my question</TabsTrigger>
-          <TabsTrigger value="random-question" data-testid="tab-random-question">Random question</TabsTrigger>
-        </TabsList>
         
         <TabsContent value="use-my-question" className="mt-6">
           <div>
