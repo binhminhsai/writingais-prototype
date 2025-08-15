@@ -15,6 +15,7 @@ import { generateRandomTopic } from "@/data/topics";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 
 export type WritingTestType = 
+  | "all"
   | "opinion" 
   | "discussion" 
   | "problem-solution" 
@@ -41,7 +42,7 @@ interface TestSetupProps {
 }
 
 export function TestSetup({ onStart }: TestSetupProps) {
-  const [testType, setTestType] = useState<WritingTestType>("opinion");
+  const [testType, setTestType] = useState<WritingTestType>("all");
   const [difficulty, setDifficulty] = useState<DifficultyLevel>("band-6.0");
   const [topic, setTopic] = useState("");
   const [fixedTestType, setFixedTestType] = useState<WritingTestType | null>(null);
@@ -136,6 +137,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
           >
             <SelectTrigger id="writing-type">
               <SelectValue>
+                {testType === "all" && "All"}
                 {testType === "opinion" && "Opinion"}
                 {testType === "discussion" && "Discussion"}
                 {testType === "problem-solution" && "Problem – Solution"}
@@ -144,6 +146,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="all">All</SelectItem>
               <SelectItem value="opinion">Opinion</SelectItem>
               <SelectItem value="discussion">Discussion</SelectItem>
               <SelectItem value="problem-solution">Problem – Solution</SelectItem>
@@ -270,7 +273,8 @@ export function TestSetup({ onStart }: TestSetupProps) {
         {topic && (
           <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
             <Label className="text-teal-700 font-medium">
-              {testType === "opinion" ? "Opinion:" : 
+              {testType === "all" ? "Random Question Type:" :
+               testType === "opinion" ? "Opinion:" : 
                testType === "discussion" ? "Discussion:" :
                testType === "problem-solution" ? "Problem – Solution:" :
                testType === "advantage-disadvantage" ? "Advantage – Disadvantage:" :

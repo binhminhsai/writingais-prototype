@@ -243,6 +243,7 @@ const twoPartQuestionTopics = {
 
 // Sample topics for each test type and band level
 const topicsByTypeAndDifficulty: Record<WritingTestType, Record<DifficultyLevel, string[]>> = {
+  "all": {} as Record<DifficultyLevel, string[]>, // Will be handled separately in generateRandomTopic
   "opinion": opinionTopics,
   "discussion": discussionTopics,
   "problem-solution": problemSolutionTopics,
@@ -251,7 +252,16 @@ const topicsByTypeAndDifficulty: Record<WritingTestType, Record<DifficultyLevel,
 };
 
 export function generateRandomTopic(testType: WritingTestType, difficulty: DifficultyLevel): string {
-  const topics = topicsByTypeAndDifficulty[testType][difficulty];
-  const randomIndex = Math.floor(Math.random() * topics.length);
-  return topics[randomIndex];
+  if (testType === "all") {
+    // If "all" is selected, randomly choose from any test type
+    const availableTypes: Array<Exclude<WritingTestType, "all">> = ["opinion", "discussion", "problem-solution", "advantage-disadvantage", "two-part-question"];
+    const randomType = availableTypes[Math.floor(Math.random() * availableTypes.length)];
+    const topics = topicsByTypeAndDifficulty[randomType][difficulty];
+    const randomIndex = Math.floor(Math.random() * topics.length);
+    return topics[randomIndex];
+  } else {
+    const topics = topicsByTypeAndDifficulty[testType][difficulty];
+    const randomIndex = Math.floor(Math.random() * topics.length);
+    return topics[randomIndex];
+  }
 }
