@@ -27,6 +27,7 @@ const expertTopics = [
 
 // Create question-type specific topics
 const opinionTopics = {
+  "all": [] as string[], // Will be handled separately in generateRandomTopic
   "band-5.0": [
     "Some people think that technology makes life easier. Do you agree or disagree?",
     "Do you think students should wear uniforms at school? Give your opinion.",
@@ -70,6 +71,7 @@ const opinionTopics = {
 };
 
 const discussionTopics = {
+  "all": [] as string[], // Will be handled separately in generateRandomTopic
   "band-5.0": [
     "Some people prefer to work alone, while others like to work in teams. Discuss both views.",
     "Some students like online learning, others prefer classroom learning. Discuss both sides.",
@@ -113,6 +115,7 @@ const discussionTopics = {
 };
 
 const problemSolutionTopics = {
+  "all": [] as string[], // Will be handled separately in generateRandomTopic
   "band-5.0": [
     "Many people have trouble sleeping at night. What are the causes of this problem and what solutions can you suggest?",
     "Traffic jams are a common problem in big cities. What causes this problem and how can it be solved?",
@@ -156,6 +159,7 @@ const problemSolutionTopics = {
 };
 
 const advantageDisadvantageTopics = {
+  "all": [] as string[], // Will be handled separately in generateRandomTopic
   "band-5.0": [
     "What are the advantages and disadvantages of using social media?",
     "What are the advantages and disadvantages of studying abroad?",
@@ -199,6 +203,7 @@ const advantageDisadvantageTopics = {
 };
 
 const twoPartQuestionTopics = {
+  "all": [] as string[], // Will be handled separately in generateRandomTopic
   "band-5.0": [
     "Many people prefer to watch movies at home rather than in cinemas. Why might this be? Is this a positive or negative development?",
     "More children are spending time playing video games. What are the reasons for this? Do you think this is a good thing?",
@@ -252,16 +257,19 @@ const topicsByTypeAndDifficulty: Record<WritingTestType, Record<DifficultyLevel,
 };
 
 export function generateRandomTopic(testType: WritingTestType, difficulty: DifficultyLevel): string {
-  if (testType === "all") {
-    // If "all" is selected, randomly choose from any test type
-    const availableTypes: Array<Exclude<WritingTestType, "all">> = ["opinion", "discussion", "problem-solution", "advantage-disadvantage", "two-part-question"];
-    const randomType = availableTypes[Math.floor(Math.random() * availableTypes.length)];
-    const topics = topicsByTypeAndDifficulty[randomType][difficulty];
-    const randomIndex = Math.floor(Math.random() * topics.length);
-    return topics[randomIndex];
-  } else {
-    const topics = topicsByTypeAndDifficulty[testType][difficulty];
-    const randomIndex = Math.floor(Math.random() * topics.length);
-    return topics[randomIndex];
-  }
+  // Handle random selection for test type and/or difficulty
+  const availableTypes: Array<Exclude<WritingTestType, "all">> = ["opinion", "discussion", "problem-solution", "advantage-disadvantage", "two-part-question"];
+  const availableDifficulties: Array<Exclude<DifficultyLevel, "all">> = ["band-5.0", "band-5.5", "band-6.0", "band-6.5", "band-7.0", "band-7.5", "band-8.0", "band-8.5"];
+  
+  const actualTestType = testType === "all" 
+    ? availableTypes[Math.floor(Math.random() * availableTypes.length)]
+    : testType;
+    
+  const actualDifficulty = difficulty === "all"
+    ? availableDifficulties[Math.floor(Math.random() * availableDifficulties.length)]
+    : difficulty;
+  
+  const topics = topicsByTypeAndDifficulty[actualTestType][actualDifficulty];
+  const randomIndex = Math.floor(Math.random() * topics.length);
+  return topics[randomIndex];
 }

@@ -23,6 +23,7 @@ export type WritingTestType =
   | "two-part-question";
 
 export type DifficultyLevel = 
+  | "all"
   | "band-5.0"
   | "band-5.5" 
   | "band-6.0"
@@ -43,7 +44,7 @@ interface TestSetupProps {
 
 export function TestSetup({ onStart }: TestSetupProps) {
   const [testType, setTestType] = useState<WritingTestType>("all");
-  const [difficulty, setDifficulty] = useState<DifficultyLevel>("band-6.0");
+  const [difficulty, setDifficulty] = useState<DifficultyLevel>("all");
   const [topic, setTopic] = useState("");
   const [fixedTestType, setFixedTestType] = useState<WritingTestType | null>(null);
   const [timeLimit, setTimeLimit] = useState(30);
@@ -182,6 +183,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
           >
             <SelectTrigger id="difficulty">
               <SelectValue>
+                {difficulty === "all" && "All"}
                 {difficulty === "band-5.0" && "Band 5.0"}
                 {difficulty === "band-5.5" && "Band 5.5"}
                 {difficulty === "band-6.0" && "Band 6.0"}
@@ -193,6 +195,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="all">All</SelectItem>
               <SelectItem value="band-5.0">Band 5.0</SelectItem>
               <SelectItem value="band-5.5">Band 5.5</SelectItem>
               <SelectItem value="band-6.0">Band 6.0</SelectItem>
