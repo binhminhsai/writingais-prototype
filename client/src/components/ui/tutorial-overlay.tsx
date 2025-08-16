@@ -26,6 +26,7 @@ export function TutorialOverlay({
 }: TutorialOverlayProps) {
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
+  const [targetBorderRadius, setTargetBorderRadius] = useState('6px');
 
   useEffect(() => {
     if (!isActive || !currentStep) return;
@@ -42,6 +43,10 @@ export function TutorialOverlay({
           
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
           const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+          
+          // Get computed styles to match exact border radius
+          const computedStyle = window.getComputedStyle(element);
+          setTargetBorderRadius(computedStyle.borderRadius || '6px');
 
           let top = rect.top + scrollTop;
           let left = rect.left + scrollLeft;
@@ -160,15 +165,16 @@ export function TutorialOverlay({
       <div
         className="fixed z-[9999] pointer-events-none"
         style={{
-          top: targetTop - 2,
-          left: targetLeft - 2,
-          width: targetRect.width + 4,
-          height: targetRect.height + 4,
-          border: '3px solid #1fb2aa',
-          borderRadius: '8px',
+          top: targetTop,
+          left: targetLeft,
+          width: targetRect.width,
+          height: targetRect.height,
+          border: '2px solid #1fb2aa',
+          borderRadius: targetBorderRadius,
           transition: 'all 0.3s ease-in-out',
           animation: 'pulseHighlight 2s infinite',
-          background: 'rgba(31, 178, 170, 0.05)'
+          background: 'rgba(31, 178, 170, 0.03)',
+          boxShadow: '0 0 0 2px rgba(31, 178, 170, 0.2), inset 0 0 0 1px rgba(31, 178, 170, 0.1)'
         }}
       />
 
