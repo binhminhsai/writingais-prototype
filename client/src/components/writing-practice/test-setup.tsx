@@ -13,6 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { generateRandomTopic } from "@/data/topics";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
+import { useTutorial } from "@/hooks/use-tutorial";
+import { TutorialOverlay } from "@/components/ui/tutorial-overlay";
 
 export type WritingTestType = 
   | "all"
@@ -66,6 +68,19 @@ export function TestSetup({ onStart }: TestSetupProps) {
       [tooltipKey]: !prev[tooltipKey]
     }));
   };
+
+  // Tutorial state
+  const {
+    isActive: isTutorialActive,
+    currentStep,
+    currentStepData,
+    totalSteps,
+    startTutorial,
+    nextStep,
+    prevStep,
+    skipTutorial,
+    completeTutorial
+  } = useTutorial('task2');
 
   const handleGenerateTopic = () => {
     const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
@@ -140,44 +155,55 @@ export function TestSetup({ onStart }: TestSetupProps) {
   };
 
   return (
+    <TooltipProvider>
     <div className="p-6 border-b border-gray-200 bg-white">
-      <h2 className="text-2xl font-semibold mb-6">IELTS Writing Task 2 Practice</h2>
+      {/* Header with Tutorial Button */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-semibold">IELTS Writing Task 2 Practice</h2>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={startTutorial}
+          className="text-[#1fb2aa] border-[#1fb2aa] hover:bg-[#1fb2aa] hover:text-white transition-all duration-200"
+        >
+          <HelpCircle className="w-4 h-4 mr-2" />
+          Help & Tutorial
+        </Button>
+      </div>
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <Label htmlFor="writing-type" className="mb-3 block flex items-center gap-2">
             Select Question Type
-            <TooltipProvider>
-              <Tooltip open={openTooltips.questionType} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, questionType: open }))}>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleTooltip('questionType');
-                    }}
-                  >
-                    <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent 
-                  side="top"
-                  className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
+            <Tooltip open={openTooltips.questionType} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, questionType: open }))}>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleTooltip('questionType');
+                  }}
                 >
-                  <div className="space-y-1">
-                    <div className="font-medium text-gray-900">Question Type Guide</div>
-                    <div>Choose the type of essay question you want to practice. Each type requires different writing approaches and structures.</div>
-                  </div>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+                  <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent 
+                side="top"
+                className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
+              >
+                <div className="space-y-1">
+                  <div className="font-medium text-gray-900">Question Type Guide</div>
+                  <div>Choose the type of essay question you want to practice. Each type requires different writing approaches and structures.</div>
+                </div>
+              </TooltipContent>
+            </Tooltip>
           </Label>
           <Select 
             value={testType} 
             onValueChange={(val) => setTestType(val as WritingTestType)}
           >
-            <SelectTrigger id="writing-type">
+            <SelectTrigger id="writing-type" data-testid="select-question-type">
               <SelectValue>
                 {testType === "all" && "All"}
                 {testType === "opinion" && "Opinion"}
@@ -201,38 +227,36 @@ export function TestSetup({ onStart }: TestSetupProps) {
         <div>
           <Label htmlFor="difficulty" className="mb-3 block flex items-center gap-2">
             Band Level
-            <TooltipProvider>
-              <Tooltip open={openTooltips.bandLevel} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, bandLevel: open }))}>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleTooltip('bandLevel');
-                    }}
-                  >
-                    <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent 
-                  side="top"
-                  className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
+            <Tooltip open={openTooltips.bandLevel} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, bandLevel: open }))}>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleTooltip('bandLevel');
+                  }}
                 >
-                  <div className="space-y-1">
-                    <div className="font-medium text-gray-900">Band Level Guide</div>
-                    <div>Choose the band level you aim for. We'll tailor vocabulary and writing guidance to match that level.</div>
-                  </div>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+                  <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent 
+                side="top"
+                className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
+              >
+                <div className="space-y-1">
+                  <div className="font-medium text-gray-900">Band Level Guide</div>
+                  <div>Choose the band level you aim for. We'll tailor vocabulary and writing guidance to match that level.</div>
+                </div>
+              </TooltipContent>
+            </Tooltip>
           </Label>
           <Select 
             value={difficulty} 
             onValueChange={(val) => setDifficulty(val as DifficultyLevel)}
           >
-            <SelectTrigger id="difficulty">
+            <SelectTrigger id="difficulty" data-testid="select-band-level">
               <SelectValue>
                 {difficulty === "all" && "All"}
                 {difficulty === "band-5.0" && "Band 5.0"}
@@ -262,32 +286,30 @@ export function TestSetup({ onStart }: TestSetupProps) {
       <div className="mt-6">
         <Label htmlFor="topic" className="mb-3 block flex items-center gap-2">
           Topic/Question
-          <TooltipProvider>
-            <Tooltip open={openTooltips.topicQuestion} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, topicQuestion: open }))}>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    toggleTooltip('topicQuestion');
-                  }}
-                >
-                  <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent 
-                side="top"
-                className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
+          <Tooltip open={openTooltips.topicQuestion} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, topicQuestion: open }))}>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleTooltip('topicQuestion');
+                }}
               >
-                <div className="space-y-1">
-                  <div className="font-medium text-gray-900">Topic/Question Guide</div>
-                  <div>You can generate a random question, create your own, or get a custom question based on your preferences and requirements.</div>
-                </div>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+                <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent 
+              side="top"
+              className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
+            >
+              <div className="space-y-1">
+                <div className="font-medium text-gray-900">Topic/Question Guide</div>
+                <div>You can generate a random question, create your own, or get a custom question based on your preferences and requirements.</div>
+              </div>
+            </TooltipContent>
+          </Tooltip>
         </Label>
         <Textarea
           id="topic"
@@ -295,6 +317,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
           placeholder="- Enter any relevant information related to the topic, question type,...and then use the 'Generate question' button to create a question.
 - Enter your own question and select the 'Use my question' button to use your question."
           className="h-24"
+          data-testid="topic-question-area"
         />
         <div className="flex gap-2 flex-wrap">
           <Button 
@@ -302,6 +325,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
             size="sm"
             className="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white w-[180px] h-9 flex items-center justify-center gap-2 px-6"
             onClick={handleGenerateTopic}
+            data-testid="button-generate-question"
           >
             <Sparkles className="h-3.5 w-3.5" />
             <span className="text-sm">Generate question</span>
@@ -311,6 +335,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
             size="sm" 
             className="mt-2 w-[180px] h-9 bg-[#20B2AA] hover:bg-[#1ca19a] text-white flex items-center justify-center px-6"
             onClick={handleUseMyQuestion}
+            data-testid="button-use-my-question"
           >
             <span className="text-sm">Use my question</span>
           </Button>
@@ -319,6 +344,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
             size="sm" 
             className="mt-2 w-[180px] h-9 bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center gap-2 px-6"
             onClick={handleRandomQuestion}
+            data-testid="button-random-question"
           >
             <Shuffle className="h-3.5 w-3.5" />
             <span className="text-sm">Random question</span>
@@ -368,38 +394,36 @@ export function TestSetup({ onStart }: TestSetupProps) {
         <div>
           <Label htmlFor="time-limit" className="mb-3 block flex items-center gap-2">
             Time Limit (optional)
-            <TooltipProvider>
-              <Tooltip open={openTooltips.timeLimit} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, timeLimit: open }))}>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleTooltip('timeLimit');
-                    }}
-                  >
-                    <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent 
-                  side="top"
-                  className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
+            <Tooltip open={openTooltips.timeLimit} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, timeLimit: open }))}>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleTooltip('timeLimit');
+                  }}
                 >
-                  <div className="space-y-1">
-                    <div className="font-medium text-gray-900">Time Limit Guide</div>
-                    <div>Set a time limit to practice under exam conditions. For IELTS Task 2, the recommended time is 40 minutes.</div>
-                  </div>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+                  <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent 
+                side="top"
+                className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
+              >
+                <div className="space-y-1">
+                  <div className="font-medium text-gray-900">Time Limit Guide</div>
+                  <div>Set a time limit to practice under exam conditions. For IELTS Task 2, the recommended time is 40 minutes.</div>
+                </div>
+              </TooltipContent>
+            </Tooltip>
           </Label>
           <Select 
             value={timeLimit.toString()} 
             onValueChange={(val) => setTimeLimit(parseInt(val, 10))}
           >
-            <SelectTrigger id="time-limit" className="w-36">
+            <SelectTrigger id="time-limit" className="w-36" data-testid="select-time-limit">
               <SelectValue>
                 {timeLimit === 0 && "No limit"}
                 {timeLimit === 20 && "20 minutes"}
@@ -422,10 +446,29 @@ export function TestSetup({ onStart }: TestSetupProps) {
           size="lg" 
           onClick={handleStartWriting}
           className="bg-primary hover:opacity-90 text-white"
+          data-testid="button-start-writing"
         >
           Start Writing
         </Button>
       </div>
     </div>
+
+    {/* Tutorial Overlay */}
+    {isTutorialActive && (
+      <TutorialOverlay
+        isVisible={isTutorialActive}
+        step={currentStep}
+        totalSteps={totalSteps}
+        title={currentStepData?.title || ''}
+        description={currentStepData?.description || ''}
+        targetSelector={currentStepData?.targetSelector || ''}
+        position={currentStepData?.position || 'bottom'}
+        onNext={nextStep}
+        onPrevious={prevStep}
+        onSkip={skipTutorial}
+        onComplete={completeTutorial}
+      />
+    )}
+    </TooltipProvider>
   );
 }
