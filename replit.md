@@ -1,54 +1,71 @@
-# English Writing Practice Platform
+# IELTS Writing Practice Platform
 
 ## Overview
-This platform is a full-stack English writing practice application designed to enhance writing skills through interactive exercises, AI-powered feedback, and vocabulary building. It supports various test formats, including IELTS, TOEFL, and general essay writing. The project's vision is to provide a comprehensive, AI-driven learning environment for English writing, aiming to become a leading tool for language learners globally.
+An advanced English Writing Practice Platform designed to help users improve their IELTS Writing Task 1 skills through interactive exercises and dynamic feedback mechanisms.
+
+## Key Features
+- Interactive IELTS Writing Task 1 practice interface
+- Multiple question types (Line Graph, Bar Chart, Pie Chart, Process Diagram, Table, Map, Multiple Graphs)
+- Band level targeting (5.0 - 8.5)
+- Question generation and custom question upload
+- Real-time writing practice with timer functionality
+- Interactive tutorial system with Replit-style onboarding
+
+## Recent Changes (2025-08-16)
+- ✅ Implemented comprehensive tutorial system with step-by-step tooltips
+- ✅ Added dark overlay and spotlight effects for guided onboarding
+- ✅ Updated all button colors to match website theme (#1fb2aa primary color)
+- ✅ Added proper data-testid attributes for all interactive elements
+- ✅ Created tutorial hook with localStorage persistence
+- ✅ Added Help & Tutorial button for manual tutorial access
+- ✅ Implemented Vietnamese language support in UI elements
+
+## Project Architecture
+
+### Frontend Technologies
+- React with TypeScript
+- Wouter for routing
+- TanStack Query for data fetching
+- Shadcn/UI component library
+- Tailwind CSS for styling
+- Framer Motion for animations
+
+### Tutorial System
+- **Hook**: `useTutorial` - Manages tutorial state and progression
+- **Component**: `TutorialOverlay` - Renders interactive tooltip overlays
+- **Features**: 
+  - 8-step guided tour covering all major UI elements
+  - Dark overlay with spotlight effects
+  - Progress indicators and navigation controls
+  - localStorage persistence to prevent repetition
+  - Manual restart capability via Help button
+
+### Color Scheme
+- Primary: #1fb2aa (teal)
+- Hover: #0d9488 (darker teal)
+- Consistent theme across all interactive elements
+
+### File Structure
+```
+client/src/
+├── hooks/
+│   └── use-tutorial.ts          # Tutorial state management
+├── components/ui/
+│   └── tutorial-overlay.tsx     # Tutorial UI component
+├── pages/
+│   └── writing-task-1.tsx       # Main practice interface
+└── index.css                    # Global styles and animations
+```
 
 ## User Preferences
-Preferred communication style: Simple, everyday language.
+- Vietnamese language support for UI elements
+- Interactive tutorials similar to Replit's onboarding experience
+- Consistent color theming throughout the application
+- Step-by-step guidance for new users
 
-## Recent Changes
-**Date: 2025-01-04**
-- **Loading System Updates**: Implemented precise countdown timers for essay analysis
-  - Updated InteractiveLoadingPage (Submit button) with performance.now() timing and requestAnimationFrame
-  - Added ChemicalFlaskLoader with 50-second countdown to Task 1 and Task 2 "Review My Essay" buttons
-  - Updated "Reveal Task Analysis and Outline" in Task 2 with 60-second ChemicalFlaskLoader
-  - All loading animations now use synchronized timing to prevent drift on slower devices
-  - Countdown displays smoothly without flickering using tabular-nums font
-  - Content displays exactly after countdown completion with no delays
-
-## System Architecture
-
-### Frontend
-- **Framework**: React 18 with TypeScript.
-- **Routing**: Wouter for lightweight client-side navigation.
-- **State Management**: React Query (TanStack Query) for server state and caching.
-- **UI/UX**: Shadcn/ui components built on Radix UI, styled with Tailwind CSS for a custom theme. Responsive design with a mobile-first approach.
-- **Build**: Vite for development and optimized production builds.
-
-### Backend
-- **Server**: Express.js with TypeScript.
-- **API**: RESTful endpoints.
-- **Database**: PostgreSQL with Drizzle ORM (initially in-memory storage).
-- **Session Management**: Express sessions with PostgreSQL session store.
-- **Build**: esbuild for server bundling.
-
-### Development Environment
-- Full-stack type safety with shared schema definitions.
-- ESM modules throughout.
-
-### Key Features
-- **Writing Practice System**: Configurable test types, difficulties, and topics; rich text editor with real-time feedback.
-- **Essay Grading System**: AI-powered IELTS Writing Task 2 grading, detailed feedback, and history tracking.
-- **Vocabulary Building (Wordcraft)**: Curated word lists, bilingual definitions, examples, and study tracking.
-- **Progress Tracking**: Interactive band score charts, detailed scoring breakdowns, and basic mistakes analysis.
-- **Resource Management**: Categorized topics, vocabulary, phrases, and essay outlines.
-- **Feedback Interface**: Multi-color highlighting for errors, vocabulary enhancements, and good examples, with interactive tooltips.
-- **Interactive Loading States**: Custom loaders for analysis and content loading.
-
-## External Dependencies
-
-- **Database**: `@neondatabase/serverless` (PostgreSQL), `drizzle-orm`, `drizzle-kit`.
-- **Frontend**: `@tanstack/react-query`, `@radix-ui/*`, `react`, `react-dom`, `wouter`.
-- **Backend**: `express`.
-- **Styling**: `tailwindcss`, `@replit/vite-plugin-shadcn-theme-json`, `class-variance-authority`, `tailwind-merge`.
-- **Development Tools**: `vite`, `typescript`, `tsx`.
+## Development Guidelines
+- Follow fullstack_js development pattern
+- Use Shadcn/UI components with custom styling
+- Maintain consistent color scheme (#1fb2aa theme)
+- Add data-testid attributes for all interactive elements
+- Implement comprehensive user onboarding experiences

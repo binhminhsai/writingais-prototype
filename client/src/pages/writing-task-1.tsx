@@ -8,6 +8,8 @@ import { Upload, Info, Shuffle, HelpCircle, Database, AlertTriangle } from "luci
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
+import { useTutorial } from "@/hooks/use-tutorial";
+import { TutorialOverlay } from "@/components/ui/tutorial-overlay";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -152,6 +154,19 @@ export default function WritingTask1() {
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
+  
+  // Tutorial state
+  const {
+    isActive: isTutorialActive,
+    currentStep,
+    currentStepData,
+    totalSteps,
+    startTutorial,
+    nextStep,
+    prevStep,
+    skipTutorial,
+    completeTutorial
+  } = useTutorial();
 
 
 
@@ -318,7 +333,19 @@ export default function WritingTask1() {
   return (
     <TooltipProvider>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-2xl font-semibold text-gray-900 mb-8">IELTS Writing Task 1 Practice</h1>
+      {/* Header with Tutorial Button */}
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-2xl font-semibold text-gray-900">IELTS Writing Task 1 Practice</h1>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={startTutorial}
+          className="text-[#1fb2aa] border-[#1fb2aa] hover:bg-[#1fb2aa] hover:text-white transition-all duration-200"
+        >
+          <HelpCircle className="w-4 h-4 mr-2" />
+          Help & Tutorial
+        </Button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {/* Select Question Type */}
         <div>
@@ -326,7 +353,7 @@ export default function WritingTask1() {
             Select Question Type
           </label>
           <Select value={questionType} onValueChange={setQuestionType}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full" data-testid="select-question-type">
               <SelectValue placeholder="Select question type">
                 {questionType === "line-graph" && "Line Graph"}
                 {questionType === "bar-chart" && "Bar Chart"}
@@ -369,7 +396,7 @@ export default function WritingTask1() {
             </Tooltip>
           </label>
           <Select value={bandLevel} onValueChange={setBandLevel}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full" data-testid="select-band-level">
               <SelectValue placeholder="Select band level">
                 {bandLevel === "5.0" && "Band 5.0"}
                 {bandLevel === "5.5" && "Band 5.5"}
@@ -411,6 +438,7 @@ export default function WritingTask1() {
             }
           }}
           className="h-[110px] text-sm text-gray-600 resize-none overflow-hidden"
+          data-testid="textarea-question"
         />
       </div>
       {/* Image Upload Area */}
@@ -453,21 +481,24 @@ export default function WritingTask1() {
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 mb-6">
         <Button 
-          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-primary/90 h-10 px-4 py-2 text-white bg-[#1fb2aa]"
+          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
           onClick={handleUseMyQuestion}
+          data-testid="button-use-my-question"
         >
           Use my question
         </Button>
         <Button 
-          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 text-white hover:bg-[#296DE3] bg-[#3d82f6]"
+          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
           onClick={handleRandomQuestion}
+          data-testid="button-generate-question"
         >
           <Database className="w-4 h-4 mr-2" />
           Get question
         </Button>
         <Button 
-          className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 text-white hover:bg-[#c2401c] bg-[#ea580c]"
+          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
           onClick={handleRandomButton}
+          data-testid="button-random-question"
         >
           <Shuffle className="w-4 h-4 mr-2" />
           Random question
@@ -522,7 +553,7 @@ export default function WritingTask1() {
             Time Limit (optional)
           </label>
           <Select value={timeLimit} onValueChange={setTimeLimit}>
-            <SelectTrigger>
+            <SelectTrigger data-testid="select-time-limit">
               <SelectValue placeholder="Select time limit">
                 {timeLimit === "15 minutes" && "15 minutes"}
                 {timeLimit === "20 minutes" && "20 minutes"}
@@ -543,15 +574,25 @@ export default function WritingTask1() {
         </div>
 
         <Button 
-          className="text-white px-8"
-          style={{ backgroundColor: '#1fb2aa' }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d9488'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1fb2aa'}
+          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white px-8 transition-all duration-200"
           onClick={handleStartWriting}
+          data-testid="button-start-writing"
         >
           Start Writing
         </Button>
       </div>
+      
+      {/* Tutorial Overlay */}
+      <TutorialOverlay
+        isActive={isTutorialActive}
+        currentStep={currentStepData}
+        currentStepIndex={currentStep}
+        totalSteps={totalSteps}
+        onNext={nextStep}
+        onPrev={prevStep}
+        onSkip={skipTutorial}
+        onComplete={completeTutorial}
+      />
       </div>
     </TooltipProvider>
   );
