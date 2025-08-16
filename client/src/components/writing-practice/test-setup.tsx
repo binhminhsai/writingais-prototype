@@ -129,8 +129,24 @@ export function TestSetup({ onStart }: TestSetupProps) {
       <h2 className="text-2xl font-semibold mb-6">IELTS Writing Task 2 Practice</h2>
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <Label htmlFor="writing-type" className="mb-3 block">
+          <Label htmlFor="writing-type" className="mb-3 block flex items-center gap-2">
             Select Question Type
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="h-4 w-4 text-gray-500 cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent 
+                  side="top"
+                  className="max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-lg text-sm text-gray-700"
+                >
+                  <div className="space-y-1">
+                    <div className="font-medium text-gray-900">Question Type Guide</div>
+                    <div>Choose the type of essay question you want to practice. Each type requires different writing approaches and structures.</div>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </Label>
           <Select 
             value={testType} 
@@ -209,8 +225,24 @@ export function TestSetup({ onStart }: TestSetupProps) {
         </div>
       </div>
       <div className="mt-6">
-        <Label htmlFor="topic" className="mb-3 block">
+        <Label htmlFor="topic" className="mb-3 block flex items-center gap-2">
           Topic/Question
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="h-4 w-4 text-gray-500 cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent 
+                side="top"
+                className="max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-lg text-sm text-gray-700"
+              >
+                <div className="space-y-1">
+                  <div className="font-medium text-gray-900">Topic/Question Guide</div>
+                  <div>You can generate a random question, create your own, or get a custom question based on your preferences and requirements.</div>
+                </div>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </Label>
         <Textarea
           id="topic"
@@ -289,8 +321,24 @@ export function TestSetup({ onStart }: TestSetupProps) {
       </div>
       <div className="mt-6 flex items-center justify-between">
         <div>
-          <Label htmlFor="time-limit" className="mb-3 block">
+          <Label htmlFor="time-limit" className="mb-3 block flex items-center gap-2">
             Time Limit (optional)
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="h-4 w-4 text-gray-500 cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent 
+                  side="top"
+                  className="max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-lg text-sm text-gray-700"
+                >
+                  <div className="space-y-1">
+                    <div className="font-medium text-gray-900">Time Limit Guide</div>
+                    <div>Set a time limit to practice under exam conditions. For IELTS Task 2, the recommended time is 40 minutes.</div>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </Label>
           <Select 
             value={timeLimit.toString()} 
