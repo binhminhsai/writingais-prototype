@@ -108,81 +108,117 @@ export function TutorialOverlay({
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === totalSteps - 1;
 
+  const targetRect = targetElement.getBoundingClientRect();
+  const targetTop = targetRect.top + window.pageYOffset;
+  const targetLeft = targetRect.left + window.pageXOffset;
+
   return (
     <>
-      {/* Spotlight overlay with precise cutout for target element */}
+      {/* Dark overlay with precise rectangular cutout */}
       <div
         className="fixed inset-0 z-[9998] pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse ${targetElement.getBoundingClientRect().width / 2 + 12}px ${targetElement.getBoundingClientRect().height / 2 + 12}px at ${
-            targetElement.getBoundingClientRect().left + targetElement.getBoundingClientRect().width / 2
-          }px ${
-            targetElement.getBoundingClientRect().top + targetElement.getBoundingClientRect().height / 2
-          }px, transparent 0%, transparent 70%, rgba(0, 0, 0, 0.5) 71%)`,
+          background: 'rgba(0, 0, 0, 0.6)',
+          clipPath: `polygon(
+            0% 0%, 
+            0% 100%, 
+            ${targetRect.left}px 100%, 
+            ${targetRect.left}px ${targetRect.top}px, 
+            ${targetRect.right}px ${targetRect.top}px, 
+            ${targetRect.right}px ${targetRect.bottom}px, 
+            ${targetRect.left}px ${targetRect.bottom}px, 
+            ${targetRect.left}px 100%, 
+            100% 100%, 
+            100% 0%
+          )`,
           transition: 'all 0.3s ease-in-out'
         }}
       />
       
-      {/* Square highlight border around target element */}
+      {/* Precise rectangular highlight border */}
       <div
         className="fixed z-[9999] pointer-events-none"
         style={{
-          top: targetElement.getBoundingClientRect().top + window.pageYOffset - 2,
-          left: targetElement.getBoundingClientRect().left + window.pageXOffset - 2,
-          width: targetElement.getBoundingClientRect().width + 4,
-          height: targetElement.getBoundingClientRect().height + 4,
-          border: '2px solid rgba(31, 178, 170, 0.9)',
-          borderRadius: '4px',
+          top: targetTop,
+          left: targetLeft,
+          width: targetRect.width,
+          height: targetRect.height,
+          border: '3px solid #1fb2aa',
+          borderRadius: '6px',
           transition: 'all 0.3s ease-in-out',
-          boxShadow: '0 0 0 1px rgba(31, 178, 170, 0.2), 0 0 8px rgba(31, 178, 170, 0.3)'
+          boxShadow: '0 0 0 1px rgba(31, 178, 170, 0.1), 0 0 20px rgba(31, 178, 170, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1)'
         }}
       />
 
-      {/* Tooltip */}
+      {/* Professional Tooltip with connecting line */}
       <div
-        className="fixed z-[10000] bg-white rounded-lg shadow-xl border-2 border-[#1fb2aa] p-4 max-w-sm"
+        className="fixed z-[10000] bg-white rounded-xl shadow-2xl border border-gray-200 p-5 max-w-xs"
         style={{
           top: tooltipPosition.top,
           left: tooltipPosition.left,
-          transform: 'translate(-50%, -100%)'
+          transform: currentStep.position === 'top' ? 'translate(-50%, -100%)' : 
+                     currentStep.position === 'bottom' ? 'translate(-50%, 0%)' :
+                     currentStep.position === 'left' ? 'translate(-100%, -50%)' :
+                     'translate(0%, -50%)',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(31, 178, 170, 0.1)'
         }}
       >
+        {/* Connecting line to target */}
+        <div
+          className="absolute bg-[#1fb2aa]"
+          style={{
+            width: currentStep.position === 'left' || currentStep.position === 'right' ? '20px' : '2px',
+            height: currentStep.position === 'top' || currentStep.position === 'bottom' ? '20px' : '2px',
+            top: currentStep.position === 'top' ? '100%' : 
+                 currentStep.position === 'bottom' ? '-20px' :
+                 '50%',
+            left: currentStep.position === 'left' ? '100%' : 
+                  currentStep.position === 'right' ? '-20px' :
+                  '50%',
+            transform: currentStep.position === 'left' || currentStep.position === 'right' ? 'translateY(-50%)' : 'translateX(-50%)'
+          }}
+        />
+
         {/* Header */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-[#1fb2aa] rounded-full flex items-center justify-center">
-              <HelpCircle className="w-3 h-3 text-white" />
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-[#1fb2aa] to-[#0d9488] rounded-lg flex items-center justify-center shadow-sm">
+              <HelpCircle className="w-4 h-4 text-white" />
             </div>
-            <h3 className="font-semibold text-gray-900 text-sm">{currentStep.title}</h3>
+            <h3 className="font-semibold text-gray-900 text-base">{currentStep.title}</h3>
           </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={onSkip}
-            className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600"
+            className="h-8 w-8 p-0 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg"
           >
-            <X className="h-3 w-3" />
+            <X className="h-4 w-4" />
           </Button>
         </div>
 
         {/* Content */}
-        <p className="text-gray-600 text-xs mb-4 leading-relaxed">
+        <p className="text-gray-600 text-sm mb-5 leading-relaxed">
           {currentStep.content}
         </p>
 
         {/* Progress indicator */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex space-x-1">
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex space-x-2">
             {Array.from({ length: totalSteps }, (_, i) => (
               <div
                 key={i}
-                className={`w-2 h-2 rounded-full ${
-                  i === currentStepIndex ? 'bg-[#1fb2aa]' : 'bg-gray-300'
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+                  i === currentStepIndex 
+                    ? 'bg-[#1fb2aa] scale-110' 
+                    : i < currentStepIndex 
+                      ? 'bg-[#1fb2aa] opacity-50' 
+                      : 'bg-gray-300'
                 }`}
               />
             ))}
           </div>
-          <span className="text-xs text-gray-500">
+          <span className="text-sm text-gray-500 font-medium">
             {currentStepIndex + 1} / {totalSteps}
           </span>
         </div>
@@ -194,44 +230,31 @@ export function TutorialOverlay({
             size="sm"
             onClick={onPrev}
             disabled={isFirstStep}
-            className="text-xs h-7"
+            className="text-sm h-9 px-4 border-gray-300 hover:border-[#1fb2aa] hover:text-[#1fb2aa] disabled:opacity-40"
           >
-            <ArrowLeft className="w-3 h-3 mr-1" />
+            <ArrowLeft className="w-4 h-4 mr-2" />
             Back
           </Button>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <Button
               variant="ghost"
               size="sm"
               onClick={onSkip}
-              className="text-xs h-7 text-gray-500 hover:text-gray-700"
+              className="text-sm h-9 px-4 text-gray-500 hover:text-gray-700 hover:bg-gray-50"
             >
               Skip Tour
             </Button>
             <Button
               size="sm"
               onClick={isLastStep ? onComplete : onNext}
-              className="text-xs h-7 bg-[#1fb2aa] hover:bg-[#0d9488] text-white"
+              className="text-sm h-9 px-4 bg-gradient-to-r from-[#1fb2aa] to-[#0d9488] hover:from-[#0d9488] hover:to-[#0a7a72] text-white shadow-md transition-all duration-200"
             >
               {isLastStep ? 'Finish' : 'Next'}
-              {!isLastStep && <ArrowRight className="w-3 h-3 ml-1" />}
+              {!isLastStep && <ArrowRight className="w-4 h-4 ml-2" />}
             </Button>
           </div>
         </div>
-
-        {/* Arrow pointing to target */}
-        <div
-          className={`absolute w-3 h-3 bg-white border-[#1fb2aa] transform rotate-45 ${
-            currentStep.position === 'top' 
-              ? 'bottom-[-6px] left-1/2 -translate-x-1/2 border-t-0 border-l-0' 
-              : currentStep.position === 'bottom'
-              ? 'top-[-6px] left-1/2 -translate-x-1/2 border-b-0 border-r-0'
-              : currentStep.position === 'left'
-              ? 'right-[-6px] top-1/2 -translate-y-1/2 border-t-0 border-r-0'
-              : 'left-[-6px] top-1/2 -translate-y-1/2 border-b-0 border-l-0'
-          }`}
-        />
       </div>
     </>
   );
