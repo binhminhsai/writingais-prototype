@@ -183,25 +183,15 @@ export function TutorialOverlay({
           transition: 'all 0.3s ease-in-out'
         }}
         onClick={(e) => {
-          // Check if click is within the tutorial target area
-          const clickX = e.clientX;
-          const clickY = e.clientY;
-          
-          if (clickX >= targetRect.left && clickX <= targetRect.right &&
-              clickY >= targetRect.top && clickY <= targetRect.bottom) {
-            // Allow clicks on tutorial target element
-            return;
-          }
-          
-          // Block all other clicks
+          // Block ALL clicks on the overlay (including tutorial target area)
           e.preventDefault();
           e.stopPropagation();
         }}
       />
       
-      {/* Precise rectangular highlight border - using same coordinate system as overlay */}
+      {/* Precise rectangular highlight border - blocks clicks too */}
       <div
-        className="fixed z-[9999] pointer-events-none"
+        className="fixed z-[9999]"
         style={{
           top: Math.round(targetRect.top),
           left: Math.round(targetRect.left),
@@ -214,6 +204,11 @@ export function TutorialOverlay({
           background: 'rgba(31, 178, 170, 0.03)',
           boxShadow: '0 0 0 2px rgba(31, 178, 170, 0.2), inset 0 0 0 1px rgba(31, 178, 170, 0.1)',
           transform: 'translateZ(0)' // Force hardware acceleration for crisp rendering
+        }}
+        onClick={(e) => {
+          // Block clicks on the highlighted element too
+          e.preventDefault();
+          e.stopPropagation();
         }}
       />
 
