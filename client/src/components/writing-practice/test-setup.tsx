@@ -137,15 +137,15 @@ export function TestSetup({ onStart }: TestSetupProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-4 w-4 p-0 hover:bg-blue-50 rounded-full"
+                    className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
                     onClick={(e) => e.preventDefault()}
                   >
-                    <HelpCircle className="h-4 w-4 text-blue-600 hover:text-blue-700" />
+                    <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent 
                   side="top"
-                  className="max-w-xs p-3 bg-white border-2 border-blue-300 rounded-lg shadow-lg text-sm text-gray-700"
+                  className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
                 >
                   <div className="space-y-1">
                     <div className="font-medium text-gray-900">Question Type Guide</div>
@@ -189,15 +189,15 @@ export function TestSetup({ onStart }: TestSetupProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-4 w-4 p-0 hover:bg-green-50 rounded-full"
+                    className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
                     onClick={(e) => e.preventDefault()}
                   >
-                    <HelpCircle className="h-4 w-4 text-green-600 hover:text-green-700" />
+                    <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent 
                   side="top"
-                  className="max-w-xs p-3 bg-white border-2 border-green-300 rounded-lg shadow-lg text-sm text-gray-700"
+                  className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
                 >
                   <div className="space-y-1">
                     <div className="font-medium text-gray-900">Band Level Guide</div>
@@ -247,15 +247,15 @@ export function TestSetup({ onStart }: TestSetupProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-4 w-4 p-0 hover:bg-purple-50 rounded-full"
+                  className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
                   onClick={(e) => e.preventDefault()}
                 >
-                  <HelpCircle className="h-4 w-4 text-purple-600 hover:text-purple-700" />
+                  <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent 
                 side="top"
-                className="max-w-xs p-3 bg-white border-2 border-purple-300 rounded-lg shadow-lg text-sm text-gray-700"
+                className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
               >
                 <div className="space-y-1">
                   <div className="font-medium text-gray-900">Topic/Question Guide</div>
@@ -350,15 +350,15 @@ export function TestSetup({ onStart }: TestSetupProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-4 w-4 p-0 hover:bg-orange-50 rounded-full"
+                    className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
                     onClick={(e) => e.preventDefault()}
                   >
-                    <HelpCircle className="h-4 w-4 text-orange-600 hover:text-orange-700" />
+                    <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent 
                   side="top"
-                  className="max-w-xs p-3 bg-white border-2 border-orange-300 rounded-lg shadow-lg text-sm text-gray-700"
+                  className="max-w-xs p-3 bg-white border-2 border-[#1fb2aa] rounded-lg shadow-lg text-sm text-gray-700"
                 >
                   <div className="space-y-1">
                     <div className="font-medium text-gray-900">Time Limit Guide</div>

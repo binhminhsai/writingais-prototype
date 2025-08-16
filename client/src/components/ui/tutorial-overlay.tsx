@@ -111,7 +111,7 @@ export function TutorialOverlay({
 
       {/* Tooltip */}
       <div
-        className="fixed z-[10000] bg-white rounded-lg shadow-xl border border-gray-200 p-4 max-w-sm"
+        className="fixed z-[10000] bg-white rounded-lg shadow-xl border-2 border-[#1fb2aa] p-4 max-w-sm"
         style={{
           top: tooltipPosition.top,
           left: tooltipPosition.left,
@@ -193,7 +193,7 @@ export function TutorialOverlay({
 
         {/* Arrow pointing to target */}
         <div
-          className={`absolute w-3 h-3 bg-white border transform rotate-45 ${
+          className={`absolute w-3 h-3 bg-white border-[#1fb2aa] transform rotate-45 ${
             currentStep.position === 'top' 
               ? 'bottom-[-6px] left-1/2 -translate-x-1/2 border-t-0 border-l-0' 
               : currentStep.position === 'bottom'

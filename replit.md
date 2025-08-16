@@ -19,6 +19,8 @@ An advanced English Writing Practice Platform designed to help users improve the
 - ✅ Created tutorial hook with localStorage persistence
 - ✅ Added Help & Tutorial button for manual tutorial access
 - ✅ Implemented Vietnamese language support in UI elements
+- ✅ Standardized all tooltip colors to consistent theme (#1fb2aa)
+- ✅ Updated help icons and tooltip borders across all components
 
 ## Project Architecture
 
