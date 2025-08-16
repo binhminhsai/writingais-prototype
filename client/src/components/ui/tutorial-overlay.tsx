@@ -183,9 +183,19 @@ export function TutorialOverlay({
           transition: 'all 0.3s ease-in-out'
         }}
         onClick={(e) => {
+          // Check if click is within the tutorial target area
+          const clickX = e.clientX;
+          const clickY = e.clientY;
+          
+          if (clickX >= targetRect.left && clickX <= targetRect.right &&
+              clickY >= targetRect.top && clickY <= targetRect.bottom) {
+            // Allow clicks on tutorial target element
+            return;
+          }
+          
+          // Block all other clicks
           e.preventDefault();
           e.stopPropagation();
-          // Block all clicks outside tutorial area
         }}
       />
       
