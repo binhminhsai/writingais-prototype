@@ -51,10 +51,17 @@ export function TutorialOverlay({
           let top = rect.top + scrollTop;
           let left = rect.left + scrollLeft;
 
+          // Responsive tooltip sizing based on screen width
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          
+          const responsiveTooltipWidth = viewportWidth < 768 ? Math.min(350, viewportWidth - 40) : 400;
+          const responsiveTooltipHeight = viewportWidth < 768 ? 180 : 200;
+          
           // Position tooltip to avoid covering the target element
-          const tooltipWidth = 400; // w-96 is 384px (max-w-[400px])
-          const tooltipHeight = 200; // reduced height for compact design
-          const padding = 30;
+          const tooltipWidth = responsiveTooltipWidth;
+          const tooltipHeight = responsiveTooltipHeight;
+          const padding = viewportWidth < 768 ? 20 : 30;
           
           switch (currentStep.position) {
             case 'top':
@@ -76,8 +83,6 @@ export function TutorialOverlay({
           }
           
           // Ensure tooltip stays within viewport with better boundaries
-          const viewportWidth = window.innerWidth;
-          const viewportHeight = window.innerHeight;
           
           // Horizontal positioning
           if (currentStep.position === 'top' || currentStep.position === 'bottom') {
@@ -118,20 +123,27 @@ export function TutorialOverlay({
     // Initial position update
     updatePosition();
     
-    // Add event listeners with debounce
+    // Add event listeners with immediate response for better UX
     let timeoutId: NodeJS.Timeout;
     const debouncedUpdate = () => {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(updatePosition, 100);
+      timeoutId = setTimeout(updatePosition, 50); // Faster response
     };
     
-    window.addEventListener('resize', debouncedUpdate);
+    const immediateUpdate = () => {
+      updatePosition(); // Immediate update for better responsiveness
+      debouncedUpdate(); // Also schedule debounced update
+    };
+    
+    window.addEventListener('resize', immediateUpdate);
     window.addEventListener('scroll', debouncedUpdate);
+    window.addEventListener('orientationchange', immediateUpdate);
 
     return () => {
       clearTimeout(timeoutId);
-      window.removeEventListener('resize', debouncedUpdate);
+      window.removeEventListener('resize', immediateUpdate);
       window.removeEventListener('scroll', debouncedUpdate);
+      window.removeEventListener('orientationchange', immediateUpdate);
     };
   }, [isActive, currentStep]);
 
@@ -147,9 +159,9 @@ export function TutorialOverlay({
 
   return (
     <>
-      {/* Dark overlay with precise rectangular cutout - allows clicks outside tutorial area */}
+      {/* Dark overlay that blocks all interactions except tutorial element */}
       <div
-        className="fixed inset-0 z-[9998] pointer-events-none"
+        className="fixed inset-0 z-[9998]"
         style={{
           background: 'rgba(0, 0, 0, 0.6)',
           clipPath: `polygon(
@@ -165,6 +177,11 @@ export function TutorialOverlay({
             100% 0%
           )`,
           transition: 'all 0.3s ease-in-out'
+        }}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          // Block all clicks outside tutorial area
         }}
       />
       
@@ -188,7 +205,9 @@ export function TutorialOverlay({
 
       {/* Professional Tooltip with connecting line */}
       <div
-        className="fixed z-[10000] bg-white rounded-xl shadow-2xl border-2 border-[#1fb2aa] p-4 w-96 max-w-[400px]"
+        className={`fixed z-[10000] bg-white rounded-xl shadow-2xl border-2 border-[#1fb2aa] p-4 ${
+          window.innerWidth < 768 ? 'w-[350px] max-w-[calc(100vw-40px)]' : 'w-96 max-w-[400px]'
+        }`}
         style={{
           top: tooltipPosition.top,
           left: tooltipPosition.left,
