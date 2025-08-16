@@ -41,24 +41,45 @@ export function TutorialOverlay({
         let top = rect.top + scrollTop;
         let left = rect.left + scrollLeft;
 
-        // Position tooltip based on specified position
+        // Position tooltip to avoid covering the target element
+        const tooltipWidth = 320; // max-w-sm is approximately 320px
+        const tooltipHeight = 200; // estimated height
+        const padding = 20;
+        
         switch (currentStep.position) {
           case 'top':
-            top -= 10;
+            top -= tooltipHeight + padding;
             left += rect.width / 2;
             break;
           case 'bottom':
-            top += rect.height + 10;
+            top += rect.height + padding;
             left += rect.width / 2;
             break;
           case 'left':
             top += rect.height / 2;
-            left -= 10;
+            left -= tooltipWidth + padding;
             break;
           case 'right':
             top += rect.height / 2;
-            left += rect.width + 10;
+            left += rect.width + padding;
             break;
+        }
+        
+        // Ensure tooltip stays within viewport
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        if (left + tooltipWidth / 2 > viewportWidth - padding) {
+          left = viewportWidth - tooltipWidth / 2 - padding;
+        }
+        if (left - tooltipWidth / 2 < padding) {
+          left = tooltipWidth / 2 + padding;
+        }
+        if (top < padding) {
+          top = rect.top + scrollTop + rect.height + padding;
+        }
+        if (top + tooltipHeight > viewportHeight - padding) {
+          top = rect.top + scrollTop - tooltipHeight - padding;
         }
 
         setTooltipPosition({ top, left });
@@ -89,31 +110,31 @@ export function TutorialOverlay({
 
   return (
     <>
-      {/* Spotlight overlay with cutout for target element */}
+      {/* Spotlight overlay with precise cutout for target element */}
       <div
         className="fixed inset-0 z-[9998] pointer-events-none"
         style={{
-          background: `radial-gradient(circle at ${
+          background: `radial-gradient(ellipse ${targetElement.getBoundingClientRect().width / 2 + 12}px ${targetElement.getBoundingClientRect().height / 2 + 12}px at ${
             targetElement.getBoundingClientRect().left + targetElement.getBoundingClientRect().width / 2
           }px ${
             targetElement.getBoundingClientRect().top + targetElement.getBoundingClientRect().height / 2
-          }px, transparent ${Math.max(targetElement.getBoundingClientRect().width, targetElement.getBoundingClientRect().height) / 2 + 20}px, rgba(0, 0, 0, 0.5) ${Math.max(targetElement.getBoundingClientRect().width, targetElement.getBoundingClientRect().height) / 2 + 21}px)`,
+          }px, transparent 0%, transparent 70%, rgba(0, 0, 0, 0.5) 71%)`,
           transition: 'all 0.3s ease-in-out'
         }}
       />
       
-      {/* Highlight ring around target element */}
+      {/* Square highlight border around target element */}
       <div
         className="fixed z-[9999] pointer-events-none"
         style={{
-          top: targetElement.getBoundingClientRect().top + window.pageYOffset - 4,
-          left: targetElement.getBoundingClientRect().left + window.pageXOffset - 4,
-          width: targetElement.getBoundingClientRect().width + 8,
-          height: targetElement.getBoundingClientRect().height + 8,
-          border: '3px solid rgba(31, 178, 170, 0.8)',
-          borderRadius: '8px',
+          top: targetElement.getBoundingClientRect().top + window.pageYOffset - 2,
+          left: targetElement.getBoundingClientRect().left + window.pageXOffset - 2,
+          width: targetElement.getBoundingClientRect().width + 4,
+          height: targetElement.getBoundingClientRect().height + 4,
+          border: '2px solid rgba(31, 178, 170, 0.9)',
+          borderRadius: '4px',
           transition: 'all 0.3s ease-in-out',
-          boxShadow: '0 0 0 1px rgba(31, 178, 170, 0.3), 0 0 15px rgba(31, 178, 170, 0.4)'
+          boxShadow: '0 0 0 1px rgba(31, 178, 170, 0.2), 0 0 8px rgba(31, 178, 170, 0.3)'
         }}
       />
 
