@@ -47,17 +47,17 @@ export function TutorialOverlay({
           let left = rect.left + scrollLeft;
 
           // Position tooltip to avoid covering the target element
-          const tooltipWidth = 320; // w-80 is 320px
-          const tooltipHeight = 250; // estimated height for compact design
-          const padding = 20;
+          const tooltipWidth = 400; // w-96 is 384px (max-w-[400px])
+          const tooltipHeight = 200; // reduced height for compact design
+          const padding = 30;
           
           switch (currentStep.position) {
             case 'top':
-              top -= tooltipHeight + padding;
+              top -= tooltipHeight + padding + 10; // Extra space to avoid overlap
               left += rect.width / 2;
               break;
             case 'bottom':
-              top += rect.height + padding;
+              top += rect.height + padding + 15; // Extra space to avoid overlap
               left += rect.width / 2;
               break;
             case 'left':
@@ -174,7 +174,7 @@ export function TutorialOverlay({
 
       {/* Professional Tooltip with connecting line */}
       <div
-        className="fixed z-[10000] bg-white rounded-xl shadow-2xl border-2 border-[#1fb2aa] p-5 w-80"
+        className="fixed z-[10000] bg-white rounded-xl shadow-2xl border-2 border-[#1fb2aa] p-4 w-96 max-w-[400px]"
         style={{
           top: tooltipPosition.top,
           left: tooltipPosition.left,
@@ -212,35 +212,40 @@ export function TutorialOverlay({
         />
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#1fb2aa] to-[#0d9488] rounded-lg flex items-center justify-center shadow-md">
-              <HelpCircle className="w-4 h-4 text-white" />
+            <div className="w-7 h-7 bg-gradient-to-br from-[#1fb2aa] to-[#0d9488] rounded-lg flex items-center justify-center shadow-md">
+              <HelpCircle className="w-3.5 h-3.5 text-white" />
             </div>
-            <h3 className="font-bold text-gray-900 text-base leading-tight">{currentStep.title}</h3>
+            <h3 className="font-bold text-gray-900 text-sm leading-tight">{currentStep.title}</h3>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onSkip}
-            className="h-7 w-7 p-0 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-          >
-            <X className="h-3.5 w-3.5" />
-          </Button>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">
+              {currentStepIndex + 1} / {totalSteps}
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onSkip}
+              className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          </div>
         </div>
 
         {/* Content */}
-        <p className="text-gray-700 text-sm mb-4 leading-relaxed">
+        <p className="text-gray-700 text-sm mb-3 leading-relaxed">
           {currentStep.content}
         </p>
 
         {/* Progress indicator */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex space-x-1.5">
+        <div className="flex justify-center mb-3">
+          <div className="flex space-x-1">
             {Array.from({ length: totalSteps }, (_, i) => (
               <div
                 key={i}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   i === currentStepIndex 
                     ? 'bg-[#1fb2aa] scale-110' 
                     : i < currentStepIndex 
@@ -250,40 +255,37 @@ export function TutorialOverlay({
               />
             ))}
           </div>
-          <span className="text-sm text-gray-600 font-medium bg-gray-100 px-2 py-0.5 rounded-full">
-            {currentStepIndex + 1} / {totalSteps}
-          </span>
         </div>
 
         {/* Navigation buttons */}
-        <div className="flex items-center justify-between flex-wrap gap-2">
+        <div className="flex items-center justify-between gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={onPrev}
             disabled={isFirstStep}
-            className="text-sm h-9 px-4 border-2 border-gray-300 hover:border-[#1fb2aa] hover:text-[#1fb2aa] hover:bg-[#1fb2aa]/5 disabled:opacity-40 transition-all duration-200 font-medium"
+            className="text-xs h-8 px-3 border border-gray-300 hover:border-[#1fb2aa] hover:text-[#1fb2aa] hover:bg-[#1fb2aa]/5 disabled:opacity-40 transition-all duration-200 font-medium"
           >
-            <ArrowLeft className="w-4 h-4 mr-1" />
+            <ArrowLeft className="w-3 h-3 mr-1" />
             Back
           </Button>
 
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2">
             <Button
               variant="ghost"
               size="sm"
               onClick={onSkip}
-              className="text-sm h-9 px-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-all duration-200 font-medium"
+              className="text-xs h-8 px-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-all duration-200 font-medium"
             >
-              Skip Tour
+              Skip
             </Button>
             <Button
               size="sm"
               onClick={isLastStep ? onComplete : onNext}
-              className="text-sm h-9 px-4 bg-gradient-to-r from-[#1fb2aa] to-[#0d9488] hover:from-[#0d9488] hover:to-[#0a7a72] text-white shadow-lg hover:shadow-xl transition-all duration-200 font-bold"
+              className="text-xs h-8 px-4 bg-gradient-to-r from-[#1fb2aa] to-[#0d9488] hover:from-[#0d9488] hover:to-[#0a7a72] text-white shadow-md transition-all duration-200 font-bold"
             >
               {isLastStep ? 'Finish' : 'Next'}
-              {!isLastStep && <ArrowRight className="w-4 h-4 ml-1" />}
+              {!isLastStep && <ArrowRight className="w-3 h-3 ml-1" />}
             </Button>
           </div>
         </div>
