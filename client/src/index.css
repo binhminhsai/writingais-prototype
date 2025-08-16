@@ -89,6 +89,14 @@
     @apply text-xs py-1 px-2;
   }
 
+  /* Focus states for consistent border matching */
+  input:focus-visible, 
+  textarea:focus-visible,
+  select:focus-visible,
+  [role="combobox"]:focus-visible {
+    @apply ring-2 ring-[#1fb2aa] ring-offset-2 border-[#1fb2aa] !important;
+  }
+
   /* Headers */
   h1, h2, h3, h4 {
     @apply leading-tight;

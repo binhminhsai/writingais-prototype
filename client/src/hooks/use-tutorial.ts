@@ -29,7 +29,7 @@ export const task1TutorialSteps: TutorialStep[] = [
   },
   {
     id: 'topic-question',
-    target: '[data-testid="textarea-question"]',
+    target: '[data-testid="topic-question-area"]',
     title: 'Topic/Question',
     content: 'This area will display your question. You can either generate one automatically or enter your own question.',
     position: 'top',
