@@ -89,23 +89,31 @@ export function TutorialOverlay({
 
   return (
     <>
-      {/* Dark overlay */}
-      <div 
-        className="fixed inset-0 bg-black bg-opacity-50 z-[9998]" 
-        style={{ backdropFilter: 'blur(2px)' }}
+      {/* Spotlight overlay with cutout for target element */}
+      <div
+        className="fixed inset-0 z-[9998] pointer-events-none"
+        style={{
+          background: `radial-gradient(circle at ${
+            targetElement.getBoundingClientRect().left + targetElement.getBoundingClientRect().width / 2
+          }px ${
+            targetElement.getBoundingClientRect().top + targetElement.getBoundingClientRect().height / 2
+          }px, transparent ${Math.max(targetElement.getBoundingClientRect().width, targetElement.getBoundingClientRect().height) / 2 + 20}px, rgba(0, 0, 0, 0.5) ${Math.max(targetElement.getBoundingClientRect().width, targetElement.getBoundingClientRect().height) / 2 + 21}px)`,
+          transition: 'all 0.3s ease-in-out'
+        }}
       />
       
-      {/* Spotlight effect on target element */}
+      {/* Highlight ring around target element */}
       <div
         className="fixed z-[9999] pointer-events-none"
         style={{
-          top: targetElement.getBoundingClientRect().top + window.pageYOffset - 8,
-          left: targetElement.getBoundingClientRect().left + window.pageXOffset - 8,
-          width: targetElement.getBoundingClientRect().width + 16,
-          height: targetElement.getBoundingClientRect().height + 16,
-          boxShadow: '0 0 0 4px rgba(31, 178, 170, 0.3), 0 0 0 9999px rgba(0, 0, 0, 0.5)',
+          top: targetElement.getBoundingClientRect().top + window.pageYOffset - 4,
+          left: targetElement.getBoundingClientRect().left + window.pageXOffset - 4,
+          width: targetElement.getBoundingClientRect().width + 8,
+          height: targetElement.getBoundingClientRect().height + 8,
+          border: '3px solid rgba(31, 178, 170, 0.8)',
           borderRadius: '8px',
-          transition: 'all 0.3s ease-in-out'
+          transition: 'all 0.3s ease-in-out',
+          boxShadow: '0 0 0 1px rgba(31, 178, 170, 0.3), 0 0 15px rgba(31, 178, 170, 0.4)'
         }}
       />
 
