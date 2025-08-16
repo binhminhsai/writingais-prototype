@@ -48,8 +48,9 @@ export function TutorialOverlay({
           const computedStyle = window.getComputedStyle(element);
           setTargetBorderRadius(computedStyle.borderRadius || '6px');
 
-          let top = rect.top + scrollTop;
-          let left = rect.left + scrollLeft;
+          // Use viewport coordinates for tooltip positioning (same as border)
+          let top = rect.top;
+          let left = rect.left;
 
           // Responsive tooltip sizing based on screen width
           const viewportWidth = window.innerWidth;
@@ -94,12 +95,12 @@ export function TutorialOverlay({
             }
           }
           
-          // Vertical positioning
+          // Vertical positioning (viewport-relative)
           if (top < padding) {
-            top = rect.top + scrollTop + rect.height + padding;
+            top = rect.top + rect.height + padding;
           }
-          if (top + tooltipHeight > viewportHeight + scrollTop - padding) {
-            top = rect.top + scrollTop - tooltipHeight - padding;
+          if (top + tooltipHeight > viewportHeight - padding) {
+            top = rect.top - tooltipHeight - padding;
           }
 
           setTooltipPosition({ top, left });
@@ -152,10 +153,13 @@ export function TutorialOverlay({
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === totalSteps - 1;
 
-  // Get fresh positioning to ensure accuracy
+  // Get fresh positioning to ensure accuracy - use same coordinate system for both overlay and border
   const targetRect = targetElement.getBoundingClientRect();
-  const targetTop = targetRect.top + (window.pageYOffset || document.documentElement.scrollTop);
-  const targetLeft = targetRect.left + (window.pageXOffset || document.documentElement.scrollLeft);
+  
+  // For fixed positioning, we use viewport coordinates (getBoundingClientRect)
+  // Both overlay cutout and highlight border will use the same coordinate system
+  const targetTop = targetRect.top;
+  const targetLeft = targetRect.left;
 
   return (
     <>
@@ -185,12 +189,12 @@ export function TutorialOverlay({
         }}
       />
       
-      {/* Precise rectangular highlight border */}
+      {/* Precise rectangular highlight border - using same coordinate system as overlay */}
       <div
         className="fixed z-[9999] pointer-events-none"
         style={{
-          top: Math.round(targetTop),
-          left: Math.round(targetLeft),
+          top: Math.round(targetRect.top),
+          left: Math.round(targetRect.left),
           width: Math.round(targetRect.width),
           height: Math.round(targetRect.height),
           border: '3px solid #1fb2aa',
