@@ -147,7 +147,7 @@ export function TutorialOverlay({
 
   return (
     <>
-      {/* Dark overlay with precise rectangular cutout */}
+      {/* Dark overlay with precise rectangular cutout - allows clicks outside tutorial area */}
       <div
         className="fixed inset-0 z-[9998] pointer-events-none"
         style={{
