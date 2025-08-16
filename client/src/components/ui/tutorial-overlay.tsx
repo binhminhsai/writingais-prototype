@@ -252,7 +252,9 @@ export function TutorialOverlay({
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-gradient-to-br from-[#1fb2aa] to-[#0d9488] rounded-lg flex items-center justify-center shadow-md">
-              <HelpCircle className="w-3.5 h-3.5 text-white" />
+              <span className="text-white font-bold text-xs">
+                {currentStepIndex + 1}
+              </span>
             </div>
             <h3 className="font-bold text-gray-900 text-sm leading-tight">{currentStep.title}</h3>
           </div>
