@@ -51,6 +51,21 @@ export function TestSetup({ onStart }: TestSetupProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [loadingAction, setLoadingAction] = useState<'generate' | 'use-my-question' | 'random-question' | null>(null);
+  
+  // Tooltip state management
+  const [openTooltips, setOpenTooltips] = useState({
+    questionType: false,
+    bandLevel: false,
+    topicQuestion: false,
+    timeLimit: false
+  });
+
+  const toggleTooltip = (tooltipKey: keyof typeof openTooltips) => {
+    setOpenTooltips(prev => ({
+      ...prev,
+      [tooltipKey]: !prev[tooltipKey]
+    }));
+  };
 
   const handleGenerateTopic = () => {
     const textareaValue = (document.getElementById('topic') as HTMLTextAreaElement).value;
@@ -132,13 +147,16 @@ export function TestSetup({ onStart }: TestSetupProps) {
           <Label htmlFor="writing-type" className="mb-3 block flex items-center gap-2">
             Select Question Type
             <TooltipProvider>
-              <Tooltip>
+              <Tooltip open={openTooltips.questionType} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, questionType: open }))}>
                 <TooltipTrigger asChild>
                   <Button
                     variant="ghost"
                     size="sm"
                     className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleTooltip('questionType');
+                    }}
                   >
                     <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
                   </Button>
@@ -184,13 +202,16 @@ export function TestSetup({ onStart }: TestSetupProps) {
           <Label htmlFor="difficulty" className="mb-3 block flex items-center gap-2">
             Band Level
             <TooltipProvider>
-              <Tooltip>
+              <Tooltip open={openTooltips.bandLevel} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, bandLevel: open }))}>
                 <TooltipTrigger asChild>
                   <Button
                     variant="ghost"
                     size="sm"
                     className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleTooltip('bandLevel');
+                    }}
                   >
                     <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
                   </Button>
@@ -242,13 +263,16 @@ export function TestSetup({ onStart }: TestSetupProps) {
         <Label htmlFor="topic" className="mb-3 block flex items-center gap-2">
           Topic/Question
           <TooltipProvider>
-            <Tooltip>
+            <Tooltip open={openTooltips.topicQuestion} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, topicQuestion: open }))}>
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
                   size="sm"
                   className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleTooltip('topicQuestion');
+                  }}
                 >
                   <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
                 </Button>
@@ -345,13 +369,16 @@ export function TestSetup({ onStart }: TestSetupProps) {
           <Label htmlFor="time-limit" className="mb-3 block flex items-center gap-2">
             Time Limit (optional)
             <TooltipProvider>
-              <Tooltip>
+              <Tooltip open={openTooltips.timeLimit} onOpenChange={(open) => setOpenTooltips(prev => ({ ...prev, timeLimit: open }))}>
                 <TooltipTrigger asChild>
                   <Button
                     variant="ghost"
                     size="sm"
                     className="h-4 w-4 p-0 hover:bg-[#e6f7f6] rounded-full"
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleTooltip('timeLimit');
+                    }}
                   >
                     <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488]" />
                   </Button>

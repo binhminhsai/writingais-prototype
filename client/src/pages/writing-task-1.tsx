@@ -168,6 +168,9 @@ export default function WritingTask1() {
     completeTutorial
   } = useTutorial();
 
+  // Tooltip state for help icons
+  const [showBandLevelTooltip, setShowBandLevelTooltip] = useState(false);
+
 
 
   // Button handler functions
@@ -381,11 +384,19 @@ export default function WritingTask1() {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Band Level
-            <Tooltip>
+            <Tooltip open={showBandLevelTooltip} onOpenChange={setShowBandLevelTooltip}>
               <TooltipTrigger asChild>
-                <HelpCircle className="inline-block ml-1 h-4 w-4 text-gray-400 cursor-help" />
+                <button
+                  className="inline-block ml-1 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowBandLevelTooltip(!showBandLevelTooltip);
+                  }}
+                >
+                  <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488] transition-colors" />
+                </button>
               </TooltipTrigger>
-              <TooltipContent className="max-w-sm p-4 bg-white border border-gray-200 shadow-lg rounded-lg">
+              <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
                 <div className="space-y-2">
                   <h4 className="font-semibold text-gray-900">Band Level Guide</h4>
                   <p className="text-sm text-gray-600">
