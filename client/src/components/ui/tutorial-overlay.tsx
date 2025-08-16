@@ -37,7 +37,7 @@ export function TutorialOverlay({
         setTargetElement(element);
         
         // Wait for element to be fully rendered and measure
-        setTimeout(() => {
+        const measureElement = () => {
           const rect = element.getBoundingClientRect();
           if (rect.width === 0 || rect.height === 0) return; // Element not visible
           
@@ -105,7 +105,13 @@ export function TutorialOverlay({
             block: 'center',
             inline: 'center'
           });
-        }, 100);
+        };
+        
+        // Immediate measurement for better accuracy
+        measureElement();
+        
+        // Also measure after a short delay to handle any layout shifts
+        setTimeout(measureElement, 50);
       }
     };
 
@@ -134,9 +140,10 @@ export function TutorialOverlay({
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === totalSteps - 1;
 
+  // Get fresh positioning to ensure accuracy
   const targetRect = targetElement.getBoundingClientRect();
-  const targetTop = targetRect.top + window.pageYOffset;
-  const targetLeft = targetRect.left + window.pageXOffset;
+  const targetTop = targetRect.top + (window.pageYOffset || document.documentElement.scrollTop);
+  const targetLeft = targetRect.left + (window.pageXOffset || document.documentElement.scrollLeft);
 
   return (
     <>
@@ -148,12 +155,12 @@ export function TutorialOverlay({
           clipPath: `polygon(
             0% 0%, 
             0% 100%, 
-            ${targetRect.left}px 100%, 
-            ${targetRect.left}px ${targetRect.top}px, 
-            ${targetRect.right}px ${targetRect.top}px, 
-            ${targetRect.right}px ${targetRect.bottom}px, 
-            ${targetRect.left}px ${targetRect.bottom}px, 
-            ${targetRect.left}px 100%, 
+            ${Math.round(targetRect.left)}px 100%, 
+            ${Math.round(targetRect.left)}px ${Math.round(targetRect.top)}px, 
+            ${Math.round(targetRect.right)}px ${Math.round(targetRect.top)}px, 
+            ${Math.round(targetRect.right)}px ${Math.round(targetRect.bottom)}px, 
+            ${Math.round(targetRect.left)}px ${Math.round(targetRect.bottom)}px, 
+            ${Math.round(targetRect.left)}px 100%, 
             100% 100%, 
             100% 0%
           )`,
@@ -165,16 +172,17 @@ export function TutorialOverlay({
       <div
         className="fixed z-[9999] pointer-events-none"
         style={{
-          top: targetTop,
-          left: targetLeft,
-          width: targetRect.width,
-          height: targetRect.height,
-          border: '2px solid #1fb2aa',
+          top: Math.round(targetTop),
+          left: Math.round(targetLeft),
+          width: Math.round(targetRect.width),
+          height: Math.round(targetRect.height),
+          border: '3px solid #1fb2aa',
           borderRadius: targetBorderRadius,
           transition: 'all 0.3s ease-in-out',
           animation: 'pulseHighlight 2s infinite',
           background: 'rgba(31, 178, 170, 0.03)',
-          boxShadow: '0 0 0 2px rgba(31, 178, 170, 0.2), inset 0 0 0 1px rgba(31, 178, 170, 0.1)'
+          boxShadow: '0 0 0 2px rgba(31, 178, 170, 0.2), inset 0 0 0 1px rgba(31, 178, 170, 0.1)',
+          transform: 'translateZ(0)' // Force hardware acceleration for crisp rendering
         }}
       />
 
