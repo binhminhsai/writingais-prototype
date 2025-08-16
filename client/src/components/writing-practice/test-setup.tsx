@@ -351,6 +351,16 @@ export function TestSetup({ onStart }: TestSetupProps) {
           </Button>
         </div>
         
+        {/* Error Message - positioned directly below buttons */}
+        {errorMessage && (
+          <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-700 text-sm font-medium flex items-center">
+              <AlertTriangle className="h-4 w-4 mr-2" />
+              {errorMessage}
+            </p>
+          </div>
+        )}
+        
         {/* Chemical Flask Loader */}
         <ChemicalFlaskLoader 
           isVisible={isLoading} 
@@ -365,16 +375,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
             setLoadingAction(null);
           }}
         />
-        
-        {/* Error Message */}
-        {errorMessage && (
-          <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-700 text-sm font-medium flex items-center">
-              <AlertTriangle className="h-4 w-4 mr-2" />
-              {errorMessage}
-            </p>
-          </div>
-        )}
         
         {topic && (
           <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
