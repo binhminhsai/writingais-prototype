@@ -454,17 +454,14 @@ export function TestSetup({ onStart }: TestSetupProps) {
     </div>
 
     {/* Tutorial Overlay */}
-    {isTutorialActive && (
+    {isTutorialActive && currentStepData && (
       <TutorialOverlay
-        isVisible={isTutorialActive}
-        step={currentStep}
+        isActive={isTutorialActive}
+        currentStep={currentStepData}
+        currentStepIndex={currentStep}
         totalSteps={totalSteps}
-        title={currentStepData?.title || ''}
-        description={currentStepData?.description || ''}
-        targetSelector={currentStepData?.targetSelector || ''}
-        position={currentStepData?.position || 'bottom'}
         onNext={nextStep}
-        onPrevious={prevStep}
+        onPrev={prevStep}
         onSkip={skipTutorial}
         onComplete={completeTutorial}
       />
