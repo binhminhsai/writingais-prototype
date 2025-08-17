@@ -141,11 +141,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
   };
 
   const handleStartWriting = () => {
-    if (!topic.trim()) {
-      alert("Please enter a topic or generate a random one.");
-      return;
-    }
-
     onStart({
       testType,
       difficulty,
