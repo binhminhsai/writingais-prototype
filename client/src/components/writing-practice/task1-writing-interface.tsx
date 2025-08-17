@@ -108,7 +108,6 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
           <TabsContent 
             value="outline" 
             className="flex-1 overflow-y-auto custom-scrollbar mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
-            style={{ height: '500px' }}
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
@@ -117,7 +116,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
               </h4>
               <p className="text-xs mb-4 text-gray-600 italic bg-gray-50 p-2 rounded-md border border-gray-100">Sample answer with paragraph-by-paragraph breakdown</p>
 
-              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+              <div className="overflow-y-auto custom-scrollbar">
                   <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Accordion 1: Paragraph 1: Introduction */}
                   <AccordionItem 
@@ -214,7 +213,6 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
           <TabsContent 
             value="expressions" 
             className="flex-1 overflow-y-auto custom-scrollbar mt-0 rounded-b-lg rounded-tr-lg border border-gray-200 bg-white p-4 shadow-md"
-            style={{ height: '500px' }}
           >
             <div>
               <h4 className="font-semibold text-primary mb-3 text-sm flex items-center gap-1.5">
@@ -225,7 +223,7 @@ function Task1OutlineSection({ questionType, question }: { questionType: string,
                 Detailed analysis of the Task 1 question and visual data
               </p>
 
-              <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: '430px' }}>
+              <div className="overflow-y-auto custom-scrollbar">
                   <Accordion type="single" collapsible className="w-full space-y-2">
                   {/* Accordion 1: Image Description */}
                   <AccordionItem 
@@ -1083,7 +1081,7 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
           </div>
         </div>
 
-        <div className="hidden lg:block lg:w-2/5 lg:pl-3 lg:flex lg:flex-col" style={{ minHeight: '500px' }}>
+        <div className="hidden lg:block lg:w-2/5 lg:pl-3 lg:flex lg:flex-col">
           <Task1OutlineSection 
             questionType={questionType} 
             question={question} 
