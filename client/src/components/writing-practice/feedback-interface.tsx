@@ -675,23 +675,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 </ul>
               </div>
 
-              {/* Specific Suggestions */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="h-5 w-5 text-orange-600" />
-                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Break the essay into clear, distinct paragraphs: an introduction, a body paragraph for the first view, a body paragraph for the second view, and a conclusion that restates your opinion.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>For example, separate the discussion of "Some people argue..." into one paragraph and "On the other hand, others think..." into another.</span>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </TabsContent>
 
@@ -748,23 +732,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 </ul>
               </div>
 
-              {/* Specific Suggestions */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="h-5 w-5 text-orange-600" />
-                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Crucially, separate your essay into at least four distinct paragraphs: Introduction, Body Paragraph 1 (for the first view), Body Paragraph 2 (for the second view), and Conclusion.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Introduce the topic and outline the essay in the first paragraph. Dedicate the second paragraph to the arguments for investing in faster public transportation. The third paragraph should focus on the arguments for other priorities. The final paragraph should present your opinion and a summary.</span>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </TabsContent>
 
@@ -818,23 +786,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 </ul>
               </div>
 
-              {/* Vocabulary Enhancement */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="h-5 w-5 text-purple-600" />
-                  <h3 className="text-lg font-semibold text-purple-600">Vocabulary Enhancement</h3>
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>"invest" could sometimes be varied with "allocate funds to" or "channel resources into".</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>"basic services" could occasionally be "essential amenities" or "fundamental provisions".</span>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </TabsContent>
 
@@ -887,23 +839,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 </ul>
               </div>
 
-              {/* Grammar Focus */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="h-5 w-5 text-indigo-600" />
-                  <h3 className="text-lg font-semibold text-indigo-600">Grammar Focus</h3>
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Continue practicing constructing varied complex and compound sentences to further enhance grammatical range.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Ensure consistent use of parallel structures when listing items (e.g., "reduce commute times, encourage more people to use public transit, and ultimately reduce traffic congestion and air pollution" – this is already well done).</span>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </TabsContent>
         </Tabs>
