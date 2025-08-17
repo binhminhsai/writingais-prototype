@@ -328,7 +328,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
             data-testid="button-generate-question"
           >
             <Sparkles className="h-3.5 w-3.5" />
-            <span className="text-sm">Generate question</span>
+            <span className="text-sm">Generate Question</span>
           </Button>
           <Button 
             variant="secondary"
@@ -337,7 +337,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
             onClick={handleUseMyQuestion}
             data-testid="button-use-my-question"
           >
-            <span className="text-sm">Use my question</span>
+            <span className="text-sm">Use My Question</span>
           </Button>
           <Button 
             variant="secondary"
@@ -347,7 +347,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
             data-testid="button-random-question"
           >
             <Shuffle className="h-3.5 w-3.5" />
-            <span className="text-sm">Random question</span>
+            <span className="text-sm">Random Question</span>
           </Button>
         </div>
         
