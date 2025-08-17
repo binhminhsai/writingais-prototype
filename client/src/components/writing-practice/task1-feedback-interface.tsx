@@ -678,31 +678,7 @@ However, renewable energy sources is projected to experience substantial growth,
                 </ul>
               </div>
 
-              {/* Specific Suggestions */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="h-5 w-5 text-orange-600" />
-                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Include specific data points to support each trend identified to enhance the analysis. For example, provide percentages for the 'Social Networking' and 'Information Gathering' categories across different age groups.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Expand the overview to include a broader summary of all categories.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Make direct comparisons between age groups for all internet activities.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Include all key features: Information Gathering and Social Networking trends need attention.</span>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </TabsContent>
 
@@ -759,23 +735,7 @@ However, renewable energy sources is projected to experience substantial growth,
                 </ul>
               </div>
 
-              {/* Specific Suggestions */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="h-5 w-5 text-orange-600" />
-                  <h3 className="text-lg font-semibold text-orange-600">Specific Suggestions</h3>
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Use more transitional phrases like "In contrast," "Similarly," "Meanwhile" between energy source discussions.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Consider organizing information by grouping increasing vs. decreasing trends for clearer comparisons.</span>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </TabsContent>
 
@@ -832,27 +792,7 @@ However, renewable energy sources is projected to experience substantial growth,
                 </ul>
               </div>
 
-              {/* Vocabulary Enhancement */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="h-5 w-5 text-orange-600" />
-                  <h3 className="text-lg font-semibold text-orange-600">Vocabulary Enhancement</h3>
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>'Usage' → 'engagement' or 'participation'</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>'High' → 'significant', 'substantial'</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Use synonyms for 'popular' and 'across' to avoid repetition.</span>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </TabsContent>
 
@@ -909,27 +849,7 @@ However, renewable energy sources is projected to experience substantial growth,
                 </ul>
               </div>
 
-              {/* Grammar Focus */}
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertTriangle className="h-5 w-5 text-orange-600" />
-                  <h3 className="text-lg font-semibold text-orange-600">Grammar Focus</h3>
-                </div>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Check for subject-verb agreement errors.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Review the correct use of articles (a, an, the).</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sm">•</span>
-                    <span>Pay attention to proper tense usage, especially when describing trends.</span>
-                  </li>
-                </ul>
-              </div>
+
             </div>
           </TabsContent>
         </Tabs>
