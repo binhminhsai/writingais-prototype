@@ -976,13 +976,13 @@ Only through careful planning and responsible policies can societies achieve pro
               >
                 ✨ Check My Essay
               </Button>
-              <p className="text-gray-800 mb-2 font-semibold">Click to explore detailed grammar analysis!</p>
+              <p className="text-gray-800 mb-2 font-semibold">Wanna know what’s wrong with your writing?</p>
               <p className="text-[#44b9b0] text-sm font-medium">Improve your writing skills with personalized feedback. 📝</p>
             </div>
           </div>
         ) : (
           /* Essay with highlighted sections */
-          highlightEssay(sampleEssay)
+          (highlightEssay(sampleEssay))
         )}
       </div>
 
