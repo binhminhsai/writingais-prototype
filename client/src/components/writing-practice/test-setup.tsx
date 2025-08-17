@@ -15,6 +15,7 @@ import { generateRandomTopic } from "@/data/topics";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 import { useTutorial } from "@/hooks/use-tutorial";
 import { TutorialOverlay } from "@/components/ui/tutorial-overlay";
+import { AlertModal } from "@/components/ui/alert-modal";
 
 export type WritingTestType = 
   | "all"
@@ -53,6 +54,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [loadingAction, setLoadingAction] = useState<'generate' | 'use-my-question' | 'random-question' | null>(null);
+  const [showValidationAlert, setShowValidationAlert] = useState(false);
   
   // Tooltip state management
   const [openTooltips, setOpenTooltips] = useState({
@@ -141,6 +143,11 @@ export function TestSetup({ onStart }: TestSetupProps) {
   };
 
   const handleStartWriting = () => {
+    if (!topic.trim()) {
+      setShowValidationAlert(true);
+      return;
+    }
+    
     onStart({
       testType,
       difficulty,
@@ -461,6 +468,14 @@ export function TestSetup({ onStart }: TestSetupProps) {
         onComplete={completeTutorial}
       />
     )}
+
+    {/* Validation Alert Modal */}
+    <AlertModal
+      isOpen={showValidationAlert}
+      onClose={() => setShowValidationAlert(false)}
+      title="Missing Question"
+      message="You need to generate or upload a question before starting your writing."
+    />
     </TooltipProvider>
   );
 }
