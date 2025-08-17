@@ -262,7 +262,7 @@ export function TutorialOverlay({
               </span>
             </div>
             <h3 className="font-bold text-gray-900 text-sm leading-tight">
-              {currentStep.id === 'topic-question' ? 'Enter Your Question' : currentStep.title}
+              {currentStep.id === 'topic-question' ? 'Upload Image' : currentStep.title}
             </h3>
           </div>
           <div className="flex items-center gap-2">
