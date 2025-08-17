@@ -8,6 +8,7 @@ import { Upload, Info, Shuffle, HelpCircle, Database, AlertTriangle } from "luci
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
+import { DrawingCanvas } from "@/components/ui/drawing-canvas";
 import { useTutorial } from "@/hooks/use-tutorial";
 import { TutorialOverlay } from "@/components/ui/tutorial-overlay";
 import {
@@ -702,24 +703,40 @@ export default function WritingTask1() {
       
       {/* Start Writing Full-Page Loading Screen */}
       {isStartWritingLoading && (
-        <div className="fixed inset-0 bg-gradient-to-br from-white to-gray-50 flex items-center justify-center z-50 animate-in fade-in duration-700">
-          <div className="text-center animate-in slide-in-from-bottom-4 duration-700 delay-150">
-            <h1 className="text-4xl font-bold text-gray-900 mb-12 tracking-tight">
-              Preparing your writing environment...
-            </h1>
-            <ChemicalFlaskLoader 
-              isVisible={true}
-              onComplete={handleStartWritingComplete}
-              duration={40}
-              messages={[
-                "Setting up your writing workspace...",
-                "Loading question analysis tools...",
-                "Preparing writing templates and guides...",
-                "Calibrating timer and assessment tools...",
-                "Optimizing your practice environment...",
-                "Almost ready to begin writing..."
-              ]}
-            />
+        <div className="fixed inset-0 bg-gradient-to-br from-white to-gray-50 z-50 animate-in fade-in duration-700">
+          {/* Drawing Canvas - Behind main content */}
+          <DrawingCanvas 
+            isActive={isStartWritingLoading}
+            onClear={handleStartWritingComplete}
+          />
+          
+          {/* Drawing instruction hint */}
+          <div className="absolute top-6 right-6 z-30 animate-in fade-in duration-1000 delay-1000">
+            <div className="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg border border-gray-200 animate-pulse">
+              <p className="text-sm text-gray-600 font-medium">Draw while you wait ✏️</p>
+            </div>
+          </div>
+
+          {/* Main loading content - Above canvas */}
+          <div className="relative z-20 flex items-center justify-center h-full">
+            <div className="text-center animate-in slide-in-from-bottom-4 duration-700 delay-150">
+              <h1 className="text-4xl font-bold text-gray-900 mb-12 tracking-tight">
+                Preparing your writing environment...
+              </h1>
+              <ChemicalFlaskLoader 
+                isVisible={true}
+                onComplete={handleStartWritingComplete}
+                duration={40}
+                messages={[
+                  "Setting up your writing workspace...",
+                  "Loading question analysis tools...",
+                  "Preparing writing templates and guides...",
+                  "Calibrating timer and assessment tools...",
+                  "Optimizing your practice environment...",
+                  "Almost ready to begin writing..."
+                ]}
+              />
+            </div>
           </div>
         </div>
       )}

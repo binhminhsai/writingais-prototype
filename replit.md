@@ -35,6 +35,12 @@ An advanced English Writing Practice Platform designed to help users improve the
   - Added gradient background and smooth fade-in transitions
   - Improved typography and spacing for better visual hierarchy
   - Maintained existing countdown timer and message rotation functionality
+- ✅ **Added interactive drawing canvas**: Users can draw freely during loading
+  - Full-screen canvas positioned behind loading content
+  - Real-time drawing with mouse and touch support
+  - Teal-blue stroke color (#0e7490) matching design theme
+  - Automatic canvas clearing when loading completes
+  - Visual hint instruction for user guidance
 
 ## Project Architecture
 
