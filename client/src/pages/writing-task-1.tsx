@@ -170,6 +170,10 @@ export default function WritingTask1() {
 
   // Tooltip state for help icons
   const [showBandLevelTooltip, setShowBandLevelTooltip] = useState(false);
+  const [showQuestionTypeTooltip, setShowQuestionTypeTooltip] = useState(false);
+  const [showEnterQuestionTooltip, setShowEnterQuestionTooltip] = useState(false);
+  const [showUploadImageTooltip, setShowUploadImageTooltip] = useState(false);
+  const [showTimeLimitTooltip, setShowTimeLimitTooltip] = useState(false);
 
 
 
@@ -354,6 +358,27 @@ export default function WritingTask1() {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Select Question Type
+            <Tooltip open={showQuestionTypeTooltip} onOpenChange={setShowQuestionTypeTooltip}>
+              <TooltipTrigger asChild>
+                <button
+                  className="inline-block ml-1 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowQuestionTypeTooltip(!showQuestionTypeTooltip);
+                  }}
+                >
+                  <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488] transition-colors" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-gray-900">Select Question Type</h4>
+                  <p className="text-sm text-gray-600">
+                    Choose the type of chart or diagram you want to practice with. Different types require different writing approaches.
+                  </p>
+                </div>
+              </TooltipContent>
+            </Tooltip>
           </label>
           <Select value={questionType} onValueChange={setQuestionType}>
             <SelectTrigger className="w-full" data-testid="select-question-type">
@@ -435,7 +460,30 @@ export default function WritingTask1() {
       </div>
       {/* Topic/Question */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Enter your question</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Enter your question
+          <Tooltip open={showEnterQuestionTooltip} onOpenChange={setShowEnterQuestionTooltip}>
+            <TooltipTrigger asChild>
+              <button
+                className="inline-block ml-1 cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowEnterQuestionTooltip(!showEnterQuestionTooltip);
+                }}
+              >
+                <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488] transition-colors" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
+              <div className="space-y-2">
+                <h4 className="font-semibold text-gray-900">Enter Your Question</h4>
+                <p className="text-sm text-gray-600">
+                  If you want to use your own question, this is where you enter it. After that, upload an image and select 'Use my question'.
+                </p>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </label>
         <Textarea
           placeholder="- Select a question type and band level, then click the 'Get question' button to get your question.
 - Enter your own question and upload an image of the task (chart, graph, table, etc.), then click the 'Use my question' button to continue."
@@ -454,7 +502,30 @@ export default function WritingTask1() {
       </div>
       {/* Upload Image */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Upload Image
+          <Tooltip open={showUploadImageTooltip} onOpenChange={setShowUploadImageTooltip}>
+            <TooltipTrigger asChild>
+              <button
+                className="inline-block ml-1 cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setShowUploadImageTooltip(!showUploadImageTooltip);
+                }}
+              >
+                <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488] transition-colors" />
+              </button>
+            </TooltipTrigger>
+            <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
+              <div className="space-y-2">
+                <h4 className="font-semibold text-gray-900">Upload Image</h4>
+                <p className="text-sm text-gray-600">
+                  If you want to use your own question, upload the corresponding image (line graph, pie chart, table,…) here before proceeding.
+                </p>
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </label>
         <div
           className={`border-2 border-dashed rounded-lg p-4 transition-colors ${
             dragActive ? "border-blue-400 bg-blue-50" : uploadedImage ? "border-green-400 bg-green-50" : "border-gray-300"
@@ -565,6 +636,27 @@ export default function WritingTask1() {
         <div className="w-48">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Time Limit (optional)
+            <Tooltip open={showTimeLimitTooltip} onOpenChange={setShowTimeLimitTooltip}>
+              <TooltipTrigger asChild>
+                <button
+                  className="inline-block ml-1 cursor-pointer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowTimeLimitTooltip(!showTimeLimitTooltip);
+                  }}
+                >
+                  <HelpCircle className="h-4 w-4 text-[#1fb2aa] hover:text-[#0d9488] transition-colors" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-gray-900">Time Limit (Optional)</h4>
+                  <p className="text-sm text-gray-600">
+                    Set a time limit for your writing practice. In the real IELTS exam, you should have 20 minutes for Task 1.
+                  </p>
+                </div>
+              </TooltipContent>
+            </Tooltip>
           </label>
           <Select value={timeLimit} onValueChange={setTimeLimit}>
             <SelectTrigger data-testid="select-time-limit">
