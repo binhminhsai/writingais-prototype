@@ -107,7 +107,7 @@ export const task2TutorialSteps: TutorialStep[] = [
     id: 'generate-question',
     target: '[data-testid="button-generate-question"]',
     title: 'Generate Question',
-    content: 'Click this button to automatically generate an essay question based on your selected type and band level. Perfect for quick practice sessions.',
+    content: 'Click this button to get a question based on your selected question type and band level. Great for quick and easy practice.',
     position: 'top',
     order: 4
   },
