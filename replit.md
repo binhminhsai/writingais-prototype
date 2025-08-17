@@ -11,7 +11,13 @@ An advanced English Writing Practice Platform designed to help users improve the
 - Real-time writing practice with timer functionality
 - Interactive tutorial system with Replit-style onboarding
 
-## Recent Changes (2025-08-16)
+## Recent Changes (2025-08-17)
+- ✅ Aligned Task 1 Grammar Checker with Task 2 design consistency
+- ✅ Moved grammar labels outside essay containers in both tasks
+- ✅ Implemented blurred essay backgrounds for both Task 1 and Task 2
+- ✅ Standardized Grammar Checker button styling and text across tasks
+- ✅ Ensured always-visible legend positioning in both interfaces
+- ✅ Applied consistent layout structure and visual hierarchy
 - ✅ Implemented comprehensive tutorial system with step-by-step tooltips
 - ✅ Added dark overlay and spotlight effects for guided onboarding
 - ✅ Updated all button colors to match website theme (#1fb2aa primary color)
