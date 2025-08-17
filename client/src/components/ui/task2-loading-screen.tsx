@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { DrawingCanvas } from './drawing-canvas';
 
 interface Task2LoadingScreenProps {
   isVisible: boolean;
@@ -50,7 +51,13 @@ export function Task2LoadingScreen({ isVisible, onComplete }: Task2LoadingScreen
 
   return (
     <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
-      <div className="text-center">
+      {/* Drawing Canvas - Behind main content */}
+      <DrawingCanvas 
+        isActive={isVisible}
+        onClear={onComplete}
+      />
+      
+      <div className="text-center relative z-10">
         {/* Chemical Flask SVG */}
         <div className="relative mb-8">
           <svg
@@ -171,9 +178,16 @@ export function Task2LoadingScreen({ isVisible, onComplete }: Task2LoadingScreen
         </div>
 
         {/* Loading Message */}
-        <p className="text-lg font-medium text-gray-900">
+        <p className="text-lg font-medium text-gray-900 mb-4">
           Loading question analysis tools...
         </p>
+        
+        {/* Drawing hint */}
+        <div className="animate-pulse">
+          <p className="text-sm text-gray-500">
+            Draw while you wait ✏️
+          </p>
+        </div>
       </div>
     </div>
   );
