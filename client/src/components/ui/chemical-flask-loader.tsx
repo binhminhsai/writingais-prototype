@@ -4,19 +4,22 @@ interface ChemicalFlaskLoaderProps {
   isVisible: boolean;
   onComplete: () => void;
   duration?: number; // Duration in seconds, defaults to 15
+  messages?: string[]; // Custom messages, defaults to feedback analysis messages
 }
 
-export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: ChemicalFlaskLoaderProps) {
+export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15, messages }: ChemicalFlaskLoaderProps) {
   const [liquidLevel, setLiquidLevel] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
   const [countdown, setCountdown] = useState(duration);
 
-  const messages = [
+  const defaultMessages = [
     "Preparing detailed insights for you...",
     "Analyzing your writing level...",
     "Generating a personalized Task 1 prompt...",
     "Calibrating chart details and band level..."
   ];
+
+  const loadingMessages = messages || defaultMessages;
 
   useEffect(() => {
     if (!isVisible) {
@@ -51,9 +54,9 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
     }, 1000);
 
     // Change messages every (duration / 4) seconds to cycle through all messages
-    const messageInterval = (duration / messages.length) * 1000;
+    const messageInterval = (duration / loadingMessages.length) * 1000;
     const messageTimer = setInterval(() => {
-      setMessageIndex(prev => (prev + 1) % messages.length);
+      setMessageIndex(prev => (prev + 1) % loadingMessages.length);
     }, messageInterval);
 
     return () => {
@@ -61,7 +64,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
       clearInterval(countdownTimer);
       clearInterval(messageTimer);
     };
-  }, [isVisible, onComplete, duration, messages.length]);
+  }, [isVisible, onComplete, duration, loadingMessages.length]);
 
   if (!isVisible) return null;
 
@@ -190,7 +193,7 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15 }: Ch
 
       {/* Loading Text */}
       <p className="text-[#111827] text-center text-sm font-medium leading-relaxed transition-all duration-300">
-        {messages[messageIndex]}
+        {loadingMessages[messageIndex]}
       </p>
     </div>
   );

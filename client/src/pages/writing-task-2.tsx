@@ -21,6 +21,7 @@ export default function WritingTask2() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingAction, setLoadingAction] = useState<'use-my-question' | 'random-question' | 'generate' | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isStartWritingLoading, setIsStartWritingLoading] = useState(false);
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
@@ -160,7 +161,12 @@ export default function WritingTask2() {
 
     sessionStorage.setItem('writingTask2Config', JSON.stringify(config));
 
-    // Navigate to the practice page
+    // Start 40-second loading process
+    setIsStartWritingLoading(true);
+  };
+
+  const handleStartWritingComplete = () => {
+    // Navigate to the practice page after loading completes
     setLocation("/writing-task-2/practice");
   };
 
@@ -449,6 +455,32 @@ export default function WritingTask2() {
             </Button>
           </div>
           
+          {/* Start Writing Loading Overlay */}
+          {isStartWritingLoading && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg p-8 shadow-xl max-w-md w-full mx-4">
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    Preparing your writing environment...
+                  </h3>
+                  <ChemicalFlaskLoader 
+                    isVisible={true}
+                    onComplete={handleStartWritingComplete}
+                    duration={40}
+                    messages={[
+                      "Setting up your writing workspace...",
+                      "Loading question analysis tools...",
+                      "Preparing writing templates and guides...",
+                      "Calibrating timer and assessment tools...",
+                      "Optimizing your practice environment...",
+                      "Almost ready to begin writing..."
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Tutorial Overlay */}
           <TutorialOverlay
             isActive={isTutorialActive}
