@@ -466,7 +466,7 @@ export default function WritingTask1() {
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           <span className="flex items-center">
-            Enter your question
+            Enter Your Question
             <Tooltip open={showEnterQuestionTooltip} onOpenChange={setShowEnterQuestionTooltip}>
               <TooltipTrigger asChild>
                 <button
