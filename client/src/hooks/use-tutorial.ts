@@ -60,12 +60,20 @@ export const task1TutorialSteps: TutorialStep[] = [
     order: 6
   },
   {
+    id: 'random-question-button',
+    target: '[data-testid="button-random-question"]',
+    title: 'Random Question',
+    content: 'Get a completely random question from our existing database. Great for challenging yourself with unexpected question!',
+    position: 'top',
+    order: 7
+  },
+  {
     id: 'time-limit',
     target: '[data-testid="select-time-limit"]',
     title: 'Time Limit (Optional)',
     content: 'Set a time limit for your writing practice. In the real IELTS exam, you have 20 minutes for Task 1.',
     position: 'top',
-    order: 7
+    order: 8
   },
   {
     id: 'start-writing',
@@ -73,7 +81,7 @@ export const task1TutorialSteps: TutorialStep[] = [
     title: 'Start Writing',
     content: 'Once you have a question ready, click here to begin your writing practice with real-time feedback and analysis.',
     position: 'top',
-    order: 8
+    order: 9
   }
 ];
 
