@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 import { DrawingCanvas } from "@/components/ui/drawing-canvas";
+import { AlertModal } from "@/components/ui/alert-modal";
 import { useTutorial } from "@/hooks/use-tutorial";
 import { TutorialOverlay } from "@/components/ui/tutorial-overlay";
 import {
@@ -153,6 +154,7 @@ export default function WritingTask1() {
   const [loadingAction, setLoadingAction] = useState<'use-my-question' | 'random-question' | 'random-button' | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isStartWritingLoading, setIsStartWritingLoading] = useState(false);
+  const [showValidationAlert, setShowValidationAlert] = useState(false);
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
@@ -316,11 +318,7 @@ export default function WritingTask1() {
   const handleStartWriting = () => {
     // Check if we have a valid preview with either uploaded image or generated chart
     if (!showPreview || !previewQuestion.trim() || (!uploadedImage && !hasGeneratedChart)) {
-      toast({
-        title: "Required fields missing",
-        description: "Please enter your Task 1 question and either upload an image or generate a random question with chart.",
-        variant: "destructive",
-      });
+      setShowValidationAlert(true);
       return;
     }
 
