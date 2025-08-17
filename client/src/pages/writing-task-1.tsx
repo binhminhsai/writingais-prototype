@@ -700,28 +700,26 @@ export default function WritingTask1() {
         </Button>
       </div>
       
-      {/* Start Writing Loading Overlay */}
+      {/* Start Writing Full-Page Loading Screen */}
       {isStartWritingLoading && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 shadow-xl max-w-md w-full mx-4">
-            <div className="text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                Preparing your writing environment...
-              </h3>
-              <ChemicalFlaskLoader 
-                isVisible={true}
-                onComplete={handleStartWritingComplete}
-                duration={40}
-                messages={[
-                  "Setting up your writing workspace...",
-                  "Loading question analysis tools...",
-                  "Preparing writing templates and guides...",
-                  "Calibrating timer and assessment tools...",
-                  "Optimizing your practice environment...",
-                  "Almost ready to begin writing..."
-                ]}
-              />
-            </div>
+        <div className="fixed inset-0 bg-gradient-to-br from-white to-gray-50 flex items-center justify-center z-50 animate-in fade-in duration-700">
+          <div className="text-center animate-in slide-in-from-bottom-4 duration-700 delay-150">
+            <h1 className="text-4xl font-bold text-gray-900 mb-12 tracking-tight">
+              Preparing your writing environment...
+            </h1>
+            <ChemicalFlaskLoader 
+              isVisible={true}
+              onComplete={handleStartWritingComplete}
+              duration={40}
+              messages={[
+                "Setting up your writing workspace...",
+                "Loading question analysis tools...",
+                "Preparing writing templates and guides...",
+                "Calibrating timer and assessment tools...",
+                "Optimizing your practice environment...",
+                "Almost ready to begin writing..."
+              ]}
+            />
           </div>
         </div>
       )}

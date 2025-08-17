@@ -69,16 +69,16 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15, mess
   if (!isVisible) return null;
 
   return (
-    <div className="flex flex-col items-center py-4 my-6">
+    <div className="flex flex-col items-center py-8 my-8">
       {/* Chemical Flask SVG */}
-      <div className="relative mb-4">
+      <div className="relative mb-6 transform hover:scale-105 transition-transform duration-300">
         <svg
-          width="60"
-          height="70"
+          width="80"
+          height="90"
           viewBox="0 0 120 140"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="drop-shadow-lg"
+          className="drop-shadow-xl"
         >
           {/* Flask Outline with Glow */}
           <defs>
@@ -186,13 +186,13 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15, mess
 
       {/* Countdown Timer */}
       {countdown > 0 && (
-        <div className="text-[#1fb2aa] text-center text-sm font-medium mb-2">
+        <div className="text-[#1fb2aa] text-center text-2xl font-bold mb-4 animate-pulse">
           {countdown}
         </div>
       )}
 
       {/* Loading Text */}
-      <p className="text-[#111827] text-center text-sm font-medium leading-relaxed transition-all duration-300">
+      <p className="text-[#111827] text-center text-lg font-medium leading-relaxed transition-all duration-500 max-w-md">
         {loadingMessages[messageIndex]}
       </p>
     </div>
