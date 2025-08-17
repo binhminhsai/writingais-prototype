@@ -940,26 +940,8 @@ Only through careful planning and responsible policies can societies achieve pro
         
         {/* Essay with highlighted sections - display immediately */}
         {highlightEssay(sampleEssay)}
-            {/* Blurred plain essay background (no highlights) */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="p-6 text-sm leading-relaxed blur-[1.2px] select-none overflow-hidden h-full opacity-60">
-                <div className="text-gray-500 whitespace-pre-wrap">
-                  {sampleEssay}
-                </div>
-              </div>
-            </div>
-            
-            {/* Content area */}
-            <div className="flex flex-col items-center justify-center text-center relative z-10 bg-white bg-opacity-80 rounded-xl p-8 mx-4 shadow-md transition-all duration-500" style={{ minHeight: '450px' }}>
-              <Button 
-                className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4 shadow-lg transition-all duration-200"
-              >
-                ✨ Check My Essay
-              </Button>
-              <p className="text-gray-800 mb-2 font-semibold">Wanna know what’s wrong with your writing?</p>
-              <p className="text-[#44b9b0] text-sm font-medium">Hit the button to get a grammar check and tips to improve your writing!</p>
-            </div>
-          </div>
+
+
 
       </div>
 
@@ -1018,8 +1000,7 @@ Only through careful planning and responsible policies can societies achieve pro
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-
-      </div>
+    </div>
     </TooltipProvider>
   );
 }
