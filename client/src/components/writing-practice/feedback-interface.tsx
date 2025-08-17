@@ -940,11 +940,6 @@ Only through careful planning and responsible policies can societies achieve pro
         
         {/* Essay with highlighted sections - display immediately */}
         {highlightEssay(sampleEssay)}
-        
-
-
-
-          <div className="highlight-section border border-gray-300 rounded-lg p-6 relative overflow-hidden bg-[#ffffff]">
             {/* Blurred plain essay background (no highlights) */}
             <div className="absolute inset-0 pointer-events-none">
               <div className="p-6 text-sm leading-relaxed blur-[1.2px] select-none overflow-hidden h-full opacity-60">
