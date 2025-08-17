@@ -15,11 +15,13 @@ export function WordCounter({
 }: WordCounterProps) {
   // Check if count is less than minWords (default 250)
   const isCountValid = count >= minWords;
+  // Check if count is 50 or over for color change
+  const isOverFifty = count >= 50;
   
   return (
     <div
       className={`flex items-center bg-gray-100 px-2 py-0.5 rounded-md h-6 ${
-        !isCountValid ? "text-red-600" : isValid ? "text-gray-600" : "text-red-600"
+        isOverFifty ? "text-[#4b5563]" : !isCountValid ? "text-red-600" : isValid ? "text-gray-600" : "text-red-600"
       }`}
     >
       <FileType className="mr-1.5 h-3.5 w-3.5" />
