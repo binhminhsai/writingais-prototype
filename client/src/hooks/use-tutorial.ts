@@ -71,7 +71,7 @@ export const task1TutorialSteps: TutorialStep[] = [
     id: 'time-limit',
     target: '[data-testid="select-time-limit"]',
     title: 'Time Limit (Optional)',
-    content: 'Set a time limit for your writing practice. In the real IELTS exam, you have 20 minutes for Task 1.',
+    content: 'Set a time limit for your writing practice. In the real IELTS exam, you should have 20 minutes for Task 1.',
     position: 'top',
     order: 8
   },
