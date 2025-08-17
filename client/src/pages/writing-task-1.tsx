@@ -750,6 +750,14 @@ export default function WritingTask1() {
         onSkip={skipTutorial}
         onComplete={completeTutorial}
       />
+
+      {/* Validation Alert Modal */}
+      <AlertModal
+        isOpen={showValidationAlert}
+        onClose={() => setShowValidationAlert(false)}
+        title="Missing Question"
+        message="You need to generate or upload a question before starting your writing."
+      />
       </div>
     </TooltipProvider>
   );

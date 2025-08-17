@@ -11,6 +11,7 @@ import { TutorialOverlay } from "@/components/ui/tutorial-overlay";
 import { useTutorial } from "@/hooks/use-tutorial";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
 import { Task2LoadingScreen } from "@/components/ui/task2-loading-screen";
+import { AlertModal } from "@/components/ui/alert-modal";
 
 export default function WritingTask2() {
   const [questionType, setQuestionType] = useState("opinion");
@@ -23,6 +24,7 @@ export default function WritingTask2() {
   const [loadingAction, setLoadingAction] = useState<'use-my-question' | 'random-question' | 'generate' | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isStartWritingLoading, setIsStartWritingLoading] = useState(false);
+  const [showValidationAlert, setShowValidationAlert] = useState(false);
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
@@ -146,7 +148,7 @@ export default function WritingTask2() {
 
   const handleStartWriting = () => {
     if (!question.trim()) {
-      setErrorMessage("Please enter a question or generate one before starting.");
+      setShowValidationAlert(true);
       return;
     }
 
@@ -474,6 +476,14 @@ export default function WritingTask2() {
       <Task2LoadingScreen 
         isVisible={isStartWritingLoading}
         onComplete={handleStartWritingComplete}
+      />
+
+      {/* Validation Alert Modal */}
+      <AlertModal
+        isOpen={showValidationAlert}
+        onClose={() => setShowValidationAlert(false)}
+        title="Missing Question"
+        message="You need to generate or upload a question before starting your writing."
       />
     </div>
   );
