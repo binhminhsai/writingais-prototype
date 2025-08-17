@@ -145,6 +145,8 @@ export default function WritingTask2() {
   };
 
   const handleStartWriting = () => {
+    console.log('Start Writing clicked!', { question: question.trim(), previewQuestion });
+    
     if (!question.trim()) {
       setErrorMessage("Please enter a question or generate one before starting.");
       return;
@@ -163,6 +165,7 @@ export default function WritingTask2() {
     sessionStorage.setItem('writingTask2Config', JSON.stringify(config));
 
     // Start 40-second loading process
+    console.log('Setting isStartWritingLoading to true');
     setIsStartWritingLoading(true);
   };
 
@@ -472,7 +475,7 @@ export default function WritingTask2() {
 
       {/* Start Writing Full-Page Loading Screen */}
       {isStartWritingLoading && (
-        <div className="fixed inset-0 bg-gradient-to-br from-white to-gray-50 z-50 animate-in fade-in duration-700">
+        <div className="fixed inset-0 bg-gradient-to-br from-white to-gray-50 z-50 animate-in fade-in duration-700" onLoad={() => console.log('Loading screen rendered')}>
           {/* Drawing Canvas - Behind main content */}
           <DrawingCanvas 
             isActive={isStartWritingLoading}
