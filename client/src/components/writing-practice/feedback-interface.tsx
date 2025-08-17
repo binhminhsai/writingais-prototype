@@ -941,43 +941,46 @@ Only through careful planning and responsible policies can societies achieve pro
           </div>
         ) : !showGrammarChecker ? (
           <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6 relative overflow-hidden">
-            {/* Blurred essay background */}
+            {/* Blurred highlighted essay background */}
             <div className="absolute inset-0 pointer-events-none">
-              <div className="p-6 text-sm leading-relaxed text-gray-400 blur-[3px] select-none overflow-hidden h-full">
-                <div className="whitespace-pre-wrap opacity-60">
-                  {essayContent || sampleEssay}
+              <div className="p-6 text-sm leading-relaxed blur-[1.5px] select-none overflow-hidden h-full opacity-40">
+                <div className="text-gray-600">
+                  {highlightEssay(sampleEssay)}
                 </div>
               </div>
             </div>
             
+            {/* Light gradient overlay for better contrast */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/20 to-white/30 pointer-events-none"></div>
+            
             {/* Legend section to match actual content structure */}
-            <div className="mb-4 relative z-10 bg-[#fdfdfd] bg-opacity-90 rounded p-2">
+            <div className="mb-4 relative z-10 bg-white bg-opacity-85 backdrop-blur-sm rounded-lg p-3 shadow-sm">
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
-                  <span>Error</span>
+                  <span className="w-4 h-4 bg-[#ffcdd2] rounded shadow-sm"></span>
+                  <span className="font-medium">Error</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
-                  <span>Improvement</span>
+                  <span className="w-4 h-4 bg-[#fef9c3] rounded shadow-sm"></span>
+                  <span className="font-medium">Improvement</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
-                  <span>Suggestion</span>
+                  <span className="w-4 h-4 bg-[#dcfce7] rounded shadow-sm"></span>
+                  <span className="font-medium">Suggestion</span>
                 </div>
               </div>
             </div>
             
             {/* Content area with same height as actual essay */}
-            <div className="flex flex-col items-center justify-center text-center relative z-10 bg-white bg-opacity-95 rounded-lg p-8 mx-4" style={{ minHeight: '450px' }}>
+            <div className="flex flex-col items-center justify-center text-center relative z-10 bg-white bg-opacity-90 backdrop-blur-sm rounded-xl p-8 mx-4 shadow-lg border border-white/50" style={{ minHeight: '450px' }}>
               <Button 
                 onClick={handleReviewEssay}
-                className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4 shadow-lg"
+                className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4 shadow-xl transform hover:scale-105 transition-all duration-200"
               >
                 ✨ Check My Essay
               </Button>
-              <p className="text-gray-700 mb-2 font-medium">Click to explore detailed grammar analysis!</p>
-              <p className="text-[#44b9b0] text-sm font-medium">Improve your writing skills with personalized feedback. 📝</p>
+              <p className="text-gray-800 mb-2 font-semibold text-lg">Click to explore detailed grammar analysis!</p>
+              <p className="text-[#44b9b0] text-base font-medium">Improve your writing skills with personalized feedback. 📝</p>
             </div>
           </div>
         ) : (
