@@ -377,8 +377,8 @@ export function TestSetup({ onStart }: TestSetupProps) {
         />
         
         {topic && (
-          <div className="mt-4 p-4 bg-teal-50 rounded-md border-2 border-teal-200 shadow-sm">
-            <Label className="text-teal-700 font-medium">
+          <div className="mt-4 p-4 rounded-md border-2 border-cyan-200 shadow-sm bg-[#ecfeff]">
+            <Label className="font-medium" style={{ color: '#0e7490' }}>
               {testType === "all" ? "Random Question Type:" :
                testType === "opinion" ? "Opinion:" : 
                testType === "discussion" ? "Discussion:" :
