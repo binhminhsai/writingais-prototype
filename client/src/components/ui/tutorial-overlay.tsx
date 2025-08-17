@@ -261,7 +261,9 @@ export function TutorialOverlay({
                 {currentStepIndex + 1}
               </span>
             </div>
-            <h3 className="font-bold text-gray-900 text-sm leading-tight">{currentStep.title}</h3>
+            <h3 className="font-bold text-gray-900 text-sm leading-tight">
+              {currentStep.id === 'topic-question' ? 'Enter Your Question' : currentStep.title}
+            </h3>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-0.5 rounded-full">
