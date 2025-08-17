@@ -936,23 +936,7 @@ Only through careful planning and responsible policies can societies achieve pro
         
 
 
-        {/* Grammar labels inside the grammar checker box */}
-        <div className="mb-4 bg-gray-50 rounded-lg p-3 shadow-sm border border-gray-200 sticky top-0 z-10">
-          <div className="flex flex-wrap gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
-              <span className="font-medium text-gray-800">Error</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
-              <span className="font-medium text-gray-800">Improvement</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
-              <span className="font-medium text-gray-800">Suggestion</span>
-            </div>
-          </div>
-        </div>
+        
         
         {/* Essay with highlighted sections - display immediately */}
         {highlightEssay(sampleEssay)}
