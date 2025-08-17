@@ -859,7 +859,7 @@ However, renewable energy sources is projected to experience substantial growth,
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Question</h2>
         <div className="bg-[#ffffff] border border-gray-200 rounded-lg p-6 mb-4">
-          <div className="text-[#0c0a09] font-bold text-sm mb-3">IELTS Writing Task 1:</div>
+          <div className="font-bold text-sm mb-3 text-[#1fb2aae6]">IELTS Writing Task 1:</div>
           <div className="text-gray-800 text-sm leading-relaxed mb-4">The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.</div>
           
           {/* Task 1 Chart */}
