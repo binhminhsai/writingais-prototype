@@ -373,7 +373,7 @@ export default function WritingTask1() {
                 </TooltipTrigger>
                 <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-gray-900">Select Question Type</h4>
+                    <h4 className="font-semibold text-gray-900">Question Type Guide</h4>
                     <p className="text-sm text-gray-600">
                       Choose the type of chart or diagram you want to practice with. Different types require different writing approaches.
                     </p>
@@ -481,10 +481,8 @@ export default function WritingTask1() {
               </TooltipTrigger>
             <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
               <div className="space-y-2">
-                <h4 className="font-semibold text-gray-900">Enter Your Question</h4>
-                <p className="text-sm text-gray-600">
-                  If you want to use your own question, this is where you enter it. After that, upload an image and select 'Use my question'.
-                </p>
+                <h4 className="font-semibold text-gray-900">Your Question Guide</h4>
+                <p className="text-sm text-gray-600">This is where you enter your own question. After that, upload an image and select 'Use my question'.</p>
               </div>
             </TooltipContent>
           </Tooltip>
@@ -525,7 +523,7 @@ export default function WritingTask1() {
               </TooltipTrigger>
               <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-gray-900">Upload Image</h4>
+                  <h4 className="font-semibold text-gray-900">Upload Image Guide</h4>
                   <p className="text-sm text-gray-600">
                     If you want to use your own question, upload the corresponding image (line graph, pie chart, table,…) here before proceeding.
                   </p>
@@ -659,10 +657,8 @@ export default function WritingTask1() {
                 </TooltipTrigger>
                 <TooltipContent className="max-w-sm p-4 bg-white border-2 border-[#1fb2aa] shadow-lg rounded-lg">
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-gray-900">Time Limit (Optional)</h4>
-                    <p className="text-sm text-gray-600">
-                      Set a time limit for your writing practice. In the real IELTS exam, you should have 20 minutes for Task 1.
-                    </p>
+                    <h4 className="font-semibold text-gray-900">Time Limit Guide</h4>
+                    <p className="text-sm text-gray-600">Set a time limit to practice under exam conditions. For IELTS Task 1, the recommended time is 20 minutes.</p>
                   </div>
                 </TooltipContent>
               </Tooltip>
