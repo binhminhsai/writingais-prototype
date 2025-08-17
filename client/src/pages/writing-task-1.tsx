@@ -455,7 +455,7 @@ export default function WritingTask1() {
       {/* Image Upload Area */}
       <div className="mb-6">
         <div
-          className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+          className={`border-2 border-dashed rounded-lg p-4 transition-colors ${
             dragActive ? "border-blue-400 bg-blue-50" : uploadedImage ? "border-green-400 bg-green-50" : "border-gray-300"
           }`}
           onDragEnter={handleDrag}
@@ -473,19 +473,20 @@ export default function WritingTask1() {
           />
           <label htmlFor="file-upload" className="cursor-pointer">
             {uploadedImage ? (
-              <>
-                <div className="mx-auto h-8 w-8 bg-green-500 rounded-full flex items-center justify-center mb-3">
-                  <span className="text-white text-sm">✓</span>
+              <div className="flex items-center justify-center gap-3">
+                <div className="h-6 w-6 bg-green-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs">✓</span>
                 </div>
-                <p className="text-green-700 mb-1 font-medium">Image uploaded: {uploadedImage.name}</p>
-                <p className="text-sm text-green-600">Click to change or drag another image</p>
-              </>
+                <div className="text-center">
+                  <p className="text-green-700 font-medium">Image uploaded: {uploadedImage.name}</p>
+                  <p className="text-sm text-green-600">Click to change or drag another image</p>
+                </div>
+              </div>
             ) : (
-              <>
-                <Upload className="mx-auto h-8 w-8 text-gray-400 mb-3" />
-                <p className="text-gray-600 mb-1">Chọn ảnh biểu đồ hoặc kéo và thả hình ảnh vào đây</p>
-                <p className="text-sm text-gray-500">Accepted file types: image. Max file size: 5 MB</p>
-              </>
+              <div className="flex items-center justify-center gap-3">
+                <Upload className="h-5 w-5 text-gray-400" />
+                <p className="text-gray-500 text-sm">Accepted file types: PNG, JPG. Maximum size: 5 MB</p>
+              </div>
             )}
           </label>
         </div>
