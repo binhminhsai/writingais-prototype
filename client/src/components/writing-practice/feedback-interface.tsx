@@ -930,6 +930,24 @@ Only through careful planning and responsible policies can societies achieve pro
       {/* Grammar Checker Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
+        
+        {/* Always visible grammar labels - positioned outside essay container */}
+        <div className="mb-4 bg-white rounded-lg p-3 shadow-sm border border-gray-200">
+          <div className="flex flex-wrap gap-4 text-sm">
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
+              <span className="font-medium text-gray-800">Error</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
+              <span className="font-medium text-gray-800">Improvement</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
+              <span className="font-medium text-gray-800">Suggestion</span>
+            </div>
+          </div>
+        </div>
 
         {isLoadingGrammarChecker ? (
           <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[450px]">
@@ -941,26 +959,8 @@ Only through careful planning and responsible policies can societies achieve pro
           </div>
         ) : !showGrammarChecker ? (
           <div className="highlight-section bg-[#f8f9fa] border border-gray-300 rounded-lg p-6 relative overflow-hidden">
-            {/* Always visible legend section */}
-            <div className="mb-4 relative z-20 bg-white rounded-lg p-3 shadow-sm border border-gray-200">
-              <div className="flex flex-wrap gap-4 text-sm">
-                <div className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
-                  <span className="font-medium text-gray-800">Error</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
-                  <span className="font-medium text-gray-800">Improvement</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
-                  <span className="font-medium text-gray-800">Suggestion</span>
-                </div>
-              </div>
-            </div>
-            
             {/* Blurred plain essay background (no highlights) */}
-            <div className="absolute inset-0 pointer-events-none" style={{ top: '80px' }}>
+            <div className="absolute inset-0 pointer-events-none">
               <div className="p-6 text-sm leading-relaxed blur-[1.2px] select-none overflow-hidden h-full opacity-60">
                 <div className="text-gray-500 whitespace-pre-wrap">
                   {sampleEssay}
