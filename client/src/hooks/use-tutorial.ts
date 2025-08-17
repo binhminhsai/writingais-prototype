@@ -31,7 +31,7 @@ export const task1TutorialSteps: TutorialStep[] = [
     id: 'topic-question',
     target: '[data-testid="topic-question-area"]',
     title: 'Topic/Question',
-    content: 'This area will display your question. You can either generate one automatically or enter your own question.',
+    content: 'If you want to use your own question, this is where you enter it. After that, upload an image and select \'Use my question\'.',
     position: 'top',
     order: 3
   },
