@@ -541,7 +541,7 @@ However, renewable energy sources is projected to experience substantial growth,
 
                   <AccordionItem value="critical-feedback" className="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <AccordionTrigger className="text-sm font-medium py-2 px-3 hover:no-underline bg-gradient-to-r from-orange-50 to-transparent hover:from-orange-100">
-                      <span className="text-gray-800">Critical Feedback</span>
+                      <span className="text-gray-800">Specific Suggestions</span>
                     </AccordionTrigger>
                     <AccordionContent className="p-3 bg-white">
                       <p className="text-gray-700 leading-relaxed text-sm">
