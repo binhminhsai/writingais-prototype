@@ -53,8 +53,8 @@ export const task1TutorialSteps: TutorialStep[] = [
   },
   {
     id: 'random-question',
-    target: '[data-testid="button-random-question"]',
-    title: 'Random Question',
+    target: '[data-testid="button-use-my-question"]',
+    title: 'Use My Question',
     content: 'If you have your own question and chart image, enter the question text and upload the image, then click this button.',
     position: 'top',
     order: 6
