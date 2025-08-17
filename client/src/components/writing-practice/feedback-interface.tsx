@@ -448,15 +448,7 @@ Only through careful planning and responsible policies can societies achieve pro
   return (
     <TooltipProvider>
       <div className="p-6">
-      <div className="flex mb-3">
-        <Button 
-          variant="outline" 
-          size="sm"
-          onClick={() => context === "essay-grading" ? onNextPractice() : setShowExitDialog(true)}
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" /> Back
-        </Button>
-      </div>
+      
 
       <div className="mb-6 text-center">
         <h2 className="text-xl font-semibold mb-2">Your essay has been evaluated based on the IELTS Task 2 criteria!</h2>
