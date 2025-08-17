@@ -55,7 +55,7 @@ export const task1TutorialSteps: TutorialStep[] = [
     id: 'random-question',
     target: '[data-testid="button-random-question"]',
     title: 'Random Question',
-    content: 'Generate a completely random practice question from our database. Great for surprise practice sessions!',
+    content: 'If you have your own question and chart image, enter the question text and upload the image, then click this button.',
     position: 'top',
     order: 6
   },
