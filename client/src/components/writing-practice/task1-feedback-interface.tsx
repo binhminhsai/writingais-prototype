@@ -75,8 +75,6 @@ export function Task1FeedbackInterface({
   onNextPractice,
 }: Task1FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
-  const [showGrammarChecker, setShowGrammarChecker] = useState(false);
-  const [isLoadingGrammarChecker, setIsLoadingGrammarChecker] = useState(false);
 
   // Sample Task 1 essay about energy consumption
   const sampleEssay = `The line graph illustrates the consumption of energy by source in the USA from 1980 to 2030, with projections for the future period.
@@ -122,15 +120,7 @@ However, renewable energy sources is projected to experience substantial growth,
     }
   };
 
-  // Handler functions for loading state
-  const handleReviewEssay = () => {
-    setIsLoadingGrammarChecker(true);
-  };
 
-  const handleLoadingComplete = () => {
-    setIsLoadingGrammarChecker(false);
-    setShowGrammarChecker(true);
-  };
 
   // Task 1 specific highlighting data
   const highlightMapping: Record<string, HighlightData> = {
@@ -818,62 +808,49 @@ However, renewable energy sources is projected to experience substantial growth,
         </Tabs>
       </div>
 
+      {/* Question Section */}
+      <div className="container max-w-[1100px] mx-auto mb-6">
+        <h2 className="text-2xl font-bold mb-4">Question</h2>
+        <div className="bg-gradient-to-r from-cyan-50 to-teal-50 rounded-lg p-6 mb-4 border-2 border-cyan-300 shadow-sm">
+          <div className="text-teal-800 font-bold text-sm mb-3">IELTS Writing Task 1:</div>
+          <div className="text-gray-800 text-sm leading-relaxed mb-4">The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.</div>
+          
+          {/* Task 1 Chart */}
+          <div className="bg-white rounded-md p-4 border-2 border-gray-200 shadow-sm">
+            <div className="text-center text-xs font-semibold text-gray-600 mb-2">High School Competency Exam Pass Rates by Subject and Gender (2010-2015)</div>
+            <div className="w-full h-48 bg-gray-100 rounded flex items-center justify-center text-gray-500 text-sm">
+              [Chart placeholder - Line graph showing energy consumption data]
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Grammar Checker Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
         
-        {/* Always visible grammar labels - positioned outside essay container */}
-        <div className="mb-4 bg-white rounded-lg p-3 shadow-sm border border-gray-200">
-          <div className="flex flex-wrap gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
-              <span className="font-medium text-gray-800">Error</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
-              <span className="font-medium text-gray-800">Improvement</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
-              <span className="font-medium text-gray-800">Suggestion</span>
-            </div>
-          </div>
-        </div>
-
-        {isLoadingGrammarChecker ? (
-          <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[450px]">
-            <ChemicalFlaskLoader 
-              isVisible={true} 
-              onComplete={handleLoadingComplete}
-              duration={50}
-            />
-          </div>
-        ) : !showGrammarChecker ? (
-          <div className="highlight-section bg-[#f8f9fa] border border-gray-300 rounded-lg p-6 relative overflow-hidden">
-            {/* Blurred plain essay background (no highlights) */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="p-6 text-sm leading-relaxed blur-[1.2px] select-none overflow-hidden h-full opacity-60">
-                <div className="text-gray-500 whitespace-pre-wrap">
-                  {sampleEssay}
-                </div>
+        <div className="highlight-section border border-gray-300 rounded-lg p-6 bg-white">
+          {/* Grammar labels inside the grammar checker box */}
+          <div className="mb-4 bg-gray-50 rounded-lg p-3 shadow-sm border border-gray-200 sticky top-0 z-10">
+            <div className="flex flex-wrap gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
+                <span className="font-medium text-gray-800">Error</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
+                <span className="font-medium text-gray-800">Improvement</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
+                <span className="font-medium text-gray-800">Suggestion</span>
               </div>
             </div>
-            
-            {/* Content area */}
-            <div className="flex flex-col items-center justify-center text-center relative z-10 bg-white bg-opacity-80 rounded-xl p-8 mx-4 shadow-md transition-all duration-500" style={{ minHeight: '450px' }}>
-              <Button 
-                onClick={handleReviewEssay}
-                className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4 shadow-lg transition-all duration-200"
-              >
-                ✨ Check My Essay
-              </Button>
-              <p className="text-gray-800 mb-2 font-semibold">Click to explore detailed grammar analysis!</p>
-              <p className="text-[#44b9b0] text-sm font-medium">Improve your writing skills with personalized feedback. 📝</p>
-            </div>
           </div>
-        ) : (
-          createHighlightedEssay()
-        )}
+          
+          {/* Essay with highlighted sections - display immediately */}
+          {createHighlightedEssay()}
+        </div>
       </div>
 
       {/* Action Buttons */}

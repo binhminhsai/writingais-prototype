@@ -91,8 +91,6 @@ export function FeedbackInterface({
   context = "writing-practice",
 }: FeedbackInterfaceProps) {
   const [showExitDialog, setShowExitDialog] = useState(false);
-  const [showGrammarChecker, setShowGrammarChecker] = useState(false);
-  const [isLoadingGrammarChecker, setIsLoadingGrammarChecker] = useState(false);
 
   // Example sustainable development essay - 300 words
   const sampleEssay = `In recent years, sustainable development has become one of the most critical issues facing governments worldwide.
@@ -191,15 +189,7 @@ Only through careful planning and responsible policies can societies achieve pro
     }
   };
 
-  // Handler functions for loading state
-  const handleReviewEssay = () => {
-    setIsLoadingGrammarChecker(true);
-  };
 
-  const handleLoadingComplete = () => {
-    setIsLoadingGrammarChecker(false);
-    setShowGrammarChecker(true);
-  };
 
   // Enhanced highlighting data - 2 sentences per color type
   const highlightMapping: Record<string, HighlightData> = {
@@ -927,37 +917,51 @@ Only through careful planning and responsible policies can societies achieve pro
         </Tabs>
       </div>
 
+      {/* Question Section */}
+      <div className="container max-w-[1100px] mx-auto mb-6">
+        <h2 className="text-2xl font-bold mb-4">Question</h2>
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-4 border-2 border-blue-300 shadow-sm">
+          <div className="text-blue-800 font-bold text-sm mb-3">IELTS Writing Task 2:</div>
+          <div className="text-gray-800 text-sm leading-relaxed">
+            In recent years, sustainable development has become one of the most critical issues facing governments worldwide. While some people argue that economic growth should be the primary focus, others believe environmental protection must take priority.
+            <br /><br />
+            Discuss both views and give your own opinion.
+          </div>
+        </div>
+      </div>
+
       {/* Grammar Checker Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
         
-        {/* Always visible grammar labels - positioned outside essay container */}
-        <div className="mb-4 bg-white rounded-lg p-3 shadow-sm border border-gray-200">
-          <div className="flex flex-wrap gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
-              <span className="font-medium text-gray-800">Error</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
-              <span className="font-medium text-gray-800">Improvement</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
-              <span className="font-medium text-gray-800">Suggestion</span>
-            </div>
-          </div>
-        </div>
 
-        {isLoadingGrammarChecker ? (
-          <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[450px]">
-            <ChemicalFlaskLoader 
-              isVisible={true} 
-              onComplete={handleLoadingComplete}
-              duration={50}
-            />
+
+        <div className="highlight-section border border-gray-300 rounded-lg p-6 bg-white">
+          {/* Grammar labels inside the grammar checker box */}
+          <div className="mb-4 bg-gray-50 rounded-lg p-3 shadow-sm border border-gray-200 sticky top-0 z-10">
+            <div className="flex flex-wrap gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
+                <span className="font-medium text-gray-800">Error</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
+                <span className="font-medium text-gray-800">Improvement</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
+                <span className="font-medium text-gray-800">Suggestion</span>
+              </div>
+            </div>
           </div>
-        ) : !showGrammarChecker ? (
+          
+          {/* Essay with highlighted sections - display immediately */}
+          {highlightEssay(sampleEssay)}
+        </div>
+        
+
+
+
           <div className="highlight-section border border-gray-300 rounded-lg p-6 relative overflow-hidden bg-[#ffffff]">
             {/* Blurred plain essay background (no highlights) */}
             <div className="absolute inset-0 pointer-events-none">
@@ -980,10 +984,7 @@ Only through careful planning and responsible policies can societies achieve pro
               <p className="text-[#44b9b0] text-sm font-medium">Hit the button to get a grammar check and tips to improve your writing!</p>
             </div>
           </div>
-        ) : (
-          /* Essay with highlighted sections */
-          (highlightEssay(sampleEssay))
-        )}
+
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center">
