@@ -462,6 +462,7 @@ export default function WritingTask1() {
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
+          data-testid="upload-image-area"
         >
           <input
             type="file"

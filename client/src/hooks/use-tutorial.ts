@@ -37,8 +37,8 @@ export const task1TutorialSteps: TutorialStep[] = [
   },
   {
     id: 'generate-question',
-    target: '[data-testid="button-generate-question"]',
-    title: 'Generate Question',
+    target: '[data-testid="upload-image-area"]',
+    title: 'Upload Image',
     content: 'If you want to use your own question, upload the corresponding image (line graph, pie chart, table,…) here before proceeding.',
     position: 'top',
     order: 4
