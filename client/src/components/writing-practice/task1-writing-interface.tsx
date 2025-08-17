@@ -1108,7 +1108,7 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
             />
             <WordCounter
               count={wordCount}
-              maxWords={400}
+              maxWords={500}
               isValid={isWordCountValid}
               minWords={50}
             />
@@ -1119,7 +1119,7 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
             onChange={setEssayContent}
             onWordCountChange={handleWordCountChange}
             minWords={50}
-            maxWords={400}
+            maxWords={500}
             placeholder="Start writing your Task 1 response here..."
           />
 
