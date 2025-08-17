@@ -264,7 +264,8 @@ export function TutorialOverlay({
             <h3 className="font-bold text-gray-900 text-sm leading-tight">
               {currentStep.id === 'topic-question' ? 'Enter Your Question' : 
                currentStep.id === 'generate-question' ? 'Upload Image' : 
-               currentStep.id === 'use-my-question' ? 'Get Question' : currentStep.title}
+               currentStep.id === 'use-my-question' ? 'Get Question' : 
+               currentStep.id === 'random-question' ? 'Use My Question' : currentStep.title}
             </h3>
           </div>
           <div className="flex items-center gap-2">
