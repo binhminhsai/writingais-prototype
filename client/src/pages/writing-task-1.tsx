@@ -495,18 +495,18 @@ export default function WritingTask1() {
       <div className="flex flex-wrap gap-3 mb-6">
         <Button 
           className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
-          onClick={handleUseMyQuestion}
-          data-testid="button-use-my-question"
-        >
-          Use my question
-        </Button>
-        <Button 
-          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
           onClick={handleRandomQuestion}
           data-testid="button-generate-question"
         >
           <Database className="w-4 h-4 mr-2" />
           Get question
+        </Button>
+        <Button 
+          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
+          onClick={handleUseMyQuestion}
+          data-testid="button-use-my-question"
+        >
+          Use my question
         </Button>
         <Button 
           className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
