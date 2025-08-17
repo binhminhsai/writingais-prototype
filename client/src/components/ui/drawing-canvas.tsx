@@ -50,6 +50,7 @@ export function DrawingCanvas({ isActive, onClear }: DrawingCanvasProps) {
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!context || !isActive) return;
     
+    console.log('Starting to draw!', { isActive, context: !!context });
     setIsDrawing(true);
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;
@@ -124,7 +125,7 @@ export function DrawingCanvas({ isActive, onClear }: DrawingCanvasProps) {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 z-10 cursor-crosshair"
+      className="absolute inset-0 z-[5] cursor-crosshair"
       onMouseDown={startDrawing}
       onMouseMove={draw}
       onMouseUp={stopDrawing}

@@ -711,14 +711,14 @@ export default function WritingTask1() {
           />
           
           {/* Drawing instruction hint */}
-          <div className="absolute top-6 right-6 z-30 animate-in fade-in duration-1000 delay-1000">
+          <div className="absolute top-6 right-6 z-20 animate-in fade-in duration-1000 delay-1000 pointer-events-none">
             <div className="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg border border-gray-200 animate-pulse">
               <p className="text-sm text-gray-600 font-medium">Draw while you wait ✏️</p>
             </div>
           </div>
 
           {/* Main loading content - Above canvas */}
-          <div className="relative z-20 flex items-center justify-center h-full">
+          <div className="relative z-10 flex items-center justify-center h-full pointer-events-none">
             <div className="text-center animate-in slide-in-from-bottom-4 duration-700 delay-150">
               <h1 className="text-4xl font-bold text-gray-900 mb-12 tracking-tight">
                 Preparing your writing environment...
