@@ -24,6 +24,133 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useState } from "react";
 import { Link } from "wouter";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip as ChartTooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  ChartTooltip,
+  Legend
+);
+
+// Chart component for Task 1 feedback
+function Task1LineChart() {
+  const chartData = {
+    labels: ['2010', '2011', '2012', '2013', '2014', '2015'],
+    datasets: [
+      {
+        label: 'Mathematics (Male)',
+        data: [65, 68, 72, 75, 78, 82],
+        borderColor: 'rgb(59, 130, 246)',
+        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        tension: 0.1,
+      },
+      {
+        label: 'Mathematics (Female)',
+        data: [62, 66, 70, 74, 77, 80],
+        borderColor: 'rgb(236, 72, 153)',
+        backgroundColor: 'rgba(236, 72, 153, 0.1)',
+        tension: 0.1,
+      },
+      {
+        label: 'Science (Male)',
+        data: [58, 61, 65, 68, 71, 75],
+        borderColor: 'rgb(34, 197, 94)',
+        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+        tension: 0.1,
+      },
+      {
+        label: 'Science (Female)',
+        data: [55, 59, 63, 66, 69, 73],
+        borderColor: 'rgb(168, 85, 247)',
+        backgroundColor: 'rgba(168, 85, 247, 0.1)',
+        tension: 0.1,
+      },
+      {
+        label: 'English (Male)',
+        data: [72, 74, 76, 78, 80, 83],
+        borderColor: 'rgb(245, 158, 11)',
+        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+        tension: 0.1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+        labels: {
+          font: {
+            size: 11
+          }
+        }
+      },
+      title: {
+        display: true,
+        text: 'High School Competency Exam Pass Rates by Subject and Gender (2010-2015)',
+        font: {
+          size: 12
+        }
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: {
+          font: {
+            size: 10
+          }
+        },
+        title: {
+          display: true,
+          text: 'Pass Rate (%)',
+          font: {
+            size: 11
+          }
+        }
+      },
+      x: {
+        ticks: {
+          font: {
+            size: 10
+          }
+        },
+        title: {
+          display: true,
+          text: 'Year',
+          font: {
+            size: 11
+          }
+        }
+      }
+    },
+  };
+
+  return (
+    <div className="bg-white rounded-lg border-2 border-gray-200 shadow-sm" style={{ height: '300px', padding: '16px' }}>
+      <div style={{ height: '268px' }}>
+        <Line data={chartData} options={options} />
+      </div>
+    </div>
+  );
+}
 
 // Enhanced highlighting types
 type HighlightType = 'red' | 'yellow' | 'green';
@@ -816,12 +943,7 @@ However, renewable energy sources is projected to experience substantial growth,
           <div className="text-gray-800 text-sm leading-relaxed mb-4">The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.</div>
           
           {/* Task 1 Chart */}
-          <div className="bg-white rounded-md p-4 border-2 border-gray-200 shadow-sm">
-            <div className="text-center text-xs font-semibold text-gray-600 mb-2">High School Competency Exam Pass Rates by Subject and Gender (2010-2015)</div>
-            <div className="w-full h-48 bg-gray-100 rounded flex items-center justify-center text-gray-500 text-sm">
-              [Chart placeholder - Line graph showing energy consumption data]
-            </div>
-          </div>
+          <Task1LineChart />
         </div>
       </div>
 
