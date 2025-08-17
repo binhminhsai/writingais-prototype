@@ -920,8 +920,8 @@ Only through careful planning and responsible policies can societies achieve pro
       {/* Question Section */}
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Question</h2>
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-4 border-2 border-blue-300 shadow-sm">
-          <div className="text-blue-800 font-bold text-sm mb-3">IELTS Writing Task 2:</div>
+        <div className="border border-gray-300 rounded-lg p-6 mb-4 bg-white">
+          <div className="font-bold text-sm mb-3" style={{ color: '#1fb2aae6' }}>IELTS Writing Task 2:</div>
           <div className="text-gray-800 text-sm leading-relaxed">
             In recent years, sustainable development has become one of the most critical issues facing governments worldwide. While some people argue that economic growth should be the primary focus, others believe environmental protection must take priority.
             <br /><br />
