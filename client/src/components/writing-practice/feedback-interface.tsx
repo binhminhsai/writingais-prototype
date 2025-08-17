@@ -604,7 +604,7 @@ Only through careful planning and responsible policies can societies achieve pro
             </TabsTrigger>
             <TabsTrigger 
               value="coherence-cohesion" 
-              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-medium text-sm"
+              className="data-[state=active]:bg-[#64c4bc] data-[state=active]:text-white data-[state=active]:shadow-sm bg-transparent text-gray-700 hover:bg-gray-100 rounded-md transition-all duration-200 font-extrabold text-sm"
             >
               Coherence & Cohesion
             </TabsTrigger>
