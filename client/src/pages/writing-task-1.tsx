@@ -452,8 +452,9 @@ export default function WritingTask1() {
           data-testid="textarea-question"
         />
       </div>
-      {/* Image Upload Area */}
+      {/* Upload Image */}
       <div className="mb-6">
+        <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
         <div
           className={`border-2 border-dashed rounded-lg p-4 transition-colors ${
             dragActive ? "border-blue-400 bg-blue-50" : uploadedImage ? "border-green-400 bg-green-50" : "border-gray-300"
