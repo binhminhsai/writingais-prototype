@@ -566,7 +566,7 @@ export default function WritingTask1() {
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3 mb-6">
         <Button 
-          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
+          className="bg-[#2563EB] hover:bg-[#1d4ed8] text-white transition-all duration-200 min-w-[140px] h-10"
           onClick={handleRandomQuestion}
           data-testid="button-generate-question"
         >
@@ -574,14 +574,14 @@ export default function WritingTask1() {
           Get question
         </Button>
         <Button 
-          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
+          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200 min-w-[140px] h-10"
           onClick={handleUseMyQuestion}
           data-testid="button-use-my-question"
         >
           Use my question
         </Button>
         <Button 
-          className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200"
+          className="bg-[#EA580C] hover:bg-[#dc2626] text-white transition-all duration-200 min-w-[140px] h-10"
           onClick={handleRandomButton}
           data-testid="button-random-question"
         >
