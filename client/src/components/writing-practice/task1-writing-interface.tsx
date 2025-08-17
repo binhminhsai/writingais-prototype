@@ -1093,8 +1093,8 @@ export default function Task1WritingInterface({ question, questionType, bandLeve
 
       <div className="flex flex-col lg:flex-row lg:space-x-4">
         <div className="lg:w-3/5">
-          <div className="bg-gradient-to-r from-cyan-50 to-teal-50 rounded-lg p-6 mb-4 border-2 border-cyan-300 shadow-sm">
-            <div className="text-teal-800 font-bold text-sm mb-3">IELTS Writing Task 1:</div>
+          <div className="rounded-lg p-6 mb-4 border-2 border-cyan-200 shadow-sm bg-[#ecfeff]">
+            <div className="font-bold text-sm mb-3" style={{ color: '#0e7490' }}>IELTS Writing Task 1:</div>
             <div className="text-gray-800 text-sm leading-relaxed">The bar chart below shows the percentage of students who passed their high school competency exams, by subject and gender, during the period 2010-2011. Summarise the information by selecting and reporting the main features and make comparisons where relevant.</div>
           </div>
 
