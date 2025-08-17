@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { TestSetup, WritingTestType, DifficultyLevel } from "@/components/writing-practice/test-setup";
 import { WritingInterface } from "@/components/writing-practice/writing-interface";
 import { FeedbackInterface } from "@/components/writing-practice/feedback-interface";
+import { Task2LoadingScreen } from "@/components/ui/task2-loading-screen";
 
 export default function WritingPractice() {
   const [currentStage, setCurrentStage] = useState<"setup" | "writing" | "feedback">("setup");
@@ -13,6 +14,7 @@ export default function WritingPractice() {
     timeLimit: number;
   } | null>(null);
   const [essayContent, setEssayContent] = useState("");
+  const [isStartWritingLoading, setIsStartWritingLoading] = useState(false);
 
   const handleStartWriting = (config: {
     testType: WritingTestType;
@@ -21,6 +23,11 @@ export default function WritingPractice() {
     timeLimit: number;
   }) => {
     setEssayConfig(config);
+    setIsStartWritingLoading(true);
+  };
+
+  const handleStartWritingComplete = () => {
+    setIsStartWritingLoading(false);
     setCurrentStage("writing");
   };
 
@@ -67,6 +74,12 @@ export default function WritingPractice() {
           />
         )}
       </Card>
+
+      {/* Task 2 Full-Screen Loading Page */}
+      <Task2LoadingScreen 
+        isVisible={isStartWritingLoading}
+        onComplete={handleStartWritingComplete}
+      />
     </main>
   );
 }
