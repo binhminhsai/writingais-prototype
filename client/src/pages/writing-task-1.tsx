@@ -579,14 +579,14 @@ export default function WritingTask1() {
           data-testid="button-generate-question"
         >
           <Database className="w-4 h-4 mr-2" />
-          Get question
+          Get Question
         </Button>
         <Button 
           className="bg-[#1fb2aa] hover:bg-[#0d9488] text-white transition-all duration-200 min-w-[140px] h-10"
           onClick={handleUseMyQuestion}
           data-testid="button-use-my-question"
         >
-          Use my question
+          Use My Question
         </Button>
         <Button 
           className="bg-[#EA580C] hover:bg-[#dc2626] text-white transition-all duration-200 min-w-[140px] h-10"
@@ -594,7 +594,7 @@ export default function WritingTask1() {
           data-testid="button-random-question"
         >
           <Shuffle className="w-4 h-4 mr-2" />
-          Random question
+          Random Question
         </Button>
       </div>
       {/* Chemical Flask Loader */}
