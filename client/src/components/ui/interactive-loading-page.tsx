@@ -12,7 +12,7 @@ interface Point {
 
 export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoadingPageProps) {
   const [liquidLevel, setLiquidLevel] = useState(0);
-  const [countdown, setCountdown] = useState(50);
+  const [progress, setProgress] = useState(0);
   const [isCompleting, setIsCompleting] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isDrawingRef = useRef(false);
@@ -32,7 +32,7 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
   useEffect(() => {
     if (!isVisible) {
       setLiquidLevel(0);
-      setCountdown(50);
+      setProgress(0);
       setIsCompleting(false);
       startTimeRef.current = null;
       if (animationFrameRef.current) {
@@ -50,18 +50,11 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
       if (!startTimeRef.current || !isVisible) return;
 
       const elapsed = currentTime - startTimeRef.current;
-      const progress = Math.min(elapsed / TOTAL_DURATION, 1);
+      const progressPercent = Math.min((elapsed / TOTAL_DURATION) * 100, 100);
 
-      // Update liquid level (0 to 100%) smoothly
-      const newLiquidLevel = progress * 100;
-      setLiquidLevel(newLiquidLevel);
-
-      // Update countdown (50 to 0) - only update when the second changes to prevent unnecessary re-renders
-      const remainingSeconds = Math.max(0, Math.ceil((TOTAL_DURATION - elapsed) / 1000));
-      setCountdown(prev => {
-        // Only update if the countdown value has actually changed
-        return remainingSeconds !== prev ? remainingSeconds : prev;
-      });
+      // Update progress bar and liquid level
+      setProgress(progressPercent);
+      setLiquidLevel(progressPercent);
 
       if (elapsed >= TOTAL_DURATION) {
         // Exactly 50,000 milliseconds have passed - trigger completion
@@ -304,12 +297,19 @@ export function InteractiveLoadingPage({ isVisible, onComplete }: InteractiveLoa
           </svg>
         </div>
 
-        {/* Countdown Timer */}
-        {countdown > 0 && (
-          <div className="text-[#1fb2aa] text-center text-2xl font-bold mb-6 tabular-nums">
-            {countdown}
+        {/* Progress Bar */}
+        <div className="w-80 mb-6">
+          <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div 
+              className="h-full bg-[#1fb2aa] rounded-full transition-all duration-100 ease-out"
+              style={{ width: `${progress}%` }}
+              data-testid="progress-bar-interactive-loading"
+            />
           </div>
-        )}
+          <div className="text-sm text-center mt-2 text-[#1fb2aa] font-medium">
+            {Math.round(progress)}%
+          </div>
+        </div>
 
         {/* Main Loading Message */}
         <div className="text-center mb-6">

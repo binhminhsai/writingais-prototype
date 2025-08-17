@@ -7,43 +7,39 @@ interface Task2LoadingScreenProps {
 }
 
 export function Task2LoadingScreen({ isVisible, onComplete }: Task2LoadingScreenProps) {
-  const [timer, setTimer] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [liquidLevel, setLiquidLevel] = useState(0);
 
   useEffect(() => {
     if (!isVisible) {
-      setTimer(0);
+      setProgress(0);
       setLiquidLevel(0);
       return;
     }
 
-    // Timer that counts up from 0 to 40
-    const timerInterval = setInterval(() => {
-      setTimer(prev => {
-        if (prev >= 40) {
-          clearInterval(timerInterval);
-          // Call onComplete when timer reaches 40
-          setTimeout(() => onComplete(), 100);
-          return 40;
-        }
-        return prev + 1;
-      });
-    }, 1000);
+    const startTime = performance.now();
+    const totalDuration = 40 * 1000; // 40 seconds in milliseconds
 
-    // Liquid animation that fills over 40 seconds
-    const liquidTimer = setInterval(() => {
-      setLiquidLevel(prev => {
-        if (prev >= 100) {
-          clearInterval(liquidTimer);
-          return 100;
-        }
-        return prev + (100 / (40 * 10)); // Fill over 40 seconds
-      });
-    }, 100);
+    // Progress animation using requestAnimationFrame for smooth updates
+    const updateAnimation = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progressPercent = Math.min((elapsed / totalDuration) * 100, 100);
+      
+      // Update progress bar and liquid level
+      setProgress(progressPercent);
+      setLiquidLevel(progressPercent);
+
+      if (elapsed >= totalDuration) {
+        setTimeout(() => onComplete(), 100);
+      } else {
+        requestAnimationFrame(updateAnimation);
+      }
+    };
+
+    const animationFrame = requestAnimationFrame(updateAnimation);
 
     return () => {
-      clearInterval(timerInterval);
-      clearInterval(liquidTimer);
+      cancelAnimationFrame(animationFrame);
     };
   }, [isVisible, onComplete]);
 
@@ -172,9 +168,18 @@ export function Task2LoadingScreen({ isVisible, onComplete }: Task2LoadingScreen
           </svg>
         </div>
 
-        {/* Count-up Timer */}
-        <div className="text-4xl font-bold text-[#1fb2aa] mb-6">
-          {timer}
+        {/* Progress Bar */}
+        <div className="w-72 mb-6">
+          <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div 
+              className="h-full bg-[#1fb2aa] rounded-full transition-all duration-100 ease-out"
+              style={{ width: `${progress}%` }}
+              data-testid="progress-bar-task2"
+            />
+          </div>
+          <div className="text-sm text-center mt-2 text-[#1fb2aa] font-medium">
+            {Math.round(progress)}%
+          </div>
         </div>
 
         {/* Loading Message */}

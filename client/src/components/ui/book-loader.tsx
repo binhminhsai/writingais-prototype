@@ -15,37 +15,38 @@ export function BookLoader({
   onComplete = () => {},
   isVisible = true
 }: BookLoaderProps) {
-  const [countdown, setCountdown] = useState(duration);
+  const [progress, setProgress] = useState(0);
   const [isCompleting, setIsCompleting] = useState(false);
 
   useEffect(() => {
     if (!isVisible) {
-      setCountdown(duration);
+      setProgress(0);
       setIsCompleting(false);
       return;
     }
 
-    // Countdown timer - decrease every second
-    const countdownTimer = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(countdownTimer);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    const startTime = performance.now();
+    const totalDuration = duration * 1000; // Convert to milliseconds
 
-    // Complete animation after duration seconds
-    const completionTimer = setTimeout(() => {
-      setIsCompleting(true);
-      // Call onComplete immediately when countdown reaches 0
-      onComplete();
-    }, duration * 1000);
+    // Progress animation using requestAnimationFrame for smooth updates
+    const updateProgress = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progressPercent = Math.min((elapsed / totalDuration) * 100, 100);
+      
+      setProgress(progressPercent);
+
+      if (elapsed >= totalDuration) {
+        setIsCompleting(true);
+        onComplete();
+      } else {
+        requestAnimationFrame(updateProgress);
+      }
+    };
+
+    const animationFrame = requestAnimationFrame(updateProgress);
 
     return () => {
-      clearInterval(countdownTimer);
-      clearTimeout(completionTimer);
+      cancelAnimationFrame(animationFrame);
     };
   }, [isVisible, onComplete, duration]);
 
@@ -102,12 +103,19 @@ export function BookLoader({
         <div className="absolute inset-0 rounded-lg book-glow-open"></div>
       </div>
 
-      {/* Countdown Timer - positioned between book and message */}
-      {duration > 5 && (
-        <div className="text-xl font-bold text-[#1ca19a] select-none">
-          {countdown}s
+      {/* Progress Bar */}
+      <div className="w-48 mb-4">
+        <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+          <div 
+            className="h-full bg-[#1ca19a] rounded-full transition-all duration-100 ease-out"
+            style={{ width: `${progress}%` }}
+            data-testid="progress-bar-book-loader"
+          />
         </div>
-      )}
+        <div className="text-xs text-center mt-1 text-[#1ca19a] font-medium">
+          {Math.round(progress)}%
+        </div>
+      </div>
 
       {/* Loading Message */}
       <p className="text-sm font-medium text-gray-600 animate-pulse">

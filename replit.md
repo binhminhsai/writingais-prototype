@@ -30,17 +30,14 @@ An advanced English Writing Practice Platform designed to help users improve the
 - ✅ Updated Question box styling in both Task 1 and Task 2 feedback pages to match their respective writing interfaces
 - ✅ Removed Back button from Task 2 feedback interface
 - ✅ Updated TabsTrigger font weight to extrabold for better consistency
-- ✅ **Redesigned loading experience**: Replaced modal popup with full-page loading screen
-  - **Task 1**: Enhanced ChemicalFlaskLoader with drawing canvas and gradient background
-  - **Task 2**: Custom loading screen with count-up timer (0-40 seconds) and flask animation
-  - Full-screen white background with centered content
-  - Improved typography and spacing for better visual hierarchy
-- ✅ **Task 2 Loading Screen Features**:
-  - Count-up timer from 0 to 40 seconds with large display
-  - Chemical flask animation with liquid filling effect
-  - Message: "Loading question analysis tools..."
-  - Automatic redirect to practice page after 40 seconds
-  - Clean white background with centered content layout
+- ✅ **Loading Animation Redesign**: Replaced all numeric countdown timers with visual progress bars
+  - **BookLoader**: Progress bar fills over actual duration (default 5 seconds) with percentage display
+  - **ChemicalFlaskLoader**: Progress bar synced with liquid animation over exact duration (default 15 seconds)
+  - **InteractiveLoadingPage**: Progress bar tracks 50-second analysis process with drawing canvas
+  - **Task2LoadingScreen**: Progress bar monitors 40-second loading with drawing functionality
+  - All progress bars use consistent styling: rounded, teal (#1fb2aa) fill, centered percentage
+  - Replaced countdown/count-up timers with smooth requestAnimationFrame-based progress tracking
+  - Maintained existing liquid animations synchronized with progress percentages
 
 ## Project Architecture
 

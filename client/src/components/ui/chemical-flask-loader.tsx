@@ -10,7 +10,7 @@ interface ChemicalFlaskLoaderProps {
 export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15, messages }: ChemicalFlaskLoaderProps) {
   const [liquidLevel, setLiquidLevel] = useState(0);
   const [messageIndex, setMessageIndex] = useState(0);
-  const [countdown, setCountdown] = useState(duration);
+  const [progress, setProgress] = useState(0);
 
   const defaultMessages = [
     "Preparing detailed insights for you...",
@@ -25,44 +25,39 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15, mess
     if (!isVisible) {
       setLiquidLevel(0);
       setMessageIndex(0);
-      setCountdown(duration);
+      setProgress(0);
       return;
     }
 
-    // Start the liquid filling animation immediately - spread over duration seconds
-    const liquidTimer = setInterval(() => {
-      setLiquidLevel(prev => {
-        if (prev >= 100) {
-          clearInterval(liquidTimer);
-          return 100;
-        }
-        return prev + (100 / (duration * 10)); // Fill over duration seconds (1% per duration/10 * 100ms)
-      });
-    }, 100);
+    const startTime = performance.now();
+    const totalDuration = duration * 1000; // Convert to milliseconds
 
-    // Countdown timer - decrease every second, starting immediately
-    const countdownTimer = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(countdownTimer);
-          // Call onComplete immediately when countdown reaches 0
-          setTimeout(() => onComplete(), 0);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    // Master animation loop using requestAnimationFrame for precise timing
+    const updateAnimation = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progressPercent = Math.min((elapsed / totalDuration) * 100, 100);
+      
+      // Update progress bar
+      setProgress(progressPercent);
+      
+      // Update liquid level to match progress
+      setLiquidLevel(progressPercent);
 
-    // Change messages every (duration / 4) seconds to cycle through all messages
-    const messageInterval = (duration / loadingMessages.length) * 1000;
-    const messageTimer = setInterval(() => {
-      setMessageIndex(prev => (prev + 1) % loadingMessages.length);
-    }, messageInterval);
+      // Update message index based on progress
+      const messageProgress = Math.floor((progressPercent / 100) * loadingMessages.length);
+      setMessageIndex(Math.min(messageProgress, loadingMessages.length - 1));
+
+      if (elapsed >= totalDuration) {
+        setTimeout(() => onComplete(), 0);
+      } else {
+        requestAnimationFrame(updateAnimation);
+      }
+    };
+
+    const animationFrame = requestAnimationFrame(updateAnimation);
 
     return () => {
-      clearInterval(liquidTimer);
-      clearInterval(countdownTimer);
-      clearInterval(messageTimer);
+      cancelAnimationFrame(animationFrame);
     };
   }, [isVisible, onComplete, duration, loadingMessages.length]);
 
@@ -184,12 +179,19 @@ export function ChemicalFlaskLoader({ isVisible, onComplete, duration = 15, mess
         </svg>
       </div>
 
-      {/* Countdown Timer */}
-      {countdown > 0 && (
-        <div className="text-[#1fb2aa] text-center text-2xl font-bold mb-4 animate-pulse">
-          {countdown}
+      {/* Progress Bar */}
+      <div className="w-64 mb-6">
+        <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+          <div 
+            className="h-full bg-[#1fb2aa] rounded-full transition-all duration-100 ease-out"
+            style={{ width: `${progress}%` }}
+            data-testid="progress-bar-chemical-flask"
+          />
         </div>
-      )}
+        <div className="text-xs text-center mt-1 text-[#1fb2aa] font-medium">
+          {Math.round(progress)}%
+        </div>
+      </div>
 
       {/* Loading Text */}
       <p className="text-[#111827] text-center text-lg font-medium leading-relaxed transition-all duration-500 max-w-md">
