@@ -619,8 +619,6 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const [activeTab, setActiveTab] = useState("vocabulary");
   const [showVocabulary, setShowVocabulary] = useState(false);
   const [showPhrases, setShowPhrases] = useState(false);
-  const [showWordBank, setShowWordBank] = useState(false);
-  const [isLoadingWordBank, setIsLoadingWordBank] = useState(false);
   const allVocabulary = getVocabulary(testType, topic);
   const phrases = getPhrases(testType);
 
@@ -860,17 +858,7 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
     }, 600);
   };
 
-  // Handle unified word bank button with 5-second loading animation
-  const handleExploreWordBank = () => {
-    setIsLoadingWordBank(true);
-  };
 
-  const handleCompleteWordBank = useCallback(() => {
-    setIsLoadingWordBank(false);
-    setShowWordBank(true);
-    setShowVocabulary(true);
-    setShowPhrases(true);
-  }, []);
 
   // Words to display based on current count limits
   const displayedVocabWords = allVocabularyWords.slice(0, vocabDisplayCount);
@@ -916,41 +904,15 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
         </div>
 
         <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
-          {isLoadingWordBank ? (
-            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <BookLoader 
-                message="Flipping through our vocabulary archive..." 
-                duration={60}
-                onComplete={handleCompleteWordBank}
-                isVisible={true}
-              />
-            </div>
-          ) : !showWordBank ? (
-            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <Button
-                variant="outline"
-                size="sm"
-                className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
-                onClick={handleExploreWordBank}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2 text-primary">
+          <div className="space-y-6">
+            {/* Vocabulary Section */}
+            <div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                   <path d="M12 20V4"></path><path d="M20 8h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path><path d="M4 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4"></path>
                 </svg>
-                Explore Word Bank
-              </Button>
-              <p className="text-gray-700 font-medium text-base mb-2 text-center">Click to explore helpful vocabulary!</p>
-              <p className="text-primary font-medium text-sm text-center">Build your writing skills with relevant words. 😉</p>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              {/* Vocabulary Section */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                    <path d="M12 20V4"></path><path d="M20 8h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path><path d="M4 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4"></path>
-                  </svg>
-                  Vocabulary
-                </h3>
+                Vocabulary
+              </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                   {displayedVocabWords.map((word, index) => (
                       <div 
@@ -1007,42 +969,12 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                   </div>
                 )}
               </div>
-
-              
             </div>
-          )}
         </TabsContent>
 
         <TabsContent value="phrases" className="p-0 min-h-[200px]">
-          {isLoadingWordBank ? (
-            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <BookLoader 
-                message="Flipping through our vocabulary archive..." 
-                duration={60}
-                onComplete={handleCompleteWordBank}
-                isVisible={true}
-              />
-            </div>
-          ) : !showWordBank ? (
-            <div className="flex flex-col justify-center items-center h-full w-full bg-gradient-to-b from-gray-50 to-white border border-gray-200 rounded-lg p-8 shadow-sm min-h-[200px]">
-              <Button
-                variant="outline"
-                size="sm"
-                className="mb-4 bg-white hover:bg-gray-50 shadow-sm border-gray-200 px-4"
-                onClick={handleExploreWordBank}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 mr-2 text-primary">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                </svg>
-                Explore Word Bank
-              </Button>
-              <p className="text-gray-700 font-medium text-base mb-2 text-center">Click to explore useful collocations!</p>
-              <p className="text-primary font-medium text-sm text-center">Master natural word combinations. 😉</p>
-            </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-                {displayedPhraseWords.map((phrase, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            {displayedPhraseWords.map((phrase, index) => (
                     <div 
                       key={`phrase-${index}`}
                       className="p-2.5 rounded-lg border border-primary/30 bg-primary/5 shadow-sm hover:shadow-md transition-shadow"
@@ -1101,8 +1033,6 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                   </Button>
                 </div>
               )}
-            </>
-          )}
         </TabsContent>
       </Tabs>
     </Card>
