@@ -941,8 +941,26 @@ Only through careful planning and responsible policies can societies achieve pro
           </div>
         ) : !showGrammarChecker ? (
           <div className="highlight-section bg-[#f8f9fa] border border-gray-300 rounded-lg p-6 relative overflow-hidden">
+            {/* Always visible legend section */}
+            <div className="mb-4 relative z-20 bg-white rounded-lg p-3 shadow-sm border border-gray-200">
+              <div className="flex flex-wrap gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
+                  <span className="font-medium text-gray-800">Error</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
+                  <span className="font-medium text-gray-800">Improvement</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
+                  <span className="font-medium text-gray-800">Suggestion</span>
+                </div>
+              </div>
+            </div>
+            
             {/* Blurred plain essay background (no highlights) */}
-            <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 pointer-events-none" style={{ top: '80px' }}>
               <div className="p-6 text-sm leading-relaxed blur-[1.2px] select-none overflow-hidden h-full opacity-60">
                 <div className="text-gray-500 whitespace-pre-wrap">
                   {sampleEssay}
@@ -950,8 +968,8 @@ Only through careful planning and responsible policies can societies achieve pro
               </div>
             </div>
             
-            {/* Content area - no legend labels shown initially */}
-            <div className="flex flex-col items-center justify-center text-center relative z-10 bg-white bg-opacity-80 rounded-xl p-8 mx-4 shadow-md transition-all duration-500" style={{ minHeight: '500px' }}>
+            {/* Content area */}
+            <div className="flex flex-col items-center justify-center text-center relative z-10 bg-white bg-opacity-80 rounded-xl p-8 mx-4 shadow-md transition-all duration-500" style={{ minHeight: '450px' }}>
               <Button 
                 onClick={handleReviewEssay}
                 className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4 shadow-lg transition-all duration-200"
