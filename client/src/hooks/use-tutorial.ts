@@ -45,9 +45,9 @@ export const task1TutorialSteps: TutorialStep[] = [
   },
   {
     id: 'use-my-question',
-    target: '[data-testid="button-use-my-question"]',
-    title: 'Use My Question',
-    content: 'If you have your own question and chart image, enter the question text and upload the image, then click this button.',
+    target: '[data-testid="button-generate-question"]',
+    title: 'Get Question',
+    content: 'Click this button to automatically generate a practice question with chart data based on your selected type and band level.',
     position: 'top',
     order: 5
   },
