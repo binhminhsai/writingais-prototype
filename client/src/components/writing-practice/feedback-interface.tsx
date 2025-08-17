@@ -977,7 +977,7 @@ Only through careful planning and responsible policies can societies achieve pro
                 ✨ Check My Essay
               </Button>
               <p className="text-gray-800 mb-2 font-semibold">Wanna know what’s wrong with your writing?</p>
-              <p className="text-[#44b9b0] text-sm font-medium">Improve your writing skills with personalized feedback. 📝</p>
+              <p className="text-[#44b9b0] text-sm font-medium">Hit the button to get a grammar check and tips to improve your writing!</p>
             </div>
           </div>
         ) : (
