@@ -50,7 +50,6 @@ export function DrawingCanvas({ isActive, onClear }: DrawingCanvasProps) {
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!context || !isActive) return;
     
-    console.log('Starting to draw!', { isActive, context: !!context });
     setIsDrawing(true);
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect) return;

@@ -30,17 +30,18 @@ An advanced English Writing Practice Platform designed to help users improve the
 - ✅ Updated Question box styling in both Task 1 and Task 2 feedback pages to match their respective writing interfaces
 - ✅ Removed Back button from Task 2 feedback interface
 - ✅ Updated TabsTrigger font weight to extrabold for better consistency
-- ✅ **Redesigned loading experience**: Replaced modal popup with full-page loading screen
+- ✅ **Redesigned loading experience**: Replaced modal popup with full-page loading screen (Task 1 & Task 2)
   - Enhanced ChemicalFlaskLoader with larger size and improved animations
   - Added gradient background and smooth fade-in transitions
   - Improved typography and spacing for better visual hierarchy
   - Maintained existing countdown timer and message rotation functionality
-- ✅ **Added interactive drawing canvas**: Users can draw freely during loading
+- ✅ **Added interactive drawing canvas**: Users can draw freely during loading (Task 1 & Task 2)
   - Full-screen canvas positioned behind loading content
   - Real-time drawing with mouse and touch support
   - Teal-blue stroke color (#0e7490) matching design theme
   - Automatic canvas clearing when loading completes
   - Visual hint instruction for user guidance
+  - Identical implementation across both writing tasks
 
 ## Project Architecture
 

@@ -10,6 +10,7 @@ import { useLocation } from "wouter";
 import { TutorialOverlay } from "@/components/ui/tutorial-overlay";
 import { useTutorial } from "@/hooks/use-tutorial";
 import { ChemicalFlaskLoader } from "@/components/ui/chemical-flask-loader";
+import { DrawingCanvas } from "@/components/ui/drawing-canvas";
 
 export default function WritingTask2() {
   const [questionType, setQuestionType] = useState("opinion");
@@ -455,14 +456,28 @@ export default function WritingTask2() {
             </Button>
           </div>
           
-          {/* Start Writing Loading Overlay */}
+          {/* Start Writing Full-Page Loading Screen */}
           {isStartWritingLoading && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white rounded-lg p-8 shadow-xl max-w-md w-full mx-4">
-                <div className="text-center">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <div className="fixed inset-0 bg-gradient-to-br from-white to-gray-50 z-50 animate-in fade-in duration-700">
+              {/* Drawing Canvas - Behind main content */}
+              <DrawingCanvas 
+                isActive={isStartWritingLoading}
+                onClear={handleStartWritingComplete}
+              />
+              
+              {/* Drawing instruction hint */}
+              <div className="absolute top-6 right-6 z-20 animate-in fade-in duration-1000 delay-1000 pointer-events-none">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg border border-gray-200 animate-pulse">
+                  <p className="text-sm text-gray-600 font-medium">Draw while you wait ✏️</p>
+                </div>
+              </div>
+
+              {/* Main loading content - Above canvas */}
+              <div className="relative z-10 flex items-center justify-center h-full pointer-events-none">
+                <div className="text-center animate-in slide-in-from-bottom-4 duration-700 delay-150">
+                  <h1 className="text-4xl font-bold text-gray-900 mb-12 tracking-tight">
                     Preparing your writing environment...
-                  </h3>
+                  </h1>
                   <ChemicalFlaskLoader 
                     isVisible={true}
                     onComplete={handleStartWritingComplete}
