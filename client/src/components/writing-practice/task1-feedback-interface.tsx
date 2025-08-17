@@ -951,12 +951,8 @@ However, renewable energy sources is projected to experience substantial growth,
       <div className="container max-w-[1100px] mx-auto mb-6">
         <h2 className="text-2xl font-bold mb-4">Grammar Checker</h2>
         
-        <div className="highlight-section border border-gray-300 rounded-lg p-6 bg-white">
-
-          
-          {/* Essay with highlighted sections - display immediately */}
-          {createHighlightedEssay()}
-        </div>
+        {/* Essay with highlighted sections - display immediately */}
+        {createHighlightedEssay()}
       </div>
 
       {/* Action Buttons */}

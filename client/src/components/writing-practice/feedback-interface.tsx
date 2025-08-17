@@ -936,28 +936,26 @@ Only through careful planning and responsible policies can societies achieve pro
         
 
 
-        <div className="highlight-section border border-gray-300 rounded-lg p-6 bg-white">
-          {/* Grammar labels inside the grammar checker box */}
-          <div className="mb-4 bg-gray-50 rounded-lg p-3 shadow-sm border border-gray-200 sticky top-0 z-10">
-            <div className="flex flex-wrap gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
-                <span className="font-medium text-gray-800">Error</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
-                <span className="font-medium text-gray-800">Improvement</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
-                <span className="font-medium text-gray-800">Suggestion</span>
-              </div>
+        {/* Grammar labels inside the grammar checker box */}
+        <div className="mb-4 bg-gray-50 rounded-lg p-3 shadow-sm border border-gray-200 sticky top-0 z-10">
+          <div className="flex flex-wrap gap-4 text-sm">
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
+              <span className="font-medium text-gray-800">Error</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#fef9c3] rounded"></span>
+              <span className="font-medium text-gray-800">Improvement</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-[#dcfce7] rounded"></span>
+              <span className="font-medium text-gray-800">Suggestion</span>
             </div>
           </div>
-          
-          {/* Essay with highlighted sections - display immediately */}
-          {highlightEssay(sampleEssay)}
         </div>
+        
+        {/* Essay with highlighted sections - display immediately */}
+        {highlightEssay(sampleEssay)}
         
 
 
@@ -975,7 +973,6 @@ Only through careful planning and responsible policies can societies achieve pro
             {/* Content area */}
             <div className="flex flex-col items-center justify-center text-center relative z-10 bg-white bg-opacity-80 rounded-xl p-8 mx-4 shadow-md transition-all duration-500" style={{ minHeight: '450px' }}>
               <Button 
-                onClick={handleReviewEssay}
                 className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4 shadow-lg transition-all duration-200"
               >
                 ✨ Check My Essay
