@@ -940,9 +940,18 @@ Only through careful planning and responsible policies can societies achieve pro
             />
           </div>
         ) : !showGrammarChecker ? (
-          <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6">
+          <div className="highlight-section bg-[#fdfdfd] border border-gray-300 rounded-lg p-6 relative overflow-hidden">
+            {/* Blurred essay background */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="p-6 text-sm leading-relaxed text-gray-400 blur-[3px] select-none overflow-hidden h-full">
+                <div className="whitespace-pre-wrap opacity-60">
+                  {essayContent || sampleEssay}
+                </div>
+              </div>
+            </div>
+            
             {/* Legend section to match actual content structure */}
-            <div className="mb-4">
+            <div className="mb-4 relative z-10 bg-[#fdfdfd] bg-opacity-90 rounded p-2">
               <div className="flex flex-wrap gap-4 text-sm">
                 <div className="flex items-center gap-2">
                   <span className="w-4 h-4 bg-[#ffcdd2] rounded"></span>
@@ -958,16 +967,17 @@ Only through careful planning and responsible policies can societies achieve pro
                 </div>
               </div>
             </div>
+            
             {/* Content area with same height as actual essay */}
-            <div className="flex flex-col items-center justify-center text-center" style={{ minHeight: '450px' }}>
+            <div className="flex flex-col items-center justify-center text-center relative z-10 bg-white bg-opacity-95 rounded-lg p-8 mx-4" style={{ minHeight: '450px' }}>
               <Button 
                 onClick={handleReviewEssay}
-                className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4"
+                className="bg-[#44b9b0] hover:bg-[#3a9f98] text-white mb-4 shadow-lg"
               >
                 ✨ Check My Essay
               </Button>
-              <p className="text-gray-600 mb-2">Click to explore detailed grammar analysis!</p>
-              <p className="text-[#44b9b0] text-sm">Improve your writing skills with personalized feedback. 📝</p>
+              <p className="text-gray-700 mb-2 font-medium">Click to explore detailed grammar analysis!</p>
+              <p className="text-[#44b9b0] text-sm font-medium">Improve your writing skills with personalized feedback. 📝</p>
             </div>
           </div>
         ) : (
