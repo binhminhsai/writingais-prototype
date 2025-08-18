@@ -1083,11 +1083,13 @@ export function WritingInterface({
   };
 
   const handleWordCountChange = (count: number, isValid: boolean) => {
+    console.log('Word count changed:', count, 'isValid:', isValid);
     setWordCount(count);
     setIsWordCountValid(isValid);
     
     // Show error message when at max limit, hide when below
     if (count >= 500) {
+      console.log('Showing word limit error - count >= 500');
       setShowWordLimitError(true);
     } else {
       setShowWordLimitError(false);
@@ -1096,6 +1098,7 @@ export function WritingInterface({
   };
 
   const handleWordLimitAttempt = () => {
+    console.log('Word limit attempt triggered');
     setAttemptedTypingAtLimit(true);
     setShowWordLimitError(true);
   };
@@ -1168,15 +1171,6 @@ export function WritingInterface({
             onWordLimitAttempt={handleWordLimitAttempt}
           />
 
-          {/* Word Limit Error Message */}
-          {showWordLimitError && (
-            <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-700 text-sm font-medium">
-                The minimum length is 50 words and the maximum is 500 words. You have reached the maximum limit.
-              </p>
-            </div>
-          )}
-
           <div className="flex justify-end mt-3">
             <Button
               onClick={handleSubmit}
@@ -1185,6 +1179,15 @@ export function WritingInterface({
               Submit Essay <Layers className="ml-1 h-3 w-3" />
             </Button>
           </div>
+
+          {/* Word Limit Error Message - Below Submit Button */}
+          {showWordLimitError && (
+            <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-700 text-sm font-medium">
+                The minimum length is 50 words and the maximum is 500 words. You have reached the maximum limit.
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="hidden lg:block lg:w-2/5 lg:pl-3 lg:flex lg:flex-col" style={{ minHeight: '500px' }}>
