@@ -1059,6 +1059,8 @@ export function WritingInterface({
   const [isWordCountValid, setIsWordCountValid] = useState(true);
   const [showTimeUpDialog, setShowTimeUpDialog] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
+  const [showWordLimitError, setShowWordLimitError] = useState(false);
+  const [attemptedTypingAtLimit, setAttemptedTypingAtLimit] = useState(false);
 
   const { formattedTime, isRunning, startTimer, updateTimer } = useTimer({
     initialMinutes: timeLimit,
@@ -1083,6 +1085,19 @@ export function WritingInterface({
   const handleWordCountChange = (count: number, isValid: boolean) => {
     setWordCount(count);
     setIsWordCountValid(isValid);
+    
+    // Show error message when at max limit, hide when below
+    if (count >= 500) {
+      setShowWordLimitError(true);
+    } else {
+      setShowWordLimitError(false);
+      setAttemptedTypingAtLimit(false);
+    }
+  };
+
+  const handleWordLimitAttempt = () => {
+    setAttemptedTypingAtLimit(true);
+    setShowWordLimitError(true);
   };
 
   const handleSubmit = () => {
@@ -1150,7 +1165,17 @@ export function WritingInterface({
             value={essayContent}
             onChange={setEssayContent}
             onWordCountChange={handleWordCountChange}
+            onWordLimitAttempt={handleWordLimitAttempt}
           />
+
+          {/* Word Limit Error Message */}
+          {showWordLimitError && (
+            <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-700 text-sm font-medium">
+                The minimum length is 50 words and the maximum is 500 words. You have reached the maximum limit.
+              </p>
+            </div>
+          )}
 
           <div className="flex justify-end mt-3">
             <Button
