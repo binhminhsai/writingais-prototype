@@ -286,7 +286,9 @@ export function TutorialOverlay({
 
         {/* Content */}
         <p className="text-gray-700 text-sm mb-3 leading-relaxed">
-          {currentStep.content}
+          {currentStep.content === "Click this button to automatically generate a practice question with chart data based on your selected type and band level." 
+            ? "Click this button to automatically generate a practice question with chart data based on your selected type."
+            : currentStep.content}
         </p>
 
         {/* Progress indicator */}
