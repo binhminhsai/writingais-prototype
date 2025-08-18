@@ -1181,13 +1181,18 @@ export function WritingInterface({
           </div>
 
           {/* Word Limit Error Message - Below Submit Button */}
-          {showWordLimitError && (
+          {(showWordLimitError || wordCount >= 500) && (
             <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
               <p className="text-red-700 text-sm font-medium">
                 The minimum length is 50 words and the maximum is 500 words. You have reached the maximum limit.
               </p>
             </div>
           )}
+          
+          {/* Debug info */}
+          <div className="mt-2 text-xs text-gray-500">
+            Debug: wordCount={wordCount}, showWordLimitError={showWordLimitError.toString()}, attemptedTypingAtLimit={attemptedTypingAtLimit.toString()}
+          </div>
         </div>
 
         <div className="hidden lg:block lg:w-2/5 lg:pl-3 lg:flex lg:flex-col" style={{ minHeight: '500px' }}>
