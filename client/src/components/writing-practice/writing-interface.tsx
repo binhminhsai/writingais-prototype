@@ -1059,8 +1059,7 @@ export function WritingInterface({
   const [isWordCountValid, setIsWordCountValid] = useState(true);
   const [showTimeUpDialog, setShowTimeUpDialog] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
-  const [showWordLimitError, setShowWordLimitError] = useState(false);
-  const [attemptedTypingAtLimit, setAttemptedTypingAtLimit] = useState(false);
+  const [showWordLimitDialog, setShowWordLimitDialog] = useState(false);
 
   const { formattedTime, isRunning, startTimer, updateTimer } = useTimer({
     initialMinutes: timeLimit,
@@ -1083,24 +1082,18 @@ export function WritingInterface({
   };
 
   const handleWordCountChange = (count: number, isValid: boolean) => {
-    console.log('Word count changed:', count, 'isValid:', isValid);
     setWordCount(count);
     setIsWordCountValid(isValid);
     
-    // Show error message when at max limit, hide when below
-    if (count >= 500) {
-      console.log('Showing word limit error - count >= 500');
-      setShowWordLimitError(true);
-    } else {
-      setShowWordLimitError(false);
-      setAttemptedTypingAtLimit(false);
+    // Show popup when reaching exactly 500 words for the first time
+    if (count >= 500 && !showWordLimitDialog) {
+      setShowWordLimitDialog(true);
     }
   };
 
   const handleWordLimitAttempt = () => {
-    console.log('Word limit attempt triggered');
-    setAttemptedTypingAtLimit(true);
-    setShowWordLimitError(true);
+    // Show popup when user tries to type beyond 500 words
+    setShowWordLimitDialog(true);
   };
 
   const handleSubmit = () => {
@@ -1180,19 +1173,7 @@ export function WritingInterface({
             </Button>
           </div>
 
-          {/* Word Limit Error Message - Below Submit Button */}
-          {(showWordLimitError || wordCount >= 500) && (
-            <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-700 text-sm font-medium">
-                The minimum length is 50 words and the maximum is 500 words. You have reached the maximum limit.
-              </p>
-            </div>
-          )}
-          
-          {/* Debug info */}
-          <div className="mt-2 text-xs text-gray-500">
-            Debug: wordCount={wordCount}, showWordLimitError={showWordLimitError.toString()}, attemptedTypingAtLimit={attemptedTypingAtLimit.toString()}
-          </div>
+
         </div>
 
         <div className="hidden lg:block lg:w-2/5 lg:pl-3 lg:flex lg:flex-col" style={{ minHeight: '500px' }}>
@@ -1269,6 +1250,29 @@ export function WritingInterface({
           <AlertDialogFooter>
             <AlertDialogAction onClick={() => setShowErrorDialog(false)}>
               OK
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Word Limit Reached Dialog */}
+      <AlertDialog open={showWordLimitDialog} onOpenChange={setShowWordLimitDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Maximum Word Limit Reached</AlertDialogTitle>
+            <AlertDialogDescription>
+              Your essay has reached the maximum allowed length of 500 words. Would you like to submit it now?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setShowWordLimitDialog(false)}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={() => {
+              setShowWordLimitDialog(false);
+              handleSubmit();
+            }}>
+              Yes, submit essay
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

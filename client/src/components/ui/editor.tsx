@@ -80,7 +80,6 @@ export function Editor({
       }
       
       if (!allowedKeys.includes(e.key)) {
-        console.log('Preventing key press at word limit:', e.key);
         e.preventDefault();
         onWordLimitAttempt?.();
       }
@@ -104,7 +103,6 @@ export function Editor({
     
     // If pasting would exceed the limit, don't allow it
     if (wordCount > maxWords) {
-      console.log('Preventing paste - would exceed word limit');
       onWordLimitAttempt?.();
       return;
     }
