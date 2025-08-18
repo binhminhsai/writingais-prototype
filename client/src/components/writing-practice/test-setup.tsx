@@ -18,7 +18,6 @@ import { TutorialOverlay } from "@/components/ui/tutorial-overlay";
 import { AlertModal } from "@/components/ui/alert-modal";
 
 export type WritingTestType = 
-  | "all"
   | "opinion" 
   | "discussion" 
   | "problem-solution" 
@@ -26,7 +25,6 @@ export type WritingTestType =
   | "two-part-question";
 
 export type DifficultyLevel = 
-  | "all"
   | "band-5.0"
   | "band-5.5" 
   | "band-6.0"
@@ -46,8 +44,8 @@ interface TestSetupProps {
 }
 
 export function TestSetup({ onStart }: TestSetupProps) {
-  const [testType, setTestType] = useState<WritingTestType>("all");
-  const [difficulty, setDifficulty] = useState<DifficultyLevel>("all");
+  const [testType, setTestType] = useState<WritingTestType>("opinion");
+  const [difficulty, setDifficulty] = useState<DifficultyLevel>("band-6.0");
   const [topic, setTopic] = useState("");
   const [fixedTestType, setFixedTestType] = useState<WritingTestType | null>(null);
   const [timeLimit, setTimeLimit] = useState(30);
@@ -207,7 +205,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
           >
             <SelectTrigger id="writing-type" data-testid="select-question-type">
               <SelectValue>
-                {testType === "all" && "All"}
                 {testType === "opinion" && "Opinion"}
                 {testType === "discussion" && "Discussion"}
                 {testType === "problem-solution" && "Problem – Solution"}
@@ -216,7 +213,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All</SelectItem>
               <SelectItem value="opinion">Opinion</SelectItem>
               <SelectItem value="discussion">Discussion</SelectItem>
               <SelectItem value="problem-solution">Problem – Solution</SelectItem>
@@ -260,7 +256,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
           >
             <SelectTrigger id="difficulty" data-testid="select-band-level">
               <SelectValue>
-                {difficulty === "all" && "All"}
                 {difficulty === "band-5.0" && "Band 5.0"}
                 {difficulty === "band-5.5" && "Band 5.5"}
                 {difficulty === "band-6.0" && "Band 6.0"}
@@ -272,7 +267,6 @@ export function TestSetup({ onStart }: TestSetupProps) {
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All</SelectItem>
               <SelectItem value="band-5.0">Band 5.0</SelectItem>
               <SelectItem value="band-5.5">Band 5.5</SelectItem>
               <SelectItem value="band-6.0">Band 6.0</SelectItem>
@@ -381,8 +375,7 @@ export function TestSetup({ onStart }: TestSetupProps) {
         {topic && (
           <div className="mt-4 p-4 rounded-md border-2 border-cyan-200 shadow-sm bg-[#ecfeff]">
             <Label className="font-medium" style={{ color: '#0e7490' }}>
-              {testType === "all" ? "Random Question Type:" :
-               testType === "opinion" ? "Opinion:" : 
+              {testType === "opinion" ? "Opinion:" : 
                testType === "discussion" ? "Discussion:" :
                testType === "problem-solution" ? "Problem – Solution:" :
                testType === "advantage-disadvantage" ? "Advantage – Disadvantage:" :
