@@ -265,7 +265,7 @@ export function TutorialOverlay({
               {currentStep.id === 'topic-question' ? 'Enter Your Question' : 
                currentStep.id === 'generate-question' ? 'Generate Question' : 
                currentStep.id === 'use-my-question' ? 'Use My Question' : 
-               currentStep.id === 'random-question' ? 'Use My Question' :
+               currentStep.id === 'random-question' ? 'Random Question' :
                currentStep.id === 'random-question-button' ? 'Random Question' : currentStep.title}
             </h3>
           </div>
