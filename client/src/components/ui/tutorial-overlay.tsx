@@ -263,7 +263,7 @@ export function TutorialOverlay({
             </div>
             <h3 className="font-bold text-gray-900 text-sm leading-tight">
               {currentStep.id === 'topic-question' ? 'Enter Your Question' : 
-               currentStep.id === 'generate-question' ? 'Generate Question' : 
+               currentStep.id === 'generate-question' ? 'Upload Image' : 
                currentStep.id === 'use-my-question' ? 'Use My Question' : 
                currentStep.id === 'random-question' ? 'Random Question' :
                currentStep.id === 'random-question-button' ? 'Random Question' : currentStep.title}
