@@ -11,7 +11,7 @@ An advanced English Writing Practice Platform designed to help users improve the
 - Real-time writing practice with timer functionality
 - Interactive tutorial system with Replit-style onboarding
 
-## Recent Changes (2025-08-17)
+## Recent Changes (2025-08-19)
 - ✅ Aligned Task 1 Grammar Checker with Task 2 design consistency
 - ✅ Moved grammar labels outside essay containers in both tasks
 - ✅ Implemented blurred essay backgrounds for both Task 1 and Task 2
@@ -38,6 +38,11 @@ An advanced English Writing Practice Platform designed to help users improve the
   - All progress bars use consistent styling: rounded, teal (#1fb2aa) fill, centered percentage
   - Replaced countdown/count-up timers with smooth requestAnimationFrame-based progress tracking
   - Maintained existing liquid animations synchronized with progress percentages
+- ✅ **Separate Tutorial Systems**: Completely isolated Task 1 and Task 2 tutorials
+  - **Task 1**: Uses `task1TutorialSteps` with localStorage key `ielts-tutorial-task1-completed`
+  - **Task 2**: Uses `task2TutorialSteps` with localStorage key `ielts-tutorial-task2-completed`
+  - Tutorial content and progress tracked independently between tasks
+  - Updated tutorial text to remove "band level" references for clarity
 
 ## Project Architecture
 

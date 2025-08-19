@@ -170,7 +170,7 @@ export default function WritingTask1() {
     prevStep,
     skipTutorial,
     completeTutorial
-  } = useTutorial();
+  } = useTutorial('task1');
 
   // Tooltip state for help icons
   const [showBandLevelTooltip, setShowBandLevelTooltip] = useState(false);
