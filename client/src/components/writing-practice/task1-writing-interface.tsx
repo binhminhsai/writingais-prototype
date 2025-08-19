@@ -490,6 +490,11 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
   const [isLoadingPhrases, setIsLoadingPhrases] = useState(false);
   const [vocabLoadMoreClicked, setVocabLoadMoreClicked] = useState(false);
   const [phrasesLoadMoreClicked, setPhrasesLoadMoreClicked] = useState(false);
+  const [isWordBankRevealed, setIsWordBankRevealed] = useState(false);
+
+  const handleExploreWordBank = () => {
+    setIsWordBankRevealed(true);
+  };
   
   const allVocabulary = getTask1Vocabulary(questionType);
   const phrases = getTask1Phrases();
@@ -704,7 +709,22 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
           </TabsList>
         </div>
 
-        <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
+        {!isWordBankRevealed ? (
+          <div className="flex justify-center py-8">
+            <Button
+              onClick={handleExploreWordBank}
+              className="bg-primary hover:opacity-90 text-white px-6 py-3 text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+              data-testid="button-explore-word-bank"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2">
+                <path d="M12 20V4"></path><path d="M20 8h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path><path d="M4 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4"></path>
+              </svg>
+              Explore Word Bank
+            </Button>
+          </div>
+        ) : (
+          <>
+            <TabsContent value="vocabulary" className="p-0 min-h-[200px]">
           <div className="space-y-6">
             {/* Vocabulary Section */}
             <div>
@@ -840,7 +860,9 @@ function Task1ResourcesSection({ questionType }: { questionType: string }) {
               </Button>
             </div>
           )}
-        </TabsContent>
+            </TabsContent>
+          </>
+        )}
       </Tabs>
     </Card>
   );
