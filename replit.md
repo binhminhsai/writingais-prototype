@@ -43,6 +43,9 @@ An advanced English Writing Practice Platform designed to help users improve the
   - **Task 2**: Uses `task2TutorialSteps` with localStorage key `ielts-tutorial-task2-completed`
   - Tutorial content and progress tracked independently between tasks
   - Updated tutorial text to remove "band level" references for clarity
+  - **Complete Decoupling**: Added `tutorialType` prop to TutorialOverlay component
+  - **Task-Specific Title Mapping**: Each task now has independent step title customization
+  - **Updated Step Titles**: Task 1 (Step 5→"Get Question", Step 6→"Use My Question"), Task 2 (Step 3→"Topic/Question", Step 4→"Generate Question")
 
 ## Project Architecture
 

@@ -8,6 +8,7 @@ interface TutorialOverlayProps {
   currentStep: TutorialStep | undefined;
   currentStepIndex: number;
   totalSteps: number;
+  tutorialType: 'task1' | 'task2';
   onNext: () => void;
   onPrev: () => void;
   onSkip: () => void;
@@ -19,6 +20,7 @@ export function TutorialOverlay({
   currentStep,
   currentStepIndex,
   totalSteps,
+  tutorialType,
   onNext,
   onPrev,
   onSkip,
@@ -27,6 +29,27 @@ export function TutorialOverlay({
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
   const [targetBorderRadius, setTargetBorderRadius] = useState('6px');
+
+  // Task-specific title mapping
+  const getStepTitle = (stepId: string, originalTitle: string) => {
+    if (tutorialType === 'task1') {
+      switch (stepId) {
+        case 'generate-question': return 'Upload Image';
+        case 'use-my-question': return 'Get Question';
+        case 'random-question': return 'Use My Question';
+        case 'random-question-button': return 'Random Question';
+        default: return originalTitle;
+      }
+    } else { // task2
+      switch (stepId) {
+        case 'topic-question': return 'Topic/Question';
+        case 'generate-question': return 'Generate Question';
+        case 'use-my-question': return 'Use My Question';
+        case 'random-question': return 'Random Question';
+        default: return originalTitle;
+      }
+    }
+  };
 
   useEffect(() => {
     if (!isActive || !currentStep) return;
@@ -262,11 +285,7 @@ export function TutorialOverlay({
               </span>
             </div>
             <h3 className="font-bold text-gray-900 text-sm leading-tight">
-              {currentStep.id === 'topic-question' ? 'Enter Your Question' : 
-               currentStep.id === 'generate-question' ? 'Upload Image' : 
-               currentStep.id === 'use-my-question' ? 'Use My Question' : 
-               currentStep.id === 'random-question' ? 'Random Question' :
-               currentStep.id === 'random-question-button' ? 'Random Question' : currentStep.title}
+              {getStepTitle(currentStep.id, currentStep.title)}
             </h3>
           </div>
           <div className="flex items-center gap-2">

@@ -464,6 +464,7 @@ export default function WritingTask2() {
             currentStep={currentStepData}
             currentStepIndex={currentStep}
             totalSteps={totalSteps}
+            tutorialType="task2"
             onNext={nextStep}
             onPrev={prevStep}
             onSkip={skipTutorial}

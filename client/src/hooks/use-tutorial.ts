@@ -47,7 +47,7 @@ export const task1TutorialSteps: TutorialStep[] = [
     id: 'use-my-question',
     target: '[data-testid="button-generate-question"]',
     title: 'Get Question',
-    content: 'Click this button to automatically generate a practice question with chart data based on your selected type and band level.',
+    content: 'Click this button to automatically generate a practice question with chart data based on your selected type.',
     position: 'top',
     order: 5
   },
@@ -106,7 +106,7 @@ export const task2TutorialSteps: TutorialStep[] = [
   {
     id: 'topic-question',
     target: '[data-testid="topic-question-area"]',
-    title: 'Topic/Question Area',
+    title: 'Topic/Question',
     content: 'Enter your essay question here or use the buttons below to generate one. This area supports custom questions and auto-generated topics.',
     position: 'top',
     order: 3
@@ -115,7 +115,7 @@ export const task2TutorialSteps: TutorialStep[] = [
     id: 'generate-question',
     target: '[data-testid="button-generate-question"]',
     title: 'Generate Question',
-    content: 'Click this button to automatically generate an essay question based on your selected type and band level. Perfect for quick practice sessions.',
+    content: 'Click this button to automatically generate an essay question based on your selected type. Perfect for quick practice sessions.',
     position: 'top',
     order: 4
   },
