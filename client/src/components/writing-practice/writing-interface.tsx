@@ -619,6 +619,13 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
   const [activeTab, setActiveTab] = useState("vocabulary");
   const [showVocabulary, setShowVocabulary] = useState(false);
   const [showPhrases, setShowPhrases] = useState(false);
+  const [isWordBankRevealed, setIsWordBankRevealed] = useState(false);
+
+  const handleExploreWordBank = () => {
+    setShowVocabulary(true);
+    setShowPhrases(true);
+    setIsWordBankRevealed(true);
+  };
   const allVocabulary = getVocabulary(testType, topic);
   const phrases = getPhrases(testType);
 
@@ -870,14 +877,28 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
 
   return (
     <Card className="mt-6 p-0 border-0 bg-transparent shadow-none">
-      <Tabs 
-        defaultValue="vocabulary" 
-        value={activeTab}
-        onValueChange={setActiveTab}
-        className="relative"
-      >
-        <div className="mb-4 relative">
-          <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
+      {!isWordBankRevealed ? (
+        <div className="flex justify-center py-8">
+          <Button
+            onClick={handleExploreWordBank}
+            className="bg-primary hover:opacity-90 text-white px-6 py-3 text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+            data-testid="button-explore-word-bank"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 mr-2">
+              <path d="M12 20V4"></path><path d="M20 8h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2"></path><path d="M4 8h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4"></path>
+            </svg>
+            Explore Word Bank
+          </Button>
+        </div>
+      ) : (
+        <Tabs 
+          defaultValue="vocabulary" 
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="relative"
+        >
+          <div className="mb-4 relative">
+            <TabsList className="w-full flex gap-1 bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
             <TabsTrigger 
               value="vocabulary" 
               className="flex-1 text-sm py-2.5 px-4 font-medium rounded-lg transition-all flex items-center justify-center gap-2
@@ -1034,7 +1055,8 @@ function ResourcesSection({ testType, topic }: { testType: WritingTestType, topi
                 </div>
               )}
         </TabsContent>
-      </Tabs>
+        </Tabs>
+      )}
     </Card>
   );
 }
